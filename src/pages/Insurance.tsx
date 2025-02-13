@@ -10,7 +10,7 @@ const Insurance = () => {
         <img 
           src="/lovable-uploads/335f70ec-aa5b-4954-aa12-c425ddd41fc5.png" 
           alt="Madrone Capital Logo" 
-          className="h-40 w-auto"
+          className="h-60 w-auto"
         />
       </div>
 
