@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Phone } from "lucide-react";
 import { useState } from "react";
 import { 
   Dialog, 
@@ -56,12 +56,15 @@ const Insurance = () => {
             Our virtual agent is ready to help you get an insurance quote.
             Get personalized coverage options tailored to your needs.
           </p>
-          <Button 
-            onClick={() => setIsDialogOpen(true)}
-            className="bg-accent text-accent-foreground hover:bg-accent/90"
-          >
-            Get Your Quote
-          </Button>
+          <div className="flex justify-center">
+            <Button 
+              onClick={() => setIsDialogOpen(true)}
+              className="bg-accent text-accent-foreground hover:bg-accent/90 flex items-center gap-2"
+            >
+              Get Your Quote
+              <Phone className="h-4 w-4" />
+            </Button>
+          </div>
         </div>
       </div>
 

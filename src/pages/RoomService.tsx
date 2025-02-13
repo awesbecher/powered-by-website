@@ -17,7 +17,6 @@ const RoomService = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
 
   const handlePhoneSubmit = () => {
-    // Here you can handle the phone number submission
     console.log("Phone number submitted:", phoneNumber);
     setIsDialogOpen(false);
   };
@@ -57,7 +56,7 @@ const RoomService = () => {
             Our virtual agent is ready to take your room service order. 
             Place your order anytime, day or night.
           </p>
-          <div className="space-y-4">
+          <div className="flex flex-col items-center space-y-4">
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link to="/food-menu">
                 <Button 
@@ -76,7 +75,7 @@ const RoomService = () => {
                 </Button>
               </Link>
             </div>
-            <div>
+            <div className="flex justify-center w-full">
               <Button 
                 onClick={() => setIsDialogOpen(true)}
                 className="bg-accent text-accent-foreground hover:bg-accent/90 w-full sm:w-auto flex items-center justify-center gap-2"
