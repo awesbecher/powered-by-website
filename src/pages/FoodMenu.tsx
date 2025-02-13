@@ -33,7 +33,7 @@ const FoodMenu = () => {
       </Link>
 
       <div className="mx-auto max-w-6xl">
-        <div className="flex justify-center items-center gap-4 mb-8">
+        <div className="flex justify-center items-center gap-12 mb-8">
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
             Food Menu
           </h1>
