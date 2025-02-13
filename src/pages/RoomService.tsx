@@ -67,12 +67,14 @@ const RoomService = () => {
                   Food Menu
                 </Button>
               </Link>
-              <Button 
-                variant="outline"
-                className="w-full sm:w-auto"
-              >
-                Drinks Menu
-              </Button>
+              <Link to="/drinks-menu">
+                <Button 
+                  variant="outline"
+                  className="w-full sm:w-auto"
+                >
+                  Drinks Menu
+                </Button>
+              </Link>
             </div>
             <div>
               <Button 
