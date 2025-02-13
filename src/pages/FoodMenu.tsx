@@ -11,14 +11,47 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 
 const FoodMenu = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
+  const { toast } = useToast();
 
-  const handlePhoneSubmit = () => {
-    console.log("Phone number submitted:", phoneNumber);
-    setIsDialogOpen(false);
+  const handlePhoneSubmit = async () => {
+    try {
+      // Remove any non-numeric characters from the phone number
+      const cleanPhoneNumber = phoneNumber.replace(/\D/g, '');
+      
+      // Make the API call to initiate the automated call
+      const response = await fetch('https://api.madrone.ai/call', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          phoneNumber: cleanPhoneNumber,
+          type: 'food_order'
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to initiate call');
+      }
+
+      toast({
+        title: "Call Initiated",
+        description: "You will receive a call shortly to take your food order.",
+      });
+
+      setIsDialogOpen(false);
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to initiate call. Please try again.",
+      });
+    }
   };
 
   return (
