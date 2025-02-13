@@ -72,7 +72,7 @@ const RoomService = () => {
           <DialogHeader>
             <DialogTitle>Enter Your Phone Number</DialogTitle>
             <DialogDescription>
-              Please enter your phone number to proceed with your order.
+              Please enter your phone number to proceed with your order. An agent will call you now.
             </DialogDescription>
           </DialogHeader>
           <div className="flex items-center space-x-2">
