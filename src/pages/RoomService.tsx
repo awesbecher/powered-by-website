@@ -62,7 +62,7 @@ const RoomService = () => {
               variant="outline"
               className="w-full sm:w-auto"
             >
-              See Menu
+              Food Menu
             </Button>
             <div>
               <Button 
