@@ -9,7 +9,7 @@ const Index = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <span className="inline-block rounded-full bg-accent/10 px-3 py-1 text-sm font-medium text-accent mb-4">
-            Welcome
+            Voice Agent Demo
           </span>
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
             Choose Your Service
