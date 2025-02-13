@@ -5,6 +5,15 @@ import { ArrowRight } from "lucide-react";
 const Index = () => {
   return (
     <div className="min-h-screen w-full bg-neutral-soft px-4 py-16 sm:px-6 lg:px-8">
+      {/* Logo */}
+      <div className="absolute top-8 left-8">
+        <img 
+          src="/lovable-uploads/335f70ec-aa5b-4954-aa12-c425ddd41fc5.png" 
+          alt="Madrone Capital Logo" 
+          className="h-16 w-auto"
+        />
+      </div>
+
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="text-center mb-16">
