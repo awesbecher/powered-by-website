@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { Phone } from "lucide-react";
 
 const Index = () => {
   return (
@@ -39,7 +39,7 @@ const Index = () => {
             </p>
             <div className="mt-6 flex items-center text-accent">
               <span className="text-sm font-medium">Talk to an agent now</span>
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <Phone className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </div>
           </Link>
 
@@ -52,7 +52,7 @@ const Index = () => {
             </p>
             <div className="mt-6 flex items-center text-accent">
               <span className="text-sm font-medium">Talk to an agent now</span>
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <Phone className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </div>
           </Link>
 
@@ -65,7 +65,7 @@ const Index = () => {
             </p>
             <div className="mt-6 flex items-center text-accent">
               <span className="text-sm font-medium">Talk to an agent now</span>
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <Phone className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </div>
           </Link>
         </div>
