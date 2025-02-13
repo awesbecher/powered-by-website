@@ -61,7 +61,7 @@ const Index = () => {
             <span className="service-label">Licensing</span>
             <h2 className="service-title">Upgrade Your License</h2>
             <p className="mt-4 text-gray-300">
-              Seamlessly upgrade your license in just a few clicks
+              Seamlessly upgrade your license by talking to an agent
             </p>
             <div className="mt-6 flex items-center text-accent">
               <span className="text-sm font-medium">Talk to an agent now</span>
