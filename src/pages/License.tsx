@@ -61,7 +61,7 @@ const License = () => {
               onClick={() => setIsDialogOpen(true)}
               className="bg-accent text-accent-foreground hover:bg-accent/90 flex items-center gap-2"
             >
-              Speak to a sales rep
+              Speak To A Sales Rep
               <Phone className="h-4 w-4" />
             </Button>
           </div>
