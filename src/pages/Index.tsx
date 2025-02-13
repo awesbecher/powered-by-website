@@ -27,7 +27,7 @@ const Index = () => {
 
       <div className="mx-auto max-w-7xl">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <span className="inline-block rounded-full bg-accent/10 px-3 py-1 text-3xl font-medium text-accent mb-4">
             Voice Agent Demo
           </span>
