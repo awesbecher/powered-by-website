@@ -10,7 +10,7 @@ const Index = () => {
         <img 
           src="/lovable-uploads/335f70ec-aa5b-4954-aa12-c425ddd41fc5.png" 
           alt="Madrone Capital Logo" 
-          className="h-24 w-auto"
+          className="h-32 w-auto"
         />
       </div>
 
