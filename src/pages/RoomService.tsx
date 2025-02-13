@@ -59,12 +59,14 @@ const RoomService = () => {
           </p>
           <div className="space-y-4">
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button 
-                variant="outline"
-                className="w-full sm:w-auto"
-              >
-                Food Menu
-              </Button>
+              <Link to="/food-menu">
+                <Button 
+                  variant="outline"
+                  className="w-full sm:w-auto"
+                >
+                  Food Menu
+                </Button>
+              </Link>
               <Button 
                 variant="outline"
                 className="w-full sm:w-auto"

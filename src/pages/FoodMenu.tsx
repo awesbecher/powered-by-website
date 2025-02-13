@@ -1,0 +1,48 @@
+
+import { Link } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
+
+const FoodMenu = () => {
+  return (
+    <div className="min-h-screen w-full bg-neutral-soft px-4 py-16 sm:px-6 lg:px-8">
+      {/* Logo */}
+      <div className="absolute top-8 right-8">
+        <a 
+          href="https://madrone.capital/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+        >
+          <img 
+            src="/lovable-uploads/335f70ec-aa5b-4954-aa12-c425ddd41fc5.png" 
+            alt="Madrone Capital Logo" 
+            className="h-48 w-auto"
+          />
+        </a>
+      </div>
+
+      {/* Back button */}
+      <Link 
+        to="/room-service" 
+        className="absolute top-8 left-8 flex items-center text-accent hover:text-accent/80 transition-colors"
+      >
+        <ArrowLeft className="h-6 w-6 mr-2" />
+        <span>Back to Room Service</span>
+      </Link>
+
+      <div className="mx-auto max-w-6xl">
+        <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl mb-8 text-center">
+          Food Menu
+        </h1>
+        <div className="bg-white rounded-lg p-4 shadow-lg">
+          <img 
+            src="/lovable-uploads/88643870-5f4f-40ea-91de-5c650a6f05b6.png" 
+            alt="Restaurant Menu" 
+            className="w-full h-auto"
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default FoodMenu;
