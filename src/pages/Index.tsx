@@ -38,7 +38,7 @@ const Index = () => {
               Delicious meals delivered right to your room, available 24/7
             </p>
             <div className="mt-6 flex items-center text-accent">
-              <span className="text-sm font-medium">Get started</span>
+              <span className="text-sm font-medium">Talk to an agent now</span>
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </div>
           </Link>
@@ -51,7 +51,7 @@ const Index = () => {
               Quick and easy insurance quotes tailored to your needs
             </p>
             <div className="mt-6 flex items-center text-accent">
-              <span className="text-sm font-medium">Get started</span>
+              <span className="text-sm font-medium">Talk to an agent now</span>
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </div>
           </Link>
@@ -64,7 +64,7 @@ const Index = () => {
               Seamlessly upgrade your license in just a few clicks
             </p>
             <div className="mt-6 flex items-center text-accent">
-              <span className="text-sm font-medium">Get started</span>
+              <span className="text-sm font-medium">Talk to an agent now</span>
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </div>
           </Link>
