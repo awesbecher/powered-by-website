@@ -30,11 +30,11 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
         neutral: {
-          soft: "#f7f7f7",
-          medium: "#e5e5e5",
+          soft: "#000000",
+          medium: "#222222",
         },
         accent: {
-          soft: "#f5f5f5",
+          soft: "#222222",
           DEFAULT: "#9b87f5",
           dark: "#7a6cc5",
         },

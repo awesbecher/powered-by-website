@@ -11,10 +11,10 @@ const Index = () => {
           <span className="inline-block rounded-full bg-accent/10 px-3 py-1 text-sm font-medium text-accent mb-4">
             Welcome
           </span>
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
+          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
             Choose Your Service
           </h1>
-          <p className="mt-4 text-lg text-gray-600">
+          <p className="mt-4 text-lg text-gray-300">
             Select one of our premium services below to get started
           </p>
         </div>
@@ -25,7 +25,7 @@ const Index = () => {
           <Link to="/room-service" className="service-card group">
             <span className="service-label">Hospitality</span>
             <h2 className="service-title">Order Room Service</h2>
-            <p className="mt-4 text-gray-600">
+            <p className="mt-4 text-gray-300">
               Delicious meals delivered right to your room, available 24/7
             </p>
             <div className="mt-6 flex items-center text-accent">
@@ -38,7 +38,7 @@ const Index = () => {
           <Link to="/insurance" className="service-card group">
             <span className="service-label">Insurance</span>
             <h2 className="service-title">Get Your Insurance Quote</h2>
-            <p className="mt-4 text-gray-600">
+            <p className="mt-4 text-gray-300">
               Quick and easy insurance quotes tailored to your needs
             </p>
             <div className="mt-6 flex items-center text-accent">
@@ -51,7 +51,7 @@ const Index = () => {
           <Link to="/license" className="service-card group">
             <span className="service-label">Licensing</span>
             <h2 className="service-title">Upgrade Your License</h2>
-            <p className="mt-4 text-gray-600">
+            <p className="mt-4 text-gray-300">
               Seamlessly upgrade your license in just a few clicks
             </p>
             <div className="mt-6 flex items-center text-accent">
