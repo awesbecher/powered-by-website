@@ -58,12 +58,20 @@ const RoomService = () => {
             Place your order anytime, day or night.
           </p>
           <div className="space-y-4">
-            <Button 
-              variant="outline"
-              className="w-full sm:w-auto"
-            >
-              Food Menu
-            </Button>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Button 
+                variant="outline"
+                className="w-full sm:w-auto"
+              >
+                Food Menu
+              </Button>
+              <Button 
+                variant="outline"
+                className="w-full sm:w-auto"
+              >
+                Drinks Menu
+              </Button>
+            </div>
             <div>
               <Button 
                 onClick={() => setIsDialogOpen(true)}
