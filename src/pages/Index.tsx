@@ -24,7 +24,7 @@ const Index = () => {
             Choose Your Service
           </h1>
           <p className="mt-4 text-lg text-gray-300">
-            Select one of our premium services below to get started
+            Select a service to speak to an agent
           </p>
         </div>
 
