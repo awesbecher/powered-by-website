@@ -57,12 +57,22 @@ const RoomService = () => {
             Our virtual agent is ready to take your room service order. 
             Place your order anytime, day or night.
           </p>
-          <Button 
-            onClick={() => setIsDialogOpen(true)}
-            className="bg-accent text-accent-foreground hover:bg-accent/90"
-          >
-            Start Your Order
-          </Button>
+          <div className="space-y-4">
+            <Button 
+              variant="outline"
+              className="w-full sm:w-auto"
+            >
+              See Menu
+            </Button>
+            <div>
+              <Button 
+                onClick={() => setIsDialogOpen(true)}
+                className="bg-accent text-accent-foreground hover:bg-accent/90 w-full sm:w-auto"
+              >
+                Start Your Order
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
 
