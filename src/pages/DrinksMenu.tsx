@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Phone } from "lucide-react";
 import { useState } from "react";
 import { 
   Dialog, 
@@ -73,9 +73,10 @@ const DrinksMenu = () => {
           <div className="flex-1 min-w-[200px]"></div>
           <Button 
             onClick={() => setIsDialogOpen(true)}
-            className="bg-accent text-accent-foreground hover:bg-accent/90"
+            className="bg-accent text-accent-foreground hover:bg-accent/90 flex items-center gap-2"
           >
             Start your order
+            <Phone className="h-4 w-4" />
           </Button>
         </div>
         <div className="bg-white rounded-lg p-4 shadow-lg">

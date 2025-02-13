@@ -79,9 +79,10 @@ const RoomService = () => {
             <div>
               <Button 
                 onClick={() => setIsDialogOpen(true)}
-                className="bg-accent text-accent-foreground hover:bg-accent/90 w-full sm:w-auto"
+                className="bg-accent text-accent-foreground hover:bg-accent/90 w-full sm:w-auto flex items-center justify-center gap-2"
               >
                 Start Your Order
+                <Phone className="h-4 w-4" />
               </Button>
             </div>
           </div>
