@@ -60,6 +60,8 @@ serve(async (req) => {
     console.log('API Key present and length:', apiKey.length)
 
     try {
+      console.log('Attempting to make API request to Madrone...')
+      
       // Make the API call to initiate the phone call
       const response = await fetch('https://api.madrone.ai/v1/calls', {
         method: 'POST',
@@ -75,6 +77,8 @@ serve(async (req) => {
         })
       })
 
+      console.log('Received response from Madrone API')
+      
       const responseData = await response.json()
       console.log('API response status:', response.status)
       console.log('API response body:', responseData)
