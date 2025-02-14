@@ -90,7 +90,7 @@ serve(async (req) => {
         payload
       })
 
-      // Make the API call with HTTPS handling and without AbortController
+      // Make the API call with more detailed error handling
       const response = await fetch('https://api.madrone.ai/v1/calls', {
         method: 'POST',
         headers: {
@@ -99,6 +99,14 @@ serve(async (req) => {
           'Authorization': `Bearer ${apiKey}`,
         },
         body: JSON.stringify(payload)
+      }).catch(error => {
+        console.error('Network error details:', {
+          name: error.name,
+          message: error.message,
+          cause: error.cause,
+          stack: error.stack
+        })
+        throw new Error(`Network error: ${error.message}`)
       })
       
       // Get the raw response text first
