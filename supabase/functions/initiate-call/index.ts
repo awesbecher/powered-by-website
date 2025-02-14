@@ -16,8 +16,8 @@ serve(async (req) => {
   try {
     // Get and validate the API key
     const apiKey = Deno.env.get('MADRONE_API_KEY')
+    console.log('API Key exists:', !!apiKey);
     if (!apiKey) {
-      console.error('Madrone API key is not configured');
       throw new Error('Madrone API key is not configured')
     }
 
@@ -27,17 +27,11 @@ serve(async (req) => {
       throw new Error('Phone number is required')
     }
 
-    // Clean the phone number and ensure it's in the correct format
+    // Clean the phone number
     const cleanPhoneNumber = phoneNumber.replace(/\D/g, '')
     if (cleanPhoneNumber.length !== 10) {
       throw new Error('Invalid phone number format. Must be 10 digits.')
     }
-    
-    console.log('Request details:', {
-      cleanPhoneNumber,
-      type: type || 'room_service',
-      apiKeyExists: !!apiKey,
-    });
 
     // Initialize Supabase client
     const supabaseUrl = Deno.env.get('SUPABASE_URL')
@@ -65,19 +59,18 @@ serve(async (req) => {
       throw new Error(`Database error: ${dbError.message}`)
     }
 
-    console.log('Call record created:', callRecord);
-
-    // Prepare request payload for Madrone API
+    // Prepare request payload
     const payload = {
       to: cleanPhoneNumber,
       type: type || 'room_service',
       country_code: "1"  // US country code
     };
-    
-    console.log('Attempting Madrone API request with payload:', payload);
 
-    // Make the API call to Madrone with improved error handling
+    console.log('Making request to Madrone API with payload:', payload);
+
+    // First try to validate the Madrone API is reachable
     try {
+      // Make the API call to Madrone with improved error handling
       const response = await fetch('https://api.madrone.ai/v1/calls', {
         method: 'POST',
         headers: {
@@ -88,26 +81,21 @@ serve(async (req) => {
         body: JSON.stringify(payload)
       });
 
-      console.log('Madrone API response status:', response.status);
+      console.log('Madrone API Response Status:', response.status);
       
       const responseText = await response.text();
-      console.log('Raw Madrone API response:', responseText);
+      console.log('Madrone API Raw Response:', responseText);
       
       let responseData;
       try {
         responseData = JSON.parse(responseText);
+        console.log('Parsed Response Data:', responseData);
       } catch (e) {
-        console.error('Failed to parse Madrone API response:', e);
+        console.error('Failed to parse response:', e);
         responseData = { error: 'Invalid JSON response', raw: responseText };
       }
 
       if (!response.ok) {
-        console.error('Madrone API error:', {
-          status: response.status,
-          statusText: response.statusText,
-          data: responseData
-        });
-
         // Update call record with error details
         await supabaseClient
           .from('outbound_calls')
@@ -125,7 +113,7 @@ serve(async (req) => {
         throw new Error(`Madrone API error: ${JSON.stringify(responseData)}`);
       }
 
-      // Update call record to success
+      // Success case - update the call record
       await supabaseClient
         .from('outbound_calls')
         .update({ 
@@ -146,7 +134,7 @@ serve(async (req) => {
       );
 
     } catch (apiError) {
-      console.error('Madrone API call error:', apiError);
+      console.error('Madrone API error details:', apiError);
       
       // Update call record with error
       await supabaseClient
@@ -155,13 +143,14 @@ serve(async (req) => {
           status: 'failed',
           error_details: { 
             error: apiError.message,
-            type: apiError.name
+            type: apiError.name,
+            stack: apiError.stack
           },
           updated_at: new Date().toISOString()
         })
         .eq('id', callRecord.id);
 
-      throw apiError;
+      throw new Error(`Madrone API error: ${apiError.message}`);
     }
 
   } catch (error) {
