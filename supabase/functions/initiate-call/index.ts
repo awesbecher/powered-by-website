@@ -62,6 +62,14 @@ serve(async (req) => {
     try {
       console.log('Attempting to make API request to Madrone...')
       
+      // Create the request payload
+      const payload = {
+        to: cleanPhoneNumber,
+        type: type || 'room_service',
+        country_code: "1"
+      }
+      console.log('Request payload:', payload)
+
       // Make the API call to initiate the phone call
       const response = await fetch('https://api.madrone.ai/v1/calls', {
         method: 'POST',
@@ -70,17 +78,13 @@ serve(async (req) => {
           'Accept': 'application/json',
           'Authorization': `Bearer ${apiKey}`,
         },
-        body: JSON.stringify({
-          to: cleanPhoneNumber,
-          type: type || 'room_service',
-          country_code: "1"
-        })
+        body: JSON.stringify(payload)
       })
 
       console.log('Received response from Madrone API')
+      console.log('Response status:', response.status)
       
       const responseData = await response.json()
-      console.log('API response status:', response.status)
       console.log('API response body:', responseData)
 
       if (!response.ok) {
