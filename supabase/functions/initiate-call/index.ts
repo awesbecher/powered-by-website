@@ -39,7 +39,7 @@ serve(async (req) => {
       .from('outbound_calls')
       .insert({
         phone_number: cleanPhoneNumber,
-        call_type: type,
+        call_type: type || 'room_service',
         status: 'pending'
       })
       .select()
@@ -59,14 +59,6 @@ serve(async (req) => {
     }
     console.log('API Key present and length:', apiKey.length)
 
-    // Prepare the request body
-    const apiRequestBody = {
-      to: cleanPhoneNumber,
-      type: type || 'room_service',  // Default to room_service if not specified
-      country_code: "1"
-    }
-    console.log('Making API request with body:', apiRequestBody)
-
     try {
       // Make the API call to initiate the phone call
       const response = await fetch('https://api.madrone.ai/v1/calls', {
@@ -76,24 +68,24 @@ serve(async (req) => {
           'Accept': 'application/json',
           'Authorization': `Bearer ${apiKey}`,
         },
-        body: JSON.stringify(apiRequestBody)
+        body: JSON.stringify({
+          to: cleanPhoneNumber,
+          type: type || 'room_service',
+          country_code: "1"
+        })
       })
 
-      // Log response details
-      console.log('API response status:', response.status)
-      console.log('API response headers:', Object.fromEntries(response.headers.entries()))
-
       const responseData = await response.json()
+      console.log('API response status:', response.status)
       console.log('API response body:', responseData)
 
       if (!response.ok) {
-        // Update call record status to failed
         await supabaseClient
           .from('outbound_calls')
           .update({ status: 'failed' })
           .eq('id', callRecord.id)
 
-        throw new Error(`API error (${response.status}): ${responseData.message || JSON.stringify(responseData)}`)
+        throw new Error(`API error (${response.status}): ${JSON.stringify(responseData)}`)
       }
 
       // Update call record status to success
@@ -115,13 +107,10 @@ serve(async (req) => {
         .update({ status: 'failed' })
         .eq('id', callRecord.id)
 
-      throw new Error(`Failed to make API request: ${fetchError.message}`)
+      throw new Error(`API error: ${fetchError.message}`)
     }
   } catch (error) {
     console.error('Error in initiate-call function:', error)
-    if (error instanceof Error) {
-      console.error('Error stack:', error.stack)
-    }
     return new Response(
       JSON.stringify({ error: error.message }),
       { 
