@@ -102,8 +102,6 @@ serve(async (req) => {
         body: JSON.stringify(payload)
       })
       
-      console.log('Madrone API response status:', response.status)
-      
       // Get the raw response text first
       const responseText = await response.text()
       console.log('Madrone API raw response:', responseText)
