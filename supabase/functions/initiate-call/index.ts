@@ -41,20 +41,23 @@ serve(async (req) => {
     }
 
     // Make the API call to initiate the phone call
-    const response = await fetch('https://api.madrone.ai/call', {
+    const response = await fetch('https://api.madrone.ai/v1/calls', {  // Updated API endpoint
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${Deno.env.get('MADRONE_API_KEY')}`,
       },
       body: JSON.stringify({
-        phoneNumber,
-        type
+        to: phoneNumber,  // Updated field name to match API spec
+        type: type,
+        country_code: "1"  // Added US country code
       }),
     })
 
     if (!response.ok) {
-      throw new Error('Failed to initiate call')
+      const errorData = await response.json()
+      console.error('API error:', errorData)
+      throw new Error(errorData.message || 'Failed to initiate call')
     }
 
     const result = await response.json()
