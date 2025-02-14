@@ -52,24 +52,6 @@ serve(async (req) => {
 
     const supabaseClient = createClient(supabaseUrl, supabaseKey)
 
-    // Create a record in the outbound_calls table
-    const { data: callRecord, error: dbError } = await supabaseClient
-      .from('outbound_calls')
-      .insert({
-        phone_number: cleanPhoneNumber,
-        call_type: type || 'room_service',
-        status: 'pending'
-      })
-      .select()
-      .single()
-
-    if (dbError) {
-      console.error('Database error:', dbError)
-      throw new Error(`Database error: ${dbError.message}`)
-    }
-
-    console.log('Created call record:', callRecord)
-
     try {
       // Create the request payload
       const payload = {
@@ -90,7 +72,25 @@ serve(async (req) => {
         payload
       })
 
-      // Make the API call with more detailed error handling
+      // Create a record in the outbound_calls table
+      const { data: callRecord, error: dbError } = await supabaseClient
+        .from('outbound_calls')
+        .insert({
+          phone_number: cleanPhoneNumber,
+          call_type: type || 'room_service',
+          status: 'pending'
+        })
+        .select()
+        .single()
+
+      if (dbError) {
+        console.error('Database error:', dbError)
+        throw new Error(`Database error: ${dbError.message}`)
+      }
+
+      console.log('Created call record:', callRecord)
+
+      // Make the API call
       const response = await fetch('https://api.madrone.ai/v1/calls', {
         method: 'POST',
         headers: {
@@ -99,14 +99,6 @@ serve(async (req) => {
           'Authorization': `Bearer ${apiKey}`,
         },
         body: JSON.stringify(payload)
-      }).catch(error => {
-        console.error('Network error details:', {
-          name: error.name,
-          message: error.message,
-          cause: error.cause,
-          stack: error.stack
-        })
-        throw new Error(`Network error: ${error.message}`)
       })
       
       // Get the raw response text first
@@ -159,21 +151,7 @@ serve(async (req) => {
         }
       )
     } catch (apiError) {
-      console.error('Madrone API error details:', {
-        message: apiError.message,
-        cause: apiError.cause,
-        stack: apiError.stack
-      })
-
-      // Update call record status to failed
-      await supabaseClient
-        .from('outbound_calls')
-        .update({ 
-          status: 'failed',
-          updated_at: new Date().toISOString()
-        })
-        .eq('id', callRecord.id)
-
+      console.error('Madrone API error details:', apiError)
       throw apiError
     }
   } catch (error) {
