@@ -11,14 +11,48 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const RoomService = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
-  const handlePhoneSubmit = () => {
-    console.log("Phone number submitted:", phoneNumber);
-    setIsDialogOpen(false);
+  const handlePhoneSubmit = async () => {
+    try {
+      setIsLoading(true);
+      
+      // Remove any non-numeric characters from the phone number
+      const cleanPhoneNumber = phoneNumber.replace(/\D/g, '');
+      
+      // Make the API call to initiate the automated call
+      const { data, error } = await supabase.functions.invoke('initiate-call', {
+        body: {
+          phoneNumber: cleanPhoneNumber,
+          type: 'room_service'
+        }
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Call Initiated",
+        description: "You will receive a call shortly to take your room service order.",
+      });
+
+      setIsDialogOpen(false);
+    } catch (error) {
+      console.error('Error initiating call:', error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to initiate call. Please try again.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -110,8 +144,11 @@ const RoomService = () => {
             />
           </div>
           <div className="flex justify-end mt-4">
-            <Button onClick={handlePhoneSubmit}>
-              Continue
+            <Button 
+              onClick={handlePhoneSubmit}
+              disabled={isLoading}
+            >
+              {isLoading ? "Initiating..." : "Continue"}
             </Button>
           </div>
         </DialogContent>
