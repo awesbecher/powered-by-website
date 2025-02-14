@@ -60,31 +60,13 @@ serve(async (req) => {
         country_code: "1"
       }
 
-      // Log detailed request information
-      const requestUrl = 'https://api.madrone.ai/v1/calls';
-      const headers = {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${apiKey}`,
-      };
-
-      console.log('Making Madrone API request:', {
-        url: requestUrl,
-        method: 'POST',
-        headers: {
-          ...headers,
-          'Authorization': `Bearer ${apiKey.slice(0, 3)}...${apiKey.slice(-3)}` // Log partial key
-        },
-        payload
-      })
-
-      // Create a record in the outbound_calls table
+      // Create a record in the outbound_calls table before making the API call
       const { data: callRecord, error: dbError } = await supabaseClient
         .from('outbound_calls')
         .insert({
           phone_number: cleanPhoneNumber,
           call_type: type || 'room_service',
-          status: 'pending'
+          status: 'initiated'
         })
         .select()
         .single()
@@ -96,26 +78,31 @@ serve(async (req) => {
 
       console.log('Created call record:', callRecord)
 
-      // Test network connectivity first
-      try {
-        const testResponse = await fetch('https://api.madrone.ai', {
-          method: 'GET'
-        });
-        console.log('Connectivity test response:', {
-          status: testResponse.status,
-          ok: testResponse.ok
-        });
-      } catch (testError) {
-        console.error('Connectivity test failed:', testError);
+      // Set up headers for Madrone API call
+      const headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
       }
 
-      // Make the actual API call
-      const response = await fetch(requestUrl, {
+      // Log the request details (safely)
+      console.log('Preparing Madrone API request:', {
+        url: 'https://api.madrone.ai/v1/calls',
+        method: 'POST',
+        headers: {
+          ...headers,
+          'Authorization': `Bearer ${apiKey.slice(0, 3)}...${apiKey.slice(-3)}` // Log partial key for safety
+        },
+        payload
+      })
+
+      // Make the API call
+      const response = await fetch('https://api.madrone.ai/v1/calls', {
         method: 'POST',
         headers,
         body: JSON.stringify(payload)
-      });
-      
+      })
+
       // Get the raw response text first
       const responseText = await response.text()
       console.log('Madrone API raw response:', responseText)
@@ -136,7 +123,7 @@ serve(async (req) => {
           .from('outbound_calls')
           .update({ 
             status: 'failed',
-            error_details: JSON.stringify(responseData),
+            error_details: responseData,
             updated_at: new Date().toISOString()
           })
           .eq('id', callRecord.id)
@@ -167,10 +154,9 @@ serve(async (req) => {
         }
       )
     } catch (apiError) {
-      console.error('Madrone API error details:', {
+      console.error('API error details:', {
         name: apiError.name,
         message: apiError.message,
-        cause: apiError.cause,
         stack: apiError.stack
       })
       throw apiError

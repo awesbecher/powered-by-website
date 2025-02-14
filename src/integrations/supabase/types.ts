@@ -13,6 +13,7 @@ export type Database = {
         Row: {
           call_type: string
           created_at: string
+          error_details: Json | null
           id: string
           phone_number: string
           status: string
@@ -21,6 +22,7 @@ export type Database = {
         Insert: {
           call_type: string
           created_at?: string
+          error_details?: Json | null
           id?: string
           phone_number: string
           status?: string
@@ -29,6 +31,7 @@ export type Database = {
         Update: {
           call_type?: string
           created_at?: string
+          error_details?: Json | null
           id?: string
           phone_number?: string
           status?: string
