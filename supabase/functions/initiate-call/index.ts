@@ -20,9 +20,13 @@ serve(async (req) => {
       console.error('MADRONE_API_KEY is missing')
       throw new Error('MADRONE_API_KEY is not configured')
     }
+
+    // Log API key presence without exposing the actual key
     console.log('API Key validation:', {
       exists: !!apiKey,
-      length: apiKey.length
+      length: apiKey.length,
+      firstChar: apiKey.charAt(0),
+      lastChar: apiKey.charAt(apiKey.length - 1)
     })
 
     const requestBody = await req.json()
@@ -39,10 +43,14 @@ serve(async (req) => {
     console.log('Cleaned phone number:', cleanPhoneNumber)
 
     // Initialize Supabase client
-    const supabaseClient = createClient(
-      Deno.env.get('SUPABASE_URL') ?? '',
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
-    )
+    const supabaseUrl = Deno.env.get('SUPABASE_URL')
+    const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
+
+    if (!supabaseUrl || !supabaseKey) {
+      throw new Error('Supabase configuration is missing')
+    }
+
+    const supabaseClient = createClient(supabaseUrl, supabaseKey)
 
     // Create a record in the outbound_calls table
     const { data: callRecord, error: dbError } = await supabaseClient
@@ -84,6 +92,7 @@ serve(async (req) => {
       
       console.log('Madrone API response status:', response.status)
       
+      // Get the raw response text first
       const responseText = await response.text()
       console.log('Madrone API raw response:', responseText)
 
@@ -94,10 +103,11 @@ serve(async (req) => {
         console.log('Madrone API parsed response:', responseData)
       } catch (e) {
         console.error('Failed to parse Madrone API response:', e)
-        throw new Error(`Invalid JSON response: ${responseText}`)
+        responseData = { error: responseText }
       }
 
       if (!response.ok) {
+        // Update call record status to failed
         await supabaseClient
           .from('outbound_calls')
           .update({ 
@@ -119,8 +129,17 @@ serve(async (req) => {
         .eq('id', callRecord.id)
 
       return new Response(
-        JSON.stringify({ success: true, callId: callRecord.id }),
-        { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        JSON.stringify({ 
+          success: true, 
+          callId: callRecord.id,
+          response: responseData 
+        }),
+        { 
+          headers: { 
+            ...corsHeaders, 
+            'Content-Type': 'application/json' 
+          } 
+        }
       )
     } catch (apiError) {
       console.error('Madrone API error details:', {
