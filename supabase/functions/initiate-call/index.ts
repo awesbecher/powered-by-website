@@ -25,8 +25,8 @@ serve(async (req) => {
     console.log('API Key validation:', {
       exists: !!apiKey,
       length: apiKey.length,
-      firstChar: apiKey.charAt(0),
-      lastChar: apiKey.charAt(apiKey.length - 1)
+      firstThreeChars: apiKey.slice(0, 3),
+      lastThreeChars: apiKey.slice(-3)
     })
 
     const requestBody = await req.json()
@@ -78,6 +78,18 @@ serve(async (req) => {
         country_code: "1"
       }
       console.log('Madrone API request payload:', payload)
+
+      // Log full request details for debugging
+      console.log('Making Madrone API request:', {
+        url: 'https://api.madrone.ai/v1/calls',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${apiKey.slice(0, 3)}...${apiKey.slice(-3)}` // Log partial key for debugging
+        },
+        payload
+      })
 
       // Make the API call to initiate the phone call
       const response = await fetch('https://api.madrone.ai/v1/calls', {
