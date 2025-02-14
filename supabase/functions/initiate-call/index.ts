@@ -58,9 +58,11 @@ serve(async (req) => {
       console.error('MADRONE_API_KEY is missing')
       throw new Error('MADRONE_API_KEY is not configured')
     }
+    console.log('API Key present:', !!apiKey)
 
     try {
-      console.log('Starting Madrone API request...')
+      const url = new URL('https://api.madrone.ai/v1/calls')
+      console.log('Making request to:', url.toString())
       
       // Create the request payload
       const payload = {
@@ -68,21 +70,33 @@ serve(async (req) => {
         type: type || 'room_service',
         country_code: "1"
       }
-      console.log('Request payload:', JSON.stringify(payload))
+      console.log('Request payload:', JSON.stringify(payload, null, 2))
 
       // Make the API call to initiate the phone call
-      console.log('Sending request to Madrone API...')
-      const response = await fetch('https://api.madrone.ai/v1/calls', {
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => controller.abort(), 30000) // 30 second timeout
+
+      console.log('Sending request with headers:', {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer [REDACTED]'
+      })
+
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
           'Authorization': `Bearer ${apiKey}`,
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
+        signal: controller.signal
       })
 
+      clearTimeout(timeoutId)
+
       console.log('Response status:', response.status)
+      console.log('Response headers:', Object.fromEntries(response.headers.entries()))
       
       const responseText = await response.text()
       console.log('Raw response:', responseText)
@@ -90,17 +104,16 @@ serve(async (req) => {
       let responseData
       try {
         responseData = JSON.parse(responseText)
+        console.log('Parsed response data:', responseData)
       } catch (e) {
         console.error('Failed to parse response:', e)
         responseData = { error: 'Invalid JSON response' }
       }
 
-      console.log('Parsed response data:', responseData)
-
       if (!response.ok) {
         await supabaseClient
           .from('outbound_calls')
-          .update({ status: 'failed' })
+          .update({ status: 'failed', updated_at: new Date().toISOString() })
           .eq('id', callRecord.id)
 
         throw new Error(`API error (${response.status}): ${JSON.stringify(responseData)}`)
@@ -109,7 +122,10 @@ serve(async (req) => {
       // Update call record status to success
       await supabaseClient
         .from('outbound_calls')
-        .update({ status: 'success' })
+        .update({ 
+          status: 'success',
+          updated_at: new Date().toISOString()
+        })
         .eq('id', callRecord.id)
 
       return new Response(
@@ -118,6 +134,7 @@ serve(async (req) => {
       )
     } catch (fetchError) {
       console.error('Fetch error details:', {
+        name: fetchError.name,
         message: fetchError.message,
         cause: fetchError.cause,
         stack: fetchError.stack
@@ -126,7 +143,10 @@ serve(async (req) => {
       // Update call record status to failed
       await supabaseClient
         .from('outbound_calls')
-        .update({ status: 'failed' })
+        .update({ 
+          status: 'failed',
+          updated_at: new Date().toISOString()
+        })
         .eq('id', callRecord.id)
 
       throw new Error(`API error: ${fetchError.message}`)
@@ -134,7 +154,10 @@ serve(async (req) => {
   } catch (error) {
     console.error('Error in initiate-call function:', error)
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        error: error.message,
+        details: error instanceof Error ? error.stack : undefined 
+      }),
       { 
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
