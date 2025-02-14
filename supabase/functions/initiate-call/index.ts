@@ -96,63 +96,93 @@ serve(async (req) => {
         payload
       })
 
-      // Make the API call
-      const response = await fetch('https://api.madrone.ai/v1/calls', {
-        method: 'POST',
-        headers,
-        body: JSON.stringify(payload)
-      })
-
-      // Get the raw response text first
-      const responseText = await response.text()
-      console.log('Madrone API raw response:', responseText)
-
-      // Try to parse the response as JSON
-      let responseData
       try {
-        responseData = JSON.parse(responseText)
-        console.log('Madrone API parsed response:', responseData)
-      } catch (e) {
-        console.error('Failed to parse Madrone API response:', e)
-        responseData = { error: responseText }
-      }
+        // Make the API call with error handling
+        const response = await fetch('https://api.madrone.ai/v1/calls', {
+          method: 'POST',
+          headers,
+          body: JSON.stringify(payload)
+        })
 
-      if (!response.ok) {
-        // Update call record status to failed
+        // Get the raw response text first
+        const responseText = await response.text()
+        console.log('Madrone API raw response:', responseText)
+
+        // Try to parse the response as JSON
+        let responseData
+        try {
+          responseData = JSON.parse(responseText)
+          console.log('Madrone API parsed response:', responseData)
+        } catch (e) {
+          console.error('Failed to parse Madrone API response:', e)
+          responseData = { error: responseText }
+        }
+
+        if (!response.ok) {
+          // Update call record status to failed
+          await supabaseClient
+            .from('outbound_calls')
+            .update({ 
+              status: 'failed',
+              error_details: {
+                status: response.status,
+                statusText: response.statusText,
+                response: responseData
+              },
+              updated_at: new Date().toISOString()
+            })
+            .eq('id', callRecord.id)
+
+          throw new Error(`Madrone API error (${response.status}): ${JSON.stringify(responseData)}`)
+        }
+
+        // Update call record status to success
         await supabaseClient
           .from('outbound_calls')
           .update({ 
-            status: 'failed',
-            error_details: responseData,
+            status: 'success',
             updated_at: new Date().toISOString()
           })
           .eq('id', callRecord.id)
 
-        throw new Error(`Madrone API error (${response.status}): ${JSON.stringify(responseData)}`)
-      }
-
-      // Update call record status to success
-      await supabaseClient
-        .from('outbound_calls')
-        .update({ 
-          status: 'success',
-          updated_at: new Date().toISOString()
+        return new Response(
+          JSON.stringify({ 
+            success: true, 
+            callId: callRecord.id,
+            response: responseData 
+          }),
+          { 
+            headers: { 
+              ...corsHeaders, 
+              'Content-Type': 'application/json' 
+            } 
+          }
+        )
+      } catch (fetchError) {
+        // Log the detailed fetch error
+        console.error('Fetch error details:', {
+          name: fetchError.name,
+          message: fetchError.message,
+          cause: fetchError.cause,
+          stack: fetchError.stack
         })
-        .eq('id', callRecord.id)
 
-      return new Response(
-        JSON.stringify({ 
-          success: true, 
-          callId: callRecord.id,
-          response: responseData 
-        }),
-        { 
-          headers: { 
-            ...corsHeaders, 
-            'Content-Type': 'application/json' 
-          } 
-        }
-      )
+        // Update call record with fetch error details
+        await supabaseClient
+          .from('outbound_calls')
+          .update({ 
+            status: 'failed',
+            error_details: {
+              error: fetchError.message,
+              stack: fetchError.stack,
+              cause: fetchError.cause
+            },
+            updated_at: new Date().toISOString()
+          })
+          .eq('id', callRecord.id)
+
+        throw fetchError
+      }
     } catch (apiError) {
       console.error('API error details:', {
         name: apiError.name,
