@@ -14,10 +14,10 @@ serve(async (req) => {
   }
 
   try {
-    // Get the API key
-    const apiKey = Deno.env.get('MADRONE_API_KEY')
+    // Get the API key - using the correct secret name
+    const apiKey = Deno.env.get('Madrone API')
     if (!apiKey) {
-      throw new Error('MADRONE_API_KEY is not configured')
+      throw new Error('Madrone API key is not configured')
     }
 
     const { phoneNumber, type } = await req.json()
@@ -39,6 +39,8 @@ serve(async (req) => {
 
     const supabaseClient = createClient(supabaseUrl, supabaseKey)
 
+    console.log('Attempting to create call record for:', cleanPhoneNumber);
+
     // Create a record in outbound_calls
     const { data: callRecord, error: dbError } = await supabaseClient
       .from('outbound_calls')
@@ -51,8 +53,12 @@ serve(async (req) => {
       .single()
 
     if (dbError) {
+      console.error('Database error:', dbError);
       throw new Error(`Database error: ${dbError.message}`)
     }
+
+    console.log('Call record created:', callRecord);
+    console.log('Making API call to Madrone...');
 
     // Make the API call to Madrone
     const response = await fetch('https://api.madrone.ai/v1/calls', {
@@ -70,6 +76,8 @@ serve(async (req) => {
 
     // Get the response data
     const responseData = await response.text()
+    console.log('Madrone API response:', responseData);
+    
     let parsedResponse
     try {
       parsedResponse = JSON.parse(responseData)
@@ -78,6 +86,7 @@ serve(async (req) => {
     }
 
     if (!response.ok) {
+      console.error('Madrone API error:', parsedResponse);
       // Update call record to failed status
       await supabaseClient
         .from('outbound_calls')
@@ -90,6 +99,8 @@ serve(async (req) => {
 
       throw new Error(`API error: ${JSON.stringify(parsedResponse)}`)
     }
+
+    console.log('Call initiated successfully');
 
     // Update call record to success status
     await supabaseClient
@@ -108,6 +119,7 @@ serve(async (req) => {
     )
 
   } catch (error) {
+    console.error('Function error:', error);
     return new Response(
       JSON.stringify({
         error: error.message
