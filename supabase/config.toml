@@ -28,5 +28,5 @@ verify_jwt = false
 import_map = "../import_map.json"
 
 [[functions."initiate-call".allowed_net_access]]
-path = "api.madrone.ai"
+path = "https://api.madrone.ai"
 
