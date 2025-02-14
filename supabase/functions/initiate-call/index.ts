@@ -17,6 +17,7 @@ serve(async (req) => {
     // Get and validate the API key
     const apiKey = Deno.env.get('MADRONE_API_KEY')
     console.log('API Key exists:', !!apiKey);
+    console.log('API Key length:', apiKey?.length);
     if (!apiKey) {
       throw new Error('Madrone API key is not configured')
     }
@@ -67,9 +68,28 @@ serve(async (req) => {
     };
 
     console.log('Making request to Madrone API with payload:', payload);
+    console.log('Making request to Madrone API with headers:', {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${apiKey.substring(0, 4)}...${apiKey.substring(apiKey.length - 4)}`, // Log partial key for debugging
+      'Accept': 'application/json'
+    });
 
-    // First try to validate the Madrone API is reachable
     try {
+      // First validate we can reach the API
+      const validateResponse = await fetch('https://api.madrone.ai/v1/health', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Accept': 'application/json'
+        }
+      });
+      
+      console.log('Health check response:', {
+        status: validateResponse.status,
+        ok: validateResponse.ok,
+        statusText: validateResponse.statusText
+      });
+
       // Make the API call to Madrone with improved error handling
       const response = await fetch('https://api.madrone.ai/v1/calls', {
         method: 'POST',
@@ -82,6 +102,7 @@ serve(async (req) => {
       });
 
       console.log('Madrone API Response Status:', response.status);
+      console.log('Madrone API Response Status Text:', response.statusText);
       
       const responseText = await response.text();
       console.log('Madrone API Raw Response:', responseText);
