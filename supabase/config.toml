@@ -2,8 +2,10 @@
 # A string used as a friendly name for your project
 project_id = "cinohyzbtfzfcdtkgvij"
 
+[functions]
 [functions.initiate-call]
 verify_jwt = false
 import_map = "./import_map.json"
-[functions.initiate-call.permissions]
-net = ["api.madrone.ai"]
+
+[[functions.initiate-call.allowed_domains]]
+domain = "api.madrone.ai"
