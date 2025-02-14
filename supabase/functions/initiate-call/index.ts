@@ -1,3 +1,4 @@
+
 import { serve } from "std/http/server.ts"
 import { createClient } from '@supabase/supabase-js'
 
@@ -59,6 +60,35 @@ serve(async (req) => {
       throw new Error(`Database error: ${dbError.message}`)
     }
 
+    // First validate we can reach the API
+    console.log('Attempting health check...');
+    try {
+      const validateResponse = await fetch('https://api.madrone.ai/v1/health', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Accept': 'application/json'
+        }
+      });
+      
+      console.log('Health check response:', {
+        status: validateResponse.status,
+        ok: validateResponse.ok,
+        statusText: validateResponse.statusText
+      });
+
+      if (!validateResponse.ok) {
+        const healthCheckText = await validateResponse.text();
+        console.error('Health check failed:', healthCheckText);
+        throw new Error(`Health check failed with status ${validateResponse.status}`);
+      }
+    } catch (healthError) {
+      console.error('Health check error:', healthError);
+      throw new Error(`Failed to reach Madrone API: ${healthError.message}`);
+    }
+
+    console.log('Health check passed, making API call...');
+
     // Prepare request payload
     const payload = {
       to: cleanPhoneNumber,
@@ -79,122 +109,71 @@ serve(async (req) => {
       'Authorization': `Bearer ${apiKey.substring(0, 4)}...${apiKey.substring(apiKey.length - 4)}` // Log partial key for debugging
     });
 
+    // Make the API call to Madrone with improved error handling
+    let response;
     try {
-      // First validate we can reach the API
-      console.log('Attempting health check...');
-      try {
-        const validateResponse = await fetch('https://api.madrone.ai/v1/health', {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${apiKey}`,
-            'Accept': 'application/json'
-          }
-        });
-        
-        console.log('Health check response:', {
-          status: validateResponse.status,
-          ok: validateResponse.ok,
-          statusText: validateResponse.statusText
-        });
+      response = await fetch('https://api.madrone.ai/v1/calls', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(payload)
+      });
+    } catch (fetchError) {
+      console.error('Network error during fetch:', fetchError);
+      throw new Error(`Network error: ${fetchError.message}`);
+    }
 
-        if (!validateResponse.ok) {
-          const healthCheckText = await validateResponse.text();
-          console.error('Health check failed:', healthCheckText);
-          throw new Error(`Health check failed with status ${validateResponse.status}`);
-        }
-      } catch (healthError) {
-        console.error('Health check error:', healthError);
-        throw new Error(`Failed to reach Madrone API: ${healthError.message}`);
-      }
+    console.log('Madrone API Response Status:', response.status);
+    console.log('Madrone API Response Status Text:', response.statusText);
+    
+    const responseText = await response.text();
+    console.log('Madrone API Raw Response:', responseText);
+    
+    let responseData;
+    try {
+      responseData = JSON.parse(responseText);
+      console.log('Parsed Response Data:', responseData);
+    } catch (e) {
+      console.error('Failed to parse response:', e);
+      responseData = { error: 'Invalid JSON response', raw: responseText };
+    }
 
-      console.log('Health check passed, making API call...');
-
-      // Make the API call to Madrone with improved error handling
-      let response;
-      try {
-        response = await fetch('https://api.madrone.ai/v1/calls', {
-          method: 'POST',
-          headers,
-          body: JSON.stringify(payload)
-        });
-      } catch (fetchError) {
-        console.error('Network error during fetch:', fetchError);
-        throw new Error(`Network error: ${fetchError.message}`);
-      }
-
-      console.log('Madrone API Response Status:', response.status);
-      console.log('Madrone API Response Status Text:', response.statusText);
-      
-      const responseText = await response.text();
-      console.log('Madrone API Raw Response:', responseText);
-      
-      let responseData;
-      try {
-        responseData = JSON.parse(responseText);
-        console.log('Parsed Response Data:', responseData);
-      } catch (e) {
-        console.error('Failed to parse response:', e);
-        responseData = { error: 'Invalid JSON response', raw: responseText };
-      }
-
-      if (!response.ok) {
-        // Update call record with error details
-        await supabaseClient
-          .from('outbound_calls')
-          .update({ 
-            status: 'failed',
-            error_details: {
-              status: response.status,
-              statusText: response.statusText,
-              response: responseData
-            },
-            updated_at: new Date().toISOString()
-          })
-          .eq('id', callRecord.id);
-
-        throw new Error(`Madrone API error: ${JSON.stringify(responseData)}`);
-      }
-
-      // Success case - update the call record
-      await supabaseClient
-        .from('outbound_calls')
-        .update({ 
-          status: 'success',
-          updated_at: new Date().toISOString()
-        })
-        .eq('id', callRecord.id);
-
-      return new Response(
-        JSON.stringify({ 
-          success: true, 
-          data: responseData,
-          call_id: callRecord.id 
-        }),
-        { 
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-        }
-      );
-
-    } catch (apiError) {
-      console.error('Madrone API error details:', apiError);
-      
-      // Update call record with error
+    if (!response.ok) {
+      // Update call record with error details
       await supabaseClient
         .from('outbound_calls')
         .update({ 
           status: 'failed',
-          error_details: { 
-            error: apiError.message,
-            type: apiError.name,
-            stack: apiError.stack
+          error_details: {
+            status: response.status,
+            statusText: response.statusText,
+            response: responseData
           },
           updated_at: new Date().toISOString()
         })
         .eq('id', callRecord.id);
 
-      // Rethrow with more specific error message
-      throw new Error(`Failed to initiate call: ${apiError.message}`);
+      throw new Error(`Madrone API error: ${JSON.stringify(responseData)}`);
     }
+
+    // Success case - update the call record
+    await supabaseClient
+      .from('outbound_calls')
+      .update({ 
+        status: 'success',
+        updated_at: new Date().toISOString()
+      })
+      .eq('id', callRecord.id);
+
+    return new Response(
+      JSON.stringify({ 
+        success: true, 
+        data: responseData,
+        call_id: callRecord.id 
+      }),
+      { 
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      }
+    );
 
   } catch (error) {
     console.error('Function error:', error);
