@@ -90,10 +90,7 @@ serve(async (req) => {
         payload
       })
 
-      // Make the API call with explicit HTTPS handling
-      const controller = new AbortController()
-      const timeoutId = setTimeout(() => controller.abort(), 30000) // 30 second timeout
-
+      // Make the API call with HTTPS handling and without AbortController
       const response = await fetch('https://api.madrone.ai/v1/calls', {
         method: 'POST',
         headers: {
@@ -101,11 +98,8 @@ serve(async (req) => {
           'Accept': 'application/json',
           'Authorization': `Bearer ${apiKey}`,
         },
-        body: JSON.stringify(payload),
-        signal: controller.signal
+        body: JSON.stringify(payload)
       })
-
-      clearTimeout(timeoutId)
       
       // Get the raw response text first
       const responseText = await response.text()
