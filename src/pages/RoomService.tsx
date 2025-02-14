@@ -21,11 +21,22 @@ const RoomService = () => {
   const { toast } = useToast();
 
   const handlePhoneSubmit = async () => {
+    if (!phoneNumber) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Please enter a phone number.",
+      });
+      return;
+    }
+
     try {
       setIsLoading(true);
+      console.log('Initiating call with phone number:', phoneNumber);
       
       // Remove any non-numeric characters from the phone number
       const cleanPhoneNumber = phoneNumber.replace(/\D/g, '');
+      console.log('Cleaned phone number:', cleanPhoneNumber);
       
       // Make the API call to initiate the automated call
       const { data, error } = await supabase.functions.invoke('initiate-call', {
@@ -35,7 +46,12 @@ const RoomService = () => {
         }
       });
 
-      if (error) throw error;
+      console.log('Supabase function response:', { data, error });
+
+      if (error) {
+        console.error('Error details:', error);
+        throw error;
+      }
 
       toast({
         title: "Call Initiated",
@@ -43,12 +59,13 @@ const RoomService = () => {
       });
 
       setIsDialogOpen(false);
+      setPhoneNumber(''); // Reset the phone number after successful submission
     } catch (error) {
-      console.error('Error initiating call:', error);
+      console.error('Detailed error:', error);
       toast({
         variant: "destructive",
         title: "Error",
-        description: "Failed to initiate call. Please try again.",
+        description: error.message || "Failed to initiate call. Please try again.",
       });
     } finally {
       setIsLoading(false);
@@ -146,7 +163,7 @@ const RoomService = () => {
           <div className="flex justify-end mt-4">
             <Button 
               onClick={handlePhoneSubmit}
-              disabled={isLoading}
+              disabled={isLoading || !phoneNumber}
             >
               {isLoading ? "Initiating..." : "Continue"}
             </Button>
