@@ -1,6 +1,6 @@
 
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.38.4'
+import { serve } from "std/http/server.ts"
+import { createClient } from '@supabase/supabase-js'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -77,21 +77,23 @@ serve(async (req) => {
         type: type || 'room_service',
         country_code: "1"
       }
-      console.log('Madrone API request payload:', payload)
 
-      // Log full request details for debugging
+      // Log request details
       console.log('Making Madrone API request:', {
         url: 'https://api.madrone.ai/v1/calls',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-          'Authorization': `Bearer ${apiKey.slice(0, 3)}...${apiKey.slice(-3)}` // Log partial key for debugging
+          'Authorization': `Bearer ${apiKey.slice(0, 3)}...${apiKey.slice(-3)}` // Log partial key
         },
         payload
       })
 
-      // Make the API call to initiate the phone call
+      // Make the API call with explicit HTTPS handling
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => controller.abort(), 30000) // 30 second timeout
+
       const response = await fetch('https://api.madrone.ai/v1/calls', {
         method: 'POST',
         headers: {
@@ -99,8 +101,11 @@ serve(async (req) => {
           'Accept': 'application/json',
           'Authorization': `Bearer ${apiKey}`,
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
+        signal: controller.signal
       })
+
+      clearTimeout(timeoutId)
       
       // Get the raw response text first
       const responseText = await response.text()
