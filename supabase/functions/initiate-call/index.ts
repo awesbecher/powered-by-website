@@ -68,38 +68,60 @@ serve(async (req) => {
     };
 
     console.log('Making request to Madrone API with payload:', payload);
-    console.log('Making request to Madrone API with headers:', {
+    
+    const headers = {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${apiKey.substring(0, 4)}...${apiKey.substring(apiKey.length - 4)}`, // Log partial key for debugging
+      'Authorization': `Bearer ${apiKey}`,
       'Accept': 'application/json'
+    };
+
+    console.log('Making request to Madrone API with headers:', {
+      ...headers,
+      'Authorization': `Bearer ${apiKey.substring(0, 4)}...${apiKey.substring(apiKey.length - 4)}` // Log partial key for debugging
     });
 
     try {
       // First validate we can reach the API
-      const validateResponse = await fetch('https://api.madrone.ai/v1/health', {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${apiKey}`,
-          'Accept': 'application/json'
+      console.log('Attempting health check...');
+      try {
+        const validateResponse = await fetch('https://api.madrone.ai/v1/health', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${apiKey}`,
+            'Accept': 'application/json'
+          }
+        });
+        
+        console.log('Health check response:', {
+          status: validateResponse.status,
+          ok: validateResponse.ok,
+          statusText: validateResponse.statusText
+        });
+
+        if (!validateResponse.ok) {
+          const healthCheckText = await validateResponse.text();
+          console.error('Health check failed:', healthCheckText);
+          throw new Error(`Health check failed with status ${validateResponse.status}`);
         }
-      });
-      
-      console.log('Health check response:', {
-        status: validateResponse.status,
-        ok: validateResponse.ok,
-        statusText: validateResponse.statusText
-      });
+      } catch (healthError) {
+        console.error('Health check error:', healthError);
+        throw new Error(`Failed to reach Madrone API: ${healthError.message}`);
+      }
+
+      console.log('Health check passed, making API call...');
 
       // Make the API call to Madrone with improved error handling
-      const response = await fetch('https://api.madrone.ai/v1/calls', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`,
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
+      let response;
+      try {
+        response = await fetch('https://api.madrone.ai/v1/calls', {
+          method: 'POST',
+          headers,
+          body: JSON.stringify(payload)
+        });
+      } catch (fetchError) {
+        console.error('Network error during fetch:', fetchError);
+        throw new Error(`Network error: ${fetchError.message}`);
+      }
 
       console.log('Madrone API Response Status:', response.status);
       console.log('Madrone API Response Status Text:', response.statusText);
@@ -171,7 +193,8 @@ serve(async (req) => {
         })
         .eq('id', callRecord.id);
 
-      throw new Error(`Madrone API error: ${apiError.message}`);
+      // Rethrow with more specific error message
+      throw new Error(`Failed to initiate call: ${apiError.message}`);
     }
 
   } catch (error) {
@@ -179,7 +202,8 @@ serve(async (req) => {
     return new Response(
       JSON.stringify({
         error: error.message,
-        type: error.name
+        type: error.name,
+        details: error.stack
       }),
       { 
         status: 500,
