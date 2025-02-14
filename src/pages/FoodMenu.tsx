@@ -81,7 +81,7 @@ const FoodMenu = () => {
         </div>
         <div className="bg-white rounded-lg p-4 shadow-lg">
           <img 
-            src="/lovable-uploads/88643870-5f4f-40ea-91de-5c650a6f05b6.png" 
+            src="/lovable-uploads/ac8b8cfd-fc02-4e33-88bc-33898e7820f9.png" 
             alt="Restaurant Menu" 
             className="w-full h-auto"
           />
