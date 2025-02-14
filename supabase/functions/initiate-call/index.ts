@@ -60,13 +60,19 @@ serve(async (req) => {
         country_code: "1"
       }
 
-      // Log request details
+      // Log detailed request information
+      const requestUrl = 'https://api.madrone.ai/v1/calls';
+      const headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+      };
+
       console.log('Making Madrone API request:', {
-        url: 'https://api.madrone.ai/v1/calls',
+        url: requestUrl,
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
+          ...headers,
           'Authorization': `Bearer ${apiKey.slice(0, 3)}...${apiKey.slice(-3)}` // Log partial key
         },
         payload
@@ -90,16 +96,25 @@ serve(async (req) => {
 
       console.log('Created call record:', callRecord)
 
-      // Make the API call
-      const response = await fetch('https://api.madrone.ai/v1/calls', {
+      // Test network connectivity first
+      try {
+        const testResponse = await fetch('https://api.madrone.ai', {
+          method: 'GET'
+        });
+        console.log('Connectivity test response:', {
+          status: testResponse.status,
+          ok: testResponse.ok
+        });
+      } catch (testError) {
+        console.error('Connectivity test failed:', testError);
+      }
+
+      // Make the actual API call
+      const response = await fetch(requestUrl, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Authorization': `Bearer ${apiKey}`,
-        },
+        headers,
         body: JSON.stringify(payload)
-      })
+      });
       
       // Get the raw response text first
       const responseText = await response.text()
@@ -121,6 +136,7 @@ serve(async (req) => {
           .from('outbound_calls')
           .update({ 
             status: 'failed',
+            error_details: JSON.stringify(responseData),
             updated_at: new Date().toISOString()
           })
           .eq('id', callRecord.id)
@@ -151,7 +167,12 @@ serve(async (req) => {
         }
       )
     } catch (apiError) {
-      console.error('Madrone API error details:', apiError)
+      console.error('Madrone API error details:', {
+        name: apiError.name,
+        message: apiError.message,
+        cause: apiError.cause,
+        stack: apiError.stack
+      })
       throw apiError
     }
   } catch (error) {
