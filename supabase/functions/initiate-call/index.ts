@@ -40,6 +40,7 @@ serve(async (req) => {
       .insert({
         phone_number: cleanPhoneNumber,
         call_type: type,
+        status: 'pending'
       })
       .select()
       .single()
@@ -51,48 +52,71 @@ serve(async (req) => {
 
     console.log('Successfully created call record:', callRecord)
 
-    // Log the API key (masked)
+    // Get and validate API key
     const apiKey = Deno.env.get('MADRONE_API_KEY')
-    console.log('API Key present:', !!apiKey)
-    if (apiKey) {
-      console.log('API Key length:', apiKey.length)
-      console.log('API Key preview:', `${apiKey.substring(0, 4)}...${apiKey.substring(apiKey.length - 4)}`)
+    if (!apiKey) {
+      throw new Error('MADRONE_API_KEY is not configured')
     }
+    console.log('API Key present and length:', apiKey.length)
 
-    // Prepare and log the request body
+    // Prepare the request body
     const apiRequestBody = {
       to: cleanPhoneNumber,
-      type: type,
+      type: type || 'room_service',  // Default to room_service if not specified
       country_code: "1"
     }
     console.log('Making API request with body:', apiRequestBody)
 
-    // Make the API call to initiate the phone call
-    const response = await fetch('https://api.madrone.ai/v1/calls', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify(apiRequestBody)
-    })
+    try {
+      // Make the API call to initiate the phone call
+      const response = await fetch('https://api.madrone.ai/v1/calls', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify(apiRequestBody)
+      })
 
-    // Log the raw response
-    console.log('API response status:', response.status)
-    console.log('API response headers:', Object.fromEntries(response.headers.entries()))
+      // Log response details
+      console.log('API response status:', response.status)
+      console.log('API response headers:', Object.fromEntries(response.headers.entries()))
 
-    // Parse and log the response data
-    const responseData = await response.json()
-    console.log('API response body:', responseData)
+      const responseData = await response.json()
+      console.log('API response body:', responseData)
 
-    if (!response.ok) {
-      throw new Error(`API error (${response.status}): ${responseData.message || JSON.stringify(responseData)}`)
+      if (!response.ok) {
+        // Update call record status to failed
+        await supabaseClient
+          .from('outbound_calls')
+          .update({ status: 'failed' })
+          .eq('id', callRecord.id)
+
+        throw new Error(`API error (${response.status}): ${responseData.message || JSON.stringify(responseData)}`)
+      }
+
+      // Update call record status to success
+      await supabaseClient
+        .from('outbound_calls')
+        .update({ status: 'success' })
+        .eq('id', callRecord.id)
+
+      return new Response(
+        JSON.stringify({ success: true, callId: callRecord.id }),
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      )
+    } catch (fetchError) {
+      console.error('Fetch error:', fetchError)
+      
+      // Update call record status to failed
+      await supabaseClient
+        .from('outbound_calls')
+        .update({ status: 'failed' })
+        .eq('id', callRecord.id)
+
+      throw new Error(`Failed to make API request: ${fetchError.message}`)
     }
-
-    return new Response(
-      JSON.stringify({ success: true, callId: callRecord.id }),
-      { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-    )
   } catch (error) {
     console.error('Error in initiate-call function:', error)
     if (error instanceof Error) {
