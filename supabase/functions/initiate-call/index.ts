@@ -14,9 +14,10 @@ serve(async (req) => {
   }
 
   try {
-    // Get the API key - using the correct secret name
-    const apiKey = Deno.env.get('Madrone API')
+    // Get the API key using the standard naming convention
+    const apiKey = Deno.env.get('MADRONE_API_KEY')
     if (!apiKey) {
+      console.error('Madrone API key is not configured');
       throw new Error('Madrone API key is not configured')
     }
 
@@ -28,6 +29,7 @@ serve(async (req) => {
 
     // Clean the phone number
     const cleanPhoneNumber = phoneNumber.replace(/\D/g, '')
+    console.log('Cleaned phone number:', cleanPhoneNumber);
 
     // Initialize Supabase client
     const supabaseUrl = Deno.env.get('SUPABASE_URL')
@@ -38,8 +40,6 @@ serve(async (req) => {
     }
 
     const supabaseClient = createClient(supabaseUrl, supabaseKey)
-
-    console.log('Attempting to create call record for:', cleanPhoneNumber);
 
     // Create a record in outbound_calls
     const { data: callRecord, error: dbError } = await supabaseClient
@@ -58,65 +58,80 @@ serve(async (req) => {
     }
 
     console.log('Call record created:', callRecord);
-    console.log('Making API call to Madrone...');
+    console.log('Making API call to Madrone with type:', type || 'room_service');
 
-    // Make the API call to Madrone
-    const response = await fetch('https://api.madrone.ai/v1/calls', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        to: cleanPhoneNumber,
-        type: type || 'room_service',
-        country_code: "1"  // US country code
-      })
-    })
-
-    // Get the response data
-    const responseData = await response.text()
-    console.log('Madrone API response:', responseData);
-    
-    let parsedResponse
+    // Make the API call to Madrone with improved error handling
     try {
-      parsedResponse = JSON.parse(responseData)
-    } catch {
-      parsedResponse = { rawResponse: responseData }
-    }
+      const response = await fetch('https://api.madrone.ai/v1/calls', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          to: cleanPhoneNumber,
+          type: type || 'room_service',
+          country_code: "1"  // US country code
+        })
+      });
 
-    if (!response.ok) {
-      console.error('Madrone API error:', parsedResponse);
+      const responseData = await response.text()
+      console.log('Raw Madrone API response:', responseData);
+      
+      let parsedResponse
+      try {
+        parsedResponse = JSON.parse(responseData)
+      } catch {
+        parsedResponse = { rawResponse: responseData }
+      }
+
+      if (!response.ok) {
+        console.error('Madrone API error response:', parsedResponse);
+        // Update call record to failed status
+        await supabaseClient
+          .from('outbound_calls')
+          .update({ 
+            status: 'failed',
+            error_details: parsedResponse,
+            updated_at: new Date().toISOString()
+          })
+          .eq('id', callRecord.id)
+
+        throw new Error(`API error: ${JSON.stringify(parsedResponse)}`)
+      }
+
+      console.log('Call initiated successfully');
+
+      // Update call record to success status
+      await supabaseClient
+        .from('outbound_calls')
+        .update({ 
+          status: 'success',
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', callRecord.id)
+
+      return new Response(
+        JSON.stringify({ success: true, data: parsedResponse }),
+        { 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        }
+      )
+
+    } catch (apiError) {
+      console.error('Madrone API call error:', apiError);
       // Update call record to failed status
       await supabaseClient
         .from('outbound_calls')
         .update({ 
           status: 'failed',
-          error_details: parsedResponse,
+          error_details: { error: apiError.message },
           updated_at: new Date().toISOString()
         })
         .eq('id', callRecord.id)
 
-      throw new Error(`API error: ${JSON.stringify(parsedResponse)}`)
+      throw apiError;
     }
-
-    console.log('Call initiated successfully');
-
-    // Update call record to success status
-    await supabaseClient
-      .from('outbound_calls')
-      .update({ 
-        status: 'success',
-        updated_at: new Date().toISOString()
-      })
-      .eq('id', callRecord.id)
-
-    return new Response(
-      JSON.stringify({ success: true, data: parsedResponse }),
-      { 
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-      }
-    )
 
   } catch (error) {
     console.error('Function error:', error);
