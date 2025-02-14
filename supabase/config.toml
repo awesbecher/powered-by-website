@@ -23,10 +23,7 @@ api_url = "http://localhost"
 enabled = true
 port = 54324
 
-[functions]
 [functions.initiate-call]
 verify_jwt = false
 import_map = "./import_map.json"
-
-[functions.initiate-call.allowed_http_hosts]
-"api.madrone.ai" = true
+allowed_http_hosts = ["api.madrone.ai"]
