@@ -99,26 +99,35 @@ const initiateCall = async (apiKey: string, phoneNumber: string, type: string) =
   console.log('Making request to Madrone API with payload:', payload)
   console.log('Making request with headers:', {
     ...headers,
-    'Authorization': `Bearer ${apiKey.substring(0, 4)}...${apiKey.substring(apiKey.length - 4)}`
+    'Authorization': 'Bearer [REDACTED]'
   })
 
-  const response = await fetch('https://api.madrone.ai/v1/calls', {
-    method: 'POST',
-    headers,
-    body: JSON.stringify(payload)
-  })
-
-  console.log('Madrone API Response Status:', response.status)
-  console.log('Madrone API Response Status Text:', response.statusText)
-  
-  const responseText = await response.text()
-  console.log('Madrone API Raw Response:', responseText)
-  
   try {
-    return JSON.parse(responseText)
-  } catch (e) {
-    console.error('Failed to parse response:', e)
-    return { error: 'Invalid JSON response', raw: responseText }
+    const response = await fetch('https://api.madrone.ai/v1/calls', {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(payload)
+    })
+
+    console.log('Madrone API Response Status:', response.status)
+    console.log('Madrone API Response Status Text:', response.statusText)
+    
+    const responseText = await response.text()
+    console.log('Madrone API Raw Response:', responseText)
+    
+    if (!response.ok) {
+      throw new Error(`Madrone API returned status ${response.status}: ${responseText}`)
+    }
+    
+    try {
+      return JSON.parse(responseText)
+    } catch (e) {
+      console.error('Failed to parse response:', e)
+      throw new Error(`Invalid JSON response: ${responseText}`)
+    }
+  } catch (error) {
+    console.error('Error calling Madrone API:', error)
+    throw error
   }
 }
 
@@ -162,37 +171,37 @@ serve(async (req) => {
     // Create initial call record
     const callRecord = await createCallRecord(supabaseClient, cleanPhoneNumber, type)
     
-    // Check API health
-    await checkMadroneHealth(apiKey)
-    
-    // Make the call
-    const responseData = await initiateCall(apiKey, cleanPhoneNumber, type)
-    
-    if (!responseData || responseData.error) {
-      await updateCallRecord(supabaseClient, callRecord.id, 'failed', {
-        response: responseData
-      })
-      throw new Error(`Madrone API error: ${JSON.stringify(responseData)}`)
-    }
+    try {
+      // Check API health
+      await checkMadroneHealth(apiKey)
+      
+      // Make the call
+      const responseData = await initiateCall(apiKey, cleanPhoneNumber, type)
+      
+      // Update success status
+      await updateCallRecord(supabaseClient, callRecord.id, 'success')
 
-    // Update success status
-    await updateCallRecord(supabaseClient, callRecord.id, 'success')
-
-    return new Response(
-      JSON.stringify({ 
-        success: true, 
-        data: responseData,
-        call_id: callRecord.id 
-      }),
-      { 
-        status: 200,
-        headers: { 
-          ...corsHeaders, 
-          'Content-Type': 'application/json'
+      return new Response(
+        JSON.stringify({ 
+          success: true, 
+          data: responseData,
+          call_id: callRecord.id 
+        }),
+        { 
+          status: 200,
+          headers: { 
+            ...corsHeaders, 
+            'Content-Type': 'application/json'
+          }
         }
-      }
-    )
-
+      )
+    } catch (error) {
+      // Update the call record with failure status
+      await updateCallRecord(supabaseClient, callRecord.id, 'failed', {
+        error: error.message
+      })
+      throw error
+    }
   } catch (error) {
     console.error('Function error:', error)
     return new Response(
