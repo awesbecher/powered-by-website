@@ -9,3 +9,5 @@ import_map = "./import_map.json"
 
 [[functions.initiate-call.allowed_domains]]
 domain = "api.madrone.ai"
+scheme = "https"
+port = 443
