@@ -30,6 +30,8 @@ serve(async (req) => {
     // Clean the phone number
     const cleanPhoneNumber = phoneNumber.replace(/\D/g, '')
     console.log('Cleaned phone number:', cleanPhoneNumber);
+    console.log('Call type:', type || 'room_service');
+    console.log('API Key exists:', !!apiKey);
 
     // Initialize Supabase client
     const supabaseUrl = Deno.env.get('SUPABASE_URL')
@@ -58,30 +60,39 @@ serve(async (req) => {
     }
 
     console.log('Call record created:', callRecord);
-    console.log('Making API call to Madrone with type:', type || 'room_service');
+
+    // Prepare request payload
+    const payload = {
+      to: cleanPhoneNumber,
+      type: type || 'room_service',
+      country_code: "1"  // US country code
+    };
+    
+    console.log('Madrone API request payload:', payload);
 
     // Make the API call to Madrone with improved error handling
     try {
+      console.log('Initiating Madrone API call...');
+      
       const response = await fetch('https://api.madrone.ai/v1/calls', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${apiKey}`,
         },
-        body: JSON.stringify({
-          to: cleanPhoneNumber,
-          type: type || 'room_service',
-          country_code: "1"  // US country code
-        })
+        body: JSON.stringify(payload)
       });
 
+      console.log('Madrone API response status:', response.status);
+      
       const responseData = await response.text()
       console.log('Raw Madrone API response:', responseData);
       
       let parsedResponse
       try {
         parsedResponse = JSON.parse(responseData)
-      } catch {
+      } catch (e) {
+        console.error('Failed to parse response:', e);
         parsedResponse = { rawResponse: responseData }
       }
 
