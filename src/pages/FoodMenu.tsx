@@ -66,11 +66,7 @@ const FoodMenu = () => {
       </Link>
 
       <div className="mx-auto max-w-6xl">
-        <div className="flex items-center mb-8">
-          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
-            Food Menu
-          </h1>
-          <div className="flex-1 min-w-[200px]"></div>
+        <div className="flex justify-end mb-8">
           <Button 
             onClick={() => setIsDialogOpen(true)}
             className="bg-accent text-accent-foreground hover:bg-accent/90 flex items-center gap-2"
