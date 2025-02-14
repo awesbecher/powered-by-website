@@ -55,12 +55,12 @@ serve(async (req) => {
     // Get and validate API key
     const apiKey = Deno.env.get('MADRONE_API_KEY')
     if (!apiKey) {
+      console.error('MADRONE_API_KEY is missing')
       throw new Error('MADRONE_API_KEY is not configured')
     }
-    console.log('API Key present and length:', apiKey.length)
 
     try {
-      console.log('Attempting to make API request to Madrone...')
+      console.log('Starting Madrone API request...')
       
       // Create the request payload
       const payload = {
@@ -68,9 +68,10 @@ serve(async (req) => {
         type: type || 'room_service',
         country_code: "1"
       }
-      console.log('Request payload:', payload)
+      console.log('Request payload:', JSON.stringify(payload))
 
       // Make the API call to initiate the phone call
+      console.log('Sending request to Madrone API...')
       const response = await fetch('https://api.madrone.ai/v1/calls', {
         method: 'POST',
         headers: {
@@ -81,11 +82,20 @@ serve(async (req) => {
         body: JSON.stringify(payload)
       })
 
-      console.log('Received response from Madrone API')
       console.log('Response status:', response.status)
       
-      const responseData = await response.json()
-      console.log('API response body:', responseData)
+      const responseText = await response.text()
+      console.log('Raw response:', responseText)
+      
+      let responseData
+      try {
+        responseData = JSON.parse(responseText)
+      } catch (e) {
+        console.error('Failed to parse response:', e)
+        responseData = { error: 'Invalid JSON response' }
+      }
+
+      console.log('Parsed response data:', responseData)
 
       if (!response.ok) {
         await supabaseClient
@@ -107,7 +117,11 @@ serve(async (req) => {
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       )
     } catch (fetchError) {
-      console.error('Fetch error:', fetchError)
+      console.error('Fetch error details:', {
+        message: fetchError.message,
+        cause: fetchError.cause,
+        stack: fetchError.stack
+      })
       
       // Update call record status to failed
       await supabaseClient
