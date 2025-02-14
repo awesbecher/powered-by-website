@@ -1,8 +1,3 @@
-
-// @ts-ignore
-const allowedHost = 'api.madrone.ai'
-await Deno.permissions.request({ name: "net", host: allowedHost });
-
 import { serve } from "std/http/server.ts"
 import { createClient } from '@supabase/supabase-js'
 
@@ -216,4 +211,3 @@ serve(async (req) => {
     );
   }
 });
-
