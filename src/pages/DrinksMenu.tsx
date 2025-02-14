@@ -66,11 +66,7 @@ const DrinksMenu = () => {
       </Link>
 
       <div className="mx-auto max-w-6xl">
-        <div className="flex items-center mb-8">
-          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
-            Drinks Menu
-          </h1>
-          <div className="flex-1 min-w-[200px]"></div>
+        <div className="flex justify-end mb-8">
           <Button 
             onClick={() => setIsDialogOpen(true)}
             className="bg-accent text-accent-foreground hover:bg-accent/90 flex items-center gap-2"
@@ -81,7 +77,7 @@ const DrinksMenu = () => {
         </div>
         <div className="bg-white rounded-lg p-4 shadow-lg">
           <img 
-            src="/lovable-uploads/dfa6c12a-d0aa-4b21-bca9-73cf4b428400.png" 
+            src="/lovable-uploads/3c242d77-29a6-4a56-9fc1-c5a16d164a94.png" 
             alt="Drinks Menu" 
             className="w-full h-auto"
           />
