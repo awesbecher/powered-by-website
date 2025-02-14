@@ -6,5 +6,6 @@ project_id = "cinohyzbtfzfcdtkgvij"
 [functions.initiate-call]
 verify_jwt = false
 import_map = "./import_map.json"
-[functions.initiate-call.allowed_http_hosts]
-"api.madrone.ai" = true
+
+[[functions.initiate-call.allowed_http_hosts]]
+host = "api.madrone.ai"
