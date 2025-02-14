@@ -20,6 +20,10 @@ serve(async (req) => {
       throw new Error('Phone number is required')
     }
 
+    // Clean the phone number to remove any non-numeric characters
+    const cleanPhoneNumber = phoneNumber.replace(/\D/g, '')
+    console.log('Cleaned phone number:', cleanPhoneNumber)
+
     // Initialize Supabase client
     const supabaseClient = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
@@ -30,37 +34,42 @@ serve(async (req) => {
     const { data: callRecord, error: dbError } = await supabaseClient
       .from('outbound_calls')
       .insert({
-        phone_number: phoneNumber,
+        phone_number: cleanPhoneNumber,
         call_type: type,
       })
       .select()
       .single()
 
     if (dbError) {
+      console.error('Database error:', dbError)
       throw new Error(`Database error: ${dbError.message}`)
     }
 
+    // Log the request body before making the API call
+    const requestBody = {
+      to: cleanPhoneNumber,
+      type: type,
+      country_code: "1"
+    }
+    console.log('Making API request with body:', requestBody)
+
     // Make the API call to initiate the phone call
-    const response = await fetch('https://api.madrone.ai/v1/calls', {  // Updated API endpoint
+    const response = await fetch('https://api.madrone.ai/v1/calls', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${Deno.env.get('MADRONE_API_KEY')}`,
       },
-      body: JSON.stringify({
-        to: phoneNumber,  // Updated field name to match API spec
-        type: type,
-        country_code: "1"  // Added US country code
-      }),
+      body: JSON.stringify(requestBody)
     })
 
-    if (!response.ok) {
-      const errorData = await response.json()
-      console.error('API error:', errorData)
-      throw new Error(errorData.message || 'Failed to initiate call')
-    }
+    // Log the API response
+    const responseData = await response.json()
+    console.log('API response:', responseData)
 
-    const result = await response.json()
+    if (!response.ok) {
+      throw new Error(responseData.message || 'Failed to initiate call')
+    }
 
     return new Response(
       JSON.stringify({ success: true, callId: callRecord.id }),
