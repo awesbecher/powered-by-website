@@ -18,7 +18,7 @@ const RoomService = () => {
     try {
       const { data, error } = await supabase.functions.invoke('initiate-call', {
         body: {
-          phoneNumber: '6502547823',  // Added the phone number
+          phoneNumber: '6502547823',
           type: 'room_service'
         }
       });
