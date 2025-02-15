@@ -111,11 +111,12 @@ const RoomService = () => {
                     <DialogTitle>How would you like to place your order?</DialogTitle>
                   </DialogHeader>
                   <div className="flex flex-col items-center space-y-4">
-                    <Link to="/food-menu" className="w-full">
-                      <button className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md">
-                        Order Here
-                      </button>
-                    </Link>
+                    <button 
+                      onClick={handleCall} 
+                      className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md"
+                    >
+                      Order Here
+                    </button>
                     <div className="text-sm text-gray-500 font-medium">OR</div>
                     <button 
                       onClick={handleCall}
