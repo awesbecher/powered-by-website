@@ -28,7 +28,7 @@ verify_jwt = false
 import_map = "../import_map.json"
 
 [functions."initiate-call".outbound_access]
-madrone_api = "https://api.madrone.ai"
+allow = ["https://api.madrone.ai"]
 
 [deploy]
 allowed_extensions = ["ts", "tsx"]
