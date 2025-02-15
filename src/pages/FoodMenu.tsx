@@ -1,36 +1,19 @@
 
 import { Link } from "react-router-dom";
 import { ArrowLeft, Phone } from "lucide-react";
-import { useState } from "react";
-import { 
-  Dialog, 
-  DialogContent, 
-  DialogHeader, 
-  DialogTitle,
-  DialogDescription
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 
 const FoodMenu = () => {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState("");
   const { toast } = useToast();
 
-  const handlePhoneSubmit = async () => {
+  const handleClick = async () => {
     try {
-      // Remove any non-numeric characters from the phone number
-      const cleanPhoneNumber = phoneNumber.replace(/\D/g, '');
-      
-      // Make the API call to initiate the automated call
       const response = await fetch('https://api.madrone.ai/call', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          phoneNumber: cleanPhoneNumber,
           type: 'food_order'
         })
       });
@@ -43,8 +26,6 @@ const FoodMenu = () => {
         title: "Call Initiated",
         description: "You will receive a call shortly to take your food order.",
       });
-
-      setIsDialogOpen(false);
     } catch (error) {
       toast({
         variant: "destructive",
@@ -67,13 +48,13 @@ const FoodMenu = () => {
 
       <div className="mx-auto max-w-6xl">
         <div className="flex justify-end mb-8">
-          <Button 
-            onClick={() => setIsDialogOpen(true)}
-            className="bg-accent text-accent-foreground hover:bg-accent/90 flex items-center gap-2"
+          <button 
+            onClick={handleClick}
+            className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md flex items-center gap-2"
           >
             Start your order
             <Phone className="h-4 w-4" />
-          </Button>
+          </button>
         </div>
         <div className="bg-white rounded-lg p-4 shadow-lg">
           <img 
@@ -83,35 +64,6 @@ const FoodMenu = () => {
           />
         </div>
       </div>
-
-      {/* Phone Number Dialog */}
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Enter Your Phone Number</DialogTitle>
-            <DialogDescription>
-              Please enter your phone number to proceed with your food order. An agent will call you now.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="flex items-center space-x-2">
-            <div className="flex-shrink-0 bg-gray-100 p-2 rounded">
-              <span className="text-sm text-gray-600">+1</span>
-            </div>
-            <Input
-              type="tel"
-              placeholder="(555) 555-5555"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              className="flex-1"
-            />
-          </div>
-          <div className="flex justify-end mt-4">
-            <Button onClick={handlePhoneSubmit}>
-              Continue
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };

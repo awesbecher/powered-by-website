@@ -1,47 +1,16 @@
 
 import { Link } from "react-router-dom";
 import { ArrowLeft, Phone } from "lucide-react";
-import { useState } from "react";
-import { 
-  Dialog, 
-  DialogContent, 
-  DialogHeader, 
-  DialogTitle,
-  DialogDescription
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
 const RoomService = () => {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const handlePhoneSubmit = async () => {
-    if (!phoneNumber) {
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: "Please enter a phone number.",
-      });
-      return;
-    }
-
+  const handleClick = async () => {
     try {
-      setIsLoading(true);
-      console.log('Initiating call with phone number:', phoneNumber);
-      
-      // Remove any non-numeric characters from the phone number
-      const cleanPhoneNumber = phoneNumber.replace(/\D/g, '');
-      console.log('Cleaned phone number:', cleanPhoneNumber);
-      
-      // Make the API call to initiate the automated call
       const { data, error } = await supabase.functions.invoke('initiate-call', {
         body: {
-          phoneNumber: cleanPhoneNumber,
           type: 'room_service'
         }
       });
@@ -57,9 +26,6 @@ const RoomService = () => {
         title: "Call Initiated",
         description: "You will receive a call shortly to take your room service order.",
       });
-
-      setIsDialogOpen(false);
-      setPhoneNumber(''); // Reset the phone number after successful submission
     } catch (error) {
       console.error('Detailed error:', error);
       toast({
@@ -67,8 +33,6 @@ const RoomService = () => {
         title: "Error",
         description: error.message || "Failed to initiate call. Please try again.",
       });
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -110,66 +74,32 @@ const RoomService = () => {
           <div className="flex flex-col items-center space-y-4">
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link to="/food-menu">
-                <Button 
-                  variant="outline"
-                  className="w-full sm:w-auto"
+                <button 
+                  className="bg-neutral-800 text-white px-6 py-2 rounded-md hover:bg-neutral-700 transition-colors w-full sm:w-auto"
                 >
                   Food Menu
-                </Button>
+                </button>
               </Link>
               <Link to="/drinks-menu">
-                <Button 
-                  variant="outline"
-                  className="w-full sm:w-auto"
+                <button 
+                  className="bg-neutral-800 text-white px-6 py-2 rounded-md hover:bg-neutral-700 transition-colors w-full sm:w-auto"
                 >
                   Drinks Menu
-                </Button>
+                </button>
               </Link>
             </div>
             <div className="flex justify-center w-full">
-              <Button 
-                onClick={() => setIsDialogOpen(true)}
-                className="bg-accent text-accent-foreground hover:bg-accent/90 w-full sm:w-auto flex items-center justify-center gap-2"
+              <button 
+                onClick={handleClick}
+                className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md w-full sm:w-auto flex items-center justify-center gap-2"
               >
                 Start Your Order
                 <Phone className="h-4 w-4" />
-              </Button>
+              </button>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Phone Number Dialog */}
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Enter Your Phone Number</DialogTitle>
-            <DialogDescription>
-              Please enter your phone number to proceed with your order. An agent will call you now.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="flex items-center space-x-2">
-            <div className="flex-shrink-0 bg-gray-100 p-2 rounded">
-              <span className="text-sm text-gray-600">+1</span>
-            </div>
-            <Input
-              type="tel"
-              placeholder="(555) 555-5555"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              className="flex-1"
-            />
-          </div>
-          <div className="flex justify-end mt-4">
-            <Button 
-              onClick={handlePhoneSubmit}
-              disabled={isLoading || !phoneNumber}
-            >
-              {isLoading ? "Initiating..." : "Continue"}
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };

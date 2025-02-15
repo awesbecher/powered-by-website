@@ -1,24 +1,10 @@
 
 import { Link } from "react-router-dom";
 import { ArrowLeft, Phone } from "lucide-react";
-import { useState } from "react";
-import { 
-  Dialog, 
-  DialogContent, 
-  DialogHeader, 
-  DialogTitle,
-  DialogDescription
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 
 const Insurance = () => {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState("");
-
-  const handlePhoneSubmit = () => {
-    console.log("Phone number submitted:", phoneNumber);
-    setIsDialogOpen(false);
+  const handleClick = () => {
+    console.log("Insurance quote request initiated");
   };
 
   return (
@@ -57,45 +43,16 @@ const Insurance = () => {
             Get personalized coverage options tailored to your needs.
           </p>
           <div className="flex justify-center">
-            <Button 
-              onClick={() => setIsDialogOpen(true)}
-              className="bg-accent text-accent-foreground hover:bg-accent/90 flex items-center gap-2"
+            <button 
+              onClick={handleClick}
+              className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md flex items-center gap-2"
             >
               Get Your Quote
               <Phone className="h-4 w-4" />
-            </Button>
+            </button>
           </div>
         </div>
       </div>
-
-      {/* Phone Number Dialog */}
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Enter Your Phone Number</DialogTitle>
-            <DialogDescription>
-              Please enter your phone number to proceed with your quote request. An agent will call you now.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="flex items-center space-x-2">
-            <div className="flex-shrink-0 bg-gray-100 p-2 rounded">
-              <span className="text-sm text-gray-600">+1</span>
-            </div>
-            <Input
-              type="tel"
-              placeholder="(555) 555-5555"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              className="flex-1"
-            />
-          </div>
-          <div className="flex justify-end mt-4">
-            <Button onClick={handlePhoneSubmit}>
-              Continue
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };
