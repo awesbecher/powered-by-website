@@ -3,11 +3,18 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const RoomService = () => {
   const { toast } = useToast();
 
-  const handleClick = async () => {
+  const handleCall = async () => {
     try {
       const { data, error } = await supabase.functions.invoke('initiate-call', {
         body: {
@@ -89,13 +96,34 @@ const RoomService = () => {
               </Link>
             </div>
             <div className="flex justify-center w-full">
-              <button 
-                onClick={handleClick}
-                className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md w-full sm:w-auto flex items-center justify-center gap-2"
-              >
-                Start Your Order
-                <Phone className="h-4 w-4" />
-              </button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <button 
+                    className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md w-full sm:w-auto flex items-center justify-center gap-2"
+                  >
+                    Start Your Order
+                    <Phone className="h-4 w-4" />
+                  </button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>How would you like to place your order?</DialogTitle>
+                  </DialogHeader>
+                  <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 pt-4">
+                    <Link to="/food-menu" className="flex-1">
+                      <button className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md">
+                        Order Here
+                      </button>
+                    </Link>
+                    <button 
+                      onClick={handleCall}
+                      className="flex-1 bg-neutral-800 text-white hover:bg-neutral-700 px-6 py-3 rounded-md"
+                    >
+                      Call us @ (650) 254-7823
+                    </button>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
         </div>
