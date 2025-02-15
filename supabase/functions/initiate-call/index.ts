@@ -68,14 +68,12 @@ const checkMadroneHealth = async (apiKey: string) => {
       }
     })
     
-    console.log('Health check response received:', {
+    const responseText = await response.text()
+    console.log('Health check response:', {
       status: response.status,
       statusText: response.statusText,
-      ok: response.ok
+      body: responseText
     })
-
-    const responseText = await response.text()
-    console.log('Health check response body:', responseText)
 
     if (!response.ok) {
       throw new Error(`Health check failed with status ${response.status}: ${responseText}`)
@@ -83,7 +81,7 @@ const checkMadroneHealth = async (apiKey: string) => {
 
     return true
   } catch (error) {
-    console.error('Detailed health check error:', {
+    console.error('Health check error:', {
       name: error.name,
       message: error.message,
       cause: error.cause,
@@ -95,7 +93,7 @@ const checkMadroneHealth = async (apiKey: string) => {
 
 // Make call to Madrone API with enhanced error handling
 const initiateCall = async (apiKey: string, phoneNumber: string, type: string) => {
-  console.log('Starting call initiation process...')
+  console.log('Starting call initiation...')
   
   const payload = {
     to: phoneNumber,
@@ -103,10 +101,10 @@ const initiateCall = async (apiKey: string, phoneNumber: string, type: string) =
     country_code: "1"
   }
 
-  console.log('Request payload:', payload)
+  console.log('Call payload:', payload)
 
   try {
-    console.log('Making API request...')
+    console.log('Making Madrone API request...')
     const response = await fetch('https://api.madrone.ai/v1/calls', {
       method: 'POST',
       headers: {
@@ -117,14 +115,12 @@ const initiateCall = async (apiKey: string, phoneNumber: string, type: string) =
       body: JSON.stringify(payload)
     })
 
-    console.log('Response received:', {
+    const responseText = await response.text()
+    console.log('Madrone API response:', {
       status: response.status,
       statusText: response.statusText,
-      ok: response.ok
+      body: responseText
     })
-
-    const responseText = await response.text()
-    console.log('Response body:', responseText)
 
     if (!response.ok) {
       throw new Error(`API request failed with status ${response.status}: ${responseText}`)
@@ -137,7 +133,7 @@ const initiateCall = async (apiKey: string, phoneNumber: string, type: string) =
       throw new Error(`Invalid JSON response: ${responseText}`)
     }
   } catch (error) {
-    console.error('Detailed API error:', {
+    console.error('API call error:', {
       name: error.name,
       message: error.message,
       cause: error.cause,
@@ -183,10 +179,10 @@ serve(async (req) => {
       console.error('Madrone API key not found')
       throw new Error('Madrone API key is not configured')
     }
-    console.log('API key found')
+    console.log('API key verified')
 
     const { phoneNumber, type } = await req.json()
-    console.log('Request body parsed:', { phoneNumber, type })
+    console.log('Request payload:', { phoneNumber, type })
 
     const cleanPhoneNumber = validatePhoneNumber(phoneNumber)
     console.log('Phone number validated:', cleanPhoneNumber)
