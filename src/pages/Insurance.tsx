@@ -15,7 +15,7 @@ const Insurance = () => {
   const navigate = useNavigate();
   const [phoneNumber, setPhoneNumber] = useState("");
   const [zipCode, setZipCode] = useState("");
-  const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
+  const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
   const [isCallInProgress, setIsCallInProgress] = useState(false);
   const [callId, setCallId] = useState<string | null>(null);
   const isMobile = useIsMobile();
@@ -114,11 +114,17 @@ const Insurance = () => {
 
   const handleProductSelect = (productId: string) => {
     if (zipCode.length !== 5) return;
-    setSelectedProduct(productId);
+    setSelectedProducts(prev => {
+      if (prev.includes(productId)) {
+        return prev.filter(id => id !== productId);
+      } else {
+        return [...prev, productId];
+      }
+    });
   };
 
   const handleCall = async () => {
-    if (!phoneNumber || !zipCode || !selectedProduct) {
+    if (!phoneNumber || !zipCode || selectedProducts.length === 0) {
       toast({
         variant: "destructive",
         title: "Error",
@@ -136,7 +142,7 @@ const Insurance = () => {
           phoneNumber: cleanedNumber,
           type: 'insurance_quote',
           zipCode,
-          productType: selectedProduct
+          productTypes: selectedProducts
         }
       });
 
@@ -232,7 +238,7 @@ const Insurance = () => {
 
             <div className="space-y-4">
               <p className="text-xl text-gray-300">
-                Select your insurance product:
+                Select your insurance products:
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {insuranceProducts.map((product) => {
@@ -248,7 +254,7 @@ const Insurance = () => {
                         ${zipCode.length === 5 
                           ? 'bg-white/10 hover:bg-white/20 cursor-pointer' 
                           : 'bg-white/5 cursor-not-allowed opacity-50'}
-                        ${selectedProduct === product.id ? 'ring-2 ring-accent' : ''}
+                        ${selectedProducts.includes(product.id) ? 'ring-2 ring-accent' : ''}
                       `}
                     >
                       <Icon className="h-8 w-8 text-accent" />
@@ -259,10 +265,10 @@ const Insurance = () => {
               </div>
             </div>
 
-            {selectedProduct && (
+            {selectedProducts.length > 0 && (
               <div className="space-y-4">
                 <p className="text-xl text-gray-300">
-                  Enter your phone number to get your quote:
+                  Enter your phone number to get your quotes:
                 </p>
                 <div className="max-w-xs mx-auto space-y-4">
                   <Input
@@ -281,7 +287,7 @@ const Insurance = () => {
                     disabled={phoneNumber.length !== 10 || isCallInProgress}
                     className="w-full"
                   >
-                    {isCallInProgress ? 'Call in Progress...' : 'Get Quote'}
+                    {isCallInProgress ? 'Call in Progress...' : 'Get Quotes'}
                   </Button>
                 </div>
               </div>
