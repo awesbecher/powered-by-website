@@ -1,29 +1,15 @@
-
 import { Link } from "react-router-dom";
 import { Phone } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
-
 const Index = () => {
   const isMobile = useIsMobile();
-
-  return (
-    <div className="min-h-screen w-full bg-neutral-soft px-4 py-16 sm:px-6 lg:px-8">
+  return <div className="min-h-screen w-full bg-neutral-soft px-4 py-16 sm:px-6 lg:px-8">
       {/* Logo */}
-      {!isMobile && (
-        <div className="absolute top-8 right-8">
-          <a 
-            href="https://madrone.capital/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-          >
-            <img 
-              src="/lovable-uploads/335f70ec-aa5b-4954-aa12-c425ddd41fc5.png" 
-              alt="Madrone Capital Logo" 
-              className="h-48 w-auto"
-            />
+      {!isMobile && <div className="absolute top-8 right-8">
+          <a href="https://madrone.capital/" target="_blank" rel="noopener noreferrer">
+            <img src="/lovable-uploads/335f70ec-aa5b-4954-aa12-c425ddd41fc5.png" alt="Madrone Capital Logo" className="h-48 w-auto" />
           </a>
-        </div>
-      )}
+        </div>}
 
       <div className="mx-auto max-w-7xl">
         {/* Header */}
@@ -49,7 +35,7 @@ const Index = () => {
               Delicious meals delivered right to your room, available 24/7
             </p>
             <div className="mt-6 flex items-center text-accent">
-              <span className="text-sm font-medium">Talk to an agent now</span>
+              <span className="text-sm font-medium">Talk to Room Service now</span>
               <Phone className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </div>
           </Link>
@@ -81,8 +67,6 @@ const Index = () => {
           </Link>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
