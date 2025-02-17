@@ -26,6 +26,7 @@ serve(async (req) => {
     }
 
     const { to, message } = await req.json() as SmsRequest;
+    console.log('Received SMS request:', { to, message }); // Add logging
 
     if (!to || !message) {
       throw new Error('Missing required fields');
@@ -38,6 +39,8 @@ serve(async (req) => {
     formData.append('From', '+18447162733');
     formData.append('Body', message);
 
+    console.log('Sending request to Twilio...'); // Add logging
+
     const response = await fetch(twilioEndpoint, {
       method: 'POST',
       headers: {
@@ -48,8 +51,10 @@ serve(async (req) => {
     });
 
     const data = await response.json();
+    console.log('Twilio response:', data); // Add logging
 
     if (!response.ok) {
+      console.error('Twilio error:', data); // Add logging
       throw new Error(data.message || 'Failed to send SMS');
     }
 

@@ -36,7 +36,9 @@ const DrinksMenu = () => {
         }
       });
       if (!response.ok) throw new Error('Failed to fetch call status');
-      return response.json() as Promise<CallStatus>;
+      const data = await response.json();
+      console.log('Call status response:', data); // Add logging
+      return data as CallStatus;
     },
     enabled: !!callId,
     refetchInterval: (query) => {
@@ -46,8 +48,9 @@ const DrinksMenu = () => {
   });
 
   const sendConfirmationSMS = async () => {
+    console.log('Attempting to send SMS to:', phoneNumber); // Add logging
     try {
-      const { error } = await supabase.functions.invoke('send-sms', {
+      const { data, error } = await supabase.functions.invoke('send-sms', {
         body: {
           to: phoneNumber,
           message: "Thank you for your drinks order! It will be delivered to your room in 30-45 minutes.",
@@ -56,18 +59,33 @@ const DrinksMenu = () => {
 
       if (error) {
         console.error('Error sending SMS:', error);
+        toast({
+          variant: "destructive",
+          title: "SMS Error",
+          description: "Failed to send confirmation SMS",
+        });
+      } else {
+        console.log('SMS sent successfully:', data); // Add logging
       }
     } catch (error) {
       console.error('Error sending SMS:', error);
+      toast({
+        variant: "destructive",
+        title: "SMS Error",
+        description: "Failed to send confirmation SMS",
+      });
     }
   };
 
   // Watch for call completion and send SMS
   useEffect(() => {
+    console.log('Current call status:', callStatus); // Add logging
     if (callStatus?.status === 'completed') {
-      sendConfirmationSMS();
-      setCallId(null);
-      navigate('/call-confirmation');
+      console.log('Call completed, sending SMS and navigating...'); // Add logging
+      sendConfirmationSMS().then(() => {
+        setCallId(null);
+        navigate('/call-confirmation');
+      });
     }
   }, [callStatus, navigate]);
 
@@ -94,6 +112,7 @@ const DrinksMenu = () => {
         throw error;
       }
 
+      console.log('Call initiated with ID:', data?.callId); // Add logging
       toast({
         title: "Call Initiated",
         description: "You will receive a call shortly to take your drinks order.",
