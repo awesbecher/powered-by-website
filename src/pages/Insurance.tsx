@@ -210,6 +210,9 @@ const Insurance = () => {
           <div className="space-y-8">
             <div className="space-y-4">
               <p className="text-xl text-gray-300">
+                Welcome to Planter's Insurance. Speak to our insurance agent to get a quote tailored to your needs.
+              </p>
+              <p className="text-xl text-gray-300">
                 Enter your zip code to get started:
               </p>
               <div className="max-w-xs mx-auto">
