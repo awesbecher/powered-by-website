@@ -65,17 +65,19 @@ const DrinksMenu = () => {
     // Remove all non-digit characters
     const cleaned = number.replace(/\D/g, '');
     
-    // Add US country code if not present
-    if (cleaned.length === 10) {
-      return `+1${cleaned}`;
-    } else if (cleaned.startsWith('1') && cleaned.length === 11) {
-      return `+${cleaned}`;
+    // Remove leading "1" if present
+    const withoutCountryCode = cleaned.startsWith('1') ? cleaned.slice(1) : cleaned;
+    
+    // Check if it's exactly 10 digits
+    if (withoutCountryCode.length !== 10) {
+      throw new Error('Phone number must be 10 digits');
     }
-    return cleaned;
+    
+    return withoutCountryCode;
   };
 
   const sendConfirmationSMS = async () => {
-    const formattedPhone = formatPhoneNumber(phoneNumber);
+    const formattedPhone = '+1' + formatPhoneNumber(phoneNumber);
     console.log('Attempting to send SMS to:', formattedPhone);
     
     try {
@@ -140,12 +142,13 @@ const DrinksMenu = () => {
     }
 
     try {
-      const formattedPhone = formatPhoneNumber(phoneNumber);
-      console.log('Initiating call to:', formattedPhone);
+      // Format the phone number and validate it's 10 digits
+      const cleanedNumber = formatPhoneNumber(phoneNumber);
+      console.log('Initiating call with cleaned number:', cleanedNumber);
 
       const { data, error } = await supabase.functions.invoke('initiate-call', {
         body: {
-          phoneNumber: formattedPhone,
+          phoneNumber: cleanedNumber,
           type: 'drinks_order'
         }
       });
