@@ -1,4 +1,3 @@
-
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -194,12 +193,6 @@ const Insurance = () => {
             <p className="text-xl text-gray-300">
               Welcome to Planter's Insurance. You can speak to our agent to get your personalized insurance quote tailored to your needs. First we need a little bit of information from you:
             </p>
-            <ul className="text-left text-lg text-gray-300 space-y-3 mb-8">
-              <li>• Quick and easy quote process</li>
-              <li>• Competitive rates from top providers</li>
-              <li>• Instant policy options</li>
-              <li>• Expert guidance throughout</li>
-            </ul>
             <div className="flex justify-center">
               <OrderDialog
                 isOpen={isOpen}
