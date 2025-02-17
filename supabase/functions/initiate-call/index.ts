@@ -1,75 +1,66 @@
 
-import { serve } from "std/http/server.ts"
+import { serve } from "std/http/server.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-}
-
-const AGENT_ID = "cd922dc9-eea6-4b43-878f-cb5cfd67e005";
+};
 
 serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
-    return new Response(null, { headers: corsHeaders })
+    return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    const { phoneNumber, type } = await req.json()
-    console.log('Initiating call for:', { phoneNumber, type })
-
-    const apiKey = Deno.env.get('VOGENT_API_KEY')
-    if (!apiKey) {
-      throw new Error('Vogent API key is not configured')
+    const VOGENT_API_KEY = Deno.env.get('VOGENT_API_KEY');
+    if (!VOGENT_API_KEY) {
+      throw new Error('Missing Vogent API key');
     }
 
-    // Clean phone number (remove any non-digits)
-    const cleanNumber = phoneNumber.replace(/\D/g, '')
-    if (cleanNumber.length !== 10) {
-      throw new Error('Invalid phone number format. Must be 10 digits.')
+    const { phoneNumber, type } = await req.json();
+    console.log('Received request:', { phoneNumber, type });
+
+    if (!phoneNumber || !type) {
+      throw new Error('Missing required fields');
     }
 
-    // Call Vogent API to initiate the call
-    const response = await fetch("https://api.vogent.ai/api/dials", {
+    const response = await fetch('https://api.vogent.ai/api/dials', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${VOGENT_API_KEY}`,
       },
       body: JSON.stringify({
-        toNumber: `+1${cleanNumber}`, // Adding US country code
-        callAgentId: AGENT_ID,
-        fromNumberId: "8651ed89-c259-41ac-ae68-0937feab5b68",
-        webhookUrl: `${Deno.env.get('SUPABASE_URL')}/functions/v1/call-completed`
-      })
-    })
+        phoneNumber: `+1${phoneNumber}`,
+        flowId: type === 'drinks_order' ? 'drinks_order_flow' : 'food_order_flow',
+      }),
+    });
+
+    const data = await response.json();
+    console.log('Vogent response:', data);
 
     if (!response.ok) {
-      const error = await response.text()
-      console.error('Vogent API error:', error)
-      throw new Error(`API error: ${error}`)
+      throw new Error(data.message || 'Failed to initiate call');
     }
 
-    const result = await response.json()
-    console.log('Call initiated successfully:', result)
+    if (!data.dial?.id) {
+      throw new Error('No call ID received from Vogent');
+    }
 
-    // Return the call ID so frontend can poll for completion
-    return new Response(JSON.stringify({
-      callId: result.id,
+    return new Response(JSON.stringify({ 
+      callId: data.dial.id,
       status: 'initiated'
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 200,
-    })
+    });
 
   } catch (error) {
-    console.error('Function error:', error)
-    return new Response(
-      JSON.stringify({ error: error.message }),
-      { 
-        status: 500,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-      }
-    )
+    console.error('Error in initiate-call function:', error);
+    return new Response(JSON.stringify({ error: error.message }), {
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      status: 500,
+    });
   }
-})
+});

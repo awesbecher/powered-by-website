@@ -33,6 +33,7 @@ const DrinksMenu = () => {
     queryFn: async () => {
       if (!callId) return { status: 'pending' };
       try {
+        console.log('Fetching call status for ID:', callId);
         const response = await fetch(`https://api.vogent.ai/api/dials/${callId}`, {
           headers: {
             'Authorization': `Bearer ${process.env.VOGENT_API_KEY}`,
@@ -40,14 +41,13 @@ const DrinksMenu = () => {
         });
         
         if (!response.ok) {
-          console.error('Failed to fetch call status:', response.statusText);
-          return { status: 'error' };
+          throw new Error(`Failed to fetch call status: ${response.statusText}`);
         }
         
         const data = await response.json();
-        console.log('Raw call status response:', data);
+        console.log('Call status response:', data);
         
-        // Ensure we get a valid status
+        // Handle both possible response structures
         const status = data?.dial?.status || data?.status || 'pending';
         console.log('Extracted status:', status);
         
@@ -69,7 +69,7 @@ const DrinksMenu = () => {
   useEffect(() => {
     if (!callStatus) return;
     
-    console.log('Current call status:', callStatus.status);
+    console.log('Processing call status:', callStatus);
     
     if (callStatus.status === 'completed') {
       console.log('Call completed, sending SMS...');
@@ -106,9 +106,9 @@ const DrinksMenu = () => {
 
   const sendConfirmationSMS = async () => {
     try {
+      console.log('Attempting to send SMS to:', phoneNumber);
       const formattedPhone = '+1' + formatPhoneNumber(phoneNumber);
-      console.log('Sending SMS to:', formattedPhone);
-
+      
       const { data, error } = await supabase.functions.invoke('send-sms', {
         body: {
           to: formattedPhone,
@@ -160,12 +160,15 @@ const DrinksMenu = () => {
         }
       });
 
+      console.log('Call initiation response:', { data, error });
+
       if (error) {
         console.error('Call initiation error:', error);
         throw error;
       }
 
       if (!data?.callId) {
+        console.error('No call ID in response:', data);
         throw new Error('No call ID received');
       }
 
@@ -180,6 +183,7 @@ const DrinksMenu = () => {
       setCallId(data.callId);
     } catch (error) {
       console.error('Call error:', error);
+      setIsCallInProgress(false);
       toast({
         variant: "destructive",
         title: "Error",
