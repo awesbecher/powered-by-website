@@ -25,6 +25,7 @@ const DrinksMenu = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [callId, setCallId] = useState<string | null>(null);
+  const [isCallInProgress, setIsCallInProgress] = useState(false);
 
   // Poll for call status if we have a callId
   const { data: callStatus } = useQuery({
@@ -73,7 +74,7 @@ const DrinksMenu = () => {
     if (callStatus.status === 'completed') {
       console.log('Call completed, sending SMS...');
       
-      // Send SMS first
+      // Send SMS and navigate
       sendConfirmationSMS().then((success) => {
         if (success) {
           toast({
@@ -81,9 +82,8 @@ const DrinksMenu = () => {
             description: "Your order has been placed successfully!",
           });
         }
-        // Clear call ID and navigate after SMS is sent
         setCallId(null);
-        setIsOpen(false);
+        setIsCallInProgress(false);
         navigate('/call-confirmation');
       });
     }
@@ -176,6 +176,7 @@ const DrinksMenu = () => {
         description: "You will receive a call shortly to take your drinks order.",
       });
       
+      setIsCallInProgress(true);
       setCallId(data.callId);
     } catch (error) {
       console.error('Call error:', error);
@@ -199,28 +200,30 @@ const DrinksMenu = () => {
 
       <div className="mx-auto max-w-6xl">
         <div className="flex justify-end mb-8">
-          <Dialog open={isOpen || !!callId} onOpenChange={(open) => {
-            if (!callId) setIsOpen(open);
+          <Dialog open={isOpen || isCallInProgress} onOpenChange={(open) => {
+            if (!isCallInProgress) setIsOpen(open);
           }}>
             <DialogTrigger asChild>
               <button 
                 className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md flex items-center gap-2"
-                disabled={!!callId}
+                disabled={isCallInProgress}
               >
-                {callId ? 'Call in progress...' : 'Start your order'}
+                {isCallInProgress ? 'Call in progress...' : 'Start your order'}
                 <Phone className="h-4 w-4" />
               </button>
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
                 <DialogTitle>
-                  {callId ? 'Call in Progress' : 'Enter your phone number to place an order'}
+                  {isCallInProgress ? 'Call in Progress' : 'Enter your phone number to place an order'}
                 </DialogTitle>
                 <DialogDescription>
-                  {callId ? 'Please wait while we connect your call...' : 'Enter your phone number to begin your order.'}
+                  {isCallInProgress 
+                    ? 'You will receive a call shortly to take your drinks order...'
+                    : 'Enter your phone number to begin your order.'}
                 </DialogDescription>
               </DialogHeader>
-              {!callId && (
+              {!isCallInProgress ? (
                 <div className="flex flex-col space-y-4 pt-4">
                   <Input
                     type="tel"
@@ -236,10 +239,12 @@ const DrinksMenu = () => {
                     Call Me
                   </button>
                 </div>
-              )}
-              {callId && (
-                <div className="flex items-center justify-center p-4">
+              ) : (
+                <div className="flex flex-col items-center justify-center space-y-4 p-4">
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent"></div>
+                  <p className="text-center text-sm text-gray-600">
+                    Please answer your phone when it rings...
+                  </p>
                 </div>
               )}
             </DialogContent>
