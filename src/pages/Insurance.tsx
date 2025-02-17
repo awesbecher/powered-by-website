@@ -192,7 +192,7 @@ const Insurance = () => {
         <div className="bg-white/5 rounded-lg p-8 backdrop-blur-sm">
           <div className="space-y-6">
             <p className="text-xl text-gray-300">
-              Speak with our virtual agent to get a personalized insurance quote tailored to your needs:
+              Welcome to Planter's Insurance. You can speak to our agent to get your personalized insurance quote tailored to your needs. First we need a little bit of information from you:
             </p>
             <ul className="text-left text-lg text-gray-300 space-y-3 mb-8">
               <li>• Quick and easy quote process</li>
