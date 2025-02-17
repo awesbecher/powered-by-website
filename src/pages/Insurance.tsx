@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { OrderDialog } from "@/components/order/OrderDialog";
+import { ZipCodeDialog } from "@/components/insurance/ZipCodeDialog";
 import { formatPhoneNumber } from "@/utils/phoneUtils";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -12,9 +13,11 @@ const Insurance = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
-  const [callId, setCallId] = useState<string | null>(null);
+  const [zipCode, setZipCode] = useState("");
+  const [isZipCodeOpen, setIsZipCodeOpen] = useState(false);
+  const [isPhoneOpen, setIsPhoneOpen] = useState(false);
   const [isCallInProgress, setIsCallInProgress] = useState(false);
+  const [callId, setCallId] = useState<string | null>(null);
   const isMobile = useIsMobile();
 
   const { data: callStatus } = useQuery({
@@ -109,12 +112,18 @@ const Insurance = () => {
     }
   };
 
+  const handleZipCodeSubmit = (submittedZipCode: string) => {
+    setZipCode(submittedZipCode);
+    setIsZipCodeOpen(false);
+    setIsPhoneOpen(true);
+  };
+
   const handleCall = async () => {
-    if (!phoneNumber) {
+    if (!phoneNumber || !zipCode) {
       toast({
         variant: "destructive",
         title: "Error",
-        description: "Please enter your phone number",
+        description: "Please enter both zip code and phone number",
       });
       return;
     }
@@ -126,7 +135,8 @@ const Insurance = () => {
       const { data, error } = await supabase.functions.invoke('initiate-call', {
         body: {
           phoneNumber: cleanedNumber,
-          type: 'insurance_quote'
+          type: 'insurance_quote',
+          zipCode
         }
       });
 
@@ -194,18 +204,33 @@ const Insurance = () => {
               Welcome to Planter's Insurance. You can speak to our agent to get your personalized insurance quote tailored to your needs. First we need a little bit of information from you:
             </p>
             <div className="flex justify-center">
-              <OrderDialog
-                isOpen={isOpen}
-                isCallInProgress={isCallInProgress}
-                onOpenChange={setIsOpen}
-                onSubmit={handleCall}
-                phoneNumber={phoneNumber}
-                setPhoneNumber={setPhoneNumber}
-              />
+              <button 
+                onClick={() => setIsZipCodeOpen(true)}
+                className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md flex items-center gap-2"
+              >
+                Start your quote
+              </button>
             </div>
           </div>
         </div>
       </div>
+
+      <ZipCodeDialog
+        isOpen={isZipCodeOpen}
+        onOpenChange={setIsZipCodeOpen}
+        onSubmit={handleZipCodeSubmit}
+        zipCode={zipCode}
+        setZipCode={setZipCode}
+      />
+
+      <OrderDialog
+        isOpen={isPhoneOpen}
+        isCallInProgress={isCallInProgress}
+        onOpenChange={setIsPhoneOpen}
+        onSubmit={handleCall}
+        phoneNumber={phoneNumber}
+        setPhoneNumber={setPhoneNumber}
+      />
     </div>
   );
 };
