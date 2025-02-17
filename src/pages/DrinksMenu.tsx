@@ -1,5 +1,5 @@
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -15,6 +15,7 @@ import { useState } from "react";
 
 const DrinksMenu = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
@@ -47,6 +48,7 @@ const DrinksMenu = () => {
       });
       setIsOpen(false);
       setPhoneNumber("");
+      navigate('/call-confirmation');
     } catch (error) {
       console.error('Detailed error:', error);
       toast({
