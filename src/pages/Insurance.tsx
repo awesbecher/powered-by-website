@@ -1,20 +1,20 @@
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Car, Home, Key, Bike, Boat } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { OrderDialog } from "@/components/order/OrderDialog";
-import { ZipCodeDialog } from "@/components/insurance/ZipCodeDialog";
 import { formatPhoneNumber } from "@/utils/phoneUtils";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Input } from "@/components/ui/input";
 
 const Insurance = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const [phoneNumber, setPhoneNumber] = useState("");
   const [zipCode, setZipCode] = useState("");
-  const [isZipCodeOpen, setIsZipCodeOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
   const [isPhoneOpen, setIsPhoneOpen] = useState(false);
   const [isCallInProgress, setIsCallInProgress] = useState(false);
   const [callId, setCallId] = useState<string | null>(null);
@@ -112,18 +112,18 @@ const Insurance = () => {
     }
   };
 
-  const handleZipCodeSubmit = (submittedZipCode: string) => {
-    setZipCode(submittedZipCode);
-    setIsZipCodeOpen(false);
+  const handleProductSelect = (productId: string) => {
+    if (zipCode.length !== 5) return;
+    setSelectedProduct(productId);
     setIsPhoneOpen(true);
   };
 
   const handleCall = async () => {
-    if (!phoneNumber || !zipCode) {
+    if (!phoneNumber || !zipCode || !selectedProduct) {
       toast({
         variant: "destructive",
         title: "Error",
-        description: "Please enter both zip code and phone number",
+        description: "Please complete all required information",
       });
       return;
     }
@@ -136,7 +136,8 @@ const Insurance = () => {
         body: {
           phoneNumber: cleanedNumber,
           type: 'insurance_quote',
-          zipCode
+          zipCode,
+          productType: selectedProduct
         }
       });
 
@@ -172,6 +173,14 @@ const Insurance = () => {
     }
   };
 
+  const insuranceProducts = [
+    { id: 'auto', name: 'Auto', icon: Car },
+    { id: 'home', name: 'Homeowners', icon: Home },
+    { id: 'renters', name: 'Renters', icon: Key },
+    { id: 'motorcycle', name: 'Motorcycle / ATV', icon: Bike },
+    { id: 'boat', name: 'Boat', icon: Boat },
+  ];
+
   return (
     <div className="min-h-screen w-full bg-neutral-soft px-4 py-16 sm:px-6 lg:px-8">
       {/* Logo */}
@@ -199,29 +208,57 @@ const Insurance = () => {
           Insurance Quote
         </h1>
         <div className="bg-white/5 rounded-lg p-8 backdrop-blur-sm">
-          <div className="space-y-6">
-            <p className="text-xl text-gray-300">
-              Welcome to Planter's Insurance. You can speak to our agent to get your personalized insurance quote tailored to your needs. First we need a little bit of information from you:
-            </p>
-            <div className="flex justify-center">
-              <button 
-                onClick={() => setIsZipCodeOpen(true)}
-                className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md flex items-center gap-2"
-              >
-                Start your quote
-              </button>
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <p className="text-xl text-gray-300">
+                Enter your zip code to get started:
+              </p>
+              <div className="max-w-xs mx-auto">
+                <Input
+                  type="text"
+                  placeholder="Enter zip code"
+                  value={zipCode}
+                  onChange={(e) => {
+                    const value = e.target.value.replace(/\D/g, '').slice(0, 5);
+                    setZipCode(value);
+                  }}
+                  className="text-lg text-center"
+                  maxLength={5}
+                />
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <p className="text-xl text-gray-300">
+                Select your insurance product:
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {insuranceProducts.map((product) => {
+                  const Icon = product.icon;
+                  return (
+                    <button
+                      key={product.id}
+                      onClick={() => handleProductSelect(product.id)}
+                      disabled={zipCode.length !== 5}
+                      className={`
+                        p-6 rounded-lg flex flex-col items-center justify-center space-y-4 
+                        transition-all duration-200
+                        ${zipCode.length === 5 
+                          ? 'bg-white/10 hover:bg-white/20 cursor-pointer' 
+                          : 'bg-white/5 cursor-not-allowed opacity-50'}
+                        ${selectedProduct === product.id ? 'ring-2 ring-accent' : ''}
+                      `}
+                    >
+                      <Icon className="h-8 w-8 text-accent" />
+                      <span className="text-lg text-gray-300">{product.name}</span>
+                    </button>
+                  )}
+                )}
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      <ZipCodeDialog
-        isOpen={isZipCodeOpen}
-        onOpenChange={setIsZipCodeOpen}
-        onSubmit={handleZipCodeSubmit}
-        zipCode={zipCode}
-        setZipCode={setZipCode}
-      />
 
       <OrderDialog
         isOpen={isPhoneOpen}
