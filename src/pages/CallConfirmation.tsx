@@ -28,8 +28,7 @@ const CallConfirmation = () => {
         </h1>
         
         <p className="mt-6 text-lg text-gray-300">
-          Your order request has been received. One of our representatives will call you shortly 
-          to confirm your {isFromFood ? "food" : "drinks"} order details.
+          Your order has been successfully placed.
         </p>
 
         <div className="mt-12 bg-white/5 rounded-lg p-8 backdrop-blur-sm">
@@ -37,15 +36,15 @@ const CallConfirmation = () => {
           <ul className="text-left text-gray-300 space-y-4">
             <li className="flex items-start">
               <Check className="h-5 w-5 text-accent mr-2 mt-1 flex-shrink-0" />
-              <span>You'll receive a phone call within the next few minutes</span>
+              <span>Your order is being prepared</span>
             </li>
             <li className="flex items-start">
               <Check className="h-5 w-5 text-accent mr-2 mt-1 flex-shrink-0" />
-              <span>Our team will confirm your order details and any special requests</span>
+              <span>We'll process your {isFromFood ? "food" : "drinks"} order promptly</span>
             </li>
             <li className="flex items-start">
               <Check className="h-5 w-5 text-accent mr-2 mt-1 flex-shrink-0" />
-              <span>We'll provide you with an estimated delivery time</span>
+              <span>Your order will be delivered to your room shortly</span>
             </li>
           </ul>
         </div>
