@@ -13,8 +13,8 @@ serve(async (req) => {
   }
 
   try {
-    const { phoneNumber, type } = await req.json()
-    console.log('Initiating call for:', { phoneNumber, type })
+    const { phoneNumber, type, agentId } = await req.json()
+    console.log('Initiating call for:', { phoneNumber, type, agentId })
 
     const apiKey = Deno.env.get('VOGENT_API_KEY')
     if (!apiKey) {
@@ -27,6 +27,10 @@ serve(async (req) => {
       throw new Error('Invalid phone number format. Must be 10 digits.')
     }
 
+    if (!agentId) {
+      throw new Error('Agent ID is required')
+    }
+
     // Call Vogent API to initiate the call
     const response = await fetch('https://api.vogent.ai/v1/dial', {
       method: 'POST',
@@ -36,6 +40,7 @@ serve(async (req) => {
       },
       body: JSON.stringify({
         phone_number: `+1${cleanNumber}`, // Adding US country code
+        agent_id: agentId,  // Adding the required agent ID
         agent: type || 'room_service'  // Using the agent type passed from frontend
       })
     })
