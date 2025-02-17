@@ -1,19 +1,12 @@
 
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, Phone } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  DialogDescription,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { OrderDialog } from "@/components/order/OrderDialog";
+import { formatPhoneNumber } from "@/utils/phoneUtils";
 
 interface CallStatus {
   status: string;
@@ -27,7 +20,6 @@ const DrinksMenu = () => {
   const [callId, setCallId] = useState<string | null>(null);
   const [isCallInProgress, setIsCallInProgress] = useState(false);
 
-  // Poll for call status if we have a callId
   const { data: callStatus } = useQuery({
     queryKey: ['callStatus', callId],
     queryFn: async () => {
@@ -47,7 +39,6 @@ const DrinksMenu = () => {
         const data = await response.json();
         console.log('Call status response:', data);
         
-        // Handle both possible response structures
         const status = data?.dial?.status || data?.status || 'pending';
         console.log('Extracted status:', status);
         
@@ -60,12 +51,10 @@ const DrinksMenu = () => {
     enabled: !!callId,
     refetchInterval: (query) => {
       const status = query.state.data?.status;
-      console.log('Current status for refetch interval:', status);
       return status === 'completed' ? false : 5000;
     },
   });
 
-  // Watch for call completion and send SMS
   useEffect(() => {
     if (!callStatus) return;
     
@@ -74,7 +63,6 @@ const DrinksMenu = () => {
     if (callStatus.status === 'completed') {
       console.log('Call completed, sending SMS...');
       
-      // Send SMS and navigate
       sendConfirmationSMS().then((success) => {
         if (success) {
           toast({
@@ -88,21 +76,6 @@ const DrinksMenu = () => {
       });
     }
   }, [callStatus, navigate]);
-
-  const formatPhoneNumber = (number: string) => {
-    // Remove all non-digit characters
-    const cleaned = number.replace(/\D/g, '');
-    
-    // Remove leading "1" if present
-    const withoutCountryCode = cleaned.startsWith('1') ? cleaned.slice(1) : cleaned;
-    
-    // Check if it's exactly 10 digits
-    if (withoutCountryCode.length !== 10) {
-      throw new Error('Phone number must be 10 digits');
-    }
-    
-    return withoutCountryCode;
-  };
 
   const sendConfirmationSMS = async () => {
     try {
@@ -204,55 +177,14 @@ const DrinksMenu = () => {
 
       <div className="mx-auto max-w-6xl">
         <div className="flex justify-end mb-8">
-          <Dialog open={isOpen || isCallInProgress} onOpenChange={(open) => {
-            if (!isCallInProgress) setIsOpen(open);
-          }}>
-            <DialogTrigger asChild>
-              <button 
-                className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md flex items-center gap-2"
-                disabled={isCallInProgress}
-              >
-                {isCallInProgress ? 'Call in progress...' : 'Start your order'}
-                <Phone className="h-4 w-4" />
-              </button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>
-                  {isCallInProgress ? 'Call in Progress' : 'Enter your phone number to place an order'}
-                </DialogTitle>
-                <DialogDescription>
-                  {isCallInProgress 
-                    ? 'You will receive a call shortly to take your drinks order...'
-                    : 'Enter your phone number to begin your order.'}
-                </DialogDescription>
-              </DialogHeader>
-              {!isCallInProgress ? (
-                <div className="flex flex-col space-y-4 pt-4">
-                  <Input
-                    type="tel"
-                    placeholder="Enter your phone number"
-                    value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                    className="text-lg"
-                  />
-                  <button 
-                    onClick={handleCall}
-                    className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md"
-                  >
-                    Call Me
-                  </button>
-                </div>
-              ) : (
-                <div className="flex flex-col items-center justify-center space-y-4 p-4">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent"></div>
-                  <p className="text-center text-sm text-gray-600">
-                    Please answer your phone when it rings...
-                  </p>
-                </div>
-              )}
-            </DialogContent>
-          </Dialog>
+          <OrderDialog
+            isOpen={isOpen}
+            isCallInProgress={isCallInProgress}
+            onOpenChange={setIsOpen}
+            onSubmit={handleCall}
+            phoneNumber={phoneNumber}
+            setPhoneNumber={setPhoneNumber}
+          />
         </div>
         <div className="bg-white rounded-lg p-4 shadow-lg">
           <img 
