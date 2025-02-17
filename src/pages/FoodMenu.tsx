@@ -26,7 +26,7 @@ const FoodMenu = () => {
   const [callId, setCallId] = useState<string | null>(null);
 
   // Poll for call status if we have a callId
-  const query = useQuery<CallStatus | null>({
+  const { data: callStatus } = useQuery({
     queryKey: ['callStatus', callId],
     queryFn: async () => {
       if (!callId) return null;
@@ -36,24 +36,24 @@ const FoodMenu = () => {
         }
       });
       if (!response.ok) throw new Error('Failed to fetch call status');
-      return response.json();
+      return response.json() as Promise<CallStatus>;
     },
     enabled: !!callId,
-    refetchInterval: (data: CallStatus | null) => {
-      if (!data) return 5000;
-      return data.status === 'completed' ? false : 5000;
+    refetchInterval: (query) => {
+      if (!query.state.data) return 5000;
+      return query.state.data.status === 'completed' ? false : 5000;
     },
   });
 
   // Watch for call completion and send SMS
   useEffect(() => {
-    if (query.data && query.data.status === 'completed') {
+    if (callStatus?.status === 'completed') {
       // Send confirmation SMS
       sendConfirmationSMS();
       setCallId(null);
       navigate('/call-confirmation');
     }
-  }, [query.data, navigate]);
+  }, [callStatus, navigate]);
 
   const sendConfirmationSMS = async () => {
     try {

@@ -1,5 +1,5 @@
 
-import { serve } from "std/server";
+import { serve } from "std/http/server.ts";
 import { corsHeaders } from "../_shared/cors.ts";
 
 interface SmsRequest {
@@ -31,7 +31,7 @@ serve(async (req) => {
     
     const formData = new URLSearchParams();
     formData.append('To', to);
-    formData.append('From', '+18447162733'); // Replace with your Twilio phone number
+    formData.append('From', '+18447162733');
     formData.append('Body', message);
 
     const response = await fetch(twilioEndpoint, {
