@@ -27,10 +27,10 @@ const DrinksMenu = () => {
   const [callId, setCallId] = useState<string | null>(null);
 
   // Poll for call status if we have a callId
-  const { data: callStatus, isLoading: isCallStatusLoading } = useQuery({
+  const { data: callStatus } = useQuery({
     queryKey: ['callStatus', callId],
     queryFn: async () => {
-      if (!callId) return null;
+      if (!callId) return { status: 'pending' };
       try {
         const response = await fetch(`https://api.vogent.ai/api/dials/${callId}`, {
           headers: {
@@ -38,22 +38,18 @@ const DrinksMenu = () => {
           }
         });
         
-        if (!response.ok) throw new Error('Failed to fetch call status');
+        if (!response.ok) {
+          console.error('Failed to fetch call status:', response.statusText);
+          return { status: 'error' };
+        }
         
         const data = await response.json();
         console.log('Raw call status response:', data);
         
-        // Extract the status correctly from the Vogent API response
-        let status;
-        if (data.dial && data.dial.status) {
-          status = data.dial.status;
-        } else if (data.status) {
-          status = data.status;
-        } else {
-          status = 'pending';
-        }
-        
+        // Ensure we get a valid status
+        const status = data?.dial?.status || data?.status || 'pending';
         console.log('Extracted status:', status);
+        
         return { status };
       } catch (error) {
         console.error('Error fetching call status:', error);
@@ -64,9 +60,34 @@ const DrinksMenu = () => {
     refetchInterval: (query) => {
       const status = query.state.data?.status;
       console.log('Current status for refetch interval:', status);
-      return ['completed', 'error'].includes(status || '') ? false : 5000;
+      return status === 'completed' ? false : 5000;
     },
   });
+
+  // Watch for call completion and send SMS
+  useEffect(() => {
+    if (!callStatus) return;
+    
+    console.log('Current call status:', callStatus.status);
+    
+    if (callStatus.status === 'completed') {
+      console.log('Call completed, sending SMS...');
+      
+      // Send SMS first
+      sendConfirmationSMS().then((success) => {
+        if (success) {
+          toast({
+            title: "Order Confirmed",
+            description: "Your order has been placed successfully!",
+          });
+        }
+        // Clear call ID and navigate after SMS is sent
+        setCallId(null);
+        setIsOpen(false);
+        navigate('/call-confirmation');
+      });
+    }
+  }, [callStatus, navigate]);
 
   const formatPhoneNumber = (number: string) => {
     // Remove all non-digit characters
@@ -84,10 +105,10 @@ const DrinksMenu = () => {
   };
 
   const sendConfirmationSMS = async () => {
-    const formattedPhone = '+1' + formatPhoneNumber(phoneNumber);
-    console.log('Attempting to send SMS to:', formattedPhone);
-    
     try {
+      const formattedPhone = '+1' + formatPhoneNumber(phoneNumber);
+      console.log('Sending SMS to:', formattedPhone);
+
       const { data, error } = await supabase.functions.invoke('send-sms', {
         body: {
           to: formattedPhone,
@@ -96,7 +117,7 @@ const DrinksMenu = () => {
       });
 
       if (error) {
-        console.error('Error sending SMS:', error);
+        console.error('SMS error:', error);
         toast({
           variant: "destructive",
           title: "SMS Error",
@@ -108,7 +129,7 @@ const DrinksMenu = () => {
       console.log('SMS sent successfully:', data);
       return true;
     } catch (error) {
-      console.error('Error sending SMS:', error);
+      console.error('SMS error:', error);
       toast({
         variant: "destructive",
         title: "SMS Error",
@@ -117,29 +138,6 @@ const DrinksMenu = () => {
       return false;
     }
   };
-
-  // Watch for call completion and send SMS
-  useEffect(() => {
-    console.log('Current call status:', callStatus?.status);
-    
-    if (callStatus?.status === 'completed') {
-      console.log('Call completed, sending SMS and navigating...');
-      
-      // Navigate first to ensure the user sees the confirmation page
-      navigate('/call-confirmation');
-      
-      // Then send the SMS
-      sendConfirmationSMS().then((success) => {
-        setCallId(null);
-        if (success) {
-          toast({
-            title: "Order Confirmed",
-            description: "Your order has been placed successfully!",
-          });
-        }
-      });
-    }
-  }, [callStatus, navigate, phoneNumber]);
 
   const handleCall = async () => {
     if (!phoneNumber) {
@@ -163,25 +161,24 @@ const DrinksMenu = () => {
       });
 
       if (error) {
-        console.error('Error details:', error);
+        console.error('Call initiation error:', error);
         throw error;
       }
 
-      console.log('Call initiated with ID:', data?.callId);
-      
       if (!data?.callId) {
         throw new Error('No call ID received');
       }
 
+      console.log('Call initiated with ID:', data.callId);
+      
       toast({
         title: "Call Initiated",
         description: "You will receive a call shortly to take your drinks order.",
       });
       
-      setIsOpen(false);
       setCallId(data.callId);
     } catch (error) {
-      console.error('Detailed error:', error);
+      console.error('Call error:', error);
       toast({
         variant: "destructive",
         title: "Error",
@@ -202,7 +199,9 @@ const DrinksMenu = () => {
 
       <div className="mx-auto max-w-6xl">
         <div className="flex justify-end mb-8">
-          <Dialog open={isOpen || (!!callId && callStatus?.status !== 'completed')} onOpenChange={setIsOpen}>
+          <Dialog open={isOpen || !!callId} onOpenChange={(open) => {
+            if (!callId) setIsOpen(open);
+          }}>
             <DialogTrigger asChild>
               <button 
                 className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md flex items-center gap-2"
@@ -217,11 +216,9 @@ const DrinksMenu = () => {
                 <DialogTitle>
                   {callId ? 'Call in Progress' : 'Enter your phone number to place an order'}
                 </DialogTitle>
-                {callId && (
-                  <DialogDescription>
-                    Please wait while we connect your call...
-                  </DialogDescription>
-                )}
+                <DialogDescription>
+                  {callId ? 'Please wait while we connect your call...' : 'Enter your phone number to begin your order.'}
+                </DialogDescription>
               </DialogHeader>
               {!callId && (
                 <div className="flex flex-col space-y-4 pt-4">
