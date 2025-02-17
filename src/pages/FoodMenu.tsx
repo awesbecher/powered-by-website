@@ -1,3 +1,4 @@
+
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -38,8 +39,7 @@ const FoodMenu = () => {
       return response.json();
     },
     enabled: !!callId,
-    refetchInterval: (data) => {
-      // Stop polling once call is completed
+    refetchInterval: (data: CallStatus | null) => {
       if (!data) return 5000;
       return data.status === 'completed' ? false : 5000;
     },
