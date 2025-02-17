@@ -45,13 +45,32 @@ const FoodMenu = () => {
     },
   });
 
-  // Watch for call completion
+  // Watch for call completion and send SMS
   useEffect(() => {
     if (query.data && query.data.status === 'completed') {
+      // Send confirmation SMS
+      sendConfirmationSMS();
       setCallId(null);
       navigate('/call-confirmation');
     }
   }, [query.data, navigate]);
+
+  const sendConfirmationSMS = async () => {
+    try {
+      const { error } = await supabase.functions.invoke('send-sms', {
+        body: {
+          to: phoneNumber,
+          message: "Thank you for your food order! It will be delivered to your room in 30-45 minutes.",
+        },
+      });
+
+      if (error) {
+        console.error('Error sending SMS:', error);
+      }
+    } catch (error) {
+      console.error('Error sending SMS:', error);
+    }
+  };
 
   const handleCall = async () => {
     if (!phoneNumber) {
@@ -81,7 +100,6 @@ const FoodMenu = () => {
         description: "You will receive a call shortly to take your food order.",
       });
       setIsOpen(false);
-      setPhoneNumber("");
       setCallId(data.callId);
     } catch (error) {
       console.error('Detailed error:', error);

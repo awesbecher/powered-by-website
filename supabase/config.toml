@@ -26,3 +26,7 @@ port = 54324
 [functions]
 [functions.initiate-call]
 verify_jwt = false
+
+[functions.send-sms]
+verify_jwt = false
+
