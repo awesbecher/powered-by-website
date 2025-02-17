@@ -1,49 +1,8 @@
 
 import { Link } from "react-router-dom";
-import { ArrowLeft, Phone } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { ArrowLeft } from "lucide-react";
 
 const RoomService = () => {
-  const { toast } = useToast();
-
-  const handleCall = async () => {
-    try {
-      const { data, error } = await supabase.functions.invoke('initiate-call', {
-        body: {
-          phoneNumber: '6502547823',
-          type: 'room_service'
-        }
-      });
-
-      console.log('Supabase function response:', { data, error });
-
-      if (error) {
-        console.error('Error details:', error);
-        throw error;
-      }
-
-      toast({
-        title: "Call Initiated",
-        description: "You will receive a call shortly to take your room service order.",
-      });
-    } catch (error) {
-      console.error('Detailed error:', error);
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: error.message || "Failed to initiate call. Please try again.",
-      });
-    }
-  };
-
   return (
     <div className="min-h-screen w-full bg-neutral-soft px-4 py-16 sm:px-6 lg:px-8">
       {/* Logo */}
@@ -95,38 +54,6 @@ const RoomService = () => {
                   Drinks Menu
                 </button>
               </Link>
-            </div>
-            <div className="flex justify-center w-full">
-              <Dialog>
-                <DialogTrigger asChild>
-                  <button 
-                    className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md w-full sm:w-auto flex items-center justify-center gap-2"
-                  >
-                    Start Your Order
-                    <Phone className="h-4 w-4" />
-                  </button>
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>How would you like to place your order?</DialogTitle>
-                  </DialogHeader>
-                  <div className="flex flex-col items-center space-y-4">
-                    <button 
-                      onClick={handleCall} 
-                      className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md"
-                    >
-                      Order Here
-                    </button>
-                    <div className="text-sm text-gray-500 font-medium">OR</div>
-                    <button 
-                      onClick={handleCall}
-                      className="w-full bg-neutral-800 text-white hover:bg-neutral-700 px-6 py-3 rounded-md"
-                    >
-                      Call us @ (650) 254-7823
-                    </button>
-                  </div>
-                </DialogContent>
-              </Dialog>
             </div>
           </div>
         </div>
