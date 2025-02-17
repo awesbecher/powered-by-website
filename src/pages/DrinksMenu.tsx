@@ -9,6 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogDescription,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { useState, useEffect } from "react";
@@ -26,7 +27,7 @@ const DrinksMenu = () => {
   const [callId, setCallId] = useState<string | null>(null);
 
   // Poll for call status if we have a callId
-  const { data: callStatus } = useQuery({
+  const { data: callStatus, isLoading: isCallStatusLoading } = useQuery({
     queryKey: ['callStatus', callId],
     queryFn: async () => {
       if (!callId) return null;
@@ -42,22 +43,28 @@ const DrinksMenu = () => {
         const data = await response.json();
         console.log('Raw call status response:', data);
         
-        // Extract the actual status from the response
-        const status = data?.dial?.status || data?.status;
-        console.log('Extracted status:', status);
+        // Extract the status correctly from the Vogent API response
+        let status;
+        if (data.dial && data.dial.status) {
+          status = data.dial.status;
+        } else if (data.status) {
+          status = data.status;
+        } else {
+          status = 'pending';
+        }
         
-        return { status } as CallStatus;
+        console.log('Extracted status:', status);
+        return { status };
       } catch (error) {
         console.error('Error fetching call status:', error);
-        return null;
+        return { status: 'error' };
       }
     },
     enabled: !!callId,
     refetchInterval: (query) => {
       const status = query.state.data?.status;
       console.log('Current status for refetch interval:', status);
-      if (!status) return 5000;
-      return status === 'completed' ? false : 5000;
+      return ['completed', 'error'].includes(status || '') ? false : 5000;
     },
   });
 
@@ -113,11 +120,15 @@ const DrinksMenu = () => {
 
   // Watch for call completion and send SMS
   useEffect(() => {
-    console.log('Current call status:', callStatus);
+    console.log('Current call status:', callStatus?.status);
     
     if (callStatus?.status === 'completed') {
       console.log('Call completed, sending SMS and navigating...');
       
+      // Navigate first to ensure the user sees the confirmation page
+      navigate('/call-confirmation');
+      
+      // Then send the SMS
       sendConfirmationSMS().then((success) => {
         setCallId(null);
         if (success) {
@@ -126,7 +137,6 @@ const DrinksMenu = () => {
             description: "Your order has been placed successfully!",
           });
         }
-        navigate('/call-confirmation');
       });
     }
   }, [callStatus, navigate, phoneNumber]);
@@ -142,7 +152,6 @@ const DrinksMenu = () => {
     }
 
     try {
-      // Format the phone number and validate it's 10 digits
       const cleanedNumber = formatPhoneNumber(phoneNumber);
       console.log('Initiating call with cleaned number:', cleanedNumber);
 
@@ -193,34 +202,49 @@ const DrinksMenu = () => {
 
       <div className="mx-auto max-w-6xl">
         <div className="flex justify-end mb-8">
-          <Dialog open={isOpen} onOpenChange={setIsOpen}>
+          <Dialog open={isOpen || (!!callId && callStatus?.status !== 'completed')} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
               <button 
                 className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md flex items-center gap-2"
+                disabled={!!callId}
               >
-                Start your order
+                {callId ? 'Call in progress...' : 'Start your order'}
                 <Phone className="h-4 w-4" />
               </button>
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>Enter your phone number to place an order</DialogTitle>
+                <DialogTitle>
+                  {callId ? 'Call in Progress' : 'Enter your phone number to place an order'}
+                </DialogTitle>
+                {callId && (
+                  <DialogDescription>
+                    Please wait while we connect your call...
+                  </DialogDescription>
+                )}
               </DialogHeader>
-              <div className="flex flex-col space-y-4 pt-4">
-                <Input
-                  type="tel"
-                  placeholder="Enter your phone number"
-                  value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                  className="text-lg"
-                />
-                <button 
-                  onClick={handleCall}
-                  className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md"
-                >
-                  Call Me
-                </button>
-              </div>
+              {!callId && (
+                <div className="flex flex-col space-y-4 pt-4">
+                  <Input
+                    type="tel"
+                    placeholder="Enter your phone number"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    className="text-lg"
+                  />
+                  <button 
+                    onClick={handleCall}
+                    className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md"
+                  >
+                    Call Me
+                  </button>
+                </div>
+              )}
+              {callId && (
+                <div className="flex items-center justify-center p-4">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent"></div>
+                </div>
+              )}
             </DialogContent>
           </Dialog>
         </div>
