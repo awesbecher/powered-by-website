@@ -16,9 +16,9 @@ serve(async (req) => {
     const { phoneNumber, type } = await req.json()
     console.log('Initiating call for:', { phoneNumber, type })
 
-    const apiKey = Deno.env.get('MADRONE_API_KEY')
+    const apiKey = Deno.env.get('VOGENT_API_KEY')
     if (!apiKey) {
-      throw new Error('Madrone API key is not configured')
+      throw new Error('Vogent API key is not configured')
     }
 
     // Clean phone number (remove any non-digits)
@@ -27,24 +27,22 @@ serve(async (req) => {
       throw new Error('Invalid phone number format. Must be 10 digits.')
     }
 
-    // Call Madrone API to initiate the call
-    const response = await fetch('https://api.madrone.ai/v1/calls', {
+    // Call Vogent API to initiate the call
+    const response = await fetch('https://api.vogent.ai/v1/dial', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        to: cleanNumber,
-        type: type || 'room_service',
-        country_code: "1"  // US country code
+        phone_number: `+1${cleanNumber}`, // Adding US country code
+        agent: type || 'room_service'  // Using the agent type passed from frontend
       })
     })
 
     if (!response.ok) {
       const error = await response.text()
-      console.error('Madrone API error:', error)
+      console.error('Vogent API error:', error)
       throw new Error(`API error: ${error}`)
     }
 
