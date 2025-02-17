@@ -22,24 +22,29 @@ serve(async (req) => {
     const TWILIO_AUTH_TOKEN = Deno.env.get('TWILIO_AUTH_TOKEN');
 
     if (!TWILIO_ACCOUNT_SID || !TWILIO_AUTH_TOKEN) {
+      console.error('Missing Twilio credentials');
       throw new Error('Missing Twilio credentials');
     }
 
     const { to, message } = await req.json() as SmsRequest;
-    console.log('Received SMS request:', { to, message }); // Add logging
+    console.log('Received SMS request:', { to, message });
 
     if (!to || !message) {
       throw new Error('Missing required fields');
     }
 
+    // Ensure phone number is in E.164 format
+    const formattedPhone = to.startsWith('+') ? to : `+${to}`;
+    console.log('Formatted phone number:', formattedPhone);
+
     const twilioEndpoint = `https://api.twilio.com/2010-04-01/Accounts/${TWILIO_ACCOUNT_SID}/Messages.json`;
     
     const formData = new URLSearchParams();
-    formData.append('To', to);
+    formData.append('To', formattedPhone);
     formData.append('From', '+18447162733');
     formData.append('Body', message);
 
-    console.log('Sending request to Twilio...'); // Add logging
+    console.log('Sending request to Twilio...');
 
     const response = await fetch(twilioEndpoint, {
       method: 'POST',
@@ -51,10 +56,10 @@ serve(async (req) => {
     });
 
     const data = await response.json();
-    console.log('Twilio response:', data); // Add logging
+    console.log('Twilio response:', data);
 
     if (!response.ok) {
-      console.error('Twilio error:', data); // Add logging
+      console.error('Twilio error:', data);
       throw new Error(data.message || 'Failed to send SMS');
     }
 
@@ -64,7 +69,7 @@ serve(async (req) => {
     });
 
   } catch (error) {
-    console.error('Error sending SMS:', error);
+    console.error('Error in send-sms function:', error);
     return new Response(JSON.stringify({ error: error.message }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 500,

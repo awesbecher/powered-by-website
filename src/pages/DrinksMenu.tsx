@@ -30,29 +30,58 @@ const DrinksMenu = () => {
     queryKey: ['callStatus', callId],
     queryFn: async () => {
       if (!callId) return null;
-      const response = await fetch(`https://api.vogent.ai/api/dials/${callId}`, {
-        headers: {
-          'Authorization': `Bearer ${process.env.VOGENT_API_KEY}`,
-        }
-      });
-      if (!response.ok) throw new Error('Failed to fetch call status');
-      const data = await response.json();
-      console.log('Call status response:', data); // Add logging
-      return data as CallStatus;
+      try {
+        const response = await fetch(`https://api.vogent.ai/api/dials/${callId}`, {
+          headers: {
+            'Authorization': `Bearer ${process.env.VOGENT_API_KEY}`,
+          }
+        });
+        
+        if (!response.ok) throw new Error('Failed to fetch call status');
+        
+        const data = await response.json();
+        console.log('Raw call status response:', data);
+        
+        // Extract the actual status from the response
+        const status = data?.dial?.status || data?.status;
+        console.log('Extracted status:', status);
+        
+        return { status } as CallStatus;
+      } catch (error) {
+        console.error('Error fetching call status:', error);
+        return null;
+      }
     },
     enabled: !!callId,
     refetchInterval: (query) => {
-      if (!query.state.data) return 5000;
-      return query.state.data.status === 'completed' ? false : 5000;
+      const status = query.state.data?.status;
+      console.log('Current status for refetch interval:', status);
+      if (!status) return 5000;
+      return status === 'completed' ? false : 5000;
     },
   });
 
+  const formatPhoneNumber = (number: string) => {
+    // Remove all non-digit characters
+    const cleaned = number.replace(/\D/g, '');
+    
+    // Add US country code if not present
+    if (cleaned.length === 10) {
+      return `+1${cleaned}`;
+    } else if (cleaned.startsWith('1') && cleaned.length === 11) {
+      return `+${cleaned}`;
+    }
+    return cleaned;
+  };
+
   const sendConfirmationSMS = async () => {
-    console.log('Attempting to send SMS to:', phoneNumber); // Add logging
+    const formattedPhone = formatPhoneNumber(phoneNumber);
+    console.log('Attempting to send SMS to:', formattedPhone);
+    
     try {
       const { data, error } = await supabase.functions.invoke('send-sms', {
         body: {
-          to: phoneNumber,
+          to: formattedPhone,
           message: "Thank you for your drinks order! It will be delivered to your room in 30-45 minutes.",
         },
       });
@@ -64,9 +93,11 @@ const DrinksMenu = () => {
           title: "SMS Error",
           description: "Failed to send confirmation SMS",
         });
-      } else {
-        console.log('SMS sent successfully:', data); // Add logging
+        return false;
       }
+
+      console.log('SMS sent successfully:', data);
+      return true;
     } catch (error) {
       console.error('Error sending SMS:', error);
       toast({
@@ -74,20 +105,29 @@ const DrinksMenu = () => {
         title: "SMS Error",
         description: "Failed to send confirmation SMS",
       });
+      return false;
     }
   };
 
   // Watch for call completion and send SMS
   useEffect(() => {
-    console.log('Current call status:', callStatus); // Add logging
+    console.log('Current call status:', callStatus);
+    
     if (callStatus?.status === 'completed') {
-      console.log('Call completed, sending SMS and navigating...'); // Add logging
-      sendConfirmationSMS().then(() => {
+      console.log('Call completed, sending SMS and navigating...');
+      
+      sendConfirmationSMS().then((success) => {
         setCallId(null);
+        if (success) {
+          toast({
+            title: "Order Confirmed",
+            description: "Your order has been placed successfully!",
+          });
+        }
         navigate('/call-confirmation');
       });
     }
-  }, [callStatus, navigate]);
+  }, [callStatus, navigate, phoneNumber]);
 
   const handleCall = async () => {
     if (!phoneNumber) {
@@ -100,9 +140,12 @@ const DrinksMenu = () => {
     }
 
     try {
+      const formattedPhone = formatPhoneNumber(phoneNumber);
+      console.log('Initiating call to:', formattedPhone);
+
       const { data, error } = await supabase.functions.invoke('initiate-call', {
         body: {
-          phoneNumber: phoneNumber.replace(/\D/g, ''),
+          phoneNumber: formattedPhone,
           type: 'drinks_order'
         }
       });
@@ -112,11 +155,17 @@ const DrinksMenu = () => {
         throw error;
       }
 
-      console.log('Call initiated with ID:', data?.callId); // Add logging
+      console.log('Call initiated with ID:', data?.callId);
+      
+      if (!data?.callId) {
+        throw new Error('No call ID received');
+      }
+
       toast({
         title: "Call Initiated",
         description: "You will receive a call shortly to take your drinks order.",
       });
+      
       setIsOpen(false);
       setCallId(data.callId);
     } catch (error) {
