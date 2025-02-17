@@ -38,8 +38,9 @@ serve(async (req) => {
       },
       body: JSON.stringify({
         toNumber: `+1${cleanNumber}`, // Adding US country code
-        callAgentId: AGENT_ID,  // Using the fixed agent ID
+        callAgentId: AGENT_ID,
         fromNumberId: "8651ed89-c259-41ac-ae68-0937feab5b68",
+        webhookUrl: `${Deno.env.get('SUPABASE_URL')}/functions/v1/call-completed`
       })
     })
 
@@ -52,7 +53,11 @@ serve(async (req) => {
     const result = await response.json()
     console.log('Call initiated successfully:', result)
 
-    return new Response(JSON.stringify(result), {
+    // Return the call ID so frontend can poll for completion
+    return new Response(JSON.stringify({
+      callId: result.id,
+      status: 'initiated'
+    }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 200,
     })

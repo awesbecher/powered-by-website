@@ -11,13 +11,43 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 const FoodMenu = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [callId, setCallId] = useState<string | null>(null);
+
+  // Poll for call status if we have a callId
+  const { data: callStatus } = useQuery({
+    queryKey: ['callStatus', callId],
+    queryFn: async () => {
+      if (!callId) return null;
+      const response = await fetch(`https://api.vogent.ai/api/dials/${callId}`, {
+        headers: {
+          'Authorization': `Bearer ${process.env.VOGENT_API_KEY}`,
+        }
+      });
+      if (!response.ok) throw new Error('Failed to fetch call status');
+      return response.json();
+    },
+    enabled: !!callId,
+    refetchInterval: (data) => {
+      // Stop polling once call is completed
+      return data?.status === 'completed' ? false : 5000;
+    },
+  });
+
+  // Watch for call completion
+  useEffect(() => {
+    if (callStatus?.status === 'completed') {
+      setCallId(null);
+      navigate('/call-confirmation');
+    }
+  }, [callStatus, navigate]);
 
   const handleCall = async () => {
     if (!phoneNumber) {
@@ -48,7 +78,7 @@ const FoodMenu = () => {
       });
       setIsOpen(false);
       setPhoneNumber("");
-      navigate('/call-confirmation');
+      setCallId(data.callId);
     } catch (error) {
       console.error('Detailed error:', error);
       toast({
