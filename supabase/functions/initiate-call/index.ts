@@ -6,7 +6,7 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 }
 
-const AGENT_ID = "8651ed89-c259-41ac-ae68-0937feab5b68";
+const AGENT_ID = "cd922dc9-eea6-4b43-878f-cb5cfd67e005";
 
 serve(async (req) => {
   // Handle CORS preflight requests
