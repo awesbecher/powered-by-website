@@ -30,24 +30,6 @@ const CallConfirmation = () => {
         <p className="mt-6 text-lg text-gray-300">
           It should be delivered to your room in the next 30-45 minutes.
         </p>
-
-        <div className="mt-12 bg-white/5 rounded-lg p-8 backdrop-blur-sm">
-          <h2 className="text-xl font-semibold text-white mb-4">What happens next?</h2>
-          <ul className="text-left text-gray-300 space-y-4">
-            <li className="flex items-start">
-              <Check className="h-5 w-5 text-accent mr-2 mt-1 flex-shrink-0" />
-              <span>Your order is being prepared</span>
-            </li>
-            <li className="flex items-start">
-              <Check className="h-5 w-5 text-accent mr-2 mt-1 flex-shrink-0" />
-              <span>We'll process your {isFromFood ? "food" : "drinks"} order promptly</span>
-            </li>
-            <li className="flex items-start">
-              <Check className="h-5 w-5 text-accent mr-2 mt-1 flex-shrink-0" />
-              <span>Your order will be delivered to your room shortly</span>
-            </li>
-          </ul>
-        </div>
       </div>
     </div>
   );
