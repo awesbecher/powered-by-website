@@ -30,16 +30,16 @@ serve(async (req) => {
     }
 
     // Call Vogent API to initiate the call
-    const response = await fetch('https://concierge.madrone.ai/v1/dial', {
+    const response = await fetch("https://api.vogent.ai/api/dials", {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        phone_number: `+1${cleanNumber}`, // Adding US country code
-        agent_id: AGENT_ID,  // Using the fixed agent ID
-        agent: type || 'room_service'  // Using the agent type passed from frontend
+        toNumber: `+1${cleanNumber}`, // Adding US country code
+        callAgentId: AGENT_ID,  // Using the fixed agent ID
+        fromNumberId: "8651ed89-c259-41ac-ae68-0937feab5b68",
       })
     })
 
