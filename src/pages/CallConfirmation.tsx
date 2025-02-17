@@ -28,7 +28,7 @@ const CallConfirmation = () => {
         </h1>
         
         <p className="mt-6 text-lg text-gray-300">
-          Your order has been successfully placed.
+          It should be delivered to your room in the next 30-45 minutes.
         </p>
 
         <div className="mt-12 bg-white/5 rounded-lg p-8 backdrop-blur-sm">

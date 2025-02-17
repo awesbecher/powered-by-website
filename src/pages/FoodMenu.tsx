@@ -14,6 +14,10 @@ import { Input } from "@/components/ui/input";
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 
+interface CallStatus {
+  status: string;
+}
+
 const FoodMenu = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
@@ -22,7 +26,7 @@ const FoodMenu = () => {
   const [callId, setCallId] = useState<string | null>(null);
 
   // Poll for call status if we have a callId
-  const { data: callStatus } = useQuery({
+  const { data: callStatus } = useQuery<CallStatus | null>({
     queryKey: ['callStatus', callId],
     queryFn: async () => {
       if (!callId) return null;
