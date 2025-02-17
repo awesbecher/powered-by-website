@@ -5,10 +5,10 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { OrderDialog } from "@/components/order/OrderDialog";
 import { formatPhoneNumber } from "@/utils/phoneUtils";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const Insurance = () => {
   const { toast } = useToast();
@@ -16,7 +16,6 @@ const Insurance = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [zipCode, setZipCode] = useState("");
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
-  const [isPhoneOpen, setIsPhoneOpen] = useState(false);
   const [isCallInProgress, setIsCallInProgress] = useState(false);
   const [callId, setCallId] = useState<string | null>(null);
   const isMobile = useIsMobile();
@@ -116,7 +115,6 @@ const Insurance = () => {
   const handleProductSelect = (productId: string) => {
     if (zipCode.length !== 5) return;
     setSelectedProduct(productId);
-    setIsPhoneOpen(true);
   };
 
   const handleCall = async () => {
@@ -257,18 +255,37 @@ const Insurance = () => {
                 )}
               </div>
             </div>
+
+            {selectedProduct && (
+              <div className="space-y-4">
+                <p className="text-xl text-gray-300">
+                  Enter your phone number to get your quote:
+                </p>
+                <div className="max-w-xs mx-auto space-y-4">
+                  <Input
+                    type="tel"
+                    placeholder="(555) 555-5555"
+                    value={phoneNumber}
+                    onChange={(e) => {
+                      const value = e.target.value.replace(/\D/g, '').slice(0, 10);
+                      setPhoneNumber(value);
+                    }}
+                    className="text-lg text-center"
+                    maxLength={14}
+                  />
+                  <Button 
+                    onClick={handleCall}
+                    disabled={phoneNumber.length !== 10 || isCallInProgress}
+                    className="w-full"
+                  >
+                    {isCallInProgress ? 'Call in Progress...' : 'Get Quote'}
+                  </Button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
-
-      <OrderDialog
-        isOpen={isPhoneOpen}
-        isCallInProgress={isCallInProgress}
-        onOpenChange={setIsPhoneOpen}
-        onSubmit={handleCall}
-        phoneNumber={phoneNumber}
-        setPhoneNumber={setPhoneNumber}
-      />
     </div>
   );
 };
