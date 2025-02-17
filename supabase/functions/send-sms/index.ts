@@ -1,5 +1,5 @@
 
-import { serve } from "std/http/server.ts";
+import { serve } from "std/server";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -41,7 +41,7 @@ serve(async (req) => {
     
     const formData = new URLSearchParams();
     formData.append('To', formattedPhone);
-    formData.append('From', '+18447162733');
+    formData.append('From', '+18447162733'); // Twilio phone number
     formData.append('Body', message);
 
     console.log('Sending request to Twilio...');
