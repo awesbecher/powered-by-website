@@ -61,7 +61,7 @@ const Index = () => {
               Seamlessly upgrade your license by talking to an agent
             </p>
             <div className="mt-6 flex items-center text-accent">
-              <span className="text-sm font-medium">Talk to an agent now</span>
+              <span className="text-sm font-medium">Talk to a Sales Rep now</span>
               <Phone className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </div>
           </Link>
