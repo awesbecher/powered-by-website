@@ -1,3 +1,4 @@
+
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -44,9 +45,27 @@ const DrinksMenu = () => {
     },
   });
 
-  // Watch for call completion
+  const sendConfirmationSMS = async () => {
+    try {
+      const { error } = await supabase.functions.invoke('send-sms', {
+        body: {
+          to: phoneNumber,
+          message: "Thank you for your drinks order! It will be delivered to your room in 30-45 minutes.",
+        },
+      });
+
+      if (error) {
+        console.error('Error sending SMS:', error);
+      }
+    } catch (error) {
+      console.error('Error sending SMS:', error);
+    }
+  };
+
+  // Watch for call completion and send SMS
   useEffect(() => {
     if (callStatus?.status === 'completed') {
+      sendConfirmationSMS();
       setCallId(null);
       navigate('/call-confirmation');
     }
@@ -80,7 +99,6 @@ const DrinksMenu = () => {
         description: "You will receive a call shortly to take your drinks order.",
       });
       setIsOpen(false);
-      setPhoneNumber("");
       setCallId(data.callId);
     } catch (error) {
       console.error('Detailed error:', error);
