@@ -30,7 +30,7 @@ serve(async (req) => {
     }
 
     // Call Vogent API to initiate the call
-    const response = await fetch('https://api.vogent.ai/v1/dial', {
+    const response = await fetch('https://concierge.madrone.ai/v1/dial', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${apiKey}`,
