@@ -37,13 +37,14 @@ const FoodMenu = () => {
     enabled: !!callId,
     refetchInterval: (data) => {
       // Stop polling once call is completed
-      return data?.status === 'completed' ? false : 5000;
+      if (!data) return 5000;
+      return data.status === 'completed' ? false : 5000;
     },
   });
 
   // Watch for call completion
   useEffect(() => {
-    if (callStatus?.status === 'completed') {
+    if (callStatus && callStatus.status === 'completed') {
       setCallId(null);
       navigate('/call-confirmation');
     }
