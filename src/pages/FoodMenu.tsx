@@ -1,4 +1,3 @@
-
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -26,7 +25,7 @@ const FoodMenu = () => {
   const [callId, setCallId] = useState<string | null>(null);
 
   // Poll for call status if we have a callId
-  const { data: callStatus } = useQuery<CallStatus | null>({
+  const query = useQuery<CallStatus | null>({
     queryKey: ['callStatus', callId],
     queryFn: async () => {
       if (!callId) return null;
@@ -48,11 +47,11 @@ const FoodMenu = () => {
 
   // Watch for call completion
   useEffect(() => {
-    if (callStatus && callStatus.status === 'completed') {
+    if (query.data && query.data.status === 'completed') {
       setCallId(null);
       navigate('/call-confirmation');
     }
-  }, [callStatus, navigate]);
+  }, [query.data, navigate]);
 
   const handleCall = async () => {
     if (!phoneNumber) {
