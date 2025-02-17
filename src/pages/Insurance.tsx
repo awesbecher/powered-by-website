@@ -1,5 +1,6 @@
+
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, Car, Home, Key, Bike, Boat } from "lucide-react";
+import { ArrowLeft, Car, Home, Key, Bike, Sailboat } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useState, useEffect } from "react";
@@ -178,7 +179,7 @@ const Insurance = () => {
     { id: 'home', name: 'Homeowners', icon: Home },
     { id: 'renters', name: 'Renters', icon: Key },
     { id: 'motorcycle', name: 'Motorcycle / ATV', icon: Bike },
-    { id: 'boat', name: 'Boat', icon: Boat },
+    { id: 'boat', name: 'Boat', icon: Sailboat },
   ];
 
   return (
