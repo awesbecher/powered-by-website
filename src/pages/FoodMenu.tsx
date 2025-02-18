@@ -13,6 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface CallStatus {
   status: string;
@@ -21,6 +22,7 @@ interface CallStatus {
 const FoodMenu = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [callId, setCallId] = useState<string | null>(null);
@@ -113,6 +115,14 @@ const FoodMenu = () => {
 
   return (
     <div className="min-h-screen w-full bg-neutral-soft px-4 py-16 sm:px-6 lg:px-8">
+      {!isMobile && <div className="absolute top-8 right-8">
+        <img 
+          src="/lovable-uploads/f61255a3-5368-4739-a068-ec3431ea636f.png" 
+          alt="GrandView Hotel Logo" 
+          className="h-24 w-auto"
+        />
+      </div>}
+
       <Link 
         to="/room-service" 
         className="absolute top-8 left-8 flex items-center text-accent hover:text-accent/80 transition-colors"
@@ -122,14 +132,14 @@ const FoodMenu = () => {
       </Link>
 
       <div className="mx-auto max-w-6xl">
-        <div className="flex justify-end mb-8">
+        <div className="flex justify-center mb-8">
           <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
               <button 
-                className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md flex items-center gap-2"
+                className="bg-accent text-accent-foreground hover:bg-accent/90 px-8 py-3 rounded-md flex items-center gap-2 text-lg"
               >
                 Start your order
-                <Phone className="h-4 w-4" />
+                <Phone className="h-5 w-5" />
               </button>
             </DialogTrigger>
             <DialogContent>
