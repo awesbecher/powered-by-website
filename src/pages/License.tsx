@@ -45,7 +45,7 @@ const License = () => {
                 type="text"
                 inputMode="numeric"
                 pattern="\d*"
-                placeholder="Enter 8-digit Customer ID"
+                placeholder="Please enter your RightBloom Customer ID # (8 digits):"
                 value={customerId}
                 onChange={handleCustomerIdChange}
                 maxLength={8}
