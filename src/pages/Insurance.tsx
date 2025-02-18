@@ -206,10 +206,14 @@ const Insurance = () => {
       </Link>
 
       <div className="mx-auto max-w-3xl text-center">
-        <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl mb-8">
-          Insurance Quote
-        </h1>
         <div className="bg-white/5 rounded-lg p-8 backdrop-blur-sm">
+          <div className="flex justify-center mb-8">
+            <img 
+              src="/lovable-uploads/15f22e33-64a5-4a13-a162-690b3f60d29b.png" 
+              alt="Planter's Insurance" 
+              className="h-16 w-auto"
+            />
+          </div>
           <div className="space-y-8">
             <div className="space-y-4">
               <p className="text-xl text-gray-300">
