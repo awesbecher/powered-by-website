@@ -3,8 +3,10 @@ import { ArrowLeft, Phone, Star, Zap, Shield, Crown } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { LicenseProductCard } from "@/components/insurance/LicenseProductCard";
+
 const License = () => {
   const [customerId, setCustomerId] = useState("");
+
   const handleCustomerIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     // Only allow digits and limit to 8 characters
@@ -12,14 +14,14 @@ const License = () => {
       setCustomerId(value.slice(0, 8));
     }
   };
+
   const handleClick = () => {
-    console.log("License upgrade request initiated", {
-      customerId
-    });
+    console.log("License upgrade request initiated", { customerId });
   };
 
   // Check if the customer ID is exactly 8 digits
   const isValidCustomerId = customerId.length === 8;
+
   const licenseOptions = [{
     title: "Essentials",
     description: "Essential features for getting started",
@@ -35,7 +37,7 @@ const License = () => {
   }, {
     title: "Service Professional",
     description: "Designed for service teams",
-    price: "$75 USD/user/month",
+    price: "$125 USD/user/month",
     icon: Shield,
     features: ["All Essentials features", "Service desk tools", "Priority support", "Billed annually"]
   }, {
@@ -45,6 +47,7 @@ const License = () => {
     icon: Crown,
     features: ["All Professional features", "Enterprise-grade security", "24/7 premium support", "Billed annually"]
   }];
+
   return <div className="min-h-screen w-full bg-neutral-soft px-4 py-16 sm:px-6 lg:px-8">
       {/* Logo */}
       <div className="absolute top-8 right-8">
@@ -85,4 +88,5 @@ const License = () => {
       </div>
     </div>;
 };
+
 export default License;
