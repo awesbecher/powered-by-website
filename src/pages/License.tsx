@@ -96,7 +96,7 @@ const License = () => {
         </h1>
 
         {/* License Options Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-4">
           {licenseOptions.map((option) => (
             <LicenseProductCard
               key={option.title}
@@ -110,11 +110,11 @@ const License = () => {
         </div>
 
         <div className="max-w-3xl mx-auto">
-          <p className="text-xl text-gray-300 mb-6">
+          <p className="text-xl text-gray-300 mb-4">
             RightBloom's virtual agent is ready to help you upgrade your license. To get started, we will need the following information:
           </p>
 
-          <div className="bg-white/5 rounded-lg p-6 backdrop-blur-sm">
+          <div className="bg-white/5 rounded-lg p-4 backdrop-blur-sm">
             <div className="flex flex-col items-center space-y-4">
               <div className="w-full max-w-md">
                 <Input
