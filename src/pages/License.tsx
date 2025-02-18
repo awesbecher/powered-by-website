@@ -19,6 +19,9 @@ const License = () => {
     console.log("License upgrade request initiated", { customerId });
   };
 
+  // Check if the customer ID is exactly 8 digits
+  const isValidCustomerId = customerId.length === 8;
+
   return <div className="min-h-screen w-full bg-neutral-soft px-4 py-16 sm:px-6 lg:px-8">
       {/* Logo */}
       <div className="absolute top-8 right-8">
@@ -52,7 +55,11 @@ const License = () => {
                 className="text-center bg-white/10 border-white/20 text-white placeholder:text-gray-400"
               />
             </div>
-            <button onClick={handleClick} className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md flex items-center gap-2">
+            <button 
+              onClick={handleClick} 
+              disabled={!isValidCustomerId}
+              className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               Speak To A Sales Rep
               <Phone className="h-4 w-4" />
             </button>
