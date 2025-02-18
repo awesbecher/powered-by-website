@@ -283,7 +283,7 @@ const Insurance = () => {
                     <Button 
                       onClick={handleCall}
                       disabled={phoneNumber.length !== 10 || isCallInProgress}
-                      className="w-full"
+                      className="w-full bg-accent hover:bg-accent/90 text-white"
                       variant="outline"
                     >
                       <Phone className="mr-2" />
