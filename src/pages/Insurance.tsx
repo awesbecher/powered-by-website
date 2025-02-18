@@ -267,7 +267,7 @@ const Insurance = () => {
                 <p className="text-xl text-gray-300">
                   Enter your phone number to get your quotes:
                 </p>
-                <div className="max-w-xs mx-auto space-y-2">
+                <div className="max-w-xs mx-auto space-y-1">
                   <Input
                     type="tel"
                     placeholder="(555) 555-5555"
@@ -279,15 +279,7 @@ const Insurance = () => {
                     className="text-lg text-center"
                     maxLength={14}
                   />
-                  <div className="space-y-2">
-                    <Button 
-                      onClick={handleCall}
-                      disabled={phoneNumber.length !== 10 || isCallInProgress}
-                      className="w-full"
-                      variant="default"
-                    >
-                      {isCallInProgress ? 'Call in Progress...' : 'Get Quotes'}
-                    </Button>
+                  <div className="space-y-1">
                     <Button 
                       onClick={handleCall}
                       disabled={phoneNumber.length !== 10 || isCallInProgress}
@@ -296,6 +288,14 @@ const Insurance = () => {
                     >
                       <Phone className="mr-2" />
                       Click here to talk to Insurance Agent
+                    </Button>
+                    <Button 
+                      onClick={handleCall}
+                      disabled={phoneNumber.length !== 10 || isCallInProgress}
+                      className="w-full"
+                      variant="default"
+                    >
+                      {isCallInProgress ? 'Call in Progress...' : 'Get Quotes'}
                     </Button>
                   </div>
                 </div>
