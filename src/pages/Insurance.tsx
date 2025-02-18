@@ -1,44 +1,18 @@
 
 import { Link } from "react-router-dom";
 import { ArrowLeft, Car, Home, Key, Bike, Sailboat } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Input } from "@/components/ui/input";
 import { InsuranceProductCard } from "@/components/insurance/InsuranceProductCard";
-import { PhoneInputSection } from "@/components/insurance/PhoneInputSection";
-import { useInsuranceCall } from "@/hooks/useInsuranceCall";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 
 const Insurance = () => {
-  const [phoneNumber, setPhoneNumber] = useState("");
   const [zipCode, setZipCode] = useState("");
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
   const isMobile = useIsMobile();
-  const { 
-    isCallInProgress, 
-    callStatus, 
-    initiateCall, 
-    sendConfirmationSMS,
-    setCallId,
-    setIsCallInProgress
-  } = useInsuranceCall();
-
-  useEffect(() => {
-    if (!callStatus) return;
-    
-    console.log('Processing call status:', callStatus);
-    
-    if (callStatus.status === 'completed') {
-      console.log('Call completed, sending SMS...');
-      
-      sendConfirmationSMS(phoneNumber).then((success) => {
-        if (success) {
-          setCallId(null);
-          setIsCallInProgress(false);
-          window.location.href = '/call-confirmation';
-        }
-      });
-    }
-  }, [callStatus]);
+  const { toast } = useToast();
 
   const handleProductSelect = (productId: string) => {
     if (zipCode.length !== 5) return;
@@ -48,6 +22,13 @@ const Insurance = () => {
       } else {
         return [...prev, productId];
       }
+    });
+  };
+
+  const handleSubmit = () => {
+    toast({
+      title: "Quote Request Submitted",
+      description: "Thank you for your interest. We'll get back to you soon with quotes for your selected products.",
     });
   };
 
@@ -81,7 +62,7 @@ const Insurance = () => {
           <div className="space-y-8">
             <div className="space-y-4">
               <p className="text-xl text-gray-300">
-                Welcome to Planter's Insurance. Speak to our insurance agent to get a quote tailored to your needs.
+                Welcome to Planter's Insurance. Get a quote tailored to your needs.
               </p>
               <p className="text-xl text-gray-300">
                 Enter your zip code to get started:
@@ -121,12 +102,15 @@ const Insurance = () => {
             </div>
 
             {selectedProducts.length > 0 && (
-              <PhoneInputSection
-                phoneNumber={phoneNumber}
-                isCallInProgress={isCallInProgress}
-                onPhoneNumberChange={setPhoneNumber}
-                onCall={() => initiateCall(phoneNumber, zipCode, selectedProducts)}
-              />
+              <div className="space-y-4">
+                <Button 
+                  onClick={handleSubmit}
+                  className="w-full bg-accent hover:bg-accent/90 text-white"
+                  variant="default"
+                >
+                  Request Quotes
+                </Button>
+              </div>
             )}
           </div>
         </div>
