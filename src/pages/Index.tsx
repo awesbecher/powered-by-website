@@ -1,6 +1,8 @@
+
 import { Link } from "react-router-dom";
 import { Phone } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+
 const Index = () => {
   const isMobile = useIsMobile();
   return <div className="min-h-screen w-full bg-neutral-soft px-4 py-16 sm:px-6 lg:px-8">
@@ -29,7 +31,13 @@ const Index = () => {
         <div className="grid gap-8 md:grid-cols-3">
           {/* Room Service Card */}
           <Link to="/room-service" className="service-card group">
-            <span className="service-label">Hospitality</span>
+            <div className="mb-6">
+              <img 
+                src="/lovable-uploads/65b2b79f-943f-49cf-9fe6-d1e011a0fac6.png" 
+                alt="GrandView Hotel" 
+                className="h-16 w-auto mx-auto"
+              />
+            </div>
             <h2 className="service-title">Order Room Service</h2>
             <p className="mt-4 text-gray-300">
               Delicious meals delivered right to your room, available 24/7
@@ -69,4 +77,5 @@ const Index = () => {
       </div>
     </div>;
 };
+
 export default Index;
