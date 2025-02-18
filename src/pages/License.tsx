@@ -40,7 +40,7 @@ const License = () => {
         <div className="bg-white/5 rounded-lg p-8 backdrop-blur-sm">
           <p className="text-xl text-gray-300 mb-8">RightBloom's virtual agent is ready to help you upgrade your license. To get started, we will need the following information:</p>
           <div className="flex flex-col items-center space-y-6">
-            <div className="w-full max-w-xs">
+            <div className="w-full max-w-md">
               <Input
                 type="text"
                 inputMode="numeric"
