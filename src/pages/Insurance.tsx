@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { ArrowLeft, Car, Home, Key, Bike, Sailboat } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -61,14 +60,6 @@ const Insurance = () => {
 
   return (
     <div className="min-h-screen w-full bg-neutral-soft px-4 py-16 sm:px-6 lg:px-8">
-      {!isMobile && <div className="absolute top-8 right-8">
-        <img 
-          src="/lovable-uploads/57b14d49-eab1-4dd2-827d-dceb363f5514.png" 
-          alt="RightBloom Logo" 
-          className="h-10 w-auto"
-        />
-      </div>}
-
       <Link 
         to="/" 
         className="absolute top-8 left-8 flex items-center text-accent hover:text-accent/80 transition-colors"
