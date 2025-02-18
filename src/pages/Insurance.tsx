@@ -265,7 +265,7 @@ const Insurance = () => {
             {selectedProducts.length > 0 && (
               <div className="space-y-2">
                 <p className="text-xl text-gray-300">
-                  Enter your phone number to get your quotes:
+                  Enter your phone to speak to an agent:
                 </p>
                 <div className="max-w-xs mx-auto space-y-1">
                   <Input
