@@ -80,14 +80,14 @@ const DrinksMenu = () => {
       </Link>
 
       <div className="mx-auto max-w-6xl">
-        <div className="flex justify-end mb-8">
+        <div className="flex justify-center mb-8">
           <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
               <button 
-                className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md flex items-center gap-2"
+                className="bg-accent text-accent-foreground hover:bg-accent/90 px-8 py-3 rounded-md flex items-center gap-2 text-lg"
               >
                 Start your order
-                <Phone className="h-4 w-4" />
+                <Phone className="h-5 w-5" />
               </button>
             </DialogTrigger>
             <DialogContent>
