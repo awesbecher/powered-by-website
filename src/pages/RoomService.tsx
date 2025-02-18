@@ -63,17 +63,11 @@ const RoomService = () => {
     <div className="min-h-screen w-full bg-neutral-soft px-4 py-16 sm:px-6 lg:px-8">
       {/* Logo */}
       <div className="absolute top-8 right-8">
-        <a 
-          href="https://madrone.capital/" 
-          target="_blank" 
-          rel="noopener noreferrer"
-        >
-          <img 
-            src="/lovable-uploads/335f70ec-aa5b-4954-aa12-c425ddd41fc5.png" 
-            alt="Madrone Capital Logo" 
-            className="h-48 w-auto"
-          />
-        </a>
+        <img 
+          src="/lovable-uploads/f61255a3-5368-4739-a068-ec3431ea636f.png" 
+          alt="GrandView Hotel Logo" 
+          className="h-24 w-auto"
+        />
       </div>
 
       {/* Back button */}
