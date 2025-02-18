@@ -1,5 +1,5 @@
 
-import { serve } from "std/http/server.ts";
+import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -13,68 +13,51 @@ serve(async (req) => {
   }
 
   try {
-    console.log('Request method:', req.method);
-    console.log('Request headers:', Object.fromEntries(req.headers.entries()));
+    // Parse the request body
+    const requestData = await req.json();
+    console.log('Received request data:', requestData);
 
+    const { phoneNumber, type } = requestData;
+
+    if (!phoneNumber || !type) {
+      return new Response(
+        JSON.stringify({ error: 'Missing required fields' }),
+        { 
+          status: 400, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        }
+      );
+    }
+
+    // Get the API key from environment variable
     const VOGENT_API_KEY = Deno.env.get('VOGENT_API_KEY');
     if (!VOGENT_API_KEY) {
       throw new Error('Missing Vogent API key');
     }
 
-    let body;
-    try {
-      body = await req.json();
-      console.log('Request body:', body);
-    } catch (e) {
-      console.error('Error parsing request JSON:', e);
-      return new Response(JSON.stringify({ 
-        error: 'Invalid JSON in request body'
-      }), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        status: 400,
-      });
-    }
-
-    const { phoneNumber, type, zipCode, productTypes } = body;
-
-    if (!phoneNumber || !type) {
-      return new Response(JSON.stringify({ 
-        error: 'Missing required fields'
-      }), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        status: 400,
-      });
-    }
-
-    // Determine flow ID and context based on type
     let flowId: string;
     let context: Record<string, any> = {};
 
-    if (type === 'insurance_quote') {
+    // Determine flow ID based on type
+    if (type === 'room_service') {
+      flowId = '04335230-e019-4a27-905f-2006d05768a1';
+    } else if (type === 'insurance_quote') {
       flowId = 'madrone_insurance_quote_agent';
       context = {
-        zipCode,
-        productTypes: productTypes?.join(', '),
+        zipCode: requestData.zipCode,
+        productTypes: requestData.productTypes?.join(', '),
       };
-    } else if (type === 'room_service') {
-      flowId = '04335230-e019-4a27-905f-2006d05768a1';
-      context = {};
     } else {
-      return new Response(JSON.stringify({ 
-        error: 'Invalid call type'
-      }), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        status: 400,
-      });
+      return new Response(
+        JSON.stringify({ error: 'Invalid call type' }),
+        { 
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        }
+      );
     }
 
-    const vogentPayload = {
-      phoneNumber: `+1${phoneNumber}`,
-      flowId,
-      context,
-    };
-    
-    console.log('Making Vogent API request:', vogentPayload);
+    console.log('Making Vogent API request with:', { phoneNumber, flowId, context });
 
     const response = await fetch('https://api.vogent.ai/api/dials', {
       method: 'POST',
@@ -82,7 +65,11 @@ serve(async (req) => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${VOGENT_API_KEY}`,
       },
-      body: JSON.stringify(vogentPayload),
+      body: JSON.stringify({
+        phoneNumber: `+1${phoneNumber}`,
+        flowId,
+        context,
+      }),
     });
 
     const data = await response.json();
@@ -92,25 +79,24 @@ serve(async (req) => {
       throw new Error(data.message || 'Failed to initiate call');
     }
 
-    if (!data.dial?.id) {
-      throw new Error('No call ID received from Vogent');
-    }
-
-    return new Response(JSON.stringify({ 
-      callId: data.dial.id,
-      status: 'initiated'
-    }), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      status: 200,
-    });
+    return new Response(
+      JSON.stringify({ callId: data.dial?.id, status: 'initiated' }),
+      { 
+        status: 200,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      }
+    );
 
   } catch (error) {
     console.error('Error in initiate-call function:', error);
-    return new Response(JSON.stringify({ 
-      error: error instanceof Error ? error.message : 'Unknown error occurred'
-    }), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      status: 500,
-    });
+    return new Response(
+      JSON.stringify({ 
+        error: error instanceof Error ? error.message : 'Unknown error occurred'
+      }),
+      { 
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      }
+    );
   }
 });
