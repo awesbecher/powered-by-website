@@ -24,10 +24,10 @@ const RoomService = () => {
 
     try {
       const { data, error } = await supabase.functions.invoke('initiate-call', {
-        body: JSON.stringify({
+        body: {
           phoneNumber: phoneNumber.replace(/\D/g, ''),
           type: 'room_service'
-        })
+        }
       });
 
       console.log('Supabase function response:', { data, error });
