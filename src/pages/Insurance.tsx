@@ -1,3 +1,4 @@
+
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Car, Home, Key, Bike, Sailboat, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -144,7 +145,7 @@ const Insurance = () => {
       console.log('Sending payload to initiate-call:', payload);
 
       const { data, error } = await supabase.functions.invoke('initiate-call', {
-        body: JSON.stringify(payload)
+        body: payload  // Remove JSON.stringify - let supabase handle it
       });
 
       console.log('Call initiation response:', { data, error });
