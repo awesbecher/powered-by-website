@@ -7,6 +7,14 @@ import { useState } from "react";
 const License = () => {
   const [customerId, setCustomerId] = useState("");
 
+  const handleCustomerIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    // Only allow digits and limit to 8 characters
+    if (/^\d*$/.test(value)) {
+      setCustomerId(value.slice(0, 8));
+    }
+  };
+
   const handleClick = () => {
     console.log("License upgrade request initiated", { customerId });
   };
@@ -35,9 +43,11 @@ const License = () => {
             <div className="w-full max-w-xs">
               <Input
                 type="text"
+                inputMode="numeric"
+                pattern="\d*"
                 placeholder="Enter 8-digit Customer ID"
                 value={customerId}
-                onChange={(e) => setCustomerId(e.target.value.slice(0, 8))}
+                onChange={handleCustomerIdChange}
                 maxLength={8}
                 className="text-center bg-white/10 border-white/20 text-white placeholder:text-gray-400"
               />
