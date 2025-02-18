@@ -35,26 +35,28 @@ serve(async (req) => {
       throw new Error('Missing Vogent API key');
     }
 
-    let flowId: string;
+    let flowId = '';
     let context: Record<string, any> = {};
 
     // Determine flow ID based on type
-    if (type === 'room_service') {
-      flowId = '04335230-e019-4a27-905f-2006d05768a1';
-    } else if (type === 'insurance_quote') {
-      flowId = 'madrone_insurance_quote_agent';
-      context = {
-        zipCode: requestData.zipCode,
-        productTypes: requestData.productTypes?.join(', '),
-      };
-    } else {
-      return new Response(
-        JSON.stringify({ error: 'Invalid call type' }),
-        { 
-          status: 400,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-        }
-      );
+    switch (type) {
+      case 'room_service':
+        flowId = '04335230-e019-4a27-905f-2006d05768a1';
+        break;
+      case 'drink_order':
+        flowId = '04335230-e019-4a27-905f-2006d05768a1'; // Using same flow ID for drinks
+        break;
+      case 'food_order':
+        flowId = '04335230-e019-4a27-905f-2006d05768a1'; // Using same flow ID for food
+        break;
+      default:
+        return new Response(
+          JSON.stringify({ error: 'Invalid call type' }),
+          { 
+            status: 400,
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+          }
+        );
     }
 
     console.log('Making Vogent API request with:', { phoneNumber, flowId, context });
@@ -72,12 +74,14 @@ serve(async (req) => {
       }),
     });
 
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Vogent API error:', errorData);
+      throw new Error(errorData.message || 'Failed to initiate call');
+    }
+
     const data = await response.json();
     console.log('Vogent API response:', data);
-
-    if (!response.ok) {
-      throw new Error(data.message || 'Failed to initiate call');
-    }
 
     return new Response(
       JSON.stringify({ callId: data.dial?.id, status: 'initiated' }),
@@ -91,7 +95,7 @@ serve(async (req) => {
     console.error('Error in initiate-call function:', error);
     return new Response(
       JSON.stringify({ 
-        error: error instanceof Error ? error.message : 'Unknown error occurred'
+        error: error instanceof Error ? error.message : 'Unknown error occurred' 
       }),
       { 
         status: 500,
