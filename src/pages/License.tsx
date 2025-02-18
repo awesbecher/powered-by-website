@@ -91,9 +91,13 @@ const License = () => {
       </Link>
 
       <div className="mx-auto max-w-7xl text-center">
-        <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl mb-8">
+        <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl mb-4">
           License Upgrade
         </h1>
+
+        <p className="text-xl text-gray-300 mb-8">
+          RightBloom's virtual agent is ready to help you upgrade your license. To get started, we will need the following information:
+        </p>
 
         {/* License Options Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
@@ -111,9 +115,6 @@ const License = () => {
 
         <div className="max-w-3xl mx-auto">
           <div className="bg-white/5 rounded-lg p-8 backdrop-blur-sm">
-            <p className="text-xl text-gray-300 mb-8">
-              RightBloom's virtual agent is ready to help you upgrade your license. To get started, we will need the following information:
-            </p>
             <div className="flex flex-col items-center space-y-6">
               <div className="w-full max-w-md">
                 <Input
