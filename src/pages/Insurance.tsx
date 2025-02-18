@@ -144,7 +144,7 @@ const Insurance = () => {
       console.log('Sending payload to initiate-call:', payload);
 
       const { data, error } = await supabase.functions.invoke('initiate-call', {
-        body: payload
+        body: JSON.stringify(payload)
       });
 
       console.log('Call initiation response:', { data, error });
