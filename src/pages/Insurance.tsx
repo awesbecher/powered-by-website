@@ -71,7 +71,7 @@ const Insurance = () => {
 
       <div className="mx-auto max-w-3xl text-center">
         <div className="bg-white/5 rounded-lg p-8 backdrop-blur-sm">
-          <h1 className="text-3xl font-bold text-white mb-8">Online Insurance Quote</h1>
+          <h1 className="text-4xl font-bold text-white mb-8">Online Insurance Quote</h1>
           <div className="space-y-8">
             <div className="space-y-4">
               <p className="text-xl text-gray-300">
