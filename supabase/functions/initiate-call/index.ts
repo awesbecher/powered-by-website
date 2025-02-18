@@ -18,8 +18,17 @@ serve(async (req) => {
       throw new Error('Missing Vogent API key');
     }
 
-    const { phoneNumber, type, zipCode, productTypes } = await req.json();
-    console.log('Received request:', { phoneNumber, type, zipCode, productTypes });
+    let body;
+    try {
+      body = await req.json();
+      console.log('Received raw request body:', body);
+    } catch (e) {
+      console.error('Error parsing request body:', e);
+      throw new Error('Invalid JSON in request body');
+    }
+
+    const { phoneNumber, type, zipCode, productTypes } = body;
+    console.log('Parsed request data:', { phoneNumber, type, zipCode, productTypes });
 
     if (!phoneNumber || !type) {
       throw new Error('Missing required fields');
@@ -37,7 +46,6 @@ serve(async (req) => {
       };
     } else if (type === 'room_service') {
       flowId = '04335230-e019-4a27-905f-2006d05768a1';
-      // Add any specific context for room service if needed
       context = {};
     } else {
       throw new Error('Invalid call type');
@@ -79,7 +87,9 @@ serve(async (req) => {
 
   } catch (error) {
     console.error('Error in initiate-call function:', error);
-    return new Response(JSON.stringify({ error: error.message }), {
+    return new Response(JSON.stringify({ 
+      error: error instanceof Error ? error.message : 'Unknown error occurred'
+    }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 500,
     });

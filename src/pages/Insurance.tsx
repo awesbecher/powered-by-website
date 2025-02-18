@@ -134,15 +134,17 @@ const Insurance = () => {
 
     try {
       const cleanedNumber = formatPhoneNumber(phoneNumber);
-      console.log('Initiating call with cleaned number:', cleanedNumber);
+      const payload = {
+        phoneNumber: cleanedNumber,
+        type: 'insurance_quote',
+        zipCode,
+        productTypes: selectedProducts
+      };
+      
+      console.log('Sending payload to initiate-call:', payload);
 
       const { data, error } = await supabase.functions.invoke('initiate-call', {
-        body: {
-          phoneNumber: cleanedNumber,
-          type: 'insurance_quote',
-          zipCode,
-          productTypes: selectedProducts
-        }
+        body: payload
       });
 
       console.log('Call initiation response:', { data, error });
