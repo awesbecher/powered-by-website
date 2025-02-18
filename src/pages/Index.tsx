@@ -50,7 +50,13 @@ const Index = () => {
 
           {/* Insurance Quote Card */}
           <Link to="/insurance" className="service-card group">
-            <span className="service-label">Insurance</span>
+            <div className="mb-6">
+              <img 
+                src="/lovable-uploads/994965fb-70d5-436c-8d42-8377d9d8d3bd.png" 
+                alt="Planter's Insurance" 
+                className="h-16 w-auto mx-auto"
+              />
+            </div>
             <h2 className="service-title">Get Your Insurance Quote</h2>
             <p className="mt-4 text-gray-300">
               Quick and easy insurance quotes tailored to your needs
