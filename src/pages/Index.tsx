@@ -69,7 +69,13 @@ const Index = () => {
 
           {/* License Upgrade Card */}
           <Link to="/license" className="service-card group">
-            <span className="service-label">Licensing</span>
+            <div className="mb-6">
+              <img 
+                src="/lovable-uploads/ba13be0d-77b7-49f3-aa99-9524e25c5294.png" 
+                alt="RightBloom" 
+                className="h-16 w-auto mx-auto"
+              />
+            </div>
             <h2 className="service-title">Upgrade Your License</h2>
             <p className="mt-4 text-gray-300">
               Seamlessly upgrade your license by talking to an agent
