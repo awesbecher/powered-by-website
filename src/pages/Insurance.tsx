@@ -1,4 +1,3 @@
-
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Car, Home, Key, Bike, Sailboat, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -145,7 +144,7 @@ const Insurance = () => {
       console.log('Sending payload to initiate-call:', payload);
 
       const { data, error } = await supabase.functions.invoke('initiate-call', {
-        body: payload  // Remove JSON.stringify - let supabase handle it
+        body: payload
       });
 
       console.log('Call initiation response:', { data, error });
@@ -191,13 +190,11 @@ const Insurance = () => {
   return (
     <div className="min-h-screen w-full bg-neutral-soft px-4 py-16 sm:px-6 lg:px-8">
       {!isMobile && <div className="absolute top-8 right-8">
-        <a href="https://madrone.capital/" target="_blank" rel="noopener noreferrer">
-          <img 
-            src="/lovable-uploads/335f70ec-aa5b-4954-aa12-c425ddd41fc5.png" 
-            alt="Madrone Capital Logo" 
-            className="h-48 w-auto"
-          />
-        </a>
+        <img 
+          src="/lovable-uploads/b7ac4ab9-6564-4fa3-a3f9-28fe993a0002.png" 
+          alt="Planter's Insurance Logo" 
+          className="h-10 w-auto"
+        />
       </div>}
 
       <Link 
