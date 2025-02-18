@@ -69,6 +69,12 @@ const Insurance = () => {
         <span>Back to Services</span>
       </Link>
 
+      <img 
+        src="/lovable-uploads/403d2bfb-bc52-4ca1-937c-64ab85d08216.png"
+        alt="Planter's Insurance"
+        className="absolute top-8 right-8 h-12"
+      />
+
       <div className="mx-auto max-w-3xl text-center">
         <div className="bg-white/5 rounded-lg p-8 backdrop-blur-sm">
           <h1 className="text-5xl font-bold text-white mb-8">Online Insurance Quote</h1>
