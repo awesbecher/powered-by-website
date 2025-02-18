@@ -35,7 +35,7 @@ const Index = () => {
               <img 
                 src="/lovable-uploads/65b2b79f-943f-49cf-9fe6-d1e011a0fac6.png" 
                 alt="GrandView Hotel" 
-                className="h-[51.2px] w-auto mx-auto"
+                className="h-[102.4px] w-auto mx-auto"
               />
             </div>
             <h2 className="service-title">Order Room Service</h2>
