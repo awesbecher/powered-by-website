@@ -33,7 +33,7 @@ const Index = () => {
           <Link to="/room-service" className="service-card group">
             <div className="mb-6">
               <img 
-                src="/lovable-uploads/65b2b79f-943f-49cf-9fe6-d1e011a0fac6.png" 
+                src="/lovable-uploads/ba7183d3-c2d6-46b1-b51e-afa9de2b5af2.png" 
                 alt="GrandView Hotel" 
                 className="h-[102.4px] w-auto mx-auto"
               />
