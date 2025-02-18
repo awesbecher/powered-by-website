@@ -68,7 +68,7 @@ serve(async (req) => {
       body: JSON.stringify({
         toNumber: `+1${phoneNumber}`,
         callAgentId: flowId,
-        fromNumberId: '8651ed89-c259-41ac-ae68-0937feab5b68',
+        fromNumberId: '53660ead-9260-4a23-8df2-55a7050b3340',
       }),
     });
 
