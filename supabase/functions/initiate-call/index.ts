@@ -68,9 +68,9 @@ serve(async (req) => {
         'Authorization': `Bearer ${VOGENT_API_KEY}`,
       },
       body: JSON.stringify({
-        phoneNumber: `+1${phoneNumber}`,
-        flowId,
-        context,
+        toNumber: `+1${phoneNumber}`,
+        callAgentId: flowId,
+        fromNumberId: '8651ed89-c259-41ac-ae68-0937feab5b68',
       }),
     });
 
