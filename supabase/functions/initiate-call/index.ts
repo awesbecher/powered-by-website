@@ -13,7 +13,6 @@ serve(async (req) => {
   }
 
   try {
-    // Parse the request body
     const requestData = await req.json();
     console.log('Received request data:', requestData);
 
@@ -36,7 +35,6 @@ serve(async (req) => {
     }
 
     let flowId = '';
-    let context: Record<string, any> = {};
 
     // Determine flow ID based on type
     switch (type) {
@@ -44,10 +42,10 @@ serve(async (req) => {
         flowId = '04335230-e019-4a27-905f-2006d05768a1';
         break;
       case 'drink_order':
-        flowId = '04335230-e019-4a27-905f-2006d05768a1'; // Using same flow ID for drinks
+        flowId = '04335230-e019-4a27-905f-2006d05768a1';
         break;
       case 'food_order':
-        flowId = '04335230-e019-4a27-905f-2006d05768a1'; // Using same flow ID for food
+        flowId = '04335230-e019-4a27-905f-2006d05768a1';
         break;
       default:
         return new Response(
@@ -59,7 +57,7 @@ serve(async (req) => {
         );
     }
 
-    console.log('Making Vogent API request with:', { phoneNumber, flowId, context });
+    console.log('Making Vogent API request with:', { phoneNumber, flowId });
 
     const response = await fetch('https://api.vogent.ai/api/dials', {
       method: 'POST',
@@ -84,7 +82,7 @@ serve(async (req) => {
     console.log('Vogent API response:', data);
 
     return new Response(
-      JSON.stringify({ callId: data.dial?.id, status: 'initiated' }),
+      JSON.stringify({ status: 'initiated' }),
       { 
         status: 200,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
