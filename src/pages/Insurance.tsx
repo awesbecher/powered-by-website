@@ -25,13 +25,6 @@ const Insurance = () => {
     });
   };
 
-  const handleSubmit = () => {
-    toast({
-      title: "Quote Request Submitted",
-      description: "Thank you for your interest. We'll get back to you soon with quotes for your selected products.",
-    });
-  };
-
   const insuranceProducts = [
     { id: 'auto', name: 'Auto', icon: Car },
     { id: 'home', name: 'Homeowners', icon: Home },
@@ -104,7 +97,6 @@ const Insurance = () => {
             {selectedProducts.length > 0 && (
               <div className="space-y-4">
                 <Button 
-                  onClick={handleSubmit}
                   className="w-full bg-accent hover:bg-accent/90 text-white"
                   variant="default"
                 >
