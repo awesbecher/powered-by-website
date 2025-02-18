@@ -1,6 +1,5 @@
-
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, Car, Home, Key, Bike, Sailboat } from "lucide-react";
+import { ArrowLeft, Car, Home, Key, Bike, Sailboat, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useState, useEffect } from "react";
@@ -188,7 +187,6 @@ const Insurance = () => {
 
   return (
     <div className="min-h-screen w-full bg-neutral-soft px-4 py-16 sm:px-6 lg:px-8">
-      {/* Logo */}
       {!isMobile && <div className="absolute top-8 right-8">
         <a href="https://madrone.capital/" target="_blank" rel="noopener noreferrer">
           <img 
@@ -199,7 +197,6 @@ const Insurance = () => {
         </a>
       </div>}
 
-      {/* Back button */}
       <Link 
         to="/" 
         className="absolute top-8 left-8 flex items-center text-accent hover:text-accent/80 transition-colors"
@@ -282,13 +279,25 @@ const Insurance = () => {
                     className="text-lg text-center"
                     maxLength={14}
                   />
-                  <Button 
-                    onClick={handleCall}
-                    disabled={phoneNumber.length !== 10 || isCallInProgress}
-                    className="w-full"
-                  >
-                    {isCallInProgress ? 'Call in Progress...' : 'Get Quotes'}
-                  </Button>
+                  <div className="space-y-2">
+                    <Button 
+                      onClick={handleCall}
+                      disabled={phoneNumber.length !== 10 || isCallInProgress}
+                      className="w-full"
+                      variant="default"
+                    >
+                      {isCallInProgress ? 'Call in Progress...' : 'Get Quotes'}
+                    </Button>
+                    <Button 
+                      onClick={handleCall}
+                      disabled={phoneNumber.length !== 10 || isCallInProgress}
+                      className="w-full"
+                      variant="outline"
+                    >
+                      <Phone className="mr-2" />
+                      Talk to Insurance Agent
+                    </Button>
+                  </div>
                 </div>
               </div>
             )}
