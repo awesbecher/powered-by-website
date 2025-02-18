@@ -13,29 +13,37 @@ serve(async (req) => {
   }
 
   try {
+    console.log('Request method:', req.method);
+    console.log('Request headers:', Object.fromEntries(req.headers.entries()));
+
     const VOGENT_API_KEY = Deno.env.get('VOGENT_API_KEY');
     if (!VOGENT_API_KEY) {
       throw new Error('Missing Vogent API key');
     }
 
-    // Log the raw request to debug
-    const rawBody = await req.text();
-    console.log('Raw request body:', rawBody);
-
     let body;
     try {
-      body = JSON.parse(rawBody);
-      console.log('Parsed request body:', body);
+      body = await req.json();
+      console.log('Request body:', body);
     } catch (e) {
-      console.error('Error parsing JSON:', e);
-      throw new Error('Invalid JSON in request body');
+      console.error('Error parsing request JSON:', e);
+      return new Response(JSON.stringify({ 
+        error: 'Invalid JSON in request body'
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 400,
+      });
     }
 
     const { phoneNumber, type, zipCode, productTypes } = body;
-    console.log('Request data:', { phoneNumber, type, zipCode, productTypes });
 
     if (!phoneNumber || !type) {
-      throw new Error('Missing required fields');
+      return new Response(JSON.stringify({ 
+        error: 'Missing required fields'
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 400,
+      });
     }
 
     // Determine flow ID and context based on type
@@ -52,14 +60,21 @@ serve(async (req) => {
       flowId = '04335230-e019-4a27-905f-2006d05768a1';
       context = {};
     } else {
-      throw new Error('Invalid call type');
+      return new Response(JSON.stringify({ 
+        error: 'Invalid call type'
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 400,
+      });
     }
 
-    console.log('Making Vogent API request with:', {
+    const vogentPayload = {
       phoneNumber: `+1${phoneNumber}`,
       flowId,
       context,
-    });
+    };
+    
+    console.log('Making Vogent API request:', vogentPayload);
 
     const response = await fetch('https://api.vogent.ai/api/dials', {
       method: 'POST',
@@ -67,11 +82,7 @@ serve(async (req) => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${VOGENT_API_KEY}`,
       },
-      body: JSON.stringify({
-        phoneNumber: `+1${phoneNumber}`,
-        flowId,
-        context,
-      }),
+      body: JSON.stringify(vogentPayload),
     });
 
     const data = await response.json();
