@@ -18,12 +18,20 @@ serve(async (req) => {
       throw new Error('Missing Vogent API key');
     }
 
-    const { phoneNumber, type } = await req.json();
-    console.log('Received request:', { phoneNumber, type });
+    const { phoneNumber, type, zipCode, productTypes } = await req.json();
+    console.log('Received request:', { phoneNumber, type, zipCode, productTypes });
 
     if (!phoneNumber || !type) {
       throw new Error('Missing required fields');
     }
+
+    // Prepare context for the insurance agent
+    const context = {
+      zipCode,
+      productTypes: productTypes.join(', '),
+    };
+
+    console.log('Initiating call with context:', context);
 
     const response = await fetch('https://api.vogent.ai/api/dials', {
       method: 'POST',
@@ -33,7 +41,8 @@ serve(async (req) => {
       },
       body: JSON.stringify({
         phoneNumber: `+1${phoneNumber}`,
-        flowId: type === 'drinks_order' ? 'drinks_order_flow' : 'food_order_flow',
+        flowId: 'insurance_quote_agent',
+        context,
       }),
     });
 
