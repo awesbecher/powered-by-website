@@ -25,13 +25,25 @@ serve(async (req) => {
       throw new Error('Missing required fields');
     }
 
-    // Prepare context for the insurance agent
-    const context = {
-      zipCode,
-      productTypes: productTypes.join(', '),
-    };
+    // Determine flow ID and context based on type
+    let flowId: string;
+    let context: Record<string, any> = {};
 
-    console.log('Initiating call with context:', context);
+    if (type === 'insurance_quote') {
+      flowId = 'madrone_insurance_quote_agent';
+      context = {
+        zipCode,
+        productTypes: productTypes?.join(', '),
+      };
+    } else if (type === 'room_service') {
+      flowId = 'madrone_room_service_agent';
+      // Add any specific context for room service if needed
+      context = {};
+    } else {
+      throw new Error('Invalid call type');
+    }
+
+    console.log('Initiating call with context:', { flowId, context });
 
     const response = await fetch('https://api.vogent.ai/api/dials', {
       method: 'POST',
@@ -41,7 +53,7 @@ serve(async (req) => {
       },
       body: JSON.stringify({
         phoneNumber: `+1${phoneNumber}`,
-        flowId: 'madrone_insurance_quote_agent', // Updated to use the Madrone insurance agent flow ID
+        flowId,
         context,
       }),
     });
