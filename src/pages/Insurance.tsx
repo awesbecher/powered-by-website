@@ -1,4 +1,3 @@
-
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Car, Home, Key, Bike, Sailboat, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -264,11 +263,11 @@ const Insurance = () => {
             </div>
 
             {selectedProducts.length > 0 && (
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <p className="text-xl text-gray-300">
                   Enter your phone number to get your quotes:
                 </p>
-                <div className="max-w-xs mx-auto space-y-4">
+                <div className="max-w-xs mx-auto space-y-2">
                   <Input
                     type="tel"
                     placeholder="(555) 555-5555"
