@@ -1,3 +1,4 @@
+
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Car, Home, Key, Bike, Sailboat, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -295,7 +296,7 @@ const Insurance = () => {
                       variant="outline"
                     >
                       <Phone className="mr-2" />
-                      Talk to Insurance Agent
+                      Click here to talk to Insurance Agent
                     </Button>
                   </div>
                 </div>
