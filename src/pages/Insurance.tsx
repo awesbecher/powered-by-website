@@ -63,8 +63,8 @@ const Insurance = () => {
     <div className="min-h-screen w-full bg-neutral-soft px-4 py-16 sm:px-6 lg:px-8">
       {!isMobile && <div className="absolute top-8 right-8">
         <img 
-          src="/lovable-uploads/b7ac4ab9-6564-4fa3-a3f9-28fe993a0002.png" 
-          alt="Planter's Insurance Logo" 
+          src="/lovable-uploads/57b14d49-eab1-4dd2-827d-dceb363f5514.png" 
+          alt="RightBloom Logo" 
           className="h-10 w-auto"
         />
       </div>}
