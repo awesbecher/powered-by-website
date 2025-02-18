@@ -26,7 +26,7 @@ const License = () => {
       {/* Logo */}
       <div className="absolute top-8 right-8">
         <img 
-          src="/lovable-uploads/dd51c971-3ffc-4f39-900e-81be1ba6f99c.png" 
+          src="/lovable-uploads/57b14d49-eab1-4dd2-827d-dceb363f5514.png" 
           alt="RightBloom Logo" 
           className="h-10 w-auto" 
         />
