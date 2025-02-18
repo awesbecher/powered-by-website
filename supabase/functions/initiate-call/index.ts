@@ -36,7 +36,7 @@ serve(async (req) => {
         productTypes: productTypes?.join(', '),
       };
     } else if (type === 'room_service') {
-      flowId = 'madrone_room_service_agent';
+      flowId = '04335230-e019-4a27-905f-2006d05768a1';
       // Add any specific context for room service if needed
       context = {};
     } else {
