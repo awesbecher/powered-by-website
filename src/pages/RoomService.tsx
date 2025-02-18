@@ -31,7 +31,7 @@ const RoomService = () => {
     try {
       const { data, error } = await supabase.functions.invoke('initiate-call', {
         body: {
-          phoneNumber: phoneNumber.replace(/\D/g, ''), // Remove non-digits
+          phoneNumber: phoneNumber.replace(/\D/g, ''),
           type: 'room_service'
         }
       });
