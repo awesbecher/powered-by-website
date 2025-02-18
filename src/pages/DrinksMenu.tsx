@@ -74,6 +74,37 @@ const DrinksMenu = () => {
         <span>Back to Room Service</span>
       </Link>
 
+      <div className="absolute left-1/2 transform -translate-x-1/2 top-8">
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+          <DialogTrigger asChild>
+            <button className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md w-full sm:w-auto flex items-center justify-center gap-2">
+              Start Your Order
+              <Phone className="h-4 w-4" />
+            </button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Enter your phone number to place an order</DialogTitle>
+            </DialogHeader>
+            <div className="flex flex-col space-y-4 pt-4">
+              <Input 
+                type="tel" 
+                placeholder="Enter your phone number" 
+                value={phoneNumber} 
+                onChange={e => setPhoneNumber(e.target.value)} 
+                className="text-lg" 
+              />
+              <button 
+                onClick={handleCall} 
+                className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md"
+              >
+                Call Me
+              </button>
+            </div>
+          </DialogContent>
+        </Dialog>
+      </div>
+
       <div className="mx-auto max-w-6xl mt-20">
         <div className="bg-white rounded-lg p-4 shadow-lg">
           <img 
@@ -81,36 +112,6 @@ const DrinksMenu = () => {
             alt="Drinks Menu" 
             className="w-full h-auto"
           />
-        </div>
-        <div className="mt-8 flex justify-center">
-          <Dialog open={isOpen} onOpenChange={setIsOpen}>
-            <DialogTrigger asChild>
-              <button className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md w-full sm:w-auto flex items-center justify-center gap-2">
-                Start Your Order
-                <Phone className="h-4 w-4" />
-              </button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Enter your phone number to place an order</DialogTitle>
-              </DialogHeader>
-              <div className="flex flex-col space-y-4 pt-4">
-                <Input 
-                  type="tel" 
-                  placeholder="Enter your phone number" 
-                  value={phoneNumber} 
-                  onChange={e => setPhoneNumber(e.target.value)} 
-                  className="text-lg" 
-                />
-                <button 
-                  onClick={handleCall} 
-                  className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md"
-                >
-                  Call Me
-                </button>
-              </div>
-            </DialogContent>
-          </Dialog>
         </div>
       </div>
     </div>
