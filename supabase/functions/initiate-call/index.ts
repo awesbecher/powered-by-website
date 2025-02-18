@@ -41,7 +41,7 @@ serve(async (req) => {
       },
       body: JSON.stringify({
         phoneNumber: `+1${phoneNumber}`,
-        flowId: 'insurance_quote_agent',
+        flowId: 'madrone_insurance_quote_agent', // Updated to use the Madrone insurance agent flow ID
         context,
       }),
     });
