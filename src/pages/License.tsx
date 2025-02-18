@@ -25,51 +25,51 @@ const License = () => {
 
   const licenseOptions = [
     {
-      title: "Basic License",
-      description: "Perfect for small businesses just getting started",
-      price: "$99/month",
+      title: "Essentials",
+      description: "Essential features for getting started",
+      price: "$25 USD/user/month",
       icon: Star,
       features: [
-        "Up to 100 transactions/month",
-        "Basic support",
-        "Standard API access",
-        "2 team members"
+        "Basic features included",
+        "Standard support",
+        "Billed annually",
+        "Perfect for small teams"
       ]
     },
     {
-      title: "Professional",
-      description: "Ideal for growing businesses with higher volume needs",
-      price: "$199/month",
+      title: "Sales Professional",
+      description: "Optimized for sales teams",
+      price: "$75 USD/user/month",
       icon: Zap,
       features: [
-        "Up to 1,000 transactions/month",
+        "All Essentials features",
+        "Advanced sales tools",
         "Priority support",
-        "Advanced API access",
-        "5 team members"
+        "Billed annually"
       ]
     },
     {
-      title: "Business",
-      description: "For established businesses requiring robust features",
-      price: "$399/month",
+      title: "Service Professional",
+      description: "Designed for service teams",
+      price: "$75 USD/user/month",
       icon: Shield,
       features: [
-        "Up to 5,000 transactions/month",
-        "24/7 premium support",
-        "Full API access",
-        "10 team members"
+        "All Essentials features",
+        "Service desk tools",
+        "Priority support",
+        "Billed annually"
       ]
     },
     {
       title: "Enterprise",
-      description: "Custom solutions for large organizations",
-      price: "Custom pricing",
+      description: "Complete solution for large organizations",
+      price: "$165 USD/user/month",
       icon: Crown,
       features: [
-        "Unlimited transactions",
-        "Dedicated support team",
-        "Custom API solutions",
-        "Unlimited team members"
+        "All Professional features",
+        "Enterprise-grade security",
+        "24/7 premium support",
+        "Billed annually"
       ]
     }
   ];
