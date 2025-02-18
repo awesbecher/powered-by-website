@@ -74,7 +74,7 @@ const FoodMenu = () => {
         <span>Back to Room Service</span>
       </Link>
 
-      <div className="flex justify-center mt-24 mb-8">
+      <div className="absolute left-1/2 transform -translate-x-1/2 top-8">
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
           <DialogTrigger asChild>
             <button className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md w-full sm:w-auto flex items-center justify-center gap-2">
@@ -105,7 +105,7 @@ const FoodMenu = () => {
         </Dialog>
       </div>
 
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-6xl mt-20">
         <div className="bg-white rounded-lg p-4 shadow-lg">
           <img 
             src="/lovable-uploads/ac8b8cfd-fc02-4e33-88bc-33898e7820f9.png" 
