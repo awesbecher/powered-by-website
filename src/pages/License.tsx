@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { ArrowLeft, Phone, Star, Zap, Shield, Crown } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -39,7 +40,7 @@ const License = () => {
     description: "Designed for service teams",
     price: "$125 USD/user/month",
     icon: Shield,
-    features: ["All Essentials features", "Service desk tools", "Priority support", "Billed annually"]
+    features: ["All Essentials & Sales features", "Enterprise service desk tools", "Priority support", "Billed annually"]
   }, {
     title: "Enterprise",
     description: "Complete solution for large organizations",
