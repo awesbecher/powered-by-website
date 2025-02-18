@@ -18,17 +18,21 @@ serve(async (req) => {
       throw new Error('Missing Vogent API key');
     }
 
+    // Log the raw request to debug
+    const rawBody = await req.text();
+    console.log('Raw request body:', rawBody);
+
     let body;
     try {
-      body = await req.json();
-      console.log('Received raw request body:', body);
+      body = JSON.parse(rawBody);
+      console.log('Parsed request body:', body);
     } catch (e) {
-      console.error('Error parsing request body:', e);
+      console.error('Error parsing JSON:', e);
       throw new Error('Invalid JSON in request body');
     }
 
     const { phoneNumber, type, zipCode, productTypes } = body;
-    console.log('Parsed request data:', { phoneNumber, type, zipCode, productTypes });
+    console.log('Request data:', { phoneNumber, type, zipCode, productTypes });
 
     if (!phoneNumber || !type) {
       throw new Error('Missing required fields');
@@ -51,7 +55,11 @@ serve(async (req) => {
       throw new Error('Invalid call type');
     }
 
-    console.log('Initiating call with context:', { flowId, context });
+    console.log('Making Vogent API request with:', {
+      phoneNumber: `+1${phoneNumber}`,
+      flowId,
+      context,
+    });
 
     const response = await fetch('https://api.vogent.ai/api/dials', {
       method: 'POST',
@@ -67,7 +75,7 @@ serve(async (req) => {
     });
 
     const data = await response.json();
-    console.log('Vogent response:', data);
+    console.log('Vogent API response:', data);
 
     if (!response.ok) {
       throw new Error(data.message || 'Failed to initiate call');
