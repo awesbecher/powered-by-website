@@ -24,7 +24,7 @@ const FoodMenu = () => {
         <span>Back to Room Service</span>
       </Link>
 
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-6xl mt-20">
         <div className="bg-white rounded-lg p-4 shadow-lg">
           <img 
             src="/lovable-uploads/ac8b8cfd-fc02-4e33-88bc-33898e7820f9.png" 
