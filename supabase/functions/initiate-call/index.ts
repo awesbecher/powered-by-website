@@ -18,6 +18,8 @@ serve(async (req) => {
   try {
     const { phoneNumber, type, metadata } = await req.json()
     
+    console.log('Received request:', { type, phoneNumber, metadata });
+    
     let apiKey = VOGENT_API_KEY
     let agentId = ''
     let flowId = ''
@@ -36,6 +38,12 @@ serve(async (req) => {
       throw new Error('Flow ID not configured for this call type')
     }
 
+    if (!apiKey) {
+      throw new Error(`API key not found for ${type} type`)
+    }
+
+    console.log('Using configuration:', { type, agentId, flowId });
+
     const response = await fetch('https://api.vogent.com/meetings', {
       method: 'POST',
       headers: {
@@ -50,17 +58,20 @@ serve(async (req) => {
       }),
     })
 
+    const responseData = await response.text()
+    console.log('Vogent API response:', response.status, responseData)
+
     if (!response.ok) {
-      throw new Error(`Failed to initiate call: ${response.statusText}`)
+      throw new Error(`Failed to initiate call: ${response.status} ${response.statusText} - ${responseData}`)
     }
 
-    const data = await response.json()
+    const data = responseData ? JSON.parse(responseData) : {}
     
     return new Response(JSON.stringify(data), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   } catch (error) {
-    console.error('Error:', error.message)
+    console.error('Error in initiate-call function:', error)
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

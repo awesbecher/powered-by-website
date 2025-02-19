@@ -1,10 +1,9 @@
-
 import { Link } from "react-router-dom";
 import { ArrowLeft, Phone, Star, Zap, Shield, Crown } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { LicenseProductCard } from "@/components/insurance/LicenseProductCard";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
@@ -37,7 +36,7 @@ const License = () => {
 
     setIsLoading(true);
     try {
-      const { error } = await supabase.functions.invoke('initiate-call', {
+      const { data, error } = await supabase.functions.invoke('initiate-call', {
         body: { 
           phoneNumber: phoneNumber.replace(/\D/g, ''),
           type: 'license',
@@ -47,7 +46,12 @@ const License = () => {
         }
       });
 
-      if (error) throw error;
+      console.log('Call initiation response:', data); // Add logging
+
+      if (error) {
+        console.error('Supabase function error:', error);
+        throw error;
+      }
 
       toast({
         title: "Call initiated!",
@@ -139,6 +143,9 @@ const License = () => {
                 <DialogContent>
                   <DialogHeader>
                     <DialogTitle>Enter your phone number to speak with a sales representative</DialogTitle>
+                    <DialogDescription>
+                      We'll connect you with a RightBloom sales representative to discuss license upgrade options.
+                    </DialogDescription>
                   </DialogHeader>
                   <div className="flex flex-col space-y-4 pt-4">
                     <Input 
