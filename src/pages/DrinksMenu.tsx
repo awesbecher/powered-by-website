@@ -2,59 +2,14 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft, Phone } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 
 const DrinksMenu = () => {
   const isMobile = useIsMobile();
-  const { toast } = useToast();
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-
-  const handleCall = async () => {
-    if (!phoneNumber) {
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: "Please enter your phone number"
-      });
-      return;
-    }
-
-    try {
-      const { data, error } = await supabase.functions.invoke('initiate-call', {
-        body: {
-          phoneNumber: phoneNumber.replace(/\D/g, ''),
-          type: 'room_service'
-        }
-      });
-
-      console.log('Supabase function response:', { data, error });
-
-      if (error) {
-        console.error('Error details:', error);
-        throw error;
-      }
-
-      toast({
-        title: "Call Initiated",
-        description: "You will receive a call shortly to take your room service order."
-      });
-      setIsOpen(false);
-      setPhoneNumber("");
-
-    } catch (error) {
-      console.error('Detailed error:', error);
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: error.message || "Failed to initiate call. Please try again."
-      });
-    }
-  };
 
   return (
     <div className="min-h-screen w-full bg-neutral-soft px-4 py-16 sm:px-6 lg:px-8">
@@ -95,7 +50,6 @@ const DrinksMenu = () => {
                 className="text-lg" 
               />
               <button 
-                onClick={handleCall} 
                 className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md"
               >
                 Call Me
