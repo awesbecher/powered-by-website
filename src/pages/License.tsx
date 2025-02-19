@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { ArrowLeft, Phone, Star, Zap, Shield, Crown } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -19,7 +18,6 @@ const License = () => {
 
   const handleCustomerIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    // Only allow digits and limit to 8 characters
     if (/^\d*$/.test(value)) {
       setCustomerId(value.slice(0, 8));
     }
@@ -39,27 +37,21 @@ const License = () => {
 
     try {
       const cleanedPhoneNumber = phoneNumber.replace(/\D/g, '');
-      
-      console.log('Attempting to initiate call with:', {
+      const callParams = {
         phoneNumber: cleanedPhoneNumber,
         type: 'license',
         flowId: '15b75020-90a0-473a-b6bc-758ced586c6b',
         agentId: 'b79e025d-bb6c-4deb-99d5-a5f2f573c639',
         from: '9179361793',
-        metadata: { customerId }
-      });
+        metadata: {
+          customerId
+        }
+      };
+      
+      console.log('Attempting to initiate call with:', callParams);
 
       const { data, error } = await supabase.functions.invoke('initiate-call', {
-        body: { 
-          phoneNumber: cleanedPhoneNumber,
-          type: 'license',
-          flowId: '15b75020-90a0-473a-b6bc-758ced586c6b',
-          agentId: 'b79e025d-bb6c-4deb-99d5-a5f2f573c639',
-          from: '9179361793',
-          metadata: {
-            customerId
-          }
-        }
+        body: callParams
       });
 
       console.log('Supabase response:', { data, error });
@@ -93,7 +85,6 @@ const License = () => {
     }
   };
 
-  // Check if the customer ID is exactly 8 digits
   const isValidCustomerId = customerId.length === 8;
 
   const licenseOptions = [{
@@ -124,12 +115,10 @@ const License = () => {
 
   return (
     <div className="min-h-screen w-full bg-neutral-soft px-4 py-16 sm:px-6 lg:px-8">
-      {/* Logo */}
       <div className="absolute top-8 right-8">
         <img src="/lovable-uploads/57b14d49-eab1-4dd2-827d-dceb363f5514.png" alt="RightBloom Logo" className="h-10 w-auto" />
       </div>
 
-      {/* Back button */}
       <Link to="/" className="absolute top-8 left-8 flex items-center text-accent hover:text-accent/80 transition-colors">
         <ArrowLeft className="h-6 w-6 mr-2" />
         <span>Back to Services</span>
@@ -140,7 +129,6 @@ const License = () => {
           License Upgrade
         </h1>
 
-        {/* License Options Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-4">
           {licenseOptions.map(option => <LicenseProductCard key={option.title} title={option.title} description={option.description} price={option.price} features={option.features} icon={option.icon} />)}
         </div>
