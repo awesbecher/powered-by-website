@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { ArrowLeft, Phone, Star, Zap, Shield, Crown } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -36,46 +35,57 @@ const License = () => {
     }
 
     setIsLoading(true);
+
     try {
-      console.log('Initiating call with:', {
-        phoneNumber: phoneNumber.replace(/\D/g, ''),
+      const cleanedPhoneNumber = phoneNumber.replace(/\D/g, '');
+      
+      console.log('Attempting to initiate call with:', {
+        phoneNumber: cleanedPhoneNumber,
         type: 'license',
         metadata: { customerId }
       });
 
       const { data, error } = await supabase.functions.invoke('initiate-call', {
         body: { 
-          phoneNumber: phoneNumber.replace(/\D/g, ''),
+          phoneNumber: cleanedPhoneNumber,
           type: 'license',
           metadata: {
             customerId
           }
+        },
+        options: {
+          timeout: 10000 // 10 second timeout
         }
       });
 
-      console.log('Call initiation response:', data);
+      console.log('Supabase response:', { data, error });
 
       if (error) {
-        console.error('Supabase function error:', error);
-        throw error;
+        throw new Error(error.message || 'Failed to initiate call');
+      }
+
+      if (!data) {
+        throw new Error('No response received from the server');
       }
 
       toast({
         title: "Call initiated!",
         description: "You will receive a call shortly from a RightBloom sales representative."
       });
+      
       setIsOpen(false);
       setPhoneNumber("");
+      setIsLoading(false);
       navigate('/');
+      
     } catch (error: any) {
       console.error('Error initiating call:', error);
+      setIsLoading(false);
       toast({
         variant: "destructive",
         title: "Error initiating call",
         description: error.message || "There was an error initiating your call. Please try again."
       });
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -108,7 +118,8 @@ const License = () => {
     features: ["All Professional features", "Enterprise-grade security", "24/7 premium support", "Billed annually"]
   }];
 
-  return <div className="min-h-screen w-full bg-neutral-soft px-4 py-16 sm:px-6 lg:px-8">
+  return (
+    <div className="min-h-screen w-full bg-neutral-soft px-4 py-16 sm:px-6 lg:px-8">
       {/* Logo */}
       <div className="absolute top-8 right-8">
         <img src="/lovable-uploads/57b14d49-eab1-4dd2-827d-dceb363f5514.png" alt="RightBloom Logo" className="h-10 w-auto" />
@@ -147,7 +158,11 @@ const License = () => {
                   className="text-center bg-white/10 border-white/20 text-white placeholder:text-gray-400" 
                 />
               </div>
-              <Dialog open={isOpen} onOpenChange={setIsOpen}>
+              <Dialog open={isOpen} onOpenChange={value => {
+                if (!isLoading) {
+                  setIsOpen(value);
+                }
+              }}>
                 <button 
                   onClick={() => setIsOpen(true)} 
                   disabled={!isValidCustomerId} 
@@ -170,6 +185,7 @@ const License = () => {
                       value={phoneNumber} 
                       onChange={e => setPhoneNumber(e.target.value)} 
                       className="text-lg" 
+                      disabled={isLoading}
                     />
                     <button 
                       className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md disabled:opacity-50"
@@ -185,7 +201,8 @@ const License = () => {
           </div>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
 
 export default License;
