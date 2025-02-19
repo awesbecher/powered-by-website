@@ -28,10 +28,18 @@ serve(async (req) => {
       );
     }
 
-    // Get the API key from environment variable
-    const VOGENT_API_KEY = Deno.env.get('VOGENT_API_KEY');
-    if (!VOGENT_API_KEY) {
-      throw new Error('Missing Vogent API key');
+    // Use different API keys based on the type of call
+    let apiKey;
+    if (type === 'insurance') {
+      apiKey = Deno.env.get('VOGENT_INSURANCE_API_KEY');
+      if (!apiKey) {
+        throw new Error('Missing Vogent Insurance API key');
+      }
+    } else {
+      apiKey = Deno.env.get('VOGENT_API_KEY');
+      if (!apiKey) {
+        throw new Error('Missing Vogent API key');
+      }
     }
 
     // Use different flow IDs based on the type of call
@@ -45,7 +53,7 @@ serve(async (req) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${VOGENT_API_KEY}`,
+        'Authorization': `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
         toNumber: `+1${phoneNumber}`,
