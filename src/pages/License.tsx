@@ -52,9 +52,6 @@ const License = () => {
           metadata: {
             customerId
           }
-        },
-        options: {
-          timeout: 10000 // 10 second timeout
         }
       });
 
