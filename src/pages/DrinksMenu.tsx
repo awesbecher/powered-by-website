@@ -1,5 +1,5 @@
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Phone } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -10,6 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 const DrinksMenu = () => {
   const isMobile = useIsMobile();
+  const navigate = useNavigate();
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -42,6 +43,7 @@ const DrinksMenu = () => {
       });
       setIsOpen(false);
       setPhoneNumber("");
+      navigate('/room-service');
     } catch (error) {
       console.error('Error initiating call:', error);
       toast({
@@ -118,4 +120,3 @@ const DrinksMenu = () => {
 };
 
 export default DrinksMenu;
-
