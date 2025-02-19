@@ -36,8 +36,8 @@ serve(async (req) => {
 
     // Use different flow IDs based on the type of call
     const flowId = type === 'insurance' 
-      ? 'cd922dc9-eea6-4b43-878f-cb5cfd67e005'  // Insurance flow
-      : 'cd922dc9-eea6-4b43-878f-cb5cfd67e005'; // Default to insurance flow for now
+      ? '04335230-e019-4a27-905f-2006d05768a1'  // Insurance flow with correct ID
+      : '04335230-e019-4a27-905f-2006d05768a1'; // Default to insurance flow for now
 
     console.log('Making Vogent API request with:', { phoneNumber, flowId, metadata });
 
@@ -50,7 +50,7 @@ serve(async (req) => {
       body: JSON.stringify({
         toNumber: `+1${phoneNumber}`,
         callAgentId: flowId,
-        fromNumberId: '6c033c23-cb3e-4adf-9fdd-935ca44900c2', // Using the provided fromNumberId
+        fromNumberId: '6c033c23-cb3e-4adf-9fdd-935ca44900c2',
         metadata: metadata || {} // Pass through any metadata
       }),
     });
