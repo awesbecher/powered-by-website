@@ -16,7 +16,7 @@ serve(async (req) => {
     const requestData = await req.json();
     console.log('Received request data:', requestData);
 
-    const { phoneNumber, type } = requestData;
+    const { phoneNumber, type, metadata } = requestData;
 
     if (!phoneNumber || !type) {
       return new Response(
@@ -34,10 +34,12 @@ serve(async (req) => {
       throw new Error('Missing Vogent API key');
     }
 
-    // Room service flow ID
-    const flowId = 'cd922dc9-eea6-4b43-878f-cb5cfd67e005';
+    // Use different flow IDs based on the type of call
+    const flowId = type === 'insurance' 
+      ? 'cd922dc9-eea6-4b43-878f-cb5cfd67e005'  // Insurance flow
+      : 'cd922dc9-eea6-4b43-878f-cb5cfd67e005'; // Default to insurance flow for now
 
-    console.log('Making Vogent API request with:', { phoneNumber, flowId });
+    console.log('Making Vogent API request with:', { phoneNumber, flowId, metadata });
 
     const response = await fetch('https://api.vogent.ai/api/dials', {
       method: 'POST',
@@ -48,7 +50,8 @@ serve(async (req) => {
       body: JSON.stringify({
         toNumber: `+1${phoneNumber}`,
         callAgentId: flowId,
-        fromNumberId: '53660ead-9260-4a23-8df2-55a7050b3340',
+        fromNumberId: '6c033c23-cb3e-4adf-9fdd-935ca44900c2', // Using the provided fromNumberId
+        metadata: metadata || {} // Pass through any metadata
       }),
     });
 
