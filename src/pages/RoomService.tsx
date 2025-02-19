@@ -4,10 +4,53 @@ import { ArrowLeft, Phone } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { useToast } from "@/components/ui/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const RoomService = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+
+  const handleCall = async () => {
+    if (!phoneNumber) {
+      toast({
+        variant: "destructive",
+        title: "Please enter your phone number",
+        description: "A phone number is required to place your order."
+      });
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const { error } = await supabase.functions.invoke('initiate-call', {
+        body: { 
+          phoneNumber: phoneNumber.replace(/\D/g, ''),
+          type: 'room-service'
+        }
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Call initiated!",
+        description: "You will receive a call shortly to place your order."
+      });
+      setIsOpen(false);
+      setPhoneNumber("");
+    } catch (error) {
+      console.error('Error initiating call:', error);
+      toast({
+        variant: "destructive",
+        title: "Error initiating call",
+        description: "There was an error initiating your call. Please try again."
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen w-full bg-neutral-soft px-4 py-16 sm:px-6 lg:px-8">
@@ -61,9 +104,11 @@ const RoomService = () => {
                     className="text-lg" 
                   />
                   <button 
-                    className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md"
+                    className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md disabled:opacity-50"
+                    onClick={handleCall}
+                    disabled={isLoading}
                   >
-                    Call Me
+                    {isLoading ? "Initiating call..." : "Call Me"}
                   </button>
                 </div>
               </DialogContent>

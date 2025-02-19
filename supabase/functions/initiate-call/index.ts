@@ -35,7 +35,7 @@ serve(async (req) => {
     }
 
     // Room service flow ID
-    const flowId = '04335230-e019-4a27-905f-2006d05768a1';
+    const flowId = 'cd922dc9-eea6-4b43-878f-cb5cfd67e005';
 
     console.log('Making Vogent API request with:', { phoneNumber, flowId });
 
