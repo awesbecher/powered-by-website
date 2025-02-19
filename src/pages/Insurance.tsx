@@ -1,18 +1,24 @@
 
-import { Link } from "react-router-dom";
-import { ArrowLeft, Car, Home, Key, Bike, Sailboat } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { ArrowLeft, Car, Home, Key, Bike, Sailboat, Phone } from "lucide-react";
 import { useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Input } from "@/components/ui/input";
 import { InsuranceProductCard } from "@/components/insurance/InsuranceProductCard";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { supabase } from "@/integrations/supabase/client";
 
 const Insurance = () => {
   const [zipCode, setZipCode] = useState("");
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const isMobile = useIsMobile();
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleProductSelect = (productId: string) => {
     if (zipCode.length !== 5) return;
@@ -23,6 +29,50 @@ const Insurance = () => {
         return [...prev, productId];
       }
     });
+  };
+
+  const handleCall = async () => {
+    if (!phoneNumber) {
+      toast({
+        variant: "destructive",
+        title: "Please enter your phone number",
+        description: "A phone number is required to connect with an insurance agent."
+      });
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const { error } = await supabase.functions.invoke('initiate-call', {
+        body: { 
+          phoneNumber: phoneNumber.replace(/\D/g, ''),
+          type: 'insurance',
+          metadata: {
+            zipCode,
+            selectedProducts
+          }
+        }
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Call initiated!",
+        description: "You will receive a call shortly from a Planter's Insurance agent."
+      });
+      setIsOpen(false);
+      setPhoneNumber("");
+      navigate('/');
+    } catch (error) {
+      console.error('Error initiating call:', error);
+      toast({
+        variant: "destructive",
+        title: "Error initiating call",
+        description: "There was an error initiating your call. Please try again."
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const insuranceProducts = [
@@ -96,12 +146,38 @@ const Insurance = () => {
 
             {selectedProducts.length > 0 && (
               <div className="space-y-4">
-                <Button 
-                  className="w-full bg-accent hover:bg-accent/90 text-white"
-                  variant="default"
-                >
-                  Speak to a Planter's Insurance Agent Now
-                </Button>
+                <Dialog open={isOpen} onOpenChange={setIsOpen}>
+                  <DialogTrigger asChild>
+                    <Button 
+                      className="w-full bg-accent hover:bg-accent/90 text-white"
+                      variant="default"
+                    >
+                      Speak to a Planter's Insurance Agent Now
+                      <Phone className="h-4 w-4 ml-2" />
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Enter your phone number to speak with an agent</DialogTitle>
+                    </DialogHeader>
+                    <div className="flex flex-col space-y-4 pt-4">
+                      <Input 
+                        type="tel" 
+                        placeholder="Enter your phone number" 
+                        value={phoneNumber} 
+                        onChange={e => setPhoneNumber(e.target.value)} 
+                        className="text-lg" 
+                      />
+                      <button 
+                        className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md disabled:opacity-50"
+                        onClick={handleCall}
+                        disabled={isLoading}
+                      >
+                        {isLoading ? "Initiating call..." : "Call Me"}
+                      </button>
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </div>
             )}
           </div>
