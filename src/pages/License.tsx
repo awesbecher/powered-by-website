@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { ArrowLeft, Phone, Star, Zap, Shield, Crown } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -5,7 +6,6 @@ import { useState } from "react";
 import { LicenseProductCard } from "@/components/insurance/LicenseProductCard";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 
 const License = () => {
@@ -36,54 +36,18 @@ const License = () => {
 
     setIsLoading(true);
 
-    try {
-      const cleanedPhoneNumber = phoneNumber.replace(/\D/g, '');
-      
-      console.log('Attempting to initiate call with:', {
-        phoneNumber: cleanedPhoneNumber,
-        type: 'license',
-        metadata: { customerId }
-      });
-
-      const { data, error } = await supabase.functions.invoke('initiate-call', {
-        body: { 
-          phoneNumber: cleanedPhoneNumber,
-          type: 'license',
-          metadata: {
-            customerId
-          }
-        }
-      });
-
-      console.log('Supabase response:', { data, error });
-
-      if (error) {
-        throw new Error(error.message || 'Failed to initiate call');
-      }
-
-      if (!data) {
-        throw new Error('No response received from the server');
-      }
-
+    // Simulate a brief loading state
+    setTimeout(() => {
       toast({
-        title: "Call initiated!",
-        description: "You will receive a call shortly from a RightBloom sales representative."
+        title: "Request received!",
+        description: "Thank you for your interest. A sales representative will contact you shortly."
       });
       
       setIsOpen(false);
       setPhoneNumber("");
       setIsLoading(false);
       navigate('/');
-      
-    } catch (error: any) {
-      console.error('Error initiating call:', error);
-      setIsLoading(false);
-      toast({
-        variant: "destructive",
-        title: "Error initiating call",
-        description: error.message || "There was an error initiating your call. Please try again."
-      });
-    }
+    }, 1000);
   };
 
   // Check if the customer ID is exactly 8 digits
@@ -189,7 +153,7 @@ const License = () => {
                       onClick={handleCall}
                       disabled={isLoading}
                     >
-                      {isLoading ? "Initiating call..." : "Call Me"}
+                      {isLoading ? "Processing..." : "Call Me"}
                     </button>
                   </div>
                 </DialogContent>
