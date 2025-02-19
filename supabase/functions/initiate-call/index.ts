@@ -18,9 +18,9 @@ serve(async (req) => {
     // Log the start of the request
     console.log('Starting initiate-call function')
 
-    const { phoneNumber, type, metadata } = await req.json()
+    const { phoneNumber, type, flowId, agentId, from, metadata } = await req.json()
     
-    console.log('Received request with payload:', { phoneNumber, type, metadata })
+    console.log('Received request with payload:', { phoneNumber, type, flowId, agentId, from, metadata })
 
     // Validate phone number
     if (!phoneNumber) {
@@ -39,29 +39,13 @@ serve(async (req) => {
       throw new Error('VOGENT_API_KEY is not set in environment variables')
     }
 
-    // Validate call type
-    if (type !== 'license' && type !== 'insurance') {
-      throw new Error(`Invalid call type: ${type}`)
-    }
-
-    const agentId = type === 'license' 
-      ? 'b79e025d-bb6c-4deb-99d5-a5f2f573c639'
-      : 'fc25b8cc-c3a5-44f7-9b87-37b0e6819534'
-
-    const flowId = type === 'license'
-      ? '15b75020-90a0-473a-b6bc-758ced586c6b'
-      : '018d6c31-37f7-7000-4a55-711c32d0587c'
-
-    console.log('Using configuration:', { type, agentId, flowId })
-
-    const requestBody = {
+    console.log('Making request to Vogent API with body:', JSON.stringify({
       phoneNumber: cleanedPhoneNumber,
       agentId,
       flowId,
+      from,
       metadata
-    }
-
-    console.log('Making request to Vogent API with body:', JSON.stringify(requestBody))
+    }))
 
     const response = await fetch('https://api.vogent.com/meetings', {
       method: 'POST',
@@ -69,7 +53,13 @@ serve(async (req) => {
         'Content-Type': 'application/json',
         'X-Api-Key': VOGENT_API_KEY,
       },
-      body: JSON.stringify(requestBody)
+      body: JSON.stringify({
+        phoneNumber: cleanedPhoneNumber,
+        agentId,
+        flowId,
+        from,
+        metadata
+      })
     })
 
     const responseText = await response.text()
