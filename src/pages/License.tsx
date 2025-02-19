@@ -4,9 +4,18 @@ import { ArrowLeft, Phone, Star, Zap, Shield, Crown } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { LicenseProductCard } from "@/components/insurance/LicenseProductCard";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { useNavigate } from "react-router-dom";
 
 const License = () => {
   const [customerId, setCustomerId] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleCustomerIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -16,8 +25,47 @@ const License = () => {
     }
   };
 
-  const handleClick = () => {
-    console.log("License upgrade request initiated", { customerId });
+  const handleCall = async () => {
+    if (!phoneNumber) {
+      toast({
+        variant: "destructive",
+        title: "Please enter your phone number",
+        description: "A phone number is required to connect with a sales representative."
+      });
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const { error } = await supabase.functions.invoke('initiate-call', {
+        body: { 
+          phoneNumber: phoneNumber.replace(/\D/g, ''),
+          type: 'license',
+          metadata: {
+            customerId
+          }
+        }
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Call initiated!",
+        description: "You will receive a call shortly from a RightBloom sales representative."
+      });
+      setIsOpen(false);
+      setPhoneNumber("");
+      navigate('/');
+    } catch (error) {
+      console.error('Error initiating call:', error);
+      toast({
+        variant: "destructive",
+        title: "Error initiating call",
+        description: "There was an error initiating your call. Please try again."
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   // Check if the customer ID is exactly 8 digits
@@ -79,10 +127,37 @@ const License = () => {
               <div className="w-full max-w-md">
                 <Input type="text" inputMode="numeric" pattern="\d*" placeholder="Enter your RightBloom Customer ID # (enter any 8 digits):" value={customerId} onChange={handleCustomerIdChange} maxLength={8} className="text-center bg-white/10 border-white/20 text-white placeholder:text-gray-400" />
               </div>
-              <button onClick={handleClick} disabled={!isValidCustomerId} className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
-                Speak To A Sales Rep
-                <Phone className="h-4 w-4" />
-              </button>
+              <Dialog open={isOpen} onOpenChange={setIsOpen}>
+                <button 
+                  onClick={() => setIsOpen(true)} 
+                  disabled={!isValidCustomerId} 
+                  className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  Speak To A Sales Rep
+                  <Phone className="h-4 w-4" />
+                </button>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Enter your phone number to speak with a sales representative</DialogTitle>
+                  </DialogHeader>
+                  <div className="flex flex-col space-y-4 pt-4">
+                    <Input 
+                      type="tel" 
+                      placeholder="Enter your phone number" 
+                      value={phoneNumber} 
+                      onChange={e => setPhoneNumber(e.target.value)} 
+                      className="text-lg" 
+                    />
+                    <button 
+                      className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md disabled:opacity-50"
+                      onClick={handleCall}
+                      disabled={isLoading}
+                    >
+                      {isLoading ? "Initiating call..." : "Call Me"}
+                    </button>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
         </div>

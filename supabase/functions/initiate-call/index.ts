@@ -1,95 +1,70 @@
 
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-};
+}
+
+const VOGENT_INSURANCE_API_KEY = Deno.env.get('VOGENT_INSURANCE_API_KEY')
+const VOGENT_API_KEY = Deno.env.get('VOGENT_API_KEY')
 
 serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
-    return new Response(null, { headers: corsHeaders });
+    return new Response(null, { headers: corsHeaders })
   }
 
   try {
-    const requestData = await req.json();
-    console.log('Received request data:', requestData);
-
-    const { phoneNumber, type, metadata } = requestData;
-
-    if (!phoneNumber || !type) {
-      return new Response(
-        JSON.stringify({ error: 'Missing required fields' }),
-        { 
-          status: 400, 
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-        }
-      );
-    }
-
-    // Use different API keys based on the type of call
-    let apiKey;
+    const { phoneNumber, type, metadata } = await req.json()
+    
+    let apiKey = VOGENT_API_KEY
+    let agentId = ''
+    let flowId = ''
+    
+    // Set configuration based on call type
     if (type === 'insurance') {
-      apiKey = Deno.env.get('VOGENT_INSURANCE_API_KEY');
-      if (!apiKey) {
-        throw new Error('Missing Vogent Insurance API key');
-      }
-    } else {
-      apiKey = Deno.env.get('VOGENT_API_KEY');
-      if (!apiKey) {
-        throw new Error('Missing Vogent API key');
-      }
+      apiKey = VOGENT_INSURANCE_API_KEY
+      agentId = 'fc25b8cc-c3a5-44f7-9b87-37b0e6819534'
+      flowId = '018d6c31-37f7-7000-4a55-711c32d0587c'
+    } else if (type === 'license') {
+      agentId = 'b79e025d-bb6c-4deb-99d5-a5f2f573c639'
+      // We'll add the flow ID once provided
+      flowId = '' // TODO: Add license flow ID when available
     }
 
-    // Use different flow IDs based on the type of call
-    const flowId = type === 'insurance' 
-      ? '04335230-e019-4a27-905f-2006d05768a1'  // Insurance flow with correct ID
-      : '04335230-e019-4a27-905f-2006d05768a1'; // Default to insurance flow for now
+    if (!flowId) {
+      throw new Error('Flow ID not configured for this call type')
+    }
 
-    console.log('Making Vogent API request with:', { phoneNumber, flowId, metadata });
-
-    const response = await fetch('https://api.vogent.ai/api/dials', {
+    const response = await fetch('https://api.vogent.com/meetings', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`,
+        'X-Api-Key': apiKey,
       },
       body: JSON.stringify({
-        toNumber: `+1${phoneNumber}`,
-        callAgentId: flowId,
-        fromNumberId: '6c033c23-cb3e-4adf-9fdd-935ca44900c2',
-        metadata: metadata || {} // Pass through any metadata
+        phoneNumber,
+        agentId,
+        flowId,
+        metadata
       }),
-    });
+    })
 
     if (!response.ok) {
-      const errorData = await response.json();
-      console.error('Vogent API error:', errorData);
-      throw new Error(errorData.message || 'Failed to initiate call');
+      throw new Error(`Failed to initiate call: ${response.statusText}`)
     }
 
-    const data = await response.json();
-    console.log('Vogent API response:', data);
-
-    return new Response(
-      JSON.stringify({ status: 'initiated' }),
-      { 
-        status: 200,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-      }
-    );
-
+    const data = await response.json()
+    
+    return new Response(JSON.stringify(data), {
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    })
   } catch (error) {
-    console.error('Error in initiate-call function:', error);
-    return new Response(
-      JSON.stringify({ 
-        error: error instanceof Error ? error.message : 'Unknown error occurred' 
-      }),
-      { 
-        status: 500,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-      }
-    );
+    console.error('Error:', error.message)
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    })
   }
-});
+})
