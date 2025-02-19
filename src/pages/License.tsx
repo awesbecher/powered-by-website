@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { ArrowLeft, Phone, Star, Zap, Shield, Crown } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -36,6 +37,12 @@ const License = () => {
 
     setIsLoading(true);
     try {
+      console.log('Initiating call with:', {
+        phoneNumber: phoneNumber.replace(/\D/g, ''),
+        type: 'license',
+        metadata: { customerId }
+      });
+
       const { data, error } = await supabase.functions.invoke('initiate-call', {
         body: { 
           phoneNumber: phoneNumber.replace(/\D/g, ''),
@@ -46,7 +53,7 @@ const License = () => {
         }
       });
 
-      console.log('Call initiation response:', data); // Add logging
+      console.log('Call initiation response:', data);
 
       if (error) {
         console.error('Supabase function error:', error);
@@ -60,12 +67,12 @@ const License = () => {
       setIsOpen(false);
       setPhoneNumber("");
       navigate('/');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error initiating call:', error);
       toast({
         variant: "destructive",
         title: "Error initiating call",
-        description: "There was an error initiating your call. Please try again."
+        description: error.message || "There was an error initiating your call. Please try again."
       });
     } finally {
       setIsLoading(false);
@@ -129,7 +136,16 @@ const License = () => {
           <div className="bg-white/5 rounded-lg p-4 backdrop-blur-sm">
             <div className="flex flex-col items-center space-y-4">
               <div className="w-full max-w-md">
-                <Input type="text" inputMode="numeric" pattern="\d*" placeholder="Enter your RightBloom Customer ID # (enter any 8 digits):" value={customerId} onChange={handleCustomerIdChange} maxLength={8} className="text-center bg-white/10 border-white/20 text-white placeholder:text-gray-400" />
+                <Input 
+                  type="text" 
+                  inputMode="numeric" 
+                  pattern="\d*" 
+                  placeholder="Enter your RightBloom Customer ID # (enter any 8 digits):" 
+                  value={customerId} 
+                  onChange={handleCustomerIdChange} 
+                  maxLength={8} 
+                  className="text-center bg-white/10 border-white/20 text-white placeholder:text-gray-400" 
+                />
               </div>
               <Dialog open={isOpen} onOpenChange={setIsOpen}>
                 <button 

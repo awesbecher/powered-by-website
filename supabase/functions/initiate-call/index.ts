@@ -18,30 +18,8 @@ serve(async (req) => {
     const { phoneNumber, type, metadata } = await req.json()
     
     console.log('Received request:', { type, phoneNumber, metadata });
-    
-    // Use a single API key and simpler configuration
-    const config = {
-      license: {
-        agentId: 'b79e025d-bb6c-4deb-99d5-a5f2f573c639',
-        flowId: '15b75020-90a0-473a-b6bc-758ced586c6b'
-      },
-      insurance: {
-        agentId: 'fc25b8cc-c3a5-44f7-9b87-37b0e6819534',
-        flowId: '018d6c31-37f7-7000-4a55-711c32d0587c'
-      }
-    }
 
-    const settings = config[type as keyof typeof config]
-    if (!settings) {
-      throw new Error(`Invalid call type: ${type}`)
-    }
-
-    console.log('Using configuration:', { type, ...settings, hasApiKey: !!VOGENT_API_KEY });
-
-    if (!VOGENT_API_KEY) {
-      throw new Error('VOGENT_API_KEY is not set in environment variables')
-    }
-
+    // Validate phone number first
     if (!phoneNumber) {
       throw new Error('Phone number is required')
     }
@@ -52,14 +30,34 @@ serve(async (req) => {
       throw new Error('Invalid phone number format. Must be at least 10 digits.')
     }
 
+    // Validate API key
+    if (!VOGENT_API_KEY) {
+      throw new Error('VOGENT_API_KEY is not set in environment variables')
+    }
+
+    // Validate and set configuration
+    if (type !== 'license' && type !== 'insurance') {
+      throw new Error(`Invalid call type: ${type}`)
+    }
+
+    const agentId = type === 'license' 
+      ? 'b79e025d-bb6c-4deb-99d5-a5f2f573c639'
+      : 'fc25b8cc-c3a5-44f7-9b87-37b0e6819534';
+
+    const flowId = type === 'license'
+      ? '15b75020-90a0-473a-b6bc-758ced586c6b'
+      : '018d6c31-37f7-7000-4a55-711c32d0587c';
+
+    console.log('Using configuration:', { type, agentId, flowId });
+
     const requestBody = {
       phoneNumber: cleanedPhoneNumber,
-      agentId: settings.agentId,
-      flowId: settings.flowId,
+      agentId,
+      flowId,
       metadata
     };
 
-    console.log('Making request to Vogent API with body:', requestBody);
+    console.log('Making request to Vogent API with body:', JSON.stringify(requestBody));
 
     const response = await fetch('https://api.vogent.com/meetings', {
       method: 'POST',
@@ -78,7 +76,13 @@ serve(async (req) => {
       throw new Error(`Vogent API error: ${response.status} - ${responseText}`)
     }
 
-    const responseData = responseText ? JSON.parse(responseText) : {};
+    let responseData;
+    try {
+      responseData = JSON.parse(responseText);
+    } catch (e) {
+      throw new Error(`Invalid JSON response from Vogent API: ${responseText}`);
+    }
+
     console.log('Call successfully initiated:', responseData);
 
     return new Response(JSON.stringify(responseData), {
