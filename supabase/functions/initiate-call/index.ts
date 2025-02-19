@@ -20,7 +20,9 @@ serve(async (req) => {
     
     console.log('Received request:', { type, phoneNumber, metadata });
     
-    let apiKey = type === 'insurance' ? VOGENT_INSURANCE_API_KEY : VOGENT_API_KEY;
+    // For both insurance and license calls, use VOGENT_API_KEY
+    const apiKey = VOGENT_API_KEY;
+    
     let agentId = type === 'insurance' 
       ? 'fc25b8cc-c3a5-44f7-9b87-37b0e6819534'
       : 'b79e025d-bb6c-4deb-99d5-a5f2f573c639';
@@ -31,7 +33,7 @@ serve(async (req) => {
     console.log('Using configuration:', { type, agentId, flowId, hasApiKey: !!apiKey });
 
     if (!apiKey) {
-      throw new Error(`API key not found for ${type} type. Please ensure VOGENT_API_KEY is set in Supabase secrets.`)
+      throw new Error(`API key not found. Please ensure VOGENT_API_KEY is set in Supabase secrets.`)
     }
 
     if (!phoneNumber) {
