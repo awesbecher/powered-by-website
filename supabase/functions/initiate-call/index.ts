@@ -34,28 +34,8 @@ serve(async (req) => {
       throw new Error('Missing Vogent API key');
     }
 
-    let flowId = '';
-
-    // Determine flow ID based on type
-    switch (type) {
-      case 'room_service':
-        flowId = '04335230-e019-4a27-905f-2006d05768a1';
-        break;
-      case 'drink_order':
-        flowId = '04335230-e019-4a27-905f-2006d05768a1';
-        break;
-      case 'food_order':
-        flowId = '04335230-e019-4a27-905f-2006d05768a1';
-        break;
-      default:
-        return new Response(
-          JSON.stringify({ error: 'Invalid call type' }),
-          { 
-            status: 400,
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-          }
-        );
-    }
+    // Room service flow ID
+    const flowId = '04335230-e019-4a27-905f-2006d05768a1';
 
     console.log('Making Vogent API request with:', { phoneNumber, flowId });
 
