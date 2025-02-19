@@ -29,8 +29,7 @@ serve(async (req) => {
       flowId = '018d6c31-37f7-7000-4a55-711c32d0587c'
     } else if (type === 'license') {
       agentId = 'b79e025d-bb6c-4deb-99d5-a5f2f573c639'
-      // We'll add the flow ID once provided
-      flowId = '' // TODO: Add license flow ID when available
+      flowId = '15b75020-90a0-473a-b6bc-758ced586c6b'
     }
 
     if (!flowId) {
