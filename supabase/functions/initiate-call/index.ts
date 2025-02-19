@@ -1,12 +1,10 @@
 
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
+import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 }
-
-const VOGENT_API_KEY = Deno.env.get('VOGENT_API_KEY')
 
 serve(async (req) => {
   // Handle CORS preflight requests
@@ -15,82 +13,76 @@ serve(async (req) => {
   }
 
   try {
-    // Log the start of the request
-    console.log('Starting initiate-call function')
+    const {
+      phoneNumber,
+      type,
+      flowId,
+      agentId,
+      from,
+      metadata
+    } = await req.json()
 
-    const { phoneNumber, type, flowId, agentId, from, metadata } = await req.json()
-    
-    console.log('Received request with payload:', { phoneNumber, type, flowId, agentId, from, metadata })
-
-    // Validate phone number
     if (!phoneNumber) {
       throw new Error('Phone number is required')
     }
 
-    // Clean phone number to ensure proper format
-    const cleanedPhoneNumber = phoneNumber.replace(/\D/g, '')
-    if (cleanedPhoneNumber.length < 10) {
-      throw new Error('Invalid phone number format. Must be at least 10 digits.')
-    }
-
-    // Validate API key
-    if (!VOGENT_API_KEY) {
-      console.error('VOGENT_API_KEY is not set')
-      throw new Error('VOGENT_API_KEY is not set in environment variables')
-    }
-
-    console.log('Making request to Vogent API with body:', JSON.stringify({
-      phoneNumber: cleanedPhoneNumber,
-      agentId,
+    // Log the incoming request
+    console.log('Initiating call with params:', {
+      phoneNumber,
+      type,
       flowId,
+      agentId,
       from,
       metadata
-    }))
+    })
 
-    const response = await fetch('https://api.vogent.com/meetings', {
+    // Configure the API based on call type
+    const apiKey = Deno.env.get('VOGENT_API_KEY')
+    if (!apiKey) {
+      throw new Error('VOGENT_API_KEY is not configured')
+    }
+
+    // Prepare request body based on call type
+    const requestBody: any = {
+      phone_number: phoneNumber,
+      flow_id: flowId,
+      agent_id: agentId,
+      from: from,
+      metadata: metadata || {}
+    }
+
+    // Make request to Vogent API
+    const response = await fetch('https://api.vogent.io/calls', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-Api-Key': VOGENT_API_KEY,
+        'Authorization': `Bearer ${apiKey}`
       },
-      body: JSON.stringify({
-        phoneNumber: cleanedPhoneNumber,
-        agentId,
-        flowId,
-        from,
-        metadata
-      })
+      body: JSON.stringify(requestBody)
     })
 
-    const responseText = await response.text()
-    console.log('Vogent API response status:', response.status)
-    console.log('Vogent API raw response:', responseText)
+    const data = await response.json()
+    console.log('Vogent API response:', data)
 
     if (!response.ok) {
-      throw new Error(`Vogent API error: ${response.status} - ${responseText}`)
+      throw new Error(data.message || 'Failed to initiate call')
     }
 
-    let responseData
-    try {
-      responseData = JSON.parse(responseText)
-    } catch (e) {
-      throw new Error(`Invalid JSON response from Vogent API: ${responseText}`)
-    }
-
-    console.log('Call successfully initiated:', responseData)
-
-    return new Response(JSON.stringify(responseData), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      status: 200
-    })
+    return new Response(
+      JSON.stringify(data),
+      {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 200
+      }
+    )
   } catch (error) {
-    console.error('Error in initiate-call function:', error)
-    return new Response(JSON.stringify({ 
-      error: error.message,
-      details: error.stack
-    }), {
-      status: 500,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-    })
+    console.error('Error:', error)
+    return new Response(
+      JSON.stringify({ error: error.message }),
+      {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 400
+      }
+    )
   }
 })
