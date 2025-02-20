@@ -61,7 +61,7 @@ const Index = () => {
       </div>
 
       {/* Hero Section */}
-      <div className="relative overflow-hidden px-6 lg:px-8 pt-24 pb-16">
+      <div className="relative overflow-hidden px-6 lg:px-8 pt-24 pb-8">
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
@@ -97,7 +97,7 @@ const Index = () => {
       </div>
 
       {/* Services Grid */}
-      <div className="relative px-4 lg:px-6 pb-8">
+      <div className="relative px-4 lg:px-6">
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
             {services.map((service, index) => (
