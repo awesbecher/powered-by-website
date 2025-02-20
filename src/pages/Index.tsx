@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -84,7 +83,7 @@ const Index = () => {
                 Simplified
               </span>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-400 leading-8">
+            <p className="mx-auto mt-3 max-w-2xl text-lg text-gray-400 leading-8">
               Streamline your hotel operations with our comprehensive suite of services.
               From room service to compliance, we've got you covered.
             </p>
