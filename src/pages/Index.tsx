@@ -22,15 +22,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen w-full bg-neutral-soft">
-      {/* Logo */}
-      <div className="absolute top-6 right-6 lg:right-8">
-        <img 
-          src="/lovable-uploads/9fc68748-b04f-497b-be41-8c2ee52fd01c.png"
-          alt="Madrone Capital Logo"
-          className="w-32 lg:w-48 h-auto"
-        />
-      </div>
-
       {/* Hero Section */}
       <div className="relative overflow-hidden px-6 lg:px-8 pt-10 pb-16">
         <div className="mx-auto max-w-7xl">
