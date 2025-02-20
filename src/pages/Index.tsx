@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Index = () => {
   const services = [
     {
-      title: "Room Service",
+      title: "In-Room Dining",
       description: "Order food and drinks directly to your room",
       link: "/room-service",
     },
