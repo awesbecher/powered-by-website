@@ -3,8 +3,9 @@ import { supabase } from "@/integrations/supabase/client";
 
 const FLOW_ID = "cd922dc9-eea6-4b43-878f-cb5cfd67e005";
 const AGENT_ID = "53660ead-9260-4a23-8df2-55a7050b3340";
+const AGENT_PHONE = "9177682024"; // Agent's phone number for outbound calling
 
-export const initiateVogentCall = async (phoneNumber: string) => {
+export const initiateVogentCall = async (userPhoneNumber: string) => {
   try {
     const { data: secretData, error: secretError } = await supabase.functions.invoke('get-secret', {
       body: { secretName: 'VOGENT_API_KEY' }
@@ -24,7 +25,8 @@ export const initiateVogentCall = async (phoneNumber: string) => {
         flowId: FLOW_ID,
         agentId: AGENT_ID,
         webhookUrl: `${window.location.origin}/api/call-completed`,
-        phoneNumber: phoneNumber.replace(/\D/g, ''), // Strip non-digits from phone number
+        phoneNumber: userPhoneNumber.replace(/\D/g, ''), // User's phone number to receive the call
+        outboundNumber: AGENT_PHONE, // Agent's number making the call
       }),
     });
 
