@@ -58,7 +58,7 @@ const Index = () => {
       category: "Real Estate"
     },
     {
-      title: "Book Reservation",
+      title: "Barbershop Reservations",
       description: "Connect with our retail support team",
       link: "/retail",
       logo: "/lovable-uploads/92d1275c-847a-49ad-a297-792c7bf899a7.png",
