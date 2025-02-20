@@ -1,3 +1,4 @@
+
 import { Scissors, Clock, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -62,7 +63,7 @@ const RetailServices = () => {
             Welcome! Book an appointment.
           </h1>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Flagship Barbers has been serving Tacoma public for 25 years. We specialize in classic barbershop style and fades. Select which services you'd like and then click on Chat with Us below to book an appointment.
+            Flagship Barbers has been serving the Tacoma public for 25 years. We specialize in classic barbershop style and fades. Select which services you'd like and then click on Chat with Us below to book an appointment.
           </p>
         </div>
       </div>
