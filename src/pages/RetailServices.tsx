@@ -44,6 +44,15 @@ const services = [
 const RetailServices = () => {
   return (
     <div className="min-h-screen bg-[#222222] text-white">
+      {/* Logo */}
+      <div className="absolute top-8 right-8">
+        <img 
+          src="/lovable-uploads/07f82a95-cea8-417e-96f0-5d8ef95f0200.png"
+          alt="Flagship Barbers Logo"
+          className="h-12 w-auto"
+        />
+      </div>
+
       {/* Header */}
       <div className="relative py-8 px-4 lg:px-8">
         <Link to="/" className="absolute top-8 left-8 text-gray-400 hover:text-white transition-colors">
