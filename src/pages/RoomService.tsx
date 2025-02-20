@@ -13,6 +13,12 @@ const RoomService = () => {
         <span>Back to Services</span>
       </Link>
 
+      <img 
+        src="/lovable-uploads/ec9dd264-4bb3-4b03-9b50-e31383652af9.png"
+        alt="GrandView Hotel"
+        className="absolute top-8 right-8 h-12 w-auto"
+      />
+
       <div className="mx-auto max-w-3xl text-center pt-16">
         <h1 className="text-5xl font-bold text-white mb-8">Order Room Service</h1>
       </div>
