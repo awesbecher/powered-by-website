@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Phone } from "lucide-react";
@@ -104,7 +105,7 @@ const Index = () => {
               <Link
                 key={service.title}
                 to={service.link}
-                className="group relative overflow-hidden rounded-2xl bg-black p-12 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/5 hover:-translate-y-1 transform-gpu hover:scale-[1.02] min-h-[300px] flex flex-col justify-center"
+                className="group relative overflow-hidden rounded-2xl bg-black p-12 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/5 hover:-translate-y-1 transform-gpu hover:scale-[1.02] min-h-[300px] flex flex-col justify-center cursor-pointer"
               >
                 <h2 className="text-xl font-semibold absolute top-8 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-accent via-[#E5DEFF] to-accent bg-clip-text text-transparent font-bold">
                   {service.category}
@@ -124,17 +125,17 @@ const Index = () => {
                   </h3>
                   <p className="text-gray-400 mb-6">{service.description}</p>
                   {service.category === "Hospitality" && (
-                    <button className="flex items-center justify-center gap-1 mx-auto px-3 py-1 bg-accent hover:bg-accent/90 text-white rounded-md transition-colors font-bold text-sm">
+                    <button className="flex items-center justify-center gap-1 mx-auto px-3 py-1 bg-accent hover:bg-accent/90 text-white rounded-md transition-colors font-bold text-sm pointer-events-none">
                       <Phone className="w-4 h-4" /> Speak to Room Service
                     </button>
                   )}
                   {service.category === "Insurance" && (
-                    <button className="flex items-center justify-center gap-1 mx-auto px-3 py-1 bg-accent hover:bg-accent/90 text-white rounded-md transition-colors font-bold text-sm">
+                    <button className="flex items-center justify-center gap-1 mx-auto px-3 py-1 bg-accent hover:bg-accent/90 text-white rounded-md transition-colors font-bold text-sm pointer-events-none">
                       <Phone className="w-4 h-4" /> Speak to an Agent
                     </button>
                   )}
                   {service.category === "SaaS Licensing" && (
-                    <button className="flex items-center justify-center gap-1 mx-auto px-3 py-1 bg-accent hover:bg-accent/90 text-white rounded-md transition-colors font-bold text-sm">
+                    <button className="flex items-center justify-center gap-1 mx-auto px-3 py-1 bg-accent hover:bg-accent/90 text-white rounded-md transition-colors font-bold text-sm pointer-events-none">
                       <Phone className="w-4 h-4" /> Speak to Sales
                     </button>
                   )}

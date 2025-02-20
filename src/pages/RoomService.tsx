@@ -1,0 +1,23 @@
+
+import { Link } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
+
+const RoomService = () => {
+  return (
+    <div className="min-h-screen w-full bg-[#222222] px-4 py-16 sm:px-6 lg:px-8">
+      <Link 
+        to="/" 
+        className="absolute top-8 left-8 flex items-center text-accent hover:text-accent/80 transition-colors"
+      >
+        <ArrowLeft className="h-6 w-6 mr-2" />
+        <span>Back to Services</span>
+      </Link>
+
+      <div className="mx-auto max-w-3xl text-center pt-16">
+        <h1 className="text-5xl font-bold text-white mb-8">Order Room Service</h1>
+      </div>
+    </div>
+  );
+};
+
+export default RoomService;
