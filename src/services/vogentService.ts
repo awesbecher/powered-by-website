@@ -12,18 +12,23 @@ export const initiateVogentCall = async (userPhoneNumber: string) => {
       body: { secretName: 'VOGENT_API_KEY' }
     });
 
-    if (secretError || !secretData?.secret) {
-      console.error('Error getting Vogent API key:', secretError || 'No secret returned');
+    if (secretError) {
+      console.error('Edge function error:', secretError);
       throw new Error('Failed to retrieve Vogent API key');
     }
 
-    // Format phone number to include country code
+    if (!secretData?.secret) {
+      console.error('No API key found in response:', secretData);
+      throw new Error('Vogent API key not found');
+    }
+
+    // Format phone number to include country code if not already present
     const formattedPhoneNumber = userPhoneNumber.startsWith('+1') 
       ? userPhoneNumber 
       : '+1' + userPhoneNumber.replace(/\D/g, '');
 
     console.log('Initiating Vogent call to:', formattedPhoneNumber);
-    
+
     const requestBody = {
       flowId: FLOW_ID,
       agentId: AGENT_ID,
@@ -32,34 +37,38 @@ export const initiateVogentCall = async (userPhoneNumber: string) => {
       outboundNumber: AGENT_PHONE,
     };
 
-    console.log('Request body:', requestBody);
+    console.log('Making request to Vogent API with body:', JSON.stringify(requestBody));
 
-    const response = await fetch("https://api.vogent.ai/flow/start", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": secretData.secret,
-      },
-      body: JSON.stringify(requestBody),
-    });
-
-    const responseText = await response.text();
-    console.log('Raw API response:', responseText);
-
-    if (!response.ok) {
-      throw new Error(`Vogent API error (${response.status}): ${responseText}`);
-    }
-
-    let responseData;
     try {
-      responseData = JSON.parse(responseText);
-    } catch (e) {
-      console.error('Error parsing JSON response:', e);
-      throw new Error('Invalid response from Vogent API');
-    }
+      const response = await fetch("https://api.vogent.ai/flow/start", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": secretData.secret,
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(requestBody),
+      });
 
-    console.log('Vogent call initiated successfully:', responseData);
-    return responseData;
+      const responseText = await response.text();
+      console.log('Raw API response:', responseText);
+
+      if (!response.ok) {
+        throw new Error(`Vogent API error (${response.status}): ${responseText}`);
+      }
+
+      try {
+        const responseData = JSON.parse(responseText);
+        console.log('Vogent call initiated successfully:', responseData);
+        return responseData;
+      } catch (e) {
+        console.error('Error parsing JSON response:', e);
+        throw new Error('Invalid response format from Vogent API');
+      }
+    } catch (apiError) {
+      console.error('Vogent API call failed:', apiError);
+      throw new Error(`Failed to initiate call: ${apiError.message}`);
+    }
   } catch (error) {
     console.error('Error in initiateVogentCall:', error);
     throw error;
