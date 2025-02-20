@@ -9,7 +9,7 @@ const Index = () => {
       link: "/room-service",
     },
     {
-      title: "Insurance",
+      title: "Get an Insurance Quote",
       description: "Protect your stay with our insurance options",
       link: "/insurance",
     },
