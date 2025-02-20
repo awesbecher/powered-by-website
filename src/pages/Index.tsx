@@ -77,7 +77,7 @@ const Index = () => {
                     <img 
                       src={service.logo} 
                       alt={`${service.title} Logo`} 
-                      className={`h-16 w-auto ${service.title === "Get an Insurance Quote" ? "w-32" : ""}`}
+                      className={`h-16 w-auto ${service.title === "Get an Insurance Quote" ? "w-32" : ""} ${service.title === "Upgrade your License" ? "w-28" : ""}`}
                     />
                   </div>
                 )}
