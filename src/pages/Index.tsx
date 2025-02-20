@@ -7,19 +7,22 @@ const Index = () => {
       title: "In-Room Dining",
       description: "Order food and drinks directly to your room",
       link: "/room-service",
-      logo: "/lovable-uploads/75ff6e78-9db7-436e-a063-2b5f8c500ee7.png"
+      logo: "/lovable-uploads/75ff6e78-9db7-436e-a063-2b5f8c500ee7.png",
+      category: "Hospitality"
     },
     {
       title: "Get an Insurance Quote",
       description: "Protect your stay with our insurance options",
       link: "/insurance",
-      logo: "/lovable-uploads/5b3d5137-838b-44a5-8f54-bb2a4cb7dc5a.png"
+      logo: "/lovable-uploads/5b3d5137-838b-44a5-8f54-bb2a4cb7dc5a.png",
+      category: "Insurance"
     },
     {
       title: "Upgrade your License",
       description: "Manage your hotel license and compliance",
       link: "/license",
-      logo: "/lovable-uploads/e9ddfbf3-072d-410d-b7ed-01c83eb30564.png"
+      logo: "/lovable-uploads/e9ddfbf3-072d-410d-b7ed-01c83eb30564.png",
+      category: "SaaS Licensing"
     }
   ];
 
@@ -72,11 +75,9 @@ const Index = () => {
                 to={service.link}
                 className="group relative overflow-hidden rounded-2xl bg-black p-12 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/5 hover:-translate-y-1 transform-gpu hover:scale-[1.02] min-h-[400px] flex flex-col justify-center"
               >
-                {index === 0 && (
-                  <h2 className="text-accent text-xl font-semibold absolute top-8 left-1/2 transform -translate-x-1/2">
-                    Hospitality
-                  </h2>
-                )}
+                <h2 className="text-accent text-xl font-semibold absolute top-8 left-1/2 transform -translate-x-1/2">
+                  {service.category}
+                </h2>
                 {service.logo && (
                   <div className="absolute top-20 left-1/2 transform -translate-x-1/2">
                     <img 
