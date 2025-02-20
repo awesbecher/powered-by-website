@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Phone } from "lucide-react";
@@ -60,7 +61,7 @@ const Index = () => {
     },
     {
       title: "Barbershop Reservations",
-      description: "Connect with our retail support team",
+      description: "Chat with our reservations team",
       link: "/retail",
       logo: "/lovable-uploads/76119a46-2fce-4a9d-8e3b-3ac7cd6e402a.png",
       category: "Retail Services"
