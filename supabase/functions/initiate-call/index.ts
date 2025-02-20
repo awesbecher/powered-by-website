@@ -42,8 +42,8 @@ serve(async (req) => {
       throw new Error('VOGENT_API_KEY is not configured')
     }
 
-    // Prepare request body based on call type
-    const requestBody: any = {
+    // Prepare request body for Vogent API
+    const requestBody = {
       phone_number: phoneNumber,
       flow_id: flowId,
       agent_id: agentId,
@@ -51,34 +51,47 @@ serve(async (req) => {
       metadata: metadata || {}
     }
 
-    // Make request to Vogent API
+    // Make request to Vogent API with proper headers
     const response = await fetch('https://api.vogent.io/calls', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`
+        'Authorization': `Bearer ${apiKey}`,
+        'Accept': 'application/json'
       },
       body: JSON.stringify(requestBody)
     })
 
-    const data = await response.json()
-    console.log('Vogent API response:', data)
+    const responseText = await response.text()
+    console.log('Raw Vogent API response:', responseText)
+    
+    let data
+    try {
+      data = JSON.parse(responseText)
+    } catch (e) {
+      console.error('Failed to parse Vogent API response:', e)
+      throw new Error('Invalid response from Vogent API')
+    }
 
     if (!response.ok) {
+      console.error('Vogent API error:', data)
       throw new Error(data.message || 'Failed to initiate call')
     }
 
     return new Response(
-      JSON.stringify(data),
+      JSON.stringify({ success: true, data }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         status: 200
       }
     )
   } catch (error) {
-    console.error('Error:', error)
+    console.error('Error in edge function:', error)
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        error: error.message,
+        success: false
+      }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         status: 400
