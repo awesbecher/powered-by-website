@@ -60,7 +60,7 @@ const RetailServices = () => {
         </Link>
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-4xl font-bold mb-4">
-            Premium Barbershop Services
+            Welcome! Book an appointment.
           </h1>
           <p className="text-gray-400 max-w-2xl mx-auto">
             Experience professional grooming services in a classic barbershop atmosphere. 
