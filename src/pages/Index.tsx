@@ -61,6 +61,7 @@ const Index = () => {
       title: "Customer Support",
       description: "Connect with our retail support team",
       link: "/retail",
+      logo: "/lovable-uploads/92d1275c-847a-49ad-a297-792c7bf899a7.png",
       category: "Retail Services"
     }
   ];
@@ -188,7 +189,13 @@ const Index = () => {
                     {service.category}
                   </h2>
                   <div className="w-32 h-16 flex items-center justify-center">
-                    {/* Logo placeholder - will be added later */}
+                    {service.logo && (
+                      <img 
+                        src={service.logo} 
+                        alt={`${service.title} Logo`} 
+                        className="max-w-full max-h-full w-auto h-auto object-contain"
+                      />
+                    )}
                   </div>
                 </div>
 
