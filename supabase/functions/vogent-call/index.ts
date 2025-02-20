@@ -9,7 +9,7 @@ const corsHeaders = {
 serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
-    return new Response('ok', { headers: corsHeaders })
+    return new Response(null, { headers: corsHeaders })
   }
 
   try {
@@ -21,20 +21,17 @@ serve(async (req) => {
 
     console.log('Initiating call to:', phoneNumber)
 
-    const vogentKey = Deno.env.get('VOGENT_API_KEY')
-    if (!vogentKey) {
-      throw new Error('VOGENT_API_KEY is not configured')
-    }
-
-    const response = await fetch('https://api.vogent.com/v1/calls', {
+    const response = await fetch('https://api.vogent.ai/api/dials', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${vogentKey}`,
+        'Authorization': 'Bearer elto_fvRkQ2V9PYDyDpdxK9kGMCpJLqESEJiH',
       },
       body: JSON.stringify({
-        phone_number: phoneNumber,
-        flow_id: 'cd922dc9-eea6-4b43-878f-cb5cfd67e005', // Using the provided Flow ID
+        agent_id: "cd922dc9-eea6-4b43-878f-cb5cfd67e005",
+        toNumber: phoneNumber,
+        fromNumberId: "53660ead-9260-4a23-8df2-55a7050b3340",
+        callAgentId: "cd922dc9-eea6-4b43-878f-cb5cfd67e005"
       }),
     })
 
@@ -66,3 +63,4 @@ serve(async (req) => {
     )
   }
 })
+
