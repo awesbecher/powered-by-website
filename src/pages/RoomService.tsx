@@ -20,7 +20,8 @@ const RoomService = () => {
       />
 
       <div className="mx-auto max-w-3xl text-center pt-16">
-        <h1 className="text-5xl font-bold text-white mb-8">Order Room Service</h1>
+        <h1 className="text-5xl font-bold text-white mb-4">Order Room Service</h1>
+        <p className="text-white/90 text-lg mb-8">Please choose from any of the items on our Food & Drinks Menu below. When you are ready, click the button below to speak to Room Service.</p>
         <div className="flex flex-col gap-8 items-center">
           <img 
             src="/lovable-uploads/54a3f767-41a4-4083-a920-5592f61dbd63.png"
