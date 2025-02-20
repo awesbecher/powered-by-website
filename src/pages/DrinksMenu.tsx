@@ -56,7 +56,7 @@ const DrinksMenu = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#1A1F2C] px-4 py-16 sm:px-6 lg:px-8">
+    <div className="min-h-screen w-full bg-[#222222] px-4 py-16 sm:px-6 lg:px-8">
       {!isMobile && <div className="absolute top-8 right-8">
         <img 
           src="/lovable-uploads/f61255a3-5368-4739-a068-ec3431ea636f.png" 

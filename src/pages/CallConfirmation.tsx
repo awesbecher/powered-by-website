@@ -1,10 +1,9 @@
-
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 
 const CallConfirmation = () => {
   return (
-    <div className="min-h-screen w-full bg-[#1A1F2C] px-4 py-16 sm:px-6 lg:px-8">
+    <div className="min-h-screen w-full bg-[#222222] px-4 py-16 sm:px-6 lg:px-8">
       <Link to="/room-service" className="absolute top-8 left-8 flex items-center text-accent hover:text-accent/80 transition-colors">
         <ArrowLeft className="h-6 w-6 mr-2" />
         <span>Back to Room Service</span>

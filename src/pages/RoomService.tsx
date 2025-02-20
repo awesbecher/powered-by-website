@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { ArrowLeft, Phone } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -30,7 +29,7 @@ const RoomService = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#1A1F2C] px-4 py-16 sm:px-6 lg:px-8">
+    <div className="min-h-screen w-full bg-[#222222] px-4 py-16 sm:px-6 lg:px-8">
       <div className="absolute top-8 right-8">
         <img src="/lovable-uploads/f61255a3-5368-4739-a068-ec3431ea636f.png" alt="GrandView Hotel Logo" className="h-24 w-auto" />
       </div>

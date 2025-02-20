@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 
 const Index = () => {
@@ -24,7 +23,7 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen w-full bg-[#1A1F2C]">
+    <div className="min-h-screen w-full bg-[#222222]">
       {/* Logo */}
       <div className="absolute top-6 right-6 lg:right-8">
         <a 
