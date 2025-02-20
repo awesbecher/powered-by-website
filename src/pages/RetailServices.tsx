@@ -3,6 +3,16 @@ import { Scissors, Clock, Star, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
+// Extend Window interface to include Chatbase
+declare global {
+  interface Window {
+    chatbase?: {
+      (action: string): void;
+      q?: any[];
+    };
+  }
+}
+
 const services = [
   {
     name: "Classic Haircut",
