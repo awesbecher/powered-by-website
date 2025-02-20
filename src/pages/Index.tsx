@@ -1,73 +1,9 @@
 
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { Phone, MessageCircle } from "lucide-react";
+import { WordAnimation } from "@/components/home/WordAnimation";
+import { ServiceCard } from "@/components/home/ServiceCard";
+import { services, additionalServices } from "@/data/services";
 
 const Index = () => {
-  const [currentWord, setCurrentWord] = useState("Voice");
-  const words = ["Voice", "Phone", "Text", "Email", "Slack", "Chat", "Docs", "Survey"];
-  const [wordIndex, setWordIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setWordIndex((prevIndex) => {
-        const nextIndex = (prevIndex + 1) % words.length;
-        setCurrentWord(words[nextIndex]);
-        return nextIndex;
-      });
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const services = [
-    {
-      title: "In-Room Dining",
-      description: "Order food and drinks directly to your room",
-      link: "/room-service",
-      logo: "/lovable-uploads/75ff6e78-9db7-436e-a063-2b5f8c500ee7.png",
-      category: "Hospitality"
-    },
-    {
-      title: "Get an Insurance Quote",
-      description: "Get an insurance quote tailored to your needs",
-      link: "/insurance",
-      logo: "/lovable-uploads/5b3d5137-838b-44a5-8f54-bb2a4cb7dc5a.png",
-      category: "Insurance"
-    },
-    {
-      title: "Upgrade your License",
-      description: "Manage and upgrade your seat licenses",
-      link: "/license",
-      logo: "/lovable-uploads/e9ddfbf3-072d-410d-b7ed-01c83eb30564.png",
-      category: "SaaS Licensing"
-    }
-  ];
-
-  const additionalServices = [
-    {
-      title: "Schedule a Test Drive",
-      description: "Book an appointment to test drive your dream car",
-      link: "/auto-dealer",
-      logo: "/lovable-uploads/aa693bec-b111-4ff5-82d5-78ad46643ea3.png",
-      category: "Auto Dealer"
-    },
-    {
-      title: "Property Tour",
-      description: "Schedule a viewing of available properties",
-      link: "/real-estate",
-      logo: "/lovable-uploads/e305eace-d64d-4437-9d8e-533d49b3d934.png",
-      category: "Real Estate"
-    },
-    {
-      title: "Barbershop Reservations",
-      description: "Chat with our reservations team",
-      link: "/retail",
-      logo: "/lovable-uploads/76119a46-2fce-4a9d-8e3b-3ac7cd6e402a.png",
-      category: "Retail Services"
-    }
-  ];
-
   return (
     <div className="min-h-screen w-full bg-[#222222]">
       {/* Logo */}
@@ -84,29 +20,7 @@ const Index = () => {
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
-              <span 
-                className="
-                  relative inline-block min-w-[120px] sm:min-w-[180px] 
-                  transition-all duration-500 ease-in-out 
-                  animate-fade-in
-                  bg-gradient-to-r from-accent via-[#E5DEFF] to-accent 
-                  bg-clip-text text-transparent
-                  drop-shadow-[0_0_10px_rgba(155,135,245,0.3)]
-                  pb-4
-                  after:content-[''] 
-                  after:absolute 
-                  after:bottom-0 
-                  after:left-0 
-                  after:w-full 
-                  after:h-[4px] 
-                  after:bg-accent
-                  after:transform
-                  after:origin-bottom-left
-                  after:[clip-path:path('M0,0 C25,0 25,60 50,60 C75,60 75,0 100,0')]
-                "
-              >
-                {currentWord}
-              </span>
+              <WordAnimation />
               Automation{" "}
               <span className="text-white">
                 Simplified
@@ -127,51 +41,8 @@ const Index = () => {
       <div className="relative px-4 lg:px-6 space-y-8">
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
-            {services.map((service, index) => (
-              <Link
-                key={service.title}
-                to={service.link}
-                className="group relative overflow-hidden rounded-2xl bg-black p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/5 hover:-translate-y-1 transform-gpu hover:scale-[1.02] min-h-[280px] flex flex-col justify-between cursor-pointer"
-              >
-                <div className="flex flex-col items-center">
-                  <h2 className="text-xl font-semibold bg-gradient-to-r from-accent via-[#E5DEFF] to-accent bg-clip-text text-transparent font-bold mb-6">
-                    {service.category}
-                  </h2>
-                  {service.logo && (
-                    <div className="w-32 h-16 flex items-center justify-center">
-                      <img 
-                        src={service.logo} 
-                        alt={`${service.title} Logo`} 
-                        className="max-w-full max-h-full w-auto h-auto object-contain"
-                      />
-                    </div>
-                  )}
-                </div>
-
-                <div className="relative z-10 text-center mt-8">
-                  <h3 className="text-xl font-semibold tracking-tight text-white mb-2 whitespace-nowrap">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-400 mb-4 text-sm font-bold">{service.description}</p>
-                  {service.category === "Hospitality" && (
-                    <button className="flex items-center justify-center gap-1 mx-auto px-3 py-1 bg-accent hover:bg-accent/90 text-white rounded-md transition-colors font-bold text-sm pointer-events-none">
-                      <Phone className="w-4 h-4" /> Speak to Room Service
-                    </button>
-                  )}
-                  {service.category === "Insurance" && (
-                    <button className="flex items-center justify-center gap-1 mx-auto px-3 py-1 bg-accent hover:bg-accent/90 text-white rounded-md transition-colors font-bold text-sm pointer-events-none">
-                      <Phone className="w-4 h-4" /> Speak to an Agent
-                    </button>
-                  )}
-                  {service.category === "SaaS Licensing" && (
-                    <button className="flex items-center justify-center gap-1 mx-auto px-3 py-1 bg-accent hover:bg-accent/90 text-white rounded-md transition-colors font-bold text-sm pointer-events-none">
-                      <Phone className="w-4 h-4" /> Speak to Sales
-                    </button>
-                  )}
-                </div>
-                
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              </Link>
+            {services.map((service) => (
+              <ServiceCard key={service.title} {...service} />
             ))}
           </div>
         </div>
@@ -179,47 +50,8 @@ const Index = () => {
         {/* Additional Services Grid */}
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
-            {additionalServices.map((service, index) => (
-              <Link
-                key={service.title}
-                to={service.link}
-                className="group relative overflow-hidden rounded-2xl bg-black p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/5 hover:-translate-y-1 transform-gpu hover:scale-[1.02] min-h-[280px] flex flex-col justify-between cursor-pointer"
-              >
-                <div className="flex flex-col items-center">
-                  <h2 className="text-xl font-semibold bg-gradient-to-r from-accent via-[#E5DEFF] to-accent bg-clip-text text-transparent font-bold mb-6">
-                    {service.category}
-                  </h2>
-                  <div className="w-32 h-16 flex items-center justify-center">
-                    {service.logo && (
-                      <img 
-                        src={service.logo} 
-                        alt={`${service.title} Logo`} 
-                        className="max-w-full max-h-full w-auto h-auto object-contain"
-                      />
-                    )}
-                  </div>
-                </div>
-
-                <div className="relative z-10 text-center mt-8">
-                  <h3 className="text-xl font-semibold tracking-tight text-white mb-2 whitespace-nowrap">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-400 mb-4 text-sm font-bold">{service.description}</p>
-                  <button className="flex items-center justify-center gap-1 mx-auto px-3 py-1 bg-accent hover:bg-accent/90 text-white rounded-md transition-colors font-bold text-sm pointer-events-none">
-                    {service.category === "Retail Services" ? (
-                      <>
-                        <MessageCircle className="w-4 h-4" /> Chat with Us
-                      </>
-                    ) : (
-                      <>
-                        <Phone className="w-4 h-4" /> {service.category === "Auto Dealer" ? "Speak to Sales" : "Speak to an Agent"}
-                      </>
-                    )}
-                  </button>
-                </div>
-                
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              </Link>
+            {additionalServices.map((service) => (
+              <ServiceCard key={service.title} {...service} />
             ))}
           </div>
         </div>
