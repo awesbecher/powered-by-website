@@ -67,7 +67,7 @@ const Index = () => {
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
               <span className="inline-block min-w-[120px] sm:min-w-[180px] transition-all duration-500 ease-in-out animate-fade-in">
                 {currentWord}
-              </span>{" "}
+              </span>
               Automation{" "}
               <span className="bg-gradient-to-r from-accent via-accent/80 to-accent/60 bg-clip-text text-transparent">
                 Simplified
