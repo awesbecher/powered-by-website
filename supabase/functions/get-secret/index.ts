@@ -1,6 +1,5 @@
 
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.38.4'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -17,44 +16,32 @@ serve(async (req) => {
     const { secretName } = await req.json()
     
     if (!secretName) {
+      console.error('No secret name provided')
       throw new Error('Secret name is required')
     }
 
     console.log(`Looking up secret: ${secretName}`)
 
-    const supabaseUrl = Deno.env.get('SUPABASE_URL')
-    const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
-
-    if (!supabaseUrl || !supabaseKey) {
-      throw new Error('Missing required environment variables')
-    }
-
-    const supabaseAdmin = createClient(supabaseUrl, supabaseKey)
-
-    const { data, error } = await supabaseAdmin
-      .from('secrets')
-      .select('value')
-      .eq('name', secretName)
-      .maybeSingle()
-
-    if (error) {
-      console.error('Database error:', error)
-      throw new Error('Failed to fetch secret from database')
-    }
-
-    if (!data) {
-      console.error('Secret not found:', secretName)
+    // Get the secret value from Deno environment
+    const secretValue = Deno.env.get(secretName)
+    
+    if (!secretValue) {
+      console.error(`Secret ${secretName} not found in environment variables`)
       throw new Error(`Secret ${secretName} not found`)
     }
 
     console.log('Secret retrieved successfully')
+    
     return new Response(
       JSON.stringify({ 
-        secret: data.value,
+        secret: secretValue,
         message: 'Secret retrieved successfully'
       }),
       {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        headers: { 
+          ...corsHeaders,
+          'Content-Type': 'application/json'
+        },
         status: 200,
       }
     )
@@ -66,7 +53,10 @@ serve(async (req) => {
         details: error.toString()
       }),
       {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        headers: { 
+          ...corsHeaders,
+          'Content-Type': 'application/json'
+        },
         status: 500,
       }
     )
