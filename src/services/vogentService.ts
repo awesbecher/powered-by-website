@@ -12,59 +12,52 @@ export const initiateVogentCall = async (userPhoneNumber: string) => {
       body: { secretName: 'VOGENT_API_KEY' }
     });
 
-    if (secretError) {
-      console.error('Edge function error:', secretError);
+    if (secretError || !secretData?.secret) {
+      console.error('Error getting Vogent API key:', secretError || 'No secret returned');
       throw new Error('Failed to retrieve Vogent API key');
     }
 
-    if (!secretData?.secret) {
-      console.error('No API key found in response:', secretData);
-      throw new Error('Vogent API key not found');
-    }
-
-    const formattedPhoneNumber = userPhoneNumber.startsWith('+1') 
-      ? userPhoneNumber 
-      : '+1' + userPhoneNumber.replace(/\D/g, '');
+    // Ensure phone number is properly formatted with country code
+    const cleanNumber = userPhoneNumber.replace(/\D/g, '');
+    const formattedPhoneNumber = cleanNumber.length === 10 
+      ? '+1' + cleanNumber
+      : (cleanNumber.startsWith('1') ? '+' + cleanNumber : '+1' + cleanNumber);
 
     console.log('Initiating Vogent call to:', formattedPhoneNumber);
 
-    const requestBody = {
+    // Create the request body
+    const requestBody = JSON.stringify({
       flowId: FLOW_ID,
       agentId: AGENT_ID,
       webhookUrl: `${window.location.origin}/api/call-completed`,
       phoneNumber: formattedPhoneNumber,
       outboundNumber: AGENT_PHONE,
-    };
+    });
 
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('x-api-key', secretData.secret);
+    // Make the API call using URLSearchParams for better compatibility
+    const response = await fetch("https://api.vogent.ai/flow/start", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": secretData.secret
+      },
+      body: requestBody
+    });
 
-    try {
-      const response = await fetch("https://api.vogent.ai/flow/start", {
-        method: "POST",
-        headers,
-        body: JSON.stringify(requestBody),
-        mode: 'cors',
-        credentials: 'omit'
-      });
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error('Vogent API error response:', errorText);
-        throw new Error(`Vogent API error (${response.status}): ${errorText}`);
-      }
-
-      const responseData = await response.json();
-      console.log('Vogent call initiated successfully:', responseData);
-      return responseData;
-
-    } catch (apiError) {
-      console.error('Vogent API call failed:', apiError);
-      throw new Error('Failed to connect to Vogent API. Please try again.');
+    // Handle non-OK responses
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('Vogent API error:', response.status, errorText);
+      throw new Error('Failed to initiate call. Please try again.');
     }
+
+    // Parse response
+    const data = await response.json();
+    console.log('Call initiated successfully:', data);
+    return data;
+
   } catch (error) {
     console.error('Error in initiateVogentCall:', error);
-    throw error;
+    throw new Error('Unable to connect to Room Service. Please try again.');
   }
 };
