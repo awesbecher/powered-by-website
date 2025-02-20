@@ -83,7 +83,7 @@ const RetailServices = () => {
       </div>
 
       {/* Chat CTA */}
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 lg:px-8 pb-12">
         <div className="bg-accent/10 rounded-lg p-8 text-center border border-accent/20">
           <h2 className="text-2xl font-bold mb-4">Ready to Book Your Appointment?</h2>
           <p className="text-gray-400 mb-6">
