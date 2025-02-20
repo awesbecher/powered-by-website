@@ -69,7 +69,7 @@ const Index = () => {
                 to={service.link}
                 className="group relative overflow-hidden rounded-2xl bg-neutral-medium p-16 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/5 hover:-translate-y-1 transform-gpu hover:scale-[1.02] min-h-[400px] flex flex-col justify-center"
               >
-                <div className="relative z-10">
+                <div className="relative z-10 text-center">
                   <h3 className="text-2xl font-semibold tracking-tight text-white mb-4 whitespace-nowrap">
                     {service.title}
                   </h3>
