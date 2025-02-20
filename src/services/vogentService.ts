@@ -8,18 +8,18 @@ const AGENT_PHONE = "9177682024"; // Agent's phone number for outbound calling
 export const initiateVogentCall = async (userPhoneNumber: string) => {
   try {
     console.log('Fetching Vogent API key from secrets...');
-    const { data: secretData, error: secretError } = await supabase.functions.invoke('get-secret', {
+    const { data, error } = await supabase.functions.invoke('get-secret', {
       body: { secretName: 'VOGENT_API_KEY' }
     });
 
-    if (secretError) {
-      console.error('Error fetching secret:', secretError);
-      throw new Error("Could not retrieve Vogent API key");
+    if (error) {
+      console.error('Error invoking get-secret function:', error);
+      throw new Error(`Failed to get Vogent API key: ${error.message}`);
     }
 
-    if (!secretData?.secret) {
-      console.error('No secret returned:', secretData);
-      throw new Error("Vogent API key not found");
+    if (!data?.secret) {
+      console.error('No secret data returned:', data);
+      throw new Error('Vogent API key not found in response');
     }
 
     console.log('Initiating Vogent call...');
@@ -27,36 +27,28 @@ export const initiateVogentCall = async (userPhoneNumber: string) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": secretData.secret,
+        "x-api-key": data.secret,
       },
       body: JSON.stringify({
         flowId: FLOW_ID,
         agentId: AGENT_ID,
         webhookUrl: `${window.location.origin}/api/call-completed`,
-        phoneNumber: userPhoneNumber.replace(/\D/g, ''), // User's phone number to receive the call
-        outboundNumber: AGENT_PHONE, // Agent's number making the call
+        phoneNumber: userPhoneNumber.replace(/\D/g, ''),
+        outboundNumber: AGENT_PHONE,
       }),
     });
 
     if (!response.ok) {
-      const errorData = await response.text();
-      console.error('Vogent API error:', errorData);
-      throw new Error(`Failed to initiate Vogent call: ${response.status}`);
+      const errorText = await response.text();
+      console.error('Vogent API error response:', errorText);
+      throw new Error(`Vogent API error (${response.status}): ${errorText}`);
     }
 
-    const data = await response.json();
-    console.log('Vogent call initiated successfully:', data);
-    
-    // Set up event listener for message from Vogent iframe
-    window.addEventListener('message', (event) => {
-      if (event.data.type === 'VOGENT_CALL_ENDED') {
-        window.location.href = '/';
-      }
-    });
-
-    return data;
+    const responseData = await response.json();
+    console.log('Vogent call initiated successfully:', responseData);
+    return responseData;
   } catch (error) {
-    console.error("Error initiating Vogent call:", error);
+    console.error('Error in initiateVogentCall:', error);
     throw error;
   }
 };

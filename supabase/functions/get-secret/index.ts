@@ -20,47 +20,52 @@ serve(async (req) => {
       throw new Error('Secret name is required')
     }
 
-    // Create Supabase client with admin privileges
-    const supabaseAdmin = createClient(
-      Deno.env.get('SUPABASE_URL') ?? '',
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
-    )
+    const supabaseUrl = Deno.env.get('SUPABASE_URL')
+    const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
+
+    if (!supabaseUrl || !supabaseKey) {
+      throw new Error('Missing required environment variables')
+    }
+
+    console.log('Creating Supabase client...')
+    const supabaseAdmin = createClient(supabaseUrl, supabaseKey)
 
     console.log(`Fetching secret: ${secretName}`)
-
-    const { data: secret, error } = await supabaseAdmin
+    const { data, error } = await supabaseAdmin
       .from('secrets')
       .select('value')
       .eq('name', secretName)
-      .single()
+      .maybeSingle()
 
     if (error) {
-      console.error('Error fetching secret:', error)
-      throw error
+      console.error('Database error:', error)
+      throw new Error('Failed to fetch secret from database')
     }
 
-    if (!secret) {
+    if (!data) {
+      console.error('Secret not found:', secretName)
       throw new Error(`Secret ${secretName} not found`)
     }
 
-    console.log(`Secret ${secretName} retrieved successfully`)
-
+    console.log('Secret retrieved successfully')
     return new Response(
-      JSON.stringify({ secret: secret.value }),
+      JSON.stringify({ secret: data.value }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         status: 200,
-      },
+      }
     )
   } catch (error) {
     console.error('Error in get-secret function:', error)
-    
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        error: error.message,
+        details: error.toString()
+      }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         status: 400,
-      },
+      }
     )
   }
 })
