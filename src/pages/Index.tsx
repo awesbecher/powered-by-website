@@ -110,7 +110,7 @@ const Index = () => {
                   {service.category}
                 </h2>
                 {service.logo && (
-                  <div className="absolute top-20 left-1/2 transform -translate-x-1/2">
+                  <div className="absolute top-20 left-1/2 transform -translate-x-1/2 mb-16">
                     <img 
                       src={service.logo} 
                       alt={`${service.title} Logo`} 
@@ -118,7 +118,7 @@ const Index = () => {
                     />
                   </div>
                 )}
-                <div className="relative z-10 text-center">
+                <div className="relative z-10 text-center mt-24">
                   <h3 className="text-xl font-semibold tracking-tight text-white mb-4 whitespace-nowrap">
                     {service.title}
                   </h3>
