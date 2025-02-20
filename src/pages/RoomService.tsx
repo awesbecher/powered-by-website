@@ -41,6 +41,12 @@ const RoomService = () => {
             className="max-w-2xl w-full h-auto"
           />
         </div>
+        <Button 
+          className="bg-accent hover:bg-accent/90 text-white mt-8 font-bold"
+        >
+          <Phone className="mr-2 h-4 w-4" />
+          Speak to Room Service
+        </Button>
       </div>
     </div>
   );
