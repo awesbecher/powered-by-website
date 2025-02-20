@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Phone } from "lucide-react";
@@ -48,17 +47,11 @@ const Index = () => {
     <div className="min-h-screen w-full bg-[#222222]">
       {/* Logo */}
       <div className="absolute top-6 right-6 lg:right-8">
-        <a 
-          href="https://madrone.capital/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img 
-            src="/lovable-uploads/af07ee0c-70fa-4261-a83e-98ef6108f8ae.png"
-            alt="Madrone Capital Logo"
-            className="w-32 lg:w-48 h-auto"
-          />
-        </a>
+        <img 
+          src="/lovable-uploads/a68642c8-3efb-43f1-92b6-9520332589c2.png"
+          alt="Parlar AI Logo"
+          className="w-32 lg:w-48 h-auto"
+        />
       </div>
 
       {/* Hero Section */}
