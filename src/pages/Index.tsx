@@ -56,6 +56,7 @@ const Index = () => {
       title: "Property Tour",
       description: "Schedule a viewing of available properties",
       link: "/real-estate",
+      logo: "/lovable-uploads/e305eace-d64d-4437-9d8e-533d49b3d934.png",
       category: "Real Estate"
     },
     {
