@@ -7,19 +7,16 @@ const Index = () => {
       title: "Room Service",
       description: "Order food and drinks directly to your room",
       link: "/room-service",
-      image: "/lovable-uploads/f61255a3-5368-4739-a068-ec3431ea636f.png"
     },
     {
       title: "Insurance",
       description: "Protect your stay with our insurance options",
       link: "/insurance",
-      image: "/lovable-uploads/403d2bfb-bc52-4ca1-937c-64ab85d08216.png"
     },
     {
       title: "License",
       description: "Manage your hotel license and compliance",
       link: "/license",
-      image: "/lovable-uploads/57b14d49-eab1-4dd2-827d-dceb363f5514.png"
     }
   ];
 
@@ -58,11 +55,6 @@ const Index = () => {
                 className="group relative overflow-hidden rounded-2xl bg-neutral-medium p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/5"
               >
                 <div className="relative z-10">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-16 h-16 mb-6 transition-transform duration-300 group-hover:scale-110"
-                  />
                   <h3 className="text-2xl font-semibold tracking-tight text-white mb-4">
                     {service.title}
                   </h3>
