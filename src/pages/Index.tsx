@@ -60,9 +60,9 @@ const Index = () => {
       </div>
 
       {/* Services Grid */}
-      <div className="relative px-6 lg:px-8 pb-24">
+      <div className="relative px-4 lg:px-6 pb-24">
         <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
             {services.map((service) => (
               <Link
                 key={service.title}
@@ -70,7 +70,7 @@ const Index = () => {
                 className="group relative overflow-hidden rounded-2xl bg-neutral-medium p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/5"
               >
                 <div className="relative z-10">
-                  <h3 className="text-2xl font-semibold tracking-tight text-white mb-4">
+                  <h3 className="text-2xl font-semibold tracking-tight text-white mb-4 whitespace-nowrap">
                     {service.title}
                   </h3>
                   <p className="text-gray-400">{service.description}</p>
