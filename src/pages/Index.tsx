@@ -24,11 +24,17 @@ const Index = () => {
     <div className="min-h-screen w-full bg-neutral-soft">
       {/* Logo */}
       <div className="absolute top-6 right-6 lg:right-8">
-        <img 
-          src="/lovable-uploads/af07ee0c-70fa-4261-a83e-98ef6108f8ae.png"
-          alt="Madrone Capital Logo"
-          className="w-32 lg:w-48 h-auto"
-        />
+        <a 
+          href="https://madrone.capital/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img 
+            src="/lovable-uploads/af07ee0c-70fa-4261-a83e-98ef6108f8ae.png"
+            alt="Madrone Capital Logo"
+            className="w-32 lg:w-48 h-auto"
+          />
+        </a>
       </div>
 
       {/* Hero Section */}
