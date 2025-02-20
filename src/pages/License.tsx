@@ -1,6 +1,5 @@
-
 import { Link } from "react-router-dom";
-import { ArrowLeft, Phone, Star, Zap, Shield, Crown } from "lucide-react";
+import { ArrowLeft, Phone, Star, Zap, Shield, Crown, MessageSquare } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { LicenseProductCard } from "@/components/insurance/LicenseProductCard";
@@ -11,6 +10,7 @@ const License = () => {
   const [customerId, setCustomerId] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [showChat, setShowChat] = useState(false);
   const { toast } = useToast();
 
   const handleCustomerIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,6 +36,18 @@ const License = () => {
     });
     setIsOpen(false);
     setPhoneNumber("");
+  };
+
+  const handleChatClick = () => {
+    if (!isValidCustomerId) {
+      toast({
+        variant: "destructive",
+        title: "Customer ID Required",
+        description: "Please enter your 8-digit customer ID to start the chat."
+      });
+      return;
+    }
+    setShowChat(true);
   };
 
   const isValidCustomerId = customerId.length === 8;
@@ -107,43 +119,70 @@ const License = () => {
                   className="text-center bg-white/10 border-white/20 text-white placeholder:text-gray-400" 
                 />
               </div>
-              <Dialog open={isOpen} onOpenChange={value => setIsOpen(value)}>
+              <div className="flex gap-4">
+                <Dialog open={isOpen} onOpenChange={value => setIsOpen(value)}>
+                  <button 
+                    onClick={() => setIsOpen(true)} 
+                    disabled={!isValidCustomerId} 
+                    className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Speak To A Sales Rep
+                    <Phone className="h-4 w-4" />
+                  </button>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Enter your phone number to speak with a sales representative</DialogTitle>
+                      <DialogDescription>
+                        We'll connect you with a RightBloom sales representative to discuss license upgrade options.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="flex flex-col space-y-4 pt-4">
+                      <Input 
+                        type="tel" 
+                        placeholder="Enter your phone number" 
+                        value={phoneNumber} 
+                        onChange={e => setPhoneNumber(e.target.value)} 
+                        className="text-lg"
+                      />
+                      <button 
+                        className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md"
+                        onClick={handleCall}
+                      >
+                        Call Me
+                      </button>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+
                 <button 
-                  onClick={() => setIsOpen(true)} 
+                  onClick={handleChatClick} 
                   disabled={!isValidCustomerId} 
                   className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Speak To A Sales Rep
-                  <Phone className="h-4 w-4" />
+                  Chat With Us
+                  <MessageSquare className="h-4 w-4" />
                 </button>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>Enter your phone number to speak with a sales representative</DialogTitle>
-                    <DialogDescription>
-                      We'll connect you with a RightBloom sales representative to discuss license upgrade options.
-                    </DialogDescription>
-                  </DialogHeader>
-                  <div className="flex flex-col space-y-4 pt-4">
-                    <Input 
-                      type="tel" 
-                      placeholder="Enter your phone number" 
-                      value={phoneNumber} 
-                      onChange={e => setPhoneNumber(e.target.value)} 
-                      className="text-lg"
-                    />
-                    <button 
-                      className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md"
-                      onClick={handleCall}
-                    >
-                      Call Me
-                    </button>
-                  </div>
-                </DialogContent>
-              </Dialog>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      <Dialog open={showChat} onOpenChange={setShowChat}>
+        <DialogContent className="max-w-4xl h-[80vh]">
+          <DialogHeader>
+            <DialogTitle>Chat with our Sales Team</DialogTitle>
+          </DialogHeader>
+          <div className="h-full">
+            <iframe
+              src="https://www.chatbase.co/chatbot-iframe/kHr0XGInFw_HfmNBDEuXC"
+              width="100%"
+              style={{ height: '100%', minHeight: '700px' }}
+              frameBorder="0"
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
