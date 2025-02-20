@@ -27,6 +27,5 @@ enabled = true
 [realtime]
 enabled = true
 
-[[functions]]
-name = "vogent-call"
+[functions.vogent-call]
 verify_jwt = false
