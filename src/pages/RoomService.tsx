@@ -1,9 +1,27 @@
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
+import { initiateVogentCall } from "@/services/vogentService";
 
 const RoomService = () => {
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const handleSpeakToService = async () => {
+    try {
+      await initiateVogentCall();
+      navigate("/call-confirmation");
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Unable to connect to Room Service. Please try again.",
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen w-full bg-[#222222] px-4 py-16 sm:px-6 lg:px-8">
       <Link 
@@ -25,6 +43,7 @@ const RoomService = () => {
         <p className="text-white/90 text-lg mb-8">Please choose from any of the items on our Food & Drinks Menu below. When you are ready, click the button below to speak to Room Service.</p>
         <Button 
           className="bg-accent hover:bg-accent/90 text-white mb-8 font-bold text-lg"
+          onClick={handleSpeakToService}
         >
           <Phone className="mr-2 h-6 w-6" />
           Speak to Room Service
@@ -43,6 +62,7 @@ const RoomService = () => {
         </div>
         <Button 
           className="bg-accent hover:bg-accent/90 text-white mt-8 font-bold text-lg"
+          onClick={handleSpeakToService}
         >
           <Phone className="mr-2 h-6 w-6" />
           Speak to Room Service
