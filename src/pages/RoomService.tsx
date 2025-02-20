@@ -26,11 +26,19 @@ const RoomService = () => {
 
     setIsLoading(true);
     try {
+      const cleanedPhoneNumber = phoneNumber.replace(/\D/g, '');
+      const callParams = {
+        phoneNumber: cleanedPhoneNumber,
+        type: 'room-service',
+        flowId: '15b75020-90a0-473a-b6bc-758ced586c6b',
+        agentId: 'b79e025d-bb6c-4deb-99d5-a5f2f573c639',
+        from: '9179361793'
+      };
+
+      console.log('Attempting to initiate room service call with:', callParams);
+
       const { error } = await supabase.functions.invoke('initiate-call', {
-        body: { 
-          phoneNumber: phoneNumber.replace(/\D/g, ''),
-          type: 'room-service'
-        }
+        body: callParams
       });
 
       if (error) throw error;
@@ -104,6 +112,7 @@ const RoomService = () => {
                     value={phoneNumber} 
                     onChange={e => setPhoneNumber(e.target.value)} 
                     className="text-lg" 
+                    disabled={isLoading}
                   />
                   <button 
                     className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md disabled:opacity-50"
