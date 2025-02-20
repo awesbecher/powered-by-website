@@ -18,8 +18,10 @@ serve(async (req) => {
 
   try {
     const { phoneNumber } = await req.json()
+    console.log('Received request with phone number:', phoneNumber);
     
     if (!phoneNumber) {
+      console.error('Phone number is missing from request');
       return new Response(
         JSON.stringify({ error: 'Phone number is required' }),
         {
@@ -35,10 +37,12 @@ serve(async (req) => {
       ? '+1' + cleanNumber
       : (cleanNumber.startsWith('1') ? '+' + cleanNumber : '+1' + cleanNumber);
 
+    console.log('Formatted phone number:', formattedPhoneNumber);
+
     // Get API key from environment
     const apiKey = Deno.env.get('VOGENT_API_KEY')
     if (!apiKey) {
-      console.error('Vogent API key not found in environment');
+      console.error('VOGENT_API_KEY not found in environment variables');
       return new Response(
         JSON.stringify({ error: 'Service configuration error' }),
         {
@@ -48,7 +52,21 @@ serve(async (req) => {
       )
     }
 
-    console.log('Making request to Vogent API...');
+    const origin = req.headers.get('origin') || '';
+    console.log('Request origin:', origin);
+
+    const webhookUrl = `${origin}/api/call-completed`;
+    console.log('Webhook URL:', webhookUrl);
+
+    const requestBody = {
+      flowId: FLOW_ID,
+      agentId: AGENT_ID,
+      webhookUrl: webhookUrl,
+      phoneNumber: formattedPhoneNumber,
+      outboundNumber: AGENT_PHONE,
+    };
+
+    console.log('Making request to Vogent API with body:', JSON.stringify(requestBody));
 
     const vogentResponse = await fetch("https://api.vogent.ai/flow/start", {
       method: "POST",
@@ -56,23 +74,21 @@ serve(async (req) => {
         "Content-Type": "application/json",
         "x-api-key": apiKey
       },
-      body: JSON.stringify({
-        flowId: FLOW_ID,
-        agentId: AGENT_ID,
-        webhookUrl: `${req.headers.get('origin')}/api/call-completed`,
-        phoneNumber: formattedPhoneNumber,
-        outboundNumber: AGENT_PHONE,
-      })
+      body: JSON.stringify(requestBody)
     });
 
     if (!vogentResponse.ok) {
-      const errorData = await vogentResponse.text();
-      console.error('Vogent API error:', vogentResponse.status, errorData);
+      const errorText = await vogentResponse.text();
+      console.error('Vogent API error:', {
+        status: vogentResponse.status,
+        statusText: vogentResponse.statusText,
+        body: errorText
+      });
       
       return new Response(
         JSON.stringify({ 
           error: 'Failed to initiate call',
-          details: `API Error: ${vogentResponse.status}`
+          details: `API Error ${vogentResponse.status}: ${errorText}`
         }),
         {
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -81,13 +97,13 @@ serve(async (req) => {
       )
     }
 
-    const data = await vogentResponse.json();
-    console.log('Vogent API response:', data);
+    const responseData = await vogentResponse.json();
+    console.log('Successful Vogent API response:', responseData);
     
     return new Response(
       JSON.stringify({ 
         success: true,
-        data, 
+        data: responseData, 
         message: 'Call initiated successfully' 
       }),
       {
@@ -101,7 +117,8 @@ serve(async (req) => {
     return new Response(
       JSON.stringify({ 
         error: 'Internal server error',
-        message: error.message
+        message: error.message,
+        stack: error.stack
       }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },

@@ -11,7 +11,7 @@ export const initiateVogentCall = async (userPhoneNumber: string) => {
 
     if (error) {
       console.error('Error from Edge Function:', error);
-      throw new Error('Failed to initiate call. Please try again.');
+      throw new Error(error.message || 'Failed to initiate call. Please try again.');
     }
 
     if (!data?.success) {
@@ -24,6 +24,9 @@ export const initiateVogentCall = async (userPhoneNumber: string) => {
 
   } catch (error) {
     console.error('Error in initiateVogentCall:', error);
-    throw error;
+    if (error instanceof Error) {
+      throw error;
+    }
+    throw new Error('An unexpected error occurred while initiating the call.');
   }
 };
