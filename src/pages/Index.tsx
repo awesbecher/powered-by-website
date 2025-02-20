@@ -128,6 +128,16 @@ const Index = () => {
                       <Phone className="w-4 h-4" /> Speak to Room Service
                     </button>
                   )}
+                  {service.category === "Insurance" && (
+                    <button className="flex items-center justify-center gap-1 mx-auto px-3 py-1 bg-accent hover:bg-accent/90 text-white rounded-md transition-colors font-bold text-sm">
+                      <Phone className="w-4 h-4" /> Speak to an Agent
+                    </button>
+                  )}
+                  {service.category === "SaaS Licensing" && (
+                    <button className="flex items-center justify-center gap-1 mx-auto px-3 py-1 bg-accent hover:bg-accent/90 text-white rounded-md transition-colors font-bold text-sm">
+                      <Phone className="w-4 h-4" /> Speak to Sales
+                    </button>
+                  )}
                 </div>
                 
                 {/* Card hover effect */}
