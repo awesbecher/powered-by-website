@@ -8,8 +8,8 @@ const MercedesDealer = () => {
       {/* Logo */}
       <div className="absolute top-8 right-8">
         <img 
-          src="/lovable-uploads/b7ac4ab9-6564-4fa3-a3f9-28fe993a0002.png"
-          alt="Mercedes Logo"
+          src="/lovable-uploads/7e5ffc92-3c33-4a4a-8d6d-add3197d2f2f.png"
+          alt="Mercedes of Tacoma Logo"
           className="h-16 w-auto"
         />
       </div>
