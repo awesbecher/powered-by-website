@@ -68,6 +68,14 @@ const License = () => {
 
   return (
     <div className="min-h-screen w-full bg-[#222222] px-4 py-16 sm:px-6 lg:px-8">
+      <div className="absolute top-8 right-8">
+        <img 
+          src="/lovable-uploads/02849a25-10a3-417c-9c42-4901e5d457d3.png" 
+          alt="RightBloom Logo" 
+          className="h-12 w-auto object-contain" 
+        />
+      </div>
+
       <Link to="/" className="absolute top-8 left-8 flex items-center text-accent hover:text-accent/80 transition-colors">
         <ArrowLeft className="h-6 w-6 mr-2" />
         <span>Back to Services</span>
