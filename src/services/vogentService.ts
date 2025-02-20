@@ -1,14 +1,24 @@
 
+import { supabase } from "@/integrations/supabase/client";
+
 const FLOW_ID = "cd922dc9-eea6-4b43-878f-cb5cfd67e005";
 const AGENT_ID = "53660ead-9260-4a23-8df2-55a7050b3340";
 
 export const initiateVogentCall = async () => {
   try {
+    const { data: secretData, error: secretError } = await supabase.functions.invoke('get-secret', {
+      body: { secretName: 'VOGENT_API_KEY' }
+    });
+
+    if (secretError || !secretData?.secret) {
+      throw new Error("Could not retrieve Vogent API key");
+    }
+
     const response = await fetch("https://api.vogent.ai/flow/start", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": process.env.VOGENT_API_KEY || "",
+        "x-api-key": secretData.secret,
       },
       body: JSON.stringify({
         flowId: FLOW_ID,
