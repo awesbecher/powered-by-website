@@ -7,6 +7,7 @@ const Index = () => {
       title: "In-Room Dining",
       description: "Order food and drinks directly to your room",
       link: "/room-service",
+      logo: "/lovable-uploads/75ff6e78-9db7-436e-a063-2b5f8c500ee7.png"
     },
     {
       title: "Get an Insurance Quote",
@@ -69,6 +70,15 @@ const Index = () => {
                 to={service.link}
                 className="group relative overflow-hidden rounded-2xl bg-black p-12 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/5 hover:-translate-y-1 transform-gpu hover:scale-[1.02] min-h-[400px] flex flex-col justify-center"
               >
+                {service.logo && (
+                  <div className="absolute top-8 left-1/2 transform -translate-x-1/2">
+                    <img 
+                      src={service.logo} 
+                      alt="GrandView Hotel Logo" 
+                      className="h-16 w-auto"
+                    />
+                  </div>
+                )}
                 <div className="relative z-10 text-center">
                   <h3 className="text-xl font-semibold tracking-tight text-white mb-4 whitespace-nowrap">
                     {service.title}
