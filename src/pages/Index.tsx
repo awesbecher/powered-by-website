@@ -63,7 +63,7 @@ const Index = () => {
       title: "Barbershop Reservations",
       description: "Connect with our retail support team",
       link: "/retail",
-      logo: "/lovable-uploads/92d1275c-847a-49ad-a297-792c7bf899a7.png",
+      logo: "/lovable-uploads/76119a46-2fce-4a9d-8e3b-3ac7cd6e402a.png",
       category: "Retail Services"
     }
   ];
