@@ -107,21 +107,24 @@ const Index = () => {
               <Link
                 key={service.title}
                 to={service.link}
-                className="group relative overflow-hidden rounded-2xl bg-black p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/5 hover:-translate-y-1 transform-gpu hover:scale-[1.02] min-h-[260px] flex flex-col justify-center cursor-pointer"
+                className="group relative overflow-hidden rounded-2xl bg-black p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/5 hover:-translate-y-1 transform-gpu hover:scale-[1.02] min-h-[280px] flex flex-col justify-between cursor-pointer"
               >
-                <h2 className="text-xl font-semibold absolute top-6 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-accent via-[#E5DEFF] to-accent bg-clip-text text-transparent font-bold">
-                  {service.category}
-                </h2>
-                {service.logo && (
-                  <div className="absolute top-16 left-1/2 transform -translate-x-1/2 mb-12">
-                    <img 
-                      src={service.logo} 
-                      alt={`${service.title} Logo`} 
-                      className="h-12 w-auto object-contain"
-                    />
-                  </div>
-                )}
-                <div className="relative z-10 text-center mt-16">
+                <div className="flex flex-col items-center">
+                  <h2 className="text-xl font-semibold bg-gradient-to-r from-accent via-[#E5DEFF] to-accent bg-clip-text text-transparent font-bold mb-6">
+                    {service.category}
+                  </h2>
+                  {service.logo && (
+                    <div className="w-32 h-16 flex items-center justify-center">
+                      <img 
+                        src={service.logo} 
+                        alt={`${service.title} Logo`} 
+                        className="max-w-full max-h-full w-auto h-auto object-contain"
+                      />
+                    </div>
+                  )}
+                </div>
+
+                <div className="relative z-10 text-center mt-8">
                   <h3 className="text-xl font-semibold tracking-tight text-white mb-2 whitespace-nowrap">
                     {service.title}
                   </h3>
