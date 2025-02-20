@@ -1,19 +1,17 @@
-import { Link, useNavigate } from "react-router-dom";
+
+import { Link } from "react-router-dom";
 import { ArrowLeft, Phone } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 
 const RoomService = () => {
-  const navigate = useNavigate();
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const handleCall = async () => {
+  const handleCall = () => {
     if (!phoneNumber) {
       toast({
         variant: "destructive",
@@ -23,44 +21,12 @@ const RoomService = () => {
       return;
     }
 
-    setIsLoading(true);
-    try {
-      const cleanedPhoneNumber = phoneNumber.replace(/\D/g, '');
-      const callParams = {
-        phoneNumber: cleanedPhoneNumber,
-        type: 'room-service',
-        flowId: '9e282047-6541-4a98-b89f-fdb375ea4dc4',
-        agentId: '66630bc9-27df-4a30-831e-cff3664b3b46',
-        from: '+19179361793'
-      };
-
-      console.log('Attempting to initiate room service call with:', callParams);
-
-      const { error } = await supabase.functions.invoke('initiate-call', {
-        body: callParams
-      });
-
-      if (error) {
-        console.error('Supabase function error:', error);
-        throw error;
-      }
-
-      toast({
-        title: "Call initiated!",
-        description: "You will receive a call shortly to place your order."
-      });
-      setIsOpen(false);
-      setPhoneNumber("");
-    } catch (error) {
-      console.error('Error initiating call:', error);
-      toast({
-        variant: "destructive",
-        title: "Error initiating call",
-        description: "There was an error initiating your call. Please try again."
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    toast({
+      title: "Feature coming soon!",
+      description: "This feature is currently under development."
+    });
+    setIsOpen(false);
+    setPhoneNumber("");
   };
 
   return (
@@ -110,15 +76,13 @@ const RoomService = () => {
                     placeholder="Enter your phone number" 
                     value={phoneNumber} 
                     onChange={e => setPhoneNumber(e.target.value)} 
-                    className="text-lg" 
-                    disabled={isLoading}
+                    className="text-lg"
                   />
                   <button 
-                    className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md disabled:opacity-50"
+                    className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md"
                     onClick={handleCall}
-                    disabled={isLoading}
                   >
-                    {isLoading ? "Initiating call..." : "Call Me"}
+                    Call Me
                   </button>
                 </div>
               </DialogContent>

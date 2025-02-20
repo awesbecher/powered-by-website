@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { ArrowLeft, Phone, Star, Zap, Shield, Crown } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -5,16 +6,12 @@ import { useState } from "react";
 import { LicenseProductCard } from "@/components/insurance/LicenseProductCard";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
-import { useNavigate } from "react-router-dom";
 
 const License = () => {
   const [customerId, setCustomerId] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
-  const navigate = useNavigate();
 
   const handleCustomerIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -23,7 +20,7 @@ const License = () => {
     }
   };
 
-  const handleCall = async () => {
+  const handleCall = () => {
     if (!phoneNumber) {
       toast({
         variant: "destructive",
@@ -33,56 +30,12 @@ const License = () => {
       return;
     }
 
-    setIsLoading(true);
-
-    try {
-      const cleanedPhoneNumber = phoneNumber.replace(/\D/g, '');
-      const callParams = {
-        phoneNumber: cleanedPhoneNumber,
-        type: 'license',
-        flowId: '15b75020-90a0-473a-b6bc-758ced586c6b',
-        agentId: 'b79e025d-bb6c-4deb-99d5-a5f2f573c639',
-        from: '9179361793',
-        metadata: {
-          customerId
-        }
-      };
-      
-      console.log('Attempting to initiate call with:', callParams);
-
-      const { data, error } = await supabase.functions.invoke('initiate-call', {
-        body: callParams
-      });
-
-      console.log('Supabase response:', { data, error });
-
-      if (error) {
-        throw new Error(error.message || 'Failed to initiate call');
-      }
-
-      if (!data) {
-        throw new Error('No response received from the server');
-      }
-
-      toast({
-        title: "Call initiated!",
-        description: "You will receive a call shortly from a RightBloom sales representative."
-      });
-      
-      setIsOpen(false);
-      setPhoneNumber("");
-      setIsLoading(false);
-      navigate('/');
-      
-    } catch (error: any) {
-      console.error('Error initiating call:', error);
-      setIsLoading(false);
-      toast({
-        variant: "destructive",
-        title: "Error initiating call",
-        description: error.message || "There was an error initiating your call. Please try again."
-      });
-    }
+    toast({
+      title: "Feature coming soon!",
+      description: "This feature is currently under development."
+    });
+    setIsOpen(false);
+    setPhoneNumber("");
   };
 
   const isValidCustomerId = customerId.length === 8;
@@ -130,7 +83,7 @@ const License = () => {
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-4">
-          {licenseOptions.map(option => <LicenseProductCard key={option.title} title={option.title} description={option.description} price={option.price} features={option.features} icon={option.icon} />)}
+          {licenseOptions.map(option => <LicenseProductCard key={option.title} {...option} />)}
         </div>
 
         <div className="max-w-3xl mx-auto">
@@ -150,11 +103,7 @@ const License = () => {
                   className="text-center bg-white/10 border-white/20 text-white placeholder:text-gray-400" 
                 />
               </div>
-              <Dialog open={isOpen} onOpenChange={value => {
-                if (!isLoading) {
-                  setIsOpen(value);
-                }
-              }}>
+              <Dialog open={isOpen} onOpenChange={value => setIsOpen(value)}>
                 <button 
                   onClick={() => setIsOpen(true)} 
                   disabled={!isValidCustomerId} 
@@ -176,15 +125,13 @@ const License = () => {
                       placeholder="Enter your phone number" 
                       value={phoneNumber} 
                       onChange={e => setPhoneNumber(e.target.value)} 
-                      className="text-lg" 
-                      disabled={isLoading}
+                      className="text-lg"
                     />
                     <button 
-                      className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md disabled:opacity-50"
+                      className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md"
                       onClick={handleCall}
-                      disabled={isLoading}
                     >
-                      {isLoading ? "Initiating call..." : "Call Me"}
+                      Call Me
                     </button>
                   </div>
                 </DialogContent>

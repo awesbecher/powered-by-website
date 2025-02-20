@@ -1,24 +1,19 @@
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ArrowLeft, Car, Home, Key, Bike, Sailboat, Phone } from "lucide-react";
 import { useState } from "react";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { Input } from "@/components/ui/input";
 import { InsuranceProductCard } from "@/components/insurance/InsuranceProductCard";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { supabase } from "@/integrations/supabase/client";
 
 const Insurance = () => {
   const [zipCode, setZipCode] = useState("");
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const isMobile = useIsMobile();
   const { toast } = useToast();
-  const navigate = useNavigate();
 
   const handleProductSelect = (productId: string) => {
     if (zipCode.length !== 5) return;
@@ -31,7 +26,7 @@ const Insurance = () => {
     });
   };
 
-  const handleCall = async () => {
+  const handleCall = () => {
     if (!phoneNumber) {
       toast({
         variant: "destructive",
@@ -41,46 +36,12 @@ const Insurance = () => {
       return;
     }
 
-    setIsLoading(true);
-    try {
-      const cleanedPhoneNumber = phoneNumber.replace(/\D/g, '');
-      const callParams = {
-        phoneNumber: cleanedPhoneNumber,
-        type: 'insurance',
-        flowId: '15b75020-90a0-473a-b6bc-758ced586c6b',
-        agentId: 'b79e025d-bb6c-4deb-99d5-a5f2f573c639',
-        from: '9179361793',
-        metadata: {
-          zipCode,
-          selectedProducts
-        }
-      };
-
-      console.log('Attempting to initiate insurance call with:', callParams);
-
-      const { error } = await supabase.functions.invoke('initiate-call', {
-        body: callParams
-      });
-
-      if (error) throw error;
-
-      toast({
-        title: "Call initiated!",
-        description: "You will receive a call shortly from a Planter's Insurance agent."
-      });
-      setIsOpen(false);
-      setPhoneNumber("");
-      navigate('/');
-    } catch (error) {
-      console.error('Error initiating call:', error);
-      toast({
-        variant: "destructive",
-        title: "Error initiating call",
-        description: "There was an error initiating your call. Please try again."
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    toast({
+      title: "Feature coming soon!",
+      description: "This feature is currently under development."
+    });
+    setIsOpen(false);
+    setPhoneNumber("");
   };
 
   const insuranceProducts = [
@@ -175,14 +136,12 @@ const Insurance = () => {
                         value={phoneNumber} 
                         onChange={e => setPhoneNumber(e.target.value)} 
                         className="text-lg"
-                        disabled={isLoading}
                       />
                       <button 
-                        className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md disabled:opacity-50"
+                        className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md"
                         onClick={handleCall}
-                        disabled={isLoading}
                       >
-                        {isLoading ? "Initiating call..." : "Call Me"}
+                        Call Me
                       </button>
                     </div>
                   </DialogContent>
