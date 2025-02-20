@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 const Index = () => {
   const [currentWord, setCurrentWord] = useState("Voice");
-  const words = ["Voice", "Phone", "Text", "Email", "Slack", "Chat", "Docs"];
+  const words = ["Voice", "Phone", "Text", "Email", "Slack", "Chat", "Docs", "Jira"];
   const [wordIndex, setWordIndex] = useState(0);
 
   useEffect(() => {
