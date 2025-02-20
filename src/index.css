@@ -16,24 +16,16 @@
   }
 
   body {
-    @apply bg-neutral-soft antialiased;
+    @apply bg-neutral-soft text-foreground antialiased;
   }
 }
 
 @layer components {
-  .service-card {
-    @apply relative overflow-hidden rounded-2xl bg-neutral-medium p-8 shadow-sm transition-all duration-300 hover:shadow-lg;
+  .glass-card {
+    @apply backdrop-blur-xl bg-white/5 border border-white/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)];
   }
-
-  .service-card:hover {
-    @apply animate-card-hover;
-  }
-
-  .service-label {
-    @apply mb-2 inline-block rounded-full bg-accent-soft px-3 py-1 text-sm font-medium text-accent;
-  }
-
-  .service-title {
-    @apply text-2xl font-semibold tracking-tight text-white;
+  
+  .text-gradient {
+    @apply bg-gradient-to-br from-white via-white/90 to-white/70 bg-clip-text text-transparent;
   }
 }
