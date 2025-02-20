@@ -6,7 +6,7 @@ const MercedesDealer = () => {
   return (
     <div className="min-h-screen bg-[#222222] text-white">
       {/* Logo */}
-      <div className="absolute top-8 right-8">
+      <div className="absolute top-8 right-8 z-10">
         <img 
           src="/lovable-uploads/7e5ffc92-3c33-4a4a-8d6d-add3197d2f2f.png"
           alt="Mercedes of Tacoma Logo"
@@ -14,23 +14,35 @@ const MercedesDealer = () => {
         />
       </div>
 
-      {/* Header */}
-      <div className="relative pt-24 px-4 lg:px-8">
-        <Link to="/" className="absolute top-8 left-8 text-gray-400 hover:text-white transition-colors">
-          ← Back
-        </Link>
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-4xl font-bold mb-4">
-            Mercedes-Benz of Tacoma
-          </h1>
-          <p className="text-gray-400 max-w-2xl mx-auto mb-4">
-            Tacoma's Premier Authorized Mercedes-Benz Dealer. Experience luxury and performance with our extensive selection of new and certified pre-owned vehicles.
-          </p>
+      {/* Hero Section with Background Image */}
+      <div className="relative h-[60vh] mb-12">
+        <div className="absolute inset-0">
+          <img 
+            src="/lovable-uploads/a03fe01f-a020-43b3-a46c-2fda077f0baf.png"
+            alt="Mercedes-Benz Dealership Building"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/50"></div>
+        </div>
+        
+        {/* Header Content */}
+        <div className="relative h-full flex flex-col items-center justify-center px-4 lg:px-8">
+          <Link to="/" className="absolute top-8 left-8 text-gray-400 hover:text-white transition-colors">
+            ← Back
+          </Link>
+          <div className="max-w-7xl mx-auto text-center">
+            <h1 className="text-5xl font-bold mb-4 text-white">
+              Mercedes-Benz of Tacoma
+            </h1>
+            <p className="text-gray-200 max-w-2xl mx-auto text-lg">
+              Tacoma's Premier Authorized Mercedes-Benz Dealer. Experience luxury and performance with our extensive selection of new and certified pre-owned vehicles.
+            </p>
+          </div>
         </div>
       </div>
 
       {/* Featured Section */}
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-6">
+      <div className="max-w-7xl mx-auto px-4 lg:px-8">
         <div className="rounded-xl overflow-hidden bg-black/50 backdrop-blur-sm p-12 mb-12">
           <div className="text-center">
             <h2 className="text-3xl font-bold mb-4">Spring Sales Event</h2>
