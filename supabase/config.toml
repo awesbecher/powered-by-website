@@ -1,5 +1,2 @@
 
 project_id = "cinohyzbtfzfcdtkgvij"
-
-[functions.initiate-call]
-verify_jwt = false
