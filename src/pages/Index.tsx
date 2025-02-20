@@ -12,7 +12,7 @@ const Index = () => {
     },
     {
       title: "Get an Insurance Quote",
-      description: "Protect your stay with our insurance options",
+      description: "Get an insurance quote tailored to your needs",
       link: "/insurance",
       logo: "/lovable-uploads/5b3d5137-838b-44a5-8f54-bb2a4cb7dc5a.png",
       category: "Insurance"
