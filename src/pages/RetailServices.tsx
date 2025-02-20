@@ -105,10 +105,11 @@ const RetailServices = () => {
             Our booking specialists are ready to assist you in scheduling your next visit.
           </p>
           <button 
-            className="bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2"
+            className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2"
             onClick={() => {/* Chat functionality will be implemented later */}}
           >
-            Start Chat
+            <MessageSquare className="w-5 h-5" />
+            Chat with Us
           </button>
         </div>
       </div>
