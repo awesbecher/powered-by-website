@@ -8,6 +8,7 @@ const corsHeaders = {
 }
 
 serve(async (req) => {
+  // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
   }
@@ -19,27 +20,41 @@ serve(async (req) => {
       throw new Error('Secret name is required')
     }
 
-    const supabaseClient = createClient(
+    // Create Supabase client with admin privileges
+    const supabaseAdmin = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     )
 
-    const { data, error } = await supabaseClient
+    console.log(`Fetching secret: ${secretName}`)
+
+    const { data: secret, error } = await supabaseAdmin
       .from('secrets')
       .select('value')
       .eq('name', secretName)
       .single()
 
-    if (error) throw error
+    if (error) {
+      console.error('Error fetching secret:', error)
+      throw error
+    }
+
+    if (!secret) {
+      throw new Error(`Secret ${secretName} not found`)
+    }
+
+    console.log(`Secret ${secretName} retrieved successfully`)
 
     return new Response(
-      JSON.stringify({ secret: data.value }),
+      JSON.stringify({ secret: secret.value }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         status: 200,
       },
     )
   } catch (error) {
+    console.error('Error in get-secret function:', error)
+    
     return new Response(
       JSON.stringify({ error: error.message }),
       {

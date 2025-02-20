@@ -7,14 +7,22 @@ const AGENT_PHONE = "9177682024"; // Agent's phone number for outbound calling
 
 export const initiateVogentCall = async (userPhoneNumber: string) => {
   try {
+    console.log('Fetching Vogent API key from secrets...');
     const { data: secretData, error: secretError } = await supabase.functions.invoke('get-secret', {
       body: { secretName: 'VOGENT_API_KEY' }
     });
 
-    if (secretError || !secretData?.secret) {
+    if (secretError) {
+      console.error('Error fetching secret:', secretError);
       throw new Error("Could not retrieve Vogent API key");
     }
 
+    if (!secretData?.secret) {
+      console.error('No secret returned:', secretData);
+      throw new Error("Vogent API key not found");
+    }
+
+    console.log('Initiating Vogent call...');
     const response = await fetch("https://api.vogent.ai/flow/start", {
       method: "POST",
       headers: {
@@ -31,10 +39,13 @@ export const initiateVogentCall = async (userPhoneNumber: string) => {
     });
 
     if (!response.ok) {
-      throw new Error("Failed to initiate Vogent call");
+      const errorData = await response.text();
+      console.error('Vogent API error:', errorData);
+      throw new Error(`Failed to initiate Vogent call: ${response.status}`);
     }
 
     const data = await response.json();
+    console.log('Vogent call initiated successfully:', data);
     
     // Set up event listener for message from Vogent iframe
     window.addEventListener('message', (event) => {
