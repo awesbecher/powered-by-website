@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { ArrowLeft, Car, Home, Key, Bike, Sailboat, Phone } from "lucide-react";
 import { useState } from "react";
@@ -52,7 +53,7 @@ const Insurance = () => {
   ];
 
   return (
-    <div className="min-h-screen w-full bg-[#222222] px-4 py-16 sm:px-6 lg:px-8">
+    <div className="min-h-screen w-full bg-[#222222] px-4 py-32 sm:px-6 lg:px-8">
       <Link 
         to="/" 
         className="absolute top-8 left-8 flex items-center text-accent hover:text-accent/80 transition-colors"
