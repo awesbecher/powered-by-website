@@ -18,11 +18,13 @@ const RoomService = () => {
   const { toast } = useToast();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [isProcessing, setIsProcessing] = useState(false);
 
   useEffect(() => {
     // Listen for call completion event
     const handleCallEnd = (event: MessageEvent) => {
       if (event.data.type === 'VOGENT_CALL_ENDED') {
+        window.removeEventListener('message', handleCallEnd);
         navigate('/');
         toast({
           title: "Call Completed",
@@ -45,16 +47,20 @@ const RoomService = () => {
       return;
     }
 
-    setIsDialogOpen(false);
+    setIsProcessing(true);
     try {
-      await initiateVogentCall("+1" + phoneNumber);
+      await initiateVogentCall(phoneNumber);
+      setIsDialogOpen(false);
       navigate("/call-confirmation");
     } catch (error) {
+      console.error('Error initiating call:', error);
       toast({
         variant: "destructive",
         title: "Error",
         description: "Unable to connect to Room Service. Please try again.",
       });
+    } finally {
+      setIsProcessing(false);
     }
   };
 
@@ -95,9 +101,10 @@ const RoomService = () => {
         <Button 
           className="bg-accent hover:bg-accent/90 text-white mb-8 font-bold text-lg"
           onClick={() => setIsDialogOpen(true)}
+          disabled={isProcessing}
         >
           <Phone className="mr-2 h-6 w-6" />
-          Speak to Room Service
+          {isProcessing ? 'Connecting...' : 'Speak to Room Service'}
         </Button>
         <div className="flex flex-col items-center space-y-1">
           <img 
@@ -114,9 +121,10 @@ const RoomService = () => {
         <Button 
           className="bg-accent hover:bg-accent/90 text-white mt-8 font-bold text-lg"
           onClick={() => setIsDialogOpen(true)}
+          disabled={isProcessing}
         >
           <Phone className="mr-2 h-6 w-6" />
-          Speak to Room Service
+          {isProcessing ? 'Connecting...' : 'Speak to Room Service'}
         </Button>
       </div>
 
@@ -135,20 +143,23 @@ const RoomService = () => {
               value={formatPhoneNumber(phoneNumber)}
               onChange={handlePhoneNumberChange}
               className="flex-1"
+              disabled={isProcessing}
             />
           </div>
           <div className="flex justify-end space-x-2 mt-4">
             <Button
               variant="secondary"
               onClick={() => setIsDialogOpen(false)}
+              disabled={isProcessing}
             >
               Cancel
             </Button>
             <Button
               onClick={handlePhoneSubmit}
               className="bg-accent hover:bg-accent/90"
+              disabled={isProcessing}
             >
-              Call Me
+              {isProcessing ? 'Connecting...' : 'Call Me'}
             </Button>
           </div>
         </DialogContent>
