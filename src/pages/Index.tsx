@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Phone } from "lucide-react";
@@ -45,6 +46,15 @@ const Index = () => {
 
   return (
     <div className="min-h-screen w-full bg-[#222222]">
+      {/* Logo */}
+      <div className="absolute top-6 right-6 lg:right-8">
+        <img 
+          src="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
+          alt="Parlar Logo"
+          className="w-32 lg:w-48 h-auto"
+        />
+      </div>
+
       {/* Hero Section */}
       <div className="relative overflow-hidden px-6 lg:px-8 pt-24 pb-8">
         <div className="mx-auto max-w-7xl">
