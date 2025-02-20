@@ -1,5 +1,5 @@
 
-import { Scissors, Clock, Star } from "lucide-react";
+import { Scissors, Clock, Star, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const services = [
@@ -62,9 +62,16 @@ const RetailServices = () => {
           <h1 className="text-4xl font-bold mb-4">
             Welcome! Book an appointment.
           </h1>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-gray-400 max-w-2xl mx-auto mb-8">
             Flagship Barbers has been serving the Tacoma public for 25 years. We specialize in classic barbershop style and fades. Select which services you'd like and then click on Chat with Us below to book an appointment.
           </p>
+          <button 
+            className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2"
+            onClick={() => {/* Chat functionality will be implemented later */}}
+          >
+            <MessageSquare className="w-5 h-5" />
+            Chat with Us
+          </button>
         </div>
       </div>
 
