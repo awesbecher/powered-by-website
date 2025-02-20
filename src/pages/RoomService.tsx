@@ -21,6 +21,13 @@ const RoomService = () => {
 
       <div className="mx-auto max-w-3xl text-center pt-16">
         <h1 className="text-5xl font-bold text-white mb-8">Order Room Service</h1>
+        <div className="flex justify-center">
+          <img 
+            src="/lovable-uploads/2035fcd4-8b92-4f84-ad1e-c4ecae819711.png"
+            alt="Drink Menu"
+            className="max-w-2xl w-full h-auto"
+          />
+        </div>
       </div>
     </div>
   );
