@@ -125,7 +125,7 @@ const Index = () => {
                   <p className="text-gray-400 mb-6">{service.description}</p>
                   {service.category === "Hospitality" && (
                     <button className="flex items-center justify-center gap-2 mx-auto px-6 py-2 bg-accent hover:bg-accent/90 text-white rounded-md transition-colors font-bold">
-                      <Phone className="w-4 h-4" /> Speak to Room Service
+                      <Phone className="w-8 h-8" /> Speak to Room Service
                     </button>
                   )}
                 </div>
