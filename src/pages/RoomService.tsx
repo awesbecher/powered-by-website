@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { ArrowLeft, Phone } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -45,47 +46,45 @@ const RoomService = () => {
         </h1>
         <div className="bg-white/5 rounded-lg p-8 backdrop-blur-sm">
           <p className="text-xl text-gray-300 mb-8">Our Room Service team is ready to take your room service order. Place your order anytime, day or night.</p>
-          <div className="flex flex-col items-center space-y-4">
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link to="/food-menu">
-                <button className="bg-neutral-800 text-white px-6 py-2 rounded-md hover:bg-neutral-700 transition-colors w-full sm:w-auto">
-                  Food Menu
+          <Dialog open={isOpen} onOpenChange={setIsOpen}>
+            <DialogTrigger asChild>
+              <button className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md w-full sm:w-auto flex items-center justify-center gap-2 mb-8">
+                Start Your Order
+                <Phone className="h-4 w-4" />
+              </button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Enter your phone number to place an order</DialogTitle>
+              </DialogHeader>
+              <div className="flex flex-col space-y-4 pt-4">
+                <Input 
+                  type="tel" 
+                  placeholder="Enter your phone number" 
+                  value={phoneNumber} 
+                  onChange={e => setPhoneNumber(e.target.value)} 
+                  className="text-lg"
+                />
+                <button 
+                  className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md"
+                  onClick={handleCall}
+                >
+                  Call Me
                 </button>
-              </Link>
-              <Link to="/drinks-menu">
-                <button className="bg-neutral-800 text-white px-6 py-2 rounded-md hover:bg-neutral-700 transition-colors w-full sm:w-auto">
-                  Drinks Menu
-                </button>
-              </Link>
-            </div>
-            <Dialog open={isOpen} onOpenChange={setIsOpen}>
-              <DialogTrigger asChild>
-                <button className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md w-full sm:w-auto flex items-center justify-center gap-2">
-                  Start Your Order
-                  <Phone className="h-4 w-4" />
-                </button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>Enter your phone number to place an order</DialogTitle>
-                </DialogHeader>
-                <div className="flex flex-col space-y-4 pt-4">
-                  <Input 
-                    type="tel" 
-                    placeholder="Enter your phone number" 
-                    value={phoneNumber} 
-                    onChange={e => setPhoneNumber(e.target.value)} 
-                    className="text-lg"
-                  />
-                  <button 
-                    className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md"
-                    onClick={handleCall}
-                  >
-                    Call Me
-                  </button>
-                </div>
-              </DialogContent>
-            </Dialog>
+              </div>
+            </DialogContent>
+          </Dialog>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Link to="/food-menu">
+              <button className="bg-neutral-800 text-white px-6 py-2 rounded-md hover:bg-neutral-700 transition-colors w-full sm:w-auto">
+                Food Menu
+              </button>
+            </Link>
+            <Link to="/drinks-menu">
+              <button className="bg-neutral-800 text-white px-6 py-2 rounded-md hover:bg-neutral-700 transition-colors w-full sm:w-auto">
+                Drinks Menu
+              </button>
+            </Link>
           </div>
         </div>
       </div>
