@@ -78,7 +78,7 @@ const Index = () => {
                   </h2>
                 )}
                 {service.logo && (
-                  <div className="absolute top-16 left-1/2 transform -translate-x-1/2">
+                  <div className="absolute top-32 left-1/2 transform -translate-x-1/2">
                     <img 
                       src={service.logo} 
                       alt={`${service.title} Logo`} 
