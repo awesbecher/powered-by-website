@@ -106,7 +106,7 @@ const Index = () => {
                 to={service.link}
                 className="group relative overflow-hidden rounded-2xl bg-black p-12 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/5 hover:-translate-y-1 transform-gpu hover:scale-[1.02] min-h-[400px] flex flex-col justify-center"
               >
-                <h2 className="text-accent text-xl font-semibold absolute top-8 left-1/2 transform -translate-x-1/2">
+                <h2 className={`text-xl font-semibold absolute top-8 left-1/2 transform -translate-x-1/2 ${service.category === "Hospitality" ? "bg-gradient-to-r from-accent via-[#E5DEFF] to-accent bg-clip-text text-transparent font-bold" : "text-accent"}`}>
                   {service.category}
                 </h2>
                 {service.logo && (
