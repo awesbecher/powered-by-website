@@ -69,7 +69,7 @@ const Index = () => {
                 {currentWord}
               </span>
               Automation{" "}
-              <span className="bg-gradient-to-r from-accent via-accent/80 to-accent/60 bg-clip-text text-transparent">
+              <span className="text-white">
                 Simplified
               </span>
             </h1>
