@@ -19,7 +19,7 @@ const Index = () => {
     },
     {
       title: "Upgrade your License",
-      description: "Manage your hotel license and compliance",
+      description: "Manage and upgrade your seat licenses",
       link: "/license",
       logo: "/lovable-uploads/e9ddfbf3-072d-410d-b7ed-01c83eb30564.png",
       category: "SaaS Licensing"
