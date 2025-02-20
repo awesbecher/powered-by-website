@@ -22,16 +22,8 @@ serve(async (req) => {
       metadata
     } = await req.json()
 
-    if (!phoneNumber) {
-      throw new Error('Phone number is required')
-    }
-
-    // Format phone number to E.164 format if it's not already
-    const formattedPhoneNumber = phoneNumber.startsWith('+') ? phoneNumber : `+1${phoneNumber}`
-
-    // Log the incoming request
-    console.log('Initiating call with params:', {
-      phoneNumber: formattedPhoneNumber,
+    console.log('Received request with params:', {
+      phoneNumber,
       type,
       flowId,
       agentId,
@@ -39,14 +31,22 @@ serve(async (req) => {
       metadata
     })
 
+    if (!phoneNumber) {
+      throw new Error('Phone number is required')
+    }
+
+    // Format phone number to E.164 format
+    const formattedPhoneNumber = phoneNumber.startsWith('+') ? phoneNumber : `+1${phoneNumber}`
+    const formattedFrom = from.startsWith('+') ? from : `+1${from}`
+
     // Get API key from environment
     const apiKey = Deno.env.get('VOGENT_API_KEY')
     if (!apiKey) {
+      console.error('VOGENT_API_KEY not found in environment')
       throw new Error('VOGENT_API_KEY is not configured')
     }
 
-    // Format the 'from' number to E.164 format if it's not already
-    const formattedFrom = from.startsWith('+') ? from : `+1${from}`
+    console.log('Using Vogent API key:', apiKey.substring(0, 5) + '...')
 
     // Prepare request body for Vogent API
     const requestBody = {
@@ -59,8 +59,8 @@ serve(async (req) => {
 
     console.log('Sending request to Vogent API:', requestBody)
 
-    // Make request to Vogent API
-    const response = await fetch('https://api.vogent.io/v1/calls', {
+    // Make request to Vogent API with correct endpoint
+    const response = await fetch('https://api.vogent.ai/calls', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -102,7 +102,7 @@ serve(async (req) => {
       }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        status: 400
+        status: 500 // Changed to 500 for server errors
       }
     )
   }
