@@ -89,7 +89,7 @@ const Index = () => {
               </span>
             </h1>
             <p className="mx-auto mt-3 max-w-2xl text-lg text-gray-400 leading-6">
-              Our AI voice and text agents can automate and improve even your most complex workflows. See our AI voice agents in action by selecting any of the industry-specific use cases below.
+              Parlar AI's voice & workflow agents can automate and improve even your most complex workflows. See our AI voice agents in action by selecting any of the industry-specific use cases below.
             </p>
           </div>
         </div>
