@@ -34,7 +34,7 @@ serve(async (req) => {
       },
       body: JSON.stringify({
         phone_number: phoneNumber,
-        agent_id: 'room_service_agent', // Add your specific agent ID here
+        flow_id: 'cd922dc9-eea6-4b43-878f-cb5cfd67e005', // Using the provided Flow ID
       }),
     })
 
