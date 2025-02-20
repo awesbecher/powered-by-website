@@ -65,7 +65,7 @@ const Index = () => {
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
-              <span className="inline-block min-w-[120px] sm:min-w-[180px] transition-all duration-500 ease-in-out animate-fade-in">
+              <span className="inline-block min-w-[120px] sm:min-w-[180px] transition-all duration-500 ease-in-out animate-fade-in text-accent">
                 {currentWord}
               </span>
               Automation{" "}
