@@ -51,7 +51,7 @@ const Index = () => {
         <img 
           src="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
           alt="Parlar Logo"
-          className="w-32 lg:w-48 h-auto"
+          className="w-64 lg:w-96 h-auto"
         />
       </div>
 
