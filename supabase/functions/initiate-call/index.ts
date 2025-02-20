@@ -26,9 +26,12 @@ serve(async (req) => {
       throw new Error('Phone number is required')
     }
 
+    // Format phone number to E.164 format if it's not already
+    const formattedPhoneNumber = phoneNumber.startsWith('+') ? phoneNumber : `+1${phoneNumber}`
+
     // Log the incoming request
     console.log('Initiating call with params:', {
-      phoneNumber,
+      phoneNumber: formattedPhoneNumber,
       type,
       flowId,
       agentId,
@@ -36,23 +39,28 @@ serve(async (req) => {
       metadata
     })
 
-    // Configure the API based on call type
+    // Get API key from environment
     const apiKey = Deno.env.get('VOGENT_API_KEY')
     if (!apiKey) {
       throw new Error('VOGENT_API_KEY is not configured')
     }
 
+    // Format the 'from' number to E.164 format if it's not already
+    const formattedFrom = from.startsWith('+') ? from : `+1${from}`
+
     // Prepare request body for Vogent API
     const requestBody = {
-      phone_number: phoneNumber,
+      phone_number: formattedPhoneNumber,
       flow_id: flowId,
       agent_id: agentId,
-      from: from,
+      from: formattedFrom,
       metadata: metadata || {}
     }
 
-    // Make request to Vogent API with proper headers
-    const response = await fetch('https://api.vogent.io/calls', {
+    console.log('Sending request to Vogent API:', requestBody)
+
+    // Make request to Vogent API
+    const response = await fetch('https://api.vogent.io/v1/calls', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -89,7 +97,7 @@ serve(async (req) => {
     console.error('Error in edge function:', error)
     return new Response(
       JSON.stringify({ 
-        error: error.message,
+        error: error.message || 'An unknown error occurred',
         success: false
       }),
       {
