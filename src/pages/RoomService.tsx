@@ -47,7 +47,7 @@ const RoomService = () => {
 
     setIsDialogOpen(false);
     try {
-      await initiateVogentCall();
+      await initiateVogentCall("+1" + phoneNumber);
       navigate("/call-confirmation");
     } catch (error) {
       toast({

@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 const FLOW_ID = "cd922dc9-eea6-4b43-878f-cb5cfd67e005";
 const AGENT_ID = "53660ead-9260-4a23-8df2-55a7050b3340";
 
-export const initiateVogentCall = async () => {
+export const initiateVogentCall = async (phoneNumber: string) => {
   try {
     const { data: secretData, error: secretError } = await supabase.functions.invoke('get-secret', {
       body: { secretName: 'VOGENT_API_KEY' }
@@ -23,7 +23,8 @@ export const initiateVogentCall = async () => {
       body: JSON.stringify({
         flowId: FLOW_ID,
         agentId: AGENT_ID,
-        webhookUrl: `${window.location.origin}/api/call-completed`, // Vogent will call this when the call ends
+        webhookUrl: `${window.location.origin}/api/call-completed`,
+        phoneNumber: phoneNumber.replace(/\D/g, ''), // Strip non-digits from phone number
       }),
     });
 
@@ -36,7 +37,7 @@ export const initiateVogentCall = async () => {
     // Set up event listener for message from Vogent iframe
     window.addEventListener('message', (event) => {
       if (event.data.type === 'VOGENT_CALL_ENDED') {
-        window.location.href = '/'; // Redirect to main page when call ends
+        window.location.href = '/';
       }
     });
 
