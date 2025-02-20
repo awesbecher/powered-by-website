@@ -78,7 +78,7 @@ const Index = () => {
                   after:bg-accent
                   after:transform
                   after:origin-bottom-left
-                  after:[clip-path:path('M0,0 Q50,10 100,0')]
+                  after:[clip-path:path('M0,0 Q50,20 100,0')]
                 "
               >
                 {currentWord}
