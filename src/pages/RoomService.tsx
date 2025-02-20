@@ -24,7 +24,7 @@ const RoomService = () => {
         <h1 className="text-5xl font-bold text-white mb-4">Order Room Service</h1>
         <p className="text-white/90 text-lg mb-8">Please choose from any of the items on our Food & Drinks Menu below. When you are ready, click the button below to speak to Room Service.</p>
         <Button 
-          className="bg-accent hover:bg-accent/90 text-white mb-8"
+          className="bg-accent hover:bg-accent/90 text-white mb-8 font-bold"
         >
           <Phone className="mr-2 h-4 w-4" />
           Speak to Room Service
