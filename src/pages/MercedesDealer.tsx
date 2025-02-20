@@ -1,8 +1,18 @@
 
 import { Link } from "react-router-dom";
-import { Car, DollarSign, Wrench, Shield, Clock, Phone } from "lucide-react";
+import { Car, DollarSign, Wrench, Shield, Clock, Phone, X } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { useState } from "react";
 
 const MercedesDealer = () => {
+  const [showOffers, setShowOffers] = useState(false);
+
   return (
     <div className="min-h-screen bg-[#222222] text-white">
       {/* Logo */}
@@ -47,12 +57,52 @@ const MercedesDealer = () => {
           <div className="text-center">
             <h2 className="text-3xl font-bold mb-4">Spring Sales Event</h2>
             <p className="text-xl mb-6">Exceptional Offers on New 2024 Models</p>
-            <button className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-8 py-3 rounded-md font-semibold transition-colors">
+            <button 
+              className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-8 py-3 rounded-md font-semibold transition-colors"
+              onClick={() => setShowOffers(true)}
+            >
               View Special Offers
             </button>
           </div>
         </div>
       </div>
+
+      {/* Special Offers Dialog */}
+      <Dialog open={showOffers} onOpenChange={setShowOffers}>
+        <DialogContent className="bg-[#222222] text-white border-gray-800 max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold text-white">
+              March Special Offers
+              <button
+                onClick={() => setShowOffers(false)}
+                className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
+              >
+                <X className="h-4 w-4" />
+                <span className="sr-only">Close</span>
+              </button>
+            </DialogTitle>
+            <DialogDescription className="text-gray-300 space-y-6 pt-4">
+              <div className="space-y-4">
+                <div className="bg-black/30 p-6 rounded-lg border border-gray-800">
+                  <h3 className="text-xl font-semibold mb-2 text-[#9b87f5]">Spring Bonus Special</h3>
+                  <p>Get up to 15% off MSRP on any 2024 Mercedes model in our inventory.</p>
+                  <p className="mt-2">Plus, take advantage of our $2,000 down payment option on most 2024 models.</p>
+                </div>
+                
+                <div className="bg-black/30 p-6 rounded-lg border border-gray-800">
+                  <h3 className="text-xl font-semibold mb-2 text-[#9b87f5]">March Leasing Offer</h3>
+                  <p>Drive a new Mercedes with zero down payment!</p>
+                  <p className="mt-2">Enjoy 20% off your monthly lease payments for the first year.</p>
+                </div>
+
+                <div className="text-sm text-gray-400 mt-4">
+                  Offer valid March 1st through March 31st, 2024. Terms and conditions apply.
+                </div>
+              </div>
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
 
       {/* Services Grid */}
       <div className="max-w-7xl mx-auto px-4 lg:px-8 pb-12">
