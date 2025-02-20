@@ -8,7 +8,6 @@ import Index from "./pages/Index";
 import Insurance from "./pages/Insurance";
 import License from "./pages/License";
 import FoodMenu from "./pages/FoodMenu";
-import DrinksMenu from "./pages/DrinksMenu";
 import CallConfirmation from "./pages/CallConfirmation";
 import NotFound from "./pages/NotFound";
 
@@ -23,7 +22,6 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/food-menu" element={<FoodMenu />} />
-          <Route path="/drinks-menu" element={<DrinksMenu />} />
           <Route path="/call-confirmation" element={<CallConfirmation />} />
           <Route path="/insurance" element={<Insurance />} />
           <Route path="/license" element={<License />} />
