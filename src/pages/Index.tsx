@@ -68,17 +68,17 @@ const Index = () => {
                   bg-gradient-to-r from-accent via-[#E5DEFF] to-accent 
                   bg-clip-text text-transparent
                   drop-shadow-[0_0_10px_rgba(155,135,245,0.3)]
-                  pb-3
+                  pb-4
                   after:content-[''] 
                   after:absolute 
                   after:bottom-0 
                   after:left-0 
                   after:w-full 
-                  after:h-[3px] 
+                  after:h-[4px] 
                   after:bg-accent
                   after:transform
                   after:origin-bottom-left
-                  after:[clip-path:path('M0,0 C25,0 25,40 50,40 C75,40 75,0 100,0')]
+                  after:[clip-path:path('M0,0 C25,0 25,60 50,60 C75,60 75,0 100,0')]
                 "
               >
                 {currentWord}
