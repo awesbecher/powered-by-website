@@ -70,7 +70,7 @@ const Index = () => {
                 className="group relative overflow-hidden rounded-2xl bg-neutral-medium p-16 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/5 hover:-translate-y-1 transform-gpu hover:scale-[1.02] min-h-[400px] flex flex-col justify-center"
               >
                 <div className="relative z-10 text-center">
-                  <h3 className="text-2xl font-semibold tracking-tight text-white mb-4 whitespace-nowrap">
+                  <h3 className="text-2xl font-semibold tracking-tight text-white mb-4">
                     {service.title}
                   </h3>
                   <p className="text-gray-400">{service.description}</p>
