@@ -21,7 +21,7 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen w-full bg-neutral-soft">
+    <div className="min-h-screen w-full bg-[#1A1F2C]">
       {/* Logo */}
       <div className="absolute top-6 right-6 lg:right-8">
         <a 
