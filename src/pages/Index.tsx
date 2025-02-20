@@ -124,7 +124,7 @@ const Index = () => {
                   </h3>
                   <p className="text-gray-400 mb-6">{service.description}</p>
                   {service.category === "Hospitality" && (
-                    <button className="flex items-center justify-center gap-2 mx-auto px-6 py-2 bg-accent hover:bg-accent/90 text-white rounded-md transition-colors font-bold">
+                    <button className="flex items-center justify-center gap-2 mx-auto px-6 py-2 bg-gradient-to-r from-accent via-[#E5DEFF] to-accent hover:opacity-90 text-white rounded-md transition-colors font-bold">
                       <Phone className="w-4 h-4" /> Speak to Room Service
                     </button>
                   )}
