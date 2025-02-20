@@ -57,12 +57,19 @@ const MercedesDealer = () => {
           <div className="text-center">
             <h2 className="text-3xl font-bold mb-4">Spring Sales Event</h2>
             <p className="text-xl mb-6">Exceptional Offers on New 2024 Models</p>
-            <button 
-              className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-8 py-3 rounded-md font-semibold transition-colors"
-              onClick={() => setShowOffers(true)}
-            >
-              View Special Offers
-            </button>
+            <div className="space-y-4">
+              <button 
+                className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-8 py-3 rounded-md font-semibold transition-colors"
+                onClick={() => setShowOffers(true)}
+              >
+                View Special Offers
+              </button>
+              <div>
+                <button className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-8 py-3 rounded-md font-semibold transition-colors">
+                  Speak with us now!
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
