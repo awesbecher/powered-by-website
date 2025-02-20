@@ -1,6 +1,7 @@
 
 import { Clock, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useRef } from "react";
 
 const services = [
   {
@@ -42,6 +43,12 @@ const services = [
 ];
 
 const RetailServices = () => {
+  const chatRef = useRef<HTMLDivElement>(null);
+
+  const handleChatClick = () => {
+    chatRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-[#222222] text-white">
       {/* Logo */}
@@ -63,8 +70,15 @@ const RetailServices = () => {
             Welcome! Book an appointment.
           </h1>
           <p className="text-gray-400 max-w-2xl mx-auto mb-8">
-            Flagship Barbers has been serving the Tacoma public for 25 years. We specialize in classic barbershop style and fades. Select which services you'd like and chat with us below to book an appointment.
+            Flagship Barbers has been serving the Tacoma public for 25 years. We specialize in classic barbershop style and fades. Select which services you'd like and then click on Chat with Us below to book an appointment.
           </p>
+          <button 
+            className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2"
+            onClick={handleChatClick}
+          >
+            <MessageSquare className="w-5 h-5" />
+            Chat with Us
+          </button>
         </div>
       </div>
 
@@ -90,8 +104,25 @@ const RetailServices = () => {
         </div>
       </div>
 
-      {/* Chat Iframe */}
+      {/* Chat CTA Section */}
       <div className="max-w-7xl mx-auto px-4 lg:px-8 pb-12">
+        <div className="bg-accent/10 rounded-lg p-8 text-center border border-accent/20">
+          <h2 className="text-2xl font-bold mb-4">Ready to Book Your Appointment?</h2>
+          <p className="text-gray-400 mb-6">
+            Our booking specialists are ready to assist you in scheduling your next visit.
+          </p>
+          <button 
+            className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2"
+            onClick={handleChatClick}
+          >
+            <MessageSquare className="w-5 h-5" />
+            Chat with Us
+          </button>
+        </div>
+      </div>
+
+      {/* Chat Iframe */}
+      <div ref={chatRef} className="max-w-7xl mx-auto px-4 lg:px-8 pb-12">
         <div className="bg-accent/10 rounded-lg p-8 border border-accent/20">
           <h2 className="text-2xl font-bold mb-4 text-center">Chat with Us to Book Your Appointment</h2>
           <iframe
