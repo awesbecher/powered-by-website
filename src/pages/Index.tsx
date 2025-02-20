@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 
 const Index = () => {
@@ -64,6 +65,7 @@ const Index = () => {
       {/* Services Grid */}
       <div className="relative px-4 lg:px-6 pb-24">
         <div className="mx-auto max-w-7xl">
+          <h2 className="text-accent text-xl mb-4 text-center font-semibold">Hospitality</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
             {services.map((service) => (
               <Link
