@@ -1,6 +1,7 @@
 
 import { Scissors, Clock, Star, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const services = [
   {
@@ -42,6 +43,22 @@ const services = [
 ];
 
 const RetailServices = () => {
+  useEffect(() => {
+    // Initialize Chatbase
+    const script = document.createElement('script');
+    script.innerHTML = `
+      (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="E3xjnZ-H-sl1mXJ_y7Hza";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+    `;
+    document.head.appendChild(script);
+  }, []);
+
+  const handleChatClick = () => {
+    // Open Chatbase widget when button is clicked
+    if (window.chatbase) {
+      window.chatbase('open');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#222222] text-white">
       {/* Logo */}
@@ -67,7 +84,7 @@ const RetailServices = () => {
           </p>
           <button 
             className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2"
-            onClick={() => {/* Chat functionality will be implemented later */}}
+            onClick={handleChatClick}
           >
             <MessageSquare className="w-5 h-5" />
             Chat with Us
@@ -106,7 +123,7 @@ const RetailServices = () => {
           </p>
           <button 
             className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2"
-            onClick={() => {/* Chat functionality will be implemented later */}}
+            onClick={handleChatClick}
           >
             <MessageSquare className="w-5 h-5" />
             Chat with Us
