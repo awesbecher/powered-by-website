@@ -1,5 +1,7 @@
+
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Phone } from "lucide-react";
 
 const Index = () => {
   const [currentWord, setCurrentWord] = useState("Voice");
@@ -121,7 +123,12 @@ const Index = () => {
                   <h3 className="text-xl font-semibold tracking-tight text-white mb-4 whitespace-nowrap">
                     {service.title}
                   </h3>
-                  <p className="text-gray-400">{service.description}</p>
+                  <p className="text-gray-400 mb-6">{service.description}</p>
+                  {service.category === "Hospitality" && (
+                    <button className="flex items-center justify-center gap-2 mx-auto px-6 py-2 bg-accent hover:bg-accent/90 text-white rounded-md transition-colors">
+                      <Phone className="w-4 h-4" /> Speak to Room Service
+                    </button>
+                  )}
                 </div>
                 
                 {/* Card hover effect */}
