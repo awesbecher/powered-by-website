@@ -49,6 +49,7 @@ const Index = () => {
       title: "Schedule a Test Drive",
       description: "Book an appointment to test drive your dream car",
       link: "/auto-dealer",
+      logo: "/lovable-uploads/aa693bec-b111-4ff5-82d5-78ad46643ea3.png",
       category: "Auto Dealer"
     },
     {
