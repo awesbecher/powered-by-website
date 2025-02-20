@@ -44,6 +44,27 @@ const Index = () => {
     }
   ];
 
+  const additionalServices = [
+    {
+      title: "Schedule a Test Drive",
+      description: "Book an appointment to test drive your dream car",
+      link: "/auto-dealer",
+      category: "Auto Dealer"
+    },
+    {
+      title: "Property Tour",
+      description: "Schedule a viewing of available properties",
+      link: "/real-estate",
+      category: "Real Estate"
+    },
+    {
+      title: "Customer Support",
+      description: "Connect with our retail support team",
+      link: "/retail",
+      category: "Retail Services"
+    }
+  ];
+
   return (
     <div className="min-h-screen w-full bg-[#222222]">
       {/* Logo */}
@@ -100,7 +121,7 @@ const Index = () => {
       </div>
 
       {/* Services Grid */}
-      <div className="relative px-4 lg:px-6">
+      <div className="relative px-4 lg:px-6 space-y-8">
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
             {services.map((service, index) => (
@@ -144,6 +165,41 @@ const Index = () => {
                       <Phone className="w-4 h-4" /> Speak to Sales
                     </button>
                   )}
+                </div>
+                
+                {/* Card hover effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Additional Services Grid */}
+        <div className="mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+            {additionalServices.map((service, index) => (
+              <Link
+                key={service.title}
+                to={service.link}
+                className="group relative overflow-hidden rounded-2xl bg-black p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/5 hover:-translate-y-1 transform-gpu hover:scale-[1.02] min-h-[280px] flex flex-col justify-between cursor-pointer"
+              >
+                <div className="flex flex-col items-center">
+                  <h2 className="text-xl font-semibold bg-gradient-to-r from-accent via-[#E5DEFF] to-accent bg-clip-text text-transparent font-bold mb-6">
+                    {service.category}
+                  </h2>
+                  <div className="w-32 h-16 flex items-center justify-center">
+                    {/* Logo placeholder - will be added later */}
+                  </div>
+                </div>
+
+                <div className="relative z-10 text-center mt-8">
+                  <h3 className="text-xl font-semibold tracking-tight text-white mb-2 whitespace-nowrap">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-400 mb-4 text-sm font-bold">{service.description}</p>
+                  <button className="flex items-center justify-center gap-1 mx-auto px-3 py-1 bg-accent hover:bg-accent/90 text-white rounded-md transition-colors font-bold text-sm pointer-events-none">
+                    <Phone className="w-4 h-4" /> Speak to an Agent
+                  </button>
                 </div>
                 
                 {/* Card hover effect */}
