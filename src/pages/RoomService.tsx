@@ -1,4 +1,3 @@
-
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Phone } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -30,9 +29,9 @@ const RoomService = () => {
       const callParams = {
         phoneNumber: cleanedPhoneNumber,
         type: 'room-service',
-        flowId: '15b75020-90a0-473a-b6bc-758ced586c6b',
-        agentId: 'b79e025d-bb6c-4deb-99d5-a5f2f573c639',
-        from: '9179361793'
+        flowId: '9e282047-6541-4a98-b89f-fdb375ea4dc4',
+        agentId: '66630bc9-27df-4a30-831e-cff3664b3b46',
+        from: '+19179361793'
       };
 
       console.log('Attempting to initiate room service call with:', callParams);
@@ -41,7 +40,10 @@ const RoomService = () => {
         body: callParams
       });
 
-      if (error) throw error;
+      if (error) {
+        console.error('Supabase function error:', error);
+        throw error;
+      }
 
       toast({
         title: "Call initiated!",
@@ -49,7 +51,6 @@ const RoomService = () => {
       });
       setIsOpen(false);
       setPhoneNumber("");
-      navigate('/room-service');
     } catch (error) {
       console.error('Error initiating call:', error);
       toast({
@@ -64,12 +65,10 @@ const RoomService = () => {
 
   return (
     <div className="min-h-screen w-full bg-neutral-soft px-4 py-16 sm:px-6 lg:px-8">
-      {/* Logo */}
       <div className="absolute top-8 right-8">
         <img src="/lovable-uploads/f61255a3-5368-4739-a068-ec3431ea636f.png" alt="GrandView Hotel Logo" className="h-24 w-auto" />
       </div>
 
-      {/* Back button */}
       <Link to="/" className="absolute top-8 left-8 flex items-center text-accent hover:text-accent/80 transition-colors">
         <ArrowLeft className="h-6 w-6 mr-2" />
         <span>Back to Services</span>
