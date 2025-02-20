@@ -23,6 +23,7 @@ export const initiateVogentCall = async () => {
       body: JSON.stringify({
         flowId: FLOW_ID,
         agentId: AGENT_ID,
+        webhookUrl: `${window.location.origin}/api/call-completed`, // Vogent will call this when the call ends
       }),
     });
 
@@ -31,6 +32,14 @@ export const initiateVogentCall = async () => {
     }
 
     const data = await response.json();
+    
+    // Set up event listener for message from Vogent iframe
+    window.addEventListener('message', (event) => {
+      if (event.data.type === 'VOGENT_CALL_ENDED') {
+        window.location.href = '/'; // Redirect to main page when call ends
+      }
+    });
+
     return data;
   } catch (error) {
     console.error("Error initiating Vogent call:", error);

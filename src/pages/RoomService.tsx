@@ -4,10 +4,27 @@ import { ArrowLeft, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { initiateVogentCall } from "@/services/vogentService";
+import { useEffect } from "react";
 
 const RoomService = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+
+  useEffect(() => {
+    // Listen for call completion event
+    const handleCallEnd = (event: MessageEvent) => {
+      if (event.data.type === 'VOGENT_CALL_ENDED') {
+        navigate('/');
+        toast({
+          title: "Call Completed",
+          description: "Thank you for using our room service!",
+        });
+      }
+    };
+
+    window.addEventListener('message', handleCallEnd);
+    return () => window.removeEventListener('message', handleCallEnd);
+  }, [navigate, toast]);
 
   const handleSpeakToService = async () => {
     try {
