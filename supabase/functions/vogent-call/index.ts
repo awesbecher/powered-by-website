@@ -21,31 +21,36 @@ serve(async (req) => {
 
     console.log('Initiating call to:', phoneNumber)
 
+    // Format phone number to E.164 format (required by Vogent)
+    const formattedNumber = phoneNumber.startsWith('+1') ? phoneNumber : `+1${phoneNumber}`
+    
+    const requestBody = {
+      agent_id: "cd922dc9-eea6-4b43-878f-cb5cfd67e005",
+      toNumber: formattedNumber,
+      fromNumberId: "53660ead-9260-4a23-8df2-55a7050b3340",
+      callAgentId: "cd922dc9-eea6-4b43-878f-cb5cfd67e005"
+    }
+
+    console.log('Making request to Vogent with body:', JSON.stringify(requestBody))
+
     const response = await fetch('https://api.vogent.ai/api/dials', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer elto_fvRkQ2V9PYDyDpdxK9kGMCpJLqESEJiH',
       },
-      body: JSON.stringify({
-        agent_id: "cd922dc9-eea6-4b43-878f-cb5cfd67e005",
-        toNumber: phoneNumber,
-        fromNumberId: "53660ead-9260-4a23-8df2-55a7050b3340",
-        callAgentId: "cd922dc9-eea6-4b43-878f-cb5cfd67e005"
-      }),
+      body: JSON.stringify(requestBody),
     })
 
+    const responseData = await response.json()
+    console.log('Vogent API response:', JSON.stringify(responseData))
+
     if (!response.ok) {
-      const errorData = await response.json()
-      console.error('Vogent API error:', errorData)
-      throw new Error(`Vogent API error: ${errorData.message || 'Unknown error'}`)
+      throw new Error(`Vogent API error: ${JSON.stringify(responseData)}`)
     }
 
-    const data = await response.json()
-    console.log('Call initiated successfully:', data)
-
     return new Response(
-      JSON.stringify({ success: true, data }),
+      JSON.stringify({ success: true, data: responseData }),
       { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     )
   } catch (error) {
@@ -63,4 +68,3 @@ serve(async (req) => {
     )
   }
 })
-

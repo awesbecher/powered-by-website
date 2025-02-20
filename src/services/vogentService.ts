@@ -24,9 +24,6 @@ export const initiateVogentCall = async (userPhoneNumber: string) => {
 
   } catch (error) {
     console.error('Error in initiateVogentCall:', error);
-    if (error instanceof Error) {
-      throw error;
-    }
-    throw new Error('An unexpected error occurred while initiating the call.');
+    throw error;
   }
 };
