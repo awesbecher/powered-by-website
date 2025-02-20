@@ -4,11 +4,20 @@ import { ArrowLeft, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { initiateVogentCall } from "@/services/vogentService";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 
 const RoomService = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   useEffect(() => {
     // Listen for call completion event
@@ -26,7 +35,17 @@ const RoomService = () => {
     return () => window.removeEventListener('message', handleCallEnd);
   }, [navigate, toast]);
 
-  const handleSpeakToService = async () => {
+  const handlePhoneSubmit = async () => {
+    if (!phoneNumber) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Please enter your phone number.",
+      });
+      return;
+    }
+
+    setIsDialogOpen(false);
     try {
       await initiateVogentCall();
       navigate("/call-confirmation");
@@ -37,6 +56,21 @@ const RoomService = () => {
         description: "Unable to connect to Room Service. Please try again.",
       });
     }
+  };
+
+  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, '');
+    if (value.length <= 10) {
+      setPhoneNumber(value);
+    }
+  };
+
+  const formatPhoneNumber = (value: string) => {
+    if (!value) return "";
+    const phoneNumber = value.replace(/\D/g, '');
+    if (phoneNumber.length <= 3) return phoneNumber;
+    if (phoneNumber.length <= 6) return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
   };
 
   return (
@@ -60,7 +94,7 @@ const RoomService = () => {
         <p className="text-white/90 text-lg mb-8">Please choose from any of the items on our Food & Drinks Menu below. When you are ready, click the button below to speak to Room Service.</p>
         <Button 
           className="bg-accent hover:bg-accent/90 text-white mb-8 font-bold text-lg"
-          onClick={handleSpeakToService}
+          onClick={() => setIsDialogOpen(true)}
         >
           <Phone className="mr-2 h-6 w-6" />
           Speak to Room Service
@@ -79,12 +113,46 @@ const RoomService = () => {
         </div>
         <Button 
           className="bg-accent hover:bg-accent/90 text-white mt-8 font-bold text-lg"
-          onClick={handleSpeakToService}
+          onClick={() => setIsDialogOpen(true)}
         >
           <Phone className="mr-2 h-6 w-6" />
           Speak to Room Service
         </Button>
       </div>
+
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Enter your phone number</DialogTitle>
+          </DialogHeader>
+          <div className="flex items-center space-x-2 pt-4">
+            <div className="flex-shrink-0 bg-gray-100 p-2 rounded">
+              +1
+            </div>
+            <Input
+              type="tel"
+              placeholder="(555) 123-4567"
+              value={formatPhoneNumber(phoneNumber)}
+              onChange={handlePhoneNumberChange}
+              className="flex-1"
+            />
+          </div>
+          <div className="flex justify-end space-x-2 mt-4">
+            <Button
+              variant="secondary"
+              onClick={() => setIsDialogOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handlePhoneSubmit}
+              className="bg-accent hover:bg-accent/90"
+            >
+              Call Me
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
