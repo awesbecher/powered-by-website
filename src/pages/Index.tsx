@@ -107,25 +107,25 @@ const Index = () => {
               <Link
                 key={service.title}
                 to={service.link}
-                className="group relative overflow-hidden rounded-2xl bg-black p-12 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/5 hover:-translate-y-1 transform-gpu hover:scale-[1.02] min-h-[300px] flex flex-col justify-center cursor-pointer"
+                className="group relative overflow-hidden rounded-2xl bg-black p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/5 hover:-translate-y-1 transform-gpu hover:scale-[1.02] min-h-[260px] flex flex-col justify-center cursor-pointer"
               >
-                <h2 className="text-xl font-semibold absolute top-8 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-accent via-[#E5DEFF] to-accent bg-clip-text text-transparent font-bold">
+                <h2 className="text-xl font-semibold absolute top-6 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-accent via-[#E5DEFF] to-accent bg-clip-text text-transparent font-bold">
                   {service.category}
                 </h2>
                 {service.logo && (
-                  <div className="absolute top-20 left-1/2 transform -translate-x-1/2 mb-16">
+                  <div className="absolute top-16 left-1/2 transform -translate-x-1/2 mb-12">
                     <img 
                       src={service.logo} 
                       alt={`${service.title} Logo`} 
-                      className={`h-16 w-auto ${service.title === "Get an Insurance Quote" ? "w-32" : ""} ${service.title === "Upgrade your License" ? "w-28" : ""}`}
+                      className="h-12 w-auto object-contain"
                     />
                   </div>
                 )}
-                <div className="relative z-10 text-center mt-24">
-                  <h3 className="text-xl font-semibold tracking-tight text-white mb-4 whitespace-nowrap">
+                <div className="relative z-10 text-center mt-16">
+                  <h3 className="text-xl font-semibold tracking-tight text-white mb-2 whitespace-nowrap">
                     {service.title}
                   </h3>
-                  <p className="text-gray-400 mb-6">{service.description}</p>
+                  <p className="text-gray-400 mb-4 text-sm">{service.description}</p>
                   {service.category === "Hospitality" && (
                     <button className="flex items-center justify-center gap-1 mx-auto px-3 py-1 bg-accent hover:bg-accent/90 text-white rounded-md transition-colors font-bold text-sm pointer-events-none">
                       <Phone className="w-4 h-4" /> Speak to Room Service
