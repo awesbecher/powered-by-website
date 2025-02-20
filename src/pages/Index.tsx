@@ -5,7 +5,7 @@ import { Phone } from "lucide-react";
 
 const Index = () => {
   const [currentWord, setCurrentWord] = useState("Voice");
-  const words = ["Voice", "Phone", "Text", "Email", "Slack", "Chat", "Docs", "Jira"];
+  const words = ["Voice", "Phone", "Text", "Email", "Slack", "Chat", "Docs", "Survey"];
   const [wordIndex, setWordIndex] = useState(0);
 
   useEffect(() => {
