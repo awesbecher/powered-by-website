@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Phone } from "lucide-react";
@@ -170,7 +169,6 @@ const Index = () => {
                   )}
                 </div>
                 
-                {/* Card hover effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </Link>
             ))}
@@ -207,11 +205,10 @@ const Index = () => {
                   </h3>
                   <p className="text-gray-400 mb-4 text-sm font-bold">{service.description}</p>
                   <button className="flex items-center justify-center gap-1 mx-auto px-3 py-1 bg-accent hover:bg-accent/90 text-white rounded-md transition-colors font-bold text-sm pointer-events-none">
-                    <Phone className="w-4 h-4" /> Speak to an Agent
+                    <Phone className="w-4 h-4" /> {service.category === "Auto Dealer" ? "Speak to Sales" : "Speak to an Agent"}
                   </button>
                 </div>
                 
-                {/* Card hover effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </Link>
             ))}
