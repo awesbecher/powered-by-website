@@ -66,7 +66,7 @@ const Index = () => {
       </div>
 
       {/* Services Grid */}
-      <div className="relative px-4 lg:px-6 pb-12">
+      <div className="relative px-4 lg:px-6 pb-8">
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
             {services.map((service, index) => (
