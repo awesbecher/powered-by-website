@@ -1,7 +1,24 @@
 
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const Index = () => {
+  const [currentWord, setCurrentWord] = useState("Voice");
+  const words = ["Voice", "Phone", "Text", "Email", "Slack", "Chatbot", "Docs"];
+  const [wordIndex, setWordIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWordIndex((prevIndex) => {
+        const nextIndex = (prevIndex + 1) % words.length;
+        setCurrentWord(words[nextIndex]);
+        return nextIndex;
+      });
+    }, 2000); // Change word every 2 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   const services = [
     {
       title: "In-Room Dining",
@@ -48,7 +65,10 @@ const Index = () => {
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
-              Voice Automation{" "}
+              <span className="inline-block min-w-[120px] sm:min-w-[180px] transition-all duration-500 ease-in-out animate-fade-in">
+                {currentWord}
+              </span>{" "}
+              Automation{" "}
               <span className="bg-gradient-to-r from-accent via-accent/80 to-accent/60 bg-clip-text text-transparent">
                 Simplified
               </span>
