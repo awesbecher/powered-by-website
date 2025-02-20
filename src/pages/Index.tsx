@@ -14,7 +14,7 @@ const Index = () => {
       link: "/insurance",
     },
     {
-      title: "License",
+      title: "Upgrade your License",
       description: "Manage your hotel license and compliance",
       link: "/license",
     }
