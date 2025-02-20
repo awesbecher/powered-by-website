@@ -20,6 +20,8 @@ serve(async (req) => {
       throw new Error('Secret name is required')
     }
 
+    console.log(`Looking up secret: ${secretName}`)
+
     const supabaseUrl = Deno.env.get('SUPABASE_URL')
     const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
 
@@ -27,10 +29,8 @@ serve(async (req) => {
       throw new Error('Missing required environment variables')
     }
 
-    console.log('Creating Supabase client...')
     const supabaseAdmin = createClient(supabaseUrl, supabaseKey)
 
-    console.log(`Fetching secret: ${secretName}`)
     const { data, error } = await supabaseAdmin
       .from('secrets')
       .select('value')
@@ -49,7 +49,10 @@ serve(async (req) => {
 
     console.log('Secret retrieved successfully')
     return new Response(
-      JSON.stringify({ secret: data.value }),
+      JSON.stringify({ 
+        secret: data.value,
+        message: 'Secret retrieved successfully'
+      }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         status: 200,
@@ -64,7 +67,7 @@ serve(async (req) => {
       }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        status: 500, // Changed to 500 for server errors
+        status: 500,
       }
     )
   }
