@@ -29,7 +29,7 @@ const RoomService = () => {
           <Phone className="mr-2 h-4 w-4" />
           Speak to Room Service
         </Button>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center space-y-1">
           <img 
             src="/lovable-uploads/54a3f767-41a4-4083-a920-5592f61dbd63.png"
             alt="Food Menu"
