@@ -46,6 +46,16 @@ export const initiateVogentCall = async (userPhoneNumber: string) => {
 
     const responseData = await response.json();
     console.log('Vogent call initiated successfully:', responseData);
+
+    // Set up event listener for call completion
+    const handleCallEnd = (event: MessageEvent) => {
+      if (event.data.type === 'VOGENT_CALL_ENDED') {
+        window.removeEventListener('message', handleCallEnd);
+        window.location.href = '/';
+      }
+    };
+    window.addEventListener('message', handleCallEnd);
+
     return responseData;
   } catch (error) {
     console.error('Error in initiateVogentCall:', error);
