@@ -13,6 +13,7 @@ const Index = () => {
       title: "Get an Insurance Quote",
       description: "Protect your stay with our insurance options",
       link: "/insurance",
+      logo: "/lovable-uploads/5b3d5137-838b-44a5-8f54-bb2a4cb7dc5a.png"
     },
     {
       title: "Upgrade your License",
@@ -74,7 +75,7 @@ const Index = () => {
                   <div className="absolute top-8 left-1/2 transform -translate-x-1/2">
                     <img 
                       src={service.logo} 
-                      alt="GrandView Hotel Logo" 
+                      alt={`${service.title} Logo`} 
                       className="h-16 w-auto"
                     />
                   </div>
