@@ -23,14 +23,14 @@ const MercedesDealer = () => {
           <h1 className="text-4xl font-bold mb-4">
             Mercedes-Benz of Tacoma
           </h1>
-          <p className="text-gray-400 max-w-2xl mx-auto mb-8">
+          <p className="text-gray-400 max-w-2xl mx-auto mb-4">
             Tacoma's Premier Authorized Mercedes-Benz Dealer. Experience luxury and performance with our extensive selection of new and certified pre-owned vehicles.
           </p>
         </div>
       </div>
 
       {/* Featured Section */}
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-6">
         <div className="rounded-xl overflow-hidden bg-black/50 backdrop-blur-sm p-12 mb-12">
           <div className="text-center">
             <h2 className="text-3xl font-bold mb-4">Spring Sales Event</h2>
