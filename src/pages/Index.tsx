@@ -14,7 +14,7 @@ const Index = () => {
         setCurrentWord(words[nextIndex]);
         return nextIndex;
       });
-    }, 2000); // Change word every 2 seconds
+    }, 2000);
 
     return () => clearInterval(interval);
   }, []);
@@ -65,7 +65,18 @@ const Index = () => {
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
-              <span className="inline-block min-w-[120px] sm:min-w-[180px] transition-all duration-500 ease-in-out animate-fade-in text-accent">
+              <span 
+                className="
+                  inline-block min-w-[120px] sm:min-w-[180px] 
+                  transition-all duration-500 ease-in-out 
+                  animate-fade-in
+                  bg-gradient-to-r from-accent via-[#E5DEFF] to-accent 
+                  bg-clip-text text-transparent
+                  drop-shadow-[0_0_10px_rgba(155,135,245,0.3)]
+                  border-b-2 border-accent/20
+                  pb-1
+                "
+              >
                 {currentWord}
               </span>
               Automation{" "}
