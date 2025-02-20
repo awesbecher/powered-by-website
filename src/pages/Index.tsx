@@ -65,14 +65,18 @@ const Index = () => {
       {/* Services Grid */}
       <div className="relative px-4 lg:px-6 pb-24">
         <div className="mx-auto max-w-7xl">
-          <h2 className="text-accent text-xl mb-4 text-center font-semibold">Hospitality</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
-            {services.map((service) => (
+            {services.map((service, index) => (
               <Link
                 key={service.title}
                 to={service.link}
                 className="group relative overflow-hidden rounded-2xl bg-black p-12 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/5 hover:-translate-y-1 transform-gpu hover:scale-[1.02] min-h-[400px] flex flex-col justify-center"
               >
+                {index === 0 && (
+                  <h2 className="text-accent text-xl font-semibold absolute top-8 left-1/2 transform -translate-x-1/2">
+                    Hospitality
+                  </h2>
+                )}
                 {service.logo && (
                   <div className="absolute top-8 left-1/2 transform -translate-x-1/2">
                     <img 
