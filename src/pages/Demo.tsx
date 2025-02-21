@@ -56,7 +56,7 @@ const Demo = () => {
               <span className="text-accent">
                 demos
               </span>
-              .{" "}
+              !{" "}
               <span className="text-white">
                 Now go have fun!
               </span>
