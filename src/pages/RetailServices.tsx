@@ -52,7 +52,7 @@ const RetailServices = () => {
   return (
     <div className="min-h-screen bg-[#222222] text-white">
       {/* Logo */}
-      <div className="absolute top-8 right-8">
+      <div className="absolute top-8 right-8 z-10">
         <img 
           src="/lovable-uploads/07f82a95-cea8-417e-96f0-5d8ef95f0200.png"
           alt="Flagship Barbers Logo"
@@ -60,25 +60,38 @@ const RetailServices = () => {
         />
       </div>
 
-      {/* Header */}
-      <div className="relative pt-24 px-4 lg:px-8">
-        <Link to="/" className="absolute top-8 left-8 text-gray-400 hover:text-white transition-colors">
-          ← Back
-        </Link>
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-4xl font-bold mb-4">
-            Welcome! Book an appointment.
-          </h1>
-          <p className="text-gray-400 max-w-2xl mx-auto mb-8">
-            Flagship Barbers has been serving the Tacoma public for 25 years. We specialize in classic barbershop style and fades. Select which services you'd like and then click on Chat with Us below to book an appointment.
-          </p>
-          <button 
-            className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2"
-            onClick={handleChatClick}
-          >
-            <MessageSquare className="w-5 h-5" />
-            Chat with Us
-          </button>
+      {/* Hero Section */}
+      <div className="relative min-h-[80vh] flex items-center">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img 
+            src="/lovable-uploads/dac317cc-0dbe-4fbd-9e8b-8f3e4e1ef731.png"
+            alt="Professional Barbershop Interior"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
+        </div>
+
+        {/* Content */}
+        <div className="relative w-full pt-24 px-4 lg:px-8">
+          <Link to="/" className="absolute top-8 left-8 text-gray-400 hover:text-white transition-colors">
+            ← Back
+          </Link>
+          <div className="max-w-7xl mx-auto text-center">
+            <h1 className="text-5xl font-bold mb-4 text-white">
+              Welcome to Flagship Barbers
+            </h1>
+            <p className="text-gray-200 max-w-2xl mx-auto text-lg mb-8">
+              Flagship Barbers has been serving the Tacoma public for 25 years. We specialize in classic barbershop style and fades. Select which services you'd like and then click on Chat with Us below to book an appointment.
+            </p>
+            <button 
+              className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2"
+              onClick={handleChatClick}
+            >
+              <MessageSquare className="w-5 h-5" />
+              Chat with Us
+            </button>
+          </div>
         </div>
       </div>
 
