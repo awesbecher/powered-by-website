@@ -1,7 +1,6 @@
-
 import { Bot, Network, MessageSquare, BarChart, Phone, DollarSign, ChevronLeft } from "lucide-react";
 import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const License = () => {
   const chatSectionRef = useRef<HTMLDivElement>(null);
@@ -14,13 +13,13 @@ const License = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
       {/* Back Button */}
-      <button
-        onClick={() => navigate(-1)}
+      <Link
+        to="/demo"
         className="absolute top-8 left-8 z-20 text-white hover:text-purple-400 transition-colors flex items-center gap-2"
       >
         <ChevronLeft className="w-6 h-6" />
-        <span className="font-medium">Back</span>
-      </button>
+        <span className="font-medium">Back to Demos</span>
+      </Link>
 
       {/* Hero Section */}
       <div className="relative min-h-[100vh]">
