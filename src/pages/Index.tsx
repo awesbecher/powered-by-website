@@ -1,7 +1,7 @@
 
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Building2, Bot, Clock, ChartBar, MessageSquare, Mail } from "lucide-react";
+import { ArrowRight, Building2, Bot, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
