@@ -1,4 +1,3 @@
-
 import { Bot, Network, MessageSquare, BarChart, Phone, DollarSign, ChevronLeft } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -41,13 +40,10 @@ const License = () => {
         </div>
 
         {/* Hero Text */}
-        <div className="absolute inset-0 flex flex-col items-center pt-32 gap-6">
+        <div className="absolute inset-0 flex flex-col items-center pt-32">
           <h1 className="text-4xl md:text-5xl font-bold text-center max-w-4xl px-4 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400">
             Transform Your Customer Experience with AI Agents
           </h1>
-          <p className="text-2xl md:text-3xl font-bold text-white text-center max-w-3xl px-4">
-            Empower your business with intelligent automation that drives results
-          </p>
         </div>
 
         {/* Content */}
