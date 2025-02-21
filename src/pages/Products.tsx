@@ -1,5 +1,4 @@
-
-import { Package2, Users, HeadphonesIcon, Building2, Check, Mail, Phone, MessageSquare, ArrowLeft } from "lucide-react";
+import { Package2, Users, HeadphonesIcon, Building2, Check, Mail, Phone, MessageSquare } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 
@@ -22,15 +21,6 @@ const Products = () => {
             className="h-12 w-auto"
           />
         </div>
-
-        {/* Back Button */}
-        <button
-          onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-gray-300 hover:text-white mb-8 transition-colors"
-        >
-          <ArrowLeft className="w-5 h-5" />
-          <span>Back</span>
-        </button>
 
         {/* Header */}
         <div className="text-center mb-16">

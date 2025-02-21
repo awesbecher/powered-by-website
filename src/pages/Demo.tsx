@@ -1,24 +1,10 @@
-
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { ServiceCard } from "@/components/home/ServiceCard";
 import { services, additionalServices } from "@/data/services";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
 
 const Demo = () => {
   return (
     <div className="min-h-screen w-full bg-[#222222]">
-      {/* Back Button */}
-      <div className="absolute top-6 right-6 lg:right-8 z-10">
-        <Link to="/">
-          <Button variant="ghost" className="text-white hover:bg-white/10">
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Home
-          </Button>
-        </Link>
-      </div>
-
       {/* Logo */}
       <div className="absolute top-6 left-6 lg:left-8">
         <img 
