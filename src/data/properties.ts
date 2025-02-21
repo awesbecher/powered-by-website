@@ -10,6 +10,14 @@ export interface Property {
 
 export const properties: Property[] = [
   {
+    title: "Historic Colonial",
+    price: "$1,185,000",
+    location: "Tewksbury Township",
+    specs: "321 Main St-Mountainville • Classic Details",
+    type: "Single Family",
+    image: "/lovable-uploads/1cfbedce-9045-47a7-b81f-4eb7381a7576.png"
+  },
+  {
     title: "Luxury Estate",
     price: "$1,200,000",
     location: "Sparta Township",
