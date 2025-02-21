@@ -15,7 +15,7 @@ export const services = [
     category: "Insurance"
   },
   {
-    title: "Upgrade your License",
+    title: "Explore Products",
     description: "Manage and upgrade your seat licenses",
     link: "/license",
     logo: "/lovable-uploads/e9ddfbf3-072d-410d-b7ed-01c83eb30564.png",
