@@ -1,17 +1,12 @@
 
 import { supabase } from "@/integrations/supabase/client";
 
-export const SALES_AGENT_ID = "15b75020-90a0-473a-b6bc-758ced586c6b";
-
-export const initiateVogentCall = async (userPhoneNumber: string, agentId?: string) => {
+export const initiateVogentCall = async (userPhoneNumber: string) => {
   try {
     console.log('Calling vogent-call function with phone number:', userPhoneNumber);
     
     const { data, error } = await supabase.functions.invoke('vogent-call', {
-      body: { 
-        phoneNumber: userPhoneNumber,
-        agentId: agentId
-      }
+      body: { phoneNumber: userPhoneNumber }
     });
 
     if (error) {
