@@ -4,6 +4,14 @@ import { Phone, MapPin, Home, Building, DollarSign, Users } from "lucide-react";
 
 const properties = [
   {
+    title: "Colonial Estate",
+    price: "$869,000",
+    location: "Hardyston Township",
+    specs: "47 Stonehedge Dr • Winter Views",
+    type: "Single Family",
+    image: "/lovable-uploads/392a1508-93a7-467a-af6a-3bc4c2dde996.png"
+  },
+  {
     title: "Luxury Colonial Estate",
     price: "$1,400,000",
     location: "Sparta Township",
