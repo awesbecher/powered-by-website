@@ -54,6 +54,40 @@ const AIAgency = () => {
           <p className="text-xl text-gray-300 text-center mb-12 animate-fade-in opacity-0" style={{ animationFillMode: 'forwards', animationDelay: '0.4s' }}>
             Transforming businesses through intelligent automation
           </p>
+
+          {/* Fancy Text Block */}
+          <div className="relative mt-16 max-w-4xl mx-auto">
+            {/* Background decorative elements */}
+            <div className="absolute -top-10 -left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl"></div>
+            <div className="absolute -bottom-10 -right-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl"></div>
+            
+            {/* Content sections with glass effect */}
+            <div className="relative space-y-8">
+              <div className="glass-card p-8 rounded-2xl animate-fade-in opacity-0" style={{ animationFillMode: 'forwards', animationDelay: '0.6s' }}>
+                <p className="text-gray-200 leading-relaxed">
+                  Remember when having a website set you apart from the crowd? Back then, web agencies were the go-to partners for bringing businesses online. Today, AI is shaping the new frontier of customer experience while giving you unprecedented cost efficiencies.
+                </p>
+              </div>
+
+              <div className="glass-card p-8 rounded-2xl animate-fade-in opacity-0" style={{ animationFillMode: 'forwards', animationDelay: '0.8s' }}>
+                <p className="text-gray-200 leading-relaxed">
+                  Enter Parlar. We're the world's first "AI Agency" crafting custom solutions for small to medium-sized businesses that want to harness the power of AI without the need of hiring teams of AI specialists and full stack engineers.
+                </p>
+              </div>
+
+              <div className="glass-card p-8 rounded-2xl animate-fade-in opacity-0" style={{ animationFillMode: 'forwards', animationDelay: '1s' }}>
+                <p className="text-gray-200 leading-relaxed">
+                  We specialize in AI agents work seamlessly across voice, email, SMS, chat, Slack, and more to automate and enhance how you interact with your audience.
+                </p>
+              </div>
+
+              <div className="glass-card p-8 rounded-2xl animate-fade-in opacity-0" style={{ animationFillMode: 'forwards', animationDelay: '1.2s' }}>
+                <p className="text-gray-200 leading-relaxed">
+                  Just as the classic web design agency would build you a website from scratch, we build custom AI agent solutions from the ground up. Our agents are designed to streamline customer conversations, reduce response times, and free up your team to focus on what you do best. We believe cutting-edge technology should be accessible to every business, not just Silicon Valley.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
