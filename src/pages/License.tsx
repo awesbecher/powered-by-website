@@ -46,7 +46,7 @@ const License = () => {
         {/* Hero Text */}
         <div className="absolute inset-0 flex flex-col items-center pt-32">
           <h1 className="text-4xl md:text-5xl font-bold text-center max-w-4xl px-4 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400">
-            Transform Your Customer Experience with AI Agents
+            Transform Your Sales Outreach & Customer Experience with AI Agents
           </h1>
         </div>
 
