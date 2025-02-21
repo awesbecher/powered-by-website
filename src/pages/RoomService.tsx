@@ -1,3 +1,4 @@
+
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -142,6 +143,15 @@ const RoomService = () => {
             className="max-w-2xl w-full h-auto"
           />
         </div>
+        <Button 
+          size="lg"
+          className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white mt-8 font-bold text-lg mx-auto block px-8 py-6 h-auto"
+          onClick={() => setIsDialogOpen(true)}
+          disabled={isProcessing}
+        >
+          <Phone className="mr-2 h-6 w-6" />
+          {isProcessing ? 'Connecting...' : 'Speak to Room Service'}
+        </Button>
       </div>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
