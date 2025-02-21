@@ -1,11 +1,15 @@
+
 import { Bot, Network, MessageSquare, BarChart, Phone, DollarSign, ChevronLeft } from "lucide-react";
-import { useState } from "react";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 const License = () => {
-  const [showChat, setShowChat] = useState(false);
+  const chatSectionRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+
+  const scrollToChat = () => {
+    chatSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
@@ -69,7 +73,7 @@ const License = () => {
                   <Phone className="w-5 h-5" />
                 </button>
                 <button 
-                  onClick={() => setShowChat(true)}
+                  onClick={scrollToChat}
                   className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2"
                 >
                   Chat with Us
@@ -105,16 +109,17 @@ const License = () => {
         </div>
       </div>
 
-      <Dialog open={showChat} onOpenChange={setShowChat}>
-        <DialogContent className="max-w-3xl h-[80vh]">
+      {/* Chat Section */}
+      <div ref={chatSectionRef} className="container mx-auto px-4 py-16">
+        <div className="max-w-4xl mx-auto bg-white rounded-lg overflow-hidden shadow-xl">
           <iframe
             src="https://www.chatbase.co/chatbot-iframe/kHr0XGInFw_HfmNBDEuXC"
             width="100%"
-            style={{ height: "100%", minHeight: "700px" }}
-            frameBorder="0"
+            className="min-h-[700px]"
+            style={{ border: 'none' }}
           />
-        </DialogContent>
-      </Dialog>
+        </div>
+      </div>
     </div>
   );
 };
