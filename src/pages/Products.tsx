@@ -218,6 +218,18 @@ const Products = () => {
           </div>
         </div>
       </div>
+
+      {/* Chat Section */}
+      <div ref={chatSectionRef} className="container mx-auto px-4 py-16">
+        <div className="max-w-4xl mx-auto bg-white rounded-lg overflow-hidden shadow-xl">
+          <iframe
+            src="https://www.chatbase.co/chatbot-iframe/kHr0XGInFw_HfmNBDEuXC"
+            width="100%"
+            className="min-h-[700px]"
+            style={{ border: 'none' }}
+          />
+        </div>
+      </div>
     </div>
   );
 };
