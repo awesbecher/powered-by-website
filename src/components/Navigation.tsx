@@ -24,8 +24,8 @@ const Navigation = () => {
         </li>
         <li className="text-white">|</li>
         <li>
-          <Link to="/contact" className="text-white hover:text-accent transition-colors">
-            Contact Us
+          <Link to="/blog" className="text-white hover:text-accent transition-colors">
+            Blog
           </Link>
         </li>
       </ul>
