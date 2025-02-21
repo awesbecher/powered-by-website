@@ -80,7 +80,7 @@ const Contact = () => {
             Let's meet!
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-300">
-            We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+            Ready to put AI agents to work? Book a consultation with our Solutions Design team now.
           </p>
         </div>
 
