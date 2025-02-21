@@ -88,7 +88,7 @@ const Index = () => {
           </h2>
           
           {/* Apps Grid */}
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-6 max-w-4xl mx-auto mb-12">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 max-w-4xl mx-auto mb-12">
             {[
               {
                 path: "/lovable-uploads/2035fcd4-8b92-4f84-ad1e-c4ecae819711.png",
@@ -129,6 +129,42 @@ const Index = () => {
               {
                 path: "/lovable-uploads/dd51c971-3ffc-4f39-900e-81be1ba6f99c.png",
                 name: "Zoom Phone"
+              },
+              {
+                path: "/lovable-uploads/57b14d49-eab1-4dd2-827d-dceb363f5514.png",
+                name: "Stripe"
+              },
+              {
+                path: "/lovable-uploads/dfa6c12a-d0aa-4b21-bca9-73cf4b428400.png",
+                name: "PayPal"
+              },
+              {
+                path: "/lovable-uploads/f61255a3-5368-4739-a068-ec3431ea636f.png",
+                name: "Zendesk"
+              },
+              {
+                path: "/lovable-uploads/ba7183d3-c2d6-46b1-b51e-afa9de2b5af2.png",
+                name: "Jira"
+              },
+              {
+                path: "/lovable-uploads/8505af38-6a90-44dc-b6bc-554d254475ea.png",
+                name: "Google"
+              },
+              {
+                path: "/lovable-uploads/e504e0c0-aac1-498a-9e32-e6e42a133dee.png",
+                name: "Dialpad"
+              },
+              {
+                path: "/lovable-uploads/92d1275c-847a-49ad-a297-792c7bf899a7.png",
+                name: "Dropbox"
+              },
+              {
+                path: "/lovable-uploads/54a3f767-41a4-4083-a920-5592f61dbd63.png",
+                name: "Salesforce"
+              },
+              {
+                path: "/lovable-uploads/ba13be0d-77b7-49f3-aa99-9524e25c5294.png",
+                name: "HubSpot"
               }
             ].map((app, index) => (
               <div 
