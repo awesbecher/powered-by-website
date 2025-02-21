@@ -4,6 +4,14 @@ import { Phone, MapPin, Home, Building, DollarSign, Users } from "lucide-react";
 
 const properties = [
   {
+    title: "Luxury Colonial Estate",
+    price: "$1,400,000",
+    location: "Sparta Township",
+    specs: "20 Crestview Ln • Wooded Setting",
+    type: "Single Family",
+    image: "/lovable-uploads/b98c300b-5083-40a2-80cc-e4655055c836.png"
+  },
+  {
     title: "Lakefront Estate",
     price: "$749,000",
     location: "Sparta Township",
