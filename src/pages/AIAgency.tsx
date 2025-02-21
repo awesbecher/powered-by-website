@@ -48,12 +48,35 @@ const AIAgency = () => {
       {/* AI Agency Content */}
       <div className="relative pt-32 pb-16 px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <h1 className="text-4xl font-bold tracking-tight text-white text-center sm:text-6xl mb-4 animate-fade-in opacity-0" style={{ animationFillMode: 'forwards', animationDelay: '0.2s' }}>
-            The World's First AI Agency
-          </h1>
-          <p className="text-xl text-gray-300 text-center mb-12 animate-fade-in opacity-0" style={{ animationFillMode: 'forwards', animationDelay: '0.4s' }}>
-            Transforming businesses through intelligent automation
-          </p>
+          <div className="flex flex-col items-center justify-center space-y-4">
+            {/* Split hero text into characters for staggered animation */}
+            <h1 className="text-4xl font-bold tracking-tight text-center sm:text-6xl mb-4 overflow-hidden">
+              {"The World's First AI Agency".split('').map((char, i) => (
+                <span 
+                  key={i} 
+                  className="inline-block text-white opacity-0 animate-fade-in"
+                  style={{ 
+                    animationFillMode: 'forwards',
+                    animationDelay: `${0.05 * i}s`,
+                    transform: 'translateY(20px)'
+                  }}
+                >
+                  {char === ' ' ? '\u00A0' : char}
+                </span>
+              ))}
+            </h1>
+            <p 
+              className="relative text-xl text-transparent bg-clip-text bg-gradient-to-r from-white via-accent to-white opacity-0 animate-fade-in"
+              style={{ 
+                animationFillMode: 'forwards',
+                animationDelay: '1.2s',
+                backgroundSize: '200% 100%',
+                animation: 'fade-in 0.6s ease-out forwards, gradient-shift 3s ease-in-out infinite'
+              }}
+            >
+              Transforming businesses through intelligent automation
+            </p>
+          </div>
 
           {/* Fancy Text Block */}
           <div className="relative mt-16 max-w-4xl mx-auto">
