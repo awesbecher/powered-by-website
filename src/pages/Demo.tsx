@@ -34,7 +34,7 @@ const Demo = () => {
             </li>
             <li className="text-white">|</li>
             <li>
-              <Link to="/demo" className="text-white hover:text-accent transition-colors">
+              <Link to="/demo" className="text-accent transition-colors">
                 Demos
               </Link>
             </li>
