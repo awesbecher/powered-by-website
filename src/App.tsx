@@ -16,6 +16,7 @@ import FoodMenu from "./pages/FoodMenu";
 import CallConfirmation from "./pages/CallConfirmation";
 import MercedesDealer from "./pages/MercedesDealer";
 import RealEstate from "./pages/RealEstate";
+import Solutions from "./pages/Solutions";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -39,6 +40,7 @@ const App = () => (
           <Route path="/retail" element={<RetailServices />} />
           <Route path="/mercedes" element={<MercedesDealer />} />
           <Route path="/real-estate" element={<RealEstate />} />
+          <Route path="/solutions" element={<Solutions />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
