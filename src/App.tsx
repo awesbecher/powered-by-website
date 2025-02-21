@@ -17,6 +17,7 @@ import MercedesDealer from "./pages/MercedesDealer";
 import RealEstate from "./pages/RealEstate";
 import NotFound from "./pages/NotFound";
 import Blog from "./pages/Blog";
+import AIAgency from "./pages/AIAgency";
 import Navbar from "./components/layout/Navbar";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
         <Navbar />
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/ai-agency" element={<AIAgency />} />
           <Route path="/demo" element={<Demo />} />
           <Route path="/room-service" element={<RoomService />} />
           <Route path="/food-menu" element={<FoodMenu />} />

@@ -6,14 +6,14 @@ const Navbar = () => {
   const location = useLocation();
 
   const navItems = [
-    { name: "AI Agency", path: "/" },
+    { name: "AI Agency", path: "/ai-agency" },
     { name: "Solutions", path: "/products" },
     { name: "Demos", path: "/demo" },
     { name: "Blog", path: "/blog" }
   ];
 
   // Check if we should show the consultation button on current page
-  const showConsultButton = ['/', '/products', '/demo', '/blog'].includes(location.pathname);
+  const showConsultButton = ['/', '/ai-agency', '/products', '/demo', '/blog'].includes(location.pathname);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#222222]/80 backdrop-blur-lg">
