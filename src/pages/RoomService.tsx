@@ -21,6 +21,7 @@ const RoomService = () => {
   const [isProcessing, setIsProcessing] = useState(false);
 
   useEffect(() => {
+    // Listen for call completion event
     const handleCallEnd = (event: MessageEvent) => {
       if (event.data.type === 'VOGENT_CALL_ENDED') {
         window.removeEventListener('message', handleCallEnd);
@@ -80,7 +81,8 @@ const RoomService = () => {
 
   return (
     <div className="min-h-screen w-full bg-[#222222]">
-      <div className="relative h-[50vh] mb-8">
+      {/* Hero Section */}
+      <div className="relative h-[50vh] mb-16">
         <div className="absolute inset-0">
           <img 
             src="/lovable-uploads/e87cce6e-adc9-4426-b464-c64b14d607bd.png"
@@ -113,25 +115,22 @@ const RoomService = () => {
       <img 
         src="/lovable-uploads/ec9dd264-4bb3-4b03-9b50-e31383652af9.png"
         alt="GrandView Hotel"
-        className="absolute top-8 right-8 h-12 w-auto z-10"
+        className="absolute top-8 right-8 h-24 w-auto z-10"
       />
 
-      <div className="mx-auto max-w-3xl px-4 space-y-4">
-        <p className="text-white/90 text-lg text-center">
+      <div className="mx-auto max-w-3xl px-4">
+        <p className="text-white/90 text-lg mb-8 text-center">
           Please choose from any of the items on our Food & Drinks Menu below. When you are ready, click the button below to speak to Room Service.
         </p>
-        
         <Button 
-          size="lg"
-          className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white font-bold text-lg mx-auto flex items-center px-6 h-12"
+          className="bg-accent hover:bg-accent/90 text-white mb-8 font-bold text-lg mx-auto block"
           onClick={() => setIsDialogOpen(true)}
           disabled={isProcessing}
         >
-          <Phone className="mr-2 h-5 w-5" />
+          <Phone className="mr-2 h-6 w-6" />
           {isProcessing ? 'Connecting...' : 'Speak to Room Service'}
         </Button>
-
-        <div className="flex flex-col items-center gap-1">
+        <div className="flex flex-col items-center space-y-1">
           <img 
             src="/lovable-uploads/54a3f767-41a4-4083-a920-5592f61dbd63.png"
             alt="Food Menu"
@@ -144,12 +143,11 @@ const RoomService = () => {
           />
         </div>
         <Button 
-          size="lg"
-          className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white font-bold text-lg mx-auto flex items-center px-6 h-12"
+          className="bg-accent hover:bg-accent/90 text-white mt-8 font-bold text-lg mx-auto block"
           onClick={() => setIsDialogOpen(true)}
           disabled={isProcessing}
         >
-          <Phone className="mr-2 h-5 w-5" />
+          <Phone className="mr-2 h-6 w-6" />
           {isProcessing ? 'Connecting...' : 'Speak to Room Service'}
         </Button>
       </div>
@@ -182,7 +180,7 @@ const RoomService = () => {
             </Button>
             <Button
               onClick={handlePhoneSubmit}
-              className="bg-[#9b87f5] hover:bg-[#9b87f5]/90"
+              className="bg-accent hover:bg-accent/90"
               disabled={isProcessing}
             >
               {isProcessing ? 'Connecting...' : 'Call Me'}
