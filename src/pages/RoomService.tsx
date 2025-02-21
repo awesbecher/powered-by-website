@@ -123,11 +123,11 @@ const RoomService = () => {
         
         <Button 
           size="lg"
-          className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white mb-8 font-bold text-lg mx-auto block px-8 py-6 h-auto"
+          className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white mb-8 font-bold text-lg mx-auto flex items-center px-6 h-12"
           onClick={() => setIsDialogOpen(true)}
           disabled={isProcessing}
         >
-          <Phone className="mr-2 h-6 w-6" />
+          <Phone className="mr-2 h-5 w-5" />
           {isProcessing ? 'Connecting...' : 'Speak to Room Service'}
         </Button>
 
@@ -145,11 +145,11 @@ const RoomService = () => {
         </div>
         <Button 
           size="lg"
-          className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white mt-8 font-bold text-lg mx-auto block px-8 py-6 h-auto"
+          className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white mt-8 font-bold text-lg mx-auto flex items-center px-6 h-12"
           onClick={() => setIsDialogOpen(true)}
           disabled={isProcessing}
         >
-          <Phone className="mr-2 h-6 w-6" />
+          <Phone className="mr-2 h-5 w-5" />
           {isProcessing ? 'Connecting...' : 'Speak to Room Service'}
         </Button>
       </div>
