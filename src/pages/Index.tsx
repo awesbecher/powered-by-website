@@ -24,7 +24,7 @@ const Index = () => {
         <nav className="hidden md:block absolute left-1/2 transform -translate-x-1/2">
           <ul className="flex items-center space-x-3">
             <li>
-              <Link to="/" className="text-white hover:text-accent transition-colors">
+              <Link to="/" className="text-accent transition-colors">
                 AI Agency
               </Link>
             </li>
