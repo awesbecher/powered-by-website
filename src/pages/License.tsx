@@ -12,16 +12,13 @@ const License = () => {
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
       {/* Hero Section */}
       <div className="relative min-h-[100vh]">
-        {/* Logo and Header Text */}
-        <div className="absolute top-8 right-8 z-20 flex flex-col items-end">
+        {/* Logo */}
+        <div className="absolute top-8 right-8 z-20">
           <img 
             src="/lovable-uploads/8505af38-6a90-44dc-b6bc-554d254475ea.png"
             alt="RightBloom"
-            className="h-12 w-auto mb-4"
+            className="h-12 w-auto"
           />
-          <h1 className="text-4xl font-bold text-right max-w-lg bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
-            Transform Your Customer Experience with AI Agents
-          </h1>
         </div>
 
         {/* Background Image & Overlay */}
@@ -34,9 +31,16 @@ const License = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-gray-800"></div>
         </div>
 
+        {/* Hero Text */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <h1 className="text-7xl md:text-8xl font-bold text-center max-w-5xl px-4 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400">
+            Transform Your Customer Experience with AI Agents
+          </h1>
+        </div>
+
         {/* Content */}
         <div className="relative z-10 container mx-auto px-4">
-          <div className="min-h-[50vh]"></div>
+          <div className="min-h-[65vh]"></div>
           <div className="flex flex-col items-center justify-center gap-16 pb-20">
             <p className="text-xl text-gray-300 text-center max-w-2xl">
               RightBloom delivers cutting-edge AI agent solutions that automate and enhance your sales and customer service operations, helping innovative companies scale their business efficiently.
