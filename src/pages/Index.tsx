@@ -67,11 +67,17 @@ const Index = () => {
               Empower your business with intelligent AI agents that handle customer interactions across all channels - voice, email, SMS, chat, and more.
             </p>
             
-            {/* CTA Button */}
-            <div className="mt-10">
+            {/* CTA Buttons */}
+            <div className="mt-10 flex justify-center gap-4">
               <Link to="/demo">
                 <Button className="bg-accent hover:bg-accent-dark text-white px-8 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105">
                   See Our Solutions
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+              <Link to="/contact">
+                <Button variant="outline" className="border-accent text-accent hover:bg-accent hover:text-white px-8 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105">
+                  Book a Consultation
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
