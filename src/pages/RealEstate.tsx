@@ -35,7 +35,7 @@ const RealEstate = () => {
       <HeroSection />
 
       {/* Action Buttons */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-8 -mt-20 mb-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-8 -mt-20 mb-8">
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2">
             <Phone className="w-5 h-5" />
@@ -52,7 +52,7 @@ const RealEstate = () => {
 
       {/* Services Grid */}
       <div className="max-w-7xl mx-auto px-4 lg:px-8 mt-0">
-        <h2 className="text-3xl font-bold text-center mb-8">Our Services</h2>
+        <h2 className="text-3xl font-bold text-center mb-6">Our Services</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <ServiceCard
             icon={Home}
@@ -78,7 +78,7 @@ const RealEstate = () => {
       </div>
 
       {/* Featured Properties */}
-      <div id="featured-properties" className="max-w-7xl mx-auto px-4 lg:px-8 py-16">
+      <div id="featured-properties" className="max-w-7xl mx-auto px-4 lg:px-8 pt-12 pb-16">
         <h2 className="text-3xl font-bold text-center mb-12">Featured Properties</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {properties.map((property) => (
