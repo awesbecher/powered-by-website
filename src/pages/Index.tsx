@@ -1,7 +1,7 @@
 
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Building2, Bot, Clock, Sparkles } from "lucide-react";
+import { ArrowRight, Building2, Bot, Clock, Sparkles, PartyPopper, Laugh } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
@@ -69,15 +69,17 @@ const Index = () => {
               </span>
             </h1>
 
-            {/* Fancy Text Block */}
-            <div className="relative my-8">
-              <div className="absolute inset-0 bg-gradient-to-r from-accent/20 via-accent/10 to-accent/20 blur-xl animate-gradient-shift"></div>
-              <div className="relative glass-card px-6 py-4 inline-block mx-auto">
-                <Sparkles className="inline-block text-accent mr-2 animate-pulse h-5 w-5" />
-                <span className="text-lg md:text-xl font-medium text-white italic">
-                  Why should those Silicon Valley <span className="text-accent font-bold">nerds</span> have all the fancy toys?
+            {/* Fun Text Block */}
+            <div className="relative my-8 transform hover:scale-105 transition-all duration-300">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#F97316] via-[#D946EF] to-[#8B5CF6] opacity-75 blur-2xl animate-gradient-shift"></div>
+              <div className="relative glass-card px-8 py-6 inline-block mx-auto rounded-2xl border-2 border-accent/30 hover:border-accent/50 transition-all duration-300 group">
+                <PartyPopper className="inline-block text-[#F97316] mr-3 h-6 w-6 group-hover:rotate-12 transition-transform duration-300" />
+                <Laugh className="inline-block text-[#D946EF] mr-3 h-6 w-6 animate-bounce" />
+                <span className="text-xl md:text-2xl font-medium text-white italic tracking-wide">
+                  Why should those Silicon Valley <span className="text-accent font-bold animate-pulse">nerds</span> have all the fancy toys?
                 </span>
-                <Sparkles className="inline-block text-accent ml-2 animate-pulse h-5 w-5" />
+                <Sparkles className="inline-block text-[#8B5CF6] ml-3 h-6 w-6 group-hover:-rotate-12 transition-transform duration-300" />
+                <div className="absolute -bottom-1 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent opacity-50"></div>
               </div>
             </div>
             
