@@ -26,11 +26,13 @@ const License = () => {
       <div className="relative min-h-[100vh]">
         {/* Logo */}
         <div className="absolute top-8 right-8 z-20">
-          <img 
-            src="/lovable-uploads/8505af38-6a90-44dc-b6bc-554d254475ea.png"
-            alt="RightBloom"
-            className="h-12 w-auto"
-          />
+          <Link to="/">
+            <img 
+              src="/lovable-uploads/8505af38-6a90-44dc-b6bc-554d254475ea.png"
+              alt="RightBloom"
+              className="h-12 w-auto"
+            />
+          </Link>
         </div>
 
         {/* Hero Text */}
