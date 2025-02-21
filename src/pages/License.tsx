@@ -6,14 +6,9 @@ const License = () => {
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
       {/* Hero Section */}
       <div className="relative min-h-[90vh]">
-        {/* Background Image & Overlay */}
-        <div className="absolute inset-0">
-          <img 
-            src="/lovable-uploads/f0544e39-9d54-4ac9-8ae0-5bb9f620d589.png"
-            alt="RightBloom AI Solutions"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-gray-800"></div>
+        {/* Background Grid Effect */}
+        <div className="absolute inset-0 bg-[url('/lovable-uploads/f0544e39-9d54-4ac9-8ae0-5bb9f620d589.png')] bg-cover bg-center">
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-900/90 via-gray-900/80 to-gray-800"></div>
         </div>
 
         {/* Content */}
