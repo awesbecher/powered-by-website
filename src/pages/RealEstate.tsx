@@ -32,6 +32,14 @@ const properties = [
 const RealEstate = () => {
   return (
     <div className="min-h-screen bg-[#222222] text-white">
+      {/* Navigation */}
+      <Link 
+        to="/" 
+        className="fixed top-8 left-8 text-gray-400 hover:text-white transition-colors z-50"
+      >
+        ← Back
+      </Link>
+
       {/* Logo */}
       <div className="absolute top-8 right-8 z-10">
         <img 
@@ -57,9 +65,6 @@ const RealEstate = () => {
         
         {/* Header Content */}
         <div className="relative w-full px-4 lg:px-8">
-          <Link to="/" className="absolute top-8 left-8 text-gray-400 hover:text-white transition-colors">
-            ← Back
-          </Link>
           <div className="max-w-7xl mx-auto">
             <div className="max-w-2xl">
               <h1 className="text-6xl font-bold mb-6 leading-tight">
