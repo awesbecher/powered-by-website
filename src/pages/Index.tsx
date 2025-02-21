@@ -23,47 +23,47 @@ const Index = () => {
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-              AI-Powered Solutions for Your Business
+              Your AI Partner for Business Growth
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-300 max-w-2xl mx-auto">
-              We leverage the latest in artificial intelligence to provide innovative solutions tailored to your specific needs.
+              Unlock the power of artificial intelligence to transform your business operations and customer experiences.
             </p>
           </div>
 
           {/* Services Grid */}
           <div className="mt-20 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             <ServiceCard 
-              title="AI Chatbots"
-              description="Engage customers 24/7 with intelligent, automated conversations."
-              link="/solutions/ai-chatbots"
+              title="Retail AI Assistant"
+              description="24/7 customer support and sales automation for retail businesses."
+              link="/solutions"
               logo="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
               category="Retail Services"
             />
             <ServiceCard 
-              title="Predictive Analytics"
-              description="Make data-driven decisions with accurate forecasting and insights."
-              link="/solutions/predictive-analytics"
+              title="Insurance AI Agent"
+              description="Streamline claims processing and policy recommendations."
+              link="/solutions"
               logo="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
               category="Insurance"
             />
             <ServiceCard 
-              title="Personalized Recommendations"
-              description="Increase sales with tailored product recommendations for each customer."
-              link="/solutions/personalized-recommendations"
+              title="Hospitality AI"
+              description="Enhance guest experiences with intelligent room service and concierge."
+              link="/solutions"
               logo="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
               category="Hospitality"
             />
             <ServiceCard 
-              title="AI Sales Agent"
-              description="Close more deals with an AI sales agent."
-              link="/solutions/ai-sales-agent"
+              title="SaaS Sales AI"
+              description="Accelerate your sales cycle with AI-powered lead qualification."
+              link="/solutions"
               logo="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
               category="SaaS Licensing"
             />
             <ServiceCard 
-              title="AI Marketing Automation"
-              description="Automate your marketing campaigns with AI."
-              link="/solutions/ai-marketing-automation"
+              title="Auto Dealer AI"
+              description="Automate vehicle inquiries and schedule test drives efficiently."
+              link="/solutions"
               logo="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
               category="Auto Dealer"
             />
