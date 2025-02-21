@@ -10,6 +10,14 @@ export interface Property {
 
 export const properties: Property[] = [
   {
+    title: "Elegant Colonial",
+    price: "$1,199,000",
+    location: "Morris Township",
+    specs: "17 Dale Dr • Landscaped Grounds",
+    type: "Single Family",
+    image: "/lovable-uploads/5f6f1434-9daa-4864-b7b5-1c016acd2169.png"
+  },
+  {
     title: "Historic Colonial",
     price: "$1,185,000",
     location: "Tewksbury Township",
