@@ -165,6 +165,30 @@ const Index = () => {
               {
                 path: "/lovable-uploads/ba13be0d-77b7-49f3-aa99-9524e25c5294.png",
                 name: "HubSpot"
+              },
+              {
+                path: "/lovable-uploads/1cfbedce-9045-47a7-b81f-4eb7381a7576.png",
+                name: "Discord"
+              },
+              {
+                path: "/lovable-uploads/cca410c7-e795-4b00-a24c-177d89043c98.png",
+                name: "Shopify"
+              },
+              {
+                path: "/lovable-uploads/88643870-5f4f-40ea-91de-5c650a6f05b6.png",
+                name: "ServiceNow"
+              },
+              {
+                path: "/lovable-uploads/76119a46-2fce-4a9d-8e3b-3ac7cd6e402a.png",
+                name: "Workday"
+              },
+              {
+                path: "/lovable-uploads/335f70ec-aa5b-4954-aa12-c425ddd41fc5.png",
+                name: "GitHub"
+              },
+              {
+                path: "/lovable-uploads/5f6f1434-9daa-4864-b7b5-1c016acd2169.png",
+                name: "GitLab"
               }
             ].map((app, index) => (
               <div 
