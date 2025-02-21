@@ -8,6 +8,15 @@ const Products = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 py-20">
       <div className="container mx-auto px-4">
+        {/* Logo */}
+        <div className="absolute top-8 right-8 z-20">
+          <img 
+            src="/lovable-uploads/8505af38-6a90-44dc-b6bc-554d254475ea.png"
+            alt="RightBloom"
+            className="h-12 w-auto"
+          />
+        </div>
+
         {/* Back Button */}
         <button
           onClick={() => navigate(-1)}
