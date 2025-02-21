@@ -1,9 +1,15 @@
 
 import { Package2, Users, HeadphonesIcon, Building2, Check, Mail, Phone, MessageSquare, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
 const Products = () => {
   const navigate = useNavigate();
+  const chatSectionRef = useRef<HTMLDivElement>(null);
+
+  const scrollToChat = () => {
+    chatSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 py-20">
@@ -29,9 +35,23 @@ const Products = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold text-purple-400 mb-6">Products & Pricing</h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
             Choose the perfect AI solution package for your business needs
           </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2">
+              Speak to a Sales Rep
+              <Phone className="w-5 h-5" />
+            </button>
+            <button 
+              onClick={scrollToChat}
+              className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2"
+            >
+              Chat with Us
+              <MessageSquare className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
         {/* Product Grid */}
