@@ -1,189 +1,78 @@
-import { Link } from "react-router-dom";
-import { ArrowLeft, Phone, Star, Zap, Shield, Crown, MessageSquare } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { useState } from "react";
-import { LicenseProductCard } from "@/components/insurance/LicenseProductCard";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { useToast } from "@/hooks/use-toast";
+
+import { Bot, Network, MessageSquare, BarChart } from "lucide-react";
 
 const License = () => {
-  const [customerId, setCustomerId] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
-  const [showChat, setShowChat] = useState(false);
-  const { toast } = useToast();
-
-  const handleCustomerIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    if (/^\d*$/.test(value)) {
-      setCustomerId(value.slice(0, 8));
-    }
-  };
-
-  const handleCall = () => {
-    if (!phoneNumber) {
-      toast({
-        variant: "destructive",
-        title: "Please enter your phone number",
-        description: "A phone number is required to connect with a sales representative."
-      });
-      return;
-    }
-
-    toast({
-      title: "Feature coming soon!",
-      description: "This feature is currently under development."
-    });
-    setIsOpen(false);
-    setPhoneNumber("");
-  };
-
-  const handleChatClick = () => {
-    if (!isValidCustomerId) {
-      toast({
-        variant: "destructive",
-        title: "Customer ID Required",
-        description: "Please enter your 8-digit customer ID to start the chat."
-      });
-      return;
-    }
-    setShowChat(true);
-  };
-
-  const isValidCustomerId = customerId.length === 8;
-
-  const licenseOptions = [{
-    title: "Essentials",
-    description: "Essential features for getting started",
-    price: "$25 USD/user/month",
-    icon: Star,
-    features: ["Basic features included", "Standard support", "Billed annually", "Perfect for small teams"]
-  }, {
-    title: "Sales Professional",
-    description: "Optimized for sales teams",
-    price: "$75 USD/user/month",
-    icon: Zap,
-    features: ["All Essentials features", "Advanced sales tools", "Priority support", "Billed annually"]
-  }, {
-    title: "Service Professional",
-    description: "Designed for service teams",
-    price: "$125 USD/user/month",
-    icon: Shield,
-    features: ["All Essentials & Sales features", "Enterprise service desk tools", "Priority support", "Billed annually"]
-  }, {
-    title: "Enterprise",
-    description: "Complete solution for large organizations",
-    price: "$165 USD/user/month",
-    icon: Crown,
-    features: ["All Professional features", "Enterprise-grade security", "24/7 premium support", "Billed annually"]
-  }];
-
   return (
-    <div className="min-h-screen w-full bg-[#222222] px-4 py-16 sm:px-6 lg:px-8">
-      <div className="absolute top-8 right-8">
-        <img 
-          src="/lovable-uploads/02849a25-10a3-417c-9c42-4901e5d457d3.png" 
-          alt="RightBloom Logo" 
-          className="h-12 w-auto object-contain" 
-        />
-      </div>
-
-      <Link to="/" className="absolute top-8 left-8 flex items-center text-accent hover:text-accent/80 transition-colors">
-        <ArrowLeft className="h-6 w-6 mr-2" />
-        <span>Back to Services</span>
-      </Link>
-
-      <div className="mx-auto max-w-7xl text-center">
-        <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl mb-8">
-          License Upgrade
-        </h1>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-4">
-          {licenseOptions.map(option => <LicenseProductCard key={option.title} {...option} />)}
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
+      {/* Hero Section */}
+      <div className="relative min-h-[90vh]">
+        {/* Background Grid Effect */}
+        <div className="absolute inset-0 bg-[url('/lovable-uploads/f0544e39-9d54-4ac9-8ae0-5bb9f620d589.png')] bg-cover bg-center">
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-900/90 via-gray-900/80 to-gray-800"></div>
         </div>
 
-        <div className="max-w-3xl mx-auto">
-          <p className="text-xl text-gray-300 mb-4">A RightBloom Sales rep is ready to help you upgrade your license. To get started, we will need the following information:</p>
-
-          <div className="bg-white/5 rounded-lg p-4 backdrop-blur-sm">
-            <div className="flex flex-col items-center space-y-4">
-              <div className="w-full max-w-md">
-                <Input 
-                  type="text" 
-                  inputMode="numeric" 
-                  pattern="\d*" 
-                  placeholder="Enter your RightBloom Customer ID # (enter any 8 digits):" 
-                  value={customerId} 
-                  onChange={handleCustomerIdChange} 
-                  maxLength={8} 
-                  className="text-center bg-white/10 border-white/20 text-white placeholder:text-gray-400" 
-                />
-              </div>
-              <div className="flex gap-4">
-                <Dialog open={isOpen} onOpenChange={value => setIsOpen(value)}>
-                  <button 
-                    onClick={() => setIsOpen(true)} 
-                    disabled={!isValidCustomerId} 
-                    className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    Speak To A Sales Rep
-                    <Phone className="h-4 w-4" />
-                  </button>
-                  <DialogContent>
-                    <DialogHeader>
-                      <DialogTitle>Enter your phone number to speak with a sales representative</DialogTitle>
-                      <DialogDescription>
-                        We'll connect you with a RightBloom sales representative to discuss license upgrade options.
-                      </DialogDescription>
-                    </DialogHeader>
-                    <div className="flex flex-col space-y-4 pt-4">
-                      <Input 
-                        type="tel" 
-                        placeholder="Enter your phone number" 
-                        value={phoneNumber} 
-                        onChange={e => setPhoneNumber(e.target.value)} 
-                        className="text-lg"
-                      />
-                      <button 
-                        className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md"
-                        onClick={handleCall}
-                      >
-                        Call Me
-                      </button>
-                    </div>
-                  </DialogContent>
-                </Dialog>
-
-                <button 
-                  onClick={handleChatClick} 
-                  disabled={!isValidCustomerId} 
-                  className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-md flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  Chat With Us
-                  <MessageSquare className="h-4 w-4" />
+        {/* Content */}
+        <div className="relative z-10 container mx-auto px-4 pt-20">
+          <div className="flex flex-col lg:flex-row items-center gap-12 py-16">
+            <div className="flex-1 text-white">
+              <h1 className="text-5xl font-bold mb-6 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
+                Transform Your Customer Experience with AI Agents
+              </h1>
+              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                RightBloom delivers cutting-edge AI agent solutions that automate and enhance your sales and customer service operations, helping innovative companies scale their business efficiently.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105">
+                  Get Started
+                </button>
+                <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3 rounded-lg font-semibold transition-all">
+                  Watch Demo
                 </button>
               </div>
+            </div>
+            
+            {/* Feature Cards */}
+            <div className="flex-1 grid grid-cols-2 gap-4">
+              <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20">
+                <Bot className="w-8 h-8 text-purple-400 mb-4" />
+                <h3 className="text-white font-semibold mb-2">AI Agents</h3>
+                <p className="text-gray-300 text-sm">Intelligent automation for customer interactions</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20">
+                <Network className="w-8 h-8 text-pink-400 mb-4" />
+                <h3 className="text-white font-semibold mb-2">Smart Routing</h3>
+                <p className="text-gray-300 text-sm">Seamless request distribution and handling</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20">
+                <MessageSquare className="w-8 h-8 text-blue-400 mb-4" />
+                <h3 className="text-white font-semibold mb-2">24/7 Support</h3>
+                <p className="text-gray-300 text-sm">Round-the-clock automated assistance</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20">
+                <BarChart className="w-8 h-8 text-green-400 mb-4" />
+                <h3 className="text-white font-semibold mb-2">Analytics</h3>
+                <p className="text-gray-300 text-sm">Deep insights into customer interactions</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Stats Section */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 text-center">
+            <div className="bg-white/5 backdrop-blur-lg p-8 rounded-xl border border-white/10">
+              <div className="text-4xl font-bold text-purple-400 mb-2">98%</div>
+              <div className="text-gray-300">Customer Satisfaction</div>
+            </div>
+            <div className="bg-white/5 backdrop-blur-lg p-8 rounded-xl border border-white/10">
+              <div className="text-4xl font-bold text-pink-400 mb-2">24/7</div>
+              <div className="text-gray-300">AI Agent Availability</div>
+            </div>
+            <div className="bg-white/5 backdrop-blur-lg p-8 rounded-xl border border-white/10">
+              <div className="text-4xl font-bold text-blue-400 mb-2">60%</div>
+              <div className="text-gray-300">Cost Reduction</div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Chatbase Dialog */}
-      <Dialog open={showChat} onOpenChange={setShowChat}>
-        <DialogContent className="max-w-4xl h-[80vh]">
-          <DialogHeader>
-            <DialogTitle>Chat with RightBloom</DialogTitle>
-          </DialogHeader>
-          <div className="h-full">
-            <iframe
-              src="https://www.chatbase.co/chatbot-iframe/kHr0XGInFw_HfmNBDEuXC"
-              width="100%"
-              style={{ height: '100%', minHeight: '700px' }}
-              frameBorder="0"
-            />
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };
