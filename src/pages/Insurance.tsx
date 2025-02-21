@@ -54,7 +54,7 @@ const Insurance = () => {
 
   return (
     <div className="min-h-screen w-full bg-[#222222]">
-      <div className="relative h-[40vh] mb-24">
+      <div className="relative h-[40vh] mb-8">
         <img 
           src="/lovable-uploads/c7b460be-826e-48f7-b3fd-d81f66e0f8b2.png"
           alt="Insurance Services"
