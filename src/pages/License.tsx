@@ -32,7 +32,7 @@ const License = () => {
         </div>
 
         {/* Hero Text */}
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className="absolute inset-0 flex items-start justify-center pt-32">
           <h1 className="text-7xl md:text-8xl font-bold text-center max-w-5xl px-4 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400">
             Transform Your Customer Experience with AI Agents
           </h1>
@@ -40,7 +40,7 @@ const License = () => {
 
         {/* Content */}
         <div className="relative z-10 container mx-auto px-4">
-          <div className="min-h-[65vh]"></div>
+          <div className="min-h-[45vh]"></div>
           <div className="flex flex-col items-center justify-center gap-16 pb-20">
             <p className="text-xl text-gray-300 text-center max-w-2xl">
               RightBloom delivers cutting-edge AI agent solutions that automate and enhance your sales and customer service operations, helping innovative companies scale their business efficiently.
