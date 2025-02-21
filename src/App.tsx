@@ -18,6 +18,7 @@ import MercedesDealer from "./pages/MercedesDealer";
 import RealEstate from "./pages/RealEstate";
 import Solutions from "./pages/Solutions";
 import AIAgency from "./pages/AIAgency";
+import Blog from "./pages/Blog";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -43,6 +44,7 @@ const App = () => (
           <Route path="/mercedes" element={<MercedesDealer />} />
           <Route path="/real-estate" element={<RealEstate />} />
           <Route path="/solutions" element={<Solutions />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
