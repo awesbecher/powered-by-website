@@ -1,5 +1,3 @@
-
-import { WordAnimation } from "@/components/home/WordAnimation";
 import { ServiceCard } from "@/components/home/ServiceCard";
 import { services, additionalServices } from "@/data/services";
 import { Link } from "react-router-dom";
@@ -53,7 +51,6 @@ const Demo = () => {
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6 animate-fade-in opacity-0" style={{ animationFillMode: 'forwards', animationDelay: '0.2s' }}>
-              <WordAnimation />
               We have{" "}
               <span className="text-accent">
                 demos
