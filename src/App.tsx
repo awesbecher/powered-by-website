@@ -6,6 +6,7 @@ import Solutions from "./pages/Solutions";
 import Demo from "./pages/Demo";
 import NotFound from "./pages/NotFound";
 import ThankYou from "./pages/ThankYou";
+import AIAgency from "./pages/AIAgency";
 import "./App.css";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/solutions" element={<Solutions />} />
         <Route path="/demo" element={<Demo />} />
         <Route path="/thank-you" element={<ThankYou />} />
+        <Route path="/ai-agency" element={<AIAgency />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
