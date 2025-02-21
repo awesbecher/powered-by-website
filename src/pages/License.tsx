@@ -6,6 +6,15 @@ const License = () => {
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
       {/* Hero Section */}
       <div className="relative min-h-[90vh]">
+        {/* Logo */}
+        <div className="absolute top-8 right-8 z-20">
+          <img 
+            src="/lovable-uploads/8505af38-6a90-44dc-b6bc-554d254475ea.png"
+            alt="RightBloom"
+            className="h-12 w-auto"
+          />
+        </div>
+
         {/* Background Image & Overlay */}
         <div className="absolute inset-0">
           <img 
