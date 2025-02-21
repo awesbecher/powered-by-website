@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 
 const AIAgency = () => {
@@ -66,15 +65,14 @@ const AIAgency = () => {
               ))}
             </h1>
             <p 
-              className="relative text-xl text-transparent bg-clip-text bg-gradient-to-r from-white via-accent to-white opacity-0 animate-fade-in"
+              className="relative text-xl text-accent font-medium opacity-0 animate-fade-in"
               style={{ 
                 animationFillMode: 'forwards',
                 animationDelay: '1.2s',
-                backgroundSize: '200% 100%',
-                animation: 'fade-in 0.6s ease-out forwards, gradient-shift 3s ease-in-out infinite'
+                animation: 'fade-in 0.6s ease-out forwards'
               }}
             >
-              Transforming businesses through intelligent automation
+              Human-like agents built for your business. Quick. Easy. Powerful.
             </p>
           </div>
 

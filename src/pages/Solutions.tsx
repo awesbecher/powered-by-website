@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 
 const Solutions = () => {
@@ -50,8 +51,8 @@ const Solutions = () => {
           <h1 className="text-4xl font-bold tracking-tight text-white text-center sm:text-6xl mb-4 animate-fade-in opacity-0" style={{ animationFillMode: 'forwards', animationDelay: '0.2s' }}>
             Custom AI Agent Solutions
           </h1>
-          <p className="text-xl text-gray-300 text-center mb-12 animate-fade-in opacity-0" style={{ animationFillMode: 'forwards', animationDelay: '0.4s' }}>
-            Built for your business. Quick. Easy. Powerful.
+          <p className="text-xl text-accent font-medium text-center mb-12 animate-fade-in opacity-0" style={{ animationFillMode: 'forwards', animationDelay: '0.4s' }}>
+            Human-like agents built for your business. Quick. Easy. Powerful.
           </p>
         </div>
       </div>
