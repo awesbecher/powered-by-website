@@ -1,5 +1,5 @@
 
-import { Bot, Network, MessageSquare, BarChart } from "lucide-react";
+import { Bot, Network, MessageSquare, BarChart, Phone } from "lucide-react";
 
 const License = () => {
   return (
@@ -27,8 +27,9 @@ const License = () => {
                 RightBloom delivers cutting-edge AI agent solutions that automate and enhance your sales and customer service operations, helping innovative companies scale their business efficiently.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105">
-                  Get Started
+                <button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2">
+                  Speak to a Sales Rep
+                  <Phone className="w-5 h-5" />
                 </button>
                 <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3 rounded-lg font-semibold transition-all">
                   Watch Demo
