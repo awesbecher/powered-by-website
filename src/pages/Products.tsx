@@ -28,7 +28,7 @@ const Products = () => {
 
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-white mb-6">RightBloom Products & Pricing</h1>
+          <h1 className="text-5xl font-bold text-purple-400 mb-6">Products & Pricing</h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Choose the perfect AI solution package for your business needs
           </p>
