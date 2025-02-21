@@ -123,12 +123,12 @@ const RoomService = () => {
           Please choose from any of the items on our Food & Drinks Menu below. When you are ready, click the button below to speak to Room Service.
         </p>
         <Button 
-          className="bg-accent hover:bg-accent/90 text-white mb-8 font-bold text-sm mx-auto block px-3 py-1.5 h-auto whitespace-nowrap"
+          className="bg-accent hover:bg-accent/90 text-white mb-8 font-bold text-sm mx-auto block px-4 py-2 h-auto whitespace-nowrap flex items-center gap-2"
           onClick={() => setIsDialogOpen(true)}
           disabled={isProcessing}
         >
-          <Phone className="h-4 w-4" />
-          <span>Speak to Room Service</span>
+          <Phone className="h-4 w-4 flex-shrink-0" />
+          {isProcessing ? 'Connecting...' : 'Speak to Room Service'}
         </Button>
         <div className="flex flex-col items-center space-y-1">
           <img 
@@ -143,12 +143,12 @@ const RoomService = () => {
           />
         </div>
         <Button 
-          className="bg-accent hover:bg-accent/90 text-white mt-8 font-bold text-sm mx-auto block px-3 py-1.5 h-auto whitespace-nowrap"
+          className="bg-accent hover:bg-accent/90 text-white mt-8 font-bold text-sm mx-auto block px-4 py-2 h-auto whitespace-nowrap flex items-center gap-2"
           onClick={() => setIsDialogOpen(true)}
           disabled={isProcessing}
         >
-          <Phone className="h-4 w-4" />
-          <span>Speak to Room Service</span>
+          <Phone className="h-4 w-4 flex-shrink-0" />
+          {isProcessing ? 'Connecting...' : 'Speak to Room Service'}
         </Button>
       </div>
 
