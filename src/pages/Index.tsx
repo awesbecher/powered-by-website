@@ -59,7 +59,7 @@ const Index = () => {
               Transform your customer interactions with custom AI voice agents. 
               Reduce costs, improve service quality, and free your team for higher-value tasks.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 className="bg-[#9b87f5] hover:bg-[#7a6cc5] text-white px-8 py-6 rounded-lg font-semibold text-lg"
               >
@@ -75,10 +75,6 @@ const Index = () => {
                 </Button>
               </Link>
             </div>
-            <h2 className="text-2xl font-bold text-white mb-4">On-Demand Demos</h2>
-            <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-              Experience our AI voice solutions in action through interactive demos customized for different industries.
-            </p>
           </div>
         </div>
       </div>
