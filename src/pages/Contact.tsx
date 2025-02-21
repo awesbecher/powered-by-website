@@ -1,7 +1,5 @@
-
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
 const Contact = () => {
@@ -10,13 +8,7 @@ const Contact = () => {
       {/* Header with Logo and Nav */}
       <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 lg:px-8 py-6">
         {/* Logo */}
-        <div className="flex items-center space-x-4">
-          <Link to="/">
-            <Button variant="ghost" className="text-white hover:bg-white/10">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Home
-            </Button>
-          </Link>
+        <div>
           <Link to="/">
             <img 
               src="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
