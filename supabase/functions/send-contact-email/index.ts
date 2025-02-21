@@ -24,7 +24,9 @@ serve(async (req) => {
   }
 
   try {
+    console.log("Received contact form submission");
     const formData: ContactFormData = await req.json();
+    console.log("Form data:", formData);
     
     const { name, email, company, phone, message } = formData;
 
@@ -38,6 +40,7 @@ serve(async (req) => {
       <p>${message}</p>
     `;
 
+    console.log("Attempting to send email...");
     const emailResponse = await resend.emails.send({
       from: "Parlar AI <onboarding@resend.dev>",
       to: ["andrew@madrone.capital", "team@madrone.capital"],
