@@ -1,125 +1,126 @@
 
-import { Bot, Network, MessageSquare, BarChart, Phone, DollarSign, ChevronLeft } from "lucide-react";
-import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { ArrowLeft, Phone } from "lucide-react";
+import { LicenseProductCard } from "@/components/insurance/LicenseProductCard";
+import { useState } from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useToast } from "@/hooks/use-toast";
+import { initiateVogentCall } from "@/services/vogentService";
 
 const License = () => {
-  const chatSectionRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
-  const scrollToChat = () => {
-    chatSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+  const handleCall = async () => {
+    if (!phoneNumber) {
+      toast({
+        variant: "destructive",
+        title: "Please enter your phone number",
+        description: "A phone number is required to connect with a sales representative."
+      });
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      await initiateVogentCall(phoneNumber);
+      setIsOpen(false);
+      setPhoneNumber("");
+      toast({
+        title: "Call initiated",
+        description: "A sales representative will call you shortly."
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Failed to initiate call",
+        description: error.message || "Please try again later."
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
-      {/* Back Button */}
-      <button
-        onClick={() => navigate(-1)}
-        className="absolute top-8 left-8 z-20 text-white hover:text-purple-400 transition-colors flex items-center gap-2"
+    <div className="min-h-screen w-full bg-[#222222] px-4 py-32 sm:px-6 lg:px-8">
+      <Link 
+        to="/" 
+        className="absolute top-8 left-8 flex items-center text-accent hover:text-accent/80 transition-colors"
       >
-        <ChevronLeft className="w-6 h-6" />
-        <span className="font-medium">Back</span>
-      </button>
+        <ArrowLeft className="h-6 w-6 mr-2" />
+        <span>Back to Services</span>
+      </Link>
 
-      {/* Hero Section */}
-      <div className="relative min-h-[100vh]">
-        {/* Logo */}
-        <div className="absolute top-8 right-8 z-20">
-          <img 
-            src="/lovable-uploads/8505af38-6a90-44dc-b6bc-554d254475ea.png"
-            alt="RightBloom"
-            className="h-12 w-auto"
-          />
-        </div>
+      <img 
+        src="/lovable-uploads/e9ddfbf3-072d-410d-b7ed-01c83eb30564.png"
+        alt="SaaS License"
+        className="absolute top-8 right-8 h-12"
+      />
 
-        {/* Background Image & Overlay */}
-        <div className="absolute inset-0">
-          <img 
-            src="/lovable-uploads/fd8a631b-2f6e-4f85-a4e8-aa0f775cd50f.png"
-            alt="RightBloom AI Solutions"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-gray-800"></div>
-        </div>
-
-        {/* Hero Text */}
-        <div className="absolute inset-0 flex flex-col items-center pt-32">
-          <h1 className="text-4xl md:text-5xl font-bold text-center max-w-4xl px-4 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400">
-            Transform Your Sales Outreach & Customer Experience with AI Agents
-          </h1>
-        </div>
-
-        {/* Content */}
-        <div className="relative z-10 container mx-auto px-4">
-          <div className="min-h-[45vh]"></div>
-          <div className="flex flex-col items-center justify-center gap-16 pb-20">
-            <div className="bg-black/30 backdrop-blur-sm rounded-xl p-8 max-w-2xl">
-              <p className="text-2xl text-white text-center leading-relaxed">
-                RightBloom delivers cutting-edge AI agent solutions that automate and enhance your sales and customer service operations, helping innovative companies scale their business efficiently.
+      <div className="mx-auto max-w-3xl text-center">
+        <div className="bg-white/5 rounded-lg p-8 backdrop-blur-sm">
+          <h1 className="text-5xl font-bold text-white mb-8">SaaS License Management</h1>
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <p className="text-xl text-gray-300">
+                Manage and upgrade your seat licenses with ease.
               </p>
             </div>
-            
-            <div className="flex flex-col items-center gap-8">
-              <button 
-                onClick={() => navigate('/products')}
-                className="bg-[#9b87f5] hover:bg-[#7E69AB] text-white px-10 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2 text-lg"
-              >
-                View Products & Pricing
-                <DollarSign className="w-5 h-5" />
-              </button>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2">
-                  Speak to a Sales Rep
-                  <Phone className="w-5 h-5" />
-                </button>
-                <button 
-                  onClick={scrollToChat}
-                  className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2"
-                >
-                  Chat with Us
-                  <MessageSquare className="w-5 h-5" />
-                </button>
+
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 gap-4">
+                <LicenseProductCard />
               </div>
             </div>
 
-            {/* Feature Cards */}
-            <div className="grid grid-cols-2 gap-4 max-w-2xl">
-              <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20">
-                <Bot className="w-8 h-8 text-purple-400 mb-4" />
-                <h3 className="text-white font-semibold mb-2">AI Agents</h3>
-                <p className="text-gray-300 text-sm">Intelligent automation for customer interactions</p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20">
-                <Network className="w-8 h-8 text-pink-400 mb-4" />
-                <h3 className="text-white font-semibold mb-2">Smart Routing</h3>
-                <p className="text-gray-300 text-sm">Seamless request distribution and handling</p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20">
-                <MessageSquare className="w-8 h-8 text-blue-400 mb-4" />
-                <h3 className="text-white font-semibold mb-2">24/7 Support</h3>
-                <p className="text-gray-300 text-sm">Round-the-clock automated assistance</p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20">
-                <BarChart className="w-8 h-8 text-green-400 mb-4" />
-                <h3 className="text-white font-semibold mb-2">Analytics</h3>
-                <p className="text-gray-300 text-sm">Deep insights into customer interactions</p>
-              </div>
+            <div className="pt-4">
+              <Dialog open={isOpen} onOpenChange={setIsOpen}>
+                <DialogTrigger asChild>
+                  <Button 
+                    className="w-full bg-accent hover:bg-accent/90 text-white"
+                    variant="default"
+                  >
+                    Speak to Sales Rep
+                    <Phone className="h-4 w-4 ml-2" />
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Enter your phone number to speak with a sales representative</DialogTitle>
+                  </DialogHeader>
+                  <div className="flex flex-col space-y-4 pt-4">
+                    <Input 
+                      type="tel" 
+                      placeholder="Enter your phone number" 
+                      value={phoneNumber} 
+                      onChange={e => setPhoneNumber(e.target.value)} 
+                      className="text-lg"
+                    />
+                    <div className="flex gap-2">
+                      <Button 
+                        variant="outline"
+                        className="w-full"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        Cancel
+                      </Button>
+                      <Button 
+                        className="w-full"
+                        onClick={handleCall}
+                        disabled={isLoading}
+                      >
+                        {isLoading ? "Initiating call..." : "Call Me"}
+                      </Button>
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Chat Section */}
-      <div ref={chatSectionRef} className="container mx-auto px-4 py-16">
-        <div className="max-w-4xl mx-auto bg-white rounded-lg overflow-hidden shadow-xl">
-          <iframe
-            src="https://www.chatbase.co/chatbot-iframe/kHr0XGInFw_HfmNBDEuXC"
-            width="100%"
-            className="min-h-[700px]"
-            style={{ border: 'none' }}
-          />
         </div>
       </div>
     </div>
