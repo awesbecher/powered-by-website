@@ -2,9 +2,11 @@
 import { Bot, Network, MessageSquare, BarChart, Phone, DollarSign } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { useNavigate } from "react-router-dom";
 
 const License = () => {
   const [showChat, setShowChat] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
@@ -41,7 +43,10 @@ const License = () => {
             </p>
             
             <div className="flex flex-col items-center gap-8">
-              <button className="bg-[#9b87f5] hover:bg-[#7E69AB] text-white px-10 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2 text-lg">
+              <button 
+                onClick={() => navigate('/products')}
+                className="bg-[#9b87f5] hover:bg-[#7E69AB] text-white px-10 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2 text-lg"
+              >
                 View Products & Pricing
                 <DollarSign className="w-5 h-5" />
               </button>
