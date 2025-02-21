@@ -80,7 +80,7 @@ const RoomService = () => {
 
   return (
     <div className="min-h-screen w-full bg-[#222222]">
-      <div className="relative h-[50vh] mb-16">
+      <div className="relative h-[50vh] mb-8">
         <div className="absolute inset-0">
           <img 
             src="/lovable-uploads/e87cce6e-adc9-4426-b464-c64b14d607bd.png"
@@ -116,14 +116,14 @@ const RoomService = () => {
         className="absolute top-8 right-8 h-24 w-auto z-10"
       />
 
-      <div className="mx-auto max-w-3xl px-4">
-        <p className="text-white/90 text-lg mb-8 text-center">
+      <div className="mx-auto max-w-3xl px-4 space-y-4">
+        <p className="text-white/90 text-lg text-center">
           Please choose from any of the items on our Food & Drinks Menu below. When you are ready, click the button below to speak to Room Service.
         </p>
         
         <Button 
           size="lg"
-          className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white mb-8 font-bold text-lg mx-auto flex items-center px-6 h-12"
+          className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white font-bold text-lg mx-auto flex items-center px-6 h-12"
           onClick={() => setIsDialogOpen(true)}
           disabled={isProcessing}
         >
@@ -131,7 +131,7 @@ const RoomService = () => {
           {isProcessing ? 'Connecting...' : 'Speak to Room Service'}
         </Button>
 
-        <div className="flex flex-col items-center space-y-1">
+        <div className="flex flex-col items-center gap-1">
           <img 
             src="/lovable-uploads/54a3f767-41a4-4083-a920-5592f61dbd63.png"
             alt="Food Menu"
@@ -145,7 +145,7 @@ const RoomService = () => {
         </div>
         <Button 
           size="lg"
-          className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white mt-8 font-bold text-lg mx-auto flex items-center px-6 h-12"
+          className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white font-bold text-lg mx-auto flex items-center px-6 h-12"
           onClick={() => setIsDialogOpen(true)}
           disabled={isProcessing}
         >
