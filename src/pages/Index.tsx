@@ -24,9 +24,6 @@ const Index = () => {
                 Simplified
               </span>
             </h1>
-            <p className="mx-auto mt-3 max-w-2xl text-lg text-gray-400 leading-6">
-              Parlar AI's workflow agents can automate and improve even your most complex customer-facing tasks. See our AI agents in action by selecting any of the industry-specific use cases below.
-            </p>
           </div>
         </div>
         
