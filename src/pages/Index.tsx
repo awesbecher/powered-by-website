@@ -1,4 +1,3 @@
-
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Building2, Bot, Clock } from "lucide-react";
@@ -8,7 +7,7 @@ const Index = () => {
   return (
     <div className="min-h-screen w-full bg-[#222222]">
       {/* Logo */}
-      <div className="absolute top-6 right-6 lg:right-8">
+      <div className="absolute top-6 left-6 lg:left-8">
         <img 
           src="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
           alt="Parlar Logo"

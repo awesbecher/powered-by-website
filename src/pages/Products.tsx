@@ -15,10 +15,10 @@ const Products = () => {
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 py-20">
       <div className="container mx-auto px-4">
         {/* Logo */}
-        <div className="absolute top-8 right-8 z-20">
+        <div className="absolute top-8 left-8 z-20">
           <img 
-            src="/lovable-uploads/8505af38-6a90-44dc-b6bc-554d254475ea.png"
-            alt="RightBloom"
+            src="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
+            alt="Parlar"
             className="h-12 w-auto"
           />
         </div>

@@ -10,7 +10,7 @@ const Demo = () => {
   return (
     <div className="min-h-screen w-full bg-[#222222]">
       {/* Back Button */}
-      <div className="absolute top-6 left-6 lg:left-8 z-10">
+      <div className="absolute top-6 right-6 lg:right-8 z-10">
         <Link to="/">
           <Button variant="ghost" className="text-white hover:bg-white/10">
             <ArrowLeft className="h-4 w-4 mr-2" />
@@ -20,7 +20,7 @@ const Demo = () => {
       </div>
 
       {/* Logo */}
-      <div className="absolute top-6 right-6 lg:right-8">
+      <div className="absolute top-6 left-6 lg:left-8">
         <img 
           src="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
           alt="Parlar Logo"
