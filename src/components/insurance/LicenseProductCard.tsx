@@ -1,20 +1,27 @@
 
-import { LucideIcon } from "lucide-react";
+import { Users } from "lucide-react";
 
 interface LicenseProductCardProps {
-  title: string;
-  description: string;
-  price: string;
-  features: string[];
-  icon: LucideIcon;
+  title?: string;
+  description?: string;
+  price?: string;
+  features?: string[];
+  icon?: any;
 }
 
 export const LicenseProductCard = ({
-  title,
-  description,
-  price,
-  features,
-  icon: Icon,
+  title = "Enterprise License",
+  description = "Flexible licensing for growing teams",
+  price = "Starting at $99/month",
+  features = [
+    "Unlimited users",
+    "24/7 priority support",
+    "Custom deployment options",
+    "Advanced security features",
+    "API access",
+    "Dedicated account manager"
+  ],
+  icon: Icon = Users,
 }: LicenseProductCardProps) => {
   return (
     <div className="bg-white/5 backdrop-blur-sm rounded-lg p-6 flex flex-col h-full hover:bg-white/10 transition-colors">

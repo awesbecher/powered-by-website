@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { ArrowLeft, Phone } from "lucide-react";
+import { ArrowLeft, Phone, Users } from "lucide-react";
 import { LicenseProductCard } from "@/components/insurance/LicenseProductCard";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -73,7 +73,20 @@ const License = () => {
 
             <div className="space-y-4">
               <div className="grid grid-cols-1 gap-4">
-                <LicenseProductCard />
+                <LicenseProductCard
+                  title="Enterprise License"
+                  description="Flexible licensing for growing teams"
+                  price="Starting at $99/month"
+                  features={[
+                    "Unlimited users",
+                    "24/7 priority support",
+                    "Custom deployment options",
+                    "Advanced security features",
+                    "API access",
+                    "Dedicated account manager"
+                  ]}
+                  icon={Users}
+                />
               </div>
             </div>
 
