@@ -1,65 +1,10 @@
 
 import { Link } from "react-router-dom";
-import { Phone, MapPin, Home, Building, DollarSign, Users } from "lucide-react";
-
-const properties = [
-  {
-    title: "Luxury Pool Estate",
-    price: "$1,100,000",
-    location: "Sparta Township",
-    specs: "18 Benham Way • Pool & Garden",
-    type: "Single Family",
-    image: "/lovable-uploads/cca410c7-e795-4b00-a24c-177d89043c98.png"
-  },
-  {
-    title: "Colonial Estate",
-    price: "$869,000",
-    location: "Hardyston Township",
-    specs: "47 Stonehedge Dr • Winter Views",
-    type: "Single Family",
-    image: "/lovable-uploads/392a1508-93a7-467a-af6a-3bc4c2dde996.png"
-  },
-  {
-    title: "Luxury Colonial Estate",
-    price: "$1,400,000",
-    location: "Sparta Township",
-    specs: "20 Crestview Ln • Wooded Setting",
-    type: "Single Family",
-    image: "/lovable-uploads/b98c300b-5083-40a2-80cc-e4655055c836.png"
-  },
-  {
-    title: "Lakefront Estate",
-    price: "$749,000",
-    location: "Sparta Township",
-    specs: "10 Mill Creek Rd • Lakefront Views",
-    type: "Single Family",
-    image: "/lovable-uploads/419d1e06-4c6b-4d9c-8bc7-a8f2fb198d28.png"
-  },
-  {
-    title: "Modern Colonial",
-    price: "$789,000",
-    location: "Edison Township",
-    specs: "4 bed • 3.5 bath • 2,800 sqft",
-    type: "Single Family",
-    image: "/lovable-uploads/92d1275c-847a-49ad-a297-792c7bf899a7.png"
-  },
-  {
-    title: "Luxury Townhouse",
-    price: "$525,000",
-    location: "Edison Township",
-    specs: "3 bed • 2.5 bath • 2,100 sqft",
-    type: "Townhouse",
-    image: "/lovable-uploads/ba13be0d-77b7-49f3-aa99-9524e25c5294.png"
-  },
-  {
-    title: "Contemporary Estate",
-    price: "$1,250,000",
-    location: "Edison Township",
-    specs: "5 bed • 4.5 bath • 4,200 sqft",
-    type: "Single Family",
-    image: "/lovable-uploads/af07ee0c-70fa-4261-a83e-98ef6108f8ae.png"
-  }
-];
+import { Phone, Home, Building, DollarSign, Users } from "lucide-react";
+import { properties } from "@/data/properties";
+import { PropertyCard } from "@/components/real-estate/PropertyCard";
+import { ServiceCard } from "@/components/real-estate/ServiceCard";
+import { HeroSection } from "@/components/real-estate/HeroSection";
 
 const RealEstate = () => {
   return (
@@ -82,71 +27,32 @@ const RealEstate = () => {
       </div>
 
       {/* Hero Section */}
-      <div className="relative min-h-[85vh] flex items-center">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-[#222222] to-[#222222]"></div>
-        
-        {/* Featured House Image */}
-        <div className="absolute right-0 top-0 w-full lg:w-2/3 h-full">
-          <img 
-            src="/lovable-uploads/2d9d7374-8cc7-4dee-944c-9614e9d40f77.png"
-            alt="Luxury Estate"
-            className="w-full h-full object-contain object-right-top opacity-80"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#222222] via-[#222222]/80 to-transparent"></div>
-        </div>
-        
-        {/* Header Content */}
-        <div className="relative w-full px-4 lg:px-8">
-          <div className="max-w-7xl mx-auto">
-            <div className="max-w-2xl">
-              <h1 className="text-6xl font-bold mb-6 leading-tight">
-                Find Your Luxury Home in Edison Township
-              </h1>
-              <p className="text-xl text-gray-200 mb-8 leading-relaxed">
-                Your trusted partner in Northern New Jersey real estate. Discover exceptional properties in Edison Township's most desirable neighborhoods.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* CTA Buttons */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-8 -mt-32 mb-16">
-        <div className="flex flex-col sm:flex-row gap-4 max-w-2xl">
-          <button className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2">
-            <Phone className="w-5 h-5" />
-            Speak with an Agent
-          </button>
-          <button className="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-md font-semibold transition-colors">
-            View Featured Listings
-          </button>
-        </div>
-      </div>
+      <HeroSection />
 
       {/* Services Grid */}
       <div className="max-w-7xl mx-auto px-4 lg:px-8 -mt-8">
         <h2 className="text-3xl font-bold text-center mb-8">Our Services</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-black/50 rounded-lg p-6 backdrop-blur-sm border border-white/10">
-            <Home className="w-8 h-8 mb-4 text-[#9b87f5]" />
-            <h3 className="text-xl font-semibold mb-2">Residential Sales</h3>
-            <p className="text-gray-400">Expert guidance in buying or selling your home</p>
-          </div>
-          <div className="bg-black/50 rounded-lg p-6 backdrop-blur-sm border border-white/10">
-            <Building className="w-8 h-8 mb-4 text-[#9b87f5]" />
-            <h3 className="text-xl font-semibold mb-2">Commercial</h3>
-            <p className="text-gray-400">Professional commercial property services</p>
-          </div>
-          <div className="bg-black/50 rounded-lg p-6 backdrop-blur-sm border border-white/10">
-            <DollarSign className="w-8 h-8 mb-4 text-[#9b87f5]" />
-            <h3 className="text-xl font-semibold mb-2">Property Valuation</h3>
-            <p className="text-gray-400">Accurate market value assessments</p>
-          </div>
-          <div className="bg-black/50 rounded-lg p-6 backdrop-blur-sm border border-white/10">
-            <Users className="w-8 h-8 mb-4 text-[#9b87f5]" />
-            <h3 className="text-xl font-semibold mb-2">Consultation</h3>
-            <p className="text-gray-400">Personalized real estate consulting</p>
-          </div>
+          <ServiceCard
+            icon={Home}
+            title="Residential Sales"
+            description="Expert guidance in buying or selling your home"
+          />
+          <ServiceCard
+            icon={Building}
+            title="Commercial"
+            description="Professional commercial property services"
+          />
+          <ServiceCard
+            icon={DollarSign}
+            title="Property Valuation"
+            description="Accurate market value assessments"
+          />
+          <ServiceCard
+            icon={Users}
+            title="Consultation"
+            description="Personalized real estate consulting"
+          />
         </div>
       </div>
 
@@ -155,30 +61,7 @@ const RealEstate = () => {
         <h2 className="text-3xl font-bold text-center mb-12">Featured Properties</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {properties.map((property) => (
-            <div 
-              key={property.title}
-              className="bg-black/50 rounded-lg overflow-hidden border border-white/10 group hover:border-accent/50 transition-all duration-300"
-            >
-              <div className="relative h-64">
-                <img 
-                  src={property.image}
-                  alt={property.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-semibold">{property.title}</h3>
-                  <span className="text-accent font-bold">{property.price}</span>
-                </div>
-                <div className="flex items-center gap-2 text-gray-400 mb-2">
-                  <MapPin className="w-4 h-4" />
-                  {property.location}
-                </div>
-                <p className="text-gray-400 mb-2">{property.specs}</p>
-                <p className="text-gray-500">{property.type}</p>
-              </div>
-            </div>
+            <PropertyCard key={property.title} property={property} />
           ))}
         </div>
       </div>
