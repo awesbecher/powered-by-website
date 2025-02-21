@@ -1,3 +1,4 @@
+
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -36,6 +37,7 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('Form submission started');
     
     if (!name || !email || !company || !phone || !message) {
       toast({
@@ -58,12 +60,15 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
+      console.log('Sending email via Supabase function...');
       const { data, error } = await supabase.functions.invoke('send-contact-email', {
         body: { name, email, company, phone, message },
       });
 
       if (error) throw error;
 
+      console.log('Email sent successfully, preparing to navigate...');
+      
       // Clear form
       setName('');
       setEmail('');
@@ -71,8 +76,17 @@ const Contact = () => {
       setPhone('');
       setMessage('');
       
-      // Navigate to thank you page
-      navigate('/thank-you');
+      // Show success toast before navigation
+      toast({
+        title: "Message Sent",
+        description: "Thanks for reaching out! Redirecting you now...",
+      });
+
+      // Add a small delay before navigation to ensure the toast is seen
+      setTimeout(() => {
+        console.log('Navigating to thank you page...');
+        navigate('/thank-you');
+      }, 1500);
       
     } catch (error) {
       console.error('Error sending message:', error);
