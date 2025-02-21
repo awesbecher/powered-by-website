@@ -71,7 +71,7 @@ const Index = () => {
             
             {/* Value Proposition */}
             <p className="mt-8 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Empower your business with intelligent AI agents that handle customer interactions across all channels - voice, email, SMS, chat, and more.
+              Why should those Silicon Valley nerds have all the fancy toys? Parlar is the world's first AI Agency delivering custom AI agent solutions to SMBs. From mom-and-pop shops to mid-sized corporates, you think of a workflow to automate or a task to "agentify"... we'll build it.
             </p>
             
             {/* CTA Buttons */}
