@@ -74,6 +74,58 @@ const MercedesDealer = () => {
         </div>
       </div>
 
+      {/* Services Grid */}
+      <div className="max-w-7xl mx-auto px-4 lg:px-8 pb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div className="bg-black/50 rounded-lg p-6 backdrop-blur-sm border border-white/10">
+            <Car className="w-8 h-8 mb-4 text-[#9b87f5]" />
+            <h3 className="text-xl font-semibold mb-2">New Vehicles</h3>
+            <p className="text-gray-400">Explore our full lineup of new Mercedes-Benz vehicles, from luxury sedans to SUVs.</p>
+          </div>
+          <div className="bg-black/50 rounded-lg p-6 backdrop-blur-sm border border-white/10">
+            <DollarSign className="w-8 h-8 mb-4 text-[#9b87f5]" />
+            <h3 className="text-xl font-semibold mb-2">Financing</h3>
+            <p className="text-gray-400">Competitive lease and finance options tailored to your needs.</p>
+          </div>
+        </div>
+        
+        {/* Centered Service Center Box */}
+        <div className="max-w-md mx-auto">
+          <div className="bg-black/50 rounded-lg p-6 backdrop-blur-sm border border-white/10">
+            <Wrench className="w-8 h-8 mb-4 text-[#9b87f5]" />
+            <h3 className="text-xl font-semibold mb-2">Service Center</h3>
+            <p className="text-gray-400">Factory-trained technicians and genuine Mercedes-Benz parts.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Contact Section */}
+      <div className="max-w-7xl mx-auto px-4 lg:px-8 pb-12">
+        <div className="bg-accent/10 rounded-lg p-8 text-center border border-accent/20">
+          <h2 className="text-2xl font-bold mb-6">Visit Us Today</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div>
+              <Clock className="w-6 h-6 mx-auto mb-2 text-[#9b87f5]" />
+              <h3 className="font-semibold mb-2">Hours</h3>
+              <p className="text-gray-400">Mon-Sat: 9AM - 7PM<br />Sunday: 10AM - 6PM</p>
+            </div>
+            <div>
+              <Shield className="w-6 h-6 mx-auto mb-2 text-[#9b87f5]" />
+              <h3 className="font-semibold mb-2">Location</h3>
+              <p className="text-gray-400">1701 Alexander Ave E<br />Fife, WA 98424</p>
+            </div>
+            <div>
+              <Phone className="w-6 h-6 mx-auto mb-2 text-[#9b87f5]" />
+              <h3 className="font-semibold mb-2">Contact</h3>
+              <p className="text-gray-400">Sales: (253) 922-4838<br />Service: (253) 922-4839</p>
+            </div>
+          </div>
+          <button className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors">
+            Schedule a Test Drive
+          </button>
+        </div>
+      </div>
+
       {/* Special Offers Dialog */}
       <Dialog open={showOffers} onOpenChange={setShowOffers}>
         <DialogContent className="bg-[#222222] text-white border-gray-800 max-w-2xl">
@@ -110,54 +162,6 @@ const MercedesDealer = () => {
           </DialogHeader>
         </DialogContent>
       </Dialog>
-
-      {/* Services Grid */}
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-black/50 rounded-lg p-6 backdrop-blur-sm border border-white/10">
-            <Car className="w-8 h-8 mb-4 text-[#9b87f5]" />
-            <h3 className="text-xl font-semibold mb-2">New Vehicles</h3>
-            <p className="text-gray-400">Explore our full lineup of new Mercedes-Benz vehicles, from luxury sedans to SUVs.</p>
-          </div>
-          <div className="bg-black/50 rounded-lg p-6 backdrop-blur-sm border border-white/10">
-            <DollarSign className="w-8 h-8 mb-4 text-[#9b87f5]" />
-            <h3 className="text-xl font-semibold mb-2">Financing</h3>
-            <p className="text-gray-400">Competitive lease and finance options tailored to your needs.</p>
-          </div>
-          <div className="bg-black/50 rounded-lg p-6 backdrop-blur-sm border border-white/10">
-            <Wrench className="w-8 h-8 mb-4 text-[#9b87f5]" />
-            <h3 className="text-xl font-semibold mb-2">Service Center</h3>
-            <p className="text-gray-400">Factory-trained technicians and genuine Mercedes-Benz parts.</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Contact Section */}
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 pb-12">
-        <div className="bg-accent/10 rounded-lg p-8 text-center border border-accent/20">
-          <h2 className="text-2xl font-bold mb-6">Visit Us Today</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <Clock className="w-6 h-6 mx-auto mb-2 text-[#9b87f5]" />
-              <h3 className="font-semibold mb-2">Hours</h3>
-              <p className="text-gray-400">Mon-Sat: 9AM - 7PM<br />Sunday: 10AM - 6PM</p>
-            </div>
-            <div>
-              <Shield className="w-6 h-6 mx-auto mb-2 text-[#9b87f5]" />
-              <h3 className="font-semibold mb-2">Location</h3>
-              <p className="text-gray-400">1701 Alexander Ave E<br />Fife, WA 98424</p>
-            </div>
-            <div>
-              <Phone className="w-6 h-6 mx-auto mb-2 text-[#9b87f5]" />
-              <h3 className="font-semibold mb-2">Contact</h3>
-              <p className="text-gray-400">Sales: (253) 922-4838<br />Service: (253) 922-4839</p>
-            </div>
-          </div>
-          <button className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors">
-            Schedule a Test Drive
-          </button>
-        </div>
-      </div>
     </div>
   );
 };
