@@ -1,7 +1,7 @@
 
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Building2, Bot, Clock } from "lucide-react";
+import { ArrowRight, Building2, Bot, Clock, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
@@ -68,6 +68,18 @@ const Index = () => {
                 Simplified
               </span>
             </h1>
+
+            {/* Fancy Text Block */}
+            <div className="relative my-8">
+              <div className="absolute inset-0 bg-gradient-to-r from-accent/20 via-accent/10 to-accent/20 blur-xl animate-gradient-shift"></div>
+              <div className="relative glass-card px-6 py-4 inline-block mx-auto">
+                <Sparkles className="inline-block text-accent mr-2 animate-pulse h-5 w-5" />
+                <span className="text-lg md:text-xl font-medium text-white italic">
+                  Why should those Silicon Valley nerds have all the fancy toys?
+                </span>
+                <Sparkles className="inline-block text-accent ml-2 animate-pulse h-5 w-5" />
+              </div>
+            </div>
             
             {/* Value Proposition */}
             <p className="mt-8 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
