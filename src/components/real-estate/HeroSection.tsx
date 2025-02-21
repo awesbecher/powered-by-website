@@ -29,18 +29,6 @@ export const HeroSection = () => {
           </div>
         </div>
       </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-8 -mt-32 mb-16">
-        <div className="flex flex-col sm:flex-row gap-4 max-w-2xl">
-          <button className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2">
-            <Phone className="w-5 h-5" />
-            Speak with an Agent
-          </button>
-          <button className="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-md font-semibold transition-colors">
-            View Featured Listings
-          </button>
-        </div>
-      </div>
     </>
   );
 };
