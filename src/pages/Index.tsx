@@ -90,16 +90,38 @@ const Index = () => {
           {/* Apps Grid */}
           <div className="grid grid-cols-3 md:grid-cols-6 gap-6 max-w-4xl mx-auto mb-12">
             {[
-              "/lovable-uploads/37953ab5-0865-486e-9b37-656bc2db57b3.png",
-              // Add paths for other app icons
-            ].map((iconPath, index) => (
+              {
+                path: "/lovable-uploads/2035fcd4-8b92-4f84-ad1e-c4ecae819711.png",
+                name: "Slack"
+              },
+              {
+                path: "/lovable-uploads/5b3d5137-838b-44a5-8f54-bb2a4cb7dc5a.png",
+                name: "Microsoft Teams"
+              },
+              {
+                path: "/lovable-uploads/a03fe01f-a020-43b3-a46c-2fda077f0baf.png",
+                name: "Gmail"
+              },
+              {
+                path: "/lovable-uploads/860a3675-3fea-42c8-9967-63f4048af67f.png",
+                name: "Outlook"
+              },
+              {
+                path: "/lovable-uploads/994965fb-70d5-436c-8d42-8377d9d8d3bd.png",
+                name: "WhatsApp"
+              },
+              {
+                path: "/lovable-uploads/419d1e06-4c6b-4d9c-8bc7-a8f2fb198d28.png",
+                name: "Telegram"
+              }
+            ].map((app, index) => (
               <div 
                 key={index}
                 className="bg-[#2a2a2a] rounded-lg p-4 aspect-square flex items-center justify-center transition-transform hover:scale-105"
               >
                 <img 
-                  src={iconPath}
-                  alt={`Integration ${index + 1}`}
+                  src={app.path}
+                  alt={app.name}
                   className="w-12 h-12 object-contain"
                 />
               </div>
