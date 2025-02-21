@@ -82,7 +82,7 @@ const RoomService = () => {
   return (
     <div className="min-h-screen w-full bg-[#222222]">
       {/* Hero Section */}
-      <div className="relative h-[50vh] mb-16">
+      <div className="relative h-[60vh] mb-16 mt-32">
         <div className="absolute inset-0">
           <img 
             src="/lovable-uploads/e87cce6e-adc9-4426-b464-c64b14d607bd.png"
@@ -115,7 +115,7 @@ const RoomService = () => {
       <img 
         src="/lovable-uploads/ec9dd264-4bb3-4b03-9b50-e31383652af9.png"
         alt="GrandView Hotel"
-        className="absolute top-8 right-8 h-24 w-auto z-10"
+        className="absolute top-8 right-8 h-32 w-auto z-10"
       />
 
       <div className="mx-auto max-w-3xl px-4">
