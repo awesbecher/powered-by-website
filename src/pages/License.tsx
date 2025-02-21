@@ -1,4 +1,3 @@
-
 import { Bot, Network, MessageSquare, BarChart, Phone, DollarSign, ChevronLeft } from "lucide-react";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { initiateVogentCall } from "@/services/vogentService";
 
 const License = () => {
   const chatSectionRef = useRef<HTMLDivElement>(null);
@@ -31,8 +31,7 @@ const License = () => {
 
     setIsLoading(true);
     try {
-      // Here you would integrate the actual call functionality
-      console.log('Initiating call to:', phoneNumber);
+      await initiateVogentCall(phoneNumber);
       setIsOpen(false);
       setPhoneNumber("");
       toast({
@@ -43,7 +42,7 @@ const License = () => {
       toast({
         variant: "destructive",
         title: "Failed to initiate call",
-        description: "Please try again later."
+        description: error.message || "Please try again later."
       });
     } finally {
       setIsLoading(false);
