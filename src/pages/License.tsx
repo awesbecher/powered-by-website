@@ -1,5 +1,5 @@
 
-import { Bot, Network, MessageSquare, BarChart, Phone } from "lucide-react";
+import { Bot, Network, MessageSquare, BarChart, Phone, DollarSign } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
@@ -32,7 +32,7 @@ const License = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-gray-800"></div>
         </div>
 
-        {/* Content - Now moved below the hero text with more spacing */}
+        {/* Content */}
         <div className="relative z-10 container mx-auto px-4">
           <div className="min-h-[50vh]"></div>
           <div className="flex flex-col items-center justify-center gap-16 pb-20">
@@ -40,18 +40,25 @@ const License = () => {
               RightBloom delivers cutting-edge AI agent solutions that automate and enhance your sales and customer service operations, helping innovative companies scale their business efficiently.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2">
-                Speak to a Sales Rep
-                <Phone className="w-5 h-5" />
+            <div className="flex flex-col items-center gap-8">
+              <button className="bg-[#9b87f5] hover:bg-[#7E69AB] text-white px-10 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2 text-lg">
+                View Products & Pricing
+                <DollarSign className="w-5 h-5" />
               </button>
-              <button 
-                onClick={() => setShowChat(true)}
-                className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2"
-              >
-                Chat with Us
-                <MessageSquare className="w-5 h-5" />
-              </button>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2">
+                  Speak to a Sales Rep
+                  <Phone className="w-5 h-5" />
+                </button>
+                <button 
+                  onClick={() => setShowChat(true)}
+                  className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2"
+                >
+                  Chat with Us
+                  <MessageSquare className="w-5 h-5" />
+                </button>
+              </div>
             </div>
 
             {/* Feature Cards */}
