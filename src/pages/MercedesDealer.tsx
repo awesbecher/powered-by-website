@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Car, DollarSign, Wrench, Shield, Clock, Phone, X } from "lucide-react";
 import {
@@ -54,7 +53,6 @@ const MercedesDealer = () => {
 
   return (
     <div className="min-h-screen bg-[#222222] text-white">
-      {/* Logo */}
       <div className="absolute top-8 right-8 z-10">
         <img 
           src="/lovable-uploads/7e5ffc92-3c33-4a4a-8d6d-add3197d2f2f.png"
@@ -63,7 +61,6 @@ const MercedesDealer = () => {
         />
       </div>
 
-      {/* Hero Section with Background Image */}
       <div className="relative h-[60vh] mb-4">
         <div className="absolute inset-0">
           <img 
@@ -74,7 +71,6 @@ const MercedesDealer = () => {
           <div className="absolute inset-0 bg-black/50"></div>
         </div>
         
-        {/* Header Content */}
         <div className="relative h-full flex flex-col items-center justify-center px-4 lg:px-8">
           <Link to="/" className="absolute top-8 left-8 text-gray-400 hover:text-white transition-colors">
             ← Back
@@ -90,7 +86,6 @@ const MercedesDealer = () => {
         </div>
       </div>
 
-      {/* Featured Section */}
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
         <div className="rounded-xl overflow-hidden bg-black/50 backdrop-blur-sm p-12 mb-12">
           <div className="text-center">
@@ -104,7 +99,7 @@ const MercedesDealer = () => {
                 View Special Offers
               </button>
               <div>
-                <Dialog open={showCallDialog} onOpenChange={setShowCallDialog}>
+                <Dialog>
                   <DialogTrigger asChild>
                     <button className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-8 py-3 rounded-md font-semibold transition-colors flex items-center justify-center gap-2 mx-auto">
                       Speak with us now!
@@ -124,13 +119,14 @@ const MercedesDealer = () => {
                         className="text-lg bg-gray-800 border-gray-700 text-white placeholder:text-gray-400"
                       />
                       <div className="flex gap-2">
-                        <Button 
-                          variant="outline"
-                          className="w-full border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white"
-                          onClick={() => setShowCallDialog(false)}
-                        >
-                          Cancel
-                        </Button>
+                        <DialogTrigger asChild>
+                          <Button 
+                            variant="outline"
+                            className="w-full border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white"
+                          >
+                            Cancel
+                          </Button>
+                        </DialogTrigger>
                         <Button 
                           className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
                           onClick={handleCall}
@@ -148,7 +144,6 @@ const MercedesDealer = () => {
         </div>
       </div>
 
-      {/* Services Grid */}
       <div className="max-w-7xl mx-auto px-4 lg:px-8 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div className="bg-black/50 rounded-lg p-6 backdrop-blur-sm border border-white/10">
@@ -163,7 +158,6 @@ const MercedesDealer = () => {
           </div>
         </div>
         
-        {/* Centered Service Center Box */}
         <div className="max-w-md mx-auto">
           <div className="bg-black/50 rounded-lg p-6 backdrop-blur-sm border border-white/10">
             <Wrench className="w-8 h-8 mb-4 text-[#9b87f5]" />
@@ -173,7 +167,6 @@ const MercedesDealer = () => {
         </div>
       </div>
 
-      {/* Contact Section */}
       <div className="max-w-7xl mx-auto px-4 lg:px-8 pb-12">
         <div className="bg-accent/10 rounded-lg p-8 text-center border border-accent/20">
           <h2 className="text-2xl font-bold mb-6">Visit Us Today</h2>
@@ -200,7 +193,6 @@ const MercedesDealer = () => {
         </div>
       </div>
 
-      {/* Special Offers Dialog */}
       <Dialog open={showOffers} onOpenChange={setShowOffers}>
         <DialogContent className="bg-[#222222] text-white border-gray-800 max-w-2xl">
           <DialogHeader>
