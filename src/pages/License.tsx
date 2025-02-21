@@ -1,3 +1,4 @@
+
 import { Bot, Network, MessageSquare, BarChart, Phone, DollarSign, ChevronLeft } from "lucide-react";
 import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -30,16 +31,6 @@ const License = () => {
             alt="RightBloom"
             className="h-12 w-auto"
           />
-        </div>
-
-        {/* Background Image & Overlay */}
-        <div className="absolute inset-0">
-          <img 
-            src="/lovable-uploads/fd8a631b-2f6e-4f85-a4e8-aa0f775cd50f.png"
-            alt="RightBloom AI Solutions"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-gray-800"></div>
         </div>
 
         {/* Hero Text */}
