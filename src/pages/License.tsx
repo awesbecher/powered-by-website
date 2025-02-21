@@ -40,9 +40,15 @@ const License = () => {
                   Speak to a Sales Rep
                   <Phone className="w-5 h-5" />
                 </button>
-                <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3 rounded-lg font-semibold transition-all">
-                  Watch Demo
-                </button>
+                <a 
+                  href="https://www.chatbase.co/chatbot-iframe/E3xjnZ-H-sl1mXJ_y7Hza" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2"
+                >
+                  Chat with Us
+                  <MessageSquare className="w-5 h-5" />
+                </a>
               </div>
             </div>
             
