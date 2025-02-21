@@ -61,7 +61,7 @@ const Insurance = () => {
           className="w-full h-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-[#222222]"></div>
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className="absolute inset-0 flex items-center justify-center pt-20">
           <div className="text-center px-4">
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
               Protect What Matters Most
