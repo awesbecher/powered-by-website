@@ -20,34 +20,41 @@ const Index = () => {
           </Link>
         </div>
 
-        {/* Navigation */}
-        <nav className="hidden md:block absolute left-1/2 transform -translate-x-1/2">
-          <ul className="flex items-center space-x-3">
-            <li>
-              <Link to="/ai-agency" className="text-white hover:text-accent transition-colors">
-                AI Agency
-              </Link>
-            </li>
-            <li className="text-white">|</li>
-            <li>
-              <Link to="/solutions" className="text-white hover:text-accent transition-colors">
-                Solutions
-              </Link>
-            </li>
-            <li className="text-white">|</li>
-            <li>
-              <Link to="/demo" className="text-white hover:text-accent transition-colors">
-                Demos
-              </Link>
-            </li>
-            <li className="text-white">|</li>
-            <li>
-              <Link to="/contact" className="text-white hover:text-accent transition-colors">
-                Contact Us
-              </Link>
-            </li>
-          </ul>
-        </nav>
+        {/* Navigation and Consultation Button */}
+        <div className="flex items-center gap-8">
+          <nav className="hidden md:block">
+            <ul className="flex items-center space-x-3">
+              <li>
+                <Link to="/ai-agency" className="text-white hover:text-accent transition-colors">
+                  AI Agency
+                </Link>
+              </li>
+              <li className="text-white">|</li>
+              <li>
+                <Link to="/solutions" className="text-white hover:text-accent transition-colors">
+                  Solutions
+                </Link>
+              </li>
+              <li className="text-white">|</li>
+              <li>
+                <Link to="/demo" className="text-white hover:text-accent transition-colors">
+                  Demos
+                </Link>
+              </li>
+              <li className="text-white">|</li>
+              <li>
+                <Link to="/contact" className="text-white hover:text-accent transition-colors">
+                  Contact Us
+                </Link>
+              </li>
+            </ul>
+          </nav>
+          <Link to="/contact">
+            <Button className="glass-card text-white hover:bg-accent/20 px-4 py-2 text-sm font-medium transition-all duration-300">
+              Book a Consultation
+            </Button>
+          </Link>
+        </div>
       </div>
 
       {/* Hero Section */}
