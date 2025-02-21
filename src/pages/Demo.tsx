@@ -10,15 +10,13 @@ const Demo = () => {
       {/* Header with Logo and Nav */}
       <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 lg:px-8 py-6">
         {/* Logo */}
-        <div>
-          <Link to="/">
-            <img 
-              src="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
-              alt="Parlar Logo"
-              className="w-[192px] lg:w-[288px] h-auto"
-            />
-          </Link>
-        </div>
+        <Link to="/">
+          <img 
+            src="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
+            alt="Parlar Logo"
+            className="w-[192px] lg:w-[288px] h-auto"
+          />
+        </Link>
 
         {/* Navigation */}
         <nav className="hidden md:block absolute left-1/2 transform -translate-x-1/2">
