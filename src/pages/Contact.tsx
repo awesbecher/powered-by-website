@@ -77,7 +77,7 @@ const Contact = () => {
       <div className="relative overflow-hidden px-6 lg:px-8 pt-24 pb-8">
         <div className="mx-auto max-w-2xl text-center">
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
-            Get in Touch
+            Let's meet!
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-300">
             We'd love to hear from you. Send us a message and we'll respond as soon as possible.
