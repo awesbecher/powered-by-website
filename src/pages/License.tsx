@@ -33,49 +33,45 @@ const License = () => {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 container mx-auto px-4 pt-48">
-          <div className="flex flex-col lg:flex-row items-center gap-12 py-16">
-            <div className="flex-1 text-white">
-              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                RightBloom delivers cutting-edge AI agent solutions that automate and enhance your sales and customer service operations, helping innovative companies scale their business efficiently.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2">
-                  Speak to a Sales Rep
-                  <Phone className="w-5 h-5" />
-                </button>
-                <button 
-                  onClick={() => setShowChat(true)}
-                  className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2"
-                >
-                  Chat with Us
-                  <MessageSquare className="w-5 h-5" />
-                </button>
-              </div>
+        <div className="relative z-10 container mx-auto px-4 flex flex-col items-center justify-center min-h-[90vh]">
+          <p className="text-xl text-gray-300 mb-8 text-center max-w-2xl">
+            RightBloom delivers cutting-edge AI agent solutions that automate and enhance your sales and customer service operations, helping innovative companies scale their business efficiently.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2">
+              Speak to a Sales Rep
+              <Phone className="w-5 h-5" />
+            </button>
+            <button 
+              onClick={() => setShowChat(true)}
+              className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2"
+            >
+              Chat with Us
+              <MessageSquare className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Feature Cards */}
+          <div className="grid grid-cols-2 gap-4 mt-16 max-w-2xl">
+            <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20">
+              <Bot className="w-8 h-8 text-purple-400 mb-4" />
+              <h3 className="text-white font-semibold mb-2">AI Agents</h3>
+              <p className="text-gray-300 text-sm">Intelligent automation for customer interactions</p>
             </div>
-            
-            {/* Feature Cards */}
-            <div className="flex-1 grid grid-cols-2 gap-4">
-              <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20">
-                <Bot className="w-8 h-8 text-purple-400 mb-4" />
-                <h3 className="text-white font-semibold mb-2">AI Agents</h3>
-                <p className="text-gray-300 text-sm">Intelligent automation for customer interactions</p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20">
-                <Network className="w-8 h-8 text-pink-400 mb-4" />
-                <h3 className="text-white font-semibold mb-2">Smart Routing</h3>
-                <p className="text-gray-300 text-sm">Seamless request distribution and handling</p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20">
-                <MessageSquare className="w-8 h-8 text-blue-400 mb-4" />
-                <h3 className="text-white font-semibold mb-2">24/7 Support</h3>
-                <p className="text-gray-300 text-sm">Round-the-clock automated assistance</p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20">
-                <BarChart className="w-8 h-8 text-green-400 mb-4" />
-                <h3 className="text-white font-semibold mb-2">Analytics</h3>
-                <p className="text-gray-300 text-sm">Deep insights into customer interactions</p>
-              </div>
+            <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20">
+              <Network className="w-8 h-8 text-pink-400 mb-4" />
+              <h3 className="text-white font-semibold mb-2">Smart Routing</h3>
+              <p className="text-gray-300 text-sm">Seamless request distribution and handling</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20">
+              <MessageSquare className="w-8 h-8 text-blue-400 mb-4" />
+              <h3 className="text-white font-semibold mb-2">24/7 Support</h3>
+              <p className="text-gray-300 text-sm">Round-the-clock automated assistance</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20">
+              <BarChart className="w-8 h-8 text-green-400 mb-4" />
+              <h3 className="text-white font-semibold mb-2">Analytics</h3>
+              <p className="text-gray-300 text-sm">Deep insights into customer interactions</p>
             </div>
           </div>
         </div>
