@@ -58,7 +58,7 @@ const Demo = () => {
               </span>
               !{" "}
               <span className="text-white">
-                Now go have fun!
+                Now go have fun
               </span>
             </h1>
             <p className="mx-auto mt-3 max-w-2xl text-lg text-gray-400 leading-6 animate-fade-in opacity-0" style={{ animationFillMode: 'forwards', animationDelay: '0.4s' }}>
