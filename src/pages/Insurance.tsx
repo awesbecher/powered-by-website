@@ -7,12 +7,14 @@ import { InsuranceProductCard } from "@/components/insurance/InsuranceProductCar
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { initiateVogentCall } from "@/services/vogentService";
 
 const Insurance = () => {
   const [zipCode, setZipCode] = useState("");
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
   const handleProductSelect = (productId: string) => {
@@ -26,7 +28,7 @@ const Insurance = () => {
     });
   };
 
-  const handleCall = () => {
+  const handleCall = async () => {
     if (!phoneNumber) {
       toast({
         variant: "destructive",
@@ -36,12 +38,24 @@ const Insurance = () => {
       return;
     }
 
-    toast({
-      title: "Feature coming soon!",
-      description: "This feature is currently under development."
-    });
-    setIsOpen(false);
-    setPhoneNumber("");
+    setIsLoading(true);
+    try {
+      await initiateVogentCall(phoneNumber);
+      setIsOpen(false);
+      setPhoneNumber("");
+      toast({
+        title: "Call initiated",
+        description: "An insurance agent will call you shortly."
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Failed to initiate call",
+        description: error.message || "Please try again later."
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const insuranceProducts = [
@@ -137,12 +151,13 @@ const Insurance = () => {
                         onChange={e => setPhoneNumber(e.target.value)} 
                         className="text-lg"
                       />
-                      <button 
-                        className="w-full bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-md"
+                      <Button 
+                        className="w-full"
                         onClick={handleCall}
+                        disabled={isLoading}
                       >
-                        Call Me
-                      </button>
+                        {isLoading ? "Initiating call..." : "Call Me"}
+                      </Button>
                     </div>
                   </DialogContent>
                 </Dialog>
