@@ -89,7 +89,7 @@ const Index = () => {
             },
             {
               icon: Bot,
-              title: "Multi-Channel AI",
+              title: "Multi-Channel Agents",
               description: "Voice, email, SMS, Slack, chat, and document automation"
             },
             {
