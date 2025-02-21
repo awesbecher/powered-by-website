@@ -8,10 +8,48 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { initiateVogentCall } from "@/services/vogentService";
 
 const MercedesDealer = () => {
   const [showOffers, setShowOffers] = useState(false);
+  const [showCallDialog, setShowCallDialog] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+
+  const handleCall = async () => {
+    if (!phoneNumber) {
+      toast({
+        variant: "destructive",
+        title: "Please enter your phone number",
+        description: "A phone number is required to connect with a sales representative."
+      });
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      await initiateVogentCall(phoneNumber);
+      setShowCallDialog(false);
+      setPhoneNumber("");
+      toast({
+        title: "Call initiated",
+        description: "A sales representative will call you shortly."
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Failed to initiate call",
+        description: error.message || "Please try again later."
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#222222] text-white">
@@ -65,9 +103,44 @@ const MercedesDealer = () => {
                 View Special Offers
               </button>
               <div>
-                <button className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-8 py-3 rounded-md font-semibold transition-colors">
-                  Speak with us now!
-                </button>
+                <Dialog open={showCallDialog} onOpenChange={setShowCallDialog}>
+                  <DialogTrigger asChild>
+                    <button className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-8 py-3 rounded-md font-semibold transition-colors flex items-center justify-center gap-2 mx-auto">
+                      Speak with us now!
+                      <Phone className="w-5 h-5" />
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="bg-[#222222] text-white border-gray-800">
+                    <DialogHeader>
+                      <DialogTitle>Enter your phone number to speak with a sales representative</DialogTitle>
+                    </DialogHeader>
+                    <div className="flex flex-col space-y-4 pt-4">
+                      <Input 
+                        type="tel" 
+                        placeholder="Enter your phone number" 
+                        value={phoneNumber} 
+                        onChange={e => setPhoneNumber(e.target.value)} 
+                        className="text-lg bg-gray-800 border-gray-700 text-white placeholder:text-gray-400"
+                      />
+                      <div className="flex gap-2">
+                        <Button 
+                          variant="outline"
+                          className="w-full border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white"
+                          onClick={() => setShowCallDialog(false)}
+                        >
+                          Cancel
+                        </Button>
+                        <Button 
+                          className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
+                          onClick={handleCall}
+                          disabled={isLoading}
+                        >
+                          {isLoading ? "Initiating call..." : "Call Me"}
+                        </Button>
+                      </div>
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
           </div>
