@@ -49,7 +49,7 @@ const AIAgency = () => {
       <div className="relative pt-32 pb-16 px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <h1 className="text-4xl font-bold tracking-tight text-white text-center sm:text-6xl mb-4 animate-fade-in opacity-0" style={{ animationFillMode: 'forwards', animationDelay: '0.2s' }}>
-            AI Agency Services
+            The World's First AI Agency
           </h1>
           <p className="text-xl text-gray-300 text-center mb-12 animate-fade-in opacity-0" style={{ animationFillMode: 'forwards', animationDelay: '0.4s' }}>
             Transforming businesses through intelligent automation
