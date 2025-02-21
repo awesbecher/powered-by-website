@@ -7,6 +7,11 @@ import { ServiceCard } from "@/components/real-estate/ServiceCard";
 import { HeroSection } from "@/components/real-estate/HeroSection";
 
 const RealEstate = () => {
+  const scrollToProperties = () => {
+    const featuredSection = document.getElementById('featured-properties');
+    featuredSection?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-[#222222] text-white">
       {/* Navigation */}
@@ -36,7 +41,10 @@ const RealEstate = () => {
             <Phone className="w-5 h-5" />
             Speak with an Agent
           </button>
-          <button className="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-md font-semibold transition-colors">
+          <button 
+            onClick={scrollToProperties}
+            className="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-md font-semibold transition-colors"
+          >
             View Featured Listings
           </button>
         </div>
@@ -70,7 +78,7 @@ const RealEstate = () => {
       </div>
 
       {/* Featured Properties */}
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-16">
+      <div id="featured-properties" className="max-w-7xl mx-auto px-4 lg:px-8 py-16">
         <h2 className="text-3xl font-bold text-center mb-12">Featured Properties</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {properties.map((property) => (
