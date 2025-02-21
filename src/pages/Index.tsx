@@ -75,7 +75,7 @@ const Index = () => {
               <div className="relative glass-card px-6 py-4 inline-block mx-auto">
                 <Sparkles className="inline-block text-accent mr-2 animate-pulse h-5 w-5" />
                 <span className="text-lg md:text-xl font-medium text-white italic">
-                  Why should those Silicon Valley nerds have all the fancy toys?
+                  Why should those Silicon Valley <span className="text-accent font-bold">nerds</span> have all the fancy toys?
                 </span>
                 <Sparkles className="inline-block text-accent ml-2 animate-pulse h-5 w-5" />
               </div>
