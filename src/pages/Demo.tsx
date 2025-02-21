@@ -1,21 +1,13 @@
+
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { ServiceCard } from "@/components/home/ServiceCard";
 import { services, additionalServices } from "@/data/services";
 
 const Demo = () => {
   return (
-    <div className="min-h-screen w-full bg-[#222222]">
-      {/* Logo */}
-      <div className="absolute top-6 left-6 lg:left-8">
-        <img 
-          src="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
-          alt="Parlar Logo"
-          className="w-[192px] lg:w-[288px] h-auto"
-        />
-      </div>
-
+    <div className="min-h-screen w-full bg-[#222222] pt-24">
       {/* Hero Section */}
-      <div className="relative overflow-hidden px-6 lg:px-8 pt-24 pb-8">
+      <div className="relative overflow-hidden px-6 lg:px-8 pb-8">
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">

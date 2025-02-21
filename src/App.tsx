@@ -16,6 +16,8 @@ import CallConfirmation from "./pages/CallConfirmation";
 import MercedesDealer from "./pages/MercedesDealer";
 import RealEstate from "./pages/RealEstate";
 import NotFound from "./pages/NotFound";
+import Blog from "./pages/Blog";
+import Navbar from "./components/layout/Navbar";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +27,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/demo" element={<Demo />} />
@@ -37,6 +40,7 @@ const App = () => (
           <Route path="/retail" element={<RetailServices />} />
           <Route path="/mercedes" element={<MercedesDealer />} />
           <Route path="/real-estate" element={<RealEstate />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
