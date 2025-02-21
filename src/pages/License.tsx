@@ -60,22 +60,6 @@ const License = () => {
               </div>
             </div>
           </div>
-
-          {/* Stats Section */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 text-center">
-            <div className="bg-white/5 backdrop-blur-lg p-8 rounded-xl border border-white/10">
-              <div className="text-4xl font-bold text-purple-400 mb-2">98%</div>
-              <div className="text-gray-300">Customer Satisfaction</div>
-            </div>
-            <div className="bg-white/5 backdrop-blur-lg p-8 rounded-xl border border-white/10">
-              <div className="text-4xl font-bold text-pink-400 mb-2">24/7</div>
-              <div className="text-gray-300">AI Agent Availability</div>
-            </div>
-            <div className="bg-white/5 backdrop-blur-lg p-8 rounded-xl border border-white/10">
-              <div className="text-4xl font-bold text-blue-400 mb-2">60%</div>
-              <div className="text-gray-300">Cost Reduction</div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
