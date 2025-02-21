@@ -1,8 +1,33 @@
+
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
+  const [email, setEmail] = useState('');
+  const { toast } = useToast();
+
+  const isPersonalEmail = (email: string) => {
+    const personalDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com'];
+    const domain = email.split('@')[1];
+    return personalDomains.includes(domain?.toLowerCase());
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newEmail = e.target.value;
+    setEmail(newEmail);
+    
+    if (newEmail && isPersonalEmail(newEmail)) {
+      toast({
+        variant: "destructive",
+        title: "Invalid Email",
+        description: "Please use your business email address.",
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen w-full bg-[#222222]">
       {/* Header with Logo and Nav */}
@@ -71,7 +96,9 @@ const Contact = () => {
             <div>
               <Input
                 type="email"
-                placeholder="Your Email"
+                value={email}
+                onChange={handleEmailChange}
+                placeholder="Your Business Email"
                 className="bg-white/5 border-white/10 text-white placeholder:text-gray-400"
               />
             </div>
