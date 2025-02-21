@@ -1,5 +1,4 @@
-
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
@@ -7,6 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [company, setCompany] = useState('');
@@ -64,17 +64,15 @@ const Contact = () => {
 
       if (error) throw error;
 
-      toast({
-        title: "Message Sent!",
-        description: "We'll get back to you as soon as possible.",
-      });
-
       // Clear form
       setName('');
       setEmail('');
       setCompany('');
       setPhone('');
       setMessage('');
+      
+      // Navigate to thank you page
+      navigate('/thank-you');
       
     } catch (error) {
       console.error('Error sending message:', error);
