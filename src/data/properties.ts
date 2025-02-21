@@ -10,6 +10,14 @@ export interface Property {
 
 export const properties: Property[] = [
   {
+    title: "Luxury Estate",
+    price: "$1,200,000",
+    location: "Sparta Township",
+    specs: "9 Maria Dr • Pool & Landscaped Grounds",
+    type: "Single Family",
+    image: "/lovable-uploads/fb2b365b-82f1-49db-9f01-3400903c0199.png"
+  },
+  {
     title: "Victorian Estate",
     price: "$1,175,000",
     location: "Sparta Township",
