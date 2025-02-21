@@ -79,26 +79,6 @@ const Index = () => {
         <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
         <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
       </div>
-
-      {/* Industries Section */}
-      <div className="relative px-6 lg:px-8 py-20 bg-neutral-medium/50">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-white mb-12">Industries We Serve</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { title: "Hospitality", icon: "🏨" },
-              { title: "Automotive", icon: "🚗" },
-              { title: "Restaurants", icon: "🍽️" },
-              { title: "Real Estate", icon: "🏢" }
-            ].map((industry, index) => (
-              <div key={index} className="text-center">
-                <div className="text-4xl mb-4">{industry.icon}</div>
-                <h3 className="text-white font-medium">{industry.title}</h3>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
