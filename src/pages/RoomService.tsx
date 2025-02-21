@@ -80,10 +80,33 @@ const RoomService = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#222222] px-4 py-16 sm:px-6 lg:px-8">
+    <div className="min-h-screen w-full bg-[#222222]">
+      {/* Hero Section */}
+      <div className="relative h-[50vh] mb-16">
+        <div className="absolute inset-0">
+          <img 
+            src="/lovable-uploads/e87cce6e-adc9-4426-b464-c64b14d607bd.png"
+            alt="Luxury Hotel Room"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-[#222222]"></div>
+        </div>
+        
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center px-4">
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
+              Room Service at Grandview
+            </h1>
+            <p className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed drop-shadow-lg">
+              Indulge in exquisite dining from the comfort of your luxury suite, with our 24/7 premium room service.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <Link 
         to="/" 
-        className="absolute top-8 left-8 flex items-center text-accent hover:text-accent/80 transition-colors"
+        className="absolute top-8 left-8 flex items-center text-white hover:text-white/80 transition-colors"
       >
         <ArrowLeft className="h-6 w-6 mr-2" />
         <span>Back to Services</span>
@@ -92,14 +115,15 @@ const RoomService = () => {
       <img 
         src="/lovable-uploads/ec9dd264-4bb3-4b03-9b50-e31383652af9.png"
         alt="GrandView Hotel"
-        className="absolute top-8 right-8 h-24 w-auto"
+        className="absolute top-8 right-8 h-24 w-auto z-10"
       />
 
-      <div className="mx-auto max-w-3xl text-center pt-16">
-        <h1 className="text-5xl font-bold text-white mb-4">Order Room Service</h1>
-        <p className="text-white/90 text-lg mb-8">Please choose from any of the items on our Food & Drinks Menu below. When you are ready, click the button below to speak to Room Service.</p>
+      <div className="mx-auto max-w-3xl px-4">
+        <p className="text-white/90 text-lg mb-8 text-center">
+          Please choose from any of the items on our Food & Drinks Menu below. When you are ready, click the button below to speak to Room Service.
+        </p>
         <Button 
-          className="bg-accent hover:bg-accent/90 text-white mb-8 font-bold text-lg"
+          className="bg-accent hover:bg-accent/90 text-white mb-8 font-bold text-lg mx-auto block"
           onClick={() => setIsDialogOpen(true)}
           disabled={isProcessing}
         >
@@ -119,7 +143,7 @@ const RoomService = () => {
           />
         </div>
         <Button 
-          className="bg-accent hover:bg-accent/90 text-white mt-8 font-bold text-lg"
+          className="bg-accent hover:bg-accent/90 text-white mt-8 font-bold text-lg mx-auto block"
           onClick={() => setIsDialogOpen(true)}
           disabled={isProcessing}
         >
