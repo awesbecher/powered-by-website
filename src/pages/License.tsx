@@ -168,10 +168,11 @@ const License = () => {
         </div>
       </div>
 
+      {/* Chatbase Dialog */}
       <Dialog open={showChat} onOpenChange={setShowChat}>
         <DialogContent className="max-w-4xl h-[80vh]">
           <DialogHeader>
-            <DialogTitle>Chat with our Sales Team</DialogTitle>
+            <DialogTitle>Chat with RightBloom</DialogTitle>
           </DialogHeader>
           <div className="h-full">
             <iframe
