@@ -53,7 +53,26 @@ const Insurance = () => {
   ];
 
   return (
-    <div className="min-h-screen w-full bg-[#222222] px-4 py-32 sm:px-6 lg:px-8">
+    <div className="min-h-screen w-full bg-[#222222]">
+      <div className="relative h-[40vh] mb-24">
+        <img 
+          src="/lovable-uploads/c7b460be-826e-48f7-b3fd-d81f66e0f8b2.png"
+          alt="Insurance Services"
+          className="w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-[#222222]"></div>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center px-4">
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
+              Protect What Matters Most
+            </h1>
+            <p className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed drop-shadow-lg">
+              Comprehensive insurance solutions tailored to your needs
+            </p>
+          </div>
+        </div>
+      </div>
+
       <Link 
         to="/" 
         className="absolute top-8 left-8 flex items-center text-accent hover:text-accent/80 transition-colors"
@@ -68,9 +87,8 @@ const Insurance = () => {
         className="absolute top-8 right-8 h-12"
       />
 
-      <div className="mx-auto max-w-3xl text-center">
+      <div className="mx-auto max-w-3xl text-center px-4">
         <div className="bg-white/5 rounded-lg p-8 backdrop-blur-sm">
-          <h1 className="text-5xl font-bold text-white mb-8">Online Insurance Quote</h1>
           <div className="space-y-8">
             <div className="space-y-4">
               <p className="text-xl text-gray-300">
