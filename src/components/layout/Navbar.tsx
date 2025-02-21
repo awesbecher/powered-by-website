@@ -12,6 +12,9 @@ const Navbar = () => {
     { name: "Blog", path: "/blog" }
   ];
 
+  // Check if we should show the consultation button on current page
+  const showConsultButton = ['/', '/products', '/demo', '/blog'].includes(location.pathname);
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#222222]/80 backdrop-blur-lg">
       <div className="container mx-auto px-4">
@@ -47,7 +50,17 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile Menu Button - We'll keep it simple for now */}
+          {/* Consultation Button */}
+          {showConsultButton && (
+            <button
+              onClick={() => window.location.href = "mailto:contact@parlar.ai"}
+              className="hidden md:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#9b87f5] hover:bg-[#8b77e5] transition-colors duration-200 ml-6"
+            >
+              Book a Consultation
+            </button>
+          )}
+
+          {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button className="text-gray-300 hover:text-white p-2">
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
