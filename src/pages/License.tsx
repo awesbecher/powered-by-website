@@ -1,7 +1,11 @@
 
 import { Bot, Network, MessageSquare, BarChart, Phone } from "lucide-react";
+import { useState } from "react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const License = () => {
+  const [showChat, setShowChat] = useState(false);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
       {/* Hero Section */}
@@ -40,15 +44,13 @@ const License = () => {
                   Speak to a Sales Rep
                   <Phone className="w-5 h-5" />
                 </button>
-                <a 
-                  href="https://www.chatbase.co/chatbot-iframe/E3xjnZ-H-sl1mXJ_y7Hza" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
+                <button 
+                  onClick={() => setShowChat(true)}
                   className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2"
                 >
                   Chat with Us
                   <MessageSquare className="w-5 h-5" />
-                </a>
+                </button>
               </div>
             </div>
             
@@ -78,6 +80,17 @@ const License = () => {
           </div>
         </div>
       </div>
+
+      <Dialog open={showChat} onOpenChange={setShowChat}>
+        <DialogContent className="max-w-3xl h-[80vh]">
+          <iframe
+            src="https://www.chatbase.co/chatbot-iframe/kHr0XGInFw_HfmNBDEuXC"
+            width="100%"
+            style={{ height: "100%", minHeight: "700px" }}
+            frameBorder="0"
+          />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
