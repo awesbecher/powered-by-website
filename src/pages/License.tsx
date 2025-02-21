@@ -54,9 +54,11 @@ const License = () => {
         <div className="relative z-10 container mx-auto px-4">
           <div className="min-h-[45vh]"></div>
           <div className="flex flex-col items-center justify-center gap-16 pb-20">
-            <p className="text-xl text-gray-300 text-center max-w-2xl">
-              RightBloom delivers cutting-edge AI agent solutions that automate and enhance your sales and customer service operations, helping innovative companies scale their business efficiently.
-            </p>
+            <div className="bg-black/30 backdrop-blur-sm rounded-xl p-8 max-w-2xl">
+              <p className="text-2xl text-white text-center leading-relaxed">
+                RightBloom delivers cutting-edge AI agent solutions that automate and enhance your sales and customer service operations, helping innovative companies scale their business efficiently.
+              </p>
+            </div>
             
             <div className="flex flex-col items-center gap-8">
               <button 
