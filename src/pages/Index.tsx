@@ -79,6 +79,39 @@ const Index = () => {
         <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
         <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
       </div>
+
+      {/* Integrations Grid Section */}
+      <div className="relative px-6 lg:px-8 py-20 bg-[#1a1a1a]">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-white mb-12">
+            Connect your intelligent AI agents to hundreds of apps & systems
+          </h2>
+          
+          {/* Apps Grid */}
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-6 max-w-4xl mx-auto mb-12">
+            {[
+              "/lovable-uploads/37953ab5-0865-486e-9b37-656bc2db57b3.png",
+              // Add paths for other app icons
+            ].map((iconPath, index) => (
+              <div 
+                key={index}
+                className="bg-[#2a2a2a] rounded-lg p-4 aspect-square flex items-center justify-center transition-transform hover:scale-105"
+              >
+                <img 
+                  src={iconPath}
+                  alt={`Integration ${index + 1}`}
+                  className="w-12 h-12 object-contain"
+                />
+              </div>
+            ))}
+          </div>
+          
+          {/* Connect Button */}
+          <Button className="bg-white hover:bg-gray-100 text-black px-8 py-4 text-lg rounded-lg transition-all duration-300">
+            Connect Your Apps
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };
