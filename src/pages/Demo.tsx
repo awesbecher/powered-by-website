@@ -1,3 +1,4 @@
+
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { ServiceCard } from "@/components/home/ServiceCard";
 import { services, additionalServices } from "@/data/services";
@@ -8,25 +9,50 @@ import { Link } from "react-router-dom";
 const Demo = () => {
   return (
     <div className="min-h-screen w-full bg-[#222222]">
-      {/* Back Button */}
-      <div className="absolute top-6 left-6 lg:left-8 z-10">
-        <Link to="/">
-          <Button variant="ghost" className="text-white hover:bg-white/10">
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Home
-          </Button>
-        </Link>
-      </div>
+      {/* Header with Logo and Nav */}
+      <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 lg:px-8 py-6">
+        {/* Logo */}
+        <div className="flex items-center space-x-4">
+          <Link to="/">
+            <Button variant="ghost" className="text-white hover:bg-white/10">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to Home
+            </Button>
+          </Link>
+          <Link to="/">
+            <img 
+              src="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
+              alt="Parlar Logo"
+              className="w-[192px] lg:w-[288px] h-auto"
+            />
+          </Link>
+        </div>
 
-      {/* Logo */}
-      <div className="absolute top-6 right-6 lg:right-8">
-        <Link to="/">
-          <img 
-            src="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
-            alt="Parlar Logo"
-            className="w-[192px] lg:w-[288px] h-auto"
-          />
-        </Link>
+        {/* Navigation */}
+        <nav className="hidden md:block absolute left-1/2 transform -translate-x-1/2">
+          <ul className="flex space-x-8">
+            <li>
+              <Link to="/" className="text-white hover:text-accent transition-colors">
+                AI Agency
+              </Link>
+            </li>
+            <li>
+              <Link to="/solutions" className="text-white hover:text-accent transition-colors">
+                Solutions
+              </Link>
+            </li>
+            <li>
+              <Link to="/demo" className="text-white hover:text-accent transition-colors">
+                Demos
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className="text-white hover:text-accent transition-colors">
+                Contact Us
+              </Link>
+            </li>
+          </ul>
+        </nav>
       </div>
 
       {/* Hero Section */}
