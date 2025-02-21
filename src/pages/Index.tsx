@@ -1,7 +1,7 @@
 
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Building2, Phone, Robot, Clock, ChartBar, CheckCircle } from "lucide-react";
+import { ArrowRight, Building2, Bot, Clock, ChartBar, MessageSquare, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
@@ -30,7 +30,7 @@ const Index = () => {
             
             {/* Value Proposition */}
             <p className="mt-8 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Empower your business with custom AI voice agents that handle reservations, orders, and customer inquiries 24/7.
+              Empower your business with intelligent AI agents that handle customer interactions across all channels - voice, email, SMS, chat, and more.
             </p>
             
             {/* CTA Button */}
@@ -51,17 +51,17 @@ const Index = () => {
             {
               icon: Building2,
               title: "Built for SMBs",
-              description: "Tailored solutions for businesses with 5-250 employees"
+              description: "Tailored automation solutions for businesses with 5-250 employees"
             },
             {
-              icon: Robot,
-              title: "Custom AI Solutions",
-              description: "Industry-specific voice agents that reflect your brand"
+              icon: Bot,
+              title: "Multi-Channel AI",
+              description: "Voice, email, SMS, Slack, chat, and document automation"
             },
             {
               icon: Clock,
               title: "24/7 Availability",
-              description: "Never miss a customer call, order, or booking"
+              description: "Instant responses across all communication channels"
             }
           ].map((feature, index) => (
             <div 
