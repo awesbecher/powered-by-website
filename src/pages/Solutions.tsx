@@ -60,10 +60,10 @@ const Solutions = () => {
           <div className="glass-card p-8 rounded-xl mb-12 transform hover:scale-[1.02] transition-all duration-300 animate-fade-in opacity-0" style={{ animationFillMode: 'forwards', animationDelay: '0.6s' }}>
             <div className="flex items-center mb-4">
               <Bot className="text-accent w-8 h-8 mr-3" />
-              <h2 className="text-2xl font-bold text-white">What's an AI Agent?</h2>
+              <h2 className="text-2xl font-bold text-white">What&apos;s an AI Agent?</h2>
             </div>
             <p className="text-gray-300 text-lg leading-relaxed">
-              Think of an AI agent as a super-smart, tireless assistant that handles tasks for you, without the coffee breaks. It's software that listens, learns, and acts, whether it's speaking on the phone with customers, sending emails, or organizing your workflow. No sci-fi jargon here, just practical, custom-built help for your business.
+              Think of an AI agent as a super-smart, tireless assistant that handles tasks for you, without the coffee breaks. It&apos;s software that listens, learns, and acts, whether it&apos;s speaking on the phone with customers, sending emails, or organizing your workflow. No sci-fi jargon here, just practical, custom-built help for your business.
             </p>
           </div>
 
@@ -76,7 +76,7 @@ const Solutions = () => {
                 <h2 className="text-2xl font-bold text-white">When Do You Use Them?</h2>
               </div>
               <p className="text-gray-300 text-lg leading-relaxed">
-                Anytime you've got repetitive tasks, customer questions piling up, or processes that eat time, manual labor, and money, AI agents are at work for you 24/7. Even when they're off the clock!
+                Anytime you&apos;ve got repetitive tasks, customer questions piling up, or processes that eat time, manual labor, and money, AI agents are at work for you 24/7. Even when they&apos;re off the clock!
               </p>
             </div>
 
@@ -133,7 +133,7 @@ const Solutions = () => {
                 <p className="text-gray-300">
                   {title === 'Workflow Automation' && "Say goodbye to manual data entry, appointment juggling, or chasing leads. AI agents can manage bookings, track orders, or nudge customers for feedback—all hands-free."}
                   {title === 'Cost Efficiencies' && "Slash labor costs on routine tasks. One AI agent can do the work of many, without overtime or burnout."}
-                  {title === 'Enhanced Customer Experience' && "Deliver instant replies, personalized service, and a "wow" factor that keeps people coming back—no matter the hour."}
+                  {title === 'Enhanced Customer Experience' && "Deliver instant replies, personalized service, and a \"wow\" factor that keeps people coming back—no matter the hour."}
                   {title === 'New Revenue Paths' && "Upsell through smart conversations, turn inquiries into sales, or launch services like automated support packages your competitors can't touch."}
                 </p>
               </div>
@@ -147,7 +147,7 @@ const Solutions = () => {
               <h2 className="text-2xl font-bold text-white">The Bottom Line</h2>
             </div>
             <p className="text-gray-300 text-lg leading-relaxed">
-              AI agents aren't just tools—they're game-changers. For small to medium-sized businesses, they mean doing more with less, delighting customers, and unlocking growth you didn't think was possible.
+              AI agents aren&apos;t just tools—they&apos;re game-changers. For small to medium-sized businesses, they mean doing more with less, delighting customers, and unlocking growth you didn&apos;t think was possible.
             </p>
           </div>
         </div>
