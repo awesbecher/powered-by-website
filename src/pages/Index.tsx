@@ -9,11 +9,13 @@ const Index = () => {
     <div className="min-h-screen w-full bg-[#222222]">
       {/* Logo */}
       <div className="absolute top-6 right-6 lg:right-8">
-        <img 
-          src="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
-          alt="Parlar Logo"
-          className="w-[192px] lg:w-[288px] h-auto"
-        />
+        <Link to="/">
+          <img 
+            src="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
+            alt="Parlar Logo"
+            className="w-[192px] lg:w-[288px] h-auto"
+          />
+        </Link>
       </div>
 
       {/* Hero Section */}
