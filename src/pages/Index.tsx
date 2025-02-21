@@ -113,6 +113,22 @@ const Index = () => {
               {
                 path: "/lovable-uploads/419d1e06-4c6b-4d9c-8bc7-a8f2fb198d28.png",
                 name: "Telegram"
+              },
+              {
+                path: "/lovable-uploads/1b808953-0aa3-4587-ae4b-8ecef7d13cce.png",
+                name: "Twilio"
+              },
+              {
+                path: "/lovable-uploads/fb2b365b-82f1-49db-9f01-3400903c0199.png",
+                name: "Vonage"
+              },
+              {
+                path: "/lovable-uploads/e305eace-d64d-4437-9d8e-533d49b3d934.png",
+                name: "RingCentral"
+              },
+              {
+                path: "/lovable-uploads/dd51c971-3ffc-4f39-900e-81be1ba6f99c.png",
+                name: "Zoom Phone"
               }
             ].map((app, index) => (
               <div 
