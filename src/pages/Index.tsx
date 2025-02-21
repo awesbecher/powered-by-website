@@ -51,7 +51,7 @@ const Index = () => {
             {
               icon: Building2,
               title: "Built for SMBs",
-              description: "Tailored automation solutions for businesses with 5-250 employees"
+              description: "Custom AI automation solutions for business with 1-1,000 employees"
             },
             {
               icon: Bot,
