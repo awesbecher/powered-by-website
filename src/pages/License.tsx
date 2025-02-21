@@ -18,7 +18,7 @@ const License = () => {
         {/* Background Image & Overlay */}
         <div className="absolute inset-0">
           <img 
-            src="/lovable-uploads/860a3675-3fea-42c8-9967-63f4048af67f.png"
+            src="/lovable-uploads/fd8a631b-2f6e-4f85-a4e8-aa0f775cd50f.png"
             alt="RightBloom AI Solutions"
             className="w-full h-full object-cover"
           />
