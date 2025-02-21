@@ -4,6 +4,14 @@ import { Phone, MapPin, Home, Building, DollarSign, Users } from "lucide-react";
 
 const properties = [
   {
+    title: "Lakefront Estate",
+    price: "$749,000",
+    location: "Sparta Township",
+    specs: "10 Mill Creek Rd • Lakefront Views",
+    type: "Single Family",
+    image: "/lovable-uploads/419d1e06-4c6b-4d9c-8bc7-a8f2fb198d28.png"
+  },
+  {
     title: "Modern Colonial",
     price: "$789,000",
     location: "Edison Township",
