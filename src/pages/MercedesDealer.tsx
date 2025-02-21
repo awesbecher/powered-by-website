@@ -25,7 +25,7 @@ const MercedesDealer = () => {
       </div>
 
       {/* Hero Section with Background Image */}
-      <div className="relative h-[60vh] mb-12">
+      <div className="relative h-[60vh] mb-4">
         <div className="absolute inset-0">
           <img 
             src="/lovable-uploads/a03fe01f-a020-43b3-a46c-2fda077f0baf.png"
