@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 
 const Blog = () => {
@@ -45,7 +44,7 @@ const Blog = () => {
         </nav>
       </div>
 
-      {/* Blog Content */}
+      {/* Main Content */}
       <div className="relative pt-32 pb-16 px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <h1 className="text-4xl font-bold tracking-tight text-white text-center sm:text-6xl mb-4 animate-fade-in opacity-0" style={{ animationFillMode: 'forwards', animationDelay: '0.2s' }}>
@@ -56,6 +55,10 @@ const Blog = () => {
           </p>
         </div>
       </div>
+
+      {/* Background Gradients */}
+      <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
+      <div className="absolute top-1/2 left-0 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
     </div>
   );
 };

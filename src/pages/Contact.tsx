@@ -1,31 +1,36 @@
-
 import Header from "@/components/Header";
 import ContactForm from "@/components/ContactForm";
 
 const Contact = () => {
   return (
     <div className="min-h-screen w-full bg-[#222222]">
-      <Header />
-
-      {/* Contact Form Section */}
-      <div className="relative overflow-hidden px-6 lg:px-8 pt-24 pb-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
-            Let's meet!
-          </h1>
-          <p className="mt-6 text-lg leading-8 text-gray-300">
-            Ready to put AI agents to work? Book a consultation with our Solutions Design team now.
-          </p>
-        </div>
-
-        <div className="mt-10 max-w-xl mx-auto">
-          <ContactForm />
-        </div>
+      {/* Header with Logo and Nav */}
+      <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 lg:px-8 py-6">
+        <Header />
       </div>
 
-      {/* Gradient orbs for visual interest */}
-      <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
-      <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
+      {/* Main Content */}
+      <div className="relative pt-32 pb-16 px-6 lg:px-8">
+        {/* Contact Form Section */}
+        <div className="relative overflow-hidden px-6 lg:px-8 pt-24 pb-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
+              Let's meet!
+            </h1>
+            <p className="mt-6 text-lg leading-8 text-gray-300">
+              Ready to put AI agents to work? Book a consultation with our Solutions Design team now.
+            </p>
+          </div>
+
+          <div className="mt-10 max-w-xl mx-auto">
+            <ContactForm />
+          </div>
+        </div>
+
+        {/* Gradient orbs for visual interest */}
+        <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
+        <div className="absolute top-1/2 left-0 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
+      </div>
     </div>
   );
 };

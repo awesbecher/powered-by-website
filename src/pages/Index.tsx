@@ -1,145 +1,78 @@
-
-import { WordAnimation } from "@/components/home/WordAnimation";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Building2, Bot, Clock, Sparkles, PartyPopper, Laugh } from "lucide-react";
 import { Link } from "react-router-dom";
+import Navigation from "../components/Navigation";
+import { ServiceCard } from "../components/home/ServiceCard";
 
 const Index = () => {
   return (
     <div className="min-h-screen w-full bg-[#222222]">
       {/* Header with Logo and Nav */}
       <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 lg:px-8 py-6">
-        {/* Logo */}
-        <div>
-          <Link to="/">
-            <img 
-              src="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
-              alt="Parlar Logo"
-              className="w-[192px] lg:w-[288px] h-auto"
-            />
-          </Link>
-        </div>
-
-        {/* Navigation and Consultation Button */}
-        <div className="flex items-center gap-8">
-          <nav className="hidden md:block absolute left-1/2 transform -translate-x-1/2">
-            <ul className="flex items-center space-x-3">
-              <li>
-                <Link to="/ai-agency" className="text-white hover:text-accent transition-colors">
-                  AI Agency
-                </Link>
-              </li>
-              <li className="text-white">|</li>
-              <li>
-                <Link to="/solutions" className="text-white hover:text-accent transition-colors">
-                  Solutions
-                </Link>
-              </li>
-              <li className="text-white">|</li>
-              <li>
-                <Link to="/demo" className="text-white hover:text-accent transition-colors">
-                  Demos
-                </Link>
-              </li>
-              <li className="text-white">|</li>
-              <li>
-                <Link to="/blog" className="text-white hover:text-accent transition-colors">
-                  Blog
-                </Link>
-              </li>
-            </ul>
-          </nav>
-          <Link to="/contact">
-            <Button className="glass-card text-white hover:bg-accent/20 px-4 py-2 text-sm font-medium transition-all duration-300">
-              Book a Consultation
-            </Button>
-          </Link>
-        </div>
+        <Link to="/">
+          <img 
+            src="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
+            alt="Parlar Logo"
+            className="w-[192px] lg:w-[288px] h-auto"
+          />
+        </Link>
+        <Navigation />
       </div>
 
-      {/* Hero Section */}
-      <div className="relative overflow-hidden px-6 lg:px-8 pt-24 pb-8">
+      {/* Main Content */}
+      <div className="relative pt-32 pb-16 px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
-              <WordAnimation />
-              Automation{" "}
-              <span className="text-white">
-                Simplified
-              </span>
+            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+              AI-Powered Solutions for Your Business
             </h1>
-
-            {/* Fun Text Block */}
-            <div className="relative my-8 transform hover:scale-105 transition-all duration-300">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#F97316] via-[#D946EF] to-[#8B5CF6] opacity-75 blur-2xl animate-gradient-shift"></div>
-              <div className="relative glass-card px-8 py-6 inline-block mx-auto rounded-2xl border-2 border-accent/30 hover:border-accent/50 transition-all duration-300 group">
-                <PartyPopper className="inline-block text-[#F97316] mr-3 h-6 w-6 group-hover:rotate-12 transition-transform duration-300" />
-                <Laugh className="inline-block text-[#D946EF] mr-3 h-6 w-6 animate-bounce" />
-                <span className="text-xl md:text-2xl font-medium text-white italic tracking-wide">
-                  Why should those Silicon Valley <span className="text-accent font-bold animate-pulse">nerds</span> have all the fancy toys?
-                </span>
-                <Sparkles className="inline-block text-[#8B5CF6] ml-3 h-6 w-6 group-hover:-rotate-12 transition-transform duration-300" />
-                <div className="absolute -bottom-1 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent opacity-50"></div>
-              </div>
-            </div>
-            
-            {/* Value Proposition */}
-            <p className="mt-8 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Parlar is the world's first AI Agency delivering custom AI agent solutions to SMBs. From mom-and-pop shops to mid-sized corporates, you think of a workflow to automate or a task to "agentify"... we'll build it.
+            <p className="mt-6 text-lg leading-8 text-gray-300 max-w-2xl mx-auto">
+              We leverage the latest in artificial intelligence to provide innovative solutions tailored to your specific needs.
             </p>
-            
-            {/* CTA Buttons */}
-            <div className="mt-10 flex justify-center gap-4">
-              <Link to="/solutions">
-                <Button className="bg-accent hover:bg-accent-dark text-white px-8 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105">
-                  See our solutions
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-              <Link to="/contact">
-                <Button variant="outline" className="border-accent text-accent hover:bg-accent hover:text-white px-8 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105">
-                  Speak to us now
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-            </div>
+          </div>
+
+          {/* Services Grid */}
+          <div className="mt-20 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <ServiceCard 
+              title="AI Chatbots"
+              description="Engage customers 24/7 with intelligent, automated conversations."
+              link="/solutions/ai-chatbots"
+              logo="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
+              category="Retail Services"
+            />
+            <ServiceCard 
+              title="Predictive Analytics"
+              description="Make data-driven decisions with accurate forecasting and insights."
+              link="/solutions/predictive-analytics"
+              logo="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
+              category="Insurance"
+            />
+            <ServiceCard 
+              title="Personalized Recommendations"
+              description="Increase sales with tailored product recommendations for each customer."
+              link="/solutions/personalized-recommendations"
+              logo="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
+              category="Hospitality"
+            />
+            <ServiceCard 
+              title="AI Sales Agent"
+              description="Close more deals with an AI sales agent."
+              link="/solutions/ai-sales-agent"
+              logo="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
+              category="SaaS Licensing"
+            />
+            <ServiceCard 
+              title="AI Marketing Automation"
+              description="Automate your marketing campaigns with AI."
+              link="/solutions/ai-marketing-automation"
+              logo="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
+              category="Auto Dealer"
+            />
           </div>
         </div>
-
-        {/* Feature Cards */}
-        <div className="mt-20 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
-          {[
-            {
-              icon: Building2,
-              title: "Built for SMBs",
-              description: "Custom AI automation solutions for business with 1-1,000 employees"
-            },
-            {
-              icon: Bot,
-              title: "Multi-Channel Agents",
-              description: "Voice, email, SMS, Slack, chat, and document automation"
-            },
-            {
-              icon: Clock,
-              title: "24/7 Availability",
-              description: "Instant responses across all communication channels"
-            }
-          ].map((feature, index) => (
-            <div 
-              key={index}
-              className="glass-card p-6 rounded-xl text-center group hover:transform hover:scale-105 transition-all duration-300"
-            >
-              <feature.icon className="w-12 h-12 mx-auto mb-4 text-accent" />
-              <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
-              <p className="text-gray-400">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-        
-        {/* Gradient orbs for visual interest */}
-        <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
       </div>
+
+      {/* Background Gradients */}
+      <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
+      <div className="absolute top-1/2 left-0 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
     </div>
   );
 };
