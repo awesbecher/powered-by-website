@@ -78,7 +78,7 @@ const Index = () => {
             <div className="mt-10 flex justify-center gap-4">
               <Link to="/solutions">
                 <Button className="bg-accent hover:bg-accent-dark text-white px-8 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105">
-                  See Our Solutions
+                  See our solutions
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
