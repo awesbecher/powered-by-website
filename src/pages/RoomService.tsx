@@ -82,7 +82,7 @@ const RoomService = () => {
   return (
     <div className="min-h-screen w-full bg-[#222222]">
       {/* Hero Section */}
-      <div className="relative h-[60vh] mb-16 mt-32">
+      <div className="relative h-[60vh] mb-8 mt-32">
         <div className="absolute inset-0">
           <img 
             src="/lovable-uploads/e87cce6e-adc9-4426-b464-c64b14d607bd.png"
@@ -119,11 +119,11 @@ const RoomService = () => {
       />
 
       <div className="mx-auto max-w-3xl px-4">
-        <p className="text-white/90 text-lg mb-8 text-center">
+        <p className="text-white/90 text-lg mb-4 text-center font-bold">
           Please choose from any of the items on our Food & Drinks Menu below. When you are ready, click the button below to speak to Room Service.
         </p>
         <Button 
-          className="bg-accent hover:bg-accent/90 text-white mb-8 font-bold text-sm mx-auto block px-4 py-2 h-auto whitespace-nowrap flex items-center gap-2"
+          className="bg-accent hover:bg-accent/90 text-white mb-4 font-bold text-sm mx-auto block px-4 py-2 h-auto whitespace-nowrap flex items-center gap-2"
           onClick={() => setIsDialogOpen(true)}
           disabled={isProcessing}
         >
