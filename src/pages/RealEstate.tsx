@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Phone, MapPin, Home, Building, DollarSign, Users } from "lucide-react";
 
@@ -88,8 +87,8 @@ const RealEstate = () => {
       </div>
 
       {/* Services Grid */}
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-16">
-        <h2 className="text-3xl font-bold text-center mb-12">Our Services</h2>
+      <div className="max-w-7xl mx-auto px-4 lg:px-8 -mt-20">
+        <h2 className="text-3xl font-bold text-center mb-8">Our Services</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="bg-black/50 rounded-lg p-6 backdrop-blur-sm border border-white/10">
             <Home className="w-8 h-8 mb-4 text-[#9b87f5]" />
@@ -115,7 +114,7 @@ const RealEstate = () => {
       </div>
 
       {/* Featured Properties */}
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 pb-16">
+      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-16">
         <h2 className="text-3xl font-bold text-center mb-12">Featured Properties</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {properties.map((property) => (
