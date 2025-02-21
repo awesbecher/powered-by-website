@@ -1,5 +1,5 @@
 
-import { Bot, Network, MessageSquare, BarChart, Phone, DollarSign } from "lucide-react";
+import { Bot, Network, MessageSquare, BarChart, Phone, DollarSign, ChevronLeft } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,15 @@ const License = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
+      {/* Back Button */}
+      <button
+        onClick={() => navigate(-1)}
+        className="absolute top-8 left-8 z-20 text-white hover:text-purple-400 transition-colors flex items-center gap-2"
+      >
+        <ChevronLeft className="w-6 h-6" />
+        <span className="font-medium">Back</span>
+      </button>
+
       {/* Hero Section */}
       <div className="relative min-h-[100vh]">
         {/* Logo */}
