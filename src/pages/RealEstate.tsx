@@ -4,6 +4,14 @@ import { Phone, MapPin, Home, Building, DollarSign, Users } from "lucide-react";
 
 const properties = [
   {
+    title: "Luxury Pool Estate",
+    price: "$1,100,000",
+    location: "Sparta Township",
+    specs: "18 Benham Way • Pool & Garden",
+    type: "Single Family",
+    image: "/lovable-uploads/cca410c7-e795-4b00-a24c-177d89043c98.png"
+  },
+  {
     title: "Colonial Estate",
     price: "$869,000",
     location: "Hardyston Township",
