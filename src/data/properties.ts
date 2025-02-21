@@ -72,29 +72,5 @@ export const properties: Property[] = [
     specs: "10 Mill Creek Rd • Lakefront Views",
     type: "Single Family",
     image: "/lovable-uploads/419d1e06-4c6b-4d9c-8bc7-a8f2fb198d28.png"
-  },
-  {
-    title: "Modern Colonial",
-    price: "$789,000",
-    location: "Edison Township",
-    specs: "4 bed • 3.5 bath • 2,800 sqft",
-    type: "Single Family",
-    image: "/lovable-uploads/92d1275c-847a-49ad-a297-792c7bf899a7.png"
-  },
-  {
-    title: "Luxury Townhouse",
-    price: "$525,000",
-    location: "Edison Township",
-    specs: "3 bed • 2.5 bath • 2,100 sqft",
-    type: "Townhouse",
-    image: "/lovable-uploads/ba13be0d-77b7-49f3-aa99-9524e25c5294.png"
-  },
-  {
-    title: "Contemporary Estate",
-    price: "$1,250,000",
-    location: "Edison Township",
-    specs: "5 bed • 4.5 bath • 4,200 sqft",
-    type: "Single Family",
-    image: "/lovable-uploads/af07ee0c-70fa-4261-a83e-98ef6108f8ae.png"
   }
 ];
