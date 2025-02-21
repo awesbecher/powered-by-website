@@ -1,4 +1,3 @@
-
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Building2, Bot, Clock } from "lucide-react";
@@ -21,12 +20,16 @@ const Index = () => {
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
-              Why should those Silicon Valley nerds have all the fancy toys?
+              <WordAnimation />
+              Automation{" "}
+              <span className="text-white">
+                Simplified
+              </span>
             </h1>
             
             {/* Value Proposition */}
             <p className="mt-8 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              We're the world's first AI agency delivering custom AI agent solutions to SMBs.
+              Empower your business with intelligent AI agents that handle customer interactions across all channels - voice, email, SMS, chat, and more.
             </p>
             
             {/* CTA Button */}
