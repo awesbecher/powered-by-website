@@ -1,4 +1,3 @@
-
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -21,7 +20,6 @@ const RoomService = () => {
   const [isProcessing, setIsProcessing] = useState(false);
 
   useEffect(() => {
-    // Listen for call completion event
     const handleCallEnd = (event: MessageEvent) => {
       if (event.data.type === 'VOGENT_CALL_ENDED') {
         window.removeEventListener('message', handleCallEnd);
@@ -81,7 +79,6 @@ const RoomService = () => {
 
   return (
     <div className="min-h-screen w-full bg-[#222222]">
-      {/* Hero Section */}
       <div className="relative h-[50vh] mb-16">
         <div className="absolute inset-0">
           <img 
@@ -122,14 +119,17 @@ const RoomService = () => {
         <p className="text-white/90 text-lg mb-8 text-center">
           Please choose from any of the items on our Food & Drinks Menu below. When you are ready, click the button below to speak to Room Service.
         </p>
+        
         <Button 
-          className="bg-accent hover:bg-accent/90 text-white mb-8 font-bold text-lg mx-auto block"
+          size="lg"
+          className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white mb-8 font-bold text-lg mx-auto block px-8 py-6 h-auto"
           onClick={() => setIsDialogOpen(true)}
           disabled={isProcessing}
         >
           <Phone className="mr-2 h-6 w-6" />
           {isProcessing ? 'Connecting...' : 'Speak to Room Service'}
         </Button>
+
         <div className="flex flex-col items-center space-y-1">
           <img 
             src="/lovable-uploads/54a3f767-41a4-4083-a920-5592f61dbd63.png"
@@ -142,14 +142,6 @@ const RoomService = () => {
             className="max-w-2xl w-full h-auto"
           />
         </div>
-        <Button 
-          className="bg-accent hover:bg-accent/90 text-white mt-8 font-bold text-lg mx-auto block"
-          onClick={() => setIsDialogOpen(true)}
-          disabled={isProcessing}
-        >
-          <Phone className="mr-2 h-6 w-6" />
-          {isProcessing ? 'Connecting...' : 'Speak to Room Service'}
-        </Button>
       </div>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
@@ -180,7 +172,7 @@ const RoomService = () => {
             </Button>
             <Button
               onClick={handlePhoneSubmit}
-              className="bg-accent hover:bg-accent/90"
+              className="bg-[#9b87f5] hover:bg-[#9b87f5]/90"
               disabled={isProcessing}
             >
               {isProcessing ? 'Connecting...' : 'Call Me'}
