@@ -17,6 +17,7 @@ import CallConfirmation from "./pages/CallConfirmation";
 import MercedesDealer from "./pages/MercedesDealer";
 import RealEstate from "./pages/RealEstate";
 import Solutions from "./pages/Solutions";
+import AIAgency from "./pages/AIAgency";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/ai-agency" element={<AIAgency />} />
           <Route path="/demo" element={<Demo />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/room-service" element={<RoomService />} />
