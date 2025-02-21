@@ -109,7 +109,7 @@ const RoomService = () => {
         className="absolute top-8 left-8 flex items-center text-white hover:text-white/80 transition-colors"
       >
         <ArrowLeft className="h-6 w-6 mr-2" />
-        <span>Back to Services</span>
+        <span>Back to Parlar AI</span>
       </Link>
 
       <img 
