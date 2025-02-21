@@ -1,40 +1,47 @@
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
-import Contact from "./pages/Contact";
-import Solutions from "./pages/Solutions";
 import Demo from "./pages/Demo";
+import Insurance from "./pages/Insurance";
+import License from "./pages/License";
+import Products from "./pages/Products";
+import RoomService from "./pages/RoomService";
+import RetailServices from "./pages/RetailServices";
+import FoodMenu from "./pages/FoodMenu";
+import CallConfirmation from "./pages/CallConfirmation";
+import MercedesDealer from "./pages/MercedesDealer";
+import RealEstate from "./pages/RealEstate";
 import NotFound from "./pages/NotFound";
-import ThankYou from "./pages/ThankYou";
-import AIAgency from "./pages/AIAgency";
-import RetailDemo from "./pages/demos/RetailDemo";
-import InsuranceDemo from "./pages/demos/InsuranceDemo";
-import HospitalityDemo from "./pages/demos/HospitalityDemo";
-import SaaSDemo from "./pages/demos/SaaSDemo";
-import AutoDealerDemo from "./pages/demos/AutoDealerDemo";
-import HealthcareDemo from "./pages/demos/HealthcareDemo";
-import "./App.css";
 
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/solutions" element={<Solutions />} />
-        <Route path="/demo" element={<Demo />} />
-        <Route path="/demo/retail" element={<RetailDemo />} />
-        <Route path="/demo/insurance" element={<InsuranceDemo />} />
-        <Route path="/demo/hospitality" element={<HospitalityDemo />} />
-        <Route path="/demo/saas" element={<SaaSDemo />} />
-        <Route path="/demo/auto" element={<AutoDealerDemo />} />
-        <Route path="/demo/healthcare" element={<HealthcareDemo />} />
-        <Route path="/thank-you" element={<ThankYou />} />
-        <Route path="/ai-agency" element={<AIAgency />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Router>
-  );
-}
+const queryClient = new QueryClient();
+
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/demo" element={<Demo />} />
+          <Route path="/room-service" element={<RoomService />} />
+          <Route path="/food-menu" element={<FoodMenu />} />
+          <Route path="/call-confirmation" element={<CallConfirmation />} />
+          <Route path="/insurance" element={<Insurance />} />
+          <Route path="/license" element={<License />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/retail" element={<RetailServices />} />
+          <Route path="/mercedes" element={<MercedesDealer />} />
+          <Route path="/real-estate" element={<RealEstate />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
 
 export default App;

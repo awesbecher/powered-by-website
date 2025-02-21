@@ -16,10 +16,10 @@ const RealEstate = () => {
     <div className="min-h-screen bg-[#222222] text-white">
       {/* Navigation */}
       <Link 
-        to="/demo" 
+        to="/" 
         className="fixed top-8 left-8 text-gray-400 hover:text-white transition-colors z-50"
       >
-        ← Back to Demos
+        ← Back
       </Link>
 
       {/* Logo */}

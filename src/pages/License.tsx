@@ -1,7 +1,7 @@
 
 import { Bot, Network, MessageSquare, BarChart, Phone, DollarSign, ChevronLeft } from "lucide-react";
 import { useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const License = () => {
   const chatSectionRef = useRef<HTMLDivElement>(null);
@@ -14,25 +14,33 @@ const License = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
       {/* Back Button */}
-      <Link
-        to="/demo"
+      <button
+        onClick={() => navigate(-1)}
         className="absolute top-8 left-8 z-20 text-white hover:text-purple-400 transition-colors flex items-center gap-2"
       >
         <ChevronLeft className="w-6 h-6" />
-        <span className="font-medium">Back to Demos</span>
-      </Link>
+        <span className="font-medium">Back</span>
+      </button>
 
       {/* Hero Section */}
       <div className="relative min-h-[100vh]">
         {/* Logo */}
         <div className="absolute top-8 right-8 z-20">
-          <Link to="/">
-            <img 
-              src="/lovable-uploads/8505af38-6a90-44dc-b6bc-554d254475ea.png"
-              alt="RightBloom"
-              className="h-12 w-auto"
-            />
-          </Link>
+          <img 
+            src="/lovable-uploads/8505af38-6a90-44dc-b6bc-554d254475ea.png"
+            alt="RightBloom"
+            className="h-12 w-auto"
+          />
+        </div>
+
+        {/* Background Image & Overlay */}
+        <div className="absolute inset-0">
+          <img 
+            src="/lovable-uploads/fd8a631b-2f6e-4f85-a4e8-aa0f775cd50f.png"
+            alt="RightBloom AI Solutions"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-gray-800"></div>
         </div>
 
         {/* Hero Text */}

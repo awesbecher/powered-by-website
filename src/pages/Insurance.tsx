@@ -55,11 +55,11 @@ const Insurance = () => {
   return (
     <div className="min-h-screen w-full bg-[#222222] px-4 py-32 sm:px-6 lg:px-8">
       <Link 
-        to="/demo" 
+        to="/" 
         className="absolute top-8 left-8 flex items-center text-accent hover:text-accent/80 transition-colors"
       >
         <ArrowLeft className="h-6 w-6 mr-2" />
-        <span>Back to Demos</span>
+        <span>Back to Services</span>
       </Link>
 
       <img 
