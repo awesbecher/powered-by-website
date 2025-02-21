@@ -103,6 +103,13 @@ const Contact = () => {
               />
             </div>
             <div>
+              <Input
+                type="text"
+                placeholder="Company Name"
+                className="bg-white/5 border-white/10 text-white placeholder:text-gray-400"
+              />
+            </div>
+            <div>
               <textarea
                 rows={4}
                 placeholder="Your Message"
