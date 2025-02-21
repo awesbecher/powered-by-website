@@ -33,11 +33,26 @@ export const WordAnimation = () => {
         after:bottom-0 
         after:left-0 
         after:w-full 
-        after:h-[4px] 
-        after:bg-accent
-        after:transform
-        after:origin-bottom-left
-        after:[clip-path:path('M0,0_C25,0_25,60_50,60_C75,60_75,0_100,0')]
+        after:h-1
+        after:bg-gradient-to-r 
+        after:from-purple-500 
+        after:via-accent 
+        after:to-purple-500
+        after:animate-[wave_2s_ease-in-out_infinite]
+        after:rounded-full
+        after:blur-[2px]
+        before:content-['']
+        before:absolute
+        before:bottom-0
+        before:left-0
+        before:w-full
+        before:h-[3px]
+        before:bg-gradient-to-r
+        before:from-accent/40
+        before:via-accent
+        before:to-accent/40
+        before:animate-[wave_2s_ease-in-out_infinite_reverse]
+        before:rounded-full
       "
     >
       {currentWord}

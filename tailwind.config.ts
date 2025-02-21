@@ -44,6 +44,10 @@ export default {
           "0%": { transform: "translateY(0)" },
           "100%": { transform: "translateY(-8px)" },
         },
+        wave: {
+          "0%, 100%": { transform: "scaleX(1)" },
+          "50%": { transform: "scaleX(0.85)" },
+        }
       },
       animation: {
         "card-hover": "card-hover 0.3s ease-out forwards",
