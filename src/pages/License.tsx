@@ -1,14 +1,53 @@
 
 import { Bot, Network, MessageSquare, BarChart, Phone, DollarSign, ChevronLeft } from "lucide-react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useToast } from "@/hooks/use-toast";
 
 const License = () => {
   const chatSectionRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
   const scrollToChat = () => {
     chatSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleCall = async () => {
+    if (!phoneNumber) {
+      toast({
+        variant: "destructive",
+        title: "Please enter your phone number",
+        description: "A phone number is required to connect with a sales representative."
+      });
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      // Here you would integrate the actual call functionality
+      console.log('Initiating call to:', phoneNumber);
+      setIsOpen(false);
+      setPhoneNumber("");
+      toast({
+        title: "Call initiated",
+        description: "A sales representative will call you shortly."
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Failed to initiate call",
+        description: "Please try again later."
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -70,10 +109,44 @@ const License = () => {
               </button>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2">
-                  Speak to a Sales Rep
-                  <Phone className="w-5 h-5" />
-                </button>
+                <Dialog open={isOpen} onOpenChange={setIsOpen}>
+                  <DialogTrigger asChild>
+                    <button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2">
+                      Speak to a Sales Rep
+                      <Phone className="w-5 h-5" />
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Enter your phone number to speak with a sales representative</DialogTitle>
+                    </DialogHeader>
+                    <div className="flex flex-col space-y-4 pt-4">
+                      <Input 
+                        type="tel" 
+                        placeholder="Enter your phone number" 
+                        value={phoneNumber} 
+                        onChange={e => setPhoneNumber(e.target.value)} 
+                        className="text-lg"
+                      />
+                      <div className="flex gap-2">
+                        <Button 
+                          variant="outline"
+                          className="w-full"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Cancel
+                        </Button>
+                        <Button 
+                          className="w-full"
+                          onClick={handleCall}
+                          disabled={isLoading}
+                        >
+                          {isLoading ? "Initiating call..." : "Call Me"}
+                        </Button>
+                      </div>
+                    </div>
+                  </DialogContent>
+                </Dialog>
                 <button 
                   onClick={scrollToChat}
                   className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2"
