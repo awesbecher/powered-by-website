@@ -4,9 +4,9 @@ import { Bot, ArrowRight, Phone, Mail, MessageSquare, BarChart3, Clock, DollarSi
 
 const Solutions = () => {
   return (
-    <div className="min-h-screen w-full bg-[#222222]">
+    <div className="min-h-screen w-full bg-[#222222] border-0">
       {/* Header with Logo and Nav */}
-      <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 lg:px-8 py-6">
+      <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 lg:px-8 py-6 border-0">
         {/* Logo */}
         <Link to="/">
           <img 
@@ -38,8 +38,8 @@ const Solutions = () => {
             </li>
             <li className="text-white">|</li>
             <li>
-              <Link to="/contact" className="text-white hover:text-accent transition-colors">
-                Contact Us
+              <Link to="/blog" className="text-white hover:text-accent transition-colors">
+                Blog
               </Link>
             </li>
           </ul>
