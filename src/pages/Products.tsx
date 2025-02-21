@@ -1,10 +1,22 @@
 
-import { Package2, Users, HeadphonesIcon, Building2, Check, Mail, Phone, MessageSquare } from "lucide-react";
+import { Package2, Users, HeadphonesIcon, Building2, Check, Mail, Phone, MessageSquare, ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Products = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 py-20">
       <div className="container mx-auto px-4">
+        {/* Back Button */}
+        <button
+          onClick={() => navigate(-1)}
+          className="flex items-center gap-2 text-gray-300 hover:text-white mb-8 transition-colors"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          <span>Back</span>
+        </button>
+
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold text-white mb-6">RightBloom Products & Pricing</h1>
