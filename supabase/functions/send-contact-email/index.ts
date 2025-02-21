@@ -28,19 +28,21 @@ serve(async (req) => {
     
     const { name, email, company, phone, message } = formData;
 
+    const emailHtml = `
+      <h2>New Contact Form Submission</h2>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Company:</strong> ${company}</p>
+      <p><strong>Phone:</strong> ${phone}</p>
+      <h3>Message:</h3>
+      <p>${message}</p>
+    `;
+
     const emailResponse = await resend.emails.send({
       from: "Parlar AI <onboarding@resend.dev>",
-      to: "andrew@madrone.capital",
+      to: ["andrew@madrone.capital", "team@madrone.capital"],
       subject: `New Contact Form Submission from ${name} - ${company}`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Company:</strong> ${company}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <h3>Message:</h3>
-        <p>${message}</p>
-      `,
+      html: emailHtml,
     });
 
     console.log("Email sent successfully:", emailResponse);
