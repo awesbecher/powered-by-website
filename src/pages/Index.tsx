@@ -170,14 +170,19 @@ const Index = () => {
                 {samplePosts.map((post, index) => (
                   <Link key={index} to={`/blog/${post.slug}`} className="group w-[384px] flex-none">
                     <div className="relative overflow-hidden rounded-xl bg-[#1a1a1a] transition-transform duration-300 group-hover:scale-[1.02]">
-                      <div className="aspect-[16/9] relative bg-gradient-to-br from-[#9b87f5] via-[#7E69AB] to-[#6E59A5] opacity-80 group-hover:opacity-100 transition-opacity">
+                      <div className="aspect-[16/9] relative">
+                        <img 
+                          src={`https://images.unsplash.com/${
+                            index === 0 ? 'photo-1487058792275-0ad4aaf24ca7' :
+                            index === 1 ? 'photo-1498050108023-c5249f4df085' :
+                            index === 2 ? 'photo-1581091226825-a6a2a5aee158' :
+                            'photo-1518770660439-4636190af475'
+                          }`}
+                          alt={post.title}
+                          className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-opacity"
+                        />
                         <div className="absolute inset-0 bg-[#1a1a1a]/60 mix-blend-overlay" />
                         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#1a1a1a] z-10" />
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-16 h-16 bg-white/10 rounded-full backdrop-blur-sm border border-white/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                            <div className="w-12 h-12 bg-gradient-to-br from-[#9b87f5] to-[#D946EF] rounded-full" />
-                          </div>
-                        </div>
                       </div>
                       
                       <div className="p-6">
