@@ -65,6 +65,40 @@ const AIAgency = () => {
             </div>
           </div>
         </div>
+
+        <div className="relative mt-12 px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl">
+            <div className={`text-left transition-all duration-1000 delay-900 ease-out transform
+                ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
+              <h2 className="text-5xl font-bold text-white mb-8 whitespace-nowrap bg-gradient-to-r from-purple-500/20 to-purple-400/20 inline-block px-4 py-2 rounded-lg hover:bg-gradient-to-r hover:from-purple-500/30 hover:to-purple-400/30 transition-all">
+                Where Do They Fit?
+              </h2>
+              
+              <div className="space-y-8 text-lg text-gray-300 leading-relaxed">
+                <p className="text-justify">Everywhere your business touches customers or requires tireless manual work:</p>
+                
+                <ul className="space-y-4 list-none pl-4">
+                  <li className="flex items-start">
+                    <span className="font-medium text-white mr-2">Voice:</span>
+                    Answer calls with a friendly, human-like vibe.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="font-medium text-white mr-2">Email:</span>
+                    Sort, respond, and follow up automatically.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="font-medium text-white mr-2">Text/Slack/Chatbots:</span>
+                    Handle inquiries on the spot.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="font-medium text-white mr-2">Back office:</span>
+                    Streamline scheduling, invoicing, or inventory.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>;
 };
