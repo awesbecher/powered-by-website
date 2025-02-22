@@ -3,6 +3,8 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+const ADMIN_EMAIL = Deno.env.get("ADMIN_EMAIL");
+const SALES_EMAIL = Deno.env.get("SALES_EMAIL");
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -23,13 +25,17 @@ serve(async (req) => {
   }
 
   try {
+    if (!ADMIN_EMAIL || !SALES_EMAIL) {
+      throw new Error("Recipient emails not configured");
+    }
+
     const formData: ContactFormData = await req.json();
     console.log("Received contact form submission:", formData);
 
     // Send email to both addresses
     const emailResponse = await resend.emails.send({
       from: "Lovable AI <onboarding@resend.dev>",
-      to: ["admin@yourdomain.com", "sales@yourdomain.com"], // Replace with your actual email addresses
+      to: [ADMIN_EMAIL, SALES_EMAIL],
       subject: "New Contact Form Submission",
       html: `
         <h2>New Contact Form Submission</h2>
