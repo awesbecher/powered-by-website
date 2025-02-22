@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Building2, Bot, Phone, ChevronRight, ChevronLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
+import { samplePosts } from "@/data/blogPosts";
 
 const Index = () => {
   const [animate, setAnimate] = useState(true);
@@ -73,51 +74,6 @@ const Index = () => {
     {
       title: "Commitment to Excellence",
       description: "For us, project excellence isn't a choice. It's the foundation of everything we do. From voice automation to systems integration, we're dedicated to delivering exceptional quality, because your success is the measure of ours."
-    }
-  ];
-
-  const blogPosts = [
-    {
-      number: "22",
-      title: "How AI Agents Transform Customer Service Operations",
-      description: "Discover how modern businesses are leveraging AI agents to revolutionize their customer service operations, improve response times, and boost customer satisfaction.",
-      image: "/lovable-uploads/9e09baaf-e32a-4572-a3d5-f8973b60299f.png",
-      link: "/blog/ai-agents-customer-service"
-    },
-    {
-      number: "22",
-      title: "Why AI Integration is Critical for Modern Businesses",
-      description: "Learn how AI integration is becoming the cornerstone of business evolution, enabling organizations to streamline operations and stay competitive in today's market.",
-      image: "/lovable-uploads/9e09baaf-e32a-4572-a3d5-f8973b60299f.png",
-      link: "/blog/ai-integration-importance"
-    },
-    {
-      number: "22",
-      title: "The Future of Business Automation with AI Agents",
-      description: "Explore how AI agents are reshaping the landscape of business automation, from simple task management to complex decision-making processes.",
-      image: "/lovable-uploads/9e09baaf-e32a-4572-a3d5-f8973b60299f.png",
-      link: "/blog/future-business-automation"
-    },
-    {
-      number: "22",
-      title: "Implementing AI Agents: A Step-by-Step Guide",
-      description: "A comprehensive guide for businesses looking to implement AI agents, from initial planning to successful deployment and optimization.",
-      image: "/lovable-uploads/9e09baaf-e32a-4572-a3d5-f8973b60299f.png",
-      link: "/blog/implementing-ai-agents"
-    },
-    {
-      number: "22",
-      title: "ROI of AI Agents: Measuring Business Impact",
-      description: "Understanding the return on investment when implementing AI agents in your business operations, with real-world case studies and metrics.",
-      image: "/lovable-uploads/9e09baaf-e32a-4572-a3d5-f8973b60299f.png",
-      link: "/blog/ai-agents-roi"
-    },
-    {
-      number: "22",
-      title: "AI Agents vs Traditional Automation",
-      description: "A detailed comparison of AI agents and traditional automation solutions, helping businesses make informed decisions about their automation strategy.",
-      image: "/lovable-uploads/9e09baaf-e32a-4572-a3d5-f8973b60299f.png",
-      link: "/blog/ai-vs-traditional-automation"
     }
   ];
 
@@ -211,13 +167,13 @@ const Index = () => {
               onScroll={handleScroll}
             >
               <div className="flex space-x-8 w-max">
-                {blogPosts.map((post, index) => (
-                  <Link key={index} to={post.link} className="group w-[384px] flex-none">
+                {samplePosts.map((post, index) => (
+                  <Link key={index} to={`/blog/${post.slug}`} className="group w-[384px] flex-none">
                     <div className="relative overflow-hidden rounded-xl bg-[#1a1a1a] transition-transform duration-300 group-hover:scale-[1.02]">
-                      <div className="aspect-[16/9] relative">
+                      <div className="aspect-[16/9] relative bg-gradient-to-b from-purple-500/20 to-purple-400/20">
                         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#1a1a1a]/90 z-10" />
                         <div className="absolute top-4 left-4 text-6xl font-bold text-[#9b87f5] z-20">
-                          {post.number}
+                          {(index + 1).toString().padStart(2, '0')}
                         </div>
                       </div>
                       
@@ -226,7 +182,7 @@ const Index = () => {
                           {post.title}
                         </h3>
                         <p className="text-gray-400 text-sm line-clamp-3">
-                          {post.description}
+                          {post.excerpt}
                         </p>
                       </div>
                     </div>
