@@ -103,7 +103,7 @@ const Contact = () => {
             </div>
             <div>
               <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                Message
+                Describe your vision. What would you like to use AI agents in your business?
               </label>
               <textarea id="message" rows={4} value={formData.message} onChange={e => setFormData({
               ...formData,
