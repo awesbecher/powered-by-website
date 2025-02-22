@@ -10,7 +10,6 @@ const Index = () => {
   const [initialLoad, setInitialLoad] = useState(true);
 
   useEffect(() => {
-    // Set initial animation state
     setInitialLoad(false);
   }, []);
 
@@ -34,6 +33,21 @@ const Index = () => {
       icon: Bot,
       title: "Multi-Channel Agents",
       description: "Voice, email, SMS, Slack, chat, and document automation"
+    }
+  ];
+
+  const values = [
+    {
+      title: "You're at the Center of It All",
+      description: "Our clients drive us. Your unique needs shape our solutions, and your satisfaction is our top priority. Let's make your goals our goals and watch your success soar."
+    },
+    {
+      title: "Transparent & Trustworthy",
+      description: "Transparency is the foundation of our partnerships. We believe in open, honest communication, fostering trust, and ensuring that you're always in the loop, every step of the way."
+    },
+    {
+      title: "Relentless Pursuit of Excellence",
+      description: "Excellence isn't an option; it's our standard. We're committed to delivering top-notch quality in everything we do, from web design to Brand Development, ensuring your success is our success."
     }
   ];
 
@@ -96,6 +110,29 @@ const Index = () => {
               <p className="text-gray-400">{feature.description}</p>
             </div>
           ))}
+        </div>
+
+        {/* Values Section */}
+        <div className="mt-32 max-w-7xl mx-auto px-4">
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-20 max-w-4xl mx-auto leading-[1.1]">
+            We don't just think outside the box{" "}
+            <span className="text-[#4ade80]">we redefine it.</span>
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+            {values.map((value, index) => (
+              <div key={index} className="relative">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-6 h-6 bg-[#4ade80] rounded-sm" />
+                  <h3 className="text-2xl font-bold text-white">{value.title}</h3>
+                </div>
+                <p className="text-gray-400 text-lg leading-relaxed">
+                  {value.description}
+                </p>
+                <div className="absolute bottom-0 left-0 right-0 h-px bg-white/10" />
+              </div>
+            ))}
+          </div>
         </div>
         
         {/* Gradient orbs for visual interest */}
