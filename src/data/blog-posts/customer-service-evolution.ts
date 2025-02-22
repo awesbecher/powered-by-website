@@ -6,7 +6,7 @@ export const customerServiceEvolution: BlogPost = {
   title: "From Phone Lines to Chatbots: The Story of AI's Rise in Customer Service",
   excerpt: "Trace the journey of customer service from endless hold music to intelligent AI assistants, and discover how this evolution is reshaping how businesses connect with their customers.",
   author: "Parlar AI",
-  date: "January 25, 2025",
+  date: "February 1, 2025",
   readTime: "8 min read",
   slug: "customer-service-evolution",
   category: "Industry Insights",
