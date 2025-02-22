@@ -1,4 +1,3 @@
-
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Building2, Bot, Phone } from "lucide-react";
@@ -116,14 +115,14 @@ const Index = () => {
         <div className="mt-32 max-w-7xl mx-auto px-4">
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-20 max-w-4xl mx-auto leading-[1.1]">
             We don't just think outside the box{" "}
-            <span className="text-[#4ade80]">we redefine it.</span>
+            <span className="text-[#9b87f5]">we redefine it.</span>
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
             {values.map((value, index) => (
               <div key={index} className="relative">
                 <div className="flex items-center gap-2 mb-4">
-                  <div className="w-6 h-6 bg-[#4ade80] rounded-sm" />
+                  <div className="w-6 h-6 bg-[#9b87f5] rounded-sm" />
                   <h3 className="text-2xl font-bold text-white">{value.title}</h3>
                 </div>
                 <p className="text-gray-400 text-lg leading-relaxed">
