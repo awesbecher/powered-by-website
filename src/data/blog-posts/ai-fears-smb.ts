@@ -6,7 +6,7 @@ export const aiFearsSMB: BlogPost = {
   title: "Breaking Down Barriers: Common Fears About AI and How SMBs Can Overcome Them",
   excerpt: "Discover how small businesses can address concerns about AI implementation while maintaining their personal touch and protecting their team's interests.",
   author: "Parlar AI",
-  date: "February 15, 2025",
+  date: "February 20, 2025",
   readTime: "7 min read",
   slug: "breaking-down-ai-fears-smb",
   category: "Business Insights",
