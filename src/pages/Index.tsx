@@ -1,7 +1,7 @@
 
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Building2, Bot, Clock, MessageSquare } from "lucide-react";
+import { ArrowRight, Building2, Bot, Clock, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
@@ -56,7 +56,7 @@ const Index = () => {
               </Link>
               <Button className="bg-white hover:bg-gray-100 text-accent px-8 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto">
                 Talk to an AI Agent Now
-                <MessageSquare className="ml-2 h-5 w-5" />
+                <Phone className="ml-2 h-5 w-5" />
               </Button>
             </div>
           </div>
