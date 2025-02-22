@@ -32,13 +32,10 @@ const BlogPost = () => {
             <span>{post.readTime}</span>
           </div>
         </div>
-        <div className="prose prose-invert max-w-none">
-          {post.content.split('\n\n').map((paragraph, index) => (
-            <p key={index} className="text-gray-300 mb-4 leading-relaxed">
-              {paragraph}
-            </p>
-          ))}
-        </div>
+        <div 
+          className="prose prose-invert max-w-none"
+          dangerouslySetInnerHTML={{ __html: post.content }}
+        />
       </div>
     </div>
   );
