@@ -6,9 +6,9 @@ import { WordAnimation } from "@/components/home/WordAnimation";
 
 const Products = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
+    <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] pt-36">
       {/* Hero Section */}
-      <div className="relative overflow-hidden px-6 lg:px-8 pt-24 pb-8">
+      <div className="relative overflow-hidden px-6 lg:px-8 pb-8">
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">

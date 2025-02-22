@@ -1,4 +1,5 @@
 import { Clock, User } from "lucide-react";
+
 interface BlogPost {
   id: string;
   title: string;
@@ -9,6 +10,7 @@ interface BlogPost {
   slug: string;
   category: string;
 }
+
 const samplePosts: BlogPost[] = [{
   id: "1",
   title: "Implementing AI Agents in Customer Service",
@@ -37,6 +39,7 @@ const samplePosts: BlogPost[] = [{
   slug: "ai-integration-success-stories",
   category: "Case Studies"
 }];
+
 const BlogPostCard = ({
   post
 }: {
@@ -62,8 +65,9 @@ const BlogPostCard = ({
       </div>
     </div>
   </div>;
+
 const Blog = () => {
-  return <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] pt-24">
+  return <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] pt-36">
       <div className="container mx-auto px-4">
         <div className="relative overflow-hidden px-6 lg:px-8 pb-8">
           <div className="mx-auto max-w-4xl">
@@ -77,12 +81,10 @@ const Blog = () => {
             </div>
           </div>
           
-          {/* Gradient orbs for visual interest */}
           <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
           <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
         </div>
 
-        {/* Blog Posts Grid */}
         <div className="max-w-7xl mx-auto mt-16 mb-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {samplePosts.map(post => <BlogPostCard key={post.id} post={post} />)}
@@ -91,4 +93,5 @@ const Blog = () => {
       </div>
     </div>;
 };
+
 export default Blog;

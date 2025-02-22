@@ -79,7 +79,7 @@ const Contact = () => {
     }
   };
 
-  return <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] pt-24">
+  return <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] pt-36">
       <div className="max-w-2xl mx-auto px-4">
         <div className="relative inline-block w-full text-center mb-4">
           <h1 className="text-[100px] font-bold text-white text-center">Let's meet!</h1>
