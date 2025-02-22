@@ -14,11 +14,11 @@ const RealEstate = () => {
   return (
     <div className="min-h-screen bg-[#222222] text-white">
       {/* Township Logo */}
-      <div className="fixed top-24 right-8 z-50">
+      <div className="fixed top-20 right-6 z-50">
         <img 
           src="/lovable-uploads/a5338bda-4580-432c-a1b8-71df71d89c29.png"
           alt="Township Real Estate Logo"
-          className="h-14 w-auto object-contain"
+          className="h-16 w-auto object-cover"
         />
       </div>
 
