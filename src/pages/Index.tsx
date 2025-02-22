@@ -183,13 +183,13 @@ const Index = () => {
                   <div className="relative overflow-hidden rounded-xl bg-[#1a1a1a] transition-transform duration-300 group-hover:scale-[1.02]">
                     <div className="aspect-[16/9] relative">
                       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#1a1a1a]/90 z-10" />
-                      <div className="absolute top-4 left-4 text-6xl font-bold text-[#4ADE80] z-20">
+                      <div className="absolute top-4 left-4 text-6xl font-bold text-[#9b87f5] z-20">
                         {post.number}
                       </div>
                     </div>
                     
                     <div className="p-6">
-                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#4ADE80] transition-colors">
+                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#9b87f5] transition-colors">
                         {post.title}
                       </h3>
                       <p className="text-gray-400 text-sm line-clamp-3">
