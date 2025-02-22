@@ -25,19 +25,8 @@ const RealEstate = () => {
       {/* Hero Section */}
       <HeroSection />
 
-      {/* Logo */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-8 -mt-[32rem] mb-8">
-        <div className="flex justify-center">
-          <img 
-            src="/lovable-uploads/e305eace-d64d-4437-9d8e-533d49b3d934.png"
-            alt="Township Real Estate Logo"
-            className="h-20 w-auto"
-          />
-        </div>
-      </div>
-
       {/* Action Buttons */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-8 -mt-20 mb-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-8 -mt-20 mb-16">
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2">
             <Phone className="w-5 h-5" />
