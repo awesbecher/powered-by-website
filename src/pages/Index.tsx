@@ -181,7 +181,7 @@ const Index = () => {
                       <div className="aspect-[16/9] relative">
                         <img 
                           src={`https://images.unsplash.com/${
-                            index === 0 ? 'photo-1677442136019-21000c815fb8' : // ChatGPT/LLM related image
+                            index === 0 ? 'photo-1684163540577-88bc0fa0ae52' : // OpenAI/ChatGPT related image
                             index === 1 ? 'photo-1556745753-b2904692b3cd' : // Retail voice assistant
                             index === 2 ? 'photo-1551288049-bebda4e38f71' : // SaaS automation
                             index === 3 ? 'photo-1535378917042-10a22c95931a' : // Human-like AI
