@@ -44,7 +44,7 @@ const AIAgency = () => {
                 We're the world's first AI agency.
               </h2>
               
-              <div className="space-y-8 text-lg text-gray-300 leading-relaxed">
+              <div className="space-y-8 text-lg text-gray-300 leading-relaxed text-justify">
                 <p>
                   We design and deploy intelligent agents tailored from the ground up to fit your unique needs—whether it's voice-driven assistants, email automation, text-based support, Slack integrations, or chatbots that speak and communicate as human-like as possible. Our mission? To automate the repetitive, amplify the human, and supercharge your workflows with AI that feels like it was made just for you—because it was.
                 </p>
@@ -67,7 +67,7 @@ const AIAgency = () => {
                 But what are AI agents?
               </h2>
               
-              <div className="space-y-8 text-lg text-gray-300 leading-relaxed">
+              <div className="space-y-8 text-lg text-gray-300 leading-relaxed text-justify">
                 <p>
                   AI agents are autonomous programs designed to help you get things done. Think of them as your digital employees who can handle a wide range of tasks—from answering customer queries and managing email correspondence to analyzing data and automating complex workflows. Unlike traditional chatbots, AI agents can understand context, learn from interactions, and make intelligent decisions.
                 </p>
