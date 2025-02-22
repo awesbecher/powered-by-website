@@ -1,4 +1,3 @@
-
 import { BlogPost } from "../types/blog";
 
 export const samplePosts: BlogPost[] = [
@@ -83,11 +82,6 @@ export const samplePosts: BlogPost[] = [
 
       <br/>
       <p>By deploying a solution that feels authentically human, retailers preserve the friendly, approachable atmosphere they've always valued, while leveraging cutting-edge technology to scale and improve efficiency.</p>
-
-      <br/>
-      <h2>Ready to Elevate Your Retail Experience?</h2>
-      <br/>
-      <p>At Parlar AI, we specialize in designing <em>custom</em> voice AI solutions tailored to your unique workflows and business needs. Our experienced team understands how to blend forward-thinking innovation with the time-honored principles of great customer service.</p>
 
       <br/>
       <p class="text-2xl font-extrabold text-left">Interested in seeing how voice AI agents could transform your retail operations?</p>
