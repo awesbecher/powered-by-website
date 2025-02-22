@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
 
 const WhatsAnAIAgent = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -14,13 +12,6 @@ const WhatsAnAIAgent = () => {
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] pt-24 pb-12 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="relative overflow-hidden px-6 lg:px-8 pt-12 pb-8">
-          <Link to="/ai-agency">
-            <Button variant="ghost" className="text-gray-300 hover:text-white mb-8">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to AI Agency
-            </Button>
-          </Link>
-
           <div className="mx-auto max-w-4xl">
             <div className="text-center">
               <h1 className={`text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6 transition-all duration-1000 ease-out transform
