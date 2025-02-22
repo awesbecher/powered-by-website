@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 const AIAgency = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -46,6 +47,7 @@ const AIAgency = () => {
 
         <div className="relative mt-32 px-6 lg:px-8">
           <div className="mx-auto max-w-4xl">
+            <hr className="border-t border-gray-600/30 mb-12" />
             <div className={`text-left transition-all duration-1000 delay-700 ease-out transform
                 ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
               <h2 className="text-3xl font-bold text-[#9b87f5] mb-8">
@@ -53,7 +55,7 @@ const AIAgency = () => {
               </h2>
               
               <div className="space-y-8 text-lg text-gray-300 leading-relaxed text-justify">
-                <p>Think of an AI agent as a super-smart, tireless assistant that handles tasks for you, without the coffee breaks. Companies like OpenAI &amp; Anthropic are at the forefront of innovating AI agents to be state of the art. We bring these capabilities to SMBs who may not have the budget or resources to build agent solutions themselves. We deliver agent software that listens, learns, and acts, whether it’s speaking on the phone with customers, sending emails, or organizing your workflow. No sci-fi jargon here, just practical, custom-built help for your business. </p>
+                <p>Think of an AI agent as a super-smart, tireless assistant that handles tasks for you, without the coffee breaks. Companies like OpenAI &amp; Anthropic are at the forefront of innovating AI agents to be state of the art. We bring these capabilities to SMBs who may not have the budget or resources to build agent solutions themselves. We deliver agent software that listens, learns, and acts, whether it's speaking on the phone with customers, sending emails, or organizing your workflow. No sci-fi jargon here, just practical, custom-built help for your business. </p>
                 
                 <p className="font-medium text-white">
                   The best part? They work 24/7, never take vacations, and can handle multiple tasks simultaneously. It's like having a tireless team member who's always ready to help.
