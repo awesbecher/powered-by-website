@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
@@ -123,7 +124,7 @@ const Contact = () => {
             </div>
             <div>
               <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                Describe your vision. What would you like to use AI agents in your business?
+                What would you like to use AI agents for in your business?
               </label>
               <textarea id="message" rows={4} value={formData.message} onChange={e => setFormData({
               ...formData,
