@@ -74,7 +74,7 @@ const BlogPostCard = ({
       featured ? "col-span-full lg:col-span-2" : ""
     )}>
       <div className="p-6">
-        <div className="text-sm text-[#9b87f5] font-medium mb-2">{post.category}</div>
+        <div className="text-sm text-gray-400 font-medium mb-2">{post.category}</div>
         <h2 className={cn(
           "font-bold text-white mb-3 group-hover:text-[#9b87f5] transition-colors",
           featured ? "text-3xl" : "text-xl"
