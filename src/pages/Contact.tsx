@@ -1,8 +1,8 @@
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -12,6 +12,7 @@ const Contact = () => {
     company: "",
     message: ""
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // List of common personal email domains
   const personalEmailDomains = [
@@ -34,7 +35,7 @@ const Contact = () => {
     return personalEmailDomains.includes(domain?.toLowerCase());
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (isPersonalEmail(formData.email)) {
@@ -46,17 +47,36 @@ const Contact = () => {
       return;
     }
 
-    // Here you would typically send the form data to your backend
-    toast({
-      title: "Message sent!",
-      description: "We'll get back to you as soon as possible."
-    });
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      message: ""
-    });
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase.functions.invoke('send-contact-email', {
+        body: formData
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Message sent!",
+        description: "We'll get back to you as soon as possible."
+      });
+
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        message: ""
+      });
+    } catch (error) {
+      console.error('Error sending message:', error);
+      toast({
+        title: "Error sending message",
+        description: "Please try again later.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return <div className="min-h-screen bg-[#222222] pt-24">
@@ -110,8 +130,12 @@ const Contact = () => {
               message: e.target.value
             })} className="w-full rounded-md bg-neutral-800 border-neutral-700 text-white p-3" required />
             </div>
-            <Button type="submit" className="w-full bg-accent hover:bg-accent-dark text-white py-6">
-              Send Message
+            <Button 
+              type="submit" 
+              className="w-full bg-accent hover:bg-accent-dark text-white py-6"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Sending..." : "Send Message"}
             </Button>
           </form>
         </div>
