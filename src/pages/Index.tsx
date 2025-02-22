@@ -3,10 +3,19 @@ import { WordAnimation } from "@/components/home/WordAnimation";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Building2, Bot, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Index = () => {
+  const [animate, setAnimate] = useState(true);
+
+  const handleClick = () => {
+    setAnimate(false);
+    // Reset animation by triggering a reflow
+    setTimeout(() => setAnimate(true), 10);
+  };
+
   return (
-    <div className="min-h-screen w-full bg-[#222222]">
+    <div className="min-h-screen w-full bg-[#222222]" onClick={handleClick}>
       {/* Logo */}
       <div className="absolute top-6 left-6 lg:left-8">
         <img 
@@ -20,12 +29,20 @@ const Index = () => {
       <div className="relative overflow-hidden px-6 lg:px-8 pt-24 pb-8">
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-4">
+            <h1 
+              className={`text-4xl font-bold tracking-tight text-white sm:text-6xl mb-4 ${
+                animate ? 'animate-fade-in' : 'opacity-0'
+              }`}
+            >
               Why should those Silicon Valley <span className="font-extrabold text-purple-400">nerds</span> have all the fancy toys?
             </h1>
             
             {/* Value Proposition */}
-            <p className="mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold">
+            <p 
+              className={`mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold ${
+                animate ? 'animate-fade-in [animation-delay:200ms]' : 'opacity-0'
+              }`}
+            >
               We're the world's first <span className="border-b-2 border-purple-400">AI agency</span> delivering custom AI agent solutions to SMBs.
             </p>
             
