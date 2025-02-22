@@ -146,6 +146,7 @@ const AIAgency = () => {
                     <p className="text-justify">Upsell through smart conversations, turn inquiries into sales, or launch services like automated support packages your competitors can't touch.</p>
                   </div>
                 </div>
+                <hr className="border-t-2 border-gray-600/70 mt-8" />
               </div>
             </div>
           </div>
