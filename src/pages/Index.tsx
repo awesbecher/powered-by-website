@@ -26,7 +26,7 @@ const Index = () => {
             
             {/* Value Proposition */}
             <p className="mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold">
-              We're the world's first AI agency delivering custom AI agent solutions to SMBs.
+              We're the world's first <span className="border-b-2 border-purple-400">AI agency</span> delivering custom AI agent solutions to SMBs.
             </p>
             
             {/* CTA Button */}
