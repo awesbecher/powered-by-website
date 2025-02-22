@@ -21,7 +21,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#222222]/80 backdrop-blur-lg">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center">
             {/* Logo */}
             <Link to="/" className="flex-shrink-0">
               <img 
@@ -30,14 +30,6 @@ const Navbar = () => {
                 className="h-8 w-auto"
               />
             </Link>
-
-            {/* AI Agent Button - Only show on Contact page */}
-            {location.pathname === '/contact' && (
-              <Button className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white">
-                <MessageSquare className="mr-2 h-4 w-4" />
-                Talk to an AI Agent Now
-              </Button>
-            )}
           </div>
 
           {/* Navigation Items */}
@@ -62,15 +54,26 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Consultation Button */}
-          {showConsultButton && (
-            <Link
-              to="/contact"
-              className="hidden md:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#9b87f5] hover:bg-[#8b77e5] transition-colors duration-200 ml-6"
-            >
-              Book a Consultation
-            </Link>
-          )}
+          {/* Right side buttons */}
+          <div className="flex items-center gap-4">
+            {/* AI Agent Button - Only show on Contact page */}
+            {location.pathname === '/contact' && (
+              <Button className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white">
+                <MessageSquare className="mr-2 h-4 w-4" />
+                Talk to an AI Agent Now
+              </Button>
+            )}
+
+            {/* Consultation Button */}
+            {showConsultButton && (
+              <Link
+                to="/contact"
+                className="hidden md:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#9b87f5] hover:bg-[#8b77e5] transition-colors duration-200"
+              >
+                Book a Consultation
+              </Link>
+            )}
+          </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
