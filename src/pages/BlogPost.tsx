@@ -1,6 +1,6 @@
 
 import { useParams } from "react-router-dom";
-import { samplePosts } from "@/data/blogPosts";
+import { samplePosts } from "../data/blogPosts";
 
 const BlogPost = () => {
   const { slug } = useParams();

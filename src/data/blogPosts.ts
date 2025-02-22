@@ -1,5 +1,5 @@
 
-import { BlogPost } from "@/types/blog";
+import { BlogPost } from "../types/blog";
 
 export const samplePosts: BlogPost[] = [
   {
