@@ -20,7 +20,6 @@ const BlogPost = () => {
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] pt-36">
       <div className="container mx-auto px-4 max-w-4xl">
-        <div className="text-sm text-gray-400 font-medium mb-4">{post.category}</div>
         <h1 className="text-4xl font-bold text-white mb-6">{post.title}</h1>
         <div className="flex items-center gap-6 mb-8 text-gray-400 text-sm">
           <div className="flex items-center gap-2">
