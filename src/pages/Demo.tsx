@@ -23,7 +23,7 @@ const Demo = () => {
               We have <span className="text-[#9b87f5]">demos</span>! Now go have fun.
             </h1>
             <p 
-              className={`mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold line-clamp-2 transition-all duration-1000 delay-300 ease-out transform
+              className={`mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold transition-all duration-1000 delay-300 ease-out transform
                 ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
             >
               Parlar AI's agents can automate and improve even your most complex customer-facing or internal tasks. See our AI agents in action by selecting any of the use cases below.
