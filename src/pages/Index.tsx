@@ -47,7 +47,7 @@ const Index = () => {
     },
     {
       title: "Relentless Pursuit of Excellence",
-      description: "For us, project excellence isn't a choice—it's the foundation of everything we do. From voice automation to systems integration, we're dedicated to delivering exceptional quality, because your success is the measure of ours."
+      description: "For us, project excellence isn't a choice. It's the foundation of everything we do. From voice automation to systems integration, we're dedicated to delivering exceptional quality, because your success is the measure of ours."
     }
   ];
 
