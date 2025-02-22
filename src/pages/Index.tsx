@@ -46,7 +46,7 @@ const Index = () => {
       description: "Think of us as your creative AI partner. We take the time to understand your business, your customers, and your goals, then craft AI agent-enabled workflows that simply work."
     },
     {
-      title: "Relentless Pursuit of Excellence",
+      title: "Unwavering Commitment to Excellence",
       description: "For us, project excellence isn't a choice. It's the foundation of everything we do. From voice automation to systems integration, we're dedicated to delivering exceptional quality, because your success is the measure of ours."
     }
   ];
