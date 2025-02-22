@@ -45,7 +45,7 @@ const Index = () => {
               className={`mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold transition-all duration-1000 delay-300 ease-out transform
                 ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
             >
-              We're the world's first <span className="border-b-2 border-purple-400">AI agency</span> delivering custom AI agent solutions to SMBs.
+              We're the world's first <Link to="/ai-agency" className="border-b-2 border-purple-400 hover:text-purple-400 transition-colors">AI agency</Link> delivering custom AI agent solutions to SMBs.
             </p>
             
             {/* CTA Buttons */}
