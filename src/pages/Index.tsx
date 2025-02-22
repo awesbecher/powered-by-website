@@ -1,3 +1,4 @@
+
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Building2, Bot, Phone } from "lucide-react";
@@ -46,7 +47,7 @@ const Index = () => {
     },
     {
       title: "Relentless Pursuit of Excellence",
-      description: "Excellence isn't an option; it's our standard. We're committed to delivering top-notch quality in everything we do, from web design to Brand Development, ensuring your success is our success."
+      description: "For us, project excellence isn't a choice—it's the foundation of everything we do. From voice automation to systems integration, we're dedicated to delivering exceptional quality, because your success is the measure of ours."
     }
   ];
 
