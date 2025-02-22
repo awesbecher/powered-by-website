@@ -20,7 +20,7 @@ const Products = () => {
             </h1>
             
             {/* Value Proposition */}
-            <p className="mt-8 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold">
               Empower your business with intelligent AI agents that handle customer interactions across all channels - voice, email, SMS, chat, and more.
             </p>
           </div>
