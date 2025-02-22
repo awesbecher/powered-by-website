@@ -81,8 +81,8 @@ const Index = () => {
             },
             {
               icon: Clock,
-              title: "24/7 Availability",
-              description: "Instant responses across all communication channels"
+              title: "Experts in AI Agents",
+              description: "Deep mastery of agent technology within complex workflows"
             }
           ].map((feature, index) => (
             <div 
