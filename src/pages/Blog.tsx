@@ -38,34 +38,50 @@ Today's voice AI agents have evolved beyond simplistic phone menus or robotic vo
 <br/>
 <h2 class="text-4xl font-bold mb-4">Key Use Cases for Voice AI in Retail</h2>
 
-1. <span class="font-bold underline text-[#9b87f5]">Answering Incoming Phone Calls</span>  
+1. <span class="font-bold underline text-[#9b87f5]">Answering Incoming Phone Calls</span><br/>
+   <div class="pl-6 mb-6">
    Voice AI agents can handle a high volume of calls simultaneously, reducing wait times and keeping customers happy. Simple tasks—such as directing a caller to the right department or answering questions on store hours and locations—can happen instantly. For more complex inquiries, the AI can gather information before seamlessly transferring the caller to a human representative, saving time and freeing up staff for higher-value activities.
+   </div>
 
-2. <span class="font-bold underline text-[#9b87f5]">Handling Reservations and Appointments</span>  
+2. <span class="font-bold underline text-[#9b87f5]">Handling Reservations and Appointments</span><br/>
+   <div class="pl-6 mb-6">
    Retailers that provide appointments—like electronics repair shops or salons—can use AI voice agents to book and confirm slots. Rather than forcing customers to wait or play phone tag, the agent can respond right away, ensuring your store is well-organized and your employees stay focused on customer interactions that truly need a personal touch.
+   </div>
 
-3. <span class="font-bold underline text-[#9b87f5]">Providing Product or Service Details</span>  
+3. <span class="font-bold underline text-[#9b87f5]">Providing Product or Service Details</span><br/>
+   <div class="pl-6 mb-6">
    Thanks to advancements in natural language processing, voice AI agents can share detailed product or service information. From confirming if an item is in stock to explaining key features, an AI agent can quickly address the routine questions customers ask every day—giving them faster answers while freeing staff to address more specialized requests.
+   </div>
 
-4. <span class="font-bold underline text-[#9b87f5]">Assisting with FAQs and Customer Support</span>  
+4. <span class="font-bold underline text-[#9b87f5]">Assisting with FAQs and Customer Support</span><br/>
+   <div class="pl-6 mb-6">
    Common questions—returns policies, membership points, shipping timelines—can be automated through a voice AI agent. This not only saves staff hours each week; it also ensures that answers are standardized and consistently accurate.
+   </div>
 
 <br/>
 <h2 class="text-4xl font-bold mb-4">Driving New Revenue and Efficiency</h2>
 
 Implementing voice AI agents can generate *both* new revenue opportunities *and* cost efficiencies:
 
-1. <span class="font-bold underline text-[#9b87f5]">Upselling and Cross-Selling</span>  
+1. <span class="font-bold underline text-[#9b87f5]">Upselling and Cross-Selling</span><br/>
+   <div class="pl-6 mb-6">
    AI voice agents, when given access to customer purchase history, can make personalized recommendations. Whether it's suggesting complementary products or adding on extended warranties, these targeted offers can boost your average transaction size with minimal additional workload for staff.
+   </div>
 
-2. <span class="font-bold underline text-[#9b87f5]">Extended Operating Hours</span>  
+2. <span class="font-bold underline text-[#9b87f5]">Extended Operating Hours</span><br/>
+   <div class="pl-6 mb-6">
    With a voice AI agent, you never truly "close." Even after hours, your store can continue to engage customers—answering queries, scheduling appointments, or taking messages. This heightened accessibility improves overall customer satisfaction and captures more sales opportunities.
+   </div>
 
-3. <span class="font-bold underline text-[#9b87f5]">Reduced Staffing Costs</span>  
+3. <span class="font-bold underline text-[#9b87f5]">Reduced Staffing Costs</span><br/>
+   <div class="pl-6 mb-6">
    By automating repetitive tasks such as answering basic questions, AI voice agents allow your human team members to focus on high-impact services: building rapport on the sales floor, managing complex customer requests, and upholding strong in-store experiences. This balanced approach results in significant savings on labor while preserving the warmth of human interaction where it matters most.
+   </div>
 
-4. <span class="font-bold underline text-[#9b87f5]">Scalable Resource Allocation</span>  
+4. <span class="font-bold underline text-[#9b87f5]">Scalable Resource Allocation</span><br/>
+   <div class="pl-6 mb-6">
    Voice AI agents scale easily to accommodate seasonal demand, promotions, or unexpected spikes in calls. This ensures you can handle the busiest shopping periods seamlessly, without burdening existing staff or hastily hiring and training additional temporary help.
+   </div>
 
 <br/>
 <h2 class="text-4xl font-bold mb-4">The State of the Art in AI Voice</h2>
