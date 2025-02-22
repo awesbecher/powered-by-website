@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 const AIAgency = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -95,6 +94,7 @@ const AIAgency = () => {
                     Streamline scheduling, invoicing, or inventory.
                   </li>
                 </ul>
+                <hr className="border-t-2 border-gray-600/70 mt-8" />
               </div>
             </div>
           </div>
