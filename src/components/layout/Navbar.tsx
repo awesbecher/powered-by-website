@@ -52,12 +52,12 @@ const Navbar = () => {
 
           {/* Consultation Button */}
           {showConsultButton && (
-            <button
-              onClick={() => window.location.href = "mailto:contact@parlar.ai"}
+            <Link
+              to="/contact"
               className="hidden md:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#9b87f5] hover:bg-[#8b77e5] transition-colors duration-200 ml-6"
             >
               Book a Consultation
-            </button>
+            </Link>
           )}
 
           {/* Mobile Menu Button */}

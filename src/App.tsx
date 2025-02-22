@@ -18,6 +18,7 @@ import RealEstate from "./pages/RealEstate";
 import NotFound from "./pages/NotFound";
 import Blog from "./pages/Blog";
 import AIAgency from "./pages/AIAgency";
+import Contact from "./pages/Contact";
 import Navbar from "./components/layout/Navbar";
 
 const queryClient = new QueryClient();
@@ -43,6 +44,7 @@ const App = () => (
           <Route path="/mercedes" element={<MercedesDealer />} />
           <Route path="/real-estate" element={<RealEstate />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
