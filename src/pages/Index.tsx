@@ -1,7 +1,7 @@
 
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Building2, Bot, Clock, Phone } from "lucide-react";
+import { ArrowRight, Building2, Bot, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -30,7 +30,7 @@ const Index = () => {
       description: "Deep mastery of automation agents for simple to the most complex tasks"
     },
     {
-      icon: Bot,
+      icon: Phone,
       title: "Multi-Channel Agents",
       description: "Voice, email, SMS, Slack, chat, and document automation"
     }
