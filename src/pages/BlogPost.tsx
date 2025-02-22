@@ -33,7 +33,7 @@ const BlogPost = () => {
           </div>
         </div>
         <div 
-          className="prose prose-invert max-w-none"
+          className="prose prose-invert max-w-none text-white prose-p:text-white prose-li:text-white prose-strong:text-white prose-headings:text-white"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
       </div>
