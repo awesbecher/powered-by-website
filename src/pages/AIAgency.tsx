@@ -99,6 +99,21 @@ const AIAgency = () => {
             </div>
           </div>
         </div>
+
+        <div className="relative mt-12 px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl">
+            <div className={`text-left transition-all duration-1000 delay-1100 ease-out transform
+                ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
+              <h2 className="text-5xl font-bold text-white mb-8 whitespace-nowrap bg-gradient-to-r from-purple-500/20 to-purple-400/20 inline-block px-4 py-2 rounded-lg hover:bg-gradient-to-r hover:from-purple-500/30 hover:to-purple-400/30 transition-all">
+                How Do They Work?
+              </h2>
+              
+              <div className="space-y-8 text-lg text-gray-300 leading-relaxed text-justify">
+                <p>We build them from scratch to match your needs. You tell us your pain points; we craft an AI agent that talks your language, integrates with your tools, and gets stuff done. No tech degree required—just a business ready to grow.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>;
 };
