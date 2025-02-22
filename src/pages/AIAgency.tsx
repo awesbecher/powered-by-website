@@ -52,7 +52,7 @@ const AIAgency = () => {
         <div className="relative mt-32 px-6 lg:px-8">
           <div className="mx-auto max-w-4xl">
             <div 
-              className={`text-center transition-all duration-1000 delay-700 ease-out transform
+              className={`text-left transition-all duration-1000 delay-700 ease-out transform
                 ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}
             >
               <h2 className="text-3xl font-bold text-[#9b87f5] mb-8">
