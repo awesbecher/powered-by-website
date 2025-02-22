@@ -1,3 +1,4 @@
+
 import { Bot, Network, MessageSquare, BarChart, Phone, DollarSign, ChevronLeft } from "lucide-react";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -32,7 +33,6 @@ const License = () => {
     setIsLoading(true);
     try {
       await initiateVogentCall(phoneNumber);
-      setIsOpen(false);
       setPhoneNumber("");
       toast({
         title: "Call initiated",
@@ -60,17 +60,17 @@ const License = () => {
         <span className="font-medium">Back</span>
       </button>
 
+      {/* Logo */}
+      <div className="absolute top-24 right-8 z-20">
+        <img 
+          src="/lovable-uploads/8505af38-6a90-44dc-b6bc-554d254475ea.png"
+          alt="RightBloom"
+          className="h-12 w-auto"
+        />
+      </div>
+
       {/* Hero Section */}
       <div className="relative min-h-[100vh]">
-        {/* Logo */}
-        <div className="absolute top-8 right-8 z-20">
-          <img 
-            src="/lovable-uploads/8505af38-6a90-44dc-b6bc-554d254475ea.png"
-            alt="RightBloom"
-            className="h-12 w-auto"
-          />
-        </div>
-
         {/* Background Image & Overlay */}
         <div className="absolute inset-0">
           <img 
@@ -82,7 +82,7 @@ const License = () => {
         </div>
 
         {/* Hero Text */}
-        <div className="absolute inset-0 flex flex-col items-center pt-32">
+        <div className="absolute inset-0 flex flex-col items-center pt-40">
           <h1 className="text-4xl md:text-5xl font-bold text-center max-w-4xl px-4 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400">
             Transform Your Sales Outreach & Customer Experience with AI Agents
           </h1>
