@@ -1,3 +1,4 @@
+
 import { Clock, User } from "lucide-react";
 interface BlogPost {
   id: string;
@@ -71,7 +72,9 @@ const Blog = () => {
               <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
                 Delivering the state of the art in <span className="text-[#9b87f5]">AI agents</span> to SMBs.
               </h1>
-              <p className="mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold line-clamp-2">AI agents aren’t just tools—they’re game-changers. For small to medium-sized businesses, they mean doing more with less, delighting customers, and unlocking growth you didn’t think was possible. </p>
+              <p className="mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold">
+                AI agents aren't just tools—they're game-changers. For small to medium-sized businesses, they mean doing more with less, delighting customers, and unlocking growth you didn't think was possible. 
+              </p>
             </div>
           </div>
           
