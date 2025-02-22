@@ -200,7 +200,7 @@ const Index = () => {
         </div>
 
         <div className="mt-20 max-w-7xl mx-auto px-4">
-          <h2 className="text-5xl font-bold text-white mb-16 whitespace-nowrap bg-gradient-to-r from-purple-500/20 to-purple-400/20 inline-block px-4 py-2 rounded-lg">Our Latest Insights on AI Agents for SMBs</h2>
+          <h2 className="text-5xl font-bold text-white mb-16 whitespace-nowrap bg-gradient-to-r from-purple-500/20 to-purple-400/20 inline-block px-4 py-2 rounded-lg">Our Latest Insights on AI Agents for SMBs:</h2>
           
           <div className="relative">
             <div 
