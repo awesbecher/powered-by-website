@@ -1,6 +1,4 @@
-
 import { Clock, User } from "lucide-react";
-
 interface BlogPost {
   id: string;
   title: string;
@@ -11,42 +9,39 @@ interface BlogPost {
   slug: string;
   category: string;
 }
-
-const samplePosts: BlogPost[] = [
-  {
-    id: "1",
-    title: "Implementing AI Agents in Customer Service",
-    excerpt: "Learn how AI agents can transform your customer service operations and improve satisfaction rates.",
-    author: "Jane Smith",
-    date: "March 15, 2024",
-    readTime: "5 min read",
-    slug: "ai-agents-customer-service",
-    category: "AI Innovation"
-  },
-  {
-    id: "2",
-    title: "The Future of Business Automation",
-    excerpt: "Discover how modern businesses are leveraging AI to automate routine tasks and boost productivity.",
-    author: "John Doe",
-    date: "March 14, 2024",
-    readTime: "7 min read",
-    slug: "future-business-automation",
-    category: "Automation"
-  },
-  {
-    id: "3",
-    title: "AI Integration Success Stories",
-    excerpt: "Real-world examples of successful AI agent implementations in small and medium-sized businesses.",
-    author: "Sarah Johnson",
-    date: "March 13, 2024",
-    readTime: "6 min read",
-    slug: "ai-integration-success-stories",
-    category: "Case Studies"
-  }
-];
-
-const BlogPostCard = ({ post }: { post: BlogPost }) => (
-  <div className="bg-white/5 rounded-lg overflow-hidden hover:bg-white/10 transition-colors">
+const samplePosts: BlogPost[] = [{
+  id: "1",
+  title: "Implementing AI Agents in Customer Service",
+  excerpt: "Learn how AI agents can transform your customer service operations and improve satisfaction rates.",
+  author: "Jane Smith",
+  date: "March 15, 2024",
+  readTime: "5 min read",
+  slug: "ai-agents-customer-service",
+  category: "AI Innovation"
+}, {
+  id: "2",
+  title: "The Future of Business Automation",
+  excerpt: "Discover how modern businesses are leveraging AI to automate routine tasks and boost productivity.",
+  author: "John Doe",
+  date: "March 14, 2024",
+  readTime: "7 min read",
+  slug: "future-business-automation",
+  category: "Automation"
+}, {
+  id: "3",
+  title: "AI Integration Success Stories",
+  excerpt: "Real-world examples of successful AI agent implementations in small and medium-sized businesses.",
+  author: "Sarah Johnson",
+  date: "March 13, 2024",
+  readTime: "6 min read",
+  slug: "ai-integration-success-stories",
+  category: "Case Studies"
+}];
+const BlogPostCard = ({
+  post
+}: {
+  post: BlogPost;
+}) => <div className="bg-white/5 rounded-lg overflow-hidden hover:bg-white/10 transition-colors">
     <div className="p-6">
       <div className="text-sm text-[#9b87f5] font-medium mb-2">{post.category}</div>
       <h2 className="text-xl font-bold text-white mb-3 hover:text-[#9b87f5] transition-colors">
@@ -66,12 +61,9 @@ const BlogPostCard = ({ post }: { post: BlogPost }) => (
         </div>
       </div>
     </div>
-  </div>
-);
-
+  </div>;
 const Blog = () => {
-  return (
-    <div className="min-h-screen w-full bg-[#222222] pt-24">
+  return <div className="min-h-screen w-full bg-[#222222] pt-24">
       <div className="container mx-auto px-4">
         <div className="relative overflow-hidden px-6 lg:px-8 pb-8">
           <div className="mx-auto max-w-4xl">
@@ -79,9 +71,7 @@ const Blog = () => {
               <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
                 Delivering the state of the art in <span className="text-[#9b87f5]">AI agents</span> to SMBs.
               </h1>
-              <p className="mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold line-clamp-2">
-                Learn how the most cutting-edge tech can be applied to your business.
-              </p>
+              <p className="mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold line-clamp-2">AI agents aren’t just tools—they’re game-changers. For small to medium-sized businesses, they mean doing more with less, delighting customers, and unlocking growth you didn’t think was possible. </p>
             </div>
           </div>
           
@@ -93,14 +83,10 @@ const Blog = () => {
         {/* Blog Posts Grid */}
         <div className="max-w-7xl mx-auto mt-16 mb-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {samplePosts.map((post) => (
-              <BlogPostCard key={post.id} post={post} />
-            ))}
+            {samplePosts.map(post => <BlogPostCard key={post.id} post={post} />)}
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Blog;
