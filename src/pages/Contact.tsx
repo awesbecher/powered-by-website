@@ -82,7 +82,10 @@ const Contact = () => {
 
   return <div className="min-h-screen bg-[#222222] pt-24">
       <div className="max-w-2xl mx-auto px-4">
-        <h1 className="text-[100px] font-bold text-white text-center mb-4">Let's meet!</h1>
+        <div className="relative inline-block w-full text-center mb-4">
+          <h1 className="text-[100px] font-bold text-white text-center">Let's meet!</h1>
+          <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-3/4 h-3 bg-gradient-to-r from-purple-400/20 via-[#9b87f5] to-purple-400/20 rounded-full blur-sm"></div>
+        </div>
         <p className="text-gray-300 text-center mb-8 text-lg">Ready to put AI agents to work? Book a consultation with our Solutions Design Leader (<span className="text-[#9b87f5] font-bold">a human!</span>) by filing out the form below. Or talk to our AI agent about how we can help by clicking the button above.</p>
         <div className="bg-neutral-900/50 p-8 rounded-xl backdrop-blur">
           <form onSubmit={handleSubmit} className="space-y-6">
