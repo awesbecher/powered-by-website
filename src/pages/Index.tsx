@@ -153,7 +153,7 @@ const Index = () => {
         </div>
 
         <div className="mt-32 max-w-7xl mx-auto px-4">
-          <h2 className="text-5xl font-bold text-white mb-16">Recent Insights</h2>
+          <h2 className="text-5xl font-bold text-white mb-16">Thought Leadership in AI Agents for SMBs</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {blogPosts.map((post, index) => (
