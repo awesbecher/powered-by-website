@@ -164,7 +164,7 @@ export const samplePosts: BlogPost[] = [
 
       <br/>
       <hr class="border-t border-purple-400 w-full my-4"/>
-      <p class="text-2xl font-extrabold text-left">Ready to Future-Proof Your SaaS Company?</p>
+      <p class="text-2xl font-extrabold text-left">Ready to "Agentify" Your SaaS Company?</p>
       <p>At Parlar, we specialize in crafting bespoke voice AI solutions that seamlessly integrate into your unique SaaS workflows. We respect the bedrock principles of strong customer and sales experiences while harnessing the power of modern AI to elevate your service offerings.</p>
 
       <br/>
