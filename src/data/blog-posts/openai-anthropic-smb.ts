@@ -6,7 +6,7 @@ export const openaiAnthropicSmb: BlogPost = {
   title: "Can OpenAI & Anthropic help SMBs? Why Do You Need Specialized AI Partners?",
   excerpt: "While tech giants excel at creating powerful AI models, discover why specialized partners are crucial for implementing AI solutions that truly work for small and medium-sized businesses.",
   author: "Parlar AI",
-  date: "February 21, 2025",
+  date: "December 3, 2024",
   readTime: "10 min read",
   slug: "openai-anthropic-smb-specialized-partners",
   category: "AI Strategy",
