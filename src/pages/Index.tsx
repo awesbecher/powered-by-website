@@ -125,7 +125,7 @@ const Index = () => {
                   <div className="w-6 h-6 bg-[#9b87f5] rounded-sm" />
                   <h3 className="text-2xl font-bold text-white">{value.title}</h3>
                 </div>
-                <p className="text-gray-400 text-lg leading-relaxed">
+                <p className="text-gray-300 text-base leading-relaxed">
                   {value.description}
                 </p>
                 <div className="absolute bottom-0 left-0 right-0 h-px bg-white/10" />
