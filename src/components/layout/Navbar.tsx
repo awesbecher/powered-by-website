@@ -38,13 +38,13 @@ const Navbar = () => {
                   className={cn(
                     "px-3 py-2 text-sm font-medium relative group",
                     location.pathname === item.path
-                      ? "text-accent"
+                      ? "text-[#9b87f5]"
                       : "text-gray-300 hover:text-white",
                     "transition-colors duration-200"
                   )}
                 >
                   {item.name}
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#9b87f5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
                 </Link>
               ))}
             </div>
