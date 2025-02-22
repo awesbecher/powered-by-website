@@ -151,6 +151,25 @@ const AIAgency = () => {
             </div>
           </div>
         </div>
+
+        <div className="relative mt-12 px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl">
+            <div className={`text-left transition-all duration-1000 delay-1500 ease-out transform
+                ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
+              <h2 className="text-5xl font-bold text-white mb-8 whitespace-nowrap bg-gradient-to-r from-purple-500/20 to-purple-400/20 inline-block px-4 py-2 rounded-lg hover:bg-gradient-to-r hover:from-purple-500/30 hover:to-purple-400/30 transition-all">
+                The Bottom Line?
+              </h2>
+              
+              <div className="space-y-8 text-lg text-gray-300 leading-relaxed text-justify">
+                <p>AI agents aren't just tools—they're game-changers. For small to medium-sized businesses, they mean doing more with less, delighting customers, and unlocking growth you didn't think was possible.</p>
+                
+                <p className="font-medium text-white">
+                  Partner with us to make AI agents simple, custom, and cost effective.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>;
 };
