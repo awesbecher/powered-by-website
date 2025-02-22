@@ -33,7 +33,7 @@ const Navbar = () => {
 
             {/* AI Agent Button - Only show on Contact page */}
             {location.pathname === '/contact' && (
-              <Button className="bg-white hover:bg-gray-100 text-accent">
+              <Button className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white">
                 <MessageSquare className="mr-2 h-4 w-4" />
                 Talk to an AI Agent Now
               </Button>
