@@ -2,10 +2,16 @@ import { WordAnimation } from "@/components/home/WordAnimation";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Building2, Bot, Clock, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Index = () => {
   const [animate, setAnimate] = useState(true);
+  const [initialLoad, setInitialLoad] = useState(true);
+
+  useEffect(() => {
+    // Set initial animation state
+    setInitialLoad(false);
+  }, []);
 
   const handleClick = () => {
     setAnimate(false);
@@ -28,24 +34,23 @@ const Index = () => {
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
             <h1 
-              className={`text-4xl font-bold tracking-tight text-white sm:text-6xl mb-4 ${
-                animate ? 'animate-fade-in' : 'opacity-0'
-              }`}
+              className={`text-4xl font-bold tracking-tight text-white sm:text-6xl mb-4 transition-all duration-1000 ease-out transform
+                ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
             >
               Why should those Silicon Valley <span className="font-extrabold text-purple-400">nerds</span> have all the fancy toys?
             </h1>
             
             {/* Value Proposition */}
             <p 
-              className={`mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold ${
-                animate ? 'animate-fade-in [animation-delay:200ms]' : 'opacity-0'
-              }`}
+              className={`mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold transition-all duration-1000 delay-300 ease-out transform
+                ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
             >
               We're the world's first <span className="border-b-2 border-purple-400">AI agency</span> delivering custom AI agent solutions to SMBs.
             </p>
             
             {/* CTA Buttons */}
-            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className={`mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-1000 delay-500 ease-out transform
+              ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
               <Link to="/contact">
                 <Button className="bg-accent hover:bg-accent-dark text-white px-8 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto">
                   Book a Consultation
