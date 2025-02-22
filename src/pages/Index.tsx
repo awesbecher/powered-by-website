@@ -71,6 +71,27 @@ const Index = () => {
       description: "Explore how AI agents are reshaping the landscape of business automation, from simple task management to complex decision-making processes.",
       image: "/lovable-uploads/9e09baaf-e32a-4572-a3d5-f8973b60299f.png",
       link: "/blog/future-business-automation"
+    },
+    {
+      number: "22",
+      title: "Implementing AI Agents: A Step-by-Step Guide",
+      description: "A comprehensive guide for businesses looking to implement AI agents, from initial planning to successful deployment and optimization.",
+      image: "/lovable-uploads/9e09baaf-e32a-4572-a3d5-f8973b60299f.png",
+      link: "/blog/implementing-ai-agents"
+    },
+    {
+      number: "22",
+      title: "ROI of AI Agents: Measuring Business Impact",
+      description: "Understanding the return on investment when implementing AI agents in your business operations, with real-world case studies and metrics.",
+      image: "/lovable-uploads/9e09baaf-e32a-4572-a3d5-f8973b60299f.png",
+      link: "/blog/ai-agents-roi"
+    },
+    {
+      number: "22",
+      title: "AI Agents vs Traditional Automation",
+      description: "A detailed comparison of AI agents and traditional automation solutions, helping businesses make informed decisions about their automation strategy.",
+      image: "/lovable-uploads/9e09baaf-e32a-4572-a3d5-f8973b60299f.png",
+      link: "/blog/ai-vs-traditional-automation"
     }
   ];
 
@@ -155,28 +176,30 @@ const Index = () => {
         <div className="mt-32 max-w-7xl mx-auto px-4">
           <h2 className="text-5xl font-bold text-white mb-16 whitespace-nowrap">Thought Leadership in AI Agents for SMBs</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {blogPosts.map((post, index) => (
-              <Link key={index} to={post.link} className="group">
-                <div className="relative overflow-hidden rounded-xl bg-[#1a1a1a] transition-transform duration-300 group-hover:scale-[1.02]">
-                  <div className="aspect-[16/9] relative">
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#1a1a1a]/90 z-10" />
-                    <div className="absolute top-4 left-4 text-6xl font-bold text-[#4ADE80] z-20">
-                      {post.number}
+          <div className="relative overflow-x-auto pb-4">
+            <div className="flex space-x-8 w-max">
+              {blogPosts.map((post, index) => (
+                <Link key={index} to={post.link} className="group w-[384px] flex-none">
+                  <div className="relative overflow-hidden rounded-xl bg-[#1a1a1a] transition-transform duration-300 group-hover:scale-[1.02]">
+                    <div className="aspect-[16/9] relative">
+                      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#1a1a1a]/90 z-10" />
+                      <div className="absolute top-4 left-4 text-6xl font-bold text-[#4ADE80] z-20">
+                        {post.number}
+                      </div>
+                    </div>
+                    
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#4ADE80] transition-colors">
+                        {post.title}
+                      </h3>
+                      <p className="text-gray-400 text-sm line-clamp-3">
+                        {post.description}
+                      </p>
                     </div>
                   </div>
-                  
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#4ADE80] transition-colors">
-                      {post.title}
-                    </h3>
-                    <p className="text-gray-400 text-sm line-clamp-3">
-                      {post.description}
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
         
