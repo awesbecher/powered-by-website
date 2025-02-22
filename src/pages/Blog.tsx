@@ -1,4 +1,74 @@
 
+import { Clock, User } from "lucide-react";
+
+interface BlogPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  author: string;
+  date: string;
+  readTime: string;
+  slug: string;
+  category: string;
+}
+
+const samplePosts: BlogPost[] = [
+  {
+    id: "1",
+    title: "Implementing AI Agents in Customer Service",
+    excerpt: "Learn how AI agents can transform your customer service operations and improve satisfaction rates.",
+    author: "Jane Smith",
+    date: "March 15, 2024",
+    readTime: "5 min read",
+    slug: "ai-agents-customer-service",
+    category: "AI Innovation"
+  },
+  {
+    id: "2",
+    title: "The Future of Business Automation",
+    excerpt: "Discover how modern businesses are leveraging AI to automate routine tasks and boost productivity.",
+    author: "John Doe",
+    date: "March 14, 2024",
+    readTime: "7 min read",
+    slug: "future-business-automation",
+    category: "Automation"
+  },
+  {
+    id: "3",
+    title: "AI Integration Success Stories",
+    excerpt: "Real-world examples of successful AI agent implementations in small and medium-sized businesses.",
+    author: "Sarah Johnson",
+    date: "March 13, 2024",
+    readTime: "6 min read",
+    slug: "ai-integration-success-stories",
+    category: "Case Studies"
+  }
+];
+
+const BlogPostCard = ({ post }: { post: BlogPost }) => (
+  <div className="bg-white/5 rounded-lg overflow-hidden hover:bg-white/10 transition-colors">
+    <div className="p-6">
+      <div className="text-sm text-[#9b87f5] font-medium mb-2">{post.category}</div>
+      <h2 className="text-xl font-bold text-white mb-3 hover:text-[#9b87f5] transition-colors">
+        {post.title}
+      </h2>
+      <p className="text-gray-400 mb-4 line-clamp-2">
+        {post.excerpt}
+      </p>
+      <div className="flex items-center justify-between text-sm text-gray-400">
+        <div className="flex items-center gap-2">
+          <User className="w-4 h-4" />
+          <span>{post.author}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <Clock className="w-4 h-4" />
+          <span>{post.readTime}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 const Blog = () => {
   return (
     <div className="min-h-screen w-full bg-[#222222] pt-24">
@@ -19,7 +89,15 @@ const Blog = () => {
           <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
           <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
         </div>
-        <p className="text-gray-400 text-center mt-8">Coming soon...</p>
+
+        {/* Blog Posts Grid */}
+        <div className="max-w-7xl mx-auto mt-16 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {samplePosts.map((post) => (
+              <BlogPostCard key={post.id} post={post} />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
