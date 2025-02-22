@@ -2,6 +2,7 @@
 import { Clock, User, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { cn } from "@/lib/utils";  // Add this import
 
 interface BlogPost {
   id: string;
