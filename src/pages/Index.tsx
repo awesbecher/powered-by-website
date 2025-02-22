@@ -80,7 +80,7 @@ const Index = () => {
               description: "Voice, email, SMS, Slack, chat, and document automation"
             },
             {
-              icon: Clock,
+              icon: Bot,
               title: "Experts in AI Agents",
               description: "Deep mastery of agent technology within complex workflows"
             }
