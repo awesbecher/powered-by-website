@@ -1,3 +1,4 @@
+
 import { BlogPost } from "../types/blog";
 
 export const samplePosts: BlogPost[] = [
@@ -81,7 +82,7 @@ export const samplePosts: BlogPost[] = [
       <p>By deploying a solution that feels authentically human, retailers preserve the friendly, approachable atmosphere they've always valued, while leveraging cutting-edge technology to scale and improve efficiency.</p>
 
       <br/>
-      <p class="text-2xl font-extrabold text-left">Interested in seeing how voice AI agents could transform your retail operations?</p>
+      <p class="text-2xl font-extrabold text-left">Interested in talking to us?</p>
       <p>Let's talk! We'd love to learn more about your business and build a bespoke solution that enhances productivity, boosts revenue, and maintains that personal feel your customers know and trust.</p>
 
       <br/>
