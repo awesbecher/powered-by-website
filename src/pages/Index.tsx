@@ -43,7 +43,7 @@ const Index = () => {
     },
     {
       title: "Transparent & Trustworthy",
-      description: "Transparency is the foundation of our partnerships. We believe in open, honest communication, fostering trust, and ensuring that you're always in the loop, every step of the way."
+      description: "Think of us as your creative AI partner. We take the time to understand your business, your customers, and your goals, then craft AI agent-enabled workflows that simply work."
     },
     {
       title: "Relentless Pursuit of Excellence",
