@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -13,8 +13,39 @@ const Contact = () => {
     message: ""
   });
 
+  // List of common personal email domains
+  const personalEmailDomains = [
+    'gmail.com',
+    'yahoo.com',
+    'hotmail.com',
+    'outlook.com',
+    'aol.com',
+    'icloud.com',
+    'protonmail.com',
+    'mail.com',
+    'zoho.com',
+    'yandex.com',
+    'live.com',
+    'msn.com'
+  ];
+
+  const isPersonalEmail = (email: string) => {
+    const domain = email.split('@')[1];
+    return personalEmailDomains.includes(domain?.toLowerCase());
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (isPersonalEmail(formData.email)) {
+      toast({
+        title: "Invalid email domain",
+        description: "Please use your corporate email address. Personal email domains are not accepted.",
+        variant: "destructive"
+      });
+      return;
+    }
+
     // Here you would typically send the form data to your backend
     toast({
       title: "Message sent!",
@@ -47,10 +78,19 @@ const Contact = () => {
               <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
                 Email
               </label>
-              <Input id="email" type="email" value={formData.email} onChange={e => setFormData({
-              ...formData,
-              email: e.target.value
-            })} className="bg-neutral-800 border-neutral-700 text-white" required />
+              <Input 
+                id="email" 
+                type="email" 
+                value={formData.email} 
+                onChange={e => setFormData({
+                  ...formData,
+                  email: e.target.value
+                })} 
+                className="bg-neutral-800 border-neutral-700 text-white" 
+                required 
+                placeholder="your-email@company.com"
+              />
+              <p className="text-sm text-gray-400 mt-1">Please use your corporate email address</p>
             </div>
             <div>
               <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-2">
