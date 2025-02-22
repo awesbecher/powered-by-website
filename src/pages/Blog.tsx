@@ -2,7 +2,7 @@
 import { Clock, User, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { cn } from "@/lib/utils";  // Add this import
+import { cn } from "@/lib/utils";
 
 interface BlogPost {
   id: string;
@@ -65,47 +65,49 @@ const BlogPostCard = ({
   post: BlogPost;
   featured?: boolean;
 }) => (
-  <div className={cn(
-    "bg-white/5 rounded-lg overflow-hidden hover:bg-white/10 transition-colors",
-    featured ? "col-span-full lg:col-span-2" : ""
-  )}>
-    <div className="p-6">
-      <div className="text-sm text-[#9b87f5] font-medium mb-2">{post.category}</div>
-      <Link to={`/blog/${post.slug}`} className="group">
+  <Link 
+    to={`/blog/${post.slug}`}
+    className="block group"
+  >
+    <div className={cn(
+      "bg-white/5 rounded-lg overflow-hidden group-hover:bg-white/10 transition-colors",
+      featured ? "col-span-full lg:col-span-2" : ""
+    )}>
+      <div className="p-6">
+        <div className="text-sm text-[#9b87f5] font-medium mb-2">{post.category}</div>
         <h2 className={cn(
-          "font-bold text-white mb-3 hover:text-[#9b87f5] transition-colors group-hover:text-[#9b87f5]",
+          "font-bold text-white mb-3 group-hover:text-[#9b87f5] transition-colors",
           featured ? "text-3xl" : "text-xl"
         )}>
           {post.title}
         </h2>
-      </Link>
-      <p className={cn(
-        "text-gray-400 mb-4",
-        featured ? "line-clamp-3" : "line-clamp-2"
-      )}>
-        {post.excerpt}
-      </p>
-      <div className="flex items-center justify-between text-sm text-gray-400">
-        <div className="flex items-center gap-2">
-          <User className="w-4 h-4" />
-          <span>{post.author}</span>
-        </div>
-        <div className="flex items-center gap-4">
+        <p className={cn(
+          "text-gray-400 mb-4",
+          featured ? "line-clamp-3" : "line-clamp-2"
+        )}>
+          {post.excerpt}
+        </p>
+        <div className="flex items-center justify-between text-sm text-gray-400">
           <div className="flex items-center gap-2">
-            <Clock className="w-4 h-4" />
-            <span>{post.readTime}</span>
+            <User className="w-4 h-4" />
+            <span>{post.author}</span>
           </div>
-          <Link 
-            to={`/blog/${post.slug}`}
-            className="flex items-center gap-1 text-[#9b87f5] hover:text-[#8b77e5] transition-colors"
-          >
-            Read more
-            <ChevronRight className="w-4 h-4" />
-          </Link>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <Clock className="w-4 h-4" />
+              <span>{post.readTime}</span>
+            </div>
+            <div 
+              className="flex items-center gap-1 text-[#9b87f5] group-hover:text-[#8b77e5] transition-colors"
+            >
+              Read more
+              <ChevronRight className="w-4 h-4" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </Link>
 );
 
 const Blog = () => {
