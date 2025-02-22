@@ -15,7 +15,6 @@ export const samplePosts: BlogPost[] = [
 
       <br/>
       <h2 class="text-2xl font-extrabold text-left">Embracing a Time-Tested Tradition, Enhanced by Technology</h2>
-      <br/>
       <p>Retail success has typically hinged on live, friendly interactions. Whether it's greeting a customer at the door or taking a phone order, there's comfort and trust in speaking directly with a knowledgeable representative. By integrating voice AI agents, retail businesses carry forward that tradition of warm, attentive service—except they can now deliver it around the clock, at scale.</p>
 
       <br/>
@@ -42,7 +41,6 @@ export const samplePosts: BlogPost[] = [
 
       <br/>
       <h2 class="text-2xl font-extrabold text-left">Driving New Revenue and Efficiency</h2>
-      <br/>
       <p>Implementing voice AI agents can generate <em>both</em> new revenue opportunities <em>and</em> cost efficiencies:</p>
 
       <br/>
@@ -63,7 +61,6 @@ export const samplePosts: BlogPost[] = [
 
       <br/>
       <h2 class="text-2xl font-extrabold text-left">The State of the Art in AI Voice</h2>
-      <br/>
       <p>Historically, robotic-sounding voices and clumsy phone menus deterred retailers from embracing AI for customer service. But those days have passed. Today's advanced AI voice agents can:</p>
 
       <br/>
@@ -85,7 +82,6 @@ export const samplePosts: BlogPost[] = [
 
       <br/>
       <p class="text-2xl font-extrabold text-left">Interested in seeing how voice AI agents could transform your retail operations?</p>
-      <br/>
       <p>Let's talk! We'd love to learn more about your business and build a bespoke solution that enhances productivity, boosts revenue, and maintains that personal feel your customers know and trust.</p>
 
       <br/>
