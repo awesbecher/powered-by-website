@@ -82,7 +82,7 @@ const Index = () => {
             {
               icon: Bot,
               title: "Experts in AI Agents",
-              description: "Deep mastery of agent technology within complex workflows"
+              description: "Deep mastery of automation agents for simple to the most complex tasks"
             }
           ].map((feature, index) => (
             <div 
