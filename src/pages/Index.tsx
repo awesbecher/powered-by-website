@@ -54,12 +54,10 @@ const Index = () => {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-              <Link to="/demo">
-                <Button className="bg-white hover:bg-gray-100 text-accent px-8 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto">
-                  Talk to an AI Agent Now
-                  <MessageSquare className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
+              <Button className="bg-white hover:bg-gray-100 text-accent px-8 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto">
+                Talk to an AI Agent Now
+                <MessageSquare className="ml-2 h-5 w-5" />
+              </Button>
             </div>
           </div>
         </div>
