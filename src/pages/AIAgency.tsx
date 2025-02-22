@@ -60,6 +60,7 @@ const AIAgency = () => {
                 <p className="font-medium text-white">
                   The best part? They work 24/7, never take vacations, and can handle multiple tasks simultaneously. It's like having a tireless team member who's always ready to help.
                 </p>
+                <hr className="border-t-2 border-gray-600/70 mt-8" />
               </div>
             </div>
           </div>
