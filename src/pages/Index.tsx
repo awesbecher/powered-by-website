@@ -32,7 +32,7 @@ const Index = () => {
     {
       icon: Phone,
       title: "Multi-Channel Agents",
-      description: "Voice, email, SMS, Slack, chat, and document automation"
+      description: "Delivering agents for voice, email, SMS, Slack, chat, and document automation"
     }
   ];
 
