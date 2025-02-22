@@ -1,4 +1,3 @@
-
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Building2, Bot, Phone } from "lucide-react";
@@ -70,7 +69,7 @@ const Index = () => {
               className={`text-4xl font-bold tracking-tight text-white sm:text-6xl mb-4 transition-all duration-1000 ease-out transform
                 ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
             >
-              Why should those Silicon Valley <span className="font-extrabold text-purple-400">nerds</span> have all the fancy toys?
+              Why should those Silicon Valley <span className="font-extrabold text-purple-400">nerds</span> have all the fancy AI toys?
             </h1>
             
             {/* Value Proposition */}
