@@ -1,4 +1,3 @@
-
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Building2, Bot, Clock, Phone } from "lucide-react";
@@ -10,12 +9,11 @@ const Index = () => {
 
   const handleClick = () => {
     setAnimate(false);
-    // Reset animation by triggering a reflow
     setTimeout(() => setAnimate(true), 10);
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#222222]" onClick={handleClick}>
+    <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]" onClick={handleClick}>
       {/* Logo */}
       <div className="absolute top-6 left-6 lg:left-8">
         <img 
