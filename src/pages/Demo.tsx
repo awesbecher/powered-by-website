@@ -1,10 +1,9 @@
-
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { ServiceCard } from "@/components/home/ServiceCard";
 import { services, additionalServices } from "@/data/services";
 
 const Demo = () => {
-  return <div className="min-h-screen w-full bg-[#222222] pt-24">
+  return <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] pt-24">
       {/* Hero Section */}
       <div className="relative overflow-hidden px-6 lg:px-8 pb-8">
         <div className="mx-auto max-w-7xl">

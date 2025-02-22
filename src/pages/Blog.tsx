@@ -1,4 +1,3 @@
-
 import { Clock, User } from "lucide-react";
 interface BlogPost {
   id: string;
@@ -64,7 +63,7 @@ const BlogPostCard = ({
     </div>
   </div>;
 const Blog = () => {
-  return <div className="min-h-screen w-full bg-[#222222] pt-24">
+  return <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] pt-24">
       <div className="container mx-auto px-4">
         <div className="relative overflow-hidden px-6 lg:px-8 pb-8">
           <div className="mx-auto max-w-4xl">

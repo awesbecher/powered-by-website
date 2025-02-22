@@ -1,6 +1,7 @@
+
 const AIAgency = () => {
   return (
-    <div className="min-h-screen w-full bg-[#222222]">
+    <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       {/* Empty page for now */}
     </div>
   );
