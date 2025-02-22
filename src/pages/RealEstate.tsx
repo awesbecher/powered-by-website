@@ -22,17 +22,19 @@ const RealEstate = () => {
         ← Back
       </Link>
 
-      {/* Logo */}
-      <div className="absolute top-8 right-8 z-10">
-        <img 
-          src="/lovable-uploads/e305eace-d64d-4437-9d8e-533d49b3d934.png"
-          alt="Township Real Estate Logo"
-          className="h-16 w-auto"
-        />
-      </div>
-
       {/* Hero Section */}
       <HeroSection />
+
+      {/* Logo */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-8 -mt-[32rem] mb-8">
+        <div className="flex justify-center">
+          <img 
+            src="/lovable-uploads/e305eace-d64d-4437-9d8e-533d49b3d934.png"
+            alt="Township Real Estate Logo"
+            className="h-20 w-auto"
+          />
+        </div>
+      </div>
 
       {/* Action Buttons */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-8 -mt-20 mb-8">
