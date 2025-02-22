@@ -66,15 +66,15 @@ export const samplePosts: BlogPost[] = [
 
       <br/>
       <ul class="space-y-4">
-        <li class="pl-6">→ <strong>Engage in Natural, Human-Like Conversations</strong><br>
+        <li class="pl-6">→ <strong class="text-purple-400">Engage in Natural, Human-Like Conversations</strong><br>
         <p class="pl-6">Thanks to modern natural language processing, the AI's tone, pacing, and flow closely resemble a live service rep.</p></li>
 
         <br/>
-        <li class="pl-6">→ <strong>Reason and Make Decisions</strong><br>
+        <li class="pl-6">→ <strong class="text-purple-400">Reason and Make Decisions</strong><br>
         <p class="pl-6">These sophisticated agents are not simply following scripts. They use context—like past customer interactions, store policies, and real-time data—to make intelligent decisions that enhance the customer experience.</p></li>
 
         <br/>
-        <li class="pl-6">→ <strong>Automate Complex Tasks</strong><br>
+        <li class="pl-6">→ <strong class="text-purple-400">Automate Complex Tasks</strong><br>
         <p class="pl-6">Beyond simple call transfers, AI agents can confirm payment information, modify orders, and even troubleshoot issues, all without human intervention.</p></li>
       </ul>
 
