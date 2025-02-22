@@ -15,15 +15,15 @@ export const aiFearsSMB: BlogPost = {
 
     <br/>
     <hr class="border-t border-purple-400 w-full my-4"/>
-    <h2 class="text-2xl font-extrabold text-left">Fear #1: Losing the "Human Touch"</h2>
+    <h2 class="text-2xl font-extrabold text-left bg-blue-400/10 inline-block px-2 py-1 rounded">Fear #1: Losing the "Human Touch"</h2>
     <p>A heartfelt greeting or genuine empathy has long been the hallmark of small businesses. However, modern AI doesn't necessarily remove that personal component. Instead, it handles routine questions so human representatives can focus on complex issues or special requests. By combining the best of both worlds—automated efficiency and genuine human connection—you can increase overall customer satisfaction.</p>
 
     <br/>
-    <h2 class="text-2xl font-extrabold text-left">Fear #2: Job Displacement</h2>
+    <h2 class="text-2xl font-extrabold text-left bg-blue-400/10 inline-block px-2 py-1 rounded">Fear #2: Job Displacement</h2>
     <p>Rather than eliminating positions, AI often redefines roles. Your employees can transition into higher-level tasks, such as strategic planning or personalized service for VIP customers. AI becomes the extra set of hands for monotonous tasks, letting your human team shine where they're needed most.</p>
 
     <br/>
-    <h2 class="text-2xl font-extrabold text-left">Fear #3: Data Security and Privacy</h2>
+    <h2 class="text-2xl font-extrabold text-left bg-blue-400/10 inline-block px-2 py-1 rounded">Fear #3: Data Security and Privacy</h2>
     <p>Safety concerns are valid. SMBs can be prime targets for cyberattacks if they don't secure customer data properly. Today's AI providers, including ParlarI, implement robust security measures and comply with regulations like GDPR and CCPA. This ensures data is handled responsibly, giving both you and your customers peace of mind.</p>
 
     <br/>
