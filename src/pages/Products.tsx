@@ -33,7 +33,7 @@ const Products = () => {
               className={`mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold transition-all duration-1000 delay-300 ease-out transform
                 ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
             >
-              Empower your business with intelligent AI agents that handle customer interactions across <span className="text-[#9b87f5]">all channels</span> - voice, email, SMS, chat, and more.
+              Empower your business with intelligent AI agents that handle customer interactions across <span className="text-[#9b87f5]">all channels</span> - voice, email, SMS, chat, and more. Streamline operations, reduce costs, and deliver exceptional service 24/7.
             </p>
           </div>
         </div>
