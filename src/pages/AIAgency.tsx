@@ -33,6 +33,29 @@ const AIAgency = () => {
           <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
           <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
         </div>
+
+        <div className="relative mt-20 px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl">
+            <div 
+              className={`text-center transition-all duration-1000 delay-500 ease-out transform
+                ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}
+            >
+              <h2 className="text-3xl font-bold text-[#9b87f5] mb-8">
+                We're the world's first AI agency.
+              </h2>
+              
+              <div className="space-y-8 text-lg text-gray-300 leading-relaxed">
+                <p>
+                  We design and deploy intelligent agents tailored from the ground up to fit your unique needs—whether it's voice-driven assistants, email automation, text-based support, Slack integrations, or chatbots that speak and communicate as human-like as possible. Our mission? To automate the repetitive, amplify the human, and supercharge your workflows with AI that feels like it was made just for you—because it was.
+                </p>
+                
+                <p className="font-medium text-white">
+                  Think of us as your creative AI partner. We take the time to understand your business, your customers, and your goals, then craft AI agent-enabled workflows that simply work.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
