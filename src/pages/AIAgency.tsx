@@ -28,7 +28,7 @@ const AIAgency = () => {
 
         <div className="relative mt-8 px-6 lg:px-8">
           <div className="mx-auto max-w-4xl">
-            <div className={`text-center transition-all duration-1000 delay-500 ease-out transform
+            <div className={`text-left transition-all duration-1000 delay-500 ease-out transform
                 ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
               <h2 className="text-5xl font-bold text-white mb-8 whitespace-nowrap bg-gradient-to-r from-purple-500/20 to-purple-400/20 inline-block px-4 py-2 rounded-lg hover:bg-gradient-to-r hover:from-purple-500/30 hover:to-purple-400/30 transition-all">
                 We're the world's first AI agency.
