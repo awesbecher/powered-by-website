@@ -39,7 +39,7 @@ const Index = () => {
   const values = [
     {
       title: "Unique AI Agency Model",
-      description: "Our clients drive us. Your unique needs shape our solutions, and your satisfaction is our top priority. Let's make your goals our goals and watch your success soar."
+      description: "Just as web design agencies once transformed businesses for the web, we're here to revolutionize how SMBs connect, work, and grow without adding more humans or cost overhead."
     },
     {
       title: "Transparent & Trustworthy",
