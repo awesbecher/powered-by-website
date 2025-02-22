@@ -1,4 +1,3 @@
-
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Building2, Bot, Phone, ArrowLeftCircle, ArrowRightCircle } from "lucide-react";
@@ -44,9 +43,8 @@ const Index = () => {
     if (scrollContainerRef.current) {
       setCanScrollLeft(scrollContainerRef.current.scrollLeft > 0);
       
-      // Calculate current index based on scroll position
       const scrollPosition = scrollContainerRef.current.scrollLeft;
-      const itemWidth = 392; // 384px card width + 8px gap
+      const itemWidth = 392;
       const newIndex = Math.round(scrollPosition / itemWidth);
       setCurrentIndex(newIndex);
     }
@@ -183,13 +181,13 @@ const Index = () => {
                       <div className="aspect-[16/9] relative">
                         <img 
                           src={`https://images.unsplash.com/${
-                            index === 0 ? 'photo-1679958158879-02ad68720d4c' : // AI company logos (OpenAI, Anthropic)
+                            index === 0 ? 'photo-1649972904349-6e44c42644a7' : // AI technology (replacing broken image)
                             index === 1 ? 'photo-1556745753-b2904692b3cd' : // Retail voice assistant
                             index === 2 ? 'photo-1551288049-bebda4e38f71' : // SaaS automation
                             index === 3 ? 'photo-1535378917042-10a22c95931a' : // Human-like AI
                             index === 4 ? 'photo-1553877522-43269d4ea984' : // SMB conversational agents
                             index === 5 ? 'photo-1517245386807-bb43f82c33c4' : // Customer service evolution
-                            'photo-1633555338815-a49a89ba5cbb'   // AI fears SMB
+                            'photo-1485827404703-89b55fcc595e'   // AI and robotics (replacing broken image)
                           }`}
                           alt={post.title}
                           className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-opacity"
