@@ -13,12 +13,12 @@ const RealEstate = () => {
 
   return (
     <div className="min-h-screen bg-[#222222] text-white">
-      {/* Planters Logo */}
+      {/* Township Logo */}
       <div className="fixed top-24 right-8 z-50">
         <img 
-          src="/lovable-uploads/1cfbedce-9045-47a7-b81f-4eb7381a7576.png"
-          alt="Planters Logo"
-          className="h-14 w-auto"
+          src="/lovable-uploads/a5338bda-4580-432c-a1b8-71df71d89c29.png"
+          alt="Township Real Estate Logo"
+          className="h-14 w-auto object-contain"
         />
       </div>
 
