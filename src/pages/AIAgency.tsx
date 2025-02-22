@@ -56,6 +56,29 @@ const AIAgency = () => {
             </div>
           </div>
         </div>
+
+        <div className="relative mt-32 px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl">
+            <div 
+              className={`text-center transition-all duration-1000 delay-700 ease-out transform
+                ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}
+            >
+              <h2 className="text-3xl font-bold text-[#9b87f5] mb-8">
+                But what are AI agents?
+              </h2>
+              
+              <div className="space-y-8 text-lg text-gray-300 leading-relaxed">
+                <p>
+                  AI agents are autonomous programs designed to help you get things done. Think of them as your digital employees who can handle a wide range of tasks—from answering customer queries and managing email correspondence to analyzing data and automating complex workflows. Unlike traditional chatbots, AI agents can understand context, learn from interactions, and make intelligent decisions.
+                </p>
+                
+                <p className="font-medium text-white">
+                  The best part? They work 24/7, never take vacations, and can handle multiple tasks simultaneously. It's like having a tireless team member who's always ready to help.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
