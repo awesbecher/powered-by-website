@@ -110,6 +110,7 @@ const AIAgency = () => {
               
               <div className="space-y-8 text-lg text-gray-300 leading-relaxed text-justify">
                 <p>We build them from scratch to match your needs. You tell us your pain points; we craft an AI agent that talks your language, integrates with your tools, and gets stuff done. No tech degree required—just a business ready to grow.</p>
+                <hr className="border-t-2 border-gray-600/70 mt-8" />
               </div>
             </div>
           </div>
