@@ -115,6 +115,41 @@ const AIAgency = () => {
             </div>
           </div>
         </div>
+
+        <div className="relative mt-12 px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl">
+            <div className={`text-left transition-all duration-1000 delay-1300 ease-out transform
+                ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
+              <h2 className="text-5xl font-bold text-white mb-8 whitespace-nowrap bg-gradient-to-r from-purple-500/20 to-purple-400/20 inline-block px-4 py-2 rounded-lg hover:bg-gradient-to-r hover:from-purple-500/30 hover:to-purple-400/30 transition-all">
+                What New Opportunities are Unleashed?
+              </h2>
+              
+              <div className="space-y-8 text-lg text-gray-300 leading-relaxed">
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-2">Workflow Automation</h3>
+                    <p className="text-justify">Say goodbye to manual data entry, appointment juggling, or chasing leads. AI agents can manage bookings, track orders, or nudge customers for feedback—all hands-free.</p>
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-2">Cost Efficiencies</h3>
+                    <p className="text-justify">Slash labor costs on routine tasks. One AI agent can do the work of many, without overtime or burnout.</p>
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-2">Enhanced Customer Experience</h3>
+                    <p className="text-justify">Deliver instant replies, personalized service, and a "wow" factor that keeps people coming back—no matter the hour.</p>
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-2">New Revenue Paths</h3>
+                    <p className="text-justify">Upsell through smart conversations, turn inquiries into sales, or launch services like automated support packages your competitors can't touch.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>;
 };
