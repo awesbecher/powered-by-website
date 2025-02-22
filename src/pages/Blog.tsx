@@ -21,7 +21,7 @@ export const samplePosts: BlogPost[] = [
     title: "Voice AI Agents: The New Frontier of Retail Customer Service",
     excerpt: "Customer service has always been the lifeblood of retail—shaped by well-trained staff offering personal attention, rapport, and timely responses. Yet, in today's fast-paced retail world, building on these traditional values requires leveraging innovative technology.",
     author: "Parlar AI",
-    date: "March 15, 2024",
+    date: "December 15, 2024",
     readTime: "12 min read",
     slug: "voice-ai-agents-retail-customer-service",
     category: "AI Innovation",
