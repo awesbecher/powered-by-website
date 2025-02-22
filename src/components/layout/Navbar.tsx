@@ -1,6 +1,8 @@
 
 import { cn } from "@/lib/utils";
 import { Link, useLocation } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { MessageSquare } from "lucide-react";
 
 const Navbar = () => {
   const location = useLocation();
@@ -19,14 +21,24 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#222222]/80 backdrop-blur-lg">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link to="/" className="flex-shrink-0">
-            <img 
-              src="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
-              alt="Parlar Logo"
-              className="h-8 w-auto"
-            />
-          </Link>
+          <div className="flex items-center gap-4">
+            {/* Logo */}
+            <Link to="/" className="flex-shrink-0">
+              <img 
+                src="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
+                alt="Parlar Logo"
+                className="h-8 w-auto"
+              />
+            </Link>
+
+            {/* AI Agent Button - Only show on Contact page */}
+            {location.pathname === '/contact' && (
+              <Button className="bg-white hover:bg-gray-100 text-accent">
+                <MessageSquare className="mr-2 h-4 w-4" />
+                Talk to an AI Agent Now
+              </Button>
+            )}
+          </div>
 
           {/* Navigation Items */}
           <div className="hidden md:flex items-center justify-center flex-1">
