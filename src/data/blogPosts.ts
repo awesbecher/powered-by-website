@@ -1,3 +1,4 @@
+
 import { BlogPost } from "../types/blog";
 
 export const samplePosts: BlogPost[] = [
@@ -14,6 +15,7 @@ export const samplePosts: BlogPost[] = [
       <p>Customer service has always been the lifeblood of retail—shaped by well-trained staff offering personal attention, rapport, and timely responses. Yet, in today's fast-paced retail world, building on these traditional values requires leveraging innovative technology. Voice AI agents, powered by the latest advances in artificial intelligence, offer a compelling way for retailers to improve customer interactions, boost revenue, and streamline operations—while preserving the human touch that has always set great stores apart.</p>
 
       <br/>
+      <hr class="border-t border-purple-400 w-full my-4"/>
       <h2 class="text-2xl font-extrabold text-left">Embracing a Time-Tested Tradition, Enhanced by Technology</h2>
       <p>Retail success has typically hinged on live, friendly interactions. Whether it's greeting a customer at the door or taking a phone order, there's comfort and trust in speaking directly with a knowledgeable representative. By integrating voice AI agents, retail businesses carry forward that tradition of warm, attentive service—except they can now deliver it around the clock, at scale.</p>
 
