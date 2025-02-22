@@ -173,10 +173,13 @@ const Index = () => {
                       <div className="aspect-[16/9] relative">
                         <img 
                           src={`https://images.unsplash.com/${
-                            index === 0 ? 'photo-1487058792275-0ad4aaf24ca7' :
-                            index === 1 ? 'photo-1498050108023-c5249f4df085' :
-                            index === 2 ? 'photo-1581091226825-a6a2a5aee158' :
-                            'photo-1518770660439-4636190af475'
+                            index === 0 ? 'photo-1679958158879-02ad68720d4c' : // AI company logos (OpenAI, Anthropic)
+                            index === 1 ? 'photo-1556745753-b2904692b3cd' : // Retail voice assistant
+                            index === 2 ? 'photo-1551288049-bebda4e38f71' : // SaaS automation
+                            index === 3 ? 'photo-1535378917042-10a22c95931a' : // Human-like AI
+                            index === 4 ? 'photo-1553877522-43269d4ea984' : // SMB conversational agents
+                            index === 5 ? 'photo-1517245386807-bb43f82c33c4' : // Customer service evolution
+                            'photo-1633555338815-a49a89ba5cbb'   // AI fears SMB
                           }`}
                           alt={post.title}
                           className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-opacity"
