@@ -14,6 +14,7 @@ export const openaiAnthropicSmb: BlogPost = {
     <h1 class="text-3xl font-bold text-[#9b87f5] mb-8">Why Do SMBs Need A Specialized AI Agency?</h1>
 
     <p>Picture this: you're a small business owner looking to harness the power of AI-driven customer service. Naturally, you turn to the biggest names in the industry—OpenAI, Anthropic, or Google—wondering if they'll offer a one-stop shop for all your AI needs. After all, these giants built some of the most advanced large language models the world has ever seen.</p>
+    <br/>
     <p>Yet, as impressive as these companies are, history suggests they're unlikely to dive into providing full-scale, turnkey "AI agency" services. Instead, they rely on partners, such as Parlar, to bring their innovations to life for the real-world needs of small and mid-sized businesses. Let's look at why.</p>
 
     <br/>
