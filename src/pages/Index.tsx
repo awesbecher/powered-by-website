@@ -1,4 +1,3 @@
-
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Building2, Bot, Phone } from "lucide-react";
@@ -51,9 +50,32 @@ const Index = () => {
     }
   ];
 
+  const blogPosts = [
+    {
+      number: "22",
+      title: "How AI Agents Transform Customer Service Operations",
+      description: "Discover how modern businesses are leveraging AI agents to revolutionize their customer service operations, improve response times, and boost customer satisfaction.",
+      image: "/lovable-uploads/9e09baaf-e32a-4572-a3d5-f8973b60299f.png",
+      link: "/blog/ai-agents-customer-service"
+    },
+    {
+      number: "22",
+      title: "Why AI Integration is Critical for Modern Businesses",
+      description: "Learn how AI integration is becoming the cornerstone of business evolution, enabling organizations to streamline operations and stay competitive in today's market.",
+      image: "/lovable-uploads/9e09baaf-e32a-4572-a3d5-f8973b60299f.png",
+      link: "/blog/ai-integration-importance"
+    },
+    {
+      number: "22",
+      title: "The Future of Business Automation with AI Agents",
+      description: "Explore how AI agents are reshaping the landscape of business automation, from simple task management to complex decision-making processes.",
+      image: "/lovable-uploads/9e09baaf-e32a-4572-a3d5-f8973b60299f.png",
+      link: "/blog/future-business-automation"
+    }
+  ];
+
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]" onClick={handleClick}>
-      {/* Logo */}
       <div className="absolute top-6 left-6 lg:left-8">
         <img 
           src="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
@@ -62,7 +84,6 @@ const Index = () => {
         />
       </div>
 
-      {/* Hero Section */}
       <div className="relative overflow-hidden px-6 lg:px-8 pt-36 pb-8">
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
@@ -73,7 +94,6 @@ const Index = () => {
               Why should those Silicon Valley <span className="font-extrabold text-purple-400">nerds</span> have all the fancy AI toys?
             </h1>
             
-            {/* Value Proposition */}
             <p 
               className={`mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold transition-all duration-1000 delay-300 ease-out transform
                 ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
@@ -81,7 +101,6 @@ const Index = () => {
               We're the world's first <Link to="/ai-agency" className="border-b-2 border-purple-400 hover:text-purple-400 transition-colors">AI agency</Link> delivering custom AI agent solutions to SMBs.
             </p>
             
-            {/* CTA Buttons */}
             <div className={`mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-1000 delay-500 ease-out transform
               ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
               <Link to="/contact">
@@ -98,7 +117,6 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Feature Cards */}
         <div className="mt-12 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
           {features.map((feature, index) => (
             <div 
@@ -112,7 +130,6 @@ const Index = () => {
           ))}
         </div>
 
-        {/* Values Section */}
         <div className="mt-20 max-w-7xl mx-auto px-4">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-20 max-w-4xl mx-auto leading-[1.1]">
             Custom AI Agent Solutions Built for you.{" "}
@@ -134,8 +151,35 @@ const Index = () => {
             ))}
           </div>
         </div>
+
+        <div className="mt-32 max-w-7xl mx-auto px-4">
+          <h2 className="text-5xl font-bold text-white mb-16">Recent Insights</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {blogPosts.map((post, index) => (
+              <Link key={index} to={post.link} className="group">
+                <div className="relative overflow-hidden rounded-xl bg-[#1a1a1a] transition-transform duration-300 group-hover:scale-[1.02]">
+                  <div className="aspect-[16/9] relative">
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#1a1a1a]/90 z-10" />
+                    <div className="absolute top-4 left-4 text-6xl font-bold text-[#4ADE80] z-20">
+                      {post.number}
+                    </div>
+                  </div>
+                  
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#4ADE80] transition-colors">
+                      {post.title}
+                    </h3>
+                    <p className="text-gray-400 text-sm line-clamp-3">
+                      {post.description}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
         
-        {/* Gradient orbs for visual interest */}
         <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
         <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
       </div>
