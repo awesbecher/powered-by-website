@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -13,6 +13,11 @@ const Contact = () => {
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [initialLoad, setInitialLoad] = useState(true);
+
+  useEffect(() => {
+    setInitialLoad(false);
+  }, []);
 
   // List of common personal email domains
   const personalEmailDomains = [
@@ -82,10 +87,18 @@ const Contact = () => {
   return <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] pt-36">
       <div className="max-w-2xl mx-auto px-4">
         <div className="relative inline-block w-full text-center mb-4">
-          <h1 className="text-[100px] font-bold text-white text-center">Let's meet!</h1>
+          <h1 
+            className={`text-[100px] font-bold text-white text-center transition-all duration-1000 ease-out transform
+              ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
+          >
+            Let's meet!
+          </h1>
           <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-3/4 h-3 bg-gradient-to-r from-purple-400/20 via-[#9b87f5] to-purple-400/20 rounded-full blur-sm"></div>
         </div>
-        <p className="text-gray-300 text-center mb-8 text-lg">
+        <p 
+          className={`text-gray-300 text-center mb-8 text-lg transition-all duration-1000 delay-300 ease-out transform
+            ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
+        >
           Ready to put AI agents to work? Book a consultation with our Solutions Design Leader (<span className="text-[#9b87f5] font-bold">a human!</span>) by filing out the form below. Or talk to our AI agent about how we can help by clicking <a href="#" className="text-[#9b87f5] hover:text-[#8b77e5] underline transition-colors duration-200">here</a>.
         </p>
         <div className="bg-neutral-900/50 p-8 rounded-xl backdrop-blur">
