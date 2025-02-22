@@ -1,4 +1,3 @@
-
 import { BlogPost } from "../types/blog";
 
 export const samplePosts: BlogPost[] = [
@@ -81,7 +80,7 @@ export const samplePosts: BlogPost[] = [
       <p>Let's talk! We'd love to learn more about your business and build a bespoke solution that enhances productivity, boosts revenue, and maintains that personal feel your customers know and trust.</p>
 
       <br/>
-      <p><a href="#"><strong>Contact Parlar AI</strong></a> to schedule a consultation and see firsthand how a custom voice AI agent can revolutionize your retail customer service. Let us help you continue the tradition of exceptional customer experiences—powered by the best in modern AI.</p>
+      <p><a href="/contact"><strong>Contact us</strong></a> to schedule a consultation and see firsthand how a custom voice AI agent can revolutionize your retail customer service. Let us help you continue the tradition of exceptional customer experiences—powered by the best in modern AI.</p>
     `
   },
   {
