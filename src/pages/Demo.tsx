@@ -13,7 +13,7 @@ const Demo = () => {
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
               We have <span className="text-[#9b87f5]">demos</span>! Now go have fun.
             </h1>
-            <p className="mx-auto mt-3 max-w-2xl text-lg text-gray-400 leading-6">
+            <p className="mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold">
               Parlar AI's workflow agents can automate and improve even your most complex customer-facing tasks. See our AI agents in action by selecting any of the industry-specific use cases below.
             </p>
           </div>
