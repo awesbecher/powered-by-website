@@ -168,10 +168,6 @@ export const samplePosts: BlogPost[] = [
       <p>At Parlar AI, we specialize in crafting bespoke voice AI solutions that seamlessly integrate into your unique SaaS workflows. We respect the bedrock principles of strong customer and sales experiences while harnessing the power of modern AI to elevate your service offerings.</p>
 
       <br/>
-      <p>Interested in learning how voice AI can propel your SaaS business forward?</p>
-      <p>Reach out to us for a consultation. We'll work closely with you to design a tailored voice AI agent that enhances customer satisfaction, streamlines operations, and strengthens your market presence—ensuring that even as technology advances, your customers continue receiving the personal, top-tier experience they've always valued.</p>
-
-      <br/>
       <p><a href="/contact"><strong>Contact Parlar AI</strong></a> to explore how we can bring your SaaS vision to life through our cutting-edge, human-like voice AI solutions. Let's shape the future of customer engagement together.</p>
 
       <br/>
