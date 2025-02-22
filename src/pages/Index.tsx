@@ -199,7 +199,7 @@ const Index = () => {
           </div>
         </div>
 
-        <div className="mt-32 max-w-7xl mx-auto px-4">
+        <div className="mt-20 max-w-7xl mx-auto px-4">
           <h2 className="text-5xl font-bold text-white mb-16 whitespace-nowrap">Thought Leadership in AI Agents for SMBs</h2>
           
           <div className="relative">
