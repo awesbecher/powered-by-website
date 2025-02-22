@@ -114,8 +114,8 @@ const Index = () => {
         {/* Values Section */}
         <div className="mt-20 max-w-7xl mx-auto px-4">
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-20 max-w-4xl mx-auto leading-[1.1]">
-            We don't just think outside the box{" "}
-            <span className="text-[#9b87f5]">we redefine it.</span>
+            Custom AI Agent Solutions Built for your business.{" "}
+            <span className="text-[#9b87f5] block mt-4">Quick. Easy. Powerful.</span>
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
