@@ -19,6 +19,24 @@ const Index = () => {
     setTimeout(() => setAnimate(true), 10);
   };
 
+  const features = [
+    {
+      icon: Building2,
+      title: "Built for SMBs",
+      description: "Custom AI agent solutions for businesses with 1 to 1,000 employees"
+    },
+    {
+      icon: Bot,
+      title: "Experts in AI Agents",
+      description: "Deep mastery of automation agents for simple to the most complex tasks"
+    },
+    {
+      icon: Bot,
+      title: "Multi-Channel Agents",
+      description: "Voice, email, SMS, Slack, chat, and document automation"
+    }
+  ];
+
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]" onClick={handleClick}>
       {/* Logo */}
@@ -68,26 +86,10 @@ const Index = () => {
 
         {/* Feature Cards */}
         <div className="mt-20 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
-          {[
-            {
-              icon: Building2,
-              title: "Built for SMBs",
-              description: "Custom AI agent solutions for businesses with 1 to 1,000 employees"
-            },
-            {
-              icon: Bot,
-              title: "Experts in AI Agents",
-              description: "Deep mastery of automation agents for simple to the most complex tasks"
-            },
-            {
-              icon: Bot,
-              title: "Multi-Channel Agents",
-              description: "Voice, email, SMS, Slack, chat, and document automation"
-            }
-          ].map((feature, index) => (
+          {features.map((feature, index) => (
             <div 
               key={index}
-              className="glass-card p-6 rounded-xl text-center group hover:transform hover:scale-105 transition-all duration-300"
+              className="glass-card p-6 rounded-xl text-center transform transition-transform duration-300 hover:scale-105"
             >
               <feature.icon className="w-12 h-12 mx-auto mb-4 text-accent" />
               <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
