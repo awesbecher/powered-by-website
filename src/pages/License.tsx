@@ -71,16 +71,6 @@ const License = () => {
 
       {/* Hero Section */}
       <div className="relative min-h-[100vh]">
-        {/* Background Image & Overlay */}
-        <div className="absolute inset-0">
-          <img 
-            src="/lovable-uploads/fd8a631b-2f6e-4f85-a4e8-aa0f775cd50f.png"
-            alt="RightBloom AI Solutions"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-gray-800"></div>
-        </div>
-
         {/* Hero Text */}
         <div className="absolute inset-0 flex flex-col items-center pt-40">
           <h1 className="text-4xl md:text-5xl font-bold text-center max-w-4xl px-4 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400">
