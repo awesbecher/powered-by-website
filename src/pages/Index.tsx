@@ -1,12 +1,13 @@
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Building2, Bot, Phone } from "lucide-react";
+import { ArrowRight, Building2, Bot, Phone, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const Index = () => {
   const [animate, setAnimate] = useState(true);
   const [initialLoad, setInitialLoad] = useState(true);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setInitialLoad(false);
@@ -15,6 +16,15 @@ const Index = () => {
   const handleClick = () => {
     setAnimate(false);
     setTimeout(() => setAnimate(true), 10);
+  };
+
+  const handleScrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: 400,
+        behavior: 'smooth'
+      });
+    }
   };
 
   const features = [
@@ -176,30 +186,42 @@ const Index = () => {
         <div className="mt-32 max-w-7xl mx-auto px-4">
           <h2 className="text-5xl font-bold text-white mb-16 whitespace-nowrap">Thought Leadership in AI Agents for SMBs</h2>
           
-          <div className="relative overflow-x-auto pb-4">
-            <div className="flex space-x-8 w-max">
-              {blogPosts.map((post, index) => (
-                <Link key={index} to={post.link} className="group w-[384px] flex-none">
-                  <div className="relative overflow-hidden rounded-xl bg-[#1a1a1a] transition-transform duration-300 group-hover:scale-[1.02]">
-                    <div className="aspect-[16/9] relative">
-                      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#1a1a1a]/90 z-10" />
-                      <div className="absolute top-4 left-4 text-6xl font-bold text-[#9b87f5] z-20">
-                        {post.number}
+          <div className="relative">
+            <div 
+              ref={scrollContainerRef}
+              className="relative overflow-x-auto pb-4"
+            >
+              <div className="flex space-x-8 w-max">
+                {blogPosts.map((post, index) => (
+                  <Link key={index} to={post.link} className="group w-[384px] flex-none">
+                    <div className="relative overflow-hidden rounded-xl bg-[#1a1a1a] transition-transform duration-300 group-hover:scale-[1.02]">
+                      <div className="aspect-[16/9] relative">
+                        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#1a1a1a]/90 z-10" />
+                        <div className="absolute top-4 left-4 text-6xl font-bold text-[#9b87f5] z-20">
+                          {post.number}
+                        </div>
+                      </div>
+                      
+                      <div className="p-6">
+                        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#9b87f5] transition-colors">
+                          {post.title}
+                        </h3>
+                        <p className="text-gray-400 text-sm line-clamp-3">
+                          {post.description}
+                        </p>
                       </div>
                     </div>
-                    
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#9b87f5] transition-colors">
-                        {post.title}
-                      </h3>
-                      <p className="text-gray-400 text-sm line-clamp-3">
-                        {post.description}
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                ))}
+              </div>
             </div>
+            <button
+              onClick={handleScrollRight}
+              className="absolute right-0 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white/70 hover:text-white/90 p-4 rounded-l-xl transition-all duration-300"
+              aria-label="Scroll right"
+            >
+              <ChevronRight size={32} />
+            </button>
           </div>
         </div>
         
