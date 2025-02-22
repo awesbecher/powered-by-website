@@ -95,7 +95,7 @@ export const samplePosts: BlogPost[] = [
     title: "How SaaS Companies Can Automate Customer Engagement With AI Agents",
     excerpt: "Discover how modern SaaS businesses are leveraging AI agents to transform customer engagement, reduce churn, and drive sustainable growth.",
     author: "Parlar AI",
-    date: "March 14, 2024",
+    date: "January 3, 2025",
     readTime: "7 min read",
     slug: "saas-customer-engagement-automation",
     category: "Automation",
