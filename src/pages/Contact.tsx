@@ -26,7 +26,10 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-[#222222] pt-24">
       <div className="max-w-2xl mx-auto px-4">
-        <h1 className="text-4xl font-bold text-white text-center mb-8">Get in Touch</h1>
+        <h1 className="text-4xl font-bold text-white text-center mb-4">Let's meet!</h1>
+        <p className="text-gray-300 text-center mb-8 text-lg">
+          Ready to put AI agents to work? Book a consultation with our Solutions Design team now. Or talk to one of AI agents about how we can help by clicking the button above.
+        </p>
         <div className="bg-neutral-900/50 p-8 rounded-xl backdrop-blur">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
