@@ -67,17 +67,17 @@ export const samplePosts: BlogPost[] = [
       <p>Historically, robotic-sounding voices and clumsy phone menus deterred retailers from embracing AI for customer service. But those days have passed. Today's advanced AI voice agents can:</p>
 
       <br/>
-      <ul>
-        <li><strong>Engage in Natural, Human-Like Conversations</strong><br>
-        Thanks to modern natural language processing, the AI's tone, pacing, and flow closely resemble a live service rep.</li>
+      <ul class="space-y-4">
+        <li class="pl-6">→ <strong>Engage in Natural, Human-Like Conversations</strong><br>
+        <p class="pl-6">Thanks to modern natural language processing, the AI's tone, pacing, and flow closely resemble a live service rep.</p></li>
 
         <br/>
-        <li><strong>Reason and Make Decisions</strong><br>
-        These sophisticated agents are not simply following scripts. They use context—like past customer interactions, store policies, and real-time data—to make intelligent decisions that enhance the customer experience.</li>
+        <li class="pl-6">→ <strong>Reason and Make Decisions</strong><br>
+        <p class="pl-6">These sophisticated agents are not simply following scripts. They use context—like past customer interactions, store policies, and real-time data—to make intelligent decisions that enhance the customer experience.</p></li>
 
         <br/>
-        <li><strong>Automate Complex Tasks</strong><br>
-        Beyond simple call transfers, AI agents can confirm payment information, modify orders, and even troubleshoot issues, all without human intervention.</li>
+        <li class="pl-6">→ <strong>Automate Complex Tasks</strong><br>
+        <p class="pl-6">Beyond simple call transfers, AI agents can confirm payment information, modify orders, and even troubleshoot issues, all without human intervention.</p></li>
       </ul>
 
       <br/>
