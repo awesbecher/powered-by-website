@@ -13,6 +13,15 @@ const RealEstate = () => {
 
   return (
     <div className="min-h-screen bg-[#222222] text-white">
+      {/* Planters Logo */}
+      <div className="fixed top-24 right-8 z-50">
+        <img 
+          src="/lovable-uploads/1cfbedce-9045-47a7-b81f-4eb7381a7576.png"
+          alt="Planters Logo"
+          className="h-14 w-auto"
+        />
+      </div>
+
       {/* Hero Section */}
       <HeroSection />
 
