@@ -18,6 +18,7 @@ import RealEstate from "./pages/RealEstate";
 import NotFound from "./pages/NotFound";
 import Blog from "./pages/Blog";
 import AIAgency from "./pages/AIAgency";
+import WhatsAnAIAgent from "./pages/WhatsAnAIAgent";
 import Contact from "./pages/Contact";
 import Navbar from "./components/layout/Navbar";
 
@@ -33,6 +34,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/ai-agency" element={<AIAgency />} />
+          <Route path="/whats-an-ai-agent" element={<WhatsAnAIAgent />} />
           <Route path="/demo" element={<Demo />} />
           <Route path="/room-service" element={<RoomService />} />
           <Route path="/food-menu" element={<FoodMenu />} />

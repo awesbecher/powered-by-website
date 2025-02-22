@@ -1,4 +1,8 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+
 const AIAgency = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   useEffect(() => {
@@ -33,12 +37,24 @@ const AIAgency = () => {
                 We're the world's first AI agency.
               </h2>
               
-              <div className="space-y-8 text-lg text-gray-300 leading-relaxed text-justify mt-4">
+              <div className="space-y-8 text-lg text-gray-300 leading-relaxed text-justify">
                 <p>We design and deploy intelligent agents tailored from the ground up to fit your unique needs—whether it's voice-driven phone assistants, email automation bots, text-based support, Slack integrations, or chatbots that speak and communicate as human-like as possible. Our mission? To automate the repetitive, amplify the human, and supercharge your workflows with AI that feels like it was made just for you—because it was.</p>
                 
                 <p className="font-medium text-white">
                   Think of us as your creative AI partner. We take the time to understand your business, your customers, and your goals, then craft AI agent-enabled workflows that simply work.
                 </p>
+
+                <div className="flex justify-center mt-8">
+                  <Link to="/whats-an-ai-agent">
+                    <Button 
+                      variant="outline" 
+                      className="bg-transparent border-purple-400 text-purple-400 hover:bg-purple-400/10 hover:text-white transition-all"
+                    >
+                      Learn More About AI Agents
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
