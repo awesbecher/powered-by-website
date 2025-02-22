@@ -112,7 +112,7 @@ const Index = () => {
         </div>
 
         {/* Values Section */}
-        <div className="mt-32 max-w-7xl mx-auto px-4">
+        <div className="mt-20 max-w-7xl mx-auto px-4">
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-20 max-w-4xl mx-auto leading-[1.1]">
             We don't just think outside the box{" "}
             <span className="text-[#9b87f5]">we redefine it.</span>
