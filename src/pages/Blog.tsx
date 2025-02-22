@@ -1,3 +1,4 @@
+
 import { Clock, User } from "lucide-react";
 
 interface BlogPost {
@@ -76,7 +77,7 @@ const Blog = () => {
                 Delivering the state of the art in <span className="text-[#9b87f5]">AI agents</span> to SMBs.
               </h1>
               <p className="mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold">
-                AI agents aren't just tools—they're game-changers. For small to medium-sized businesses, they mean doing more with less, delighting customers, and unlocking growth you didn't think was possible. 
+                AI agents aren't just tools—<span className="border-b-2 border-[#9b87f5]">they're game-changers</span>. For small to medium-sized businesses, they mean doing more with less, delighting customers, and unlocking growth you didn't think was possible. 
               </p>
             </div>
           </div>
