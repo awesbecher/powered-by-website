@@ -76,13 +76,13 @@ const Index = () => {
             },
             {
               icon: Bot,
-              title: "Multi-Channel AI",
-              description: "Voice, email, SMS, Slack, chat, and document automation"
+              title: "Experts in AI Agents",
+              description: "Deep mastery of automation agents for simple to the most complex tasks"
             },
             {
               icon: Bot,
-              title: "Experts in AI Agents",
-              description: "Deep mastery of automation agents for simple to the most complex tasks"
+              title: "Multi-Channel AI",
+              description: "Voice, email, SMS, Slack, chat, and document automation"
             }
           ].map((feature, index) => (
             <div 
