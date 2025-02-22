@@ -44,10 +44,6 @@ const Index = () => {
     {
       title: "Client Obsessed from Day One",
       description: "Think of us as your creative AI partner. We take the time to understand your business, your customers, and your goals, then craft AI agent-enabled workflows that simply work."
-    },
-    {
-      title: "Unwavering Commitment to Excellence",
-      description: "For us, project excellence isn't a choice. It's the foundation of everything we do. From voice automation to systems integration, we're dedicated to delivering exceptional quality, because your success is the measure of ours."
     }
   ];
 
@@ -119,7 +115,7 @@ const Index = () => {
             <span className="text-[#9b87f5] block mt-4">Quick. Easy. Powerful.</span>
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8">
             {values.map((value, index) => (
               <div key={index} className="relative">
                 <div className="flex items-center gap-2 mb-4">
