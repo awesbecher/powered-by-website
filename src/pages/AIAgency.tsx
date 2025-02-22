@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -50,7 +51,7 @@ const AIAgency = () => {
                       variant="outline" 
                       className="bg-transparent border-purple-400 text-purple-400 hover:bg-purple-400/10 hover:text-white transition-all"
                     >
-                      Learn More About AI Agents
+                      What is an AI Agent?
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </Link>
