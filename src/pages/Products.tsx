@@ -21,7 +21,7 @@ const Products = () => {
             
             {/* Value Proposition */}
             <p className="mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold">
-              Empower your business with intelligent AI agents that handle customer interactions across all channels - voice, email, SMS, chat, and more.
+              Empower your business with intelligent AI agents that handle customer interactions across <span className="text-[#9b87f5]">all channels</span> - voice, email, SMS, chat, and more.
             </p>
           </div>
         </div>
