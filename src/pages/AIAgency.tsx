@@ -34,7 +34,7 @@ const AIAgency = () => {
           <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
         </div>
 
-        <div className="relative mt-20 px-6 lg:px-8">
+        <div className="relative mt-8 px-6 lg:px-8">
           <div className="mx-auto max-w-4xl">
             <div 
               className={`text-center transition-all duration-1000 delay-500 ease-out transform
