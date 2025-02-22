@@ -1,4 +1,3 @@
-
 import { BlogPost } from "../types/blog";
 
 export const samplePosts: BlogPost[] = [
@@ -74,9 +73,6 @@ export const samplePosts: BlogPost[] = [
         <li class="pl-6">→ <strong class="text-purple-400">Automate Complex Tasks</strong><br>
         <p class="pl-6">Beyond simple call transfers, AI agents can confirm payment information, modify orders, and even troubleshoot issues, all without human intervention.</p></li>
       </ul>
-
-      <br/>
-      <p>By deploying a solution that feels authentically human, retailers preserve the friendly, approachable atmosphere they've always valued, while leveraging cutting-edge technology to scale and improve efficiency.</p>
 
       <br/>
       <p class="text-2xl font-extrabold text-left">Interested in talking to us?</p>
