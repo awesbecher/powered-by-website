@@ -1,3 +1,4 @@
+
 import { BlogPost } from "../../types/blog";
 
 export const smbConversationalAgents: BlogPost = {
@@ -5,7 +6,7 @@ export const smbConversationalAgents: BlogPost = {
   title: "Practical Ways SMBs Can Use Conversational Agents",
   excerpt: "Discover how small and mid-sized businesses can leverage AI-driven conversational agents for growth while maintaining their personal touch in customer interactions.",
   author: "Parlar AI",
-  date: "January 3, 2025",
+  date: "January 20, 2025",
   readTime: "6 min read",
   slug: "practical-ways-smbs-use-conversational-agents",
   category: "Business Solutions",
