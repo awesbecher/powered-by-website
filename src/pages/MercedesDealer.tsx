@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { Car, DollarSign, Wrench, Shield, Clock, Phone, X } from "lucide-react";
 import {
@@ -52,7 +53,7 @@ const MercedesDealer = () => {
 
   return (
     <div className="min-h-screen bg-[#222222] text-white">
-      <div className="absolute top-8 right-8 z-10">
+      <div className="absolute top-24 right-8 z-10">
         <img 
           src="/lovable-uploads/7e5ffc92-3c33-4a4a-8d6d-add3197d2f2f.png"
           alt="Mercedes of Tacoma Logo"
