@@ -34,7 +34,7 @@ const Index = () => {
                 animate ? 'animate-fade-in' : 'opacity-0'
               }`}
             >
-              Why should those Silicon Valley <span className="font-extrabold text-purple-400">nerds</span> have all the fancy toys?
+              Let's meet!
             </h1>
             
             {/* Value Proposition */}
@@ -43,7 +43,7 @@ const Index = () => {
                 animate ? 'animate-fade-in [animation-delay:200ms]' : 'opacity-0'
               }`}
             >
-              We're the world's first <span className="border-b-2 border-purple-400">AI agency</span> delivering custom AI agent solutions to SMBs.
+              Ready to put AI agents to work? Book a consultation with our Solutions Design team now. Or talk to one of AI agents about how we can help by clicking the button above.
             </p>
             
             {/* CTA Buttons */}
