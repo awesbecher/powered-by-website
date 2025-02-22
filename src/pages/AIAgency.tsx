@@ -92,7 +92,7 @@ const AIAgency = () => {
                 ))}
               </ul>
             </div>
-          )}
+          ))}
         </div>
 
         {/* Left Side Labels */}
