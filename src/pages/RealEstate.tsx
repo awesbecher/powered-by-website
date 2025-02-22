@@ -1,5 +1,4 @@
 
-import { Link } from "react-router-dom";
 import { Phone, Home, Building, DollarSign, Users } from "lucide-react";
 import { properties } from "@/data/properties";
 import { PropertyCard } from "@/components/real-estate/PropertyCard";
@@ -14,14 +13,6 @@ const RealEstate = () => {
 
   return (
     <div className="min-h-screen bg-[#222222] text-white">
-      {/* Navigation */}
-      <Link 
-        to="/" 
-        className="fixed top-8 left-8 text-gray-400 hover:text-white transition-colors z-50"
-      >
-        ← Back
-      </Link>
-
       {/* Hero Section */}
       <HeroSection />
 
