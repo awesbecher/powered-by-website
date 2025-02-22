@@ -20,12 +20,12 @@ const Index = () => {
       <div className="relative overflow-hidden px-6 lg:px-8 pt-24 pb-8">
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
+            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-4">
               Why should those Silicon Valley <span className="font-extrabold text-purple-400">nerds</span> have all the fancy toys?
             </h1>
             
             {/* Value Proposition */}
-            <p className="mt-8 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold">
               We're the world's first AI agency delivering custom AI agent solutions to SMBs.
             </p>
             
