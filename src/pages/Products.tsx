@@ -2,6 +2,7 @@
 import { Package2, Users, HeadphonesIcon, Building2, Check, Mail, Phone, MessageSquare } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
+import { WordAnimation } from "@/components/home/WordAnimation";
 
 const Products = () => {
   return (
@@ -11,7 +12,8 @@ const Products = () => {
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
-              AI Automation{" "}
+              <WordAnimation />
+              Automation{" "}
               <span className="text-white">
                 Simplified
               </span>
