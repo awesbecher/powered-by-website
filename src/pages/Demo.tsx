@@ -2,6 +2,7 @@
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { ServiceCard } from "@/components/home/ServiceCard";
 import { services, additionalServices } from "@/data/services";
+
 const Demo = () => {
   return <div className="min-h-screen w-full bg-[#222222] pt-24">
       {/* Hero Section */}
@@ -11,10 +12,8 @@ const Demo = () => {
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
               We have <span className="text-[#9b87f5]">demos</span>! Now go have fun.
             </h1>
-            <p className="mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold">
-              Parlar AI's agents can automate and improve even your most complex customer-facing or internal tasks.
-              <br />
-              See our AI agents in action by selecting any of the use cases below.
+            <p className="mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold line-clamp-2">
+              Parlar AI's agents can automate and improve even your most complex customer-facing or internal tasks. See our AI agents in action by selecting any of the use cases below.
             </p>
           </div>
         </div>
@@ -41,4 +40,5 @@ const Demo = () => {
       </div>
     </div>;
 };
+
 export default Demo;
