@@ -40,7 +40,7 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
-      <div className="relative w-full h-[60vh] overflow-hidden">
+      <div className="relative w-full min-h-[60vh] overflow-hidden flex items-center py-20">
         <div className="absolute inset-0">
           <img 
             src={getHeroImage(post.slug)} 
@@ -50,10 +50,12 @@ const BlogPost = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/60 via-[#2f1c4a]/70 to-[#1a0b2e] mix-blend-multiply" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1a0b2e] via-transparent to-transparent" />
         </div>
-        <div className="absolute inset-0 flex items-center">
+        <div className="relative w-full">
           <div className="container mx-auto px-4 max-w-4xl">
-            <h1 className="text-5xl font-bold text-[#9b87f5] mb-6 drop-shadow-xl bg-[#1a0b2e]/30 p-4 rounded-lg backdrop-blur-sm">{post.title}</h1>
-            <div className="flex items-center gap-6 mb-8 text-gray-200 text-sm bg-[#1a0b2e]/30 p-3 rounded-lg backdrop-blur-sm inline-block">
+            <h1 className="text-4xl md:text-5xl font-bold text-[#9b87f5] mb-6 drop-shadow-xl bg-[#1a0b2e]/30 p-4 rounded-lg backdrop-blur-sm break-words hyphens-auto">
+              {post.title}
+            </h1>
+            <div className="flex flex-wrap items-center gap-4 md:gap-6 mb-8 text-gray-200 text-sm bg-[#1a0b2e]/30 p-3 rounded-lg backdrop-blur-sm inline-block">
               <div className="flex items-center gap-2">
                 <span>{post.author}</span>
               </div>
