@@ -1,4 +1,3 @@
-
 import { BlogPost } from "../types/blog";
 
 export const samplePosts: BlogPost[] = [
@@ -23,18 +22,16 @@ export const samplePosts: BlogPost[] = [
       <br/>
       <h2 class="text-4xl font-extrabold">Key Use Cases for Voice AI in Retail</h2>
 
+      <br/>
       <h3>1. Answering Incoming Phone Calls</h3>
       <p class="pl-6">Voice AI agents can handle a high volume of calls simultaneously, reducing wait times and keeping customers happy. Simple tasks—such as directing a caller to the right department or answering questions on store hours and locations—can happen instantly. For more complex inquiries, the AI can gather information before seamlessly transferring the caller to a human representative, saving time and freeing up staff for higher-value activities.</p>
 
-      <br/>
       <h3>2. Handling Reservations and Appointments</h3>
       <p class="pl-6">Retailers that provide appointments—like electronics repair shops or salons—can use AI voice agents to book and confirm slots. Rather than forcing customers to wait or play phone tag, the agent can respond right away, ensuring your store is well-organized and your employees stay focused on customer interactions that truly need a personal touch.</p>
 
-      <br/>
       <h3>3. Providing Product or Service Details</h3>
       <p class="pl-6">Thanks to advancements in natural language processing, voice AI agents can share detailed product or service information. From confirming if an item is in stock to explaining key features, an AI agent can quickly address the routine questions customers ask every day—giving them faster answers while freeing staff to address more specialized requests.</p>
 
-      <br/>
       <h3>4. Assisting with FAQs and Customer Support</h3>
       <p class="pl-6">Common questions—returns policies, membership points, shipping timelines—can be automated through a voice AI agent. This not only saves staff hours each week; it also ensures that answers are standardized and consistently accurate.</p>
 
@@ -42,18 +39,16 @@ export const samplePosts: BlogPost[] = [
       <h2 class="text-4xl font-extrabold">Driving New Revenue and Efficiency</h2>
       <p>Implementing voice AI agents can generate <em>both</em> new revenue opportunities <em>and</em> cost efficiencies:</p>
 
+      <br/>
       <h3>1. Upselling and Cross-Selling</h3>
       <p class="pl-6">AI voice agents, when given access to customer purchase history, can make personalized recommendations. Whether it's suggesting complementary products or adding on extended warranties, these targeted offers can boost your average transaction size with minimal additional workload for staff.</p>
 
-      <br/>
       <h3>2. Extended Operating Hours</h3>
       <p class="pl-6">With a voice AI agent, you never truly "close." Even after hours, your store can continue to engage customers—answering queries, scheduling appointments, or taking messages. This heightened accessibility improves overall customer satisfaction and captures more sales opportunities.</p>
 
-      <br/>
       <h3>3. Reduced Staffing Costs</h3>
       <p class="pl-6">By automating repetitive tasks such as answering basic questions, AI voice agents allow your human team members to focus on high-impact services: building rapport on the sales floor, managing complex customer requests, and upholding strong in-store experiences. This balanced approach results in significant savings on labor while preserving the warmth of human interaction where it matters most.</p>
 
-      <br/>
       <h3>4. Scalable Resource Allocation</h3>
       <p class="pl-6">Voice AI agents scale easily to accommodate seasonal demand, promotions, or unexpected spikes in calls. This ensures you can handle the busiest shopping periods seamlessly, without burdening existing staff or hastily hiring and training additional temporary help.</p>
 
