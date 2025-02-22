@@ -98,7 +98,7 @@ const Index = () => {
         </div>
 
         {/* Feature Cards */}
-        <div className="mt-20 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+        <div className="mt-12 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
           {features.map((feature, index) => (
             <div 
               key={index}
