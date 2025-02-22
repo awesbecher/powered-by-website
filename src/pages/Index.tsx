@@ -1,12 +1,13 @@
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Building2, Bot, Phone, ChevronRight } from "lucide-react";
+import { ArrowRight, Building2, Bot, Phone, ChevronRight, ChevronLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 
 const Index = () => {
   const [animate, setAnimate] = useState(true);
   const [initialLoad, setInitialLoad] = useState(true);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -24,6 +25,21 @@ const Index = () => {
         left: 400,
         behavior: 'smooth'
       });
+    }
+  };
+
+  const handleScrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: -400,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const handleScroll = () => {
+    if (scrollContainerRef.current) {
+      setCanScrollLeft(scrollContainerRef.current.scrollLeft > 0);
     }
   };
 
@@ -190,6 +206,7 @@ const Index = () => {
             <div 
               ref={scrollContainerRef}
               className="relative overflow-x-auto pb-4"
+              onScroll={handleScroll}
             >
               <div className="flex space-x-8 w-max">
                 {blogPosts.map((post, index) => (
@@ -215,6 +232,15 @@ const Index = () => {
                 ))}
               </div>
             </div>
+            {canScrollLeft && (
+              <button
+                onClick={handleScrollLeft}
+                className="absolute left-0 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white/70 hover:text-white/90 p-4 rounded-r-xl transition-all duration-300"
+                aria-label="Scroll left"
+              >
+                <ChevronLeft size={32} />
+              </button>
+            )}
             <button
               onClick={handleScrollRight}
               className="absolute right-0 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white/70 hover:text-white/90 p-4 rounded-l-xl transition-all duration-300"
