@@ -3,7 +3,7 @@ import { BlogPost } from "../../types/blog";
 
 export const openaiAnthropicSmb: BlogPost = {
   id: "7",
-  title: "Can OpenAI & Anthropic help SMBs alone? Why Do You Need Specialized AI Partners?",
+  title: "Can OpenAI & Anthropic help SMBs by themselves? Why Do You Need Specialized AI Partners?",
   excerpt: "While tech giants excel at creating powerful AI models, discover why specialized partners are crucial for implementing AI solutions that truly work for small and medium-sized businesses.",
   author: "Parlar AI",
   date: "February 21, 2025",
@@ -69,3 +69,4 @@ export const openaiAnthropicSmb: BlogPost = {
     </div>
   `
 };
+
