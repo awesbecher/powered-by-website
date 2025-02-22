@@ -42,7 +42,7 @@ const Index = () => {
       description: "Just as web design agencies once transformed businesses for the web, we're here to revolutionize how SMBs connect, work, and grow without adding more humans or cost overhead."
     },
     {
-      title: "Transparent & Trustworthy",
+      title: "Customer Obsessed from Day 1",
       description: "Think of us as your creative AI partner. We take the time to understand your business, your customers, and your goals, then craft AI agent-enabled workflows that simply work."
     },
     {
