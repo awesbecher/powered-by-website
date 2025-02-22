@@ -1,3 +1,4 @@
+
 import { BlogPost } from "../types/blog";
 
 export const samplePosts: BlogPost[] = [
@@ -15,6 +16,7 @@ export const samplePosts: BlogPost[] = [
 
       <br/>
       <h2 class="text-4xl font-extrabold">Embracing a Time-Tested Tradition, Enhanced by Technology</h2>
+      <br/>
       <p>Retail success has typically hinged on live, friendly interactions. Whether it's greeting a customer at the door or taking a phone order, there's comfort and trust in speaking directly with a knowledgeable representative. By integrating voice AI agents, retail businesses carry forward that tradition of warm, attentive service—except they can now deliver it around the clock, at scale.</p>
 
       <p>Today's voice AI agents have evolved beyond simplistic phone menus or robotic voices. They can understand nuanced questions, handle complex conversations, and respond in a human-like manner. This means an AI can hold a natural-sounding conversation to book a reservation, offer recommendations on store products, or even provide follow-up service details, all without missing a beat.</p>
@@ -37,6 +39,7 @@ export const samplePosts: BlogPost[] = [
 
       <br/>
       <h2 class="text-4xl font-extrabold">Driving New Revenue and Efficiency</h2>
+      <br/>
       <p>Implementing voice AI agents can generate <em>both</em> new revenue opportunities <em>and</em> cost efficiencies:</p>
 
       <br/>
@@ -54,6 +57,7 @@ export const samplePosts: BlogPost[] = [
 
       <br/>
       <h2 class="text-4xl font-extrabold">The State of the Art in AI Voice</h2>
+      <br/>
       <p>Historically, robotic-sounding voices and clumsy phone menus deterred retailers from embracing AI for customer service. But those days have passed. Today's advanced AI voice agents can:</p>
 
       <ul>
@@ -74,6 +78,7 @@ export const samplePosts: BlogPost[] = [
 
       <br/>
       <p class="text-4xl font-extrabold">Interested in seeing how voice AI agents could transform your retail operations?</p>
+      <br/>
       <p>Let's talk! We'd love to learn more about your business and build a bespoke solution that enhances productivity, boosts revenue, and maintains that personal feel your customers know and trust.</p>
 
       <p><a href="#"><strong>Contact Parlar AI</strong></a> to schedule a consultation and see firsthand how a custom voice AI agent can revolutionize your retail customer service. Let us help you continue the tradition of exceptional customer experiences—powered by the best in modern AI.</p>
