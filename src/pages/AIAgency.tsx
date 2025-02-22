@@ -1,15 +1,10 @@
-
 import { useState, useEffect } from "react";
-
 const AIAgency = () => {
   const [initialLoad, setInitialLoad] = useState(true);
-
   useEffect(() => {
     setInitialLoad(false);
   }, []);
-
-  return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] pt-24 pb-12 px-4">
+  return <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] pt-24 pb-12 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="relative overflow-hidden px-6 lg:px-8 pt-12 pb-8">
           <div className="mx-auto max-w-4xl">
@@ -51,18 +46,14 @@ const AIAgency = () => {
 
         <div className="relative mt-32 px-6 lg:px-8">
           <div className="mx-auto max-w-4xl">
-            <div 
-              className={`text-left transition-all duration-1000 delay-700 ease-out transform
-                ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}
-            >
+            <div className={`text-left transition-all duration-1000 delay-700 ease-out transform
+                ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
               <h2 className="text-3xl font-bold text-[#9b87f5] mb-8">
                 What's an AI Agent?
               </h2>
               
               <div className="space-y-8 text-lg text-gray-300 leading-relaxed text-justify">
-                <p>
-                  AI agents are autonomous programs designed to help you get things done. Think of them as your digital employees who can handle a wide range of tasks—from answering customer queries and managing email correspondence to analyzing data and automating complex workflows. Unlike traditional chatbots, AI agents can understand context, learn from interactions, and make intelligent decisions.
-                </p>
+                <p>Think of an AI agent as a super-smart, tireless assistant that handles tasks for you, without the coffee breaks. Companies like OpenAI &amp; Anthropic are at the forefront of innovating AI agents to be state of the art. We bring these capabilities to SMBs who may not have the budget or resources to build agent solutions themselves. We deliver agent software that listens, learns, and acts, whether it’s speaking on the phone with customers, sending emails, or organizing your workflow. No sci-fi jargon here, just practical, custom-built help for your business. </p>
                 
                 <p className="font-medium text-white">
                   The best part? They work 24/7, never take vacations, and can handle multiple tasks simultaneously. It's like having a tireless team member who's always ready to help.
@@ -72,8 +63,6 @@ const AIAgency = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default AIAgency;
