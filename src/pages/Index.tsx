@@ -180,15 +180,16 @@ const Index = () => {
                     <div className="relative overflow-hidden rounded-xl bg-[#1a1a1a] transition-transform duration-300 group-hover:scale-[1.02]">
                       <div className="aspect-[16/9] relative">
                         <img 
-                          src={`https://images.unsplash.com/${
-                            index === 0 ? 'photo-1684163540577-88bc0fa0ae52' : // OpenAI/ChatGPT related image
-                            index === 1 ? 'photo-1556745753-b2904692b3cd' : // Retail voice assistant
-                            index === 2 ? 'photo-1551288049-bebda4e38f71' : // SaaS automation
-                            index === 3 ? 'photo-1535378917042-10a22c95931a' : // Human-like AI
-                            index === 4 ? 'photo-1553877522-43269d4ea984' : // SMB conversational agents
-                            index === 5 ? 'photo-1517245386807-bb43f82c33c4' : // Customer service evolution
-                            'photo-1485827404703-89b55fcc595e'   // AI and robotics
-                          }`}
+                          src={index === 0 
+                            ? "/lovable-uploads/f971b5e9-817b-426a-9db0-5db472970633.png"
+                            : `https://images.unsplash.com/${
+                              index === 1 ? 'photo-1556745753-b2904692b3cd' : // Retail voice assistant
+                              index === 2 ? 'photo-1551288049-bebda4e38f71' : // SaaS automation
+                              index === 3 ? 'photo-1535378917042-10a22c95931a' : // Human-like AI
+                              index === 4 ? 'photo-1553877522-43269d4ea984' : // SMB conversational agents
+                              index === 5 ? 'photo-1517245386807-bb43f82c33c4' : // Customer service evolution
+                              'photo-1485827404703-89b55fcc595e'   // AI and robotics
+                            }`}
                           alt={post.title}
                           className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-opacity"
                         />
