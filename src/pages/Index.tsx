@@ -1,3 +1,4 @@
+
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Building2, Bot, Clock, Phone } from "lucide-react";
@@ -71,7 +72,7 @@ const Index = () => {
             {
               icon: Building2,
               title: "Built for SMBs",
-              description: "Custom AI automation solutions for business with 1-1,000 employees"
+              description: "Custom AI agent solutions for businesses with 1 to 1,000 employees"
             },
             {
               icon: Bot,
