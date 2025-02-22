@@ -184,7 +184,7 @@ export const samplePosts: BlogPost[] = [
     title: "The Secret Behind \"Human-Like\" AI: Decoding Language, Emotion, and Context",
     excerpt: "Have you ever chatted with an online assistant and felt, for a fleeting moment, that you were speaking to a real person? Discover how modern AI combines natural language processing, emotional intelligence, and context awareness to create remarkably human-like interactions.",
     author: "Parlar AI",
-    date: "January 15, 2025",
+    date: "January 3, 2025",
     readTime: "5 min read",
     slug: "human-like-ai-secrets",
     category: "AI Technology",
