@@ -17,6 +17,7 @@ import MercedesDealer from "./pages/MercedesDealer";
 import RealEstate from "./pages/RealEstate";
 import NotFound from "./pages/NotFound";
 import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import AIAgency from "./pages/AIAgency";
 import WhatsAnAIAgent from "./pages/WhatsAnAIAgent";
 import Contact from "./pages/Contact";
@@ -46,6 +47,7 @@ const App = () => (
           <Route path="/mercedes" element={<MercedesDealer />} />
           <Route path="/real-estate" element={<RealEstate />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

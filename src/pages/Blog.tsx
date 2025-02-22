@@ -1,4 +1,3 @@
-
 import { Clock, User, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -16,7 +15,7 @@ interface BlogPost {
   content: string;
 }
 
-const samplePosts: BlogPost[] = [
+export const samplePosts: BlogPost[] = [
   {
     id: "1",
     title: "Voice AI Agents: The New Frontier of Retail Customer Service",
