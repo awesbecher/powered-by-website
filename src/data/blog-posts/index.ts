@@ -6,9 +6,11 @@ import { smbConversationalAgents } from "./smb-conversational-agents";
 import { customerServiceEvolution } from "./customer-service-evolution";
 import { aiFearsSMB } from "./ai-fears-smb";
 import { openaiAnthropicSmb } from "./openai-anthropic-smb";
+import { understandingAiAgents } from "./understanding-ai-agents";
 import { BlogPost } from "../../types/blog";
 
 export const samplePosts: BlogPost[] = [
+  understandingAiAgents,
   openaiAnthropicSmb,
   voiceAiRetail,
   saasAutomation,
