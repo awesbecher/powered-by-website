@@ -1,4 +1,3 @@
-
 import { BlogPost } from "../../types/blog";
 
 export const understandingAiAgents: BlogPost = {
@@ -123,7 +122,7 @@ export const understandingAiAgents: BlogPost = {
     <p><em>"AI is too complicated for me to understand."</em><br>
     You don't need to become a data scientist and AI PhD to benefit from AI agents. We offer you step-by-step guides, templated workflows, and custom agent solutions to take the heavy tech lifting off your plate.</p>
 
-    <h2>Best Practices for Getting Started</h2>
+    <h2 class="text-3xl font-extrabold bg-blue-100/20 inline-block px-4 py-2 rounded">Best Practices for Getting Started</h2>
 
     <h3>Start Small</h3>
 
