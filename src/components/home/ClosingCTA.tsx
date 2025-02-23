@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 export const ClosingCTA = () => {
   return (
-    <div className="relative mt-32 mb-20 max-w-7xl mx-auto px-4">
+    <div className="relative mt-16 mb-20 max-w-7xl mx-auto px-4">
       <div className="relative z-10 glass-card p-12 rounded-3xl overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-purple-400/10 backdrop-blur-sm" />
         
