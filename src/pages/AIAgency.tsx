@@ -80,9 +80,35 @@ const AIAgency = () => {
                       <Users className="w-8 h-8 text-purple-400" />
                       <div className="space-y-4">
                         <h3 className="text-3xl font-bold text-[#9b87f5]">How Are We Different Than The Major AI Giants?</h3>
-                        <p className="text-gray-300">
-                          While tech giants offer powerful but generic AI solutions, we create custom-tailored agents specifically for your business needs. Our focus is on developing practical, focused AI solutions that integrate seamlessly with your existing workflows and systems, providing immediate value without the complexity of enterprise-scale implementations.
-                        </p>
+                        <div className="text-gray-300 space-y-6">
+                          <p className="mb-6">We believe in a collaborative and transparent process that gets results. Here's what to expect when you work with Parlar:</p>
+                          
+                          <div className="space-y-6">
+                            <div>
+                              <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Discovery & Strategy</h4>
+                              <ul className="list-inside space-y-2">
+                                <li><span className="font-semibold">Goal Setting:</span> We identify your top objectives, such as reducing support wait times or boosting sales conversions.</li>
+                                <li><span className="font-semibold">Technical Assessment:</span> Our team audits your existing systems, data, and brand guidelines to define the perfect AI solution scope.</li>
+                              </ul>
+                            </div>
+
+                            <div>
+                              <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Custom AI Design & Integration</h4>
+                              <ul className="list-inside space-y-2">
+                                <li><span className="font-semibold">Personalized Development:</span> From conversation flows to brand tone, we craft an AI agent that mirrors your unique style.</li>
+                                <li><span className="font-semibold">Seamless Deployment:</span> We integrate directly with your website, CRM, or other channels, providing end-to-end technical support.</li>
+                              </ul>
+                            </div>
+
+                            <div>
+                              <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Training & Knowledge Transfer</h4>
+                              <ul className="list-inside space-y-2">
+                                <li><span className="font-semibold">Employee Onboarding:</span> We train your team on using, managing, and interpreting AI outputs, so everyone feels confident.</li>
+                                <li><span className="font-semibold">Live Testing & Tweaks:</span> Before going live, we run extensive QA to ensure the AI meets real-world user expectations.</li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
