@@ -1,11 +1,37 @@
+
 import { Link } from "react-router-dom";
 import { ArrowLeftCircle, ArrowRightCircle } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { samplePosts } from "@/data/blogPosts";
+
 export const BlogSection = () => {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const getPostImage = (slug: string) => {
+    switch (slug) {
+      case "understanding-ai-agents":
+        return "/lovable-uploads/b9c7959b-bd61-40d9-b0b3-317a40353486.png";
+      case "openai-anthropic-smb-specialized-partners":
+        return "/lovable-uploads/f971b5e9-817b-426a-9db0-5db472970633.png";
+      case "voice-ai-agents-retail-customer-service":
+        return "https://images.unsplash.com/photo-1556745753-b2904692b3cd";
+      case "saas-customer-engagement-automation":
+        return "https://images.unsplash.com/photo-1551288049-bebda4e38f71";
+      case "human-like-ai-secrets":
+        return "https://images.unsplash.com/photo-1535378917042-10a22c95931a";
+      case "practical-ways-smbs-use-conversational-agents":
+        return "https://images.unsplash.com/photo-1553877522-43269d4ea984";
+      case "customer-service-evolution":
+        return "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4";
+      case "breaking-down-ai-fears-smb":
+        return "https://images.unsplash.com/photo-1485827404703-89b55fcc595e";
+      default:
+        return "";
+    }
+  };
+
   const handleScrollRight = () => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollBy({
@@ -14,6 +40,7 @@ export const BlogSection = () => {
       });
     }
   };
+
   const handleScrollLeft = () => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollBy({
@@ -22,6 +49,7 @@ export const BlogSection = () => {
       });
     }
   };
+
   const handleScroll = () => {
     if (scrollContainerRef.current) {
       setCanScrollLeft(scrollContainerRef.current.scrollLeft > 0);
@@ -31,22 +59,39 @@ export const BlogSection = () => {
       setCurrentIndex(newIndex);
     }
   };
-  return <div className="mt-20 max-w-7xl mx-auto px-4">
+
+  // Reorder posts to put "AI Agents: A Layman's Guide" first
+  const orderedPosts = [...samplePosts];
+  const aiAgentsIndex = orderedPosts.findIndex(post => post.slug === "understanding-ai-agents");
+  if (aiAgentsIndex !== -1) {
+    const [aiAgentsPost] = orderedPosts.splice(aiAgentsIndex, 1);
+    orderedPosts.unshift(aiAgentsPost);
+  }
+
+  return (
+    <div className="mt-20 max-w-7xl mx-auto px-4">
       <Link to="/blog">
-        <h2 className="text-5xl font-bold text-white mb-16 whitespace-nowrap bg-gradient-to-r from-purple-500/20 to-purple-400/20 inline-block px-4 py-2 rounded-lg hover:bg-gradient-to-r hover:from-purple-500/30 hover:to-purple-400/30 transition-all">Our Latest Insights:</h2>
+        <h2 className="text-5xl font-bold text-white mb-16 whitespace-nowrap bg-gradient-to-r from-purple-500/20 to-purple-400/20 inline-block px-4 py-2 rounded-lg hover:bg-gradient-to-r hover:from-purple-500/30 hover:to-purple-400/30 transition-all">
+          Our Latest Insights:
+        </h2>
       </Link>
-    
+
       <div className="relative">
         <div ref={scrollContainerRef} className="relative overflow-x-auto scrollbar-hide pb-4" onScroll={handleScroll}>
           <div className="flex space-x-8 w-max">
-            {samplePosts.map((post, index) => <Link key={index} to={`/blog/${post.slug}`} className="group w-[384px] flex-none">
+            {orderedPosts.map((post, index) => (
+              <Link key={index} to={`/blog/${post.slug}`} className="group w-[384px] flex-none">
                 <div className="relative overflow-hidden rounded-xl bg-[#1a1a1a] transition-transform duration-300 group-hover:scale-[1.02]">
                   <div className="aspect-[16/9] relative">
-                    <img src={index === 0 ? "/lovable-uploads/f971b5e9-817b-426a-9db0-5db472970633.png" : `https://images.unsplash.com/${index === 1 ? 'photo-1556745753-b2904692b3cd' : index === 2 ? 'photo-1551288049-bebda4e38f71' : index === 3 ? 'photo-1535378917042-10a22c95931a' : index === 4 ? 'photo-1553877522-43269d4ea984' : index === 5 ? 'photo-1517245386807-bb43f82c33c4' : 'photo-1485827404703-89b55fcc595e'}`} alt={post.title} className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-opacity" />
+                    <img 
+                      src={getPostImage(post.slug)} 
+                      alt={post.title} 
+                      className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-opacity" 
+                    />
                     <div className="absolute inset-0 bg-[#1a1a1a]/60 mix-blend-overlay" />
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#1a1a1a] z-10" />
                   </div>
-                  
+
                   <div className="p-6">
                     <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#9b87f5] transition-colors">
                       {post.title}
@@ -56,23 +101,44 @@ export const BlogSection = () => {
                     </p>
                   </div>
                 </div>
-              </Link>)}
+              </Link>
+            ))}
           </div>
         </div>
-        
+
         <div className="mt-4 flex items-center justify-center gap-6">
-          <button onClick={handleScrollLeft} disabled={!canScrollLeft} className={`p-2 rounded-full transition-all duration-300 ${canScrollLeft ? 'text-white/90 hover:text-[#9b87f5]' : 'text-white/30 cursor-not-allowed'}`} aria-label="Scroll left">
+          <button 
+            onClick={handleScrollLeft} 
+            disabled={!canScrollLeft} 
+            className={`p-2 rounded-full transition-all duration-300 ${canScrollLeft ? 'text-white/90 hover:text-[#9b87f5]' : 'text-white/30 cursor-not-allowed'}`} 
+            aria-label="Scroll left"
+          >
             <ArrowLeftCircle size={32} />
           </button>
-          
+
           <div className="flex gap-2">
-            {samplePosts.map((_, index) => <div key={index} className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex ? 'bg-[#9b87f5]' : 'bg-white/20 hover:bg-white/30'}`} />)}
+            {orderedPosts.map((_, index) => (
+              <div 
+                key={index} 
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === currentIndex ? 'bg-[#9b87f5]' : 'bg-white/20 hover:bg-white/30'
+                }`} 
+              />
+            ))}
           </div>
-          
-          <button onClick={handleScrollRight} disabled={currentIndex >= samplePosts.length - 1} className={`p-2 rounded-full transition-all duration-300 ${currentIndex < samplePosts.length - 1 ? 'text-white/90 hover:text-[#9b87f5]' : 'text-white/30 cursor-not-allowed'}`} aria-label="Scroll right">
+
+          <button 
+            onClick={handleScrollRight} 
+            disabled={currentIndex >= orderedPosts.length - 1} 
+            className={`p-2 rounded-full transition-all duration-300 ${
+              currentIndex < orderedPosts.length - 1 ? 'text-white/90 hover:text-[#9b87f5]' : 'text-white/30 cursor-not-allowed'
+            }`} 
+            aria-label="Scroll right"
+          >
             <ArrowRightCircle size={32} />
           </button>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
