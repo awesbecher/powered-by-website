@@ -1,5 +1,5 @@
 
-import { MessageSquare, Sparkles } from "lucide-react";
+import { MessageSquare, Sparkles, Bot } from "lucide-react";
 
 const AIAgentIllustration = () => {
   return (
@@ -44,6 +44,11 @@ const AIAgentIllustration = () => {
               <circle cx="192" cy="76" r="3" fill="#9b87f5" opacity="0.3" />
               <circle cx="96" cy="116" r="3" fill="#9b87f5" opacity="0.3" />
               <circle cx="160" cy="116" r="3" fill="#9b87f5" opacity="0.3" />
+              
+              {/* Bot icon in the middle */}
+              <foreignObject x="108" y="76" width="40" height="40">
+                <Bot className="w-10 h-10 text-[#9b87f5] animate-pulse" />
+              </foreignObject>
               
               {/* Connecting lines with animation */}
               <path
