@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState, useEffect } from "react";
@@ -90,31 +91,31 @@ const Contact = () => {
       <div className="absolute inset-0 overflow-hidden">
         {/* Top curved shape */}
         <div 
-          className="absolute top-0 -right-24 w-[800px] h-[600px] rounded-[100%] rotate-45"
+          className="absolute -top-48 -right-48 w-[1000px] h-[800px] rounded-[100%] rotate-45"
           style={{
             background: "linear-gradient(135deg, #9b87f5 0%, #7a6cc5 100%)",
-            filter: "blur(80px)",
-            opacity: "0.15"
+            filter: "blur(120px)",
+            opacity: "0.25"
           }}
         />
         
         {/* Middle curved shape */}
         <div 
-          className="absolute top-1/3 -left-24 w-[800px] h-[600px] rounded-[100%] rotate-[135deg]"
+          className="absolute top-1/3 -left-48 w-[1000px] h-[800px] rounded-[100%] rotate-[135deg]"
           style={{
             background: "linear-gradient(135deg, #9b87f5 0%, #6E59A5 100%)",
-            filter: "blur(80px)",
-            opacity: "0.1"
+            filter: "blur(120px)",
+            opacity: "0.2"
           }}
         />
         
         {/* Bottom accent shape */}
         <div 
-          className="absolute bottom-0 right-1/4 w-[600px] h-[400px] rounded-[100%] rotate-45"
+          className="absolute bottom-0 right-1/4 w-[800px] h-[600px] rounded-[100%] rotate-45"
           style={{
             background: "linear-gradient(135deg, #FEC6A1 0%, #9b87f5 100%)",
-            filter: "blur(80px)",
-            opacity: "0.1"
+            filter: "blur(120px)",
+            opacity: "0.15"
           }}
         />
       </div>
