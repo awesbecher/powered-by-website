@@ -88,7 +88,7 @@ const NeuralNetwork = () => {
           />
         </path>
         
-        {/* Data flow particles - Added more with varied paths and timings */}
+        {/* Original cyan data flow particles */}
         <circle className="animate-pulse" cx="128" cy="96" r="1" fill="#61dafb">
           <animateMotion
             path="M 0 0 Q 30 -40 64 -20"
@@ -142,6 +142,64 @@ const NeuralNetwork = () => {
           <animateMotion
             path="M 0 0 Q -20 30 -30 35"
             dur="2.2s"
+            repeatCount="indefinite"
+          />
+        </circle>
+
+        {/* New purple data flow particles */}
+        <circle className="animate-pulse" cx="128" cy="96" r="1" fill="#9b87f5">
+          <animateMotion
+            path="M 0 0 Q 35 -35 70 -15"
+            dur="2.3s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle className="animate-pulse" cx="128" cy="96" r="1" fill="#9b87f5">
+          <animateMotion
+            path="M 0 0 Q -35 -35 -70 -15"
+            dur="2.3s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle className="animate-pulse" cx="128" cy="96" r="1" fill="#9b87f5">
+          <animateMotion
+            path="M 0 0 Q 45 15 75 25"
+            dur="1.7s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle className="animate-pulse" cx="128" cy="96" r="1" fill="#9b87f5">
+          <animateMotion
+            path="M 0 0 Q -45 15 -75 25"
+            dur="1.7s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle className="animate-pulse" cx="128" cy="96" r="1" fill="#9b87f5">
+          <animateMotion
+            path="M 0 0 Q 25 -35 37 -45"
+            dur="1.9s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle className="animate-pulse" cx="128" cy="96" r="1" fill="#9b87f5">
+          <animateMotion
+            path="M 0 0 Q -25 -35 -37 -45"
+            dur="1.9s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle className="animate-pulse" cx="128" cy="96" r="1" fill="#9b87f5">
+          <animateMotion
+            path="M 0 0 Q 15 35 25 40"
+            dur="2.1s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle className="animate-pulse" cx="128" cy="96" r="1" fill="#9b87f5">
+          <animateMotion
+            path="M 0 0 Q -15 35 -25 40"
+            dur="2.1s"
             repeatCount="indefinite"
           />
         </circle>
