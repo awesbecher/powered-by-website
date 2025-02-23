@@ -61,7 +61,7 @@ export const understandingAiAgents: BlogPost = {
 
     <h3>Customer Support</h3>
 
-    <ul>
+    <ul class="pl-6 space-y-2">
       <li><strong>Phone Agents or Chatbots:</strong> These agents handle your company's phone calls, your website's live chat, or your social media DMs. They can quickly answer FAQs, direct customers to relevant help pages, or even initiate the return process—all without making them wait in a phone queue.</li>
       <li><strong>Email Response Automation:</strong> AI can prioritize and categorize incoming requests, routing urgent issues to the right person and sending instant "We're on it!" confirmations.</li>
     </ul>
