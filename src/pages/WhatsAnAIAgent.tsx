@@ -35,17 +35,24 @@ const WhatsAnAIAgent = () => {
           <div className="mx-auto max-w-4xl">
             <div className={`text-left transition-all duration-1000 delay-500 ease-out transform
                 ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-              <h2 className="text-5xl font-bold text-white mb-8 whitespace-nowrap bg-gradient-to-r from-purple-500/20 to-purple-400/20 inline-block px-4 py-2 rounded-lg hover:bg-gradient-to-r hover:from-purple-500/30 hover:to-purple-400/30 transition-all">
-                What's an AI Agent?
-              </h2>
-              
-              <div className="space-y-8 text-lg text-gray-300 leading-relaxed text-justify">
-                <p>Think of an AI agent as a super-smart, tireless assistant that handles tasks for you, without the coffee breaks. Companies like OpenAI &amp; Anthropic are at the forefront of innovating AI agents to be state of the art. We bring these capabilities to SMBs who may not have the budget or resources to build agent solutions themselves. We deliver agent software that listens, learns, and acts, whether it's speaking on the phone with customers, sending emails, or organizing your workflow. No sci-fi jargon here, just practical, custom-built help for your business. </p>
-                
-                <p className="font-medium text-white">
-                  The best part? They work 24/7, never take vacations, and can handle multiple tasks simultaneously. It's like having a tireless team member who's always ready to help.
-                </p>
-                <hr className="border-t-2 border-gray-600/70 mt-8" />
+              <div className="flex gap-8">
+                <div className="w-64 h-64 flex-shrink-0 opacity-20">
+                  <AIAgentIllustration />
+                </div>
+                <div className="flex-1">
+                  <h2 className="text-5xl font-bold text-white mb-8 whitespace-nowrap bg-gradient-to-r from-purple-500/20 to-purple-400/20 inline-block px-4 py-2 rounded-lg hover:bg-gradient-to-r hover:from-purple-500/30 hover:to-purple-400/30 transition-all">
+                    What's an AI Agent?
+                  </h2>
+                  
+                  <div className="space-y-8 text-lg text-gray-300 leading-relaxed text-justify">
+                    <p>Think of an AI agent as a super-smart, tireless assistant that handles tasks for you, without the coffee breaks. Companies like OpenAI &amp; Anthropic are at the forefront of innovating AI agents to be state of the art. We bring these capabilities to SMBs who may not have the budget or resources to build agent solutions themselves. We deliver agent software that listens, learns, and acts, whether it's speaking on the phone with customers, sending emails, or organizing your workflow. No sci-fi jargon here, just practical, custom-built help for your business. </p>
+                    
+                    <p className="font-medium text-white">
+                      The best part? They work 24/7, never take vacations, and can handle multiple tasks simultaneously. It's like having a tireless team member who's always ready to help.
+                    </p>
+                    <hr className="border-t-2 border-gray-600/70 mt-8" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
