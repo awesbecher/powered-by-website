@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import AIAgentIllustration from "@/components/home/AIAgentIllustration";
@@ -36,7 +37,7 @@ const WhatsAnAIAgent = () => {
             <div className={`text-left transition-all duration-1000 delay-500 ease-out transform
                 ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
               <div className="flex gap-8">
-                <div className="w-64 h-64 flex-shrink-0 opacity-20">
+                <div className="w-64 h-64 flex-shrink-0">
                   <AIAgentIllustration />
                 </div>
                 <div className="flex-1">
