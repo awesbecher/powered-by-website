@@ -17,18 +17,6 @@ export const IntroSection = ({ initialLoad }: IntroSectionProps) => {
       
       <div className="space-y-8 text-lg text-gray-300 leading-relaxed text-justify">
         <p>We design and deploy intelligent agents tailored from the ground up to fit your unique needs—whether it's voice-driven phone assistants, email automation bots, text-based support, Slack integrations, or chatbots that speak and communicate as human-like as possible. Our mission? To automate the repetitive, amplify the human, and supercharge your workflows with AI that feels like it was made just for you—because it was.</p>
-
-        <div className="flex justify-center mt-8 mb-16">
-          <Link to="/blog/understanding-ai-agents">
-            <Button 
-              variant="outline" 
-              className="bg-transparent border-purple-400 text-purple-400 hover:bg-purple-400/10 hover:text-white transition-all"
-            >
-              What is an AI Agent?
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </Link>
-        </div>
       </div>
     </div>
   );
