@@ -71,6 +71,21 @@ const Products = () => {
               "Instant Response to Guest Inquiries"
             ]}
           />
+
+          <ServiceCard
+            title={<>
+              <span className="font-bold text-white">Real Estate Firms:</span>{' '}
+              <span className="font-normal text-[#9b87f5]">Virtual Sales Agent</span>
+            </>}
+            icon={Building2}
+            description="With modes for voice, SMS text, or email, this agent fields questions about listings, property details, and pricing. It can also coordinate property viewings by syncing with agents' calendars and sending appointment reminders."
+            features={[
+              "Multi-Channel Communication",
+              "Automated Appointment Scheduling",
+              "24/7 Property Information",
+              "Lead Qualification & Follow-up"
+            ]}
+          />
         </div>
       </div>
 
