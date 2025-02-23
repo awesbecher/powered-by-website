@@ -43,7 +43,10 @@ const Products = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-24">
         <div className="space-y-0 divide-y divide-white/10">
           <ServiceCard
-            title="Auto Dealerships: Virtual Sales Rep"
+            title={<>
+              <span className="font-bold text-white">Auto Dealerships:</span>{' '}
+              <span className="font-normal text-[#9b87f5]">Virtual Sales Rep</span>
+            </>}
             icon={Car}
             description="Designed for auto dealer websites and social media channels, we provide voice agents to answers questions about vehicle models, financing options, and dealer promotions. It can operate as an in-bound phone agent or as an outbound call sales associate."
             features={[
