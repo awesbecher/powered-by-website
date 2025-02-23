@@ -41,7 +41,7 @@ export const BlogPostCard = ({ post, featured = false }: BlogPostCardProps) => (
       "bg-white/5 rounded-lg overflow-hidden group-hover:bg-white/10 transition-colors h-full",
       featured ? "col-span-full lg:col-span-2" : ""
     )}>
-      <div className="relative h-[500px]">
+      <div className="relative h-[700px]">
         <div className="absolute inset-0">
           <img 
             src={getPostImage(post.slug)} 
@@ -58,7 +58,7 @@ export const BlogPostCard = ({ post, featured = false }: BlogPostCardProps) => (
             {post.title}
           </h2>
           <p className={cn(
-            "text-gray-300 mb-6 flex-grow",
+            "text-gray-300 mb-6",
             featured ? "line-clamp-8" : "line-clamp-6",
             "text-lg leading-relaxed"
           )}>
