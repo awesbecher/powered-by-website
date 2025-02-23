@@ -1,5 +1,5 @@
 
-import { Car, Users, HeadphonesIcon, Building2, Check, Mail, Phone, MessageSquare, BrainCircuit, Bot, Workflow, MessagesSquare, HeartHandshake, Network, Database, Code2, Rocket, Zap } from "lucide-react";
+import { Car, Hotel, Users, HeadphonesIcon, Building2, Check, Mail, Phone, MessageSquare, BrainCircuit, Bot, Workflow, MessagesSquare, HeartHandshake, Network, Database, Code2, Rocket, Zap } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { WordAnimation } from "@/components/home/WordAnimation";
@@ -56,7 +56,21 @@ const Products = () => {
               "Real-time Response System"
             ]}
           />
-          {/* We'll add the other 9 solutions when you provide the content */}
+          
+          <ServiceCard
+            title={<>
+              <span className="font-bold text-white">Hotels & Hospitality:</span>{' '}
+              <span className="font-normal text-[#9b87f5]">Automated Concierge</span>
+            </>}
+            icon={Hotel}
+            description="Ideal for hotel websites, travel booking portals, and messaging apps, this agent offers reservation assistance, pricing quotes, and amenity details. Acting as a voice agent for phone calls or embedded into a chatbot, it can handle multiple inquiries simultaneously, reducing wait times for potential guests."
+            features={[
+              "24/7 Reservation Assistance",
+              "Multi-Channel Support",
+              "Real-time Availability Updates",
+              "Instant Response to Guest Inquiries"
+            ]}
+          />
         </div>
       </div>
 
