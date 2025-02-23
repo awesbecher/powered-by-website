@@ -41,7 +41,7 @@ export const BlogPostCard = ({ post, featured = false }: BlogPostCardProps) => (
       "bg-white/5 rounded-lg overflow-hidden group-hover:bg-white/10 transition-colors",
       featured ? "col-span-full lg:col-span-2" : ""
     )}>
-      <div className="relative h-[500px]">
+      <div className="relative h-[170px]">
         <div className="absolute inset-0">
           <img 
             src={getPostImage(post.slug)} 
@@ -50,31 +50,31 @@ export const BlogPostCard = ({ post, featured = false }: BlogPostCardProps) => (
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black/95" />
         </div>
-        <div className="relative p-8 flex flex-col h-full">
+        <div className="relative p-4 flex flex-col h-full">
           <h2 className={cn(
-            "font-bold text-white mb-4 group-hover:text-[#9b87f5] transition-colors",
-            featured ? "text-3xl" : "text-2xl"
+            "font-bold text-white mb-2 group-hover:text-[#9b87f5] transition-colors",
+            featured ? "text-2xl" : "text-xl"
           )}>
             {post.title}
           </h2>
-          <p className="text-gray-100 text-base leading-relaxed mb-6 line-clamp-4">
+          <p className="text-gray-100 text-sm leading-relaxed mb-2 line-clamp-2">
             {post.excerpt}
           </p>
-          <div className="flex items-center justify-between text-sm text-gray-400 mt-auto">
+          <div className="flex items-center justify-between text-xs text-gray-400 mt-auto">
             <div className="flex items-center gap-2">
-              <User className="w-4 h-4" />
+              <User className="w-3 h-3" />
               <span>{post.author}</span>
             </div>
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4" />
+                <Clock className="w-3 h-3" />
                 <span>{post.readTime}</span>
               </div>
               <div 
                 className="flex items-center gap-1 text-[#9b87f5] group-hover:text-[#8b77e5] transition-colors"
               >
                 Read more
-                <ChevronRight className="w-4 h-4" />
+                <ChevronRight className="w-3 h-3" />
               </div>
             </div>
           </div>
