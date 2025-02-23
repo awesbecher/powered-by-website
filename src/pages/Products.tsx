@@ -1,5 +1,4 @@
-
-import { Car, Hotel, Users, HeadphonesIcon, Building2, Check, Mail, Phone, MessageSquare, BrainCircuit, Bot, Workflow, MessagesSquare, HeartHandshake, Network, Database, Code2, Rocket, Zap, Globe, Calendar } from "lucide-react";
+import { Car, Hotel, Users, HeadphonesIcon, Building2, Check, Mail, Phone, MessageSquare, BrainCircuit, Bot, Workflow, MessagesSquare, HeartHandshake, Network, Database, Code2, Rocket, Zap, Globe, Calendar, UtensilsCrossed } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { WordAnimation } from "@/components/home/WordAnimation";
@@ -174,6 +173,21 @@ const Products = () => {
               "Benefits Information Access",
               "Automated Onboarding Guidance",
               "Company Knowledge Base"
+            ]}
+          />
+
+          <ServiceCard
+            title={<>
+              <span className="font-bold text-white">Restaurants:</span>{' '}
+              <span className="font-normal text-[#9b87f5]">Virtual Reservation Manager</span>
+            </>}
+            icon={UtensilsCrossed}
+            description="Aimed at restaurants, this agent manages table reservations, waitlist updates, and dietary preference tracking. Deployed on a restaurant's website as a voice agent, it answers frequently asked questions (e.g., hours, menu items), so staff can concentrate on delivering excellent in-person service."
+            features={[
+              "Real-time Table Management",
+              "Automated Waitlist Updates",
+              "Dietary Preference Tracking",
+              "Menu & Hours Information"
             ]}
           />
 
