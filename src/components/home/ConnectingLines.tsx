@@ -48,9 +48,9 @@ const ConnectingLines = () => {
           strokeDasharray="4 4"
           className="animate-dash"
         />
-        {/* API Agent connection */}
+        {/* API Agent connection - Updated to connect to the primary box */}
         <path
-          d="M 200 250 L 300 250"
+          d="M 300 250 Q 250 200 175 175"
           stroke="#9b87f5"
           strokeWidth="2"
           fill="none"
