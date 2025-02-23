@@ -145,6 +145,21 @@ const Products = () => {
               "Tour Scheduling Automation"
             ]}
           />
+
+          <ServiceCard
+            title={<>
+              <span className="font-bold text-white">Finance & Insurance:</span>{' '}
+              <span className="font-normal text-[#9b87f5]">Q&A Agent</span>
+            </>}
+            icon={MessageSquare}
+            description="Designed for websites or small banks, credit unions, and insurance providers, this solution can field questions about product offerings, policy details, loan eligibility, and more. Acting as a voice or chat agent, it guides customers through self-service forms, reducing bottlenecks in call centers."
+            features={[
+              "Secure Data Handling",
+              "Policy & Product Information",
+              "Loan Eligibility Assessment",
+              "Account Setup Assistance"
+            ]}
+          />
         </div>
       </div>
 
