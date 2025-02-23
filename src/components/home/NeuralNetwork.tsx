@@ -25,6 +25,20 @@ const NeuralNetwork = () => {
           opacity="0.3"
         />
         
+        {/* Label text at the top of the box */}
+        <text
+          x="128"
+          y="50"
+          textAnchor="middle"
+          fill="#9b87f5"
+          fontSize="14"
+          fontFamily="system-ui"
+          fontWeight="bold"
+          className="select-none"
+        >
+          Custom Agent Builder
+        </text>
+
         {/* Neural network nodes */}
         <circle cx="128" cy="96" r="4" fill="#9b87f5" opacity="0.5">
           <animate
@@ -43,19 +57,6 @@ const NeuralNetwork = () => {
         <foreignObject x="108" y="76" width="40" height="40">
           <Bot className="w-10 h-10 text-[#9b87f5] animate-pulse" />
         </foreignObject>
-
-        {/* Label text under the box */}
-        <text
-          x="128"
-          y="160"
-          textAnchor="middle"
-          fill="#9b87f5"
-          fontSize="14"
-          fontFamily="system-ui"
-          className="select-none"
-        >
-          Custom Agent Builder
-        </text>
         
         {/* Connecting lines with animation */}
         <path
