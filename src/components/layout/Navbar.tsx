@@ -1,12 +1,11 @@
 import { cn } from "@/lib/utils";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { MessageSquare, ChevronDown } from "lucide-react";
+import { MessageSquare } from "lucide-react";
 import { useState } from "react";
 
 const Navbar = () => {
   const location = useLocation();
-  const [showAIAgencySubmenu, setShowAIAgencySubmenu] = useState(false);
 
   const navItems = [
     { name: "Solutions", path: "/products" },
@@ -15,7 +14,7 @@ const Navbar = () => {
   ];
 
   // Check if we should show the consultation button on current page
-  const showConsultButton = ['/', '/ai-agency', '/products', '/demo', '/blog', '/whats-an-ai-agent'].includes(location.pathname);
+  const showConsultButton = ['/', '/ai-agency', '/products', '/demo', '/blog'].includes(location.pathname);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#222222]/80 backdrop-blur-lg">
@@ -35,48 +34,20 @@ const Navbar = () => {
           {/* Navigation Items */}
           <div className="hidden md:flex items-center justify-center flex-1">
             <div className="flex space-x-8">
-              {/* AI Agency Dropdown */}
-              <div 
-                className="relative group"
-                onMouseEnter={() => setShowAIAgencySubmenu(true)}
-                onMouseLeave={() => setShowAIAgencySubmenu(false)}
+              {/* AI Agency Link */}
+              <Link
+                to="/ai-agency"
+                className={cn(
+                  "px-3 py-2 text-sm font-medium relative group",
+                  location.pathname === '/ai-agency'
+                    ? "text-[#9b87f5]"
+                    : "text-gray-300 hover:text-white",
+                  "transition-colors duration-200"
+                )}
               >
-                <Link
-                  to="/ai-agency"
-                  className={cn(
-                    "px-3 py-2 text-sm font-medium flex items-center gap-1 relative group",
-                    location.pathname === '/ai-agency' || location.pathname === '/whats-an-ai-agent'
-                      ? "text-[#9b87f5]"
-                      : "text-gray-300 hover:text-white",
-                    "transition-colors duration-200"
-                  )}
-                >
-                  AI Agency
-                  <ChevronDown className="h-4 w-4" />
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#9b87f5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
-                </Link>
-
-                {/* Dropdown Menu */}
-                <div 
-                  className={cn(
-                    "absolute left-0 mt-1 w-48 rounded-md shadow-lg bg-[#222222]/95 ring-1 ring-black ring-opacity-5 transition-all duration-200 transform origin-top",
-                    showAIAgencySubmenu ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0 pointer-events-none"
-                  )}
-                >
-                  <Link
-                    to="/whats-an-ai-agent"
-                    className={cn(
-                      "block px-4 py-2 text-sm",
-                      location.pathname === '/whats-an-ai-agent'
-                        ? "text-[#9b87f5]"
-                        : "text-gray-300 hover:text-white hover:bg-[#333333]",
-                      "transition-colors duration-200"
-                    )}
-                  >
-                    What's an AI Agent?
-                  </Link>
-                </div>
-              </div>
+                AI Agency
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#9b87f5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
+              </Link>
 
               {/* Other Nav Items */}
               {navItems.map((item) => (
