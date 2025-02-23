@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { BlogPostCard } from "@/components/blog/BlogPostCard";
 import { samplePosts } from "@/data/blogPosts";
+import { ClosingCTA } from "@/components/home/ClosingCTA";
 
 const Blog = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -43,6 +44,8 @@ const Blog = () => {
             ))}
           </div>
         </div>
+
+        <ClosingCTA />
       </div>
     </div>
   );
