@@ -16,7 +16,7 @@ export const understandingAiAgents: BlogPost = {
 
     <hr class="border-t border-gray-300 my-8 w-full">
 
-    <h2 class="text-6xl font-extrabold bg-blue-100/20 inline-block px-4 py-2 rounded">What is an AI Agent?</h2>
+    <h2 class="text-3xl font-extrabold bg-blue-100/20 inline-block px-4 py-2 rounded">What is an AI Agent?</h2>
 
     <p>Using an easily understandable analogy, AI Agents are like the backstage crew in a grand theater production—rarely in the spotlight, but indispensable for a smooth show. They take on repetitive, data-driven tasks that can bog down your team, freeing everyone to focus on higher-value activities.</p>
 
