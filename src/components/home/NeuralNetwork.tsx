@@ -28,7 +28,7 @@ const NeuralNetwork = () => {
         {/* Label text at the top of the box */}
         <text
           x="128"
-          y="50"
+          y="40"
           textAnchor="middle"
           fill="#9b87f5"
           fontSize="14"
