@@ -37,7 +37,7 @@ const WhatsAnAIAgent = () => {
             <div className={`text-left transition-all duration-1000 delay-500 ease-out transform
                 ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
               <div className="relative">
-                <div className="absolute right-0 top-0 w-64 h-64">
+                <div className="absolute -top-48 right-0 w-64 h-64">
                   <AIAgentIllustration />
                 </div>
                 <div className="relative z-10">
@@ -162,3 +162,4 @@ const WhatsAnAIAgent = () => {
 };
 
 export default WhatsAnAIAgent;
+
