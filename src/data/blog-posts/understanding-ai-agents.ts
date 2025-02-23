@@ -30,6 +30,8 @@ export const understandingAiAgents: BlogPost = {
       <li>Acts based on its decision often by interacting with other systems or tools</li>
     </ul>
 
+    <p></p>
+
     <p>Unlike a simple software script that mindlessly follows a rigid set of instructions, AI Agents are more adaptable. They "learn" from past interactions and outcomes—think of them like digital interns who evolve into experts over time. Most powerfully, they can operate in many communication channels: like agents for voice calls and text messages or within website chatbots acting as a "virtual human" to automate daily tasks.</p>
 
     <h2 class="text-3xl font-extrabold bg-blue-100/20 inline-block px-4 py-2 rounded">How Do They Work?</h2>
