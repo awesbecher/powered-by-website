@@ -1,3 +1,4 @@
+
 import { MessageCircle, Phone, Smartphone, MessageSquare, Sparkles, Bot } from "lucide-react";
 
 const AIAgentIllustration = () => {
@@ -114,12 +115,12 @@ const AIAgentIllustration = () => {
         </div>
 
         {/* Chat Agent text bubble */}
-        <div className="absolute -top-16 right-0 transform translate-x-1/2">
+        <div className="absolute top-12 right-0 transform translate-x-3/4">
           <div className="bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 px-4 py-2 rounded-lg backdrop-blur-sm border border-white/10 shadow-lg flex items-center gap-2">
             <MessageCircle className="w-5 h-5 text-[#9b87f5]" />
             <p className="text-white font-medium">CHAT AGENT</p>
           </div>
-          <div className="absolute w-2 h-2 bg-[#9b87f5] rounded-full bottom-0 left-0" />
+          <div className="absolute w-2 h-2 bg-[#9b87f5] rounded-full top-0 left-0" />
         </div>
 
         {/* Voice Agent bubble */}
