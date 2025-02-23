@@ -37,7 +37,7 @@ const WhatsAnAIAgent = () => {
             <div className={`text-left transition-all duration-1000 delay-500 ease-out transform
                 ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
               {/* Background illustration */}
-              <div className="absolute inset-0 opacity-20 pointer-events-none">
+              <div className="absolute -top-12 -right-64 opacity-20 pointer-events-none">
                 <AIAgentIllustration />
               </div>
               
