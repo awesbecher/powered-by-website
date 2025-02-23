@@ -95,7 +95,7 @@ const Products = () => {
             icon={HeadphonesIcon}
             description="Deployed through phone lines or even inside your app, this solution helps users troubleshoot issues, run diagnostics, and escalate complex problems. It understands natural speech patterns, making tech support feel more personal and less intimidating."
             features={[
-              "24/7 Technical Support",
+              "24/7 Technical Support", 
               "Natural Language Understanding",
               "Smart Issue Escalation",
               "In-App Voice Integration"
@@ -114,6 +114,21 @@ const Products = () => {
               "Automated Proposal Generation",
               "Real-time Sales Rep Routing",
               "Pain Point Analysis"
+            ]}
+          />
+
+          <ServiceCard
+            title={<>
+              <span className="font-bold text-white">Retail Stores:</span>{' '}
+              <span className="font-normal text-[#9b87f5]">Virtual Sales Associate</span>
+            </>}
+            icon={MessageSquare}
+            description="This agent greets customers online (via website chat or mobile app) and assists with product inquiries, personalized recommendations, and real-time inventory checks. Deployed primarily on e-commerce sites or in-store kiosks, it helps shoppers find exactly what they need quickly."
+            features={[
+              "Real-time Product Recommendations",
+              "Inventory Availability Checks",
+              "Voice & Chat Integration",
+              "Personalized Shopping Assistance"
             ]}
           />
         </div>
