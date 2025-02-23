@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { ServiceCard } from "@/components/products/ServiceCard";
 import { ProductsHero } from "@/components/products/ProductsHero";
 import { serviceCardsData } from "@/data/serviceCardsData";
@@ -7,27 +7,27 @@ import { ClosingCTA } from "@/components/home/ClosingCTA";
 
 const Products = () => {
   const [initialLoad, setInitialLoad] = useState(true);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setInitialLoad(false);
   }, []);
 
   const scrollToSection = (index: number) => {
-    const element = document.getElementById(`solution-${index}`);
-    if (element && containerRef.current) {
-      const headerOffset = 100;
-      const elementPosition = element.offsetTop - headerOffset;
-      
-      window.scrollTo({
-        top: elementPosition,
-        behavior: "smooth"
-      });
-    }
+    setTimeout(() => {
+      const element = document.getElementById(`solution-${index}`);
+      if (element) {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+        // Additional offset to account for fixed header
+        window.scrollBy(0, -80);
+      }
+    }, 100);
   };
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
+    <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <ProductsHero initialLoad={initialLoad} />
 
       {/* Solutions Index Grid */}
@@ -57,7 +57,7 @@ const Products = () => {
             <div 
               key={index} 
               id={`solution-${index}`} 
-              className="scroll-mt-[100px]"
+              className="scroll-mt-20"
             >
               <ServiceCard
                 title={
