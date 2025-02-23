@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -92,7 +91,7 @@ const AIAgency = () => {
                             How Are We Different Than The Major AI Giants?
                           </h3>
                           <div className="text-gray-300 text-left opacity-0 h-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-300 overflow-hidden">
-                            <p className="mb-6">We believe in a collaborative and transparent process that gets results. Here's what to expect when you work with Parlar:</p>
+                            <p className="mb-6">We believe in a collaborative and transparent process that gets results. Here's what to expect when you work with Parlar AI:</p>
                             
                             <div className="space-y-6">
                               <div>
@@ -116,6 +115,14 @@ const AIAgency = () => {
                                 <ul className="list-inside space-y-2">
                                   <li><span className="font-semibold">Employee Onboarding:</span> We train your team on using, managing, and interpreting AI outputs, so everyone feels confident.</li>
                                   <li><span className="font-semibold">Live Testing & Tweaks:</span> Before going live, we run extensive QA to ensure the AI meets real-world user expectations.</li>
+                                </ul>
+                              </div>
+
+                              <div>
+                                <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Continuous Optimization</h4>
+                                <ul className="list-inside space-y-2">
+                                  <li><span className="font-semibold">Performance Monitoring:</span> Using feedback loops and analytics, we identify improvement areas—like conversation accuracy or sentiment handling.</li>
+                                  <li><span className="font-semibold">Iterative Updates:</span> Our ongoing maintenance ensures your AI agent evolves alongside your business, maintaining top-notch performance.</li>
                                 </ul>
                               </div>
                             </div>
