@@ -44,13 +44,13 @@ const NeuralNetwork = () => {
           <Bot className="w-10 h-10 text-[#9b87f5] animate-pulse" />
         </foreignObject>
 
-        {/* Label text under the bot */}
+        {/* Label text under the box */}
         <text
           x="128"
-          y="130"
+          y="160"
           textAnchor="middle"
           fill="#9b87f5"
-          fontSize="10"
+          fontSize="14"
           fontFamily="system-ui"
           className="select-none"
         >
