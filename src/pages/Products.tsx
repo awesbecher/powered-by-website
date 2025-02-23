@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { ServiceCard } from "@/components/products/ServiceCard";
 import { ProductsHero } from "@/components/products/ProductsHero";
 import { serviceCardsData } from "@/data/serviceCardsData";
+import { ClosingCTA } from "@/components/home/ClosingCTA";
 
 const Products = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -34,6 +35,8 @@ const Products = () => {
           ))}
         </div>
       </div>
+
+      <ClosingCTA />
 
       {/* Gradient orbs for visual interest */}
       <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
