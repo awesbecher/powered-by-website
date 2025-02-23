@@ -67,7 +67,7 @@ const AIAgency = () => {
                       <div className="space-y-4">
                         <h3 className="text-3xl font-bold text-[#9b87f5]">What Makes an AI Agency Unique?</h3>
                         <p className="text-gray-300">
-                          Unlike traditional software development firms, we specialize in creating AI agents that learn, adapt, and evolve. Our solutions don't just follow scripts – they understand context, recognize patterns, and make intelligent decisions, bringing a new level of automation to your business processes.
+                          When most small and mid-sized businesses consider AI, they either see costly in-house builds or deeply expensive enterprise solutions. At Parlar, we bridge this gap by serving as your dedicated AI Agency—guiding you step-by-step with customized, human-like AI solutions that fit your budget, timeline, and brand. We handle the technical heavy lifting and deliver straightforward, powerful tools so you can focus on what truly matters: delighting your customers and growing your business.
                         </p>
                       </div>
                     </div>
