@@ -1,8 +1,7 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, BookOpen, Users, Rocket, HandShake, CheckCircle } from "lucide-react";
+import { ArrowRight, BookOpen, Users, Rocket, Handshake, CheckCircle } from "lucide-react";
 
 const AIAgency = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -106,7 +105,7 @@ const AIAgency = () => {
                   <div className="relative group">
                     <div className="absolute -inset-1 bg-gradient-to-r from-yellow-600 to-green-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200" />
                     <div className="relative p-6 bg-[#1a0b2e] ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-start space-x-6">
-                      <HandShake className="w-8 h-8 text-purple-400" />
+                      <Handshake className="w-8 h-8 text-purple-400" />
                       <div className="space-y-4">
                         <h3 className="text-3xl font-bold text-[#9b87f5]">Why Should You Partner with Parlar?</h3>
                         <p className="text-gray-300">
