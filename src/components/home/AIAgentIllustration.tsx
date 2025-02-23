@@ -48,13 +48,13 @@ const AIAgentIllustration = () => {
         <AgentBubble 
           title="API AGENT" 
           icon={Plug} 
-          position="top-52 right-0 transform translate-x-1/2" 
+          position="top-44 right-0 transform translate-x-1/2" 
           dotPosition="top-left"
         />
         <AgentBubble 
           title="SLACK AGENT" 
           icon={MessageSquare} 
-          position="top-52 left-0 transform -translate-x-3/4" 
+          position="top-44 left-0 transform -translate-x-3/4" 
           dotPosition="top-right"
         />
 
