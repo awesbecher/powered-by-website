@@ -58,32 +58,72 @@ export const understandingAiAgents: BlogPost = {
 
     <p>You might be thinking: "Great, but where in my day-to-day operations can I actually use these agents?" Here are a few common scenarios:</p>
 
-    <h3>Customer Support</h3>
+    <h3 class="text-2xl font-bold text-[#9b87f5] mb-4">Customer Support</h3>
 
-    <ul class="pl-12 space-y-2 list-none">
-      <li class="before:content-['•'] before:mr-2 before:text-accent flex"><strong>Phone Agents or Chatbots:</strong> These agents handle your company's phone calls, your website's live chat, or your social media DMs. They can quickly answer FAQs, direct customers to relevant help pages, or even initiate the return process—all without making them wait in a phone queue.</li>
-      <li class="before:content-['•'] before:mr-2 before:text-accent flex"><strong>Email Response Automation:</strong> AI can prioritize and categorize incoming requests, routing urgent issues to the right person and sending instant "We're on it!" confirmations.</li>
+    <ul class="pl-12 space-y-4 list-none">
+      <li class="before:content-['•'] before:mr-2 before:text-accent before:text-xl flex items-start">
+        <div>
+          <strong class="text-[#9b87f5]">Phone Agents or Chatbots:</strong> 
+          <p class="mt-1">These agents handle your company's phone calls, your website's live chat, or your social media DMs. They can quickly answer FAQs, direct customers to relevant help pages, or even initiate the return process—all without making them wait in a phone queue.</p>
+        </div>
+      </li>
+      <li class="before:content-['•'] before:mr-2 before:text-accent before:text-xl flex items-start">
+        <div>
+          <strong class="text-[#9b87f5]">Email Response Automation:</strong>
+          <p class="mt-1">AI can prioritize and categorize incoming requests, routing urgent issues to the right person and sending instant "We're on it!" confirmations.</p>
+        </div>
+      </li>
     </ul>
 
-    <h3>Sales & Marketing</h3>
+    <h3 class="text-2xl font-bold text-[#9b87f5] mt-8 mb-4">Sales & Marketing</h3>
 
-    <ul class="pl-12 space-y-2 list-none">
-      <li class="before:content-['•'] before:mr-2 before:text-accent flex"><strong>Lead Qualification:</strong> An AI agent can score leads based on interactions, demographics, or past purchases, so your sales team focuses on the most promising prospects.</li>
-      <li class="before:content-['•'] before:mr-2 before:text-accent flex"><strong>Personalized Outreach:</strong> Automated marketing campaigns that tailor email subject lines, content, and offers to each recipient's behavior—like that handy friend who always knows your favorite coffee order.</li>
+    <ul class="pl-12 space-y-4 list-none">
+      <li class="before:content-['•'] before:mr-2 before:text-accent before:text-xl flex items-start">
+        <div>
+          <strong class="text-[#9b87f5]">Lead Qualification:</strong>
+          <p class="mt-1">An AI agent can score leads based on interactions, demographics, or past purchases, so your sales team focuses on the most promising prospects.</p>
+        </div>
+      </li>
+      <li class="before:content-['•'] before:mr-2 before:text-accent before:text-xl flex items-start">
+        <div>
+          <strong class="text-[#9b87f5]">Personalized Outreach:</strong>
+          <p class="mt-1">Automated marketing campaigns that tailor email subject lines, content, and offers to each recipient's behavior—like that handy friend who always knows your favorite coffee order.</p>
+        </div>
+      </li>
     </ul>
 
-    <h3>Workflow Management</h3>
+    <h3 class="text-2xl font-bold text-[#9b87f5] mt-8 mb-4">Workflow Management</h3>
 
-    <ul class="pl-12 space-y-2 list-none">
-      <li class="before:content-['•'] before:mr-2 before:text-accent flex"><strong>Task Routing:</strong> Got a complicated workflow involving multiple departments? AI agents can track progress and assign tasks to the right teams in the right order.</li>
-      <li class="before:content-['•'] before:mr-2 before:text-accent flex"><strong>Document Processing:</strong> From scanning invoices to validating forms, AI agents can handle manual data entry drudgery.</li>
+    <ul class="pl-12 space-y-4 list-none">
+      <li class="before:content-['•'] before:mr-2 before:text-accent before:text-xl flex items-start">
+        <div>
+          <strong class="text-[#9b87f5]">Task Routing:</strong>
+          <p class="mt-1">Got a complicated workflow involving multiple departments? AI agents can track progress and assign tasks to the right teams in the right order.</p>
+        </div>
+      </li>
+      <li class="before:content-['•'] before:mr-2 before:text-accent before:text-xl flex items-start">
+        <div>
+          <strong class="text-[#9b87f5]">Document Processing:</strong>
+          <p class="mt-1">From scanning invoices to validating forms, AI agents can handle manual data entry drudgery.</p>
+        </div>
+      </li>
     </ul>
 
-    <h3>Data Analysis & Reporting</h3>
+    <h3 class="text-2xl font-bold text-[#9b87f5] mt-8 mb-4">Data Analysis & Reporting</h3>
 
-    <ul class="pl-12 space-y-2 list-none">
-      <li class="before:content-['•'] before:mr-2 before:text-accent flex"><strong>Dashboard Generation:</strong> They can pull real-time data from different tools (like CRM, finance, marketing platforms), compile it, and produce easy-to-read dashboards.</li>
-      <li class="before:content-['•'] before:mr-2 before:text-accent flex"><strong>Predictive Analytics:</strong> For the forward-thinkers out there, AI can forecast sales trends, flag potential issues with inventory, or even suggest pricing tweaks.</li>
+    <ul class="pl-12 space-y-4 list-none">
+      <li class="before:content-['•'] before:mr-2 before:text-accent before:text-xl flex items-start">
+        <div>
+          <strong class="text-[#9b87f5]">Dashboard Generation:</strong>
+          <p class="mt-1">They can pull real-time data from different tools (like CRM, finance, marketing platforms), compile it, and produce easy-to-read dashboards.</p>
+        </div>
+      </li>
+      <li class="before:content-['•'] before:mr-2 before:text-accent before:text-xl flex items-start">
+        <div>
+          <strong class="text-[#9b87f5]">Predictive Analytics:</strong>
+          <p class="mt-1">For the forward-thinkers out there, AI can forecast sales trends, flag potential issues with inventory, or even suggest pricing tweaks.</p>
+        </div>
+      </li>
     </ul>
 
     <p></p>
