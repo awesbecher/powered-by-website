@@ -14,20 +14,6 @@ const AIAgentIllustration = () => {
           <NeuralNetwork />
         </div>
 
-        {/* Robot head */}
-        <div className="absolute -top-32 left-1/2 transform -translate-x-1/2">
-          <div className="w-24 h-24 bg-gradient-to-br from-[#9b87f5] to-[#7a6cc5] rounded-2xl relative">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-12 h-6 bg-black rounded-full overflow-hidden">
-                <div className="w-full h-full flex items-center justify-center gap-4">
-                  <div className="w-2 h-2 bg-[#61dafb] rounded-full animate-pulse" />
-                  <div className="w-2 h-2 bg-[#61dafb] rounded-full animate-pulse" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Agent Bubbles */}
         <AgentBubble 
           title="CHAT AGENT" 
@@ -79,4 +65,3 @@ const AIAgentIllustration = () => {
 };
 
 export default AIAgentIllustration;
-
