@@ -1,4 +1,3 @@
-
 import { BlogPost } from "../../types/blog";
 
 export const understandingAiAgents: BlogPost = {
@@ -24,11 +23,10 @@ export const understandingAiAgents: BlogPost = {
     <p>If you also imagine your business as a bustling kitchen, an AI Agent is like an ultra-efficient sous chef. It operates by itself in the background, taking inputs (ingredients) and executing tasks based on your guidance (recipes), so you can focus on the main course—managing and growing the business.</p>
 
     <p>Formally, an AI Agent is software that:</p>
-    <ul class="list-disc pl-6 space-y-2">
-      <li>Observes its environment through data or direct user inputs</li>
-      <li>Decides what action to take next via algorithms, learned behavior, or directly from instructions you give it. The decisioning is based on what are referred to as "AI prompts"</li>
-      <li>Acts based on its decision often by interacting with other systems or tools</li>
-    </ul>
+    
+    Observes its environment through data or direct user inputs
+    Decides what action to take next via algorithms, learned behavior, or directly from instructions you give it. The decisioning is based on what are referred to as "AI prompts"
+    Acts based on its decision often by interacting with other systems or tools
 
     <p></p>
 
