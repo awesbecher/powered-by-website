@@ -1,3 +1,4 @@
+
 import { BlogPost } from "../../types/blog";
 
 export const understandingAiAgents: BlogPost = {
@@ -222,13 +223,13 @@ export const understandingAiAgents: BlogPost = {
 
     <p>Despite the obvious benefits, there's always a bit of nervousness surrounding new tech:</p>
 
-    <p><em>"AI will replace my employees."</em><br>
+    <p><em><strong>"AI will replace my employees."</strong></em><br>
     Not exactly. AI agents automate repetitive tasks, yes, but it also creates new opportunities. Your team can upskill or pivot to more meaningful roles that require human creativity, empathy, and judgment—qualities AI can't replicate (at least not yet!).</p>
 
-    <p><em>"I'm too small to benefit from AI."</em><br>
+    <p><em><strong>"I'm too small to benefit from AI."</strong></em><br>
     On the contrary, being smaller often means you can adapt faster than larger competitors. You don't need an elaborate IT department or a billionaire's budget to deploy AI agents.</p>
 
-    <p><em>"AI is too complicated for me to understand."</em><br>
+    <p><em><strong>"AI is too complicated for me to understand."</strong></em><br>
     You don't need to become a data scientist and AI PhD to benefit from AI agents. We offer you step-by-step guides, templated workflows, and custom agent solutions to take the heavy tech lifting off your plate.</p>
 
     <div class="mt-12"></div>
