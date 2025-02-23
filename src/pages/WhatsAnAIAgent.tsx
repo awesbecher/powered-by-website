@@ -36,8 +36,11 @@ const WhatsAnAIAgent = () => {
           <div className="mx-auto max-w-4xl">
             <div className={`text-left transition-all duration-1000 delay-500 ease-out transform
                 ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-              <div className="flex gap-8">
-                <div className="flex-1">
+              <div className="relative">
+                <div className="absolute right-0 top-0 w-64 h-64 opacity-20">
+                  <AIAgentIllustration />
+                </div>
+                <div className="relative z-10">
                   <h2 className="text-5xl font-bold text-white mb-8 whitespace-nowrap bg-gradient-to-r from-purple-500/20 to-purple-400/20 inline-block px-4 py-2 rounded-lg hover:bg-gradient-to-r hover:from-purple-500/30 hover:to-purple-400/30 transition-all">
                     What's an AI Agent?
                   </h2>
@@ -50,9 +53,6 @@ const WhatsAnAIAgent = () => {
                     </p>
                     <hr className="border-t-2 border-gray-600/70 mt-8" />
                   </div>
-                </div>
-                <div className="w-64 h-64 flex-shrink-0">
-                  <AIAgentIllustration />
                 </div>
               </div>
             </div>
