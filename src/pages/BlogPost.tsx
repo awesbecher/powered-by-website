@@ -44,11 +44,14 @@ const BlogPost = () => {
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <div className="relative w-full min-h-[60vh] overflow-hidden flex items-center py-20">
         <div className="absolute inset-0">
-          <img 
-            src={getHeroImage(post.slug)} 
-            alt={post.title}
-            className="w-full h-full object-cover opacity-50 transition-opacity duration-700 hover:opacity-60"
-          />
+          <div className="w-full h-full overflow-hidden">
+            <img 
+              src={getHeroImage(post.slug)} 
+              alt={post.title}
+              className="w-full h-[120%] object-cover opacity-50 transition-opacity duration-700 hover:opacity-60 object-top"
+              style={{ marginTop: '-10%' }}
+            />
+          </div>
           <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/60 via-[#2f1c4a]/70 to-[#1a0b2e] mix-blend-multiply" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1a0b2e] via-transparent to-transparent" />
         </div>
