@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import AIAgentIllustration from "@/components/home/AIAgentIllustration";
@@ -36,11 +35,6 @@ const WhatsAnAIAgent = () => {
           <div className="mx-auto max-w-4xl">
             <div className={`text-left transition-all duration-1000 delay-500 ease-out transform
                 ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-              {/* Background illustration */}
-              <div className="absolute -top-12 -right-64 opacity-20 pointer-events-none">
-                <AIAgentIllustration />
-              </div>
-              
               <h2 className="text-5xl font-bold text-white mb-8 whitespace-nowrap bg-gradient-to-r from-purple-500/20 to-purple-400/20 inline-block px-4 py-2 rounded-lg hover:bg-gradient-to-r hover:from-purple-500/30 hover:to-purple-400/30 transition-all">
                 What's an AI Agent?
               </h2>
