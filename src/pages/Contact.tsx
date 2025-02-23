@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState, useEffect } from "react";
@@ -86,40 +85,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen relative bg-[#1a0b2e] overflow-hidden">
-      {/* Stylized background shapes */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Top curved shape */}
-        <div 
-          className="absolute -top-96 -right-96 w-[1500px] h-[1200px] rounded-[100%] rotate-45"
-          style={{
-            background: "linear-gradient(135deg, #9b87f5 0%, #7a6cc5 100%)",
-            filter: "blur(150px)",
-            opacity: "0.4"
-          }}
-        />
-        
-        {/* Middle curved shape */}
-        <div 
-          className="absolute top-1/3 -left-96 w-[1500px] h-[1200px] rounded-[100%] rotate-[135deg]"
-          style={{
-            background: "linear-gradient(135deg, #9b87f5 0%, #6E59A5 100%)",
-            filter: "blur(150px)",
-            opacity: "0.35"
-          }}
-        />
-        
-        {/* Bottom accent shape */}
-        <div 
-          className="absolute -bottom-48 right-1/4 w-[1200px] h-[900px] rounded-[100%] rotate-45"
-          style={{
-            background: "linear-gradient(135deg, #FEC6A1 0%, #9b87f5 100%)",
-            filter: "blur(150px)",
-            opacity: "0.3"
-          }}
-        />
-      </div>
-
+    <div className="min-h-screen relative bg-[#1a0b2e]">
       {/* Content */}
       <div className="relative z-10 pt-36">
         <div className="max-w-2xl mx-auto px-4">
