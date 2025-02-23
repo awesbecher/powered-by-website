@@ -1,5 +1,4 @@
-
-import { MessageCircle, Phone, Smartphone, MessageSquare, Sparkles, Bot, Mail, Settings, Plug } from "lucide-react";
+import { MessageCircle, Phone, Smartphone, MessageSquare, Sparkles, Bot, Mail, Settings, Plug, MessageSquare } from "lucide-react";
 
 const AIAgentIllustration = () => {
   return (
@@ -168,6 +167,15 @@ const AIAgentIllustration = () => {
           <div className="absolute w-2 h-2 bg-[#9b87f5] rounded-full top-0 left-0" />
         </div>
 
+        {/* Slack Agent bubble */}
+        <div className="absolute top-52 left-0 transform -translate-x-3/4">
+          <div className="bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 px-4 py-2 rounded-lg backdrop-blur-sm border border-white/10 shadow-lg flex items-center gap-2">
+            <MessageSquare className="w-5 h-5 text-[#9b87f5]" />
+            <p className="text-white font-medium">SLACK AGENT</p>
+          </div>
+          <div className="absolute w-2 h-2 bg-[#9b87f5] rounded-full top-0 right-0" />
+        </div>
+
         {/* Connecting lines */}
         <div className="absolute inset-0 pointer-events-none">
           <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 300">
@@ -219,6 +227,15 @@ const AIAgentIllustration = () => {
             {/* API Agent connection */}
             <path
               d="M 200 250 L 300 250"
+              stroke="#9b87f5"
+              strokeWidth="2"
+              fill="none"
+              strokeDasharray="4 4"
+              className="animate-dash"
+            />
+            {/* Slack Agent connection */}
+            <path
+              d="M 50 250 L 150 250"
               stroke="#9b87f5"
               strokeWidth="2"
               fill="none"
