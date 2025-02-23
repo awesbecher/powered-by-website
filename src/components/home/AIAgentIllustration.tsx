@@ -36,13 +36,13 @@ const AIAgentIllustration = () => {
         <AgentBubble 
           title="EMAIL AGENT" 
           icon={Mail} 
-          position="top-32 right-0 transform translate-x-3/4" 
+          position="top-28 right-0 transform translate-x-3/4" 
           dotPosition="top-left"
         />
         <AgentBubble 
           title="TASK AGENT" 
           icon={Settings} 
-          position="top-32 left-0 transform -translate-x-3/4" 
+          position="top-28 left-0 transform -translate-x-3/4" 
           dotPosition="top-right"
         />
         <AgentBubble 
