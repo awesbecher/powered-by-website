@@ -38,10 +38,10 @@ export const BlogPostCard = ({ post, featured = false }: BlogPostCardProps) => (
     className="block group"
   >
     <div className={cn(
-      "bg-white/5 rounded-lg overflow-hidden group-hover:bg-white/10 transition-colors",
+      "bg-white/5 rounded-lg overflow-hidden group-hover:bg-white/10 transition-colors h-full",
       featured ? "col-span-full lg:col-span-2" : ""
     )}>
-      <div className="relative">
+      <div className="relative h-[500px]">
         <div className="absolute inset-0">
           <img 
             src={getPostImage(post.slug)} 
@@ -50,20 +50,21 @@ export const BlogPostCard = ({ post, featured = false }: BlogPostCardProps) => (
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-black/90" />
         </div>
-        <div className="relative p-6">
+        <div className="relative p-8 flex flex-col h-full">
           <h2 className={cn(
-            "font-bold text-white mb-3 group-hover:text-[#9b87f5] transition-colors",
-            featured ? "text-3xl" : "text-xl"
+            "font-bold text-white mb-4 group-hover:text-[#9b87f5] transition-colors",
+            featured ? "text-3xl" : "text-2xl"
           )}>
             {post.title}
           </h2>
           <p className={cn(
-            "text-gray-400 mb-4",
-            featured ? "line-clamp-3" : "line-clamp-2"
+            "text-gray-300 mb-6 flex-grow",
+            featured ? "line-clamp-6" : "line-clamp-4",
+            "text-lg leading-relaxed"
           )}>
             {post.excerpt}
           </p>
-          <div className="flex items-center justify-between text-sm text-gray-400">
+          <div className="flex items-center justify-between text-sm text-gray-400 mt-auto">
             <div className="flex items-center gap-2">
               <User className="w-4 h-4" />
               <span>{post.author}</span>
