@@ -52,7 +52,7 @@ export const BlogPostCard = ({ post, featured = false }: BlogPostCardProps) => (
         </div>
         <div className="relative p-4 flex flex-col h-full">
           <h2 className={cn(
-            "font-bold text-white mb-2 group-hover:text-white transition-colors text-shadow",
+            "font-bold text-white mb-2 group-hover:text-[#9b87f5] transition-colors text-shadow",
             featured ? "text-2xl" : "text-xl"
           )}>
             {post.title}
