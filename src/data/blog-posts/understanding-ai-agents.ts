@@ -1,4 +1,3 @@
-
 import { BlogPost } from "../../types/blog";
 
 export const understandingAiAgents: BlogPost = {
@@ -32,6 +31,8 @@ export const understandingAiAgents: BlogPost = {
     <p></p>
 
     <p>Unlike a simple software script that mindlessly follows a rigid set of instructions, AI Agents are more adaptable. They "learn" from past interactions and outcomes—think of them like digital interns who evolve into experts over time. Most powerfully, they can operate in many communication channels: like agents for voice calls and text messages or within website chatbots acting as a "virtual human" to automate daily tasks.</p>
+
+    <div class="mt-12"></div>
 
     <h2 class="text-3xl font-extrabold bg-blue-100/20 inline-block px-4 py-2 rounded">How Do They Work?</h2>
 
@@ -68,6 +69,8 @@ export const understandingAiAgents: BlogPost = {
     </ul>
 
     <p class="mt-6">Essentially, AI Agents are like well-trained digital detectives, sifting through heaps of data and clues to arrive at the right conclusion and act upon it without you. Seamless, accurate, and automatic.</p>
+
+    <div class="mt-12"></div>
 
     <h2 class="text-3xl font-extrabold bg-blue-100/20 inline-block px-4 py-2 rounded">Key Deployment Areas for SMBs</h2>
 
@@ -218,6 +221,8 @@ export const understandingAiAgents: BlogPost = {
         </div>
       </li>
     </ul>
+
+    <div class="mt-12"></div>
 
     <h2 class="text-3xl font-extrabold bg-blue-100/20 inline-block px-4 py-2 rounded">But Will AI Agents Steal My Job?</h2>
 
