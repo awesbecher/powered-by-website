@@ -25,9 +25,17 @@ export const understandingAiAgents: BlogPost = {
 
     <p>Formally, an AI Agent is software that:</p>
     
-    Observes its environment through data or direct user inputs
-    Decides what action to take next via algorithms, learned behavior, or directly from instructions you give it. The decisioning is based on what are referred to as "AI prompts"
-    Acts based on its decision often by interacting with other systems or tools
+    <ul class="pl-12 space-y-4 list-none mt-6 text-white">
+      <li class="before:content-['•'] before:mr-2 before:text-accent before:text-xl flex items-start">
+        Observes its environment through data or direct user inputs
+      </li>
+      <li class="before:content-['•'] before:mr-2 before:text-accent before:text-xl flex items-start">
+        Decides what action to take next via algorithms, learned behavior, or directly from instructions you give it. The decisioning is based on what are referred to as "AI prompts"
+      </li>
+      <li class="before:content-['•'] before:mr-2 before:text-accent before:text-xl flex items-start">
+        Acts based on its decision often by interacting with other systems or tools
+      </li>
+    </ul>
 
     <p></p>
 
