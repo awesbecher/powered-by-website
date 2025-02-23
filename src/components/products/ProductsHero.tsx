@@ -16,7 +16,7 @@ export const ProductsHero = ({ initialLoad }: ProductsHeroProps) => {
           >
             <WordAnimation />
             Agent{" "}
-            <span className="text-[#9b87f5]">Solutions Portfolio</span>
+            <span className="text-white">Solutions Portfolio</span>
           </h1>
           
           <p 
