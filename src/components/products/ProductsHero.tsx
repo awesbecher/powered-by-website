@@ -24,7 +24,7 @@ export const ProductsHero = ({ initialLoad }: ProductsHeroProps) => {
               ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
           >
             While we approach each new client with custom solutions to meet their needs, 
-            we have a range of pre-built AI agent solutions designed to transform your business operations. 
+            we have a range of <span className="text-[#9b87f5]">pre-built</span> AI agent solutions designed to transform your business operations. 
             Each solution is customizable to meet your specific needs but it is templated to allow you to 
             deploy very quickly. Explore these pre-built solutions below.
           </p>
