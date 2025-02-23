@@ -1,4 +1,3 @@
-
 import { Car, Hotel, Users, HeadphonesIcon, Building2, Check, Mail, Phone, MessageSquare, BrainCircuit, Bot, Workflow, MessagesSquare, HeartHandshake, Network, Database, Code2, Rocket, Zap } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -129,6 +128,21 @@ const Products = () => {
               "Inventory Availability Checks",
               "Voice & Chat Integration",
               "Personalized Shopping Assistance"
+            ]}
+          />
+
+          <ServiceCard
+            title={<>
+              <span className="font-bold text-white">Education:</span>{' '}
+              <span className="font-normal text-[#9b87f5]">Enrollment Assistant</span>
+            </>}
+            icon={Users}
+            description="Built for universities and other educational institutions, this agent helps current or prospective students discover relevant courses, understand admission requirements, and schedule campus or virtual tours. It's accessible through institutional websites and student portals, offering instant responses at any hour."
+            features={[
+              "24/7 Enrollment Support",
+              "Course Discovery & Information",
+              "Admission Requirements Guide",
+              "Tour Scheduling Automation"
             ]}
           />
         </div>
