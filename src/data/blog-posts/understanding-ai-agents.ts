@@ -14,6 +14,7 @@ export const understandingAiAgents: BlogPost = {
 
     <p>But within the context of your business, how do they work and why should you consider them for your SMB? We present the following: A Layman's Guide to AI Agents.</p>
 
+    <div class="mt-12"></div>
     <hr class="border-t border-gray-300 my-8 w-full">
 
     <h2 class="text-3xl font-extrabold bg-blue-100/20 inline-block px-4 py-2 rounded">What is an AI Agent?</h2>
@@ -33,6 +34,7 @@ export const understandingAiAgents: BlogPost = {
     <p>Unlike a simple software script that mindlessly follows a rigid set of instructions, AI Agents are more adaptable. They "learn" from past interactions and outcomes—think of them like digital interns who evolve into experts over time. Most powerfully, they can operate in many communication channels: like agents for voice calls and text messages or within website chatbots acting as a "virtual human" to automate daily tasks.</p>
 
     <div class="mt-12"></div>
+    <hr class="border-t border-gray-300 my-8 w-full">
 
     <h2 class="text-3xl font-extrabold bg-blue-100/20 inline-block px-4 py-2 rounded">How Do They Work?</h2>
 
@@ -71,6 +73,7 @@ export const understandingAiAgents: BlogPost = {
     <p class="mt-6">Essentially, AI Agents are like well-trained digital detectives, sifting through heaps of data and clues to arrive at the right conclusion and act upon it without you. Seamless, accurate, and automatic.</p>
 
     <div class="mt-12"></div>
+    <hr class="border-t border-gray-300 my-8 w-full">
 
     <h2 class="text-3xl font-extrabold bg-blue-100/20 inline-block px-4 py-2 rounded">Key Deployment Areas for SMBs</h2>
 
@@ -145,6 +148,7 @@ export const understandingAiAgents: BlogPost = {
     </ul>
 
     <div class="mt-12"></div>
+    <hr class="border-t border-gray-300 my-8 w-full">
 
     <h2 class="text-3xl font-extrabold bg-blue-100/20 inline-block px-4 py-2 rounded">Best Practices for Getting Started</h2>
 
@@ -179,6 +183,7 @@ export const understandingAiAgents: BlogPost = {
     </ul>
 
     <div class="mt-12"></div>
+    <hr class="border-t border-gray-300 my-8 w-full">
 
     <h2 class="text-3xl font-extrabold bg-blue-100/20 inline-block px-4 py-2 rounded">Benefits: Why Should SMBs Care?</h2>
 
@@ -223,6 +228,7 @@ export const understandingAiAgents: BlogPost = {
     </ul>
 
     <div class="mt-12"></div>
+    <hr class="border-t border-gray-300 my-8 w-full">
 
     <h2 class="text-3xl font-extrabold bg-blue-100/20 inline-block px-4 py-2 rounded">But Will AI Agents Steal My Job?</h2>
 
@@ -238,6 +244,7 @@ export const understandingAiAgents: BlogPost = {
     You don't need to become a data scientist and AI PhD to benefit from AI agents. We offer you step-by-step guides, templated workflows, and custom agent solutions to take the heavy tech lifting off your plate.</p>
 
     <div class="mt-12"></div>
+    <hr class="border-t border-gray-300 my-8 w-full">
 
     <h2 class="text-3xl font-extrabold bg-blue-100/20 inline-block px-4 py-2 rounded">Looking to the Future</h2>
 
