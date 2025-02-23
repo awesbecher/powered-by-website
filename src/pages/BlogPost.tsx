@@ -48,19 +48,19 @@ const BlogPost = () => {
             <img 
               src={getHeroImage(post.slug)} 
               alt={post.title}
-              className="w-full h-[140%] object-cover opacity-50 transition-opacity duration-700 hover:opacity-60 object-top"
+              className="w-full h-[140%] object-cover opacity-70 transition-opacity duration-700 hover:opacity-80 object-top"
               style={{ marginTop: '-30%' }}
             />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/60 via-[#2f1c4a]/70 to-[#1a0b2e] mix-blend-multiply" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/40 via-[#2f1c4a]/50 to-[#1a0b2e] mix-blend-multiply" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1a0b2e] via-transparent to-transparent" />
         </div>
         <div className="relative w-full">
           <div className="container mx-auto px-4 max-w-4xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-[#9b87f5] mb-3 drop-shadow-xl bg-[#1a0b2e]/30 p-4 rounded-lg backdrop-blur-sm break-words hyphens-auto">
+            <h1 className="text-4xl md:text-5xl font-bold text-[#9b87f5] mb-3 drop-shadow-xl bg-[#1a0b2e]/50 p-4 rounded-lg backdrop-blur-sm break-words hyphens-auto">
               {post.title}
             </h1>
-            <div className="flex flex-wrap items-center gap-4 md:gap-6 text-gray-200 text-sm bg-[#1a0b2e]/30 p-3 rounded-lg backdrop-blur-sm inline-block">
+            <div className="flex flex-wrap items-center gap-4 md:gap-6 text-gray-200 text-sm bg-[#1a0b2e]/50 p-3 rounded-lg backdrop-blur-sm inline-block">
               <div className="flex items-center gap-2">
                 <span>{post.author}</span>
               </div>
