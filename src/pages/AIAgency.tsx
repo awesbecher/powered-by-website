@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -155,9 +154,27 @@ const AIAgency = () => {
                             Why Should You Partner with Parlar?
                           </h3>
                           <div className="text-gray-300 text-left opacity-0 h-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-300 overflow-hidden">
-                            <p>
-                              We combine deep technical expertise with a commitment to understanding your business inside and out. Our team doesn't just build AI agents; we create strategic partnerships that drive long-term success. With Parlar, you get a dedicated partner invested in your growth and innovation.
-                            </p>
+                            <div className="space-y-6">
+                              <div>
+                                <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Tailored for SMBs</h4>
+                                <p>We understand smaller teams need cost-effective, user-friendly solutions—not enterprise-level complexity. Our approach respects your resources and focuses on delivering maximum ROI.</p>
+                              </div>
+
+                              <div>
+                                <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Business-Centric Results</h4>
+                                <p>Whether it's boosting customer satisfaction, raising sales numbers, or reducing support overhead, our success is measured by tangible business outcomes. We prioritize real impact over flashy gimmicks.</p>
+                              </div>
+
+                              <div>
+                                <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Deep Expertise, Clear Communication</h4>
+                                <p>Our team of AI specialists, data scientists, and customer experience professionals translate complex tech into actionable insights. You get cutting-edge AI without the jargon or confusion.</p>
+                              </div>
+
+                              <div>
+                                <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Trusted Partnerships</h4>
+                                <p>We collaborate with leading LLM providers behind the scenes but remain your single point of contact. You get the best AI technology—customized, delivered, and supported by Parlar.</p>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
