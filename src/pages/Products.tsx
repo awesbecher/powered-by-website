@@ -15,14 +15,12 @@ const Products = () => {
   const handleScroll = (index: number) => {
     const element = document.getElementById(`section-${index}`);
     if (element) {
-      const offset = 100;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
+      const headerOffset = 100;
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
       });
+      window.scrollBy(0, -headerOffset); // Adjust for header
     }
   };
 
@@ -37,13 +35,13 @@ const Products = () => {
             <button
               key={index}
               onClick={() => handleScroll(index)}
-              className="w-full p-4 rounded-lg bg-white/5 transition-colors duration-300 border border-white/10 hover:bg-white/10 group"
+              className="w-full p-4 rounded-lg bg-white/5 transition-all duration-300 border border-white/10 hover:bg-white/10 group"
             >
               <div className="flex flex-col items-center text-center space-y-2">
-                <div className="w-6 h-6 text-[#9b87f5] transition-colors group-hover:text-white">
-                  {card.icon && <card.icon className="w-full h-full" />}
+                <div className="w-6 h-6 text-[#9b87f5] group-hover:text-white transition-colors">
+                  <card.icon className="w-full h-full" />
                 </div>
-                <span className="text-sm font-medium text-white/80 transition-colors group-hover:text-white">
+                <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">
                   {card.title.main.replace(':', '')}
                 </span>
               </div>

@@ -1,5 +1,5 @@
 
-import { Car, Hotel, Users, HeadphonesIcon, Building2, MessageSquare, Globe, Calendar, UtensilsCrossed } from "lucide-react";
+import { Car, Hotel, Users, HeadphonesIcon, Building2, MessageSquare, Globe, Calendar, UtensilsCrossed, DollarSign } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 
 interface ServiceCardData {
@@ -130,7 +130,7 @@ export const serviceCardsData: ServiceCardData[] = [
       main: "Finance & Insurance:",
       sub: "Q&A Agent"
     },
-    icon: MessageSquare,
+    icon: DollarSign,
     description: "Designed for websites or small banks, credit unions, and insurance providers, this solution can field questions about product offerings, policy details, loan eligibility, and more. Acting as a voice or chat agent, it guides customers through self-service forms, reducing bottlenecks in call centers.",
     features: [
       "Secure Data Handling",
