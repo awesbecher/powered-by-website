@@ -74,7 +74,7 @@ const NeuralNetwork = () => {
           />
         </path>
         
-        {/* Data flow particles */}
+        {/* Data flow particles - Added more with varied paths and timings */}
         <circle className="animate-pulse" cx="128" cy="96" r="1" fill="#61dafb">
           <animateMotion
             path="M 0 0 Q 30 -40 64 -20"
@@ -86,6 +86,48 @@ const NeuralNetwork = () => {
           <animateMotion
             path="M 0 0 Q -30 -40 -64 -20"
             dur="2s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle className="animate-pulse" cx="128" cy="96" r="1" fill="#61dafb">
+          <animateMotion
+            path="M 0 0 Q 40 20 64 20"
+            dur="1.5s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle className="animate-pulse" cx="128" cy="96" r="1" fill="#61dafb">
+          <animateMotion
+            path="M 0 0 Q -40 20 -64 20"
+            dur="1.5s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle className="animate-pulse" cx="128" cy="96" r="1" fill="#61dafb">
+          <animateMotion
+            path="M 0 0 Q 30 -30 32 -40"
+            dur="1.8s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle className="animate-pulse" cx="128" cy="96" r="1" fill="#61dafb">
+          <animateMotion
+            path="M 0 0 Q -30 -30 -32 -40"
+            dur="1.8s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle className="animate-pulse" cx="128" cy="96" r="1" fill="#61dafb">
+          <animateMotion
+            path="M 0 0 Q 20 30 30 35"
+            dur="2.2s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle className="animate-pulse" cx="128" cy="96" r="1" fill="#61dafb">
+          <animateMotion
+            path="M 0 0 Q -20 30 -30 35"
+            dur="2.2s"
             repeatCount="indefinite"
           />
         </circle>
