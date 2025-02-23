@@ -59,7 +59,7 @@ export const BlogPostCard = ({ post, featured = false }: BlogPostCardProps) => (
           </h2>
           <p className={cn(
             "text-gray-300 mb-6 flex-grow",
-            featured ? "line-clamp-6" : "line-clamp-4",
+            featured ? "line-clamp-8" : "line-clamp-6",
             "text-lg leading-relaxed"
           )}>
             {post.excerpt}
