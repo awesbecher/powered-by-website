@@ -15,7 +15,14 @@ const Products = () => {
   const scrollToSection = (index: number) => {
     const element = document.getElementById(`solution-${index}`);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      const headerOffset = 100; // Adjust this value based on your header height
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
     }
   };
 
@@ -47,7 +54,7 @@ const Products = () => {
       <div className="max-w-full pt-12">
         <div className="space-y-0 divide-y divide-white/10">
           {serviceCardsData.map((card, index) => (
-            <div key={index} id={`solution-${index}`}>
+            <div key={index} id={`solution-${index}`} className="scroll-mt-24">
               <ServiceCard
                 title={
                   <>
