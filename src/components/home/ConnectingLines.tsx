@@ -57,9 +57,9 @@ const ConnectingLines = () => {
           strokeDasharray="4 4"
           className="animate-dash"
         />
-        {/* Slack Agent connection */}
+        {/* Slack Agent connection - Updated to connect to the primary box */}
         <path
-          d="M 50 250 L 150 250"
+          d="M 75 250 Q 125 200 175 175"
           stroke="#9b87f5"
           strokeWidth="2"
           fill="none"
