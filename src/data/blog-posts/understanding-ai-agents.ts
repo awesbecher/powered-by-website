@@ -68,7 +68,7 @@ export const understandingAiAgents: BlogPost = {
 
     <h3>Sales & Marketing</h3>
 
-    <ul>
+    <ul class="pl-6 space-y-2">
       <li><strong>Lead Qualification:</strong> An AI agent can score leads based on interactions, demographics, or past purchases, so your sales team focuses on the most promising prospects.</li>
       <li><strong>Personalized Outreach:</strong> Automated marketing campaigns that tailor email subject lines, content, and offers to each recipient's behavior—like that handy friend who always knows your favorite coffee order.</li>
     </ul>
