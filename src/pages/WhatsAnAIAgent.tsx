@@ -1,5 +1,7 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import AIAgentIllustration from "@/components/home/AIAgentIllustration";
 
 const WhatsAnAIAgent = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -24,6 +26,11 @@ const WhatsAnAIAgent = () => {
                 Think of an AI agent as a super-smart, tireless assistant that handles tasks for you, without the coffee breaks.
               </p>
             </div>
+          </div>
+
+          <div className={`mt-12 transition-all duration-1000 delay-500 ease-out transform
+              ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
+            <AIAgentIllustration />
           </div>
           
           <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
