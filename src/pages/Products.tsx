@@ -13,25 +13,41 @@ const Products = () => {
   }, []);
 
   const scrollToSection = (index: number) => {
-    setTimeout(() => {
-      const element = document.getElementById(`solution-${index}`);
-      if (element) {
-        element.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-        // Additional offset to account for fixed header
-        window.scrollBy(0, -80);
-      }
-    }, 100);
+    const targetSection = document.getElementById(`solution-${index}`);
+    
+    if (!targetSection) return;
+
+    // Get all sections up to the target to calculate total height
+    const sections = Array.from(document.getElementsByClassName('solution-section'));
+    const targetIndex = sections.findIndex(section => section.id === `solution-${index}`);
+    
+    if (targetIndex === -1) return;
+
+    // Calculate the total height including the header offset
+    const headerHeight = 80;
+    const heroHeight = document.querySelector('.hero-section')?.getBoundingClientRect().height || 0;
+    const gridHeight = document.querySelector('.solutions-grid')?.getBoundingClientRect().height || 0;
+    
+    let totalOffset = heroHeight + gridHeight + headerHeight;
+
+    // Add heights of previous sections if any
+    for (let i = 0; i < targetIndex; i++) {
+      totalOffset += sections[i].getBoundingClientRect().height;
+    }
+
+    // Scroll to position
+    window.scrollTo({
+      top: totalOffset,
+      behavior: 'smooth'
+    });
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
-      <ProductsHero initialLoad={initialLoad} />
+      <ProductsHero initialLoad={initialLoad} className="hero-section" />
 
       {/* Solutions Index Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 solutions-grid">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {serviceCardsData.map((card, index) => (
             <button
@@ -56,8 +72,8 @@ const Products = () => {
           {serviceCardsData.map((card, index) => (
             <div 
               key={index} 
-              id={`solution-${index}`} 
-              className="scroll-mt-20"
+              id={`solution-${index}`}
+              className="solution-section"
             >
               <ServiceCard
                 title={
