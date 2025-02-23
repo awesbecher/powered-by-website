@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -81,7 +80,7 @@ const AIAgency = () => {
                       <Users className="w-8 h-8 text-purple-400" />
                       <div className="space-y-4">
                         <h3 className="text-3xl font-bold text-[#9b87f5]">How Are We Different Than The Major AI Giants?</h3>
-                        <div className="text-gray-300 space-y-6">
+                        <div className="text-gray-300 space-y-6 text-left">
                           <p className="mb-6">We believe in a collaborative and transparent process that gets results. Here's what to expect when you work with Parlar:</p>
                           
                           <div className="space-y-6">
