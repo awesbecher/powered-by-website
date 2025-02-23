@@ -1,5 +1,5 @@
 
-import { Brain, MessageSquare, Sparkles } from "lucide-react";
+import { MessageSquare, Sparkles } from "lucide-react";
 
 const AIAgentIllustration = () => {
   return (
@@ -25,14 +25,6 @@ const AIAgentIllustration = () => {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Floating elements */}
-        <div className="absolute -top-12 -left-24 transform -translate-y-full">
-          <div className="bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 p-4 rounded-lg backdrop-blur-sm border border-white/10 shadow-lg">
-            <Brain className="w-6 h-6 text-[#9b87f5]" />
-          </div>
-          <div className="absolute w-2 h-2 bg-[#9b87f5] rounded-full top-1/2 -right-8" />
         </div>
 
         {/* AI Agent text bubble */}
@@ -63,14 +55,6 @@ const AIAgentIllustration = () => {
         <div className="absolute inset-0 pointer-events-none">
           <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 300">
             <path
-              d="M 200 100 Q 150 150 100 150 L 50 150"
-              stroke="#9b87f5"
-              strokeWidth="2"
-              fill="none"
-              strokeDasharray="4 4"
-              className="animate-dash"
-            />
-            <path
               d="M 200 100 Q 250 150 300 150 L 350 150"
               stroke="#9b87f5"
               strokeWidth="2"
@@ -86,3 +70,4 @@ const AIAgentIllustration = () => {
 };
 
 export default AIAgentIllustration;
+
