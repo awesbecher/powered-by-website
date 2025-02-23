@@ -48,8 +48,8 @@ const BlogPost = () => {
             <img 
               src={getHeroImage(post.slug)} 
               alt={post.title}
-              className="w-full h-[120%] object-cover opacity-50 transition-opacity duration-700 hover:opacity-60 object-top"
-              style={{ marginTop: '-10%' }}
+              className="w-full h-[140%] object-cover opacity-50 transition-opacity duration-700 hover:opacity-60 object-top"
+              style={{ marginTop: '-30%' }}
             />
           </div>
           <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/60 via-[#2f1c4a]/70 to-[#1a0b2e] mix-blend-multiply" />
