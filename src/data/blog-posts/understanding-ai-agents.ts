@@ -75,14 +75,14 @@ export const understandingAiAgents: BlogPost = {
 
     <h3>Workflow Management</h3>
 
-    <ul>
+    <ul class="pl-6 space-y-2 list-[→]">
       <li><strong>Task Routing:</strong> Got a complicated workflow involving multiple departments? AI agents can track progress and assign tasks to the right teams in the right order.</li>
       <li><strong>Document Processing:</strong> From scanning invoices to validating forms, AI agents can handle manual data entry drudgery.</li>
     </ul>
 
     <h3>Data Analysis & Reporting</h3>
 
-    <ul>
+    <ul class="pl-6 space-y-2 list-[→]">
       <li><strong>Dashboard Generation:</strong> They can pull real-time data from different tools (like CRM, finance, marketing platforms), compile it, and produce easy-to-read dashboards.</li>
       <li><strong>Predictive Analytics:</strong> For the forward-thinkers out there, AI can forecast sales trends, flag potential issues with inventory, or even suggest pricing tweaks.</li>
     </ul>
