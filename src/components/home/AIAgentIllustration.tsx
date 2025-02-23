@@ -4,9 +4,6 @@ import { MessageSquare, Sparkles } from "lucide-react";
 const AIAgentIllustration = () => {
   return (
     <div className="relative w-full max-w-2xl mx-auto h-[500px] flex items-center justify-center">
-      {/* Gradient background effect */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] opacity-50 rounded-3xl" />
-      
       {/* Robot and laptop container */}
       <div className="relative">
         {/* Laptop */}
