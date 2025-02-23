@@ -1,3 +1,4 @@
+
 import { BlogPost } from "../../types/blog";
 
 export const understandingAiAgents: BlogPost = {
@@ -36,19 +37,19 @@ export const understandingAiAgents: BlogPost = {
 
     <p>While most of the AI tools you likely have already tried, an AI agent is more than a simple chatbot. At the core of an AI agent lies one or more machine learning models—essentially patterns recognized and learned from data. Here's a simplified breakdown:</p>
 
-    <h3>Data Ingestion</h3>
+    <h3 class="text-2xl font-bold text-[#9b87f5]">Data Ingestion</h3>
 
     <p>An AI agent is fed data from different sources. This data could be customer support tickets, email inquiries, product usage stats, or even real-time metrics like website traffic.</p>
 
-    <h3>Data Processing & Analysis</h3>
+    <h3 class="text-2xl font-bold text-[#9b87f5]">Data Processing & Analysis</h3>
 
     <p>It uses algorithms (fancy instructions) to spot trends, correlations, and anomalies within that data. For instance, if it's analyzing customer support queries, it might look for keywords like "refund," "error," or "cancel" to identify the nature of the request.</p>
 
-    <h3>Decision-Making</h3>
+    <h3 class="text-2xl font-bold text-[#9b87f5]">Decision-Making</h3>
 
     <p>The AI agent applies logic or a predictive model. In the refund request scenario, it might decide that if the customer is asking for a refund within 30 days of purchase and the product meets certain conditions, it automatically initiates a return or triggers a response.</p>
 
-    <h3>Action & Feedback Loop</h3>
+    <h3 class="text-2xl font-bold text-[#9b87f5]">Action & Feedback Loop</h3>
 
     <p>Finally, it performs an action—sending an email, updating a status in your CRM, or generating a task for a human teammate to review. Over time, it refines its behavior based on results. If the recommended response didn't solve the problem, the AI can adjust its approach in the future.</p>
 
