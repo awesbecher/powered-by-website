@@ -26,8 +26,10 @@ const Index = () => {
 
       <HeroSection initialLoad={initialLoad} />
       
-      <div className="relative z-10 mt-12 mb-20">
-        <AIAgentIllustration />
+      <div className="relative z-10 mt-12 mb-20 flex justify-end">
+        <div className="w-full max-w-xl">
+          <AIAgentIllustration />
+        </div>
       </div>
       
       <FeaturesGrid />
