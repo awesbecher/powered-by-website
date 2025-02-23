@@ -40,7 +40,7 @@ const Products = () => {
       </div>
 
       {/* Solutions Grid */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-24">
+      <div className="max-w-full">
         <div className="space-y-0 divide-y divide-white/10">
           <ServiceCard
             title={<>
