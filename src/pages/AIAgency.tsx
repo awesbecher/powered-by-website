@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { BookOpen, Users, Rocket, Handshake } from "lucide-react";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
@@ -65,33 +66,33 @@ const AIAgency = () => {
                 <div className="space-y-6">
                   <div>
                     <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Discovery & Strategy</h4>
-                    <ul className="list-inside space-y-2">
-                      <li><span className="font-semibold">Goal Setting:</span> We identify your top objectives, such as reducing support wait times or boosting sales conversions.</li>
-                      <li><span className="font-semibold">Technical Assessment:</span> Our team audits your existing systems, data, and brand guidelines to define the perfect AI solution scope.</li>
+                    <ul className="list-disc pl-5 space-y-2">
+                      <li>Goal Setting: We identify your top objectives, such as reducing support wait times or boosting sales conversions.</li>
+                      <li>Technical Assessment: Our team audits your existing systems, data, and brand guidelines to define the perfect AI solution scope.</li>
                     </ul>
                   </div>
 
                   <div>
                     <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Custom AI Design & Integration</h4>
-                    <ul className="list-inside space-y-2">
-                      <li><span className="font-semibold">Personalized Development:</span> From conversation flows to brand tone, we craft an AI agent that mirrors your unique style.</li>
-                      <li><span className="font-semibold">Seamless Deployment:</span> We integrate directly with your website, CRM, or other channels, providing end-to-end technical support.</li>
+                    <ul className="list-disc pl-5 space-y-2">
+                      <li>Personalized Development: From conversation flows to brand tone, we craft an AI agent that mirrors your unique style.</li>
+                      <li>Seamless Deployment: We integrate directly with your website, CRM, or other channels, providing end-to-end technical support.</li>
                     </ul>
                   </div>
 
                   <div>
                     <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Training & Knowledge Transfer</h4>
-                    <ul className="list-inside space-y-2">
-                      <li><span className="font-semibold">Employee Onboarding:</span> We train your team on using, managing, and interpreting AI outputs, so everyone feels confident.</li>
-                      <li><span className="font-semibold">Live Testing & Tweaks:</span> Before going live, we run extensive QA to ensure the AI meets real-world user expectations.</li>
+                    <ul className="list-disc pl-5 space-y-2">
+                      <li>Employee Onboarding: We train your team on using, managing, and interpreting AI outputs, so everyone feels confident.</li>
+                      <li>Live Testing & Tweaks: Before going live, we run extensive QA to ensure the AI meets real-world user expectations.</li>
                     </ul>
                   </div>
 
                   <div>
                     <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Continuous Optimization</h4>
-                    <ul className="list-inside space-y-2">
-                      <li><span className="font-semibold">Performance Monitoring:</span> Using feedback loops and analytics, we identify improvement areas—like conversation accuracy or sentiment handling.</li>
-                      <li><span className="font-semibold">Iterative Updates:</span> Our ongoing maintenance ensures your AI agent evolves alongside your business, maintaining top-notch performance.</li>
+                    <ul className="list-disc pl-5 space-y-2">
+                      <li>Performance Monitoring: Using feedback loops and analytics, we identify improvement areas—like conversation accuracy or sentiment handling.</li>
+                      <li>Iterative Updates: Our ongoing maintenance ensures your AI agent evolves alongside your business, maintaining top-notch performance.</li>
                     </ul>
                   </div>
                 </div>
