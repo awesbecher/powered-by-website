@@ -59,7 +59,7 @@ const AIAgency = () => {
                 </div>
 
                 {/* New Content Sections */}
-                <div className="space-y-32">
+                <div className="space-y-12">
                   {/* Section 1 */}
                   <div className="relative group">
                     <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200" />
