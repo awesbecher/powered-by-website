@@ -1,5 +1,4 @@
-
-import { MessageSquare, Sparkles, Bot } from "lucide-react";
+import { MessageCircle, Phone, Smartphone, MessageSquare, Sparkles, Bot } from "lucide-react";
 
 const AIAgentIllustration = () => {
   return (
@@ -114,28 +113,38 @@ const AIAgentIllustration = () => {
           </div>
         </div>
 
-        {/* AI Agent text bubble */}
+        {/* Chat Agent text bubble */}
         <div className="absolute -top-16 right-0 transform translate-x-1/2">
           <div className="bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 px-4 py-2 rounded-lg backdrop-blur-sm border border-white/10 shadow-lg">
-            <p className="text-white font-medium">AI AGENT</p>
+            <p className="text-white font-medium">CHAT AGENT</p>
           </div>
           <div className="absolute w-2 h-2 bg-[#9b87f5] rounded-full bottom-0 left-0" />
+        </div>
+
+        {/* Voice Agent bubble */}
+        <div className="absolute -top-8 left-0 transform -translate-x-full">
+          <div className="bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 px-4 py-2 rounded-lg backdrop-blur-sm border border-white/10 shadow-lg flex items-center gap-2">
+            <Phone className="w-5 h-5 text-[#9b87f5]" />
+            <p className="text-white font-medium">VOICE AGENT</p>
+          </div>
+          <div className="absolute w-2 h-2 bg-[#9b87f5] rounded-full bottom-0 right-0" />
+        </div>
+
+        {/* SMS Agent bubble */}
+        <div className="absolute top-12 left-0 transform -translate-x-3/4">
+          <div className="bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 px-4 py-2 rounded-lg backdrop-blur-sm border border-white/10 shadow-lg flex items-center gap-2">
+            <Smartphone className="w-5 h-5 text-[#9b87f5]" />
+            <p className="text-white font-medium">SMS AGENT</p>
+          </div>
+          <div className="absolute w-2 h-2 bg-[#9b87f5] rounded-full top-0 right-0" />
         </div>
 
         {/* Message bubble */}
         <div className="absolute -top-8 right-0 transform translate-x-full">
           <div className="bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 p-4 rounded-lg backdrop-blur-sm border border-white/10 shadow-lg">
-            <MessageSquare className="w-6 h-6 text-[#9b87f5]" />
+            <MessageCircle className="w-6 h-6 text-[#9b87f5]" />
           </div>
           <div className="absolute w-2 h-2 bg-[#9b87f5] rounded-full top-1/2 -left-8" />
-        </div>
-
-        {/* Sparkles bubble */}
-        <div className="absolute top-0 right-0 transform translate-x-1/2">
-          <div className="bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 p-4 rounded-lg backdrop-blur-sm border border-white/10 shadow-lg">
-            <Sparkles className="w-6 h-6 text-[#9b87f5]" />
-          </div>
-          <div className="absolute w-2 h-2 bg-[#9b87f5] rounded-full bottom-0 left-0" />
         </div>
 
         {/* Connecting lines */}
@@ -143,6 +152,22 @@ const AIAgentIllustration = () => {
           <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 300">
             <path
               d="M 200 100 Q 250 150 300 150 L 350 150"
+              stroke="#9b87f5"
+              strokeWidth="2"
+              fill="none"
+              strokeDasharray="4 4"
+              className="animate-dash"
+            />
+            <path
+              d="M 50 150 L 150 150"
+              stroke="#9b87f5"
+              strokeWidth="2"
+              fill="none"
+              strokeDasharray="4 4"
+              className="animate-dash"
+            />
+            <path
+              d="M 75 200 L 175 150"
               stroke="#9b87f5"
               strokeWidth="2"
               fill="none"
@@ -157,4 +182,3 @@ const AIAgentIllustration = () => {
 };
 
 export default AIAgentIllustration;
-
