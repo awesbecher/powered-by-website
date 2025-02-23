@@ -6,11 +6,11 @@ import ConnectingLines from "./ConnectingLines";
 
 const AIAgentIllustration = () => {
   return (
-    <div className="relative w-full max-w-3xl mx-auto h-[600px] flex items-center justify-center">
+    <div className="relative w-full max-w-4xl mx-auto h-[700px] flex items-center justify-center">
       {/* Robot and laptop container */}
       <div className="relative">
         {/* Laptop */}
-        <div className="w-80 h-56 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10 shadow-xl transform perspective-1000 rotateX-10 overflow-hidden">
+        <div className="w-96 h-64 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10 shadow-xl transform perspective-1000 rotateX-10 overflow-hidden">
           <NeuralNetwork />
         </div>
 
@@ -65,3 +65,4 @@ const AIAgentIllustration = () => {
 };
 
 export default AIAgentIllustration;
+
