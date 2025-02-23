@@ -13,16 +13,17 @@ const Products = () => {
   }, []);
 
   const scrollToSection = (index: number) => {
-    requestAnimationFrame(() => {
+    setTimeout(() => {
       const element = document.getElementById(`solution-${index}`);
       if (element) {
-        const topOffset = element.offsetTop - 100; // Fixed offset from top
+        const yOffset = -80;
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
         window.scrollTo({
-          top: topOffset,
+          top: y,
           behavior: "smooth"
         });
       }
-    });
+    }, 100);
   };
 
   return (
@@ -56,7 +57,7 @@ const Products = () => {
             <div 
               key={index} 
               id={`solution-${index}`} 
-              className="scroll-mt-24"
+              className="scroll-mt-20"
             >
               <ServiceCard
                 title={
