@@ -54,7 +54,7 @@ const AIAgentIllustration = () => {
         <AgentBubble 
           title="SLACK AGENT" 
           icon={MessageSquare} 
-          position="top-44 left-0 transform -translate-x-3/4" 
+          position="top-44 left-0 transform -translate-x-[50%]" 
           dotPosition="top-right"
         />
 
