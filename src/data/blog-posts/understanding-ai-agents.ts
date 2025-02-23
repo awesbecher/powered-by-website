@@ -19,6 +19,8 @@ export const understandingAiAgents: BlogPost = {
 
     <p>But within the context of your business, how do they work and why should you consider them for your SMB? We present the following: A Layman's Guide to AI Agents.</p>
 
+    <hr class="border-t border-gray-300 my-8 w-full">
+
     <h2>What is an AI Agent?</h2>
 
     <p>Using an easily understandable analogy, AI Agents are like the backstage crew in a grand theater production—rarely in the spotlight, but indispensable for a smooth show. They take on repetitive, data-driven tasks that can bog down your team, freeing everyone to focus on higher-value activities.</p>
