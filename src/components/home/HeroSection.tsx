@@ -29,18 +29,18 @@ export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
           <div className={`mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-1000 delay-500 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <Link to="/blog/understanding-ai-agents">
-              <Button className="text-white bg-[#6E59A5] hover:bg-[#6E59A5]/80 px-4 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto">
+              <Button className="text-white bg-[#6E59A5] hover:bg-[#6E59A5]/80 px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto">
                 What's an AI agent?
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Link to="/contact">
-              <Button className="bg-accent hover:bg-accent-dark text-white px-4 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto">
+              <Button className="bg-accent hover:bg-accent-dark text-white px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto">
                 Book a Consultation
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-            <Button className="bg-white hover:bg-gray-100 text-accent px-4 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto">
+            <Button className="bg-white hover:bg-gray-100 text-accent px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto">
               Talk to an AI Agent Now
               <Phone className="ml-2 h-5 w-5" />
             </Button>
