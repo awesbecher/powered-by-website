@@ -19,7 +19,7 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
-      <div className="relative w-full min-h-[30vh] overflow-hidden flex items-center py-8">
+      <div className="relative w-full min-h-[30vh] overflow-hidden flex items-center py-8 pt-32">
         <div className="absolute top-0 w-full h-[1px] bg-white/20" />
         <div className="relative w-full">
           <div className="container mx-auto px-4 max-w-4xl">
