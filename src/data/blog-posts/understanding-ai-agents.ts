@@ -32,7 +32,7 @@ export const understandingAiAgents: BlogPost = {
 
     <p>Unlike a simple software script that mindlessly follows a rigid set of instructions, AI Agents are more adaptable. They "learn" from past interactions and outcomes—think of them like digital interns who evolve into experts over time. Most powerfully, they can operate in many communication channels: like agents for voice calls and text messages or within website chatbots acting as a "virtual human" to automate daily tasks.</p>
 
-    <h2>How Do They Work?</h2>
+    <h2 class="text-3xl font-extrabold bg-blue-100/20 inline-block px-4 py-2 rounded">How Do They Work?</h2>
 
     <p>While most of the AI tools you likely have already tried, an AI agent is more than a simple chatbot. At the core of an AI agent lies one or more machine learning models—essentially patterns recognized and learned from data. Here's a simplified breakdown:</p>
 
@@ -54,7 +54,7 @@ export const understandingAiAgents: BlogPost = {
 
     <p>Essentially, AI Agents are like well-trained digital detectives, sifting through heaps of data and clues to arrive at the right conclusion and act upon it without you. Seamless, accurate, and automatic.</p>
 
-    <h2>Key Deployment Areas for SMBs</h2>
+    <h2 class="text-3xl font-extrabold bg-blue-100/20 inline-block px-4 py-2 rounded">Key Deployment Areas for SMBs</h2>
 
     <p>You might be thinking: "Great, but where in my day-to-day operations can I actually use these agents?" Here are a few common scenarios:</p>
 
@@ -86,7 +86,7 @@ export const understandingAiAgents: BlogPost = {
       <li><strong>Predictive Analytics:</strong> For the forward-thinkers out there, AI can forecast sales trends, flag potential issues with inventory, or even suggest pricing tweaks.</li>
     </ul>
 
-    <h2>Benefits: Why Should SMBs Care?</h2>
+    <h2 class="text-3xl font-extrabold bg-blue-100/20 inline-block px-4 py-2 rounded">Benefits: Why Should SMBs Care?</h2>
 
     <p>Sure, big corporations have entire Engineering and R&D labs dedicated to AI, but SMBs lack the internal resources to innovate AI at the scale of the big players. Nevertheless, SMBs often stand to gain even more immediate advantages by automating routine tasks. Here's how:</p>
 
@@ -110,7 +110,7 @@ export const understandingAiAgents: BlogPost = {
 
     <p>In a digital age, customers expect swift, personalized service. AI agents never sleep, so they can provide round-the-clock support, ensuring you keep customers happy—and keep them coming back.</p>
 
-    <h2>But Will AI Agents Steal My Job?</h2>
+    <h2 class="text-3xl font-extrabold bg-blue-100/20 inline-block px-4 py-2 rounded">But Will AI Agents Steal My Job?</h2>
 
     <p>Despite the obvious benefits, there's always a bit of nervousness surrounding new tech:</p>
 
@@ -141,7 +141,7 @@ export const understandingAiAgents: BlogPost = {
 
     <p>An AI agent isn't a "set it and forget it" gadget. Check in on its performance, gather feedback from your team and customers, and tweak its settings or logic to improve accuracy and reliability over time.</p>
 
-    <h2>Looking to the Future</h2>
+    <h2 class="text-3xl font-extrabold bg-blue-100/20 inline-block px-4 py-2 rounded">Looking to the Future</h2>
 
     <p>AI agents are constantly evolving. As machine learning algorithms get more powerful, you can expect increasingly sophisticated capabilities, like emotional detection in customer communication or advanced predictive analytics for market trends. For SMBs, this promises even more opportunities to differentiate, compete, and grow—often leveling the playing field against bigger rivals.</p>
   `
