@@ -38,7 +38,7 @@ export const BlogPostCard = ({ post, featured = false }: BlogPostCardProps) => (
     className="block group"
   >
     <div className={cn(
-      "bg-white/5 rounded-lg overflow-hidden group-hover:bg-white/10 transition-colors",
+      "bg-white/5 rounded-lg overflow-hidden group-hover:bg-white/10 transition-all duration-300 transform group-hover:-translate-y-1 hover:shadow-lg",
       featured ? "col-span-full lg:col-span-2" : ""
     )}>
       <div className="relative h-[170px]">
