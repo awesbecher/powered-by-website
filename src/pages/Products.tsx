@@ -1,4 +1,4 @@
-import { Car, Hotel, Users, HeadphonesIcon, Building2, Check, Mail, Phone, MessageSquare, BrainCircuit, Bot, Workflow, MessagesSquare, HeartHandshake, Network, Database, Code2, Rocket, Zap } from "lucide-react";
+import { Car, Hotel, Users, HeadphonesIcon, Building2, Check, Mail, Phone, MessageSquare, BrainCircuit, Bot, Workflow, MessagesSquare, HeartHandshake, Network, Database, Code2, Rocket, Zap, Globe } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { WordAnimation } from "@/components/home/WordAnimation";
@@ -173,6 +173,21 @@ const Products = () => {
               "Benefits Information Access",
               "Automated Onboarding Guidance",
               "Company Knowledge Base"
+            ]}
+          />
+
+          <ServiceCard
+            title={<>
+              <span className="font-bold text-white">Multilingual Support:</span>{' '}
+              <span className="font-normal text-[#9b87f5]">Global Customer Agent</span>
+            </>}
+            icon={Globe}
+            description="Designed for businesses with international reach, this agent solution supports multiple languages in real-time, ensuring customers from different regions can communicate seamlessly. It can be deployed on websites, messaging apps, or social media platforms, detecting and switching languages based on user input."
+            features={[
+              "Real-time Language Detection",
+              "Multi-platform Deployment",
+              "Seamless Language Switching",
+              "Cross-cultural Communication"
             ]}
           />
         </div>
