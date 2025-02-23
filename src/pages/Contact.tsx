@@ -84,81 +84,119 @@ const Contact = () => {
     }
   };
 
-  return <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] pt-36">
-      <div className="max-w-2xl mx-auto px-4">
-        <div className="relative inline-block w-full text-center mb-4">
-          <h1 
-            className={`text-[100px] font-bold text-white text-center transition-all duration-1000 ease-out transform
+  return (
+    <div className="min-h-screen relative bg-[#1a0b2e] overflow-hidden">
+      {/* Stylized background shapes */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Top curved shape */}
+        <div 
+          className="absolute top-0 -right-24 w-[800px] h-[600px] rounded-[100%] rotate-45"
+          style={{
+            background: "linear-gradient(135deg, #9b87f5 0%, #7a6cc5 100%)",
+            filter: "blur(80px)",
+            opacity: "0.15"
+          }}
+        />
+        
+        {/* Middle curved shape */}
+        <div 
+          className="absolute top-1/3 -left-24 w-[800px] h-[600px] rounded-[100%] rotate-[135deg]"
+          style={{
+            background: "linear-gradient(135deg, #9b87f5 0%, #6E59A5 100%)",
+            filter: "blur(80px)",
+            opacity: "0.1"
+          }}
+        />
+        
+        {/* Bottom accent shape */}
+        <div 
+          className="absolute bottom-0 right-1/4 w-[600px] h-[400px] rounded-[100%] rotate-45"
+          style={{
+            background: "linear-gradient(135deg, #FEC6A1 0%, #9b87f5 100%)",
+            filter: "blur(80px)",
+            opacity: "0.1"
+          }}
+        />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 pt-36">
+        <div className="max-w-2xl mx-auto px-4">
+          <div className="relative inline-block w-full text-center mb-4">
+            <h1 
+              className={`text-[100px] font-bold text-white text-center transition-all duration-1000 ease-out transform
+                ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
+            >
+              Let's meet!
+            </h1>
+            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-3/4 h-3 bg-gradient-to-r from-purple-400/20 via-[#9b87f5] to-purple-400/20 rounded-full blur-sm"></div>
+          </div>
+          <p 
+            className={`text-gray-300 text-center mb-8 text-lg transition-all duration-1000 delay-300 ease-out transform
               ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
           >
-            Let's meet!
-          </h1>
-          <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-3/4 h-3 bg-gradient-to-r from-purple-400/20 via-[#9b87f5] to-purple-400/20 rounded-full blur-sm"></div>
-        </div>
-        <p 
-          className={`text-gray-300 text-center mb-8 text-lg transition-all duration-1000 delay-300 ease-out transform
-            ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
-        >
-          Ready to put AI agents to work? Book a consultation with our Solutions Design Leader (<span className="text-[#9b87f5] font-bold">a human!</span>) by filing out the form below. Or talk to our AI agent about how we can help by clicking <a href="#" className="text-[#9b87f5] hover:text-[#8b77e5] underline transition-colors duration-200">here</a>.
-        </p>
-        <div className="bg-neutral-900/50 p-8 rounded-xl backdrop-blur">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                Name
-              </label>
-              <Input id="name" value={formData.name} onChange={e => setFormData({
-              ...formData,
-              name: e.target.value
-            })} className="bg-neutral-800 border-neutral-700 text-white" required />
-            </div>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                Email
-              </label>
-              <Input 
-                id="email" 
-                type="email" 
-                value={formData.email} 
-                onChange={e => setFormData({
+            Ready to put AI agents to work? Book a consultation with our Solutions Design Leader (<span className="text-[#9b87f5] font-bold">a human!</span>) by filing out the form below. Or talk to our AI agent about how we can help by clicking <a href="#" className="text-[#9b87f5] hover:text-[#8b77e5] underline transition-colors duration-200">here</a>.
+          </p>
+          <div className="bg-neutral-900/50 p-8 rounded-xl backdrop-blur">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                  Name
+                </label>
+                <Input id="name" value={formData.name} onChange={e => setFormData({
                   ...formData,
-                  email: e.target.value
-                })} 
-                className="bg-neutral-800 border-neutral-700 text-white" 
-                required 
-                placeholder="your-email@company.com"
-              />
-              <p className="text-sm text-gray-400 mt-1">Please use your corporate email address</p>
-            </div>
-            <div>
-              <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-2">
-                Company
-              </label>
-              <Input id="company" value={formData.company} onChange={e => setFormData({
-              ...formData,
-              company: e.target.value
-            })} className="bg-neutral-800 border-neutral-700 text-white" />
-            </div>
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                What would you like to use AI agents for in your business?
-              </label>
-              <textarea id="message" rows={4} value={formData.message} onChange={e => setFormData({
-              ...formData,
-              message: e.target.value
-            })} className="w-full rounded-md bg-neutral-800 border-neutral-700 text-white p-3" required />
-            </div>
-            <Button 
-              type="submit" 
-              className="w-full bg-accent hover:bg-accent-dark text-white py-6"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Sending..." : "Send Message"}
-            </Button>
-          </form>
+                  name: e.target.value
+                })} className="bg-neutral-800 border-neutral-700 text-white" required />
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                  Email
+                </label>
+                <Input 
+                  id="email" 
+                  type="email" 
+                  value={formData.email} 
+                  onChange={e => setFormData({
+                    ...formData,
+                    email: e.target.value
+                  })} 
+                  className="bg-neutral-800 border-neutral-700 text-white" 
+                  required 
+                  placeholder="your-email@company.com"
+                />
+                <p className="text-sm text-gray-400 mt-1">Please use your corporate email address</p>
+              </div>
+              <div>
+                <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-2">
+                  Company
+                </label>
+                <Input id="company" value={formData.company} onChange={e => setFormData({
+                  ...formData,
+                  company: e.target.value
+                })} className="bg-neutral-800 border-neutral-700 text-white" />
+              </div>
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                  What would you like to use AI agents for in your business?
+                </label>
+                <textarea id="message" rows={4} value={formData.message} onChange={e => setFormData({
+                  ...formData,
+                  message: e.target.value
+                })} className="w-full rounded-md bg-neutral-800 border-neutral-700 text-white p-3" required />
+              </div>
+              <Button 
+                type="submit" 
+                className="w-full bg-accent hover:bg-accent-dark text-white py-6"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Sending..." : "Send Message"}
+              </Button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
 
 export default Contact;
