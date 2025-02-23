@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, BookOpen, Users, Rocket, Handshake } from "lucide-react";
+import { ClosingCTA } from "@/components/home/ClosingCTA";
 
 const AIAgency = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -58,9 +59,7 @@ const AIAgency = () => {
                   </Link>
                 </div>
 
-                {/* New Content Sections */}
                 <div className="space-y-12">
-                  {/* Section 1 */}
                   <div className="relative group">
                     <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200" />
                     <div className="relative p-6 bg-[#1a0b2e] ring-1 ring-gray-900/5 rounded-lg leading-none">
@@ -80,7 +79,6 @@ const AIAgency = () => {
                     </div>
                   </div>
 
-                  {/* Section 2 */}
                   <div className="relative group">
                     <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200" />
                     <div className="relative p-6 bg-[#1a0b2e] ring-1 ring-gray-900/5 rounded-lg leading-none">
@@ -132,7 +130,6 @@ const AIAgency = () => {
                     </div>
                   </div>
 
-                  {/* Section 3 */}
                   <div className="relative group">
                     <div className="absolute -inset-1 bg-gradient-to-r from-green-600 to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200" />
                     <div className="relative p-6 bg-[#1a0b2e] ring-1 ring-gray-900/5 rounded-lg leading-none">
@@ -152,7 +149,6 @@ const AIAgency = () => {
                     </div>
                   </div>
 
-                  {/* Section 4 */}
                   <div className="relative group">
                     <div className="absolute -inset-1 bg-gradient-to-r from-yellow-600 to-green-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200" />
                     <div className="relative p-6 bg-[#1a0b2e] ring-1 ring-gray-900/5 rounded-lg leading-none">
@@ -195,6 +191,7 @@ const AIAgency = () => {
           </div>
         </div>
       </div>
+      <ClosingCTA />
     </div>
   );
 };
