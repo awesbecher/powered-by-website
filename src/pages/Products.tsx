@@ -160,6 +160,21 @@ const Products = () => {
               "Account Setup Assistance"
             ]}
           />
+
+          <ServiceCard
+            title={<>
+              <span className="font-bold text-white">Internal HR:</span>{' '}
+              <span className="font-normal text-[#9b87f5]">Onboarding & FAQ Agent</span>
+            </>}
+            icon={Users}
+            description="Perfect for internal company portals and HR communication channels, this agent addresses common new-hire questions about benefits, company policies, and workflows. By automating these routine inquiries, your HR team can focus on strategic initiatives."
+            features={[
+              "24/7 HR Policy Support",
+              "Benefits Information Access",
+              "Automated Onboarding Guidance",
+              "Company Knowledge Base"
+            ]}
+          />
         </div>
       </div>
 
