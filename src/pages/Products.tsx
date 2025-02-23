@@ -12,6 +12,20 @@ const Products = () => {
     setInitialLoad(false);
   }, []);
 
+  const handleScroll = (index: number) => {
+    const element = document.getElementById(`section-${index}`);
+    if (element) {
+      const offset = 100; // Account for header and some padding
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <ProductsHero initialLoad={initialLoad} className="hero-section" />
@@ -20,9 +34,10 @@ const Products = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {serviceCardsData.map((card, index) => (
-            <div
+            <button
               key={index}
-              className="p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-all duration-300 border border-white/10 group"
+              onClick={() => handleScroll(index)}
+              className="p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-all duration-300 border border-white/10 group cursor-pointer"
             >
               <div className="flex flex-col items-center text-center space-y-2">
                 <card.icon className="w-6 h-6 text-[#9b87f5] group-hover:text-white transition-colors" />
@@ -30,7 +45,7 @@ const Products = () => {
                   {card.title.main.replace(':', '')}
                 </span>
               </div>
-            </div>
+            </button>
           ))}
         </div>
       </div>
@@ -39,7 +54,11 @@ const Products = () => {
       <div className="max-w-full pt-12">
         <div className="space-y-0 divide-y divide-white/10">
           {serviceCardsData.map((card, index) => (
-            <div key={index}>
+            <div 
+              key={index}
+              id={`section-${index}`}
+              className="scroll-mt-24" // Add margin to account for fixed header
+            >
               <ServiceCard
                 title={
                   <>
