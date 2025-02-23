@@ -1,5 +1,5 @@
 
-import { Package2, Users, HeadphonesIcon, Building2, Check, Mail, Phone, MessageSquare, BrainCircuit, Bot, Workflow, MessagesSquare, HeartHandshake, Network, Database, Code2, Rocket, Zap } from "lucide-react";
+import { Car, Users, HeadphonesIcon, Building2, Check, Mail, Phone, MessageSquare, BrainCircuit, Bot, Workflow, MessagesSquare, HeartHandshake, Network, Database, Code2, Rocket, Zap } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { WordAnimation } from "@/components/home/WordAnimation";
@@ -43,13 +43,14 @@ const Products = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-24">
         <div className="space-y-0 divide-y divide-white/10">
           <ServiceCard
-            title="Digital Strategy"
-            icon={Rocket}
-            description="Discovery and planning to integrate AI technology that aligns with your business goals and enhances customer experiences."
+            title="Auto Dealerships: Virtual Sales Rep"
+            icon={Car}
+            description="Designed for auto dealer websites and social media channels, we provide voice agents to answers questions about vehicle models, financing options, and dealer promotions. It can operate as an in-bound phone agent or as an outbound call sales associate."
             features={[
-              "AI Readiness Assessment",
-              "Implementation Roadmap",
-              "ROI Projections"
+              "24/7 Vehicle Information Support",
+              "Lead Qualification & Appointment Setting",
+              "Voice & Chat Capabilities",
+              "Real-time Response System"
             ]}
           />
           {/* We'll add the other 9 solutions when you provide the content */}
