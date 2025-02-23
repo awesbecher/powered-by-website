@@ -3,11 +3,12 @@ import { WordAnimation } from "@/components/home/WordAnimation";
 
 interface ProductsHeroProps {
   initialLoad: boolean;
+  className?: string;
 }
 
-export const ProductsHero = ({ initialLoad }: ProductsHeroProps) => {
+export const ProductsHero = ({ initialLoad, className }: ProductsHeroProps) => {
   return (
-    <div className="relative overflow-hidden px-6 lg:px-8 pt-36">
+    <div className={`relative overflow-hidden px-6 lg:px-8 pt-36 ${className || ''}`}>
       <div className="mx-auto max-w-7xl">
         <div className="text-center">
           <h1 
