@@ -16,7 +16,7 @@ const Products = () => {
       <ProductsHero initialLoad={initialLoad} />
 
       {/* Solutions Grid */}
-      <div className="max-w-full pt-24">
+      <div className="max-w-full pt-12">
         <div className="space-y-0 divide-y divide-white/10">
           {serviceCardsData.map((card, index) => (
             <ServiceCard
