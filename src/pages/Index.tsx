@@ -26,13 +26,16 @@ const Index = () => {
 
       <HeroSection initialLoad={initialLoad} />
       
-      <div className="relative z-10 -mt-12 mb-20 flex justify-end">
+      <div className="relative z-10 -mt-12">
+        <FeaturesGrid />
+      </div>
+      
+      <div className="relative z-10 mt-20 mb-20 flex justify-end">
         <div className="w-full max-w-xl">
           <AIAgentIllustration />
         </div>
       </div>
       
-      <FeaturesGrid />
       <ValuesSection />
       <BlogSection />
       <ClosingCTA />
