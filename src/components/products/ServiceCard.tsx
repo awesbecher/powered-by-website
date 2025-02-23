@@ -23,11 +23,11 @@ export const ServiceCard = ({ title, description, features, icon: Icon }: Servic
             {description}
           </p>
           
-          <ul className="space-y-3">
+          <ul className="space-y-2 list-disc pl-4">
             {features.map((feature, index) => (
               <li 
                 key={index} 
-                className="text-gray-400 hover:text-[#9b87f5] transition-colors"
+                className="text-gray-400 hover:text-[#9b87f5] transition-colors text-sm"
               >
                 {feature}
               </li>
