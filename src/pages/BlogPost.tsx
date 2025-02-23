@@ -9,7 +9,7 @@ const BlogPost = () => {
   const getHeroImage = (slug: string) => {
     switch (slug) {
       case "understanding-ai-agents":
-        return "https://images.unsplash.com/photo-1589254066213-a0c9dc853511";
+        return "/lovable-uploads/b9c7959b-bd61-40d9-b0b3-317a40353486.png";
       case "openai-anthropic-smb-specialized-partners":
         return "/lovable-uploads/f971b5e9-817b-426a-9db0-5db472970633.png";
       case "voice-ai-retail-customer-service":
