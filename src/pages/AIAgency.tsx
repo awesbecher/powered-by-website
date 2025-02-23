@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, BookOpen, Users, Rocket, Handshake, CheckCircle } from "lucide-react";
+import { ArrowRight, BookOpen, Users, Rocket, Handshake } from "lucide-react";
 
 const AIAgency = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -55,7 +55,6 @@ const AIAgency = () => {
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </Link>
-                </div>
 
                 {/* New Content Sections */}
                 <div className="space-y-32">
@@ -174,37 +173,6 @@ const AIAgency = () => {
                                 <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Trusted Partnerships</h4>
                                 <p>We collaborate with leading LLM providers behind the scenes but remain your single point of contact. You get the best AI technology—customized, delivered, and supported by Parlar.</p>
                               </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Section 5 */}
-                  <div className="relative group">
-                    <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-yellow-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200" />
-                    <div className="relative p-6 bg-[#1a0b2e] ring-1 ring-gray-900/5 rounded-lg leading-none">
-                      <div className="flex items-top justify-start space-x-6">
-                        <CheckCircle className="w-8 h-8 text-purple-400" />
-                        <div className="space-y-4 w-full">
-                          <h3 className="text-3xl font-bold text-[#9b87f5] cursor-pointer hover:opacity-80 transition-opacity">
-                            Get Started Today
-                          </h3>
-                          <div className="text-gray-300 text-left opacity-0 h-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-300 overflow-hidden">
-                            <p>
-                              Ready to transform your business with AI? Let's start with a conversation about your needs and goals. Our team will work with you to identify the perfect AI solution for your business, whether it's automating customer service, streamlining operations, or creating new revenue streams.
-                            </p>
-                            <div className="pt-4">
-                              <Link to="/contact">
-                                <Button 
-                                  variant="default" 
-                                  className="bg-purple-500 hover:bg-purple-600 text-white"
-                                >
-                                  Schedule a Consultation
-                                  <ArrowRight className="ml-2 h-4 w-4" />
-                                </Button>
-                              </Link>
                             </div>
                           </div>
                         </div>
