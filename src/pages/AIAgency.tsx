@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { BookOpen, Users, Rocket, Handshake } from "lucide-react";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
@@ -37,39 +36,20 @@ const AIAgency = () => {
                 gradientFrom="blue-600"
                 gradientTo="purple-600"
               >
-                <p className="mb-6">We believe in a collaborative and transparent process that gets results. Here's what to expect when you work with Parlar:</p>
-                
                 <div className="space-y-6">
                   <div>
-                    <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Discovery & Strategy</h4>
-                    <ul className="list-inside space-y-2">
-                      <li><span className="font-semibold">Goal Setting:</span> We identify your top objectives, such as reducing support wait times or boosting sales conversions.</li>
-                      <li><span className="font-semibold">Technical Assessment:</span> Our team audits your existing systems, data, and brand guidelines to define the perfect AI solution scope.</li>
-                    </ul>
+                    <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Personalized Implementation</h4>
+                    <p>Large Language Model (LLM) providers like OpenAI, Anthropic, and Google excel at building robust AI engines—but they rarely deliver a fully tailored, ready-to-deploy solution. Parlar adapts these world-class models to your unique business goals, customer pain points, and existing tech stack.</p>
                   </div>
 
                   <div>
-                    <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Custom AI Design & Integration</h4>
-                    <ul className="list-inside space-y-2">
-                      <li><span className="font-semibold">Personalized Development:</span> From conversation flows to brand tone, we craft an AI agent that mirrors your unique style.</li>
-                      <li><span className="font-semibold">Seamless Deployment:</span> We integrate directly with your website, CRM, or other channels, providing end-to-end technical support.</li>
-                    </ul>
+                    <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Hands-On Support</h4>
+                    <p>Instead of a self-service API and limited troubleshooting, our hands-on experts ensure your AI solution is properly integrated, trained, and continuously improved. We're not just handing you the keys; we're the driver, mechanic, and co-pilot every step of the way.</p>
                   </div>
 
                   <div>
-                    <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Training & Knowledge Transfer</h4>
-                    <ul className="list-inside space-y-2">
-                      <li><span className="font-semibold">Employee Onboarding:</span> We train your team on using, managing, and interpreting AI outputs, so everyone feels confident.</li>
-                      <li><span className="font-semibold">Live Testing & Tweaks:</span> Before going live, we run extensive QA to ensure the AI meets real-world user expectations.</li>
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Continuous Optimization</h4>
-                    <ul className="list-inside space-y-2">
-                      <li><span className="font-semibold">Performance Monitoring:</span> Using feedback loops and analytics, we identify improvement areas—like conversation accuracy or sentiment handling.</li>
-                      <li><span className="font-semibold">Iterative Updates:</span> Our ongoing maintenance ensures your AI agent evolves alongside your business, maintaining top-notch performance.</li>
-                    </ul>
+                    <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Ongoing Optimization</h4>
+                    <p>Your AI should evolve with your business. Rather than a "one-size-fits-all" approach, we refine and optimize your AI agent over time—no guesswork or frustrating DIY updates.</p>
                   </div>
                 </div>
               </InfoCard>
