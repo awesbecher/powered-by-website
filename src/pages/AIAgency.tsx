@@ -59,7 +59,7 @@ const AIAgency = () => {
                   </Link>
                 </div>
 
-                <div className="space-y-12">
+                <div className="space-y-6">
                   <div className="relative group">
                     <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200" />
                     <div className="relative p-6 bg-[#1a0b2e] ring-1 ring-gray-900/5 rounded-lg leading-none">
