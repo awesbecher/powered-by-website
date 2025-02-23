@@ -42,7 +42,7 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
-      <div className="relative w-full min-h-[60vh] overflow-hidden flex items-center py-20">
+      <div className="relative w-full min-h-[50vh] overflow-hidden flex items-center py-12">
         <div className="absolute inset-0">
           <div className="w-full h-full overflow-hidden">
             <img 
@@ -57,10 +57,10 @@ const BlogPost = () => {
         </div>
         <div className="relative w-full">
           <div className="container mx-auto px-4 max-w-4xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-[#9b87f5] mb-6 drop-shadow-xl bg-[#1a0b2e]/30 p-4 rounded-lg backdrop-blur-sm break-words hyphens-auto">
+            <h1 className="text-4xl md:text-5xl font-bold text-[#9b87f5] mb-4 drop-shadow-xl bg-[#1a0b2e]/30 p-4 rounded-lg backdrop-blur-sm break-words hyphens-auto">
               {post.title}
             </h1>
-            <div className="flex flex-wrap items-center gap-4 md:gap-6 mb-8 text-gray-200 text-sm bg-[#1a0b2e]/30 p-3 rounded-lg backdrop-blur-sm inline-block">
+            <div className="flex flex-wrap items-center gap-4 md:gap-6 text-gray-200 text-sm bg-[#1a0b2e]/30 p-3 rounded-lg backdrop-blur-sm inline-block">
               <div className="flex items-center gap-2">
                 <span>{post.author}</span>
               </div>
@@ -75,7 +75,7 @@ const BlogPost = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 max-w-4xl py-16">
+      <div className="container mx-auto px-4 max-w-4xl py-8">
         <div 
           className="prose prose-invert max-w-none [&>*]:text-white [&>p]:text-justify prose-h2:text-[#9b87f5] prose-h3:text-[#9b87f5] [&>p]:leading-relaxed [&>p]:mb-8 prose-li:text-white prose-strong:text-[#D6BCFA] prose-em:text-[#7E69AB] prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4 prose-ul:my-6 prose-li:mb-3 prose-a:text-[#9b87f5] [&>hr]:my-8"
           dangerouslySetInnerHTML={{ __html: post.content }}
