@@ -35,33 +35,26 @@ const getPostImage = (slug: string) => {
 export const BlogPostCard = ({ post, featured = false }: BlogPostCardProps) => (
   <Link 
     to={`/blog/${post.slug}`}
-    className="block group"
+    className="block group h-full"
   >
-    <div className={cn(
-      "bg-white/5 rounded-lg overflow-hidden group-hover:bg-white/10 transition-colors h-full",
-      featured ? "col-span-full lg:col-span-2" : ""
-    )}>
-      <div className="relative h-[800px]">
+    <div className="bg-white/5 rounded-lg overflow-hidden group-hover:bg-white/10 transition-colors h-full">
+      <div className="relative h-full min-h-[600px]">
         <div className="absolute inset-0">
           <img 
             src={getPostImage(post.slug)} 
             alt={post.title}
             className="w-full h-full object-cover opacity-30 group-hover:opacity-40 transition-opacity duration-300"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/80 to-black" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/90 to-black" />
         </div>
-        <div className="relative p-12 flex flex-col h-full">
+        <div className="relative p-8 flex flex-col h-full">
           <h2 className={cn(
             "font-bold text-white mb-6 group-hover:text-[#9b87f5] transition-colors",
             featured ? "text-3xl" : "text-2xl"
           )}>
             {post.title}
           </h2>
-          <p className={cn(
-            "text-gray-200 mb-8",
-            featured ? "line-clamp-12" : "line-clamp-10",
-            "text-lg leading-relaxed"
-          )}>
+          <p className="text-gray-200 text-lg leading-relaxed mb-8">
             {post.excerpt}
           </p>
           <div className="flex items-center justify-between text-sm text-gray-400 mt-auto">
