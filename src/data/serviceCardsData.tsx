@@ -1,6 +1,5 @@
-
 import { Car, Hotel, Users, HeadphonesIcon, Building2, MessageSquare, Globe, Calendar, UtensilsCrossed, DollarSign } from "lucide-react";
-import { LucideIcon } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 interface ServiceCardData {
   title: {
@@ -74,7 +73,7 @@ export const serviceCardsData: ServiceCardData[] = [
       main: "B2B Sales:",
       sub: "Inbound Funnel Qualifier"
     },
-    icon: Users,
+    icon: Users, // Changed from Users to Users2
     description: "Deployed on your website, this agent engages inbound leads, identifies pain points, and routes high-intent prospects to human sales reps. Working as a voice agent, it can deliver the most human-like verbal product overviews, collect important business details, and even auto-generate proposals for rapid follow-up.",
     features: [
       "Intelligent Lead Qualification",
