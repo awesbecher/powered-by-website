@@ -99,6 +99,20 @@ export const serviceCardsData: ServiceCardData[] = [
   },
   {
     title: {
+      main: "Restaurants:",
+      sub: "Virtual Reservation Manager"
+    },
+    icon: UtensilsCrossed,
+    description: "Aimed at restaurants, this agent manages table reservations, waitlist updates, and dietary preference tracking. Deployed on a restaurant's website as a voice agent, it answers frequently asked questions (e.g., hours, menu items), so staff can concentrate on delivering excellent in-person service.",
+    features: [
+      "Real-time Table Management",
+      "Automated Waitlist Updates",
+      "Dietary Preference Tracking",
+      "Menu & Hours Information"
+    ]
+  },
+  {
+    title: {
       main: "Education:",
       sub: "Enrollment Assistant"
     },
@@ -137,20 +151,6 @@ export const serviceCardsData: ServiceCardData[] = [
       "Benefits Information Access",
       "Automated Onboarding Guidance",
       "Company Knowledge Base"
-    ]
-  },
-  {
-    title: {
-      main: "Restaurants:",
-      sub: "Virtual Reservation Manager"
-    },
-    icon: UtensilsCrossed,
-    description: "Aimed at restaurants, this agent manages table reservations, waitlist updates, and dietary preference tracking. Deployed on a restaurant's website as a voice agent, it answers frequently asked questions (e.g., hours, menu items), so staff can concentrate on delivering excellent in-person service.",
-    features: [
-      "Real-time Table Management",
-      "Automated Waitlist Updates",
-      "Dietary Preference Tracking",
-      "Menu & Hours Information"
     ]
   },
   {
