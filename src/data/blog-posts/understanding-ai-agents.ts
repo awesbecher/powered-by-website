@@ -1,4 +1,3 @@
-
 import { BlogPost } from "../../types/blog";
 
 export const understandingAiAgents: BlogPost = {
@@ -11,8 +10,6 @@ export const understandingAiAgents: BlogPost = {
   slug: "understanding-ai-agents",
   category: "AI Technology",
   content: `
-    <h1>What's an AI Agent?</h1>
-
     <p>No doubt you have already experienced the transformative power of AI using ChatGPT and its equivalents from Google, Facebook, Meta, and other tech giants. As these companies push the boundaries of machine intelligence, a new way to consume artificial intelligence has arisen: AI agents.</p>
 
     <p>These agents are software functions that branch off the deep work of the major AI companies to help you automate repetitive tasks, streamline workflows, and delight your customers. They can operate in many modes like voice agents that support human-like phone conversations or email agents which can send and receive messages like a person would.</p>
