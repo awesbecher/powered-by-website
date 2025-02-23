@@ -1,3 +1,4 @@
+
 import { BlogPost } from "../../types/blog";
 
 export const understandingAiAgents: BlogPost = {
@@ -5,7 +6,7 @@ export const understandingAiAgents: BlogPost = {
   title: "AI Agents: A Layman's Guide",
   excerpt: "Think of an AI agent as a super-smart, tireless assistant that handles tasks for you, without the coffee breaks. Learn how these digital helpers are transforming small and medium-sized businesses.",
   author: "Parlar AI Team",
-  date: "November 28, 2023",
+  date: "November 28, 2024",
   readTime: "8 min read",
   slug: "understanding-ai-agents",
   category: "AI Technology",
