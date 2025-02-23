@@ -12,7 +12,7 @@ export const understandingAiAgents: BlogPost = {
   category: "AI Technology",
   content: `
     <h1>What's an AI Agent?</h1>
-    
+
     <p>No doubt you have already experienced the transformative power of AI using ChatGPT and its equivalents from Google, Facebook, Meta, and other tech giants. As these companies push the boundaries of machine intelligence, a new way to consume artificial intelligence has arisen: AI agents.</p>
 
     <p>These agents are software functions that branch off the deep work of the major AI companies to help you automate repetitive tasks, streamline workflows, and delight your customers. They can operate in many modes like voice agents that support human-like phone conversations or email agents which can send and receive messages like a person would.</p>
@@ -20,11 +20,13 @@ export const understandingAiAgents: BlogPost = {
     <p>But within the context of your business, how do they work and why should you consider them for your SMB? We present the following: A Layman's Guide to AI Agents.</p>
 
     <h2>What is an AI Agent?</h2>
+
     <p>Using an easily understandable analogy, AI Agents are like the backstage crew in a grand theater production—rarely in the spotlight, but indispensable for a smooth show. They take on repetitive, data-driven tasks that can bog down your team, freeing everyone to focus on higher-value activities.</p>
 
     <p>If you also imagine your business as a bustling kitchen, an AI Agent is like an ultra-efficient sous chef. It operates by itself in the background, taking inputs (ingredients) and executing tasks based on your guidance (recipes), so you can focus on the main course—managing and growing the business.</p>
 
     <p>Formally, an AI Agent is software that:</p>
+
     <ul>
       <li>Observes its environment through data or direct user inputs</li>
       <li>Decides what action to take next via algorithms, learned behavior, or directly from instructions you give it. The decisioning is based on what are referred to as "AI prompts"</li>
@@ -34,18 +36,23 @@ export const understandingAiAgents: BlogPost = {
     <p>Unlike a simple software script that mindlessly follows a rigid set of instructions, AI Agents are more adaptable. They "learn" from past interactions and outcomes—think of them like digital interns who evolve into experts over time. Most powerfully, they can operate in many communication channels: like agents for voice calls and text messages or within website chatbots acting as a "virtual human" to automate daily tasks.</p>
 
     <h2>How Do They Work?</h2>
+
     <p>While most of the AI tools you likely have already tried, an AI agent is more than a simple chatbot. At the core of an AI agent lies one or more machine learning models—essentially patterns recognized and learned from data. Here's a simplified breakdown:</p>
 
     <h3>Data Ingestion</h3>
+
     <p>An AI agent is fed data from different sources. This data could be customer support tickets, email inquiries, product usage stats, or even real-time metrics like website traffic.</p>
 
     <h3>Data Processing & Analysis</h3>
+
     <p>It uses algorithms (fancy instructions) to spot trends, correlations, and anomalies within that data. For instance, if it's analyzing customer support queries, it might look for keywords like "refund," "error," or "cancel" to identify the nature of the request.</p>
 
     <h3>Decision-Making</h3>
+
     <p>The AI agent applies logic or a predictive model. In the refund request scenario, it might decide that if the customer is asking for a refund within 30 days of purchase and the product meets certain conditions, it automatically initiates a return or triggers a response.</p>
 
     <h3>Action & Feedback Loop</h3>
+
     <p>Finally, it performs an action—sending an email, updating a status in your CRM, or generating a task for a human teammate to review. Over time, it refines its behavior based on results. If the recommended response didn't solve the problem, the AI can adjust its approach in the future.</p>
 
     <p>Essentially, AI Agents are like well-trained digital detectives, sifting through heaps of data and clues to arrive at the right conclusion and act upon it without you. Seamless, accurate, and automatic.</p>
