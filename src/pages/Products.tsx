@@ -1,4 +1,4 @@
-import { Car, Hotel, Users, HeadphonesIcon, Building2, Check, Mail, Phone, MessageSquare, BrainCircuit, Bot, Workflow, MessagesSquare, HeartHandshake, Network, Database, Code2, Rocket, Zap, Globe } from "lucide-react";
+import { Car, Hotel, Users, HeadphonesIcon, Building2, Check, Mail, Phone, MessageSquare, BrainCircuit, Bot, Workflow, MessagesSquare, HeartHandshake, Network, Database, Code2, Rocket, Zap, Globe, Calendar } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { WordAnimation } from "@/components/home/WordAnimation";
@@ -188,6 +188,21 @@ const Products = () => {
               "Multi-platform Deployment",
               "Seamless Language Switching",
               "Cross-cultural Communication"
+            ]}
+          />
+
+          <ServiceCard
+            title={<>
+              <span className="font-bold text-white">Events:</span>{' '}
+              <span className="font-normal text-[#9b87f5]">Attendee Engagement Bot</span>
+            </>}
+            icon={Calendar}
+            description="Ideal for conference organizers, expo hosts, or virtual events, this agent handles everything from attendee registration and ticket inquiries to session reminders and post-event feedback collection. Deployed on event websites via voice or chat, it provides a personalized experience by recommending relevant sessions or speaker info."
+            features={[
+              "Automated Registration Support",
+              "Session Recommendations",
+              "Event Schedule Management",
+              "Post-Event Feedback Collection"
             ]}
           />
         </div>
