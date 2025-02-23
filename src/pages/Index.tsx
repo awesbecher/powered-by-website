@@ -30,7 +30,7 @@ const Index = () => {
         <FeaturesGrid />
       </div>
       
-      <div className="relative z-10 mt-8 mb-20 flex justify-center">
+      <div className="relative z-10 -mt-12 mb-20 flex justify-center">
         <div className="w-full max-w-xl">
           <AIAgentIllustration />
         </div>
