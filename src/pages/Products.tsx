@@ -101,6 +101,21 @@ const Products = () => {
               "In-App Voice Integration"
             ]}
           />
+
+          <ServiceCard
+            title={<>
+              <span className="font-bold text-white">B2B Sales:</span>{' '}
+              <span className="font-normal text-[#9b87f5]">Inbound Funnel Qualifier</span>
+            </>}
+            icon={Users}
+            description="Deployed on your website, this agent engages inbound leads, identifies pain points, and routes high-intent prospects to human sales reps. Working as a voice agent, it can deliver the most human-like verbal product overviews, collect important business details, and even auto-generate proposals for rapid follow-up."
+            features={[
+              "Intelligent Lead Qualification",
+              "Automated Proposal Generation",
+              "Real-time Sales Rep Routing",
+              "Pain Point Analysis"
+            ]}
+          />
         </div>
       </div>
 
