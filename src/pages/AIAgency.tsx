@@ -46,7 +46,7 @@ const AIAgency = () => {
                 </p>
 
                 <div className="flex justify-center mt-8">
-                  <Link to="/whats-an-ai-agent">
+                  <Link to="/blog/understanding-ai-agents">
                     <Button 
                       variant="outline" 
                       className="bg-transparent border-purple-400 text-purple-400 hover:bg-purple-400/10 hover:text-white transition-all"
