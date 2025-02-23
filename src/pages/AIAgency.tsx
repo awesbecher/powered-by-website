@@ -42,10 +42,6 @@ const AIAgency = () => {
               
               <div className="space-y-8 text-lg text-gray-300 leading-relaxed text-justify">
                 <p>We design and deploy intelligent agents tailored from the ground up to fit your unique needs—whether it's voice-driven phone assistants, email automation bots, text-based support, Slack integrations, or chatbots that speak and communicate as human-like as possible. Our mission? To automate the repetitive, amplify the human, and supercharge your workflows with AI that feels like it was made just for you—because it was.</p>
-                
-                <p className="font-medium text-white">
-                  Think of us as your creative AI partner. We take the time to understand your business, your customers, and your goals, then craft AI agent-enabled workflows that simply work.
-                </p>
 
                 <div className="flex justify-center mt-8 mb-16">
                   <Link to="/blog/understanding-ai-agents">
