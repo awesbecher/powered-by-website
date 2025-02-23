@@ -126,7 +126,7 @@ export const understandingAiAgents: BlogPost = {
       </li>
     </ul>
 
-    <p></p>
+    <div class="mt-12"></div>
 
     <h2 class="text-3xl font-extrabold bg-blue-100/20 inline-block px-4 py-2 rounded">Benefits: Why Should SMBs Care?</h2>
 
