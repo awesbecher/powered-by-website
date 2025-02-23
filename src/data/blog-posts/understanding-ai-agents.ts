@@ -132,25 +132,42 @@ export const understandingAiAgents: BlogPost = {
 
     <p>Sure, big corporations have entire Engineering and R&D labs dedicated to AI, but SMBs lack the internal resources to innovate AI at the scale of the big players. Nevertheless, SMBs often stand to gain even more immediate advantages by automating routine tasks. Here's how:</p>
 
-    <h3>Saving Time & Money</h3>
+    <ul class="pl-12 space-y-4 list-none mt-6">
+      <li class="before:content-['•'] before:mr-2 before:text-accent before:text-xl flex items-start">
+        <div>
+          <strong class="text-[#9b87f5]">Saving Time & Money</strong>
+          <p class="mt-1">Repetitive tasks—like data entry, basic research, or responding to simple FAQs—can eat up your staff's time. AI agents take on these tasks 24/7, without requiring overtime pay or coffee breaks.</p>
+        </div>
+      </li>
 
-    <p>Repetitive tasks—like data entry, basic research, or responding to simple FAQs—can eat up your staff's time. AI agents take on these tasks 24/7, without requiring overtime pay or coffee breaks.</p>
+      <li class="before:content-['•'] before:mr-2 before:text-accent before:text-xl flex items-start">
+        <div>
+          <strong class="text-[#9b87f5]">Boosted Productivity</strong>
+          <p class="mt-1">By automating the mundane, your team has more bandwidth for strategic thinking, creative problem-solving, and customer relationship building. In other words, humans do the "human stuff" better when they're not bogged down with grunt work.</p>
+        </div>
+      </li>
 
-    <h3>Boosted Productivity</h3>
+      <li class="before:content-['•'] before:mr-2 before:text-accent before:text-xl flex items-start">
+        <div>
+          <strong class="text-[#9b87f5]">Improved Accuracy</strong>
+          <p class="mt-1">People get tired, and tired people make mistakes. AI agents, however, won't fumble due to fatigue or forget to update a spreadsheet. Their consistent output reduces costly errors, whether in finances, orders, or customer data.</p>
+        </div>
+      </li>
 
-    <p>By automating the mundane, your team has more bandwidth for strategic thinking, creative problem-solving, and customer relationship building. In other words, humans do the "human stuff" better when they're not bogged down with grunt work.</p>
+      <li class="before:content-['•'] before:mr-2 before:text-accent before:text-xl flex items-start">
+        <div>
+          <strong class="text-[#9b87f5]">Scalability</strong>
+          <p class="mt-1">As your business expands, you won't need to worry about hiring an army of new customer service reps or data analysts overnight. AI agents can scale up (or down) without a massive hiring spree or training sessions.</p>
+        </div>
+      </li>
 
-    <h3>Improved Accuracy</h3>
-
-    <p>People get tired, and tired people make mistakes. AI agents, however, won't fumble due to fatigue or forget to update a spreadsheet. Their consistent output reduces costly errors, whether in finances, orders, or customer data.</p>
-
-    <h3>Scalability</h3>
-
-    <p>As your business expands, you won't need to worry about hiring an army of new customer service reps or data analysts overnight. AI agents can scale up (or down) without a massive hiring spree or training sessions.</p>
-
-    <h3>Enhanced Customer Experience</h3>
-
-    <p>In a digital age, customers expect swift, personalized service. AI agents never sleep, so they can provide round-the-clock support, ensuring you keep customers happy—and keep them coming back.</p>
+      <li class="before:content-['•'] before:mr-2 before:text-accent before:text-xl flex items-start">
+        <div>
+          <strong class="text-[#9b87f5]">Enhanced Customer Experience</strong>
+          <p class="mt-1">In a digital age, customers expect swift, personalized service. AI agents never sleep, so they can provide round-the-clock support, ensuring you keep customers happy—and keep them coming back.</p>
+        </div>
+      </li>
+    </ul>
 
     <h2 class="text-3xl font-extrabold bg-blue-100/20 inline-block px-4 py-2 rounded">But Will AI Agents Steal My Job?</h2>
 
