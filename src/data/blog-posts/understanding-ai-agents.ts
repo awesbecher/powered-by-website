@@ -213,6 +213,7 @@ export const understandingAiAgents: BlogPost = {
         <div>
           <strong class="text-[#9b87f5]">Enhanced Customer Experience</strong>
           <p class="mt-1">In a digital age, customers expect swift, personalized service. AI agents never sleep, so they can provide round-the-clock support, ensuring you keep customers happy—and keep them coming back.</p>
+          <p class="mt-1">Plus, AI agents can handle multiple customer inquiries simultaneously, drastically reducing wait times and ensuring no customer query goes unanswered, even during peak hours or holidays.</p>
         </div>
       </li>
     </ul>
