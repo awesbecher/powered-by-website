@@ -86,6 +86,21 @@ const Products = () => {
               "Lead Qualification & Follow-up"
             ]}
           />
+
+          <ServiceCard
+            title={<>
+              <span className="font-bold text-white">SaaS Companies:</span>{' '}
+              <span className="font-normal text-[#9b87f5]">Voice-Enabled Support</span>
+            </>}
+            icon={HeadphonesIcon}
+            description="Deployed through phone lines or even inside your app, this solution helps users troubleshoot issues, run diagnostics, and escalate complex problems. It understands natural speech patterns, making tech support feel more personal and less intimidating."
+            features={[
+              "24/7 Technical Support",
+              "Natural Language Understanding",
+              "Smart Issue Escalation",
+              "In-App Voice Integration"
+            ]}
+          />
         </div>
       </div>
 
