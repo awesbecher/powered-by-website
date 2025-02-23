@@ -89,7 +89,7 @@ const AIAgency = () => {
                             How Are We Different Than The Major AI Giants?
                           </h3>
                           <div className="text-gray-300 text-left opacity-0 h-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-300 overflow-hidden">
-                            <p className="mb-6">We believe in a collaborative and transparent process that gets results. Here's what to expect when you work with Parlar AI:</p>
+                            <p className="mb-6">We believe in a collaborative and transparent process that gets results. Here's what to expect when you work with Parlar:</p>
                             
                             <div className="space-y-6">
                               <div>
@@ -140,9 +140,41 @@ const AIAgency = () => {
                             Our Project-Based Approach
                           </h3>
                           <div className="text-gray-300 text-left opacity-0 h-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-300 overflow-hidden">
-                            <p>
-                              Every business is unique, and so should be its AI solution. We take a project-based approach, working closely with you to understand your specific challenges and opportunities. Our team develops custom AI agents that address your exact needs, ensuring maximum impact and ROI for your investment.
-                            </p>
+                            <p className="mb-6">We believe in a collaborative and transparent process that gets results. Here's what to expect when you work with Parlar:</p>
+                            
+                            <div className="space-y-6">
+                              <div>
+                                <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Discovery & Strategy</h4>
+                                <ul className="list-inside space-y-2">
+                                  <li><span className="font-semibold">Goal Setting:</span> We identify your top objectives, such as reducing support wait times or boosting sales conversions.</li>
+                                  <li><span className="font-semibold">Technical Assessment:</span> Our team audits your existing systems, data, and brand guidelines to define the perfect AI solution scope.</li>
+                                </ul>
+                              </div>
+
+                              <div>
+                                <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Custom AI Design & Integration</h4>
+                                <ul className="list-inside space-y-2">
+                                  <li><span className="font-semibold">Personalized Development:</span> From conversation flows to brand tone, we craft an AI agent that mirrors your unique style.</li>
+                                  <li><span className="font-semibold">Seamless Deployment:</span> We integrate directly with your website, CRM, or other channels, providing end-to-end technical support.</li>
+                                </ul>
+                              </div>
+
+                              <div>
+                                <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Training & Knowledge Transfer</h4>
+                                <ul className="list-inside space-y-2">
+                                  <li><span className="font-semibold">Employee Onboarding:</span> We train your team on using, managing, and interpreting AI outputs, so everyone feels confident.</li>
+                                  <li><span className="font-semibold">Live Testing & Tweaks:</span> Before going live, we run extensive QA to ensure the AI meets real-world user expectations.</li>
+                                </ul>
+                              </div>
+
+                              <div>
+                                <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Continuous Optimization</h4>
+                                <ul className="list-inside space-y-2">
+                                  <li><span className="font-semibold">Performance Monitoring:</span> Using feedback loops and analytics, we identify improvement areas—like conversation accuracy or sentiment handling.</li>
+                                  <li><span className="font-semibold">Iterative Updates:</span> Our ongoing maintenance ensures your AI agent evolves alongside your business, maintaining top-notch performance.</li>
+                                </ul>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
