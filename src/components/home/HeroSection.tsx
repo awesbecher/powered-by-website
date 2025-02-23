@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Phone, QuestionMarkCircle } from "lucide-react";
+import { ArrowRight, Phone, HelpCircle } from "lucide-react";
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -29,8 +29,8 @@ export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
           <div className={`mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-1000 delay-500 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <Link to="/blog/understanding-ai-agents">
-              <Button variant="outline" className="text-white bg-[#6E59A5] hover:bg-[#6E59A5]/80 px-4 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto">
-                <QuestionMarkCircle className="mr-2 h-5 w-5" />
+              <Button className="text-white bg-[#6E59A5] hover:bg-[#6E59A5]/80 px-4 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto">
+                <HelpCircle className="mr-2 h-5 w-5" />
                 What's an AI agent?
               </Button>
             </Link>
