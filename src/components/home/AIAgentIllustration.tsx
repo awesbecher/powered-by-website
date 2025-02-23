@@ -24,7 +24,7 @@ const AIAgentIllustration = () => {
         <AgentBubble 
           title="VOICE AGENT" 
           icon={Phone} 
-          position="-top-8 left-0 transform -translate-x-full" 
+          position="-top-8 left-0 transform -translate-x-[125%]" 
           dotPosition="bottom-right"
         />
         <AgentBubble 
