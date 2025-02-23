@@ -12,47 +12,16 @@ const Products = () => {
     setInitialLoad(false);
   }, []);
 
-  const scrollToSection = (index: number) => {
-    const targetSection = document.getElementById(`solution-${index}`);
-    
-    if (!targetSection) return;
-
-    // Get all sections up to the target to calculate total height
-    const sections = Array.from(document.getElementsByClassName('solution-section'));
-    const targetIndex = sections.findIndex(section => section.id === `solution-${index}`);
-    
-    if (targetIndex === -1) return;
-
-    // Calculate the total height including the header offset
-    const headerHeight = 80;
-    const heroHeight = document.querySelector('.hero-section')?.getBoundingClientRect().height || 0;
-    const gridHeight = document.querySelector('.solutions-grid')?.getBoundingClientRect().height || 0;
-    
-    let totalOffset = heroHeight + gridHeight + headerHeight;
-
-    // Add heights of previous sections if any
-    for (let i = 0; i < targetIndex; i++) {
-      totalOffset += sections[i].getBoundingClientRect().height;
-    }
-
-    // Scroll to position
-    window.scrollTo({
-      top: totalOffset,
-      behavior: 'smooth'
-    });
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <ProductsHero initialLoad={initialLoad} className="hero-section" />
 
       {/* Solutions Index Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 solutions-grid">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {serviceCardsData.map((card, index) => (
-            <button
+            <div
               key={index}
-              onClick={() => scrollToSection(index)}
               className="p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-all duration-300 border border-white/10 group"
             >
               <div className="flex flex-col items-center text-center space-y-2">
@@ -61,7 +30,7 @@ const Products = () => {
                   {card.title.main.replace(':', '')}
                 </span>
               </div>
-            </button>
+            </div>
           ))}
         </div>
       </div>
@@ -70,11 +39,7 @@ const Products = () => {
       <div className="max-w-full pt-12">
         <div className="space-y-0 divide-y divide-white/10">
           {serviceCardsData.map((card, index) => (
-            <div 
-              key={index} 
-              id={`solution-${index}`}
-              className="solution-section"
-            >
+            <div key={index}>
               <ServiceCard
                 title={
                   <>
@@ -101,4 +66,3 @@ const Products = () => {
 };
 
 export default Products;
-
