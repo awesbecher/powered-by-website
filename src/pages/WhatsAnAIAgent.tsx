@@ -32,12 +32,12 @@ const WhatsAnAIAgent = () => {
           <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
         </div>
 
-        <div className="relative mt-8 px-6 lg:px-8">
+        <div className="relative -mt-12 px-6 lg:px-8">
           <div className="mx-auto max-w-4xl">
             <div className={`text-left transition-all duration-1000 delay-500 ease-out transform
                 ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
               <div className="relative">
-                <div className="absolute right-0 top-0 w-64 h-64">
+                <div className="absolute right-0 -top-16 w-64 h-64">
                   <AIAgentIllustration />
                 </div>
                 <div className="relative z-10">
