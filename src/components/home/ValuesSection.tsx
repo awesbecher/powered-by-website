@@ -16,7 +16,7 @@ export const ValuesSection = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 -mt-12">
+    <div className="max-w-7xl mx-auto px-4 -mt-24">
       <h2 className="text-3xl md:text-5xl font-bold text-white mb-16 max-w-4xl mx-auto leading-[1.1]">
         Custom AI Agent Solutions Built for you.{" "}
         <span className="text-[#9b87f5] block mt-4">Quick. Easy. Powerful.</span>
