@@ -1,90 +1,20 @@
-import { WordAnimation } from "@/components/home/WordAnimation";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Building2, Bot, Phone, ArrowLeftCircle, ArrowRightCircle } from "lucide-react";
-import { Link } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
-import { samplePosts } from "@/data/blogPosts";
+
+import { useState, useEffect } from "react";
+import { HeroSection } from "@/components/home/HeroSection";
+import { FeaturesGrid } from "@/components/home/FeaturesGrid";
+import { ValuesSection } from "@/components/home/ValuesSection";
+import { BlogSection } from "@/components/home/BlogSection";
+import { ClosingCTA } from "@/components/home/ClosingCTA";
 
 const Index = () => {
-  const [animate, setAnimate] = useState(true);
   const [initialLoad, setInitialLoad] = useState(true);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setInitialLoad(false);
   }, []);
 
-  const handleClick = () => {
-    setAnimate(false);
-    setTimeout(() => setAnimate(true), 10);
-  };
-
-  const handleScrollRight = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({
-        left: 400,
-        behavior: 'smooth'
-      });
-    }
-  };
-
-  const handleScrollLeft = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({
-        left: -400,
-        behavior: 'smooth'
-      });
-    }
-  };
-
-  const handleScroll = () => {
-    if (scrollContainerRef.current) {
-      setCanScrollLeft(scrollContainerRef.current.scrollLeft > 0);
-      
-      const scrollPosition = scrollContainerRef.current.scrollLeft;
-      const itemWidth = 392;
-      const newIndex = Math.round(scrollPosition / itemWidth);
-      setCurrentIndex(newIndex);
-    }
-  };
-
-  const features = [
-    {
-      icon: Building2,
-      title: "Built for SMBs",
-      description: "AI Agents tailored to businesses with 1 to 1,000 employees"
-    },
-    {
-      icon: Bot,
-      title: "Experts in AI Agents",
-      description: "Deep mastery of automation agents for simple to the most complex tasks"
-    },
-    {
-      icon: Phone,
-      title: "Multi-Channel Agents",
-      description: "Delivering agents for voice, email, SMS, Slack, chat, and document automation"
-    }
-  ];
-
-  const values = [
-    {
-      title: "Unique AI Agency Model",
-      description: "Just as web design agencies once transformed businesses for the web, we're here to revolutionize how SMBs connect, work, and grow without adding more humans or cost overhead."
-    },
-    {
-      title: "Client Obsessed from Day One",
-      description: "Think of us as your creative AI partner. We take the time to understand your business, your customers, and your goals, then craft AI agent-enabled workflows that simply work."
-    },
-    {
-      title: "Commitment to Excellence",
-      description: "For us, project excellence isn't a choice. It's the foundation of everything we do. From voice automation to systems integration, we're dedicated to delivering exceptional quality, because your success is the measure of ours."
-    }
-  ];
-
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]" onClick={handleClick}>
+    <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <div className="absolute top-6 left-6 lg:left-8">
         <img 
           src="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
@@ -93,207 +23,13 @@ const Index = () => {
         />
       </div>
 
-      <div className="relative overflow-hidden px-6 lg:px-8 pt-36 pb-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="text-center">
-            <h1 
-              className={`text-4xl font-bold tracking-tight text-white sm:text-6xl mb-4 transition-all duration-1000 ease-out transform
-                ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
-            >
-              Why should those Silicon Valley <span className="font-extrabold text-purple-400">nerds</span> have all the fancy AI toys?
-            </h1>
-            
-            <p 
-              className={`mt-4 text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-tight font-bold transition-all duration-1000 delay-300 ease-out transform
-                ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
-            >
-              We're the world's first <Link to="/ai-agency" className="border-b-2 border-purple-400 hover:text-purple-400 transition-colors">AI agency</Link> delivering custom AI agent solutions to SMBs. Just like a web design firm, we build you bespoke AI agents quickly and cost effectively.
-            </p>
-            
-            <div className={`mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-1000 delay-500 ease-out transform
-              ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-              <Link to="/contact">
-                <Button className="bg-accent hover:bg-accent-dark text-white px-8 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto">
-                  Book a Consultation
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-              <Button className="bg-white hover:bg-gray-100 text-accent px-8 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto">
-                Talk to an AI Agent Now
-                <Phone className="ml-2 h-5 w-5" />
-              </Button>
-            </div>
-          </div>
-        </div>
+      <HeroSection initialLoad={initialLoad} />
+      <FeaturesGrid />
+      <ValuesSection />
+      <BlogSection />
+      <ClosingCTA />
 
-        <div className="mt-12 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
-          {features.map((feature, index) => (
-            <div 
-              key={index}
-              className="glass-card p-6 rounded-xl text-center transform transition-transform duration-300 hover:scale-105"
-            >
-              <feature.icon className="w-12 h-12 mx-auto mb-4 text-accent" />
-              <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
-              <p className="text-gray-400">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-20 max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-20 max-w-4xl mx-auto leading-[1.1]">
-            Custom AI Agent Solutions Built for you.{" "}
-            <span className="text-[#9b87f5] block mt-4">Quick. Easy. Powerful.</span>
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
-            {values.map((value, index) => (
-              <div key={index} className="relative pb-4">
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="w-6 h-6 bg-[#9b87f5] rounded-sm" />
-                  <h3 className="text-2xl font-bold text-white">{value.title}</h3>
-                </div>
-                <p className="text-gray-300 text-base leading-relaxed">
-                  {value.description}
-                </p>
-                <div className="absolute -bottom-2 left-0 right-0 h-px bg-white/10" />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-20 max-w-7xl mx-auto px-4">
-          <Link to="/blog">
-            <h2 className="text-5xl font-bold text-white mb-16 whitespace-nowrap bg-gradient-to-r from-purple-500/20 to-purple-400/20 inline-block px-4 py-2 rounded-lg hover:bg-gradient-to-r hover:from-purple-500/30 hover:to-purple-400/30 transition-all">
-              Our Latest Insights on AI Agents for SMBs:
-            </h2>
-          </Link>
-        
-          <div className="relative">
-            <div 
-              ref={scrollContainerRef}
-              className="relative overflow-x-auto scrollbar-hide pb-4"
-              onScroll={handleScroll}
-            >
-              <div className="flex space-x-8 w-max">
-                {samplePosts.map((post, index) => (
-                  <Link key={index} to={`/blog/${post.slug}`} className="group w-[384px] flex-none">
-                    <div className="relative overflow-hidden rounded-xl bg-[#1a1a1a] transition-transform duration-300 group-hover:scale-[1.02]">
-                      <div className="aspect-[16/9] relative">
-                        <img 
-                          src={index === 0 
-                            ? "/lovable-uploads/f971b5e9-817b-426a-9db0-5db472970633.png"
-                            : `https://images.unsplash.com/${
-                              index === 1 ? 'photo-1556745753-b2904692b3cd' : // Retail voice assistant
-                              index === 2 ? 'photo-1551288049-bebda4e38f71' : // SaaS automation
-                              index === 3 ? 'photo-1535378917042-10a22c95931a' : // Human-like AI
-                              index === 4 ? 'photo-1553877522-43269d4ea984' : // SMB conversational agents
-                              index === 5 ? 'photo-1517245386807-bb43f82c33c4' : // Customer service evolution
-                              'photo-1485827404703-89b55fcc595e'   // AI and robotics
-                            }`}
-                          alt={post.title}
-                          className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-opacity"
-                        />
-                        <div className="absolute inset-0 bg-[#1a1a1a]/60 mix-blend-overlay" />
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#1a1a1a] z-10" />
-                      </div>
-                      
-                      <div className="p-6">
-                        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#9b87f5] transition-colors">
-                          {post.title}
-                        </h3>
-                        <p className="text-gray-400 text-sm line-clamp-3">
-                          {post.excerpt}
-                        </p>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-            
-            <div className="mt-4 flex items-center justify-center gap-6">
-              <button
-                onClick={handleScrollLeft}
-                disabled={!canScrollLeft}
-                className={`p-2 rounded-full transition-all duration-300 ${
-                  canScrollLeft 
-                    ? 'text-white/90 hover:text-[#9b87f5]' 
-                    : 'text-white/30 cursor-not-allowed'
-                }`}
-                aria-label="Scroll left"
-              >
-                <ArrowLeftCircle size={32} />
-              </button>
-              
-              <div className="flex gap-2">
-                {samplePosts.map((_, index) => (
-                  <div
-                    key={index}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      index === currentIndex 
-                        ? 'bg-[#9b87f5]' 
-                        : 'bg-white/20 hover:bg-white/30'
-                    }`}
-                  />
-                ))}
-              </div>
-              
-              <button
-                onClick={handleScrollRight}
-                disabled={currentIndex >= samplePosts.length - 1}
-                className={`p-2 rounded-full transition-all duration-300 ${
-                  currentIndex < samplePosts.length - 1
-                    ? 'text-white/90 hover:text-[#9b87f5]'
-                    : 'text-white/30 cursor-not-allowed'
-                }`}
-                aria-label="Scroll right"
-              >
-                <ArrowRightCircle size={32} />
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="relative mt-32 mb-20 max-w-7xl mx-auto px-4">
-        <div className="relative z-10 glass-card p-12 rounded-3xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-purple-400/10 backdrop-blur-sm" />
-          
-          <div className="relative z-20">
-            <div className="max-w-4xl mx-auto text-center space-y-8">
-              <div className="inline-block">
-                <div className="relative">
-                  <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-[#9b87f5] to-[#ffffff40] opacity-30 blur" />
-                  <div className="relative bg-[#1a0b2e]/80 rounded-lg p-1">
-                    <p className="text-xs uppercase tracking-wider text-[#9b87f5]">The Future of Business</p>
-                  </div>
-                </div>
-              </div>
-              
-              <p className="text-2xl md:text-4xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-200">
-                Empower your business with intelligent AI agents that handle customer interactions across all channels - 
-                <span className="text-[#9b87f5]"> voice, email, SMS, chat, </span>
-                and more.
-              </p>
-              
-              <p className="text-xl text-gray-300 leading-relaxed">
-                Streamline operations, reduce costs, and deliver exceptional service 24/7.
-              </p>
-              
-              <Link to="/contact" className="inline-block mt-8">
-                <Button className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105">
-                  Transform Your Business Today
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-
-          <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-[#9b87f5]/20 blur-3xl" />
-          <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-[#9b87f5]/30 blur-2xl" />
-        </div>
-      </div>
-
+      {/* Background gradient orbs */}
       <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
       <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
     </div>
