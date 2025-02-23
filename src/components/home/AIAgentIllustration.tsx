@@ -50,7 +50,7 @@ const AIAgentIllustration = () => {
         <AgentBubble 
           title="EMAIL AGENT" 
           icon={Mail} 
-          position="top-32 right-0 transform translate-x-1/2" 
+          position="top-32 right-0 transform translate-x-full" 
           dotPosition="top-left"
         />
         <AgentBubble 
@@ -79,3 +79,4 @@ const AIAgentIllustration = () => {
 };
 
 export default AIAgentIllustration;
+

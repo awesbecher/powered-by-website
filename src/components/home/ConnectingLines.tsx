@@ -30,9 +30,9 @@ const ConnectingLines = () => {
           strokeDasharray="4 4"
           className="animate-dash"
         />
-        {/* Email Agent connection */}
+        {/* Email Agent connection - Updated path */}
         <path
-          d="M 200 200 Q 250 200 300 200"
+          d="M 200 200 Q 275 200 350 200"
           stroke="#9b87f5"
           strokeWidth="2"
           fill="none"
@@ -48,7 +48,7 @@ const ConnectingLines = () => {
           strokeDasharray="4 4"
           className="animate-dash"
         />
-        {/* API Agent connection - Updated to connect to the primary box */}
+        {/* API Agent connection */}
         <path
           d="M 300 250 Q 250 200 175 175"
           stroke="#9b87f5"
@@ -57,7 +57,7 @@ const ConnectingLines = () => {
           strokeDasharray="4 4"
           className="animate-dash"
         />
-        {/* Slack Agent connection - Updated to connect to the primary box */}
+        {/* Slack Agent connection */}
         <path
           d="M 75 250 Q 125 200 175 175"
           stroke="#9b87f5"
