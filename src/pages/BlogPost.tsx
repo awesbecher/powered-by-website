@@ -58,7 +58,7 @@ const BlogPost = () => {
         </div>
         <div className="relative w-full">
           <div className="container mx-auto px-4 max-w-4xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-[#9b87f5] mb-3 drop-shadow-xl bg-[#1a0b2e]/70 p-4 rounded-lg backdrop-blur-sm break-words hyphens-auto">
+            <h1 className="text-4xl md:text-5xl font-bold text-[#9b87f5] mb-2 drop-shadow-xl bg-[#1a0b2e]/70 p-4 rounded-lg backdrop-blur-sm break-words hyphens-auto">
               {post.title}
             </h1>
             <div className="flex flex-wrap items-center gap-4 md:gap-6 text-gray-200 text-sm bg-[#1a0b2e]/70 p-3 rounded-lg backdrop-blur-sm inline-block">
