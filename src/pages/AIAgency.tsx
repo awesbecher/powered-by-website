@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -62,13 +63,19 @@ const AIAgency = () => {
                   {/* Section 1 */}
                   <div className="relative group">
                     <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200" />
-                    <div className="relative p-6 bg-[#1a0b2e] ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-start space-x-6">
-                      <BookOpen className="w-8 h-8 text-purple-400" />
-                      <div className="space-y-4">
-                        <h3 className="text-3xl font-bold text-[#9b87f5]">What Makes an AI Agency Unique?</h3>
-                        <p className="text-gray-300 text-left">
-                          When most small and mid-sized businesses consider AI, they either see costly in-house builds or deeply expensive enterprise solutions. At Parlar, we bridge this gap by serving as your dedicated AI Agency—guiding you step-by-step with customized, human-like AI solutions that fit your budget, timeline, and brand. We handle the technical heavy lifting and deliver straightforward, powerful tools so you can focus on what truly matters: delighting your customers and growing your business.
-                        </p>
+                    <div className="relative p-6 bg-[#1a0b2e] ring-1 ring-gray-900/5 rounded-lg leading-none">
+                      <div className="flex items-top justify-start space-x-6">
+                        <BookOpen className="w-8 h-8 text-purple-400" />
+                        <div className="space-y-4 w-full">
+                          <h3 className="text-3xl font-bold text-[#9b87f5] cursor-pointer hover:opacity-80 transition-opacity">
+                            What Makes an AI Agency Unique?
+                          </h3>
+                          <div className="text-gray-300 text-left opacity-0 h-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-300 overflow-hidden">
+                            <p>
+                              When most small and mid-sized businesses consider AI, they either see costly in-house builds or deeply expensive enterprise solutions. At Parlar, we bridge this gap by serving as your dedicated AI Agency—guiding you step-by-step with customized, human-like AI solutions that fit your budget, timeline, and brand. We handle the technical heavy lifting and deliver straightforward, powerful tools so you can focus on what truly matters: delighting your customers and growing your business.
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -76,36 +83,40 @@ const AIAgency = () => {
                   {/* Section 2 */}
                   <div className="relative group">
                     <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200" />
-                    <div className="relative p-6 bg-[#1a0b2e] ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-start space-x-6">
-                      <Users className="w-8 h-8 text-purple-400" />
-                      <div className="space-y-4">
-                        <h3 className="text-3xl font-bold text-[#9b87f5]">How Are We Different Than The Major AI Giants?</h3>
-                        <div className="text-gray-300 space-y-6 text-left">
-                          <p className="mb-6">We believe in a collaborative and transparent process that gets results. Here's what to expect when you work with Parlar:</p>
-                          
-                          <div className="space-y-6">
-                            <div>
-                              <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Discovery & Strategy</h4>
-                              <ul className="list-inside space-y-2">
-                                <li><span className="font-semibold">Goal Setting:</span> We identify your top objectives, such as reducing support wait times or boosting sales conversions.</li>
-                                <li><span className="font-semibold">Technical Assessment:</span> Our team audits your existing systems, data, and brand guidelines to define the perfect AI solution scope.</li>
-                              </ul>
-                            </div>
+                    <div className="relative p-6 bg-[#1a0b2e] ring-1 ring-gray-900/5 rounded-lg leading-none">
+                      <div className="flex items-top justify-start space-x-6">
+                        <Users className="w-8 h-8 text-purple-400" />
+                        <div className="space-y-4 w-full">
+                          <h3 className="text-3xl font-bold text-[#9b87f5] cursor-pointer hover:opacity-80 transition-opacity">
+                            How Are We Different Than The Major AI Giants?
+                          </h3>
+                          <div className="text-gray-300 text-left opacity-0 h-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-300 overflow-hidden">
+                            <p className="mb-6">We believe in a collaborative and transparent process that gets results. Here's what to expect when you work with Parlar:</p>
+                            
+                            <div className="space-y-6">
+                              <div>
+                                <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Discovery & Strategy</h4>
+                                <ul className="list-inside space-y-2">
+                                  <li><span className="font-semibold">Goal Setting:</span> We identify your top objectives, such as reducing support wait times or boosting sales conversions.</li>
+                                  <li><span className="font-semibold">Technical Assessment:</span> Our team audits your existing systems, data, and brand guidelines to define the perfect AI solution scope.</li>
+                                </ul>
+                              </div>
 
-                            <div>
-                              <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Custom AI Design & Integration</h4>
-                              <ul className="list-inside space-y-2">
-                                <li><span className="font-semibold">Personalized Development:</span> From conversation flows to brand tone, we craft an AI agent that mirrors your unique style.</li>
-                                <li><span className="font-semibold">Seamless Deployment:</span> We integrate directly with your website, CRM, or other channels, providing end-to-end technical support.</li>
-                              </ul>
-                            </div>
+                              <div>
+                                <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Custom AI Design & Integration</h4>
+                                <ul className="list-inside space-y-2">
+                                  <li><span className="font-semibold">Personalized Development:</span> From conversation flows to brand tone, we craft an AI agent that mirrors your unique style.</li>
+                                  <li><span className="font-semibold">Seamless Deployment:</span> We integrate directly with your website, CRM, or other channels, providing end-to-end technical support.</li>
+                                </ul>
+                              </div>
 
-                            <div>
-                              <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Training & Knowledge Transfer</h4>
-                              <ul className="list-inside space-y-2">
-                                <li><span className="font-semibold">Employee Onboarding:</span> We train your team on using, managing, and interpreting AI outputs, so everyone feels confident.</li>
-                                <li><span className="font-semibold">Live Testing & Tweaks:</span> Before going live, we run extensive QA to ensure the AI meets real-world user expectations.</li>
-                              </ul>
+                              <div>
+                                <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Training & Knowledge Transfer</h4>
+                                <ul className="list-inside space-y-2">
+                                  <li><span className="font-semibold">Employee Onboarding:</span> We train your team on using, managing, and interpreting AI outputs, so everyone feels confident.</li>
+                                  <li><span className="font-semibold">Live Testing & Tweaks:</span> Before going live, we run extensive QA to ensure the AI meets real-world user expectations.</li>
+                                </ul>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -116,13 +127,19 @@ const AIAgency = () => {
                   {/* Section 3 */}
                   <div className="relative group">
                     <div className="absolute -inset-1 bg-gradient-to-r from-green-600 to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200" />
-                    <div className="relative p-6 bg-[#1a0b2e] ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-start space-x-6">
-                      <Rocket className="w-8 h-8 text-purple-400" />
-                      <div className="space-y-4">
-                        <h3 className="text-3xl font-bold text-[#9b87f5]">Our Project-Based Approach</h3>
-                        <p className="text-gray-300">
-                          Every business is unique, and so should be its AI solution. We take a project-based approach, working closely with you to understand your specific challenges and opportunities. Our team develops custom AI agents that address your exact needs, ensuring maximum impact and ROI for your investment.
-                        </p>
+                    <div className="relative p-6 bg-[#1a0b2e] ring-1 ring-gray-900/5 rounded-lg leading-none">
+                      <div className="flex items-top justify-start space-x-6">
+                        <Rocket className="w-8 h-8 text-purple-400" />
+                        <div className="space-y-4 w-full">
+                          <h3 className="text-3xl font-bold text-[#9b87f5] cursor-pointer hover:opacity-80 transition-opacity">
+                            Our Project-Based Approach
+                          </h3>
+                          <div className="text-gray-300 text-left opacity-0 h-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-300 overflow-hidden">
+                            <p>
+                              Every business is unique, and so should be its AI solution. We take a project-based approach, working closely with you to understand your specific challenges and opportunities. Our team develops custom AI agents that address your exact needs, ensuring maximum impact and ROI for your investment.
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -130,13 +147,19 @@ const AIAgency = () => {
                   {/* Section 4 */}
                   <div className="relative group">
                     <div className="absolute -inset-1 bg-gradient-to-r from-yellow-600 to-green-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200" />
-                    <div className="relative p-6 bg-[#1a0b2e] ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-start space-x-6">
-                      <Handshake className="w-8 h-8 text-purple-400" />
-                      <div className="space-y-4">
-                        <h3 className="text-3xl font-bold text-[#9b87f5]">Why Should You Partner with Parlar?</h3>
-                        <p className="text-gray-300">
-                          We combine deep technical expertise with a commitment to understanding your business inside and out. Our team doesn't just build AI agents; we create strategic partnerships that drive long-term success. With Parlar, you get a dedicated partner invested in your growth and innovation.
-                        </p>
+                    <div className="relative p-6 bg-[#1a0b2e] ring-1 ring-gray-900/5 rounded-lg leading-none">
+                      <div className="flex items-top justify-start space-x-6">
+                        <Handshake className="w-8 h-8 text-purple-400" />
+                        <div className="space-y-4 w-full">
+                          <h3 className="text-3xl font-bold text-[#9b87f5] cursor-pointer hover:opacity-80 transition-opacity">
+                            Why Should You Partner with Parlar?
+                          </h3>
+                          <div className="text-gray-300 text-left opacity-0 h-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-300 overflow-hidden">
+                            <p>
+                              We combine deep technical expertise with a commitment to understanding your business inside and out. Our team doesn't just build AI agents; we create strategic partnerships that drive long-term success. With Parlar, you get a dedicated partner invested in your growth and innovation.
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -144,23 +167,29 @@ const AIAgency = () => {
                   {/* Section 5 */}
                   <div className="relative group">
                     <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-yellow-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200" />
-                    <div className="relative p-6 bg-[#1a0b2e] ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-start space-x-6">
-                      <CheckCircle className="w-8 h-8 text-purple-400" />
-                      <div className="space-y-4">
-                        <h3 className="text-3xl font-bold text-[#9b87f5]">Get Started Today</h3>
-                        <p className="text-gray-300">
-                          Ready to transform your business with AI? Let's start with a conversation about your needs and goals. Our team will work with you to identify the perfect AI solution for your business, whether it's automating customer service, streamlining operations, or creating new revenue streams.
-                        </p>
-                        <div className="pt-4">
-                          <Link to="/contact">
-                            <Button 
-                              variant="default" 
-                              className="bg-purple-500 hover:bg-purple-600 text-white"
-                            >
-                              Schedule a Consultation
-                              <ArrowRight className="ml-2 h-4 w-4" />
-                            </Button>
-                          </Link>
+                    <div className="relative p-6 bg-[#1a0b2e] ring-1 ring-gray-900/5 rounded-lg leading-none">
+                      <div className="flex items-top justify-start space-x-6">
+                        <CheckCircle className="w-8 h-8 text-purple-400" />
+                        <div className="space-y-4 w-full">
+                          <h3 className="text-3xl font-bold text-[#9b87f5] cursor-pointer hover:opacity-80 transition-opacity">
+                            Get Started Today
+                          </h3>
+                          <div className="text-gray-300 text-left opacity-0 h-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-300 overflow-hidden">
+                            <p>
+                              Ready to transform your business with AI? Let's start with a conversation about your needs and goals. Our team will work with you to identify the perfect AI solution for your business, whether it's automating customer service, streamlining operations, or creating new revenue streams.
+                            </p>
+                            <div className="pt-4">
+                              <Link to="/contact">
+                                <Button 
+                                  variant="default" 
+                                  className="bg-purple-500 hover:bg-purple-600 text-white"
+                                >
+                                  Schedule a Consultation
+                                  <ArrowRight className="ml-2 h-4 w-4" />
+                                </Button>
+                              </Link>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
