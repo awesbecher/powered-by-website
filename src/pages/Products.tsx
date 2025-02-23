@@ -13,19 +13,16 @@ const Products = () => {
   }, []);
 
   const scrollToSection = (index: number) => {
-    setTimeout(() => {
+    requestAnimationFrame(() => {
       const element = document.getElementById(`solution-${index}`);
       if (element) {
-        const headerOffset = 90; // Reduced offset
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
+        const topOffset = element.offsetTop - 100; // Fixed offset from top
         window.scrollTo({
-          top: offsetPosition,
+          top: topOffset,
           behavior: "smooth"
         });
       }
-    }, 50); // Reduced delay
+    });
   };
 
   return (
