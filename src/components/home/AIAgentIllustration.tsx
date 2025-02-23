@@ -10,7 +10,92 @@ const AIAgentIllustration = () => {
       {/* Robot and laptop container */}
       <div className="relative">
         {/* Laptop */}
-        <div className="w-64 h-48 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10 shadow-xl transform perspective-1000 rotateX-10">
+        <div className="w-64 h-48 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10 shadow-xl transform perspective-1000 rotateX-10 overflow-hidden">
+          {/* Neural network visualization */}
+          <div className="absolute inset-0">
+            <svg className="w-full h-full" viewBox="0 0 256 192">
+              {/* Background circuit patterns */}
+              <path
+                d="M 20 96 Q 50 20 128 96 T 236 96"
+                stroke="#9b87f5"
+                strokeWidth="1"
+                fill="none"
+                strokeDasharray="4 4"
+                className="animate-dash"
+                opacity="0.3"
+              />
+              <path
+                d="M 20 120 Q 128 40 236 120"
+                stroke="#9b87f5"
+                strokeWidth="1"
+                fill="none"
+                strokeDasharray="4 4"
+                className="animate-dash"
+                opacity="0.3"
+              />
+              
+              {/* Neural network nodes */}
+              <circle cx="128" cy="96" r="4" fill="#9b87f5" opacity="0.5">
+                <animate
+                  attributeName="opacity"
+                  values="0.5;0.8;0.5"
+                  dur="2s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+              <circle cx="64" cy="76" r="3" fill="#9b87f5" opacity="0.3" />
+              <circle cx="192" cy="76" r="3" fill="#9b87f5" opacity="0.3" />
+              <circle cx="96" cy="116" r="3" fill="#9b87f5" opacity="0.3" />
+              <circle cx="160" cy="116" r="3" fill="#9b87f5" opacity="0.3" />
+              
+              {/* Connecting lines with animation */}
+              <path
+                d="M 64 76 L 128 96 L 192 76"
+                stroke="#9b87f5"
+                strokeWidth="1"
+                fill="none"
+                opacity="0.3"
+              >
+                <animate
+                  attributeName="stroke-dashoffset"
+                  values="0;100"
+                  dur="3s"
+                  repeatCount="indefinite"
+                />
+              </path>
+              <path
+                d="M 96 116 L 128 96 L 160 116"
+                stroke="#9b87f5"
+                strokeWidth="1"
+                fill="none"
+                opacity="0.3"
+              >
+                <animate
+                  attributeName="stroke-dashoffset"
+                  values="0;100"
+                  dur="3s"
+                  repeatCount="indefinite"
+                />
+              </path>
+              
+              {/* Data flow particles */}
+              <circle className="animate-pulse" cx="128" cy="96" r="1" fill="#61dafb">
+                <animateMotion
+                  path="M 0 0 Q 30 -40 64 -20"
+                  dur="2s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+              <circle className="animate-pulse" cx="128" cy="96" r="1" fill="#61dafb">
+                <animateMotion
+                  path="M 0 0 Q -30 -40 -64 -20"
+                  dur="2s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+            </svg>
+          </div>
+
           {/* Robot head */}
           <div className="absolute -top-32 left-1/2 transform -translate-x-1/2">
             <div className="w-24 h-24 bg-gradient-to-br from-[#9b87f5] to-[#7a6cc5] rounded-2xl relative">
