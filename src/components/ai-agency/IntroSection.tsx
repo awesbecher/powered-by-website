@@ -15,8 +15,8 @@ export const IntroSection = ({ initialLoad }: IntroSectionProps) => {
         We're the world's first AI agency.
       </h2>
       
-      <div className="space-y-8 text-lg text-gray-300 leading-relaxed">
-        <p className="text-left leading-snug">We design and deploy intelligent agents tailored from the ground up to fit your unique needs—whether it's voice-driven phone assistants, email automation bots, text-based support, Slack integrations, or chatbots that speak and communicate as human-like as possible. Our mission? To automate the repetitive, amplify the human, and supercharge your workflows with AI that feels like it was made just for you—because it was.</p>
+      <div className="space-y-8 text-lg text-gray-300">
+        <p className="text-left leading-snug mb-8">We design and deploy intelligent agents tailored from the ground up to fit your unique needs—whether it's voice-driven phone assistants, email automation bots, text-based support, Slack integrations, or chatbots that speak and communicate as human-like as possible. Our mission? To automate the repetitive, amplify the human, and supercharge your workflows with AI that feels like it was made just for you—because it was.</p>
       </div>
     </div>
   );
