@@ -1,7 +1,5 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import AIAgentIllustration from "@/components/home/AIAgentIllustration";
 
 const WhatsAnAIAgent = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -37,15 +35,12 @@ const WhatsAnAIAgent = () => {
             <div className={`text-left transition-all duration-1000 delay-500 ease-out transform
                 ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
               <div className="relative">
-                <div className="absolute -top-48 right-0 w-64 h-64">
-                  <AIAgentIllustration />
-                </div>
                 <div className="relative z-10">
                   <h2 className="text-5xl font-bold text-white mb-8 whitespace-nowrap bg-gradient-to-r from-purple-500/20 to-purple-400/20 inline-block px-4 py-2 rounded-lg hover:bg-gradient-to-r hover:from-purple-500/30 hover:to-purple-400/30 transition-all">
                     What's an AI Agent?
                   </h2>
                   
-                  <div className="space-y-8 text-lg text-gray-300 leading-relaxed text-justify pr-56">
+                  <div className="space-y-8 text-lg text-gray-300 leading-relaxed text-justify">
                     <p>Think of an AI agent as a super-smart, tireless assistant that handles tasks for you, without the coffee breaks. Companies like OpenAI &amp; Anthropic are at the forefront of innovating AI agents to be state of the art. We bring these capabilities to SMBs who may not have the budget or resources to build agent solutions themselves. We deliver agent software that listens, learns, and acts, whether it's speaking on the phone with customers, sending emails, or organizing your workflow. No sci-fi jargon here, just practical, custom-built help for your business. </p>
                     
                     <p className="font-medium text-white">
@@ -162,4 +157,3 @@ const WhatsAnAIAgent = () => {
 };
 
 export default WhatsAnAIAgent;
-

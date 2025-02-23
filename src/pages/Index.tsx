@@ -5,6 +5,7 @@ import { FeaturesGrid } from "@/components/home/FeaturesGrid";
 import { ValuesSection } from "@/components/home/ValuesSection";
 import { BlogSection } from "@/components/home/BlogSection";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
+import AIAgentIllustration from "@/components/home/AIAgentIllustration";
 
 const Index = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -24,6 +25,11 @@ const Index = () => {
       </div>
 
       <HeroSection initialLoad={initialLoad} />
+      
+      <div className="relative z-10 mt-12 mb-20">
+        <AIAgentIllustration />
+      </div>
+      
       <FeaturesGrid />
       <ValuesSection />
       <BlogSection />
