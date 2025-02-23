@@ -14,12 +14,7 @@ const WhatsAnAIAgent = () => {
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] pt-24 pb-12 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="relative overflow-hidden px-6 lg:px-8 pt-12 pb-8">
-          {/* Background illustration */}
-          <div className="absolute inset-0 opacity-20 pointer-events-none">
-            <AIAgentIllustration />
-          </div>
-          
-          <div className="mx-auto max-w-4xl relative z-10">
+          <div className="mx-auto max-w-4xl">
             <div className="text-center">
               <h1 className={`text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6 transition-all duration-1000 ease-out transform
                   ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
@@ -41,6 +36,11 @@ const WhatsAnAIAgent = () => {
           <div className="mx-auto max-w-4xl">
             <div className={`text-left transition-all duration-1000 delay-500 ease-out transform
                 ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
+              {/* Background illustration */}
+              <div className="absolute inset-0 opacity-20 pointer-events-none">
+                <AIAgentIllustration />
+              </div>
+              
               <h2 className="text-5xl font-bold text-white mb-8 whitespace-nowrap bg-gradient-to-r from-purple-500/20 to-purple-400/20 inline-block px-4 py-2 rounded-lg hover:bg-gradient-to-r hover:from-purple-500/30 hover:to-purple-400/30 transition-all">
                 What's an AI Agent?
               </h2>
