@@ -35,7 +35,7 @@ const getPostImage = (slug: string) => {
 export const BlogPostCard = ({ post, featured = false }: BlogPostCardProps) => (
   <Link 
     to={`/blog/${post.slug}`}
-    className="block group"
+    className="block group text-white"
   >
     <div className={cn(
       "bg-white/5 rounded-lg overflow-hidden group-hover:bg-white/10 transition-all duration-300 transform group-hover:-translate-y-1 hover:shadow-lg",
@@ -52,15 +52,15 @@ export const BlogPostCard = ({ post, featured = false }: BlogPostCardProps) => (
         </div>
         <div className="relative p-4 flex flex-col h-full">
           <h2 className={cn(
-            "font-bold text-white mb-2 group-hover:text-[#9b87f5] transition-colors text-shadow",
+            "font-bold text-white !important mb-2 group-hover:text-[#9b87f5] transition-colors text-shadow",
             featured ? "text-2xl" : "text-xl"
           )}>
             {post.title}
           </h2>
-          <p className="text-gray-100 text-sm leading-relaxed mb-2 line-clamp-2 text-shadow">
+          <p className="text-white text-sm leading-relaxed mb-2 line-clamp-2 text-shadow">
             {post.excerpt}
           </p>
-          <div className="flex items-center justify-between text-xs text-gray-100 mt-auto">
+          <div className="flex items-center justify-between text-xs text-white mt-auto">
             <div className="flex items-center gap-2">
               <User className="w-3 h-3" />
               <span className="text-shadow">{post.author}</span>
