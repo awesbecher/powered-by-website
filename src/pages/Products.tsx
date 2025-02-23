@@ -1,3 +1,4 @@
+
 import { Car, Hotel, Users, HeadphonesIcon, Building2, Check, Mail, Phone, MessageSquare, BrainCircuit, Bot, Workflow, MessagesSquare, HeartHandshake, Network, Database, Code2, Rocket, Zap, Globe, Calendar } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -22,9 +23,9 @@ const Products = () => {
                 ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
             >
               <WordAnimation />
-              AI Solutions{" "}
+              Agent{" "}
               <span className="text-[#9b87f5]">
-                Portfolio
+                Solutions Portfolio
               </span>
             </h1>
             
