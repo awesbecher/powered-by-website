@@ -37,7 +37,7 @@ const WhatsAnAIAgent = () => {
             <div className={`text-left transition-all duration-1000 delay-500 ease-out transform
                 ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
               <div className="relative">
-                <div className="absolute right-0 top-0 w-96 h-96">
+                <div className="absolute right-0 top-0 w-80 h-80">
                   <AIAgentIllustration />
                 </div>
                 <div className="relative z-10">
@@ -45,7 +45,7 @@ const WhatsAnAIAgent = () => {
                     What's an AI Agent?
                   </h2>
                   
-                  <div className="space-y-8 text-lg text-gray-300 leading-relaxed text-justify pr-80">
+                  <div className="space-y-8 text-lg text-gray-300 leading-relaxed text-justify pr-72">
                     <p>Think of an AI agent as a super-smart, tireless assistant that handles tasks for you, without the coffee breaks. Companies like OpenAI &amp; Anthropic are at the forefront of innovating AI agents to be state of the art. We bring these capabilities to SMBs who may not have the budget or resources to build agent solutions themselves. We deliver agent software that listens, learns, and acts, whether it's speaking on the phone with customers, sending emails, or organizing your workflow. No sci-fi jargon here, just practical, custom-built help for your business. </p>
                     
                     <p className="font-medium text-white">
