@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -9,7 +10,8 @@ const AIAgency = () => {
     setInitialLoad(false);
   }, []);
 
-  return <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] pt-24 pb-12 px-4">
+  return (
+    <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] pt-24 pb-12 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="relative overflow-hidden px-6 lg:px-8 pt-12 pb-8">
           <div className="mx-auto max-w-4xl">
@@ -55,6 +57,7 @@ const AIAgency = () => {
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </Link>
+                </div>
 
                 {/* New Content Sections */}
                 <div className="space-y-32">
@@ -185,6 +188,8 @@ const AIAgency = () => {
           </div>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
+
 export default AIAgency;
