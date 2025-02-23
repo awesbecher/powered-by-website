@@ -25,7 +25,7 @@ export const ProductsHero = ({ initialLoad }: ProductsHeroProps) => {
             className={`mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed transition-all duration-1000 delay-300 ease-out transform
               ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
           >
-            Discover our comprehensive range of pre-built AI solutions designed to transform your business operations. Each solution is customizable to meet your specific needs.
+            While we approach each new client with custom solutions to meet their needs, we have a range of pre-built AI agent solutions designed to transform your business operations. Each solution is customizable to meet your specific needs but it is templated to allow you to deploy very quickly. Explore these pre-built solutions below.
           </p>
         </div>
       </div>
