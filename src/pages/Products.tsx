@@ -13,22 +13,19 @@ const Products = () => {
   }, []);
 
   const scrollToSection = (index: number) => {
-    // Add a small delay to ensure the DOM is ready
     setTimeout(() => {
       const element = document.getElementById(`solution-${index}`);
       if (element) {
-        const headerOffset = 120; // Increased offset to account for header height
-        element.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-        // Additional offset adjustment after scrolling
-        window.scrollBy({
-          top: -headerOffset,
-          behavior: 'smooth'
+        const headerOffset = 90; // Reduced offset
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
         });
       }
-    }, 100);
+    }, 50); // Reduced delay
   };
 
   return (
@@ -62,7 +59,7 @@ const Products = () => {
             <div 
               key={index} 
               id={`solution-${index}`} 
-              className="scroll-mt-32"
+              className="scroll-mt-24"
             >
               <ServiceCard
                 title={
