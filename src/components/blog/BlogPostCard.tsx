@@ -41,25 +41,25 @@ export const BlogPostCard = ({ post, featured = false }: BlogPostCardProps) => (
       "bg-white/5 rounded-lg overflow-hidden group-hover:bg-white/10 transition-colors h-full",
       featured ? "col-span-full lg:col-span-2" : ""
     )}>
-      <div className="relative h-[700px]">
+      <div className="relative h-[800px]">
         <div className="absolute inset-0">
           <img 
             src={getPostImage(post.slug)} 
             alt={post.title}
-            className="w-full h-full object-cover opacity-40 group-hover:opacity-50 transition-opacity duration-300"
+            className="w-full h-full object-cover opacity-30 group-hover:opacity-40 transition-opacity duration-300"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-black/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/80 to-black" />
         </div>
-        <div className="relative p-8 flex flex-col h-full">
+        <div className="relative p-12 flex flex-col h-full">
           <h2 className={cn(
-            "font-bold text-white mb-4 group-hover:text-[#9b87f5] transition-colors",
+            "font-bold text-white mb-6 group-hover:text-[#9b87f5] transition-colors",
             featured ? "text-3xl" : "text-2xl"
           )}>
             {post.title}
           </h2>
           <p className={cn(
-            "text-gray-300 mb-6",
-            featured ? "line-clamp-8" : "line-clamp-6",
+            "text-gray-200 mb-8",
+            featured ? "line-clamp-12" : "line-clamp-10",
             "text-lg leading-relaxed"
           )}>
             {post.excerpt}
