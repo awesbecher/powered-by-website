@@ -1,3 +1,4 @@
+
 import { BlogPost } from "../../types/blog";
 
 export const understandingAiAgents: BlogPost = {
@@ -84,6 +85,8 @@ export const understandingAiAgents: BlogPost = {
       <li><strong>Dashboard Generation:</strong> They can pull real-time data from different tools (like CRM, finance, marketing platforms), compile it, and produce easy-to-read dashboards.</li>
       <li><strong>Predictive Analytics:</strong> For the forward-thinkers out there, AI can forecast sales trends, flag potential issues with inventory, or even suggest pricing tweaks.</li>
     </ul>
+
+    <p></p>
 
     <h2 class="text-3xl font-extrabold bg-blue-100/20 inline-block px-4 py-2 rounded">Benefits: Why Should SMBs Care?</h2>
 
