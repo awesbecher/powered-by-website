@@ -10,9 +10,9 @@ export const initiateVogentCall = async (userPhoneNumber: string) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        agent_id: "eb4d36d3-1a7e-4be4-8ab0-fe3f65fe7d1d",
+        agent_id: "4b2d92b5-d58a-45a1-8e46-9aab39c99ae5",
         toNumber: userPhoneNumber,
-        fromNumberId: "d4af3105-129a-4253-a636-aec3782c62a0",
+        fromNumberId: "0a2a5209-0a45-415b-955d-4ed9540390ce",
         callAgentId: "cd922dc9-eea6-4b43-878f-cb5cfd67e005"
       })
     });
