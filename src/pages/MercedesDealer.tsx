@@ -35,6 +35,7 @@ const MercedesDealer = () => {
     setIsLoading(true);
     try {
       await initiateVogentCall(phoneNumber);
+      setShowCallDialog(false);
       setPhoneNumber("");
       toast({
         title: "Call initiated",
@@ -187,9 +188,43 @@ const MercedesDealer = () => {
               <p className="text-gray-400">Sales: (253) 922-4838<br />Service: (253) 922-4839</p>
             </div>
           </div>
-          <button className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors">
-            Schedule a Test Drive
-          </button>
+          <Dialog open={showCallDialog} onOpenChange={setShowCallDialog}>
+            <DialogTrigger asChild>
+              <button className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors">
+                Schedule a Test Drive
+              </button>
+            </DialogTrigger>
+            <DialogContent className="bg-[#222222] text-white border-gray-800">
+              <DialogHeader>
+                <DialogTitle>Enter your phone number to schedule a test drive</DialogTitle>
+              </DialogHeader>
+              <div className="flex flex-col space-y-4 pt-4">
+                <Input 
+                  type="tel" 
+                  placeholder="Enter your phone number" 
+                  value={phoneNumber} 
+                  onChange={e => setPhoneNumber(e.target.value)} 
+                  className="text-lg bg-gray-800 border-gray-700 text-white placeholder:text-gray-400"
+                />
+                <div className="flex gap-2">
+                  <Button 
+                    variant="outline"
+                    onClick={() => setShowCallDialog(false)}
+                    className="w-full border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white"
+                  >
+                    Cancel
+                  </Button>
+                  <Button 
+                    className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
+                    onClick={handleCall}
+                    disabled={isLoading}
+                  >
+                    {isLoading ? "Initiating call..." : "Call Me"}
+                  </Button>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
 
