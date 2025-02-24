@@ -90,21 +90,23 @@ const Contact = () => {
       {/* Content */}
       <div className="relative z-10 pt-36">
         <div className="max-w-2xl mx-auto px-4">
-          <div className="relative inline-block w-full text-center mb-4">
+          <div className="text-center">
             <h1 
-              className={`text-[100px] font-bold text-white text-center transition-all duration-1000 ease-out transform
+              className={`text-4xl font-bold tracking-tight text-white sm:text-6xl mb-4 transition-all duration-1000 ease-out transform
                 ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
             >
               Let's meet!
             </h1>
+            
+            <p 
+              className={`mt-4 text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-tight font-bold transition-all duration-1000 delay-300 ease-out transform
+                ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
+            >
+              Ready to put AI agents to work? Book a consultation with our Solutions Design Leader (<span className="text-[#9b87f5] font-bold">a human!</span>) by filing out the form below. Or talk to our AI agent about how we can help by clicking <a href="#" className="text-[#9b87f5] hover:text-[#8b77e5] underline transition-colors duration-200">here</a>.
+            </p>
           </div>
-          <p 
-            className={`text-gray-300 text-center mb-8 text-lg transition-all duration-1000 delay-300 ease-out transform
-              ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
-          >
-            Ready to put AI agents to work? Book a consultation with our Solutions Design Leader (<span className="text-[#9b87f5] font-bold">a human!</span>) by filing out the form below. Or talk to our AI agent about how we can help by clicking <a href="#" className="text-[#9b87f5] hover:text-[#8b77e5] underline transition-colors duration-200">here</a>.
-          </p>
-          <div className="bg-neutral-900/50 p-8 rounded-xl backdrop-blur">
+
+          <div className="mt-8 bg-neutral-900/50 p-8 rounded-xl backdrop-blur">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
