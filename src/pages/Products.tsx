@@ -29,28 +29,6 @@ const Products = () => {
     <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <ProductsHero initialLoad={initialLoad} className="hero-section" />
 
-      {/* Solutions Index Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {serviceCardsData.map((card, index) => (
-            <button
-              key={index}
-              onClick={() => handleScroll(index)}
-              className="w-full p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-all duration-300 border border-white/10 group"
-            >
-              <div className="flex flex-col items-center text-center space-y-2">
-                <div className="w-6 h-6 text-[#9b87f5] group-hover:text-white transition-colors duration-300">
-                  <card.icon className="w-full h-full" />
-                </div>
-                <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors duration-300">
-                  {card.title.main.replace(':', '')}
-                </span>
-              </div>
-            </button>
-          ))}
-        </div>
-      </div>
-
       {/* Solutions Grid */}
       <div className="max-w-full pt-12">
         <div className="space-y-0 divide-y divide-white/10">
