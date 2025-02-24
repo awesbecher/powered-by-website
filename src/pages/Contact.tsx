@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState, useEffect } from "react";
@@ -161,11 +160,9 @@ const Contact = () => {
                   required
                 >
                   <option value="">Select a reason</option>
-                  <option value="explore">Explore AI Solutions</option>
-                  <option value="implement">Implement AI Agents</option>
-                  <option value="pricing">Discuss Pricing</option>
-                  <option value="demo">Request Demo</option>
-                  <option value="other">Other</option>
+                  <option value="specific">I have a specific AI project need</option>
+                  <option value="curious">I'm curious about AI agents - Just educating myself</option>
+                  <option value="other">Something else</option>
                 </select>
               </div>
               <div>
