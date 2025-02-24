@@ -1,3 +1,4 @@
+
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -127,7 +128,7 @@ const RoomService = () => {
           <Phone className="h-4 w-4 flex-shrink-0" />
           {isProcessing ? 'Connecting...' : 'Speak to Room Service'}
         </Button>
-        <div className="flex flex-col items-center space-y-1">
+        <div className="flex flex-col items-center space-y-1 mb-24">
           <img 
             src="/lovable-uploads/54a3f767-41a4-4083-a920-5592f61dbd63.png"
             alt="Food Menu"
@@ -139,14 +140,6 @@ const RoomService = () => {
             className="max-w-2xl w-full h-auto"
           />
         </div>
-        <Button 
-          className="bg-accent hover:bg-accent/90 text-white mt-16 mb-24 font-bold text-sm mx-auto block px-4 py-2 h-auto whitespace-nowrap flex items-center gap-2"
-          onClick={() => setIsDialogOpen(true)}
-          disabled={isProcessing}
-        >
-          <Phone className="h-4 w-4 flex-shrink-0" />
-          {isProcessing ? 'Connecting...' : 'Speak to Room Service'}
-        </Button>
       </div>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
