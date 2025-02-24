@@ -20,11 +20,11 @@ export const ValuesSection = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
         {values.map((value, index) => (
           <div key={index} className="relative pb-4">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-6 h-6 bg-[#9b87f5] rounded-sm" />
-              <h3 className="text-2xl font-bold text-white">{value.title}</h3>
+            <div className="flex items-start gap-2 mb-4">
+              <div className="w-6 h-6 mt-1 bg-[#9b87f5] rounded-sm flex-shrink-0" />
+              <h3 className="text-2xl font-bold text-white text-left">{value.title}</h3>
             </div>
-            <p className="text-gray-300 text-base leading-relaxed">
+            <p className="text-gray-300 text-base leading-relaxed text-left pl-8">
               {value.description}
             </p>
             <div className="absolute -bottom-2 left-0 right-0 h-px bg-white/10" />
