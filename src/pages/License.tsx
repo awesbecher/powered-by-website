@@ -1,24 +1,19 @@
 
 import { Bot, Network, MessageSquare, BarChart, Phone, DollarSign, ChevronLeft } from "lucide-react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { initiateVogentCall } from "@/services/vogentService";
 
 const License = () => {
-  const chatSectionRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
-
-  const scrollToChat = () => {
-    chatSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   const handleCall = async () => {
     if (!phoneNumber) {
@@ -97,53 +92,44 @@ const License = () => {
                 <DollarSign className="w-5 h-5" />
               </button>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Dialog open={isOpen} onOpenChange={setIsOpen}>
-                  <DialogTrigger asChild>
-                    <button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2">
-                      Speak to a Sales Rep
-                      <Phone className="w-5 h-5" />
-                    </button>
-                  </DialogTrigger>
-                  <DialogContent>
-                    <DialogHeader>
-                      <DialogTitle>Enter your phone number to speak with a sales representative</DialogTitle>
-                    </DialogHeader>
-                    <div className="flex flex-col space-y-4 pt-4">
-                      <Input 
-                        type="tel" 
-                        placeholder="Enter your phone number" 
-                        value={phoneNumber} 
-                        onChange={e => setPhoneNumber(e.target.value)} 
-                        className="text-lg"
-                      />
-                      <div className="flex gap-2">
-                        <Button 
-                          variant="outline"
-                          className="w-full"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          Cancel
-                        </Button>
-                        <Button 
-                          className="w-full"
-                          onClick={handleCall}
-                          disabled={isLoading}
-                        >
-                          {isLoading ? "Initiating call..." : "Call Me"}
-                        </Button>
-                      </div>
+              <Dialog open={isOpen} onOpenChange={setIsOpen}>
+                <DialogTrigger asChild>
+                  <button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2">
+                    Speak to a Sales Rep
+                    <Phone className="w-5 h-5" />
+                  </button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Enter your phone number to speak with a sales representative</DialogTitle>
+                  </DialogHeader>
+                  <div className="flex flex-col space-y-4 pt-4">
+                    <Input 
+                      type="tel" 
+                      placeholder="Enter your phone number" 
+                      value={phoneNumber} 
+                      onChange={e => setPhoneNumber(e.target.value)} 
+                      className="text-lg"
+                    />
+                    <div className="flex gap-2">
+                      <Button 
+                        variant="outline"
+                        className="w-full"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        Cancel
+                      </Button>
+                      <Button 
+                        className="w-full"
+                        onClick={handleCall}
+                        disabled={isLoading}
+                      >
+                        {isLoading ? "Initiating call..." : "Call Me"}
+                      </Button>
                     </div>
-                  </DialogContent>
-                </Dialog>
-                <button 
-                  onClick={scrollToChat}
-                  className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2"
-                >
-                  Chat with Us
-                  <MessageSquare className="w-5 h-5" />
-                </button>
-              </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
 
             {/* Feature Cards */}
@@ -170,18 +156,6 @@ const License = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Chat Section */}
-      <div ref={chatSectionRef} className="container mx-auto px-4 py-16">
-        <div className="max-w-4xl mx-auto bg-white rounded-lg overflow-hidden shadow-xl">
-          <iframe
-            src="https://www.chatbase.co/chatbot-iframe/kHr0XGInFw_HfmNBDEuXC"
-            width="100%"
-            className="min-h-[700px]"
-            style={{ border: 'none' }}
-          />
         </div>
       </div>
     </div>
