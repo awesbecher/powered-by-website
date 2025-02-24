@@ -34,7 +34,7 @@ const Navbar = () => {
 
           {/* Navigation Items */}
           <div className="hidden md:flex items-center justify-center flex-1">
-            <div className="flex space-x-4">
+            <div className="flex space-x-2">
               {/* Home Link */}
               <Link
                 to="/"
