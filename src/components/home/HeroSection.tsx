@@ -1,7 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Phone } from "lucide-react";
+import { NavigationButtons } from "@/components/home/NavigationButtons";
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -25,6 +24,11 @@ export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
           >
             We're the world's first <Link to="/ai-agency" className="border-b-2 border-purple-400 hover:text-purple-400 transition-colors">AI agency</Link> delivering custom AI agent solutions to SMBs. Just like a web design firm, we build you bespoke AI agents quickly and cost effectively.
           </p>
+
+          <div className={`mt-12 transition-all duration-1000 delay-500 ease-out transform
+            ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
+            <NavigationButtons />
+          </div>
         </div>
       </div>
     </div>
