@@ -1,5 +1,8 @@
 
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Phone } from "lucide-react";
 import { HeroSection } from "@/components/home/HeroSection";
 import { FeaturesGrid } from "@/components/home/FeaturesGrid";
 import { NavigationButtons } from "@/components/home/NavigationButtons";
@@ -33,6 +36,27 @@ const Index = () => {
 
       <div className="relative z-10 mt-12 mb-12">
         <FeaturesGrid />
+      </div>
+
+      <div className="relative z-10 flex flex-col items-center justify-center px-6 mb-12">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-4xl">
+          <Link to="/blog/understanding-ai-agents">
+            <Button className="text-white bg-[#6E59A5] hover:bg-[#6E59A5]/80 px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto">
+              What's an AI agent?
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </Link>
+          <Link to="/contact">
+            <Button className="bg-accent hover:bg-accent-dark text-white px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto">
+              Book a Consultation
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </Link>
+          <Button className="bg-white hover:bg-gray-100 text-accent px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto">
+            Talk to an AI Agent Now
+            <Phone className="ml-2 h-5 w-5" />
+          </Button>
+        </div>
       </div>
       
       <div className="relative z-10 -mt-48 mb-0 flex justify-center">
