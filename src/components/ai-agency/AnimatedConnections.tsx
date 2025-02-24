@@ -17,10 +17,10 @@ export const AnimatedConnections = () => {
       
       {/* Side Middle Dots */}
       <circle cx="80" cy="180" r="3" fill="#4ade80" /> {/* Bottom left */}
-      <circle cx="260" cy="180" r="3" fill="#4ade80" /> {/* Bottom right - Moved right */}
+      <circle cx="260" cy="180" r="3" fill="#4ade80" /> {/* Bottom right */}
       
       {/* Bottom Dots */}
-      <circle cx="120" cy="260" r="3" fill="#4ade80" /> {/* Bottom left */}
+      <circle cx="170" cy="260" r="3" fill="#4ade80" /> {/* Bottom left - Moved right */}
       <circle cx="200" cy="260" r="3" fill="#4ade80" /> {/* Bottom right */}
       <circle cx="160" cy="280" r="3" fill="#4ade80" /> {/* Bottom center */}
 
@@ -35,10 +35,10 @@ export const AnimatedConnections = () => {
       
       {/* Side Middle Lines */}
       <line x1="160" y1="100" x2="80" y2="180" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" />
-      <line x1="160" y1="100" x2="260" y2="180" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" /> {/* Bottom right line - Moved right */}
+      <line x1="160" y1="100" x2="260" y2="180" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" />
       
       {/* Bottom Lines */}
-      <line x1="160" y1="100" x2="120" y2="260" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" />
+      <line x1="160" y1="100" x2="170" y2="260" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" /> {/* Bottom left line - Moved right */}
       <line x1="160" y1="100" x2="200" y2="260" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" />
       <line x1="160" y1="100" x2="160" y2="280" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" />
     </svg>
