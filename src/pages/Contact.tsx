@@ -11,6 +11,7 @@ const Contact = () => {
     name: "",
     email: "",
     company: "",
+    reason: "",
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -71,6 +72,7 @@ const Contact = () => {
         name: "",
         email: "",
         company: "",
+        reason: "",
         message: ""
       });
     } catch (error) {
@@ -143,6 +145,28 @@ const Contact = () => {
                   ...formData,
                   company: e.target.value
                 })} className="bg-neutral-800 border-neutral-700 text-white" />
+              </div>
+              <div>
+                <label htmlFor="reason" className="block text-sm font-medium text-gray-300 mb-2">
+                  Reason for Scheduling Meeting?
+                </label>
+                <select
+                  id="reason"
+                  value={formData.reason}
+                  onChange={e => setFormData({
+                    ...formData,
+                    reason: e.target.value
+                  })}
+                  className="w-full rounded-md bg-neutral-800 border-neutral-700 text-white p-3"
+                  required
+                >
+                  <option value="">Select a reason</option>
+                  <option value="explore">Explore AI Solutions</option>
+                  <option value="implement">Implement AI Agents</option>
+                  <option value="pricing">Discuss Pricing</option>
+                  <option value="demo">Request Demo</option>
+                  <option value="other">Other</option>
+                </select>
               </div>
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
