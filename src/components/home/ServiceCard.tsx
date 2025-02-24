@@ -20,15 +20,6 @@ export const ServiceCard = ({ title, description, link, logo, category }: Servic
         <h2 className="text-xl font-semibold bg-gradient-to-r from-accent via-[#E5DEFF] to-accent bg-clip-text text-transparent font-bold mb-6">
           {category}
         </h2>
-        <div className="w-32 h-16 flex items-center justify-center">
-          {logo && (
-            <img 
-              src={logo} 
-              alt={`${title} Logo`} 
-              className="max-w-full max-h-full w-auto h-auto object-contain"
-            />
-          )}
-        </div>
       </div>
 
       <div className="relative z-10 text-center mt-8">
