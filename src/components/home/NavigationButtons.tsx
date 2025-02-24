@@ -16,7 +16,7 @@ export const NavigationButtons = () => {
       <h3 className="text-white text-xl font-semibold mb-4 text-center">
         Run Human-like AI Agents Across:
       </h3>
-      <div className="flex flex-wrap gap-4 justify-center">
+      <div className="flex flex-wrap gap-4 justify-center mb-16">
         {buttons.map((button, index) => (
           <div
             key={index}
@@ -31,6 +31,10 @@ export const NavigationButtons = () => {
           </div>
         ))}
       </div>
+      <h2 className="text-3xl md:text-5xl font-bold text-white mb-16 max-w-4xl mx-auto leading-[1.1] text-center">
+        Custom AI Agent Solutions Built for you.{" "}
+        <span className="text-[#9b87f5] block mt-4">Quick. Easy. Powerful.</span>
+      </h2>
     </div>
   );
 };

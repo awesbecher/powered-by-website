@@ -17,11 +17,6 @@ export const ValuesSection = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 -mt-48">
-      <h2 className="text-3xl md:text-5xl font-bold text-white mb-16 max-w-4xl mx-auto leading-[1.1]">
-        Custom AI Agent Solutions Built for you.{" "}
-        <span className="text-[#9b87f5] block mt-4">Quick. Easy. Powerful.</span>
-      </h2>
-      
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
         {values.map((value, index) => (
           <div key={index} className="relative pb-4">
