@@ -28,11 +28,11 @@ const Index = () => {
       <HeroSection initialLoad={initialLoad} />
       
       <div className="relative z-10 -mt-12">
-        <FeaturesGrid />
+        <NavigationButtons />
       </div>
 
       <div className="relative z-10 mt-12 mb-12">
-        <NavigationButtons />
+        <FeaturesGrid />
       </div>
       
       <div className="relative z-10 -mt-48 mb-0 flex justify-center">
