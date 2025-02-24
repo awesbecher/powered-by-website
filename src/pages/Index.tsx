@@ -30,12 +30,12 @@ const Index = () => {
       <div className="relative z-10 -mt-12">
         <NavigationButtons />
       </div>
-
-      <div className="relative z-10 mt-12 mb-12">
+      
+      <div className="relative z-10 -mt-48 mb-0">
         <FeaturesGrid />
       </div>
       
-      <div className="relative z-10 -mt-48 mb-0 flex justify-center">
+      <div className="relative z-10 mt-12 flex justify-center">
         <div className="w-full max-w-xl">
           <AIAgentIllustration />
         </div>
