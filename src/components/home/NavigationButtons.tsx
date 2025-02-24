@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const NavigationButtons = () => {
   const buttons = [
     { title: "Inbound\nCalls", path: "/" },
-    { title: "Outbound\nCalling", path: "/" },
+    { title: "Outbound\nCalls", path: "/" },
     { title: "Bi-Directional\nText / SMS", path: "/" },
     { title: "Bi-Directional\nEmail", path: "/" },
     { title: "Website\nChatbot", path: "/" },
