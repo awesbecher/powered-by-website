@@ -59,6 +59,12 @@ const Index = () => {
           <AIAgentIllustration />
         </div>
       </div>
+
+      <div className="relative z-10 max-w-4xl mx-auto px-4 mt-12">
+        <h2 className="relative text-5xl font-bold text-white mb-4 transition-colors duration-300 hover:bg-gradient-to-r hover:from-purple-400 hover:to-indigo-400 hover:bg-clip-text hover:text-transparent pt-0 px-4 pb-4 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-purple-500 after:to-indigo-500">
+          Our Approach:
+        </h2>
+      </div>
       
       <ValuesSection />
       <BlogSection />
