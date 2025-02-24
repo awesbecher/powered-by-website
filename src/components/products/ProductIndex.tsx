@@ -17,8 +17,8 @@ export const ProductIndex = () => {
             className="relative z-10 p-3 rounded-lg bg-white/5 border border-white/10 hover:border-accent/50 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/5 cursor-pointer text-left max-w-[250px] mx-auto w-full"
           >
             <div className="flex items-center gap-2 mb-2">
-              <card.icon className="h-5 w-5 text-accent" />
-              <h3 className="text-sm font-semibold text-white">
+              <card.icon className="h-6 w-6 text-accent" />
+              <h3 className="text-base font-semibold text-white">
                 {card.title.main.replace(':', '')}
               </h3>
             </div>
