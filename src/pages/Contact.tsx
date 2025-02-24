@@ -86,7 +86,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen relative bg-[#1a0b2e]">
+    <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       {/* Content */}
       <div className="relative z-10 pt-36">
         <div className="max-w-2xl mx-auto px-4">
@@ -164,6 +164,10 @@ const Contact = () => {
           </div>
         </div>
       </div>
+
+      {/* Background gradient orbs */}
+      <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
+      <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
     </div>
   );
 };
