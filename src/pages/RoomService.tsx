@@ -1,4 +1,3 @@
-
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -96,7 +95,7 @@ const RoomService = () => {
               Room Service at Grandview
             </h1>
             <p className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed drop-shadow-lg">
-              Indulge in exquisite dining from the comfort of your luxury suite, with our 24/7 premium room service.
+              Indulge in exquisite dining from the comfort of your luxury suite, with our 24/7 premium room service. Please choose from any of the items on our Food & Drinks Menu below. When you are ready, click the button below to speak to Room Service.
             </p>
           </div>
         </div>
