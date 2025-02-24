@@ -49,7 +49,7 @@ const AIAgency = () => {
 
                   <div>
                     <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Hands-On Support</h4>
-                    <p>Instead of a self-service API and limited troubleshooting, our hands-on experts ensure your AI solution is properly integrated, trained, and continuously improved. We're not just handing you the keys; we're the driver, mechanic, and co-pilot every step of the way.</p>
+                    <p>Instead of the self-service and limited troubleshooting options offered by OpenAI and others, our hands-on experts ensure your AI solution is properly integrated, trained, and continuously improved. We're not just handing you the keys; we're the driver, mechanic, and co-pilot every step of the way.</p>
                   </div>
 
                   <div>
