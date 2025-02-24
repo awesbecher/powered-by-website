@@ -8,13 +8,13 @@ export const ProductIndex = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-6 lg:px-8 pb-16 pt-12">
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 place-items-center">
+    <div className="max-w-3xl mx-auto px-6 lg:px-8 pb-16 pt-12">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 place-items-center">
         {serviceCardsData.map((card, index) => (
           <button
             key={index}
             onClick={() => scrollToSection(index)}
-            className="relative z-10 p-3 rounded-lg bg-white/5 border border-white/10 hover:border-accent/50 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/5 cursor-pointer text-left max-w-[250px] mx-auto w-full"
+            className="relative z-10 p-3 rounded-lg bg-white/5 border border-white/10 hover:border-accent/50 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/5 cursor-pointer text-left max-w-[200px] mx-auto w-full"
           >
             <div className="flex items-center gap-2 mb-2">
               <card.icon className="h-6 w-6 text-accent" />
