@@ -12,7 +12,7 @@ export const AnimatedConnections = () => {
       <circle cx="220" cy="20" r="3" fill="#4ade80" /> {/* Top right */}
       
       {/* Middle Dots */}
-      <circle cx="20" cy="100" r="3" fill="#4ade80" /> {/* Left */}
+      <circle cx="-30" cy="100" r="3" fill="#4ade80" /> {/* Left - Moved outward */}
       <circle cx="300" cy="100" r="3" fill="#4ade80" /> {/* Right */}
       
       {/* Side Middle Dots */}
@@ -30,7 +30,7 @@ export const AnimatedConnections = () => {
       <line x1="160" y1="100" x2="220" y2="20" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" />
       
       {/* Middle Lines */}
-      <line x1="160" y1="100" x2="20" y2="100" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" />
+      <line x1="160" y1="100" x2="-30" y2="100" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" /> {/* Left line - Moved outward */}
       <line x1="160" y1="100" x2="300" y2="100" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" />
       
       {/* Side Middle Lines */}
