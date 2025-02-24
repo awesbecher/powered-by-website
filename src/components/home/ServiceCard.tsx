@@ -17,7 +17,7 @@ export const ServiceCard = ({ title, description, link, logo, category }: Servic
       className="group relative overflow-hidden rounded-2xl bg-[#1a0b2e] border border-accent/20 p-6 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/5 hover:-translate-y-1 transform-gpu hover:scale-[1.02] min-h-[200px] flex flex-col cursor-pointer"
     >
       <div className="flex flex-col items-center mb-1">
-        <h2 className="text-xl font-semibold bg-gradient-to-r from-accent via-[#E5DEFF] to-accent bg-clip-text text-transparent font-bold">
+        <h2 className="text-xl font-semibold text-accent font-bold">
           {category}
         </h2>
       </div>
