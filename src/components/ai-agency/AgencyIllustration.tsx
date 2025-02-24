@@ -1,3 +1,4 @@
+
 import { Brain, Cpu, Network, Bot, Users, Database, Mail, Phone, MessageCircle, FileText, Workflow, Settings, ShoppingCart } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -81,7 +82,7 @@ const AgencyIllustration = () => {
           transition={{ delay: 0.6, duration: 0.5 }}
           className="absolute top-12 -right-20 p-4 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10"
         >
-          <Code className="w-8 h-8 text-[#9b87f5]" />
+          <FileText className="w-8 h-8 text-[#9b87f5]" />
         </motion.div>
 
         <motion.div 
