@@ -12,7 +12,7 @@ export const CentralPlatform = () => {
     >
       {/* Brain Icon */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <Brain className="w-16 h-16 text-[#9b87f5] opacity-30" />
+        <Brain className="w-16 h-16 text-[#F2FCE2] opacity-30" />
       </div>
 
       {/* File Icon to the left of brain */}
