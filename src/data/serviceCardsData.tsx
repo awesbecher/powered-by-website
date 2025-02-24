@@ -1,4 +1,5 @@
-import { Car, Hotel, Users, HeadphonesIcon, Building2, MessageSquare, Globe, Calendar, UtensilsCrossed, DollarSign } from "lucide-react";
+
+import { Car, Hotel, Users2, HeadphonesIcon, Building2, MessageSquare, Globe, Calendar, UtensilsCrossed, DollarSign } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 interface ServiceCardData {
@@ -73,7 +74,7 @@ export const serviceCardsData: ServiceCardData[] = [
       main: "B2B Sales:",
       sub: "Inbound Funnel Qualifier"
     },
-    icon: Users, // Changed from Users to Users2
+    icon: Users2,
     description: "Deployed on your website, this agent engages inbound leads, identifies pain points, and routes high-intent prospects to human sales reps. Working as a voice agent, it can deliver the most human-like verbal product overviews, collect important business details, and even auto-generate proposals for rapid follow-up.",
     features: [
       "Intelligent Lead Qualification",
@@ -115,7 +116,7 @@ export const serviceCardsData: ServiceCardData[] = [
       main: "Education:",
       sub: "Enrollment Assistant"
     },
-    icon: Users,
+    icon: Users2,
     description: "Built for universities and other educational institutions, this agent helps current or prospective students discover relevant courses, understand admission requirements, and schedule campus or virtual tours. It's accessible through institutional websites and student portals, offering instant responses at any hour.",
     features: [
       "24/7 Enrollment Support",
@@ -143,7 +144,7 @@ export const serviceCardsData: ServiceCardData[] = [
       main: "Internal HR:",
       sub: "Onboarding & FAQ Agent"
     },
-    icon: Users,
+    icon: Users2,
     description: "Perfect for internal company portals and HR communication channels, this agent addresses common new-hire questions about benefits, company policies, and workflows. By automating these routine inquiries, your HR team can focus on strategic initiatives.",
     features: [
       "24/7 HR Policy Support",
