@@ -3,6 +3,7 @@ import { WordAnimation } from "@/components/home/WordAnimation";
 import { ServiceCard } from "@/components/home/ServiceCard";
 import { services, additionalServices } from "@/data/services";
 import { useState, useEffect } from "react";
+import { ClosingCTA } from "@/components/home/ClosingCTA";
 
 const Demo = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -51,6 +52,9 @@ const Demo = () => {
           </div>
         </div>
       </div>
+
+      {/* Closing CTA */}
+      <ClosingCTA />
     </div>;
 };
 
