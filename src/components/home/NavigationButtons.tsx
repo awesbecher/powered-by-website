@@ -1,13 +1,14 @@
 
 import React from "react";
+import { PhoneCall, Phone, MessageSquare, Mail, Globe } from "lucide-react";
 
 export const NavigationButtons = () => {
   const buttons = [
-    { title: "Inbound\nCalls" },
-    { title: "Outbound\nCalls" },
-    { title: "Bi-Directional\nText / SMS" },
-    { title: "Bi-Directional\nEmail" },
-    { title: "Website\nChatbot" },
+    { title: "Inbound\nCalls", icon: <PhoneCall className="w-5 h-5 mb-1 mx-auto" /> },
+    { title: "Outbound\nCalls", icon: <Phone className="w-5 h-5 mb-1 mx-auto" /> },
+    { title: "Bi-Directional\nText / SMS", icon: <MessageSquare className="w-5 h-5 mb-1 mx-auto" /> },
+    { title: "Bi-Directional\nEmail", icon: <Mail className="w-5 h-5 mb-1 mx-auto" /> },
+    { title: "Website\nChatbot", icon: <Globe className="w-5 h-5 mb-1 mx-auto" /> },
   ];
 
   return (
@@ -25,6 +26,7 @@ export const NavigationButtons = () => {
               text-white px-4 py-3 rounded-lg 
               font-semibold text-center whitespace-pre-line text-sm"
           >
+            {button.icon}
             {button.title}
           </div>
         ))}
