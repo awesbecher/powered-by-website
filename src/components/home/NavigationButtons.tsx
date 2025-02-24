@@ -17,8 +17,8 @@ export const NavigationButtons = () => {
           key={index}
           to={button.path}
           className="min-w-[150px] bg-[#9b87f5] hover:bg-[#7a6cc5] text-white px-4 py-3 rounded-lg 
-            font-semibold transition-all duration-300 ease-in-out transform hover:-translate-y-1 
-            text-center whitespace-pre-line text-sm"
+            font-semibold transition-all duration-300 ease-in-out transform hover:-translate-y-2 
+            hover:shadow-lg hover:scale-105 text-center whitespace-pre-line text-sm"
         >
           {button.title}
         </Link>
