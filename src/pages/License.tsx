@@ -10,7 +10,8 @@ import { initiateVogentCall } from "@/services/vogentService";
 
 const License = () => {
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isCallDialogOpen, setIsCallDialogOpen] = useState(false);
+  const [isPricingDialogOpen, setIsPricingDialogOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
@@ -84,15 +85,41 @@ const License = () => {
             </div>
             
             <div className="flex flex-col items-center gap-8">
-              <button 
-                onClick={() => navigate('/products')}
-                className="bg-[#9b87f5] hover:bg-[#7E69AB] text-white px-10 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2 text-lg"
-              >
-                View Products & Pricing
-                <DollarSign className="w-5 h-5" />
-              </button>
+              <Dialog open={isPricingDialogOpen} onOpenChange={setIsPricingDialogOpen}>
+                <DialogTrigger asChild>
+                  <button 
+                    className="bg-[#9b87f5] hover:bg-[#7E69AB] text-white px-10 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2 text-lg"
+                  >
+                    View Products & Pricing
+                    <DollarSign className="w-5 h-5" />
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl">
+                  <DialogHeader>
+                    <DialogTitle className="text-2xl mb-6">RightBloom Pricing Packages</DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-6">
+                    <div className="space-y-2">
+                      <h3 className="text-lg font-semibold text-purple-400">Essentials Package: $25/user/month</h3>
+                      <p className="text-gray-500">This is our base package providing core functionalities of the RightBloom software, but lacks advanced options like extensive reporting, integrations, or high user limits.</p>
+                    </div>
+                    <div className="space-y-2">
+                      <h3 className="text-lg font-semibold text-purple-400">Sales Package: $75/user/month</h3>
+                      <p className="text-gray-500">This package provides core functionalities of the RightBloom software AND includes advanced AI sales automation capabilities and includes extensive reporting and extensive API integrations to SalesForce, Hubspot, and others.</p>
+                    </div>
+                    <div className="space-y-2">
+                      <h3 className="text-lg font-semibold text-purple-400">Service Package: $125/user/month</h3>
+                      <p className="text-gray-500">This package provides the core functionalities of the RightBloom AI ADR capabilities provided in the Sales Package plus additional software capabilities to automate customer support and service communication & workflows with live support provided during business hours.</p>
+                    </div>
+                    <div className="space-y-2">
+                      <h3 className="text-lg font-semibold text-purple-400">Enterprise Package: $165/user/month</h3>
+                      <p className="text-gray-500">This package provides all of the features in our Sales & Service packages with unlimited API integrations plus 24-by-7 live customer support.</p>
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
               
-              <Dialog open={isOpen} onOpenChange={setIsOpen}>
+              <Dialog open={isCallDialogOpen} onOpenChange={setIsCallDialogOpen}>
                 <DialogTrigger asChild>
                   <button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2">
                     Speak to a Sales Rep
@@ -115,7 +142,7 @@ const License = () => {
                       <Button 
                         variant="outline"
                         className="w-full"
-                        onClick={() => setIsOpen(false)}
+                        onClick={() => setIsCallDialogOpen(false)}
                       >
                         Cancel
                       </Button>
