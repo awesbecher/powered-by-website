@@ -141,18 +141,92 @@ const AgencyIllustration = () => {
           <ShoppingCart className="w-8 h-8 text-[#9b87f5]" />
         </motion.div>
 
+        {/* Animated Dots and Lines */}
         <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: -1 }}>
-          <line x1="20%" y1="20%" x2="40%" y2="35%" stroke="#9b87f5" strokeWidth="2" strokeDasharray="4 4" className="animate-dash" />
-          <line x1="80%" y1="20%" x2="60%" y2="35%" stroke="#9b87f5" strokeWidth="2" strokeDasharray="4 4" className="animate-dash" />
-          <line x1="10%" y1="50%" x2="30%" y2="50%" stroke="#9b87f5" strokeWidth="2" strokeDasharray="4 4" className="animate-dash" />
-          <line x1="90%" y1="50%" x2="70%" y2="50%" stroke="#9b87f5" strokeWidth="2" strokeDasharray="4 4" className="animate-dash" />
-          <line x1="20%" y1="80%" x2="40%" y2="65%" stroke="#9b87f5" strokeWidth="2" strokeDasharray="4 4" className="animate-dash" />
-          <line x1="80%" y1="80%" x2="60%" y2="65%" stroke="#9b87f5" strokeWidth="2" strokeDasharray="4 4" className="animate-dash" />
+          {/* Animated Dots */}
+          <circle className="animate-pulse" r="3" fill="#4ade80">
+            <animateMotion
+              path="M 160,100 L 220,76"
+              dur="2s"
+              repeatCount="indefinite"
+            />
+          </circle>
+          <circle className="animate-pulse" r="3" fill="#4ade80">
+            <animateMotion
+              path="M 160,100 L 96,76"
+              dur="2s"
+              repeatCount="indefinite"
+            />
+          </circle>
+          <circle className="animate-pulse" r="3" fill="#4ade80">
+            <animateMotion
+              path="M 160,100 L 240,116"
+              dur="1.8s"
+              repeatCount="indefinite"
+            />
+          </circle>
+          <circle className="animate-pulse" r="3" fill="#4ade80">
+            <animateMotion
+              path="M 160,100 L 80,116"
+              dur="1.8s"
+              repeatCount="indefinite"
+            />
+          </circle>
+          <circle className="animate-pulse" r="3" fill="#4ade80">
+            <animateMotion
+              path="M 160,100 L 220,148"
+              dur="2.2s"
+              repeatCount="indefinite"
+            />
+          </circle>
+          <circle className="animate-pulse" r="3" fill="#4ade80">
+            <animateMotion
+              path="M 160,100 L 96,148"
+              dur="2.2s"
+              repeatCount="indefinite"
+            />
+          </circle>
+          <circle className="animate-pulse" r="3" fill="#4ade80">
+            <animateMotion
+              path="M 160,100 L 160,176"
+              dur="2.4s"
+              repeatCount="indefinite"
+            />
+          </circle>
+
+          {/* Hash Lines */}
+          <line x1="20%" y1="20%" x2="40%" y2="35%" stroke="#9b87f5" strokeWidth="2" strokeDasharray="4 4" className="animate-dash">
+            <animate attributeName="stroke-dashoffset" from="0" to="16" dur="1s" repeatCount="indefinite" />
+          </line>
+          <line x1="80%" y1="20%" x2="60%" y2="35%" stroke="#9b87f5" strokeWidth="2" strokeDasharray="4 4" className="animate-dash">
+            <animate attributeName="stroke-dashoffset" from="0" to="16" dur="1s" repeatCount="indefinite" />
+          </line>
+          <line x1="10%" y1="50%" x2="30%" y2="50%" stroke="#9b87f5" strokeWidth="2" strokeDasharray="4 4" className="animate-dash">
+            <animate attributeName="stroke-dashoffset" from="0" to="16" dur="1s" repeatCount="indefinite" />
+          </line>
+          <line x1="90%" y1="50%" x2="70%" y2="50%" stroke="#9b87f5" strokeWidth="2" strokeDasharray="4 4" className="animate-dash">
+            <animate attributeName="stroke-dashoffset" from="0" to="16" dur="1s" repeatCount="indefinite" />
+          </line>
+          <line x1="20%" y1="80%" x2="40%" y2="65%" stroke="#9b87f5" strokeWidth="2" strokeDasharray="4 4" className="animate-dash">
+            <animate attributeName="stroke-dashoffset" from="0" to="16" dur="1s" repeatCount="indefinite" />
+          </line>
+          <line x1="80%" y1="80%" x2="60%" y2="65%" stroke="#9b87f5" strokeWidth="2" strokeDasharray="4 4" className="animate-dash">
+            <animate attributeName="stroke-dashoffset" from="0" to="16" dur="1s" repeatCount="indefinite" />
+          </line>
           
-          <line x1="35%" y1="10%" x2="45%" y2="30%" stroke="#9b87f5" strokeWidth="2" strokeDasharray="4 4" className="animate-dash" />
-          <line x1="65%" y1="10%" x2="55%" y2="30%" stroke="#9b87f5" strokeWidth="2" strokeDasharray="4 4" className="animate-dash" />
-          <line x1="35%" y1="90%" x2="45%" y2="70%" stroke="#9b87f5" strokeWidth="2" strokeDasharray="4 4" className="animate-dash" />
-          <line x1="65%" y1="90%" x2="55%" y2="70%" stroke="#9b87f5" strokeWidth="2" strokeDasharray="4 4" className="animate-dash" />
+          {/* Additional Hash Lines */}
+          <line x1="35%" y1="10%" x2="45%" y2="30%" stroke="#9b87f5" strokeWidth="2" strokeDasharray="4 4" className="animate-dash">
+            <animate attributeName="stroke-dashoffset" from="0" to="16" dur="1s" repeatCount="indefinite" />
+          </line>
+          <line x1="65%" y1="10%" x2="55%" y2="30%" stroke="#9b87f5" strokeWidth="2" strokeDasharray="4 4" className="animate-dash">
+            <animate attributeName="stroke-dashoffset" from="0" to="16" dur="1s" repeatCount="indefinite" />
+          </line>
+          <line x1="35%" y1="90%" x2="45%" y2="70%" stroke="#9b87f5" strokeWidth="2" strokeDasharray="4 4" className="animate-dash">
+            <animate attributeName="stroke-dashoffset" from="0" to="16" dur="1s" repeatCount="indefinite" />
+          </line>
+          <line x1="65%" y1="90%" x2="55%" y2="70%" stroke="#9b87f5" strokeWidth="2" strokeDasharray="4 4" className="animate-dash">
+            <animate attributeName="stroke-dashoffset" from="0" to="16" dur="1s" repeatCount="indefinite" />
+          </line>
         </svg>
       </div>
     </div>
