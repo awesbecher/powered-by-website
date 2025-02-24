@@ -1,5 +1,5 @@
 
-import { Cpu, Network, Bot, Users, Database, FileText, Workflow, Settings, ShoppingCart } from "lucide-react";
+import { Cpu, Network, Bot, Users, Database, FileText, Workflow, Settings } from "lucide-react";
 import { motion } from "framer-motion";
 
 export const ServiceIcons = () => {
@@ -79,15 +79,6 @@ export const ServiceIcons = () => {
         className="absolute -bottom-16 right-8 p-4 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10"
       >
         <Settings className="w-8 h-8 text-[#9b87f5]" />
-      </motion.div>
-
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1.4, duration: 0.5 }}
-        className="absolute -bottom-24 left-1/2 -translate-x-1/2 p-4 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10"
-      >
-        <ShoppingCart className="w-8 h-8 text-[#9b87f5]" />
       </motion.div>
     </>
   );
