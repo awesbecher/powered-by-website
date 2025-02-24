@@ -2,14 +2,14 @@
 export const AnimatedConnections = () => {
   return (
     <svg 
-      className="absolute inset-0 w-[400px] h-[400px]" 
+      className="absolute inset-0 w-[200px] h-[200px]" 
       viewBox="0 0 400 400"
       style={{ zIndex: 1 }}
     >
       {/* Static Dots */}
       {/* Top Dots */}
       <circle cx="50" cy="70" r="3" fill="#4ade80" /> {/* Top left - Mail icon */}
-      <circle cx="280" cy="50" r="3" fill="#4ade80" /> {/* Top right - Moved left */}
+      <circle cx="280" cy="50" r="3" fill="#4ade80" /> {/* Top right - Final position */}
       
       {/* Middle Dots */}
       <circle cx="20" cy="100" r="3" fill="#4ade80" /> {/* Left - Adjusted to robot icon */}
@@ -27,7 +27,7 @@ export const AnimatedConnections = () => {
       {/* Static Hash Lines - All starting from center (160, 100) */}
       {/* Top Lines */}
       <line x1="160" y1="100" x2="50" y2="70" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" /> {/* Mail icon line */}
-      <line x1="160" y1="100" x2="280" y2="50" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" /> {/* Top right line - Moved left */}
+      <line x1="160" y1="100" x2="280" y2="50" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" /> {/* Top right line - Final position */}
       
       {/* Middle Lines */}
       <line x1="160" y1="100" x2="20" y2="100" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" /> {/* Robot icon line */}
