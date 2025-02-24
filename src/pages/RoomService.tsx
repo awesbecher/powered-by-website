@@ -1,3 +1,4 @@
+
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -116,9 +117,6 @@ const RoomService = () => {
       />
 
       <div className="mx-auto max-w-3xl px-4">
-        <p className="text-white/90 text-lg mb-4 text-center font-bold">
-          Please choose from any of the items on our Food & Drinks Menu below. When you are ready, click the button below to speak to Room Service.
-        </p>
         <Button 
           className="bg-accent hover:bg-accent/90 text-white mb-4 font-bold text-sm mx-auto block px-4 py-2 h-auto whitespace-nowrap flex items-center gap-2"
           onClick={() => setIsDialogOpen(true)}
