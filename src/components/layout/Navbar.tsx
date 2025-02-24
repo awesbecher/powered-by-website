@@ -1,3 +1,4 @@
+
 import { cn } from "@/lib/utils";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -34,6 +35,21 @@ const Navbar = () => {
           {/* Navigation Items */}
           <div className="hidden md:flex items-center justify-center flex-1">
             <div className="flex space-x-8">
+              {/* Home Link */}
+              <Link
+                to="/"
+                className={cn(
+                  "px-3 py-2 text-sm font-medium relative group",
+                  location.pathname === '/'
+                    ? "text-[#9b87f5]"
+                    : "text-gray-300 hover:text-white",
+                  "transition-colors duration-200"
+                )}
+              >
+                Home
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#9b87f5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
+              </Link>
+
               {/* AI Agency Link */}
               <Link
                 to="/ai-agency"
@@ -105,3 +121,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
