@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -17,6 +18,7 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [initialLoad, setInitialLoad] = useState(true);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   useEffect(() => {
     setInitialLoad(false);
@@ -46,6 +48,15 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    if (!captchaToken) {
+      toast({
+        title: "Verification required",
+        description: "Please complete the reCAPTCHA verification before sending.",
+        variant: "destructive"
+      });
+      return;
+    }
+
     if (isPersonalEmail(formData.email)) {
       toast({
         title: "Invalid email domain",
@@ -59,7 +70,7 @@ const Contact = () => {
 
     try {
       const { error } = await supabase.functions.invoke('send-contact-email', {
-        body: formData
+        body: { ...formData, captchaToken }
       });
 
       if (error) throw error;
@@ -77,6 +88,7 @@ const Contact = () => {
         reason: "",
         message: ""
       });
+      setCaptchaToken(null);
     } catch (error) {
       console.error('Error sending message:', error);
       toast({
@@ -87,6 +99,10 @@ const Contact = () => {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleCaptchaChange = (token: string | null) => {
+    setCaptchaToken(token);
   };
 
   return (
@@ -193,10 +209,17 @@ const Contact = () => {
                   message: e.target.value
                 })} className="w-full rounded-md bg-neutral-800 border-neutral-700 text-white p-3" required />
               </div>
+              <div className="flex justify-center">
+                <ReCAPTCHA
+                  sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                  onChange={handleCaptchaChange}
+                  theme="dark"
+                />
+              </div>
               <Button 
                 type="submit" 
                 className="w-full bg-accent hover:bg-accent-dark text-white py-6"
-                disabled={isSubmitting}
+                disabled={isSubmitting || !captchaToken}
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
               </Button>
