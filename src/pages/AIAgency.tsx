@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { BookOpen, Users, Rocket, Handshake } from "lucide-react";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
@@ -8,8 +9,10 @@ import AgencyIllustration from "@/components/ai-agency/AgencyIllustration";
 
 const AIAgency = () => {
   const [initialLoad, setInitialLoad] = useState(true);
+
   useEffect(() => {
     setInitialLoad(false);
+    window.scrollTo(0, 0);
   }, []);
 
   return (
