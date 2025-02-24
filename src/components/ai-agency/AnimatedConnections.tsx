@@ -22,7 +22,7 @@ export const AnimatedConnections = () => {
       {/* Bottom Dots */}
       <circle cx="170" cy="260" r="3" fill="#4ade80" /> {/* Bottom left */}
       <circle cx="200" cy="260" r="3" fill="#4ade80" /> {/* Bottom right */}
-      <circle cx="80" cy="270" r="3" fill="#4ade80" /> {/* Bottom center - Moved up */}
+      <circle cx="80" cy="260" r="3" fill="#4ade80" /> {/* Bottom center - Moved up */}
 
       {/* Static Hash Lines - All starting from center (160, 100) */}
       {/* Top Lines */}
@@ -40,7 +40,7 @@ export const AnimatedConnections = () => {
       {/* Bottom Lines */}
       <line x1="160" y1="100" x2="170" y2="260" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" />
       <line x1="160" y1="100" x2="200" y2="260" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" />
-      <line x1="160" y1="100" x2="80" y2="270" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" /> {/* Bottom center line - Moved up */}
+      <line x1="160" y1="100" x2="80" y2="260" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" /> {/* Bottom center line - Moved up */}
     </svg>
   );
 };
