@@ -15,14 +15,17 @@ export const NavigationButtons = () => {
       <h3 className="text-white text-xl font-semibold mb-4 text-center">
         Run Human-like AI Agents Across:
       </h3>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+      <div className="flex flex-wrap gap-4 justify-center">
         {buttons.map((button, index) => (
-          <div key={index} className="group perspective">
+          <div 
+            key={index} 
+            className="w-[calc(50%-8px)] sm:w-[calc(33.333%-16px)] md:w-[calc(20%-16px)] min-w-[150px]"
+          >
             <Link
               to={button.path}
               className="block w-full bg-[#9b87f5] hover:bg-[#7a6cc5] text-white px-4 py-3 rounded-lg 
-                font-semibold transition-all duration-300 ease-in-out will-change-transform
-                group-hover:-translate-y-2 group-hover:scale-105 group-hover:shadow-lg
+                font-semibold transition-all duration-300 ease-in-out transform 
+                hover:-translate-y-2 hover:scale-105 hover:shadow-lg
                 text-center whitespace-pre-line text-sm"
             >
               {button.title}
