@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Clock, User, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { BlogPost } from "@/types/blog";
+import { useLocation } from "react-router-dom";
 
 interface BlogPostCardProps {
   post: BlogPost;
@@ -32,54 +33,65 @@ const getPostImage = (slug: string) => {
   }
 };
 
-export const BlogPostCard = ({ post, featured = false }: BlogPostCardProps) => (
-  <Link 
-    to={`/blog/${post.slug}`}
-    className="block group text-white"
-  >
-    <div className={cn(
-      "bg-white/5 rounded-lg overflow-hidden group-hover:bg-white/10 transition-all duration-300 transform group-hover:-translate-y-1 hover:shadow-lg",
-      featured ? "col-span-full lg:col-span-2" : ""
-    )}>
-      <div className="relative h-[170px]">
-        <div className="absolute inset-0">
-          <img 
-            src={getPostImage(post.slug)} 
-            alt={post.title}
-            className="w-full h-full object-cover opacity-60 group-hover:opacity-70 transition-opacity duration-300"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60" />
-        </div>
-        <div className="relative p-4 flex flex-col h-full">
-          <h2 className={cn(
-            "font-bold text-white !important mb-2 group-hover:text-[#9b87f5] transition-colors text-shadow",
-            featured ? "text-2xl" : "text-xl"
-          )}>
-            {post.title}
-          </h2>
-          <p className="text-white text-sm leading-relaxed mb-2 line-clamp-2 text-shadow">
-            {post.excerpt}
-          </p>
-          <div className="flex items-center justify-between text-xs text-white mt-auto">
-            <div className="flex items-center gap-2">
-              <User className="w-3 h-3" />
-              <span className="text-shadow">{post.author}</span>
+export const BlogPostCard = ({ post, featured = false }: BlogPostCardProps) => {
+  const location = useLocation();
+  const isOnBlogPage = location.pathname === "/blog";
+
+  return (
+    <Link 
+      to={`/blog/${post.slug}`}
+      className="block group text-white"
+    >
+      <div className={cn(
+        "bg-white/5 rounded-lg overflow-hidden group-hover:bg-white/10 transition-all duration-300 transform group-hover:-translate-y-1 hover:shadow-lg",
+        featured ? "col-span-full lg:col-span-2" : ""
+      )}>
+        <div className="relative h-[170px]">
+          {!isOnBlogPage && (
+            <div className="absolute inset-0">
+              <img 
+                src={getPostImage(post.slug)} 
+                alt={post.title}
+                className="w-full h-full object-cover opacity-60 group-hover:opacity-70 transition-opacity duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60" />
             </div>
-            <div className="flex items-center gap-4">
+          )}
+          <div className={cn(
+            "relative p-4 flex flex-col h-full",
+            isOnBlogPage ? "bg-[#1a0b2e]" : ""
+          )}>
+            <h2 className={cn(
+              "font-bold text-white !important mb-2 group-hover:text-[#9b87f5] transition-colors text-shadow",
+              featured ? "text-2xl" : "text-xl"
+            )}>
+              {post.title}
+            </h2>
+            <p className="text-white text-sm leading-relaxed mb-2 line-clamp-2 text-shadow">
+              {post.excerpt}
+            </p>
+            <div className="flex items-center justify-between text-xs text-white mt-auto">
               <div className="flex items-center gap-2">
-                <Clock className="w-3 h-3" />
-                <span className="text-shadow">{post.readTime}</span>
+                <User className="w-3 h-3" />
+                <span className="text-shadow">{post.author}</span>
               </div>
-              <div 
-                className="flex items-center gap-1 text-[#9b87f5] group-hover:text-[#8b77e5] transition-colors bg-black/50 px-2 py-1 rounded"
-              >
-                Read more
-                <ChevronRight className="w-3 h-3" />
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <Clock className="w-3 h-3" />
+                  <span className="text-shadow">{post.readTime}</span>
+                </div>
+                <div 
+                  className="flex items-center gap-1 text-[#9b87f5] group-hover:text-[#8b77e5] transition-colors bg-black/50 px-2 py-1 rounded"
+                >
+                  Read more
+                  <ChevronRight className="w-3 h-3" />
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </Link>
-);
+    </Link>
+  );
+};
+
