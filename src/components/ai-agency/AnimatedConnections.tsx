@@ -6,24 +6,6 @@ export const AnimatedConnections = () => {
       viewBox="0 0 400 400"
       style={{ zIndex: 1 }}
     >
-      {/* Static Dots */}
-      {/* Top Dots */}
-      <circle cx="50" cy="70" r="3" fill="#4ade80" /> {/* Top left - Mail icon */}
-      <circle cx="280" cy="50" r="3" fill="#4ade80" /> {/* Top right - Final position */}
-      
-      {/* Middle Dots */}
-      <circle cx="20" cy="100" r="3" fill="#4ade80" /> {/* Left - Adjusted to robot icon */}
-      <circle cx="300" cy="100" r="3" fill="#4ade80" /> {/* Right */}
-      
-      {/* Side Middle Dots */}
-      <circle cx="80" cy="180" r="3" fill="#4ade80" /> {/* Bottom left */}
-      <circle cx="260" cy="180" r="3" fill="#4ade80" /> {/* Bottom right */}
-      
-      {/* Bottom Dots */}
-      <circle cx="170" cy="260" r="3" fill="#4ade80" /> {/* Bottom left */}
-      <circle cx="200" cy="260" r="3" fill="#4ade80" /> {/* Bottom right */}
-      <circle cx="80" cy="260" r="3" fill="#4ade80" /> {/* Bottom center */}
-
       {/* Static Hash Lines - All starting from center (160, 100) */}
       {/* Top Lines */}
       <line x1="160" y1="100" x2="50" y2="70" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" /> {/* Mail icon line */}
