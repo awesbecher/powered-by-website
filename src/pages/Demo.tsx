@@ -1,13 +1,17 @@
+
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { ServiceCard } from "@/components/home/ServiceCard";
 import { services, additionalServices } from "@/data/services";
 import { useState, useEffect } from "react";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
+
 const Demo = () => {
   const [initialLoad, setInitialLoad] = useState(true);
+
   useEffect(() => {
     setInitialLoad(false);
   }, []);
+
   return <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] pt-36">
       {/* Hero Section */}
       <div className="relative overflow-hidden px-6 lg:px-8 pb-8">
@@ -28,7 +32,7 @@ const Demo = () => {
       </div>
 
       {/* Services Grid */}
-      <div className="relative px-4 lg:px-6 space-y-8">
+      <div className="relative px-4 lg:px-6 space-y-4">
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
             {services.map(service => <ServiceCard key={service.title} {...service} />)}
@@ -47,4 +51,5 @@ const Demo = () => {
       <ClosingCTA />
     </div>;
 };
+
 export default Demo;
