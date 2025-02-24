@@ -15,17 +15,19 @@ export const NavigationButtons = () => {
       <h3 className="text-white text-xl font-semibold mb-4 text-center">
         Run Human-like AI Agents Across:
       </h3>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 justify-items-center">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
         {buttons.map((button, index) => (
-          <Link
-            key={index}
-            to={button.path}
-            className="w-full max-w-[150px] bg-[#9b87f5] hover:bg-[#7a6cc5] text-white px-4 py-3 rounded-lg 
-              font-semibold transition-all duration-300 ease-in-out transform hover:-translate-y-2 
-              hover:shadow-lg hover:scale-105 text-center whitespace-pre-line text-sm"
-          >
-            {button.title}
-          </Link>
+          <div key={index} className="group perspective">
+            <Link
+              to={button.path}
+              className="block w-full bg-[#9b87f5] hover:bg-[#7a6cc5] text-white px-4 py-3 rounded-lg 
+                font-semibold transition-all duration-300 ease-in-out will-change-transform
+                group-hover:-translate-y-2 group-hover:scale-105 group-hover:shadow-lg
+                text-center whitespace-pre-line text-sm"
+            >
+              {button.title}
+            </Link>
+          </div>
         ))}
       </div>
     </div>
