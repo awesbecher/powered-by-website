@@ -1,34 +1,24 @@
-
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { ServiceCard } from "@/components/home/ServiceCard";
 import { services, additionalServices } from "@/data/services";
 import { useState, useEffect } from "react";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
-
 const Demo = () => {
   const [initialLoad, setInitialLoad] = useState(true);
-
   useEffect(() => {
     setInitialLoad(false);
   }, []);
-
   return <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] pt-36">
       {/* Hero Section */}
       <div className="relative overflow-hidden px-6 lg:px-8 pb-8">
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
-            <h1 
-              className={`text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6 transition-all duration-1000 ease-out transform
-                ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
-            >
+            <h1 className={`text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6 transition-all duration-1000 ease-out transform
+                ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
               We have <span className="text-[#9b87f5]">demos</span>! Now go have fun.
             </h1>
-            <p 
-              className={`mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold transition-all duration-1000 delay-300 ease-out transform
-                ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
-            >
-              Parlar AI's agents can automate and improve even your most complex customer-facing or internal tasks. See our AI agents in action by selecting any of the use cases below.
-            </p>
+            <p className={`mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold transition-all duration-1000 delay-300 ease-out transform
+                ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>Our agents can automate &amp; improve even your most complex customer-facing or internal tasks. See our AI agents in action by selecting any of the use cases below.</p>
           </div>
         </div>
         
@@ -57,5 +47,4 @@ const Demo = () => {
       <ClosingCTA />
     </div>;
 };
-
 export default Demo;
