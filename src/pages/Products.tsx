@@ -12,19 +12,6 @@ const Products = () => {
     setInitialLoad(false);
   }, []);
 
-  const handleScroll = (index: number) => {
-    const element = document.getElementById(`section-${index}`);
-    if (element) {
-      element.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
-      setTimeout(() => {
-        window.scrollBy(0, -100); // Adjust for header offset
-      }, 100);
-    }
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <ProductsHero initialLoad={initialLoad} className="hero-section" />
