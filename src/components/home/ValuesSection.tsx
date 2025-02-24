@@ -3,7 +3,7 @@ export const ValuesSection = () => {
   const values = [
     {
       title: "Unique AI Agency Model",
-      description: "Just as web design agencies once transformed businesses for the web, we're here to revolutionize how SMBs connect, work, and grow without adding more humans or cost overhead."
+      description: "Just as web design agencies once transformed businesses for the web, we're here to revolutionize how SMBs connect, work, and grow with AI. All without adding more humans."
     },
     {
       title: "Client Obsessed from Day One",
