@@ -123,7 +123,7 @@ const RetailServices = () => {
                 <DialogTrigger asChild>
                   <button className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2">
                     <Phone className="w-5 h-5" />
-                    Speak with an Agent
+                    Book an Appointment
                   </button>
                 </DialogTrigger>
                 <DialogContent className="bg-[#222222] text-white border-gray-800">
