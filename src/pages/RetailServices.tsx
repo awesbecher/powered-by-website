@@ -1,7 +1,12 @@
 
-import { Clock, MessageSquare } from "lucide-react";
+import { Clock, MessageSquare, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
+import { initiateVogentCall } from "@/services/vogentService";
 
 const services = [
   {
@@ -44,9 +49,43 @@ const services = [
 
 const RetailServices = () => {
   const chatRef = useRef<HTMLDivElement>(null);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
   const handleChatClick = () => {
     chatRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleCall = async () => {
+    if (!phoneNumber) {
+      toast({
+        variant: "destructive",
+        title: "Please enter your phone number",
+        description: "A phone number is required to connect with an agent."
+      });
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      await initiateVogentCall(phoneNumber);
+      setIsOpen(false);
+      setPhoneNumber("");
+      toast({
+        title: "Call initiated",
+        description: "An agent will call you shortly."
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Failed to initiate call",
+        description: "Please try again later."
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -84,13 +123,53 @@ const RetailServices = () => {
             <p className="text-gray-200 max-w-2xl mx-auto text-lg mb-8">
               Flagship Barbers has been serving the Tacoma public for 25 years. We specialize in classic barbershop style and fades. Select which services you'd like and then click on Chat with Us below to book an appointment.
             </p>
-            <button 
-              className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2"
-              onClick={handleChatClick}
-            >
-              <MessageSquare className="w-5 h-5" />
-              Chat with Us
-            </button>
+            <div className="flex items-center justify-center gap-4">
+              <button 
+                className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2"
+                onClick={handleChatClick}
+              >
+                <MessageSquare className="w-5 h-5" />
+                Chat with Us
+              </button>
+              <Dialog open={isOpen} onOpenChange={setIsOpen}>
+                <DialogTrigger asChild>
+                  <button className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2">
+                    <Phone className="w-5 h-5" />
+                    Speak with an Agent
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="bg-[#222222] text-white border-gray-800">
+                  <DialogHeader>
+                    <DialogTitle>Enter your phone number to speak with an agent</DialogTitle>
+                  </DialogHeader>
+                  <div className="flex flex-col space-y-4 pt-4">
+                    <Input 
+                      type="tel" 
+                      placeholder="Enter your phone number" 
+                      value={phoneNumber} 
+                      onChange={e => setPhoneNumber(e.target.value)} 
+                      className="text-lg bg-gray-800 border-gray-700 text-white placeholder:text-gray-400"
+                    />
+                    <div className="flex gap-2">
+                      <Button 
+                        variant="outline"
+                        onClick={() => setIsOpen(false)}
+                        className="w-full border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white"
+                      >
+                        Cancel
+                      </Button>
+                      <Button 
+                        className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
+                        onClick={handleCall}
+                        disabled={isLoading}
+                      >
+                        {isLoading ? "Initiating call..." : "Call Me"}
+                      </Button>
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </div>
           </div>
         </div>
       </div>
@@ -152,3 +231,4 @@ const RetailServices = () => {
 };
 
 export default RetailServices;
+
