@@ -86,14 +86,6 @@ const Navbar = () => {
 
           {/* Right side buttons */}
           <div className="flex items-center gap-4">
-            {/* AI Agent Button - Only show on Contact page */}
-            {location.pathname === '/contact' && (
-              <Button className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white">
-                <MessageSquare className="mr-2 h-4 w-4" />
-                Talk to an AI Agent Now
-              </Button>
-            )}
-
             {/* Consultation Button */}
             {showConsultButton && (
               <Link
