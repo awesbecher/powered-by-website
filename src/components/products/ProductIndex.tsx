@@ -22,7 +22,7 @@ export const ProductIndex = () => {
                 {card.title.main.replace(':', '')}
               </h3>
             </div>
-            <p className="text-[11px] text-gray-400">{card.title.sub}</p>
+            <p className="text-sm text-gray-400 font-bold truncate">{card.title.sub}</p>
           </button>
         ))}
       </div>
