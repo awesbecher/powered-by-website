@@ -1,4 +1,3 @@
-
 export const AnimatedConnections = () => {
   return (
     <svg 
@@ -6,23 +5,7 @@ export const AnimatedConnections = () => {
       viewBox="0 0 400 400"
       style={{ zIndex: 1 }}
     >
-      {/* Static Hash Lines - All starting from center (160, 100) */}
-      {/* Top Lines */}
-      <line x1="160" y1="100" x2="50" y2="70" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" /> {/* Mail icon line */}
-      <line x1="160" y1="100" x2="280" y2="50" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" /> {/* Top right line - Final position */}
-      
-      {/* Middle Lines */}
-      <line x1="160" y1="100" x2="20" y2="100" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" /> {/* Robot icon line */}
-      <line x1="160" y1="100" x2="300" y2="100" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" />
-      
-      {/* Side Middle Lines */}
-      <line x1="160" y1="100" x2="80" y2="180" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" />
-      <line x1="160" y1="100" x2="260" y2="180" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" />
-      
-      {/* Bottom Lines */}
-      <line x1="160" y1="100" x2="170" y2="260" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" />
-      <line x1="160" y1="100" x2="200" y2="260" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" />
-      <line x1="160" y1="100" x2="80" y2="260" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" />
+      {/* Empty SVG container - all hash lines removed */}
     </svg>
   );
 };
