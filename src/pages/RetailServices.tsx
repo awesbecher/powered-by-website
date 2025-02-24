@@ -116,7 +116,7 @@ const RetailServices = () => {
               Welcome to Flagship Barbers
             </h1>
             <p className="text-gray-200 max-w-2xl mx-auto text-lg mb-8">
-              Flagship Barbers has been serving the Tacoma public for 25 years. We specialize in classic barbershop style and fades.
+              Flagship Barbers has been serving the Tacoma public for 25 years. We specialize in classic barbershop style and fades. Select which services you'd like and then click on Book an Appointment.
             </p>
             <div className="flex items-center justify-center gap-4">
               <Dialog open={isOpen} onOpenChange={setIsOpen}>
