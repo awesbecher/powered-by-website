@@ -1,13 +1,13 @@
 
-import { Link } from "react-router-dom";
+import React from "react";
 
 export const NavigationButtons = () => {
   const buttons = [
-    { title: "Inbound\nCalls", path: "/" },
-    { title: "Outbound\nCalls", path: "/" },
-    { title: "Bi-Directional\nText / SMS", path: "/" },
-    { title: "Bi-Directional\nEmail", path: "/" },
-    { title: "Website\nChatbot", path: "/" },
+    { title: "Inbound\nCalls" },
+    { title: "Outbound\nCalls" },
+    { title: "Bi-Directional\nText / SMS" },
+    { title: "Bi-Directional\nEmail" },
+    { title: "Website\nChatbot" },
   ];
 
   return (
@@ -17,9 +17,8 @@ export const NavigationButtons = () => {
       </h3>
       <div className="flex flex-wrap gap-4 justify-center">
         {buttons.map((button, index) => (
-          <Link
+          <div
             key={index}
-            to={button.path}
             className="w-[calc(50%-8px)] sm:w-[calc(33.333%-16px)] md:w-[calc(20%-16px)] min-w-[150px]
               backdrop-blur-xl bg-[#9b87f5]/20 border border-white/10 
               shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)]
@@ -27,7 +26,7 @@ export const NavigationButtons = () => {
               font-semibold text-center whitespace-pre-line text-sm"
           >
             {button.title}
-          </Link>
+          </div>
         ))}
       </div>
     </div>
