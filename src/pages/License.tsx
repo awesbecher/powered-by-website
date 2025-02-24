@@ -88,7 +88,7 @@ const License = () => {
               <Dialog open={isPricingDialogOpen} onOpenChange={setIsPricingDialogOpen}>
                 <DialogTrigger asChild>
                   <button 
-                    className="bg-[#9b87f5] hover:bg-[#7E69AB] text-white px-10 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2 text-lg w-[280px]"
+                    className="bg-[#9b87f5] hover:bg-[#7E69AB] text-white px-10 py-2 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2 text-lg w-[280px] whitespace-nowrap"
                   >
                     View Products & Pricing
                     <DollarSign className="w-5 h-5" />
@@ -121,7 +121,7 @@ const License = () => {
               
               <Dialog open={isCallDialogOpen} onOpenChange={setIsCallDialogOpen}>
                 <DialogTrigger asChild>
-                  <button className="bg-purple-600 hover:bg-purple-700 text-white px-10 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2 text-lg w-[280px]">
+                  <button className="bg-purple-600 hover:bg-purple-700 text-white px-10 py-2 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2 text-lg w-[280px] whitespace-nowrap">
                     Speak to a Sales Rep
                     <Phone className="w-5 h-5" />
                   </button>
