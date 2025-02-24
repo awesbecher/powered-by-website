@@ -4,7 +4,7 @@ export const AnimatedConnections = () => {
     <svg 
       className="absolute inset-0 w-[400px] h-[400px]" 
       viewBox="0 0 400 400"
-      style={{ zIndex: 10 }}
+      style={{ zIndex: 1 }}
     >
       {/* Static Dots */}
       {/* Top Dots */}
