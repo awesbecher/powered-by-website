@@ -1,4 +1,4 @@
-import { Brain, Cpu, Network, Code, Bot, Users, Database, Mail, Phone, MessageCircle, FileText, Workflow, Settings } from "lucide-react";
+import { Brain, Cpu, Network, Code, Bot, Users, Database, Mail, Phone, MessageCircle, FileText, Workflow, Settings, ShoppingCart } from "lucide-react";
 import { motion } from "framer-motion";
 
 const AgencyIllustration = () => {
@@ -138,10 +138,9 @@ const AgencyIllustration = () => {
           transition={{ delay: 1.4, duration: 0.5 }}
           className="absolute -bottom-24 left-1/2 -translate-x-1/2 p-4 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10"
         >
-          <Code className="w-8 h-8 text-[#9b87f5]" />
+          <ShoppingCart className="w-8 h-8 text-[#9b87f5]" />
         </motion.div>
 
-        {/* Connecting Lines */}
         <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: -1 }}>
           <line x1="20%" y1="20%" x2="40%" y2="35%" stroke="#9b87f5" strokeWidth="2" strokeDasharray="4 4" className="animate-dash" />
           <line x1="80%" y1="20%" x2="60%" y2="35%" stroke="#9b87f5" strokeWidth="2" strokeDasharray="4 4" className="animate-dash" />
