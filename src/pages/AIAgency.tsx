@@ -34,7 +34,7 @@ const AIAgency = () => {
               </InfoCard>
 
               <InfoCard 
-                title="How Are We Different Than The Major AI Giants?" 
+                title="How are we different than OpenAI?" 
                 icon={Users}
                 gradientFrom="blue-600"
                 gradientTo="purple-600"
@@ -138,3 +138,4 @@ const AIAgency = () => {
 };
 
 export default AIAgency;
+
