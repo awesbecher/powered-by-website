@@ -44,7 +44,7 @@ const AIAgency = () => {
                 <div className="space-y-6">
                   <div>
                     <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Personalized Implementation</h4>
-                    <p>The big AI providers like OpenAI, Anthropic, and Google excel at building robust AI engines—but they rarely deliver a fully tailored, ready-to-deploy solution. Parlar adapts these world-class models to your unique business goals, customer pain points, and existing tech stack.</p>
+                    <p>The big AI providers like OpenAI, Anthropic, and Google excel at building robust AI engines—but they rarely deliver a fully tailored, ready-to-deploy solution. We simplify & adapt these world-class models to your unique business goals, customer pain points, and existing tech stack.</p>
                   </div>
 
                   <div>
