@@ -8,7 +8,7 @@ export const AnimatedConnections = () => {
     >
       {/* Static Dots */}
       {/* Top Dots */}
-      <circle cx="100" cy="20" r="3" fill="#4ade80" /> {/* Top left */}
+      <circle cx="80" cy="80" r="3" fill="#4ade80" /> {/* Top left - Adjusted to mail icon position */}
       <circle cx="220" cy="20" r="3" fill="#4ade80" /> {/* Top right */}
       
       {/* Middle Dots */}
@@ -26,7 +26,7 @@ export const AnimatedConnections = () => {
 
       {/* Static Hash Lines - All starting from center (160, 100) */}
       {/* Top Lines */}
-      <line x1="160" y1="100" x2="100" y2="20" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" />
+      <line x1="160" y1="100" x2="80" y2="80" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" /> {/* Adjusted to mail icon */}
       <line x1="160" y1="100" x2="220" y2="20" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" />
       
       {/* Middle Lines */}
