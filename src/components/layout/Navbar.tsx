@@ -34,12 +34,12 @@ const Navbar = () => {
 
           {/* Navigation Items */}
           <div className="hidden md:flex items-center justify-center flex-1">
-            <div className="flex space-x-8">
+            <div className="flex space-x-4">
               {/* Home Link */}
               <Link
                 to="/"
                 className={cn(
-                  "px-3 py-2 text-sm font-medium relative group",
+                  "px-3 py-2 text-sm font-bold relative group",
                   location.pathname === '/'
                     ? "text-[#9b87f5]"
                     : "text-gray-300 hover:text-white",
@@ -54,7 +54,7 @@ const Navbar = () => {
               <Link
                 to="/ai-agency"
                 className={cn(
-                  "px-3 py-2 text-sm font-medium relative group",
+                  "px-3 py-2 text-sm font-bold relative group",
                   location.pathname === '/ai-agency'
                     ? "text-[#9b87f5]"
                     : "text-gray-300 hover:text-white",
@@ -71,7 +71,7 @@ const Navbar = () => {
                   key={item.name}
                   to={item.path}
                   className={cn(
-                    "px-3 py-2 text-sm font-medium relative group",
+                    "px-3 py-2 text-sm font-bold relative group",
                     location.pathname === item.path
                       ? "text-[#9b87f5]"
                       : "text-gray-300 hover:text-white",
