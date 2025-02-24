@@ -14,7 +14,7 @@ export const ProductIndex = () => {
           <button
             key={index}
             onClick={() => scrollToSection(index)}
-            className="p-4 rounded-lg bg-white/5 border border-white/10 hover:border-accent/50 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/5 cursor-pointer text-left"
+            className="relative z-10 p-4 rounded-lg bg-white/5 border border-white/10 hover:border-accent/50 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/5 cursor-pointer text-left"
           >
             <div className="flex items-center gap-3 mb-2">
               <card.icon className="h-5 w-5 text-accent" />
