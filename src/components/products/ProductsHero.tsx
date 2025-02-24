@@ -22,7 +22,7 @@ export const ProductsHero = ({ initialLoad, className }: ProductsHeroProps) => {
             className={`mt-4 text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-tight font-bold transition-all duration-1000 delay-300 ease-out transform
               ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
           >
-            While we approach each new client with custom solutions to meet their needs, we have a portfolio of <span className="text-[#9b87f5]">pre-built</span> AI agent solutions.
+            While we approach each new client with custom solutions to meet their needs, we have a portfolio of <span className="text-[#9b87f5]">pre-built</span> AI agent solutions to address both vertical-industry and horizontal use cases.
           </p>
         </div>
       </div>
