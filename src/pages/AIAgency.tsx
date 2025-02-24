@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { BookOpen, Users, Rocket, Handshake } from "lucide-react";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
@@ -101,7 +100,7 @@ const AIAgency = () => {
               </InfoCard>
 
               <InfoCard 
-                title="Why Should You Partner with Parlar?" 
+                title="Why Should You Partner with Us?" 
                 icon={Handshake}
                 gradientFrom="yellow-600"
                 gradientTo="green-600"
@@ -138,4 +137,3 @@ const AIAgency = () => {
 };
 
 export default AIAgency;
-
