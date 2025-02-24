@@ -1,5 +1,5 @@
 
-import { Brain, Cpu, Network, Code, Bot, Users, Database, Lock } from "lucide-react";
+import { Brain, Cpu, Network, Code, Bot, Users, Database } from "lucide-react";
 import { motion } from "framer-motion";
 
 const AgencyIllustration = () => {
@@ -7,36 +7,71 @@ const AgencyIllustration = () => {
     <div className="relative w-full max-w-4xl mx-auto h-[400px] flex items-center justify-center mb-12">
       <div className="relative">
         {/* Central Platform */}
-        <div className="w-80 h-52 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10 shadow-xl transform perspective-1000 rotateX-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="w-80 h-52 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10 shadow-xl transform perspective-1000 rotateX-10"
+        >
           <div className="absolute inset-0 flex items-center justify-center">
             <Brain className="w-16 h-16 text-[#9b87f5] opacity-50" />
           </div>
-        </div>
+        </motion.div>
 
         {/* Surrounding Service Nodes */}
-        <div className="absolute -top-8 -left-16 p-4 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="absolute -top-8 -left-16 p-4 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10"
+        >
           <Cpu className="w-8 h-8 text-[#9b87f5]" />
-        </div>
+        </motion.div>
 
-        <div className="absolute -top-8 -right-16 p-4 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          className="absolute -top-8 -right-16 p-4 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10"
+        >
           <Network className="w-8 h-8 text-[#9b87f5]" />
-        </div>
+        </motion.div>
 
-        <div className="absolute top-12 -right-20 p-4 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+          className="absolute top-12 -right-20 p-4 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10"
+        >
           <Code className="w-8 h-8 text-[#9b87f5]" />
-        </div>
+        </motion.div>
 
-        <div className="absolute top-12 -left-20 p-4 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          className="absolute top-12 -left-20 p-4 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10"
+        >
           <Bot className="w-8 h-8 text-[#9b87f5]" />
-        </div>
+        </motion.div>
 
-        <div className="absolute -bottom-8 -left-16 p-4 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.6, duration: 0.5 }}
+          className="absolute -bottom-8 -left-16 p-4 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10"
+        >
           <Users className="w-8 h-8 text-[#9b87f5]" />
-        </div>
+        </motion.div>
 
-        <div className="absolute -bottom-8 -right-16 p-4 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.7, duration: 0.5 }}
+          className="absolute -bottom-8 -right-16 p-4 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10"
+        >
           <Database className="w-8 h-8 text-[#9b87f5]" />
-        </div>
+        </motion.div>
 
         {/* Connecting Lines */}
         <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: -1 }}>
