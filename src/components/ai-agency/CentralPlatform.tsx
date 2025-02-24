@@ -59,7 +59,7 @@ export const CentralPlatform = () => {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.5, duration: 0.5 }}
-        className="absolute top-4 right-4 p-3 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10"
+        className="absolute top-16 right-4 p-3 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10"
       >
         <Phone className="w-6 h-6 text-[#9b87f5]" />
       </motion.div>
