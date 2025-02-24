@@ -113,7 +113,7 @@ const RoomService = () => {
       <img 
         src="/lovable-uploads/ec9dd264-4bb3-4b03-9b50-e31383652af9.png"
         alt="GrandView Hotel"
-        className="absolute top-8 right-8 h-32 w-auto z-10"
+        className="absolute top-32 left-1/2 transform -translate-x-1/2 h-32 w-auto z-10"
       />
 
       <div className="mx-auto max-w-3xl px-4">
