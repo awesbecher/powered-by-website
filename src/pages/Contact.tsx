@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState, useEffect } from "react";
@@ -124,7 +125,7 @@ const Contact = () => {
               className={`mt-4 text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-tight font-bold transition-all duration-1000 delay-300 ease-out transform
                 ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
             >
-              Ready to put AI agents to work? Book a consultation with our Solutions Design Leader (<span className="text-[#9b87f5] font-bold">a human!</span>) by filing out the form below. Or talk to our AI agent about how we can help by clicking <a href="#" className="text-[#9b87f5] hover:text-[#8b77e5] underline transition-colors duration-200">here</a>.
+              Ready to put AI agents to work? Book a Free Consultation meeting with our Solutions Design Leader. In this 30-minute meetings, we will review your AI agent project needs or help you build a vision for a project.
             </p>
           </div>
 
