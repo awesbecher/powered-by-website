@@ -16,7 +16,7 @@ const Products = () => {
     <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <ProductsHero initialLoad={initialLoad} className="hero-section" />
 
-      {/* Solutions Grid */}
+      {/* Detailed Solutions */}
       <div className="max-w-full pt-12">
         <div className="space-y-0 divide-y divide-white/10">
           {serviceCardsData.map((card, index) => (
