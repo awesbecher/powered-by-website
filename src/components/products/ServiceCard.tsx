@@ -19,7 +19,7 @@ export const ServiceCard = ({ title, description, features, icon: Icon }: Servic
             <h3 className="text-xl md:text-2xl">{title}</h3>
           </div>
           
-          <p className="text-2xl text-gray-400 leading-relaxed">
+          <p className="text-lg text-gray-400 leading-relaxed">
             {description}
           </p>
           
