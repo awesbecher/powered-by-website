@@ -1,10 +1,12 @@
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import ReCAPTCHA from "react-google-recaptcha";
+
+// Constants
+const RECAPTCHA_SITE_KEY = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"; // Replace this with your actual site key
 
 const Contact = () => {
   const { toast } = useToast();
@@ -211,7 +213,7 @@ const Contact = () => {
               </div>
               <div className="flex justify-center">
                 <ReCAPTCHA
-                  sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                  sitekey={RECAPTCHA_SITE_KEY}
                   onChange={handleCaptchaChange}
                   theme="dark"
                 />
