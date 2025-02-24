@@ -35,7 +35,7 @@ const Index = () => {
         <NavigationButtons />
       </div>
       
-      <div className="relative z-10 -mt-40 mb-0 flex justify-center">
+      <div className="relative z-10 -mt-44 mb-0 flex justify-center">
         <div className="w-full max-w-xl">
           <AIAgentIllustration />
         </div>
