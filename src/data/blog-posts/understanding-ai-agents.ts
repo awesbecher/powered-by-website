@@ -10,7 +10,7 @@ export const understandingAiAgents: BlogPost = {
   readTime: "8 min read",
   slug: "understanding-ai-agents",
   category: "AI Technology",
-  content: `<h1 class="text-4xl font-extrabold bg-blue-100/20 inline-block px-4 py-2 rounded mb-8">Your Beginner's Guide to AI Agents</h1>
+  content: `<h1 class="relative text-4xl font-extrabold transition-colors duration-300 hover:bg-gradient-to-r hover:from-purple-400 hover:to-indigo-400 hover:bg-clip-text hover:text-transparent px-4 py-2 rounded mb-8 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-purple-500 after:to-indigo-500">Your Beginner's Guide to AI Agents</h1>
 
     <p>No doubt you have already experienced the transformative power of AI using ChatGPT and its equivalents from Google, Facebook, Meta, and other tech giants. As these companies push the boundaries of machine intelligence, a new way to consume artificial intelligence has arisen: AI agents. These agents are software functions that branch off the deep work of the major AI companies to help you automate repetitive tasks, streamline workflows, and delight your customers. They can operate in many modes like voice agents that support human-like phone conversations or email agents which can send and receive messages like a person would.</p>
 
