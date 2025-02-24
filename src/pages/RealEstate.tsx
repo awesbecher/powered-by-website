@@ -4,11 +4,52 @@ import { properties } from "@/data/properties";
 import { PropertyCard } from "@/components/real-estate/PropertyCard";
 import { ServiceCard } from "@/components/real-estate/ServiceCard";
 import { HeroSection } from "@/components/real-estate/HeroSection";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { initiateVogentCall } from "@/services/vogentService";
 
 const RealEstate = () => {
   const scrollToProperties = () => {
     const featuredSection = document.getElementById('featured-properties');
     featuredSection?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+
+  const handleCall = async () => {
+    if (!phoneNumber) {
+      toast({
+        variant: "destructive",
+        title: "Please enter your phone number",
+        description: "A phone number is required to connect with an agent."
+      });
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      await initiateVogentCall(phoneNumber);
+      setIsOpen(false);
+      setPhoneNumber("");
+      toast({
+        title: "Call initiated",
+        description: "An agent will call you shortly."
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Failed to initiate call",
+        description: "Please try again later."
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -28,10 +69,44 @@ const RealEstate = () => {
       {/* Action Buttons */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-8 -mt-20 mb-16">
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2">
-            <Phone className="w-5 h-5" />
-            Speak with an Agent
-          </button>
+          <Dialog open={isOpen} onOpenChange={setIsOpen}>
+            <DialogTrigger asChild>
+              <button className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2">
+                <Phone className="w-5 h-5" />
+                Speak with an Agent
+              </button>
+            </DialogTrigger>
+            <DialogContent className="bg-[#222222] text-white border-gray-800">
+              <DialogHeader>
+                <DialogTitle>Enter your phone number to speak with an agent</DialogTitle>
+              </DialogHeader>
+              <div className="flex flex-col space-y-4 pt-4">
+                <Input 
+                  type="tel" 
+                  placeholder="Enter your phone number" 
+                  value={phoneNumber} 
+                  onChange={e => setPhoneNumber(e.target.value)} 
+                  className="text-lg bg-gray-800 border-gray-700 text-white placeholder:text-gray-400"
+                />
+                <div className="flex gap-2">
+                  <Button 
+                    variant="outline"
+                    onClick={() => setIsOpen(false)}
+                    className="w-full border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white"
+                  >
+                    Cancel
+                  </Button>
+                  <Button 
+                    className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
+                    onClick={handleCall}
+                    disabled={isLoading}
+                  >
+                    {isLoading ? "Initiating call..." : "Call Me"}
+                  </Button>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
           <button 
             onClick={scrollToProperties}
             className="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-md font-semibold transition-colors"
@@ -101,3 +176,4 @@ const RealEstate = () => {
 };
 
 export default RealEstate;
+
