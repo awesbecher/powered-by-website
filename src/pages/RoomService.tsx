@@ -143,7 +143,7 @@ const RoomService = () => {
           />
         </div>
         <Button 
-          className="bg-accent hover:bg-accent/90 text-white mt-8 font-bold text-sm mx-auto block px-4 py-2 h-auto whitespace-nowrap flex items-center gap-2"
+          className="bg-accent hover:bg-accent/90 text-white mt-16 mb-24 font-bold text-sm mx-auto block px-4 py-2 h-auto whitespace-nowrap flex items-center gap-2"
           onClick={() => setIsDialogOpen(true)}
           disabled={isProcessing}
         >
