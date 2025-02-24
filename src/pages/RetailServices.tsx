@@ -1,7 +1,7 @@
 
-import { Clock, MessageSquare, Phone } from "lucide-react";
+import { Clock, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -48,15 +48,10 @@ const services = [
 ];
 
 const RetailServices = () => {
-  const chatRef = useRef<HTMLDivElement>(null);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
-
-  const handleChatClick = () => {
-    chatRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   const handleCall = async () => {
     if (!phoneNumber) {
@@ -121,16 +116,9 @@ const RetailServices = () => {
               Welcome to Flagship Barbers
             </h1>
             <p className="text-gray-200 max-w-2xl mx-auto text-lg mb-8">
-              Flagship Barbers has been serving the Tacoma public for 25 years. We specialize in classic barbershop style and fades. Select which services you'd like and then click on Chat with Us below to book an appointment.
+              Flagship Barbers has been serving the Tacoma public for 25 years. We specialize in classic barbershop style and fades.
             </p>
             <div className="flex items-center justify-center gap-4">
-              <button 
-                className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2"
-                onClick={handleChatClick}
-              >
-                <MessageSquare className="w-5 h-5" />
-                Chat with Us
-              </button>
               <Dialog open={isOpen} onOpenChange={setIsOpen}>
                 <DialogTrigger asChild>
                   <button className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2">
@@ -195,40 +183,8 @@ const RetailServices = () => {
           ))}
         </div>
       </div>
-
-      {/* Chat CTA Section */}
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 pb-12">
-        <div className="bg-accent/10 rounded-lg p-8 text-center border border-accent/20">
-          <h2 className="text-2xl font-bold mb-4">Ready to Book Your Appointment?</h2>
-          <p className="text-gray-400 mb-6">
-            Our booking specialists are ready to assist you in scheduling your next visit.
-          </p>
-          <button 
-            className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2"
-            onClick={handleChatClick}
-          >
-            <MessageSquare className="w-5 h-5" />
-            Chat with Us
-          </button>
-        </div>
-      </div>
-
-      {/* Chat Iframe */}
-      <div ref={chatRef} className="max-w-7xl mx-auto px-4 lg:px-8 pb-12">
-        <div className="bg-accent/10 rounded-lg p-8 border border-accent/20">
-          <h2 className="text-2xl font-bold mb-4 text-center">Chat with Us to Book Your Appointment</h2>
-          <iframe
-            src="https://www.chatbase.co/chatbot-iframe/E3xjnZ-H-sl1mXJ_y7Hza"
-            width="100%"
-            style={{ height: '700px' }}
-            frameBorder="0"
-            title="Chatbase Booking Assistant"
-          />
-        </div>
-      </div>
     </div>
   );
 };
 
 export default RetailServices;
-
