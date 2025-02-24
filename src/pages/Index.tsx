@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { HeroSection } from "@/components/home/HeroSection";
 import { FeaturesGrid } from "@/components/home/FeaturesGrid";
+import { NavigationButtons } from "@/components/home/NavigationButtons";
 import { ValuesSection } from "@/components/home/ValuesSection";
 import { BlogSection } from "@/components/home/BlogSection";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
@@ -28,6 +29,10 @@ const Index = () => {
       
       <div className="relative z-10 -mt-12">
         <FeaturesGrid />
+      </div>
+
+      <div className="relative z-10 mt-12 mb-12">
+        <NavigationButtons />
       </div>
       
       <div className="relative z-10 -mt-32 mb-0 flex justify-center">
