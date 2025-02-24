@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { ServiceCard } from "@/components/products/ServiceCard";
 import { ProductsHero } from "@/components/products/ProductsHero";
