@@ -11,7 +11,7 @@ export const IntroSection = ({ initialLoad }: IntroSectionProps) => {
   return (
     <div className={`text-left transition-all duration-1000 delay-500 ease-out transform
         ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-      <h2 className="relative text-5xl font-bold text-white mb-8 transition-colors duration-300 hover:bg-gradient-to-r hover:from-purple-400 hover:to-indigo-400 hover:bg-clip-text hover:text-transparent p-4 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-purple-500 after:to-indigo-500">
+      <h2 className="relative text-5xl font-bold text-white mb-4 transition-colors duration-300 hover:bg-gradient-to-r hover:from-purple-400 hover:to-indigo-400 hover:bg-clip-text hover:text-transparent p-4 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-purple-500 after:to-indigo-500">
         We're the world's first AI agency.
       </h2>
       
@@ -21,3 +21,4 @@ export const IntroSection = ({ initialLoad }: IntroSectionProps) => {
     </div>
   );
 };
+
