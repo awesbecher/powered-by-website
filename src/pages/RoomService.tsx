@@ -1,4 +1,3 @@
-
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -21,7 +20,6 @@ const RoomService = () => {
   const [isProcessing, setIsProcessing] = useState(false);
 
   useEffect(() => {
-    // Listen for call completion event
     const handleCallEnd = (event: MessageEvent) => {
       if (event.data.type === 'VOGENT_CALL_ENDED') {
         window.removeEventListener('message', handleCallEnd);
@@ -80,8 +78,7 @@ const RoomService = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#222222]">
-      {/* Hero Section */}
+    <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <div className="relative h-[60vh] mb-8 mt-32">
         <div className="absolute inset-0">
           <img 

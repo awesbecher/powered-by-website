@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { ArrowLeft, Car, Home, Key, Bike, Sailboat, Phone } from "lucide-react";
 import { useState } from "react";
@@ -67,8 +66,7 @@ const Insurance = () => {
   ];
 
   return (
-    <div className="min-h-screen w-full bg-[#222222] relative">
-      {/* Background Image */}
+    <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <div className="absolute inset-0 top-32 h-[500px] z-0">
         <img 
           src="/lovable-uploads/e9a419d6-efff-471a-b7fc-fc3f892e736c.png"
@@ -78,7 +76,6 @@ const Insurance = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-[#222222] via-transparent to-[#222222]"></div>
       </div>
 
-      {/* Content */}
       <div className="relative z-10 px-4 py-32 sm:px-6 lg:px-8">
         <Link 
           to="/" 

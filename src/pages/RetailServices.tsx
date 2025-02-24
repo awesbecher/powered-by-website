@@ -1,4 +1,3 @@
-
 import { Clock, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -84,7 +83,7 @@ const RetailServices = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#222222] text-white">
+    <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       {/* Logo */}
       <div className="absolute top-24 right-8 z-10">
         <img 

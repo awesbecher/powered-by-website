@@ -1,4 +1,3 @@
-
 import { Phone, Home, Building, DollarSign, Users } from "lucide-react";
 import { properties } from "@/data/properties";
 import { PropertyCard } from "@/components/real-estate/PropertyCard";
@@ -53,7 +52,7 @@ const RealEstate = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#222222] text-white">
+    <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       {/* Township Logo */}
       <div className="fixed top-20 right-6 z-50">
         <img 
@@ -176,4 +175,3 @@ const RealEstate = () => {
 };
 
 export default RealEstate;
-
