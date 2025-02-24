@@ -84,11 +84,11 @@ const License = () => {
               </p>
             </div>
             
-            <div className="flex flex-col items-center gap-8">
+            <div className="flex flex-row items-center gap-4">
               <Dialog open={isPricingDialogOpen} onOpenChange={setIsPricingDialogOpen}>
                 <DialogTrigger asChild>
                   <button 
-                    className="bg-[#9b87f5] hover:bg-[#7E69AB] text-white px-10 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2 text-lg"
+                    className="bg-[#9b87f5] hover:bg-[#7E69AB] text-white px-10 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2 text-lg w-[280px]"
                   >
                     View Products & Pricing
                     <DollarSign className="w-5 h-5" />
@@ -121,7 +121,7 @@ const License = () => {
               
               <Dialog open={isCallDialogOpen} onOpenChange={setIsCallDialogOpen}>
                 <DialogTrigger asChild>
-                  <button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2">
+                  <button className="bg-purple-600 hover:bg-purple-700 text-white px-10 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2 text-lg w-[280px]">
                     Speak to a Sales Rep
                     <Phone className="w-5 h-5" />
                   </button>
