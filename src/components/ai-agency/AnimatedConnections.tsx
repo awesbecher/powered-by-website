@@ -20,9 +20,9 @@ export const AnimatedConnections = () => {
       <circle cx="260" cy="180" r="3" fill="#4ade80" /> {/* Bottom right */}
       
       {/* Bottom Dots */}
-      <circle cx="170" cy="260" r="3" fill="#4ade80" /> {/* Bottom left - Moved right */}
+      <circle cx="170" cy="260" r="3" fill="#4ade80" /> {/* Bottom left */}
       <circle cx="200" cy="260" r="3" fill="#4ade80" /> {/* Bottom right */}
-      <circle cx="160" cy="280" r="3" fill="#4ade80" /> {/* Bottom center */}
+      <circle cx="10" cy="280" r="3" fill="#4ade80" /> {/* Bottom center - Moved left */}
 
       {/* Static Hash Lines - All starting from center (160, 100) */}
       {/* Top Lines */}
@@ -38,9 +38,9 @@ export const AnimatedConnections = () => {
       <line x1="160" y1="100" x2="260" y2="180" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" />
       
       {/* Bottom Lines */}
-      <line x1="160" y1="100" x2="170" y2="260" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" /> {/* Bottom left line - Moved right */}
+      <line x1="160" y1="100" x2="170" y2="260" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" />
       <line x1="160" y1="100" x2="200" y2="260" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" />
-      <line x1="160" y1="100" x2="160" y2="280" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" />
+      <line x1="160" y1="100" x2="10" y2="280" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" /> {/* Bottom center line - Moved left */}
     </svg>
   );
 };
