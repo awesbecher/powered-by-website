@@ -5,6 +5,7 @@ import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { HeroSection } from "@/components/ai-agency/HeroSection";
 import { IntroSection } from "@/components/ai-agency/IntroSection";
 import { InfoCard } from "@/components/ai-agency/InfoCard";
+import AgencyIllustration from "@/components/ai-agency/AgencyIllustration";
 
 const AIAgency = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -19,6 +20,7 @@ const AIAgency = () => {
         
         <div className="relative mt-8 px-6 lg:px-8">
           <div className="mx-auto max-w-4xl">
+            <AgencyIllustration />
             <IntroSection initialLoad={initialLoad} />
 
             <div className="space-y-6">
