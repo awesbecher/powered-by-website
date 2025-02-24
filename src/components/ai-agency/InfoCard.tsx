@@ -1,5 +1,6 @@
 
 import { LucideIcon } from "lucide-react";
+import { useEffect, useState } from "react";
 
 interface InfoCardProps {
   title: string;
@@ -10,8 +11,23 @@ interface InfoCardProps {
 }
 
 export const InfoCard = ({ title, icon: Icon, gradientFrom, gradientTo, children }: InfoCardProps) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  
+  // Check localStorage on mount
+  useEffect(() => {
+    const expanded = localStorage.getItem(`infoCard-${title}`);
+    if (expanded === 'true') {
+      setIsExpanded(true);
+    }
+  }, [title]);
+
+  const handleMouseEnter = () => {
+    setIsExpanded(true);
+    localStorage.setItem(`infoCard-${title}`, 'true');
+  };
+
   return (
-    <div className="relative group">
+    <div className="relative group" onMouseEnter={handleMouseEnter}>
       <div className={`absolute -inset-1 bg-gradient-to-r from-${gradientFrom} to-${gradientTo} rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200`} />
       <div className="relative p-6 bg-[#1a0b2e] ring-1 ring-gray-900/5 rounded-lg leading-none">
         <div className="flex items-top justify-start space-x-6">
@@ -20,7 +36,8 @@ export const InfoCard = ({ title, icon: Icon, gradientFrom, gradientTo, children
             <h3 className="text-3xl font-bold text-[#9b87f5] cursor-pointer hover:opacity-80 transition-opacity">
               {title}
             </h3>
-            <div className="text-gray-300 text-left opacity-0 h-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-300 overflow-hidden">
+            <div className={`text-gray-300 text-left transition-all duration-300 overflow-hidden
+              ${isExpanded ? 'opacity-100 h-auto' : 'opacity-0 h-0'}`}>
               {children}
             </div>
           </div>
@@ -29,3 +46,4 @@ export const InfoCard = ({ title, icon: Icon, gradientFrom, gradientTo, children
     </div>
   );
 };
+
