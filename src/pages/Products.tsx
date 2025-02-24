@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { ServiceCard } from "@/components/products/ServiceCard";
 import { ProductsHero } from "@/components/products/ProductsHero";
+import { ProductIndex } from "@/components/products/ProductIndex";
 import { serviceCardsData } from "@/data/serviceCardsData";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 
@@ -15,6 +16,8 @@ const Products = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <ProductsHero initialLoad={initialLoad} className="hero-section" />
+      
+      <ProductIndex />
 
       {/* Detailed Solutions */}
       <div className="max-w-full pt-12">
