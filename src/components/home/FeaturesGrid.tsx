@@ -15,7 +15,7 @@ export const FeaturesGrid = () => {
     },
     {
       icon: Phone,
-      title: "Multi-Channel Agents",
+      title: "Fully Multi-Channel",
       description: "Delivering agents for voice, email, SMS, Slack, chat, and document automation"
     }
   ];
