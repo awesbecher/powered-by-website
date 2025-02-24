@@ -94,7 +94,7 @@ const RoomService = () => {
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
               Room Service at Grandview
             </h1>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed drop-shadow-lg">
+            <p className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed drop-shadow-lg font-bold">
               Indulge in exquisite dining from the comfort of your luxury suite, with our 24/7 premium room service. Please choose from any of the items on our Food & Drinks Menu below. When you are ready, click the button below to speak to Room Service.
             </p>
           </div>
