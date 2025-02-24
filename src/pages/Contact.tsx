@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState, useEffect } from "react";
@@ -96,7 +97,6 @@ const Contact = () => {
             >
               Let's meet!
             </h1>
-            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-3/4 h-3 bg-gradient-to-r from-purple-400/20 via-[#9b87f5] to-purple-400/20 rounded-full blur-sm"></div>
           </div>
           <p 
             className={`text-gray-300 text-center mb-8 text-lg transition-all duration-1000 delay-300 ease-out transform
