@@ -8,11 +8,11 @@ export const AnimatedConnections = () => {
     >
       {/* Static Dots */}
       {/* Top Dots */}
-      <circle cx="50" cy="70" r="3" fill="#4ade80" /> {/* Top left - Adjusted to mail icon position */}
+      <circle cx="50" cy="70" r="3" fill="#4ade80" /> {/* Top left - Mail icon */}
       <circle cx="220" cy="20" r="3" fill="#4ade80" /> {/* Top right */}
       
       {/* Middle Dots */}
-      <circle cx="-30" cy="100" r="3" fill="#4ade80" /> {/* Left - Moved outward */}
+      <circle cx="20" cy="100" r="3" fill="#4ade80" /> {/* Left - Adjusted to robot icon */}
       <circle cx="300" cy="100" r="3" fill="#4ade80" /> {/* Right */}
       
       {/* Side Middle Dots */}
@@ -26,11 +26,11 @@ export const AnimatedConnections = () => {
 
       {/* Static Hash Lines - All starting from center (160, 100) */}
       {/* Top Lines */}
-      <line x1="160" y1="100" x2="50" y2="70" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" /> {/* Adjusted to mail icon */}
+      <line x1="160" y1="100" x2="50" y2="70" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" /> {/* Mail icon line */}
       <line x1="160" y1="100" x2="220" y2="20" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" />
       
       {/* Middle Lines */}
-      <line x1="160" y1="100" x2="-30" y2="100" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" /> {/* Left line - Moved outward */}
+      <line x1="160" y1="100" x2="20" y2="100" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" /> {/* Robot icon line */}
       <line x1="160" y1="100" x2="300" y2="100" stroke="#9b87f5" strokeWidth="1" strokeDasharray="4 4" opacity="0.6" />
       
       {/* Side Middle Lines */}
