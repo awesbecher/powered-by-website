@@ -36,7 +36,7 @@ export const InfoCard = ({ title, icon: Icon, gradientFrom, gradientTo, children
             <h3 className="text-3xl font-bold text-[#9b87f5] cursor-pointer hover:opacity-80 transition-opacity">
               {title}
             </h3>
-            <div className={`text-gray-300 text-left transition-all duration-300 overflow-hidden
+            <div className={`text-gray-300 text-left transition-all duration-300 overflow-hidden leading-relaxed
               ${isExpanded ? 'opacity-100 h-auto' : 'opacity-0 h-0'}`}>
               {children}
             </div>
@@ -46,4 +46,3 @@ export const InfoCard = ({ title, icon: Icon, gradientFrom, gradientTo, children
     </div>
   );
 };
-
