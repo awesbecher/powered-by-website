@@ -1,7 +1,7 @@
 
 import { Bot, Network, MessageSquare, BarChart, Phone, DollarSign, ChevronLeft } from "lucide-react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -70,7 +70,10 @@ const License = () => {
         {/* Hero Text */}
         <div className="absolute inset-0 flex flex-col items-center pt-40">
           <h1 className="text-4xl md:text-5xl font-bold text-center max-w-4xl px-4 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400">
-            Transform Your Sales Outreach & Customer Experience with AI Agents
+            Transform Your Sales Outreach & Customer Experience with{' '}
+            <Link to="/blog/understanding-ai-agents" className="underline underline-offset-4 hover:text-purple-300 transition-colors">
+              AI Agents
+            </Link>
           </h1>
         </div>
 
