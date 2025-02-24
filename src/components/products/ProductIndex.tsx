@@ -8,7 +8,7 @@ export const ProductIndex = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-6 lg:px-8 pb-16 pt-12">
+    <div className="max-w-5xl mx-auto px-6 lg:px-8 pb-16 pt-12">
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {serviceCardsData.map((card, index) => (
           <button
