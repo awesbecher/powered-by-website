@@ -14,15 +14,15 @@ export const ServiceCard = ({ title, description, link, logo, category }: Servic
   return (
     <Link
       to={link}
-      className="group relative overflow-hidden rounded-2xl bg-black p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/5 hover:-translate-y-1 transform-gpu hover:scale-[1.02] min-h-[280px] flex flex-col justify-between cursor-pointer"
+      className="group relative overflow-hidden rounded-2xl bg-black p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/5 hover:-translate-y-1 transform-gpu hover:scale-[1.02] min-h-[240px] flex flex-col justify-between cursor-pointer"
     >
       <div className="flex flex-col items-center">
-        <h2 className="text-xl font-semibold bg-gradient-to-r from-accent via-[#E5DEFF] to-accent bg-clip-text text-transparent font-bold mb-6">
+        <h2 className="text-xl font-semibold bg-gradient-to-r from-accent via-[#E5DEFF] to-accent bg-clip-text text-transparent font-bold">
           {category}
         </h2>
       </div>
 
-      <div className="relative z-10 text-center mt-8">
+      <div className="relative z-10 text-center">
         <h3 className="text-xl font-semibold tracking-tight text-white mb-2 whitespace-nowrap">
           {title}
         </h3>
