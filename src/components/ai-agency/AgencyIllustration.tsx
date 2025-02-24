@@ -6,7 +6,7 @@ import { AnimatedConnections } from "./AnimatedConnections";
 
 const AgencyIllustration = () => {
   return (
-    <div className="relative w-full max-w-4xl mx-auto h-[400px] flex items-center justify-center mb-12">
+    <div className="relative w-full max-w-4xl mx-auto h-[400px] flex items-start justify-center -mt-8">
       <div className="relative">
         <ServiceIcons />
         <AnimatedConnections />
@@ -17,3 +17,4 @@ const AgencyIllustration = () => {
 };
 
 export default AgencyIllustration;
+
