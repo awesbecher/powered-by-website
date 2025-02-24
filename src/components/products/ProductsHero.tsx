@@ -16,7 +16,7 @@ export const ProductsHero = ({ initialLoad, className }: ProductsHeroProps) => {
             <WordAnimation /> Agent Solutions Portfolio
           </h1>
           <p className="mt-4 text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-tight font-bold">
-            While we approach each new client with custom solutions to meet their needs, we have a range of <span className="text-[#9b87f5]">pre-built</span> AI agent solutions designed to transform your business operations. Each solution is customizable to meet your specific needs but it is templated to allow you to deploy very quickly. Explore these <span className="text-[#9b87f5]">pre-built</span> solutions below.
+            While we approach each new client with custom solutions to meet their needs, we have a portfolio of <span className="text-[#9b87f5]">pre-built</span> AI agent solutions. Explore these below.
           </p>
         </div>
       </div>
