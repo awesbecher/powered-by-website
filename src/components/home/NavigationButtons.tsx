@@ -17,20 +17,17 @@ export const NavigationButtons = () => {
       </h3>
       <div className="flex flex-wrap gap-4 justify-center">
         {buttons.map((button, index) => (
-          <div 
-            key={index} 
-            className="w-[calc(50%-8px)] sm:w-[calc(33.333%-16px)] md:w-[calc(20%-16px)] min-w-[150px]"
+          <Link
+            key={index}
+            to={button.path}
+            className="w-[calc(50%-8px)] sm:w-[calc(33.333%-16px)] md:w-[calc(20%-16px)] min-w-[150px]
+              bg-[#9b87f5] hover:bg-[#7a6cc5] text-white px-4 py-3 rounded-lg 
+              font-semibold transition-all duration-300 ease-in-out
+              hover:-translate-y-2 hover:scale-105 hover:shadow-lg
+              text-center whitespace-pre-line text-sm"
           >
-            <Link
-              to={button.path}
-              className="block w-full bg-[#9b87f5] hover:bg-[#7a6cc5] text-white px-4 py-3 rounded-lg 
-                font-semibold transition-all duration-300 ease-in-out transform 
-                hover:-translate-y-2 hover:scale-105 hover:shadow-lg
-                text-center whitespace-pre-line text-sm"
-            >
-              {button.title}
-            </Link>
-          </div>
+            {button.title}
+          </Link>
         ))}
       </div>
     </div>
