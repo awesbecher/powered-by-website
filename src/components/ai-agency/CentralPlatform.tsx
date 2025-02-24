@@ -1,5 +1,5 @@
 
-import { Brain, Mail, Phone, MessageCircle, FileText, ShoppingCart } from "lucide-react";
+import { Brain, Mail, Phone, MessageCircle, FileText, ShoppingCart, Bot } from "lucide-react";
 import { motion } from "framer-motion";
 
 export const CentralPlatform = () => {
@@ -14,6 +14,16 @@ export const CentralPlatform = () => {
       <div className="absolute inset-0 flex items-center justify-center">
         <Brain className="w-16 h-16 text-[#9b87f5] opacity-30" />
       </div>
+
+      {/* Robot Icon at Top Center */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.3, duration: 0.5 }}
+        className="absolute top-4 left-1/2 transform -translate-x-1/2 p-3 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10"
+      >
+        <Bot className="w-6 h-6 text-[#9b87f5]" />
+      </motion.div>
 
       {/* Icons inside the brain box */}
       <motion.div 
@@ -52,12 +62,12 @@ export const CentralPlatform = () => {
         <FileText className="w-6 h-6 text-[#9b87f5]" />
       </motion.div>
 
-      {/* Shopping Cart Icon in Center */}
+      {/* Shopping Cart Icon moved down */}
       <motion.div 
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.8, duration: 0.5 }}
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-3 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10"
+        className="absolute top-3/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-3 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10"
       >
         <ShoppingCart className="w-6 h-6 text-[#9b87f5]" />
       </motion.div>
