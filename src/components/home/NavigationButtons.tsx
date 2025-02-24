@@ -12,7 +12,7 @@ export const NavigationButtons = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4">
-      <h3 className="text-white text-xl font-semibold mb-6 text-center">
+      <h3 className="text-white text-xl font-semibold mb-4 text-center">
         Run Human-like AI Agents Across:
       </h3>
       <div className="flex justify-center gap-4">
