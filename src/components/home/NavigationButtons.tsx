@@ -21,7 +21,9 @@ export const NavigationButtons = () => {
             key={index}
             to={button.path}
             className="w-[calc(50%-8px)] sm:w-[calc(33.333%-16px)] md:w-[calc(20%-16px)] min-w-[150px]
-              bg-[#9b87f5] text-white px-4 py-3 rounded-lg 
+              backdrop-blur-xl bg-[#9b87f5]/20 border border-white/10 
+              shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)]
+              text-white px-4 py-3 rounded-lg 
               font-semibold text-center whitespace-pre-line text-sm"
           >
             {button.title}
