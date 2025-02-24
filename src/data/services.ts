@@ -8,7 +8,7 @@ export const services = [
     category: "Hospitality"
   },
   {
-    title: "Get an Insurance Quote",
+    title: "Get a Quote",
     description: "Get an insurance quote tailored to your needs",
     link: "/insurance",
     logo: "/lovable-uploads/5b3d5137-838b-44a5-8f54-bb2a4cb7dc5a.png",
