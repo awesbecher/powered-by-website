@@ -35,18 +35,24 @@ const Index = () => {
 
       <div className="relative z-10 flex flex-col items-center justify-center px-6 mb-12">
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-4xl">
-          <Link to="/blog/understanding-ai-agents">
-            <Button className="text-white bg-[#6E59A5] hover:bg-[#6E59A5]/80 px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto">
+          <Button
+            asChild
+            className="text-white bg-[#6E59A5] hover:bg-[#6E59A5]/80 px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
+          >
+            <Link to="/blog/understanding-ai-agents">
               What's an AI agent?
               <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </Link>
-          <Link to="/contact">
-            <Button className="bg-accent hover:bg-accent-dark text-white px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto">
+            </Link>
+          </Button>
+          <Button
+            asChild
+            className="bg-accent hover:bg-accent-dark text-white px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
+          >
+            <Link to="/contact">
               Book a Free Consultation
               <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </Link>
+            </Link>
+          </Button>
           <Button className="bg-white hover:bg-gray-100 text-accent px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto">
             Talk to an AI Agent Now
             <Phone className="ml-2 h-5 w-5" />
