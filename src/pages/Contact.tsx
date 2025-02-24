@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState, useEffect } from "react";
@@ -9,6 +10,7 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    title: "",
     company: "",
     reason: "",
     message: ""
@@ -70,6 +72,7 @@ const Contact = () => {
       setFormData({
         name: "",
         email: "",
+        title: "",
         company: "",
         reason: "",
         message: ""
@@ -135,6 +138,22 @@ const Contact = () => {
                   placeholder="your-email@company.com"
                 />
                 <p className="text-sm text-gray-400 mt-1">Please use your corporate email address</p>
+              </div>
+              <div>
+                <label htmlFor="title" className="block text-sm font-medium text-gray-300 mb-2">
+                  Title
+                </label>
+                <Input 
+                  id="title" 
+                  value={formData.title} 
+                  onChange={e => setFormData({
+                    ...formData,
+                    title: e.target.value
+                  })} 
+                  className="bg-neutral-800 border-neutral-700 text-white" 
+                  required 
+                  placeholder="e.g. CEO, CTO, Product Manager"
+                />
               </div>
               <div>
                 <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-2">
