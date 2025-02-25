@@ -10,12 +10,15 @@ import { ClosingCTA } from "@/components/home/ClosingCTA";
 import AIAgentIllustration from "@/components/home/AIAgentIllustration";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { initiateVapiCall } from "@/services/vapiService";
+import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   const [showDialog, setShowDialog] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
   useEffect(() => {
     setInitialLoad(false);
@@ -38,11 +41,23 @@ const Index = () => {
 
   const handlePhoneSubmit = async () => {
     setIsSubmitting(true);
-    // API integration will be added here later
-    console.log('Phone number submitted:', `1${phoneNumber}`);
-    setIsSubmitting(false);
-    setShowDialog(false);
-    setPhoneNumber('');
+    try {
+      await initiateVapiCall(phoneNumber);
+      toast({
+        title: "Call Initiated",
+        description: "Our AI Agent will call you shortly.",
+      });
+      setShowDialog(false);
+      setPhoneNumber('');
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to initiate call. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
