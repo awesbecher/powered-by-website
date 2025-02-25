@@ -12,8 +12,8 @@ const checkBrowserCompatibility = () => {
   // Check for general WebRTC support
   const hasWebRTC = !!(
     window.RTCPeerConnection ||
-    window.webkitRTCPeerConnection ||
-    window.mozRTCPeerConnection
+    (window as any).webkitRTCPeerConnection ||
+    (window as any).mozRTCPeerConnection
   );
 
   // Check for MediaDevices API support
@@ -25,7 +25,7 @@ const checkBrowserCompatibility = () => {
   // Check for audio context support
   const hasAudioContext = !!(
     window.AudioContext ||
-    window.webkitAudioContext
+    (window as any).webkitAudioContext
   );
 
   if (!hasWebRTC || !hasMediaDevices || !hasAudioContext) {
