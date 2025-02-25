@@ -1,34 +1,48 @@
 
-export const initiateVapiCall = async (userPhoneNumber: string) => {
-  try {
-    console.log('Initiating Vapi call with phone number:', userPhoneNumber);
+import Vapi from "@vapi-ai/web";
+
+let vapiInstance: Vapi | null = null;
+
+export const getVapiInstance = () => {
+  if (!vapiInstance) {
+    vapiInstance = new Vapi("vapi_60b1f3cd6c0a4903a0a3239ddbcc8d18");
     
-    const response = await fetch('https://api.vapi.ai/call', {
-      method: 'POST',
-      headers: {
-        'Authorization': 'Bearer vapi_60b1f3cd6c0a4903a0a3239ddbcc8d18',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        assistant_id: "65f04f3b164a4efcae0e8533", // Replace with your assistant ID
-        customer: {
-          phone_number: `+1${userPhoneNumber}`
-        }
-      })
+    // Set up event listeners
+    vapiInstance.on("call-start", () => {
+      console.log("Call has started");
     });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error('Error response from Vapi API:', errorData);
-      throw new Error(errorData.message || 'Failed to initiate call');
-    }
+    vapiInstance.on("call-end", () => {
+      console.log("Call has ended");
+    });
 
-    const data = await response.json();
-    console.log('Call initiated successfully:', data);
-    return data;
+    vapiInstance.on("error", (error) => {
+      console.error("Vapi error:", error);
+    });
+  }
+  return vapiInstance;
+};
 
+export const initiateVapiCall = async () => {
+  try {
+    const vapi = getVapiInstance();
+    
+    // Start call with persistent assistant ID
+    await vapi.start("65f04f3b164a4efcae0e8533");
+    
+    return true;
   } catch (error) {
     console.error('Error in initiateVapiCall:', error);
+    throw error;
+  }
+};
+
+export const stopVapiCall = () => {
+  try {
+    const vapi = getVapiInstance();
+    vapi.stop();
+  } catch (error) {
+    console.error('Error stopping Vapi call:', error);
     throw error;
   }
 };

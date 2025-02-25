@@ -10,7 +10,7 @@ import { ClosingCTA } from "@/components/home/ClosingCTA";
 import AIAgentIllustration from "@/components/home/AIAgentIllustration";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { initiateVapiCall } from "@/services/vapiService";
+import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
@@ -22,6 +22,12 @@ const Index = () => {
 
   useEffect(() => {
     setInitialLoad(false);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      stopVapiCall();
+    };
   }, []);
 
   const formatPhoneNumber = (value: string) => {
@@ -39,13 +45,13 @@ const Index = () => {
     }
   };
 
-  const handlePhoneSubmit = async () => {
+  const handleStartCall = async () => {
     setIsSubmitting(true);
     try {
-      await initiateVapiCall(phoneNumber);
+      await initiateVapiCall();
       toast({
-        title: "Call Initiated",
-        description: "Our AI Agent will call you shortly.",
+        title: "Call Started",
+        description: "You can now speak with our AI Agent.",
       });
       setShowDialog(false);
       setPhoneNumber('');
@@ -53,7 +59,7 @@ const Index = () => {
       toast({
         variant: "destructive",
         title: "Error",
-        description: "Failed to initiate call. Please try again.",
+        description: "Failed to start call. Please try again.",
       });
     } finally {
       setIsSubmitting(false);
@@ -138,7 +144,7 @@ const Index = () => {
                 Cancel
               </Button>
               <Button 
-                onClick={handlePhoneSubmit}
+                onClick={handleStartCall}
                 disabled={isSubmitting || !phoneNumber.trim()}
                 className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
               >
