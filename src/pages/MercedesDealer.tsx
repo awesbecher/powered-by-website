@@ -81,7 +81,7 @@ const MercedesDealer = () => {
               Mercedes-Benz of Tacoma
             </h1>
             <p className="text-gray-200 max-w-2xl mx-auto text-lg">
-              Tacoma's Premier Authorized Mercedes-Benz Dealer. Experience luxury and performance with our extensive selection of new and certified pre-owned vehicles.
+              Tacoma's Premier Authorized Mercedes-Benz Dealer. Experience luxury and performance with our extensive selection of new and certified pre-owned vehicles. View our special Spring pricing incentives below. Click to talk to a dealership team member now.
             </p>
           </div>
         </div>
