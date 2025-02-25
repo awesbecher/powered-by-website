@@ -104,6 +104,41 @@ const Insurance = () => {
               </div>
 
               <div className="space-y-4">
+                <Dialog open={isOpen} onOpenChange={setIsOpen}>
+                  <DialogTrigger asChild>
+                    <Button 
+                      className="w-full bg-accent hover:bg-accent/90 text-white"
+                      variant="default"
+                    >
+                      Speak to a Planter's Insurance Agent Now
+                      <Phone className="h-4 w-4 ml-2" />
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Enter your phone number to speak with an agent</DialogTitle>
+                    </DialogHeader>
+                    <div className="flex flex-col space-y-4 pt-4">
+                      <Input 
+                        type="tel" 
+                        placeholder="Enter your phone number" 
+                        value={phoneNumber} 
+                        onChange={e => setPhoneNumber(e.target.value)} 
+                        className="text-lg"
+                      />
+                      <Button 
+                        className="w-full"
+                        onClick={handleCall}
+                        disabled={isLoading}
+                      >
+                        {isLoading ? "Initiating call..." : "Call Me"}
+                      </Button>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              </div>
+
+              <div className="space-y-4">
                 <p className="text-xl text-gray-300 font-bold">
                   Our Products:
                 </p>
@@ -121,43 +156,6 @@ const Insurance = () => {
                   ))}
                 </div>
               </div>
-
-              {selectedProducts.length > 0 && (
-                <div className="space-y-4">
-                  <Dialog open={isOpen} onOpenChange={setIsOpen}>
-                    <DialogTrigger asChild>
-                      <Button 
-                        className="w-full bg-accent hover:bg-accent/90 text-white"
-                        variant="default"
-                      >
-                        Speak to a Planter's Insurance Agent Now
-                        <Phone className="h-4 w-4 ml-2" />
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent>
-                      <DialogHeader>
-                        <DialogTitle>Enter your phone number to speak with an agent</DialogTitle>
-                      </DialogHeader>
-                      <div className="flex flex-col space-y-4 pt-4">
-                        <Input 
-                          type="tel" 
-                          placeholder="Enter your phone number" 
-                          value={phoneNumber} 
-                          onChange={e => setPhoneNumber(e.target.value)} 
-                          className="text-lg"
-                        />
-                        <Button 
-                          className="w-full"
-                          onClick={handleCall}
-                          disabled={isLoading}
-                        >
-                          {isLoading ? "Initiating call..." : "Call Me"}
-                        </Button>
-                      </div>
-                    </DialogContent>
-                  </Dialog>
-                </div>
-              )}
             </div>
           </div>
         </div>
