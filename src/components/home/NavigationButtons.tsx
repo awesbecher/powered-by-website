@@ -6,7 +6,7 @@ export const NavigationButtons = () => {
   const buttons = [
     { title: "Inbound\nCalls", icon: <PhoneCall className="w-6 h-6 mb-2 mx-auto text-[#9b87f5]" /> },
     { title: "Outbound\nCalls", icon: <Phone className="w-6 h-6 mb-2 mx-auto text-[#9b87f5]" /> },
-    { title: "Bi-Directional\nText / SMS", icon: <Mail className="w-6 h-6 mb-2 mx-auto text-[#9b87f5]" /> },
+    { title: "Bi-Directional\nText & Email", icon: <Mail className="w-6 h-6 mb-2 mx-auto text-[#9b87f5]" /> },
     { title: "Bi-Directional\nEmail", icon: <Mail className="w-6 h-6 mb-2 mx-auto text-[#9b87f5]" /> },
     { title: "Website\nChatbot", icon: <MessageSquare className="w-6 h-6 mb-2 mx-auto text-[#9b87f5]" /> },
   ];
