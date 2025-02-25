@@ -43,7 +43,7 @@ const License = () => {
 
     setIsLoading(true);
     try {
-      await initiateVogentCall(phoneNumber);
+      await initiateVogentCall(phoneNumber, 'saas');
       setPhoneNumber("");
       toast({
         title: "Call initiated",

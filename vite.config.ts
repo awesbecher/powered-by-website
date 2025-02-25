@@ -9,8 +9,12 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
-    https: true, // Enable HTTPS in development
-    cors: true, // Enable CORS
+    https: {
+      // Basic HTTPS configuration
+      key: undefined,
+      cert: undefined,
+    },
+    cors: true,
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",

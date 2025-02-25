@@ -1,4 +1,3 @@
-
 import Vapi from "@vapi-ai/web";
 
 let vapiInstance: Vapi | null = null;
@@ -37,11 +36,8 @@ const checkBrowserCompatibility = () => {
 
 export const getVapiInstance = () => {
   if (!vapiInstance) {
-    // Initialize with secure settings
-    vapiInstance = new Vapi("a212f18f-9d02-4703-914f-ac89661262c5", {
-      secure: true, // Ensure secure connections
-      forceSSL: true // Force SSL/HTTPS
-    });
+    // Initialize with API key only, as newer versions expect only the API key
+    vapiInstance = new Vapi("a212f18f-9d02-4703-914f-ac89661262c5");
     
     // Set up event listeners
     vapiInstance.on("call-start", () => {
