@@ -1,12 +1,13 @@
 
 import React from "react";
-import { PhoneCall, Mail, MessageSquare, Settings } from "lucide-react";
+import { PhoneCall, Mail, MessageSquare, Settings, Slack } from "lucide-react";
 
 export const NavigationButtons = () => {
   const buttons = [
     { title: "Inbound &\nOutbound Calls", icon: <PhoneCall className="w-6 h-6 mb-2 mx-auto text-[#9b87f5]" /> },
     { title: "Bi-Directional\nText & Email", icon: <Mail className="w-6 h-6 mb-2 mx-auto text-[#9b87f5]" /> },
     { title: "Internal\nWorkflows", icon: <Settings className="w-6 h-6 mb-2 mx-auto text-[#9b87f5]" /> },
+    { title: "Team\nCollaboration", icon: <Slack className="w-6 h-6 mb-2 mx-auto text-[#9b87f5]" /> },
     { title: "Website\nChatbot", icon: <MessageSquare className="w-6 h-6 mb-2 mx-auto text-[#9b87f5]" /> },
   ];
 
@@ -20,7 +21,7 @@ export const NavigationButtons = () => {
           {buttons.map((button, index) => (
             <div
               key={index}
-              className="w-[calc(50%-8px)] sm:w-[calc(33.333%-11px)] md:w-[calc(25%-12px)] min-w-[160px]
+              className="w-[calc(50%-8px)] sm:w-[calc(33.333%-11px)] md:w-[calc(20%-13px)] min-w-[160px]
                 backdrop-blur-xl bg-gradient-to-br from-[#2f1c4a]/80 to-[#1a0b2e]/80 
                 border border-[#9b87f5]/20 hover:border-[#9b87f5]/40
                 shadow-[0_8px_16px_-4px_rgba(0,0,0,0.3)]
