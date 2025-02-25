@@ -8,7 +8,7 @@ export const NavigationButtons = () => {
     { title: "Bi-Directional\nText & Email", icon: <Mail className="w-6 h-6 mb-2 mx-auto text-[#9b87f5]" /> },
     { title: "Internal\nWorkflows", icon: <Settings className="w-6 h-6 mb-2 mx-auto text-[#9b87f5]" /> },
     { title: "Team\nCollaboration", icon: <Slack className="w-6 h-6 mb-2 mx-auto text-[#9b87f5]" /> },
-    { title: "Website\nChatbot", icon: <MessageSquare className="w-6 h-6 mb-2 mx-auto text-[#9b87f5]" /> },
+    { title: "Website\nChatbots", icon: <MessageSquare className="w-6 h-6 mb-2 mx-auto text-[#9b87f5]" /> },
   ];
 
   return (
