@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -16,6 +17,7 @@ const Index = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   const [showDialog, setShowDialog] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isCallActive, setIsCallActive] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -24,7 +26,9 @@ const Index = () => {
 
   useEffect(() => {
     return () => {
-      stopVapiCall();
+      if (isCallActive) {
+        handleEndCall();
+      }
     };
   }, []);
 
@@ -32,11 +36,11 @@ const Index = () => {
     setIsSubmitting(true);
     try {
       await initiateVapiCall();
+      setIsCallActive(true);
       toast({
         title: "Voice Chat Started",
         description: "You can now speak with our AI Agent through your browser.",
       });
-      setShowDialog(false);
     } catch (error) {
       toast({
         variant: "destructive",
@@ -46,6 +50,22 @@ const Index = () => {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleEndCall = () => {
+    stopVapiCall();
+    setIsCallActive(false);
+    toast({
+      title: "Call Ended",
+      description: "Your conversation with the AI Agent has ended.",
+    });
+  };
+
+  const handleCloseDialog = () => {
+    if (isCallActive) {
+      handleEndCall();
+    }
+    setShowDialog(false);
   };
 
   return (
@@ -94,35 +114,50 @@ const Index = () => {
         </div>
       </div>
 
-      <Dialog open={showDialog} onOpenChange={setShowDialog}>
+      <Dialog open={showDialog} onOpenChange={handleCloseDialog}>
         <DialogContent className="bg-[#222222] text-white border-gray-800">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold text-white mb-2">
-              Start Voice Chat with AI Agent
+              {isCallActive ? "Voice Chat in Progress" : "Start Voice Chat with AI Agent"}
             </DialogTitle>
             <DialogDescription className="text-gray-300">
-              You'll be able to have a voice conversation with our AI Agent directly through your browser. Please ensure your microphone is enabled.
+              {isCallActive 
+                ? "You are currently in a voice conversation with our AI Agent. You can continue browsing the site while keeping this dialog open."
+                : "You'll be able to have a voice conversation with our AI Agent directly through your browser. Please ensure your microphone is enabled."}
             </DialogDescription>
           </DialogHeader>
           <div className="flex flex-col space-y-4 pt-4">
-            <p className="text-sm text-gray-300">
-              By clicking "Start Voice Chat", you consent to having a voice conversation with our AI Agent. You can end the conversation at any time.
-            </p>
+            {!isCallActive && (
+              <p className="text-sm text-gray-300">
+                By clicking "Start Voice Chat", you consent to having a voice conversation with our AI Agent. You can end the conversation at any time.
+              </p>
+            )}
             <div className="flex gap-2">
-              <Button 
-                variant="outline"
-                onClick={() => setShowDialog(false)}
-                className="w-full border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white"
-              >
-                Cancel
-              </Button>
-              <Button 
-                onClick={handleStartCall}
-                disabled={isSubmitting}
-                className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
-              >
-                {isSubmitting ? "Starting..." : "Start Voice Chat"}
-              </Button>
+              {isCallActive ? (
+                <Button 
+                  onClick={handleEndCall}
+                  className="w-full bg-red-600 hover:bg-red-700 text-white"
+                >
+                  End Call
+                </Button>
+              ) : (
+                <>
+                  <Button 
+                    variant="outline"
+                    onClick={() => setShowDialog(false)}
+                    className="w-full border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white"
+                  >
+                    Cancel
+                  </Button>
+                  <Button 
+                    onClick={handleStartCall}
+                    disabled={isSubmitting}
+                    className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
+                  >
+                    {isSubmitting ? "Starting..." : "Start Voice Chat"}
+                  </Button>
+                </>
+              )}
             </div>
           </div>
         </DialogContent>
