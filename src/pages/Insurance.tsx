@@ -104,7 +104,7 @@ const Insurance = () => {
               </div>
 
               <div className="space-y-4">
-                <p className="text-xl text-gray-300">
+                <p className="text-xl text-gray-300 font-bold">
                   Our Products:
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
