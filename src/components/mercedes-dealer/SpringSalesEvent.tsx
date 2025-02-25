@@ -50,13 +50,16 @@ const SpringSalesEvent = ({
                   <DialogTitle>Enter your phone number to speak with a sales representative</DialogTitle>
                 </DialogHeader>
                 <div className="flex flex-col space-y-4 pt-4">
-                  <Input 
-                    type="tel" 
-                    placeholder="Enter your phone number" 
-                    value={phoneNumber} 
-                    onChange={e => setPhoneNumber(e.target.value)} 
-                    className="text-lg bg-gray-800 border-gray-700 text-white placeholder:text-gray-400"
-                  />
+                  <div className="flex items-center space-x-2">
+                    <span className="text-lg text-white">+1</span>
+                    <Input 
+                      type="tel" 
+                      placeholder="Enter your phone number" 
+                      value={phoneNumber} 
+                      onChange={e => setPhoneNumber(e.target.value)} 
+                      className="text-lg bg-gray-800 border-gray-700 text-white placeholder:text-gray-400"
+                    />
+                  </div>
                   <div className="flex gap-2">
                     <DialogTrigger asChild>
                       <Button 
