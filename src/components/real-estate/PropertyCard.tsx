@@ -18,15 +18,15 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
       </div>
       <div className="p-6">
         <div className="flex justify-between items-start mb-4">
-          <h3 className="text-xl font-semibold">{property.title}</h3>
+          <h3 className="text-xl font-semibold text-white">{property.title}</h3>
           <span className="text-accent font-bold">{property.price}</span>
         </div>
-        <div className="flex items-center gap-2 text-gray-400 mb-2">
+        <div className="flex items-center gap-2 text-white mb-2">
           <MapPin className="w-4 h-4" />
           {property.location}
         </div>
-        <p className="text-gray-400 mb-2">{property.specs}</p>
-        <p className="text-gray-500">{property.type}</p>
+        <p className="text-white mb-2">{property.specs}</p>
+        <p className="text-white">{property.type}</p>
       </div>
     </div>
   );

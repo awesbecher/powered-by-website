@@ -1,3 +1,4 @@
+
 import { Phone, Home, Building, DollarSign, Users } from "lucide-react";
 import { properties } from "@/data/properties";
 import { PropertyCard } from "@/components/real-estate/PropertyCard";
@@ -91,7 +92,7 @@ const RealEstate = () => {
                   <Button 
                     variant="outline"
                     onClick={() => setIsOpen(false)}
-                    className="w-full border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white"
+                    className="w-full border-gray-700 text-white hover:bg-gray-800 hover:text-white"
                   >
                     Cancel
                   </Button>
@@ -117,7 +118,7 @@ const RealEstate = () => {
 
       {/* Services Grid */}
       <div className="max-w-7xl mx-auto px-4 lg:px-8 mt-0">
-        <h2 className="text-3xl font-bold text-center mb-6">Our Services</h2>
+        <h2 className="text-3xl font-bold text-center mb-6 text-white">Our Services</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
           <ServiceCard
             icon={Home}
@@ -144,7 +145,7 @@ const RealEstate = () => {
 
       {/* Featured Properties */}
       <div id="featured-properties" className="max-w-7xl mx-auto px-4 lg:px-8 pt-12 pb-16">
-        <h2 className="text-3xl font-bold text-center mb-12">Featured Properties</h2>
+        <h2 className="text-3xl font-bold text-center mb-12 text-white">Featured Properties</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {properties.map((property) => (
             <PropertyCard key={property.title} property={property} />
@@ -155,8 +156,8 @@ const RealEstate = () => {
       {/* Contact Section */}
       <div className="max-w-7xl mx-auto px-4 lg:px-8 pb-16">
         <div className="bg-accent/10 rounded-lg p-8 text-center border border-accent/20">
-          <h2 className="text-2xl font-bold mb-4">Ready to Find Your Dream Home?</h2>
-          <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
+          <h2 className="text-2xl font-bold mb-4 text-white">Ready to Find Your Dream Home?</h2>
+          <p className="text-white mb-6 max-w-2xl mx-auto">
             Our experienced agents are here to help you navigate the Edison Township real estate market. Contact us today for a personalized consultation.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
