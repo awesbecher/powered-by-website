@@ -30,7 +30,7 @@ export const ServiceCard = ({ title, description, link, logo, category }: Servic
         <button className="flex items-center justify-center gap-1 mx-auto px-3 py-1 bg-accent hover:bg-accent/90 text-white rounded-md transition-colors font-bold text-sm pointer-events-none">
           {category === "Retail Services" ? (
             <>
-              <MessageCircle className="w-4 h-4" /> Chat with Us
+              <Phone className="w-4 h-4" /> Speak to our Team
             </>
           ) : category === "Hospitality" ? (
             <>
