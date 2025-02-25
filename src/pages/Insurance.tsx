@@ -122,13 +122,16 @@ const Insurance = () => {
                       <DialogTitle>Enter your phone number to speak with an agent</DialogTitle>
                     </DialogHeader>
                     <div className="flex flex-col space-y-4 pt-4">
-                      <Input 
-                        type="tel" 
-                        placeholder="Enter your phone number" 
-                        value={phoneNumber} 
-                        onChange={e => setPhoneNumber(e.target.value)} 
-                        className="text-lg"
-                      />
+                      <div className="flex items-center space-x-2">
+                        <span className="text-lg">+1</span>
+                        <Input 
+                          type="tel" 
+                          placeholder="Enter your phone number" 
+                          value={phoneNumber} 
+                          onChange={e => setPhoneNumber(e.target.value)} 
+                          className="text-lg"
+                        />
+                      </div>
                       <Button 
                         className="w-full"
                         onClick={handleCall}
