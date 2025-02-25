@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { Car, DollarSign, Wrench, Shield, Clock, Phone, X } from "lucide-react";
 import {
@@ -148,17 +149,17 @@ const MercedesDealer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           <div className="bg-black/50 rounded-lg p-4 backdrop-blur-sm border border-white/10">
             <Car className="w-6 h-6 mb-3 text-[#9b87f5]" />
-            <h3 className="text-lg font-semibold mb-2">New Vehicles</h3>
+            <h3 className="text-lg font-semibold mb-2 text-white">New Vehicles</h3>
             <p className="text-gray-400 text-sm">Explore our full lineup of new Mercedes-Benz vehicles.</p>
           </div>
           <div className="bg-black/50 rounded-lg p-4 backdrop-blur-sm border border-white/10">
             <DollarSign className="w-6 h-6 mb-3 text-[#9b87f5]" />
-            <h3 className="text-lg font-semibold mb-2">Financing</h3>
+            <h3 className="text-lg font-semibold mb-2 text-white">Financing</h3>
             <p className="text-gray-400 text-sm">Competitive lease and finance options.</p>
           </div>
           <div className="bg-black/50 rounded-lg p-4 backdrop-blur-sm border border-white/10">
             <Wrench className="w-6 h-6 mb-3 text-[#9b87f5]" />
-            <h3 className="text-lg font-semibold mb-2">Service Center</h3>
+            <h3 className="text-lg font-semibold mb-2 text-white">Service Center</h3>
             <p className="text-gray-400 text-sm">Factory-trained technicians and parts.</p>
           </div>
         </div>
