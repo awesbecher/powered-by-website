@@ -5,7 +5,7 @@ let vapiInstance: Vapi | null = null;
 
 export const getVapiInstance = () => {
   if (!vapiInstance) {
-    vapiInstance = new Vapi("pk_60b1f3cd6c0a4903a0a3239ddbcc8d18");
+    vapiInstance = new Vapi("your-public-key");
     
     // Set up event listeners
     vapiInstance.on("call-start", () => {
