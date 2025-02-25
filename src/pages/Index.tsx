@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -21,6 +20,21 @@ const Index = () => {
   useEffect(() => {
     setInitialLoad(false);
   }, []);
+
+  const formatPhoneNumber = (value: string) => {
+    if (!value) return "";
+    const phoneNumber = value.replace(/\D/g, '');
+    if (phoneNumber.length <= 3) return phoneNumber;
+    if (phoneNumber.length <= 6) return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
+  };
+
+  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, '');
+    if (value.length <= 10) {
+      setPhoneNumber(value);
+    }
+  };
 
   const handlePhoneSubmit = async () => {
     setIsSubmitting(true);
@@ -84,27 +98,38 @@ const Index = () => {
               Talk to an AI Agent
             </DialogTitle>
             <DialogDescription className="text-gray-300">
-              Enter your phone number and our AI Agent will call you shortly.
+              Talk with our AI Agent to learn more about us. Enter your phone # below and it will call you shortly.
             </DialogDescription>
           </DialogHeader>
           <div className="flex flex-col space-y-4 pt-4">
             <div className="flex items-center space-x-2">
-              <span className="text-white text-lg">+1</span>
+              <div className="flex-shrink-0 bg-gray-800 p-2 rounded border border-gray-700">
+                +1
+              </div>
               <Input 
                 type="tel" 
-                placeholder="Enter your phone number" 
-                value={phoneNumber} 
-                onChange={(e) => setPhoneNumber(e.target.value)} 
-                className="text-lg bg-gray-800 border-gray-700 text-white placeholder:text-gray-400"
+                placeholder="(555) 123-4567"
+                value={formatPhoneNumber(phoneNumber)}
+                onChange={handlePhoneNumberChange}
+                className="flex-1 text-lg bg-gray-800 border-gray-700 text-white placeholder:text-gray-400"
               />
             </div>
-            <Button 
-              onClick={handlePhoneSubmit}
-              disabled={isSubmitting || !phoneNumber.trim()}
-              className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
-            >
-              {isSubmitting ? "Processing..." : "Call Me"}
-            </Button>
+            <div className="flex gap-2">
+              <Button 
+                variant="outline"
+                onClick={() => setShowDialog(false)}
+                className="w-full border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white"
+              >
+                Cancel
+              </Button>
+              <Button 
+                onClick={handlePhoneSubmit}
+                disabled={isSubmitting || !phoneNumber.trim()}
+                className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
+              >
+                {isSubmitting ? "Processing..." : "Click to start your call"}
+              </Button>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
