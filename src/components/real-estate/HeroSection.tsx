@@ -19,7 +19,7 @@ export const HeroSection = () => {
         <div className="relative w-full px-4 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="max-w-2xl">
-              <h1 className="text-6xl font-bold mb-6 leading-tight">
+              <h1 className="text-6xl font-bold mb-6 leading-tight text-white">
                 Find Your Luxury Home in Edison Township
               </h1>
               <p className="text-xl text-gray-200 mb-8 leading-relaxed">
