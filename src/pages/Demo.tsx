@@ -1,3 +1,4 @@
+
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { ServiceCard } from "@/components/home/ServiceCard";
 import { services, additionalServices } from "@/data/services";
@@ -14,7 +15,13 @@ const Demo = () => {
   }, []);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Scroll to top with a slight delay to ensure DOM is ready
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }, 0);
   }, [location]);
 
   return (
