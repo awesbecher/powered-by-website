@@ -1,7 +1,7 @@
+
 import { Link } from "react-router-dom";
 import { ArrowLeft, Car, Home, Key, Bike, Sailboat, Phone } from "lucide-react";
 import { useState } from "react";
-import { Input } from "@/components/ui/input";
 import { InsuranceProductCard } from "@/components/insurance/InsuranceProductCard";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -9,7 +9,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { initiateVogentCall } from "@/services/vogentService";
 
 const Insurance = () => {
-  const [zipCode, setZipCode] = useState("");
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +16,6 @@ const Insurance = () => {
   const { toast } = useToast();
 
   const handleProductSelect = (productId: string) => {
-    if (zipCode.length !== 5) return;
     setSelectedProducts(prev => {
       if (prev.includes(productId)) {
         return prev.filter(id => id !== productId);
@@ -99,22 +97,6 @@ const Insurance = () => {
                 <p className="text-xl text-gray-300">
                   Welcome to Planter's Insurance. Get a quote tailored to your needs.
                 </p>
-                <p className="text-xl text-gray-300">
-                  Enter your zip code to get started:
-                </p>
-                <div className="max-w-xs mx-auto">
-                  <Input
-                    type="text"
-                    placeholder="Enter zip code"
-                    value={zipCode}
-                    onChange={(e) => {
-                      const value = e.target.value.replace(/\D/g, '').slice(0, 5);
-                      setZipCode(value);
-                    }}
-                    className="text-lg text-center"
-                    maxLength={5}
-                  />
-                </div>
               </div>
 
               <div className="space-y-4">
@@ -129,7 +111,7 @@ const Insurance = () => {
                       name={product.name}
                       icon={product.icon}
                       isSelected={selectedProducts.includes(product.id)}
-                      isEnabled={zipCode.length === 5}
+                      isEnabled={true}
                       onSelect={handleProductSelect}
                     />
                   ))}
