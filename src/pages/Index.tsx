@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Phone } from "lucide-react";
 import { HeroSection } from "@/components/home/HeroSection";
@@ -19,6 +19,7 @@ const Index = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isCallActive, setIsCallActive] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setInitialLoad(false);
@@ -68,6 +69,11 @@ const Index = () => {
     setShowDialog(false);
   };
 
+  const handleNavigation = (path: string) => {
+    window.scrollTo(0, 0);
+    navigate(path);
+  };
+
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <div className="absolute top-6 left-6 lg:left-8">
@@ -87,22 +93,18 @@ const Index = () => {
       <div className="relative z-20 flex flex-col items-center justify-center px-6 mb-12">
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-4xl">
           <Button
-            asChild
+            onClick={() => handleNavigation('/blog/understanding-ai-agents')}
             className="relative z-20 text-white bg-[#6E59A5] hover:bg-[#6E59A5]/80 px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
           >
-            <Link to="/blog/understanding-ai-agents">
-              What's an AI agent?
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
+            What's an AI agent?
+            <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
           <Button
-            asChild
+            onClick={() => handleNavigation('/contact')}
             className="relative z-20 bg-accent hover:bg-accent-dark text-white px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
           >
-            <Link to="/contact">
-              Book a Free Consultation
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
+            Book a Free Consultation
+            <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
           <Button 
             onClick={() => setShowDialog(true)}
