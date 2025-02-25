@@ -1,4 +1,3 @@
-
 import { BlogPost } from "../../types/blog";
 
 export const openaiAnthropicSmb: BlogPost = {
@@ -64,12 +63,5 @@ export const openaiAnthropicSmb: BlogPost = {
     <p>If you're an SMB owner looking at the AI landscape, don't wait for OpenAI, Anthropic, or Google to offer a ready-made solution that perfectly suits your business. The truth is, they excel at foundational models—but it's companies like Parlar that mold these innovations into turnkey systems tailored for real-world challenges and intimate customer relationships.</p>
     <br/>
     <p>Rather than a single Goliath controlling every part of the AI ecosystem, the future belongs to collaboration—big providers handling large-scale research, and specialized partners delivering the fine-tuned solutions that SMBs need. By embracing the synergy between cutting-edge AI platforms and dedicated implementation experts, you can harness powerful technology without abandoning the personal touch that defines your brand.</p>
-
-    <br/>
-    <div class="flex justify-center">
-      <a href="/contact" class="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold text-white bg-purple-500 rounded-lg hover:bg-purple-600 transition-colors duration-200">
-        Meet with us to learn more
-      </a>
-    </div>
   `
 };
