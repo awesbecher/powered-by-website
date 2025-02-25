@@ -11,7 +11,7 @@ export const initiateVogentCall = async (userPhoneNumber: string) => {
       },
       body: JSON.stringify({
         agent_id: "4b2d92b5-d58a-45a1-8e46-9aab39c99ae5",
-        toNumber: userPhoneNumber,
+        toNumber: `+1${userPhoneNumber}`,
         fromNumberId: "0a2a5209-0a45-415b-955d-4ed9540390ce",
         callAgentId: "cd922dc9-eea6-4b43-878f-cb5cfd67e005"
       })
