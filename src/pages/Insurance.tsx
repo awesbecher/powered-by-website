@@ -107,11 +107,11 @@ const Insurance = () => {
                 <Dialog open={isOpen} onOpenChange={setIsOpen}>
                   <DialogTrigger asChild>
                     <Button 
-                      className="w-64 h-16 bg-accent hover:bg-accent/90 text-white text-lg px-6 flex flex-col items-center justify-center space-y-0.5"
+                      className="w-64 h-[4.5rem] bg-accent hover:bg-accent/90 text-white text-lg px-6 flex flex-col items-center justify-center space-y-0"
                       variant="default"
                     >
-                      <span>Speak to a Planter's</span>
-                      <span className="flex items-center">
+                      <span className="leading-tight">Speak to a Planter's</span>
+                      <span className="flex items-center leading-tight">
                         Insurance Agent Now
                         <Phone className="h-4 w-4 ml-2 flex-shrink-0" />
                       </span>
