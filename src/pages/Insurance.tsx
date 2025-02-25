@@ -92,7 +92,7 @@ const Insurance = () => {
           />
           
           <div className="bg-white/5 rounded-lg p-8 backdrop-blur-sm">
-            <h1 className="text-5xl font-bold text-white mb-8">Online Insurance Quote</h1>
+            <h1 className="text-5xl font-bold text-white mb-8">Welcome to Planter's Insurance. You're covered with us.</h1>
             <div className="space-y-8">
               <div className="space-y-4">
                 <p className="text-xl text-gray-300">
