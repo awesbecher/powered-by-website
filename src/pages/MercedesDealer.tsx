@@ -181,7 +181,7 @@ const MercedesDealer = () => {
             <div>
               <Phone className="w-6 h-6 mx-auto mb-2 text-[#9b87f5]" />
               <h3 className="font-semibold mb-2">Contact</h3>
-              <p className="text-gray-400">Sales: (253) 922-4838<br />Service: (253) 922-4839</p>
+              <p className="text-gray-400">Sales: (253) 922-4838</p>
             </div>
           </div>
           <Dialog open={showCallDialog} onOpenChange={setShowCallDialog}>
