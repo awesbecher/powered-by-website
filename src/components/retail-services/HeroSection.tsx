@@ -28,12 +28,6 @@ const HeroSection = ({ onBookClick }: HeroSectionProps) => {
           <p className="text-gray-200 max-w-2xl mx-auto text-lg mb-8">
             Flagship Barbers has been serving the Tacoma public for 25 years. We specialize in classic barbershop style and fades. Select which services you'd like and then click on Book an Appointment.
           </p>
-          <button 
-            onClick={onBookClick}
-            className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2"
-          >
-            Book an Appointment
-          </button>
         </div>
       </div>
     </div>
