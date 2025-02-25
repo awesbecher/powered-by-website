@@ -37,7 +37,11 @@ const checkBrowserCompatibility = () => {
 
 export const getVapiInstance = () => {
   if (!vapiInstance) {
-    vapiInstance = new Vapi("a212f18f-9d02-4703-914f-ac89661262c5");
+    // Initialize with secure settings
+    vapiInstance = new Vapi("a212f18f-9d02-4703-914f-ac89661262c5", {
+      secure: true, // Ensure secure connections
+      forceSSL: true // Force SSL/HTTPS
+    });
     
     // Set up event listeners
     vapiInstance.on("call-start", () => {
@@ -60,13 +64,15 @@ export const initiateVapiCall = async () => {
     // Check browser compatibility before starting
     checkBrowserCompatibility();
     
-    // Request microphone permission with fallback options
+    // Request microphone permission with Safari-specific options
     try {
       await navigator.mediaDevices.getUserMedia({ 
         audio: {
           echoCancellation: true,
           noiseSuppression: true,
-          autoGainControl: true
+          autoGainControl: true,
+          sampleRate: 48000, // Explicitly set sample rate for Safari
+          channelCount: 1 // Use mono audio for better compatibility
         } 
       });
     } catch (mediaError) {
@@ -92,6 +98,8 @@ export const initiateVapiCall = async () => {
         errorMessage = 'No microphone found. Please ensure your microphone is properly connected.';
       } else if (error.name === 'NotSupportedError') {
         errorMessage = 'Your browser version may be too old. Please update your browser or try Chrome/Firefox.';
+      } else if (error.name === 'SecurityError') {
+        errorMessage = 'Security error. Please ensure you are using HTTPS and have granted the necessary permissions.';
       }
       throw new Error(errorMessage);
     }
