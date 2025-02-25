@@ -99,7 +99,7 @@ const Insurance = () => {
             <div className="space-y-8">
               <div className="space-y-4">
                 <p className="text-xl text-gray-300">
-                  Welcome to Planter's Insurance. Get a quote tailored to your needs.
+                  Our insurance specialists are ready to help you learn about our products and get your set up with a personalized quote. Click the button below to be connected to one of a Planter's Insurance team member.
                 </p>
               </div>
 
