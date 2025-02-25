@@ -40,9 +40,9 @@ export const ServiceCard = ({ title, description, link, logo, category }: Servic
             <>
               <Phone className="w-4 h-4" /> Speak to an Agent
             </>
-          ) : category === "SaaS Licensing" ? (
+          ) : category === "SaaS & Software" ? (
             <>
-              <Phone className="w-4 h-4" /> Speak to Sales
+              <Phone className="w-4 h-4" /> Speak to Sales Rep
             </>
           ) : (
             <>
