@@ -52,7 +52,7 @@ const Insurance = () => {
 
     setIsLoading(true);
     try {
-      await initiateVogentCall(phoneNumber);
+      await initiateVogentCall(phoneNumber, 'insurance');
       setIsOpen(false);
       setPhoneNumber("");
       toast({

@@ -32,7 +32,7 @@ const RealEstate = () => {
 
     setIsLoading(true);
     try {
-      await initiateVogentCall(phoneNumber);
+      await initiateVogentCall(phoneNumber, 'realEstate');
       setIsOpen(false);
       setIsScheduleOpen(false);
       setPhoneNumber("");

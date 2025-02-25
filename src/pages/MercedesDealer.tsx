@@ -27,7 +27,7 @@ const MercedesDealer = () => {
 
     setIsLoading(true);
     try {
-      await initiateVogentCall(phoneNumber);
+      await initiateVogentCall(phoneNumber, 'mercedes');
       setShowCallDialog(false);
       setPhoneNumber("");
       toast({

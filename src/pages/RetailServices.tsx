@@ -80,7 +80,7 @@ const RetailServices = () => {
 
     setIsLoading(true);
     try {
-      await initiateVogentCall(phoneNumber);
+      await initiateVogentCall(phoneNumber, 'barbershop');
       setIsOpen(false);
       setPhoneNumber("");
       toast({
