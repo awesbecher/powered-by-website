@@ -27,8 +27,8 @@ export const initiateVapiCall = async () => {
   try {
     const vapi = getVapiInstance();
     
-    // Start call with persistent assistant ID
-    await vapi.start("65f04f3b164a4efcae0e8533");
+    // Start call with the correct persistent assistant ID
+    await vapi.start("c7acc482-bee2-40a3-85d1-a192ce2a6685");
     
     return true;
   } catch (error) {
