@@ -86,7 +86,7 @@ const MercedesDealer = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 lg:px-8 pb-12">
         <div className="rounded-xl overflow-hidden bg-black/50 backdrop-blur-sm p-12 mb-12">
           <div className="text-center">
             <h2 className="text-3xl font-bold mb-4">Spring Sales Event</h2>
@@ -145,24 +145,21 @@ const MercedesDealer = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 lg:px-8 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <div className="bg-black/50 rounded-lg p-6 backdrop-blur-sm border border-white/10">
-            <Car className="w-8 h-8 mb-4 text-[#9b87f5]" />
-            <h3 className="text-xl font-semibold mb-2">New Vehicles</h3>
-            <p className="text-gray-400">Explore our full lineup of new Mercedes-Benz vehicles, from luxury sedans to SUVs.</p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <div className="bg-black/50 rounded-lg p-4 backdrop-blur-sm border border-white/10">
+            <Car className="w-6 h-6 mb-3 text-[#9b87f5]" />
+            <h3 className="text-lg font-semibold mb-2">New Vehicles</h3>
+            <p className="text-gray-400 text-sm">Explore our full lineup of new Mercedes-Benz vehicles.</p>
           </div>
-          <div className="bg-black/50 rounded-lg p-6 backdrop-blur-sm border border-white/10">
-            <DollarSign className="w-8 h-8 mb-4 text-[#9b87f5]" />
-            <h3 className="text-xl font-semibold mb-2">Financing</h3>
-            <p className="text-gray-400">Competitive lease and finance options tailored to your needs.</p>
+          <div className="bg-black/50 rounded-lg p-4 backdrop-blur-sm border border-white/10">
+            <DollarSign className="w-6 h-6 mb-3 text-[#9b87f5]" />
+            <h3 className="text-lg font-semibold mb-2">Financing</h3>
+            <p className="text-gray-400 text-sm">Competitive lease and finance options.</p>
           </div>
-        </div>
-        
-        <div className="max-w-md mx-auto">
-          <div className="bg-black/50 rounded-lg p-6 backdrop-blur-sm border border-white/10">
-            <Wrench className="w-8 h-8 mb-4 text-[#9b87f5]" />
-            <h3 className="text-xl font-semibold mb-2">Service Center</h3>
-            <p className="text-gray-400">Factory-trained technicians and genuine Mercedes-Benz parts.</p>
+          <div className="bg-black/50 rounded-lg p-4 backdrop-blur-sm border border-white/10">
+            <Wrench className="w-6 h-6 mb-3 text-[#9b87f5]" />
+            <h3 className="text-lg font-semibold mb-2">Service Center</h3>
+            <p className="text-gray-400 text-sm">Factory-trained technicians and parts.</p>
           </div>
         </div>
       </div>
