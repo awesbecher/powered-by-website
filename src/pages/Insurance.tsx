@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { ArrowLeft, Car, Home, Key, Bike, Sailboat, Phone } from "lucide-react";
 import { useState } from "react";
@@ -6,8 +5,8 @@ import { InsuranceProductCard } from "@/components/insurance/InsuranceProductCar
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { initiateVogentCall } from "@/services/vogentService";
 import { Input } from "@/components/ui/input";
+import { initiateVogentCall } from "@/services/vogentService";
 
 const Insurance = () => {
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
@@ -15,6 +14,21 @@ const Insurance = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+
+  const formatPhoneNumber = (value: string) => {
+    if (!value) return "";
+    const phoneNumber = value.replace(/\D/g, '');
+    if (phoneNumber.length <= 3) return phoneNumber;
+    if (phoneNumber.length <= 6) return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
+  };
+
+  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, '');
+    if (value.length <= 10) {
+      setPhoneNumber(value);
+    }
+  };
 
   const handleProductSelect = (productId: string) => {
     setSelectedProducts(prev => {
@@ -117,28 +131,39 @@ const Insurance = () => {
                       </span>
                     </Button>
                   </DialogTrigger>
-                  <DialogContent>
+                  <DialogContent className="bg-[#222222] text-white border-gray-800 sm:max-w-md">
                     <DialogHeader>
-                      <DialogTitle>Enter your phone number to speak with an agent</DialogTitle>
+                      <DialogTitle>Enter your phone number to speak with an insurance agent</DialogTitle>
                     </DialogHeader>
                     <div className="flex flex-col space-y-4 pt-4">
                       <div className="flex items-center space-x-2">
-                        <span className="text-lg">+1</span>
+                        <div className="flex-shrink-0 bg-gray-800 p-2 rounded border border-gray-700">
+                          +1
+                        </div>
                         <Input 
                           type="tel" 
-                          placeholder="Enter your phone number" 
-                          value={phoneNumber} 
-                          onChange={e => setPhoneNumber(e.target.value)} 
-                          className="text-lg"
+                          placeholder="(555) 123-4567"
+                          value={formatPhoneNumber(phoneNumber)}
+                          onChange={handlePhoneNumberChange}
+                          className="flex-1 text-lg bg-gray-800 border-gray-700 text-white placeholder:text-gray-400"
                         />
                       </div>
-                      <Button 
-                        className="w-full"
-                        onClick={handleCall}
-                        disabled={isLoading}
-                      >
-                        {isLoading ? "Initiating call..." : "Call Me"}
-                      </Button>
+                      <div className="flex gap-2">
+                        <Button 
+                          variant="outline"
+                          onClick={() => setIsOpen(false)}
+                          className="w-full border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white"
+                        >
+                          Cancel
+                        </Button>
+                        <Button 
+                          className="w-full bg-accent hover:bg-accent/90 text-white transition-colors"
+                          onClick={handleCall}
+                          disabled={isLoading}
+                        >
+                          {isLoading ? "Initiating call..." : "Call Me"}
+                        </Button>
+                      </div>
                     </div>
                   </DialogContent>
                 </Dialog>
