@@ -25,6 +25,21 @@ const SpringSalesEvent = ({
   isLoading,
   setShowOffers 
 }: SpringSalesEventProps) => {
+  const formatPhoneNumber = (value: string) => {
+    if (!value) return "";
+    const phoneNumber = value.replace(/\D/g, '');
+    if (phoneNumber.length <= 3) return phoneNumber;
+    if (phoneNumber.length <= 6) return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
+  };
+
+  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, '');
+    if (value.length <= 10) {
+      setPhoneNumber(value);
+    }
+  };
+
   return (
     <div className="rounded-xl overflow-hidden bg-black/50 backdrop-blur-sm p-12 mb-12">
       <div className="text-center">
@@ -45,19 +60,21 @@ const SpringSalesEvent = ({
                   <Phone className="w-5 h-5" />
                 </button>
               </DialogTrigger>
-              <DialogContent className="bg-[#222222] text-white border-gray-800">
+              <DialogContent className="bg-[#222222] text-white border-gray-800 sm:max-w-md">
                 <DialogHeader>
                   <DialogTitle>Enter your phone number to speak with a sales representative</DialogTitle>
                 </DialogHeader>
                 <div className="flex flex-col space-y-4 pt-4">
                   <div className="flex items-center space-x-2">
-                    <span className="text-lg text-white">+1</span>
+                    <div className="flex-shrink-0 bg-gray-800 p-2 rounded border border-gray-700">
+                      +1
+                    </div>
                     <Input 
                       type="tel" 
-                      placeholder="Enter your phone number" 
-                      value={phoneNumber} 
-                      onChange={e => setPhoneNumber(e.target.value)} 
-                      className="text-lg bg-gray-800 border-gray-700 text-white placeholder:text-gray-400"
+                      placeholder="(555) 123-4567"
+                      value={formatPhoneNumber(phoneNumber)}
+                      onChange={handlePhoneNumberChange}
+                      className="flex-1 text-lg bg-gray-800 border-gray-700 text-white placeholder:text-gray-400"
                     />
                   </div>
                   <div className="flex gap-2">
