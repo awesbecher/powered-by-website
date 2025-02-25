@@ -5,7 +5,7 @@ export const HeroSection = () => {
   return (
     <>
       <div className="relative min-h-[85vh] flex items-center">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-[#222222] to-[#222222]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-[#222222]"></div>
         
         <div className="absolute right-0 top-0 w-full lg:w-2/3 h-full">
           <img 
@@ -13,7 +13,7 @@ export const HeroSection = () => {
             alt="Luxury Estate"
             className="w-full h-full object-contain object-right-top opacity-80"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#222222] via-[#222222]/80 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#222222] via-[#222222]/60 to-transparent"></div>
         </div>
         
         <div className="relative w-full px-4 lg:px-8">
