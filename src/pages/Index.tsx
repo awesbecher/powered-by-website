@@ -9,13 +9,27 @@ import { ValuesSection } from "@/components/home/ValuesSection";
 import { BlogSection } from "@/components/home/BlogSection";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import AIAgentIllustration from "@/components/home/AIAgentIllustration";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 
 const Index = () => {
   const [initialLoad, setInitialLoad] = useState(true);
+  const [showDialog, setShowDialog] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     setInitialLoad(false);
   }, []);
+
+  const handlePhoneSubmit = async () => {
+    setIsSubmitting(true);
+    // API integration will be added here later
+    console.log('Phone number submitted:', `1${phoneNumber}`);
+    setIsSubmitting(false);
+    setShowDialog(false);
+    setPhoneNumber('');
+  };
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
@@ -53,12 +67,47 @@ const Index = () => {
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>
-          <Button className="relative z-20 bg-white hover:bg-gray-100 text-accent px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto">
+          <Button 
+            onClick={() => setShowDialog(true)}
+            className="relative z-20 bg-white hover:bg-gray-100 text-accent px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
+          >
             Talk to an AI Agent Now
             <Phone className="ml-2 h-5 w-5" />
           </Button>
         </div>
       </div>
+
+      <Dialog open={showDialog} onOpenChange={setShowDialog}>
+        <DialogContent className="bg-[#222222] text-white border-gray-800">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold text-white mb-2">
+              Talk to an AI Agent
+            </DialogTitle>
+            <DialogDescription className="text-gray-300">
+              Enter your phone number and our AI Agent will call you shortly.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex flex-col space-y-4 pt-4">
+            <div className="flex items-center space-x-2">
+              <span className="text-white text-lg">+1</span>
+              <Input 
+                type="tel" 
+                placeholder="Enter your phone number" 
+                value={phoneNumber} 
+                onChange={(e) => setPhoneNumber(e.target.value)} 
+                className="text-lg bg-gray-800 border-gray-700 text-white placeholder:text-gray-400"
+              />
+            </div>
+            <Button 
+              onClick={handlePhoneSubmit}
+              disabled={isSubmitting || !phoneNumber.trim()}
+              className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
+            >
+              {isSubmitting ? "Processing..." : "Call Me"}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
       
       <div className="relative z-10 -mt-48 mb-0 flex justify-center">
         <div className="w-full max-w-xl">
