@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { initiateVogentCall } from "@/services/vogentService";
 import HeroSection from "@/components/retail-services/HeroSection";
@@ -66,6 +67,16 @@ const RetailServices = () => {
           alt="Flagship Barbers Logo"
           className="h-12 w-auto"
         />
+      </div>
+
+      {/* Book a Free Consultation Button */}
+      <div className="absolute top-8 right-8 z-20">
+        <Link 
+          to="/contact"
+          className="bg-accent hover:bg-accent/90 text-white px-4 py-2 rounded-lg transition-colors duration-200 inline-flex items-center gap-2"
+        >
+          Book a Free Consultation
+        </Link>
       </div>
 
       <HeroSection onBookClick={() => setIsOpen(true)} />
