@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { initiateVogentCall } from "@/services/vogentService";
+import { Input } from "@/components/ui/input";
 
 const Insurance = () => {
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
