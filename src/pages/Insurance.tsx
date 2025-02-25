@@ -103,11 +103,11 @@ const Insurance = () => {
                 </p>
               </div>
 
-              <div className="space-y-4">
+              <div className="flex justify-center">
                 <Dialog open={isOpen} onOpenChange={setIsOpen}>
                   <DialogTrigger asChild>
                     <Button 
-                      className="w-full bg-accent hover:bg-accent/90 text-white"
+                      className="w-64 h-16 bg-accent hover:bg-accent/90 text-white text-lg"
                       variant="default"
                     >
                       Speak to a Planter's Insurance Agent Now
