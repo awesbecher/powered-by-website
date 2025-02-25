@@ -18,9 +18,6 @@ const HeroSection = ({ onBookClick }: HeroSectionProps) => {
       </div>
 
       <div className="relative w-full pt-24 px-4 lg:px-8">
-        <Link to="/" className="absolute top-8 left-8 text-gray-400 hover:text-white transition-colors">
-          ← Back
-        </Link>
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-5xl font-bold mb-4 text-white">
             Welcome to Flagship Barbers
