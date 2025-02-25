@@ -93,7 +93,7 @@ const Insurance = () => {
           
           <div className="bg-white/5 rounded-lg p-8 backdrop-blur-sm">
             <h1 className="text-5xl font-bold text-white mb-8 flex flex-col">
-              <span>Welcome to Planter's Insurance.</span>
+              <span>Welcome to Planter's.</span>
               <span className="text-accent">You're covered with us.</span>
             </h1>
             <div className="space-y-8">
