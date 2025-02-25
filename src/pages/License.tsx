@@ -104,7 +104,7 @@ const License = () => {
                     <DollarSign className="w-5 h-5" />
                   </button>
                 </DialogTrigger>
-                <DialogContent className="max-w-2xl">
+                <DialogContent>
                   <DialogHeader>
                     <DialogTitle className="text-2xl mb-6">RightBloom Pricing Packages</DialogTitle>
                   </DialogHeader>
@@ -141,13 +141,16 @@ const License = () => {
                     <DialogTitle>Enter your phone number to speak with a sales representative</DialogTitle>
                   </DialogHeader>
                   <div className="flex flex-col space-y-4 pt-4">
-                    <Input 
-                      type="tel" 
-                      placeholder="Enter your phone number" 
-                      value={phoneNumber} 
-                      onChange={e => setPhoneNumber(e.target.value)} 
-                      className="text-lg"
-                    />
+                    <div className="flex items-center space-x-2">
+                      <span className="text-lg">+1</span>
+                      <Input 
+                        type="tel" 
+                        placeholder="Enter your phone number" 
+                        value={phoneNumber} 
+                        onChange={e => setPhoneNumber(e.target.value)} 
+                        className="text-lg"
+                      />
+                    </div>
                     <div className="flex gap-2">
                       <Button 
                         variant="outline"
