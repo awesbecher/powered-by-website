@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { ArrowLeft, Car, Home, Key, Bike, Sailboat, Phone } from "lucide-react";
 import { useState } from "react";
@@ -89,7 +90,7 @@ const Insurance = () => {
           <img 
             src="/lovable-uploads/403d2bfb-bc52-4ca1-937c-64ab85d08216.png"
             alt="Planter's Insurance"
-            className="h-16 mx-auto mb-12"
+            className="h-16 mx-auto mb-16"
           />
           
           <div className="bg-white/5 rounded-lg p-8 backdrop-blur-sm">
