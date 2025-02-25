@@ -9,14 +9,12 @@ import { BlogSection } from "@/components/home/BlogSection";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import AIAgentIllustration from "@/components/home/AIAgentIllustration";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   const [showDialog, setShowDialog] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
@@ -30,36 +28,20 @@ const Index = () => {
     };
   }, []);
 
-  const formatPhoneNumber = (value: string) => {
-    if (!value) return "";
-    const phoneNumber = value.replace(/\D/g, '');
-    if (phoneNumber.length <= 3) return phoneNumber;
-    if (phoneNumber.length <= 6) return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
-    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
-  };
-
-  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/\D/g, '');
-    if (value.length <= 10) {
-      setPhoneNumber(value);
-    }
-  };
-
   const handleStartCall = async () => {
     setIsSubmitting(true);
     try {
       await initiateVapiCall();
       toast({
-        title: "Call Started",
-        description: "You can now speak with our AI Agent.",
+        title: "Voice Chat Started",
+        description: "You can now speak with our AI Agent through your browser.",
       });
       setShowDialog(false);
-      setPhoneNumber('');
     } catch (error) {
       toast({
         variant: "destructive",
         title: "Error",
-        description: "Failed to start call. Please try again.",
+        description: "Failed to start voice chat. Please try again.",
       });
     } finally {
       setIsSubmitting(false);
@@ -116,25 +98,16 @@ const Index = () => {
         <DialogContent className="bg-[#222222] text-white border-gray-800">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold text-white mb-2">
-              Talk to an AI Agent
+              Start Voice Chat with AI Agent
             </DialogTitle>
             <DialogDescription className="text-gray-300">
-              Talk with our AI Agent to learn more about us. Enter your phone # below and it will call you shortly.
+              You'll be able to have a voice conversation with our AI Agent directly through your browser. Please ensure your microphone is enabled.
             </DialogDescription>
           </DialogHeader>
           <div className="flex flex-col space-y-4 pt-4">
-            <div className="flex items-center space-x-2">
-              <div className="flex-shrink-0 bg-gray-800 p-2 rounded border border-gray-700">
-                +1
-              </div>
-              <Input 
-                type="tel" 
-                placeholder="(555) 123-4567"
-                value={formatPhoneNumber(phoneNumber)}
-                onChange={handlePhoneNumberChange}
-                className="flex-1 text-lg bg-gray-800 border-gray-700 text-white placeholder:text-gray-400"
-              />
-            </div>
+            <p className="text-sm text-gray-300">
+              By clicking "Start Voice Chat", you consent to having a voice conversation with our AI Agent. You can end the conversation at any time.
+            </p>
             <div className="flex gap-2">
               <Button 
                 variant="outline"
@@ -145,10 +118,10 @@ const Index = () => {
               </Button>
               <Button 
                 onClick={handleStartCall}
-                disabled={isSubmitting || !phoneNumber.trim()}
+                disabled={isSubmitting}
                 className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
               >
-                {isSubmitting ? "Processing..." : "Click to start your call"}
+                {isSubmitting ? "Starting..." : "Start Voice Chat"}
               </Button>
             </div>
           </div>
@@ -161,17 +134,10 @@ const Index = () => {
         </div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 -mt-48">
-        <h2 className="relative text-5xl font-bold text-white mb-4 transition-colors duration-300 hover:bg-gradient-to-r hover:from-purple-400 hover:to-indigo-400 hover:bg-clip-text hover:text-transparent pt-0 pb-4 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-purple-500 after:to-indigo-500">
-          Our Approach:
-        </h2>
-      </div>
-      
       <ValuesSection />
       <BlogSection />
       <ClosingCTA />
 
-      {/* Background gradient orbs */}
       <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
       <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
     </div>
