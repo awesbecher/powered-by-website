@@ -163,7 +163,7 @@ const RealEstate = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2">
               <Phone className="w-5 h-5" />
-              Call Now: (732) 555-0123
+              Call us Now @ (732) 391-3572
             </button>
             <button className="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-md font-semibold transition-colors">
               Schedule a Viewing
