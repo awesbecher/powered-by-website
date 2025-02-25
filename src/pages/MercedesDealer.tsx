@@ -73,14 +73,14 @@ const MercedesDealer = () => {
         </div>
         
         <div className="relative h-full flex flex-col items-center justify-center px-4 lg:px-8">
-          <Link to="/" className="absolute top-8 left-8 text-gray-400 hover:text-white transition-colors">
+          <Link to="/" className="absolute top-8 left-8 text-white hover:text-gray-200 transition-colors">
             ← Back
           </Link>
           <div className="max-w-7xl mx-auto text-center">
             <h1 className="text-5xl font-bold mb-4 text-white">
               Mercedes-Benz of Tacoma
             </h1>
-            <p className="text-gray-200 max-w-2xl mx-auto text-lg leading-tight">
+            <p className="text-white max-w-2xl mx-auto text-lg leading-tight">
               Tacoma's Premier Authorized Mercedes-Benz Dealer. Experience luxury and performance with our extensive selection of new and certified pre-owned vehicles. View our special Spring pricing incentives below. Click to talk to a dealership team member now.
             </p>
           </div>
@@ -150,17 +150,17 @@ const MercedesDealer = () => {
           <div className="bg-black/50 rounded-lg p-4 backdrop-blur-sm border border-white/10">
             <Car className="w-6 h-6 mb-3 text-[#9b87f5]" />
             <h3 className="text-lg font-semibold mb-2 text-white">New Vehicles</h3>
-            <p className="text-gray-400 text-sm">Explore our full lineup of new Mercedes-Benz vehicles.</p>
+            <p className="text-white text-sm">Explore our full lineup of new Mercedes-Benz vehicles.</p>
           </div>
           <div className="bg-black/50 rounded-lg p-4 backdrop-blur-sm border border-white/10">
             <DollarSign className="w-6 h-6 mb-3 text-[#9b87f5]" />
             <h3 className="text-lg font-semibold mb-2 text-white">Financing</h3>
-            <p className="text-gray-400 text-sm">Competitive lease and finance options.</p>
+            <p className="text-white text-sm">Competitive lease and finance options.</p>
           </div>
           <div className="bg-black/50 rounded-lg p-4 backdrop-blur-sm border border-white/10">
             <Wrench className="w-6 h-6 mb-3 text-[#9b87f5]" />
             <h3 className="text-lg font-semibold mb-2 text-white">Service Center</h3>
-            <p className="text-gray-400 text-sm">Factory-trained technicians and parts.</p>
+            <p className="text-white text-sm">Factory-trained technicians and parts.</p>
           </div>
         </div>
       </div>
@@ -172,17 +172,17 @@ const MercedesDealer = () => {
             <div>
               <Clock className="w-6 h-6 mx-auto mb-2 text-[#9b87f5]" />
               <h3 className="font-bold mb-2 text-white">Hours</h3>
-              <p className="text-gray-400">Mon-Sat: 9AM - 7PM<br />Sunday: 10AM - 6PM</p>
+              <p className="text-white">Mon-Sat: 9AM - 7PM<br />Sunday: 10AM - 6PM</p>
             </div>
             <div>
               <Shield className="w-6 h-6 mx-auto mb-2 text-[#9b87f5]" />
               <h3 className="font-bold mb-2 text-white">Location</h3>
-              <p className="text-gray-400">1701 Alexander Ave E<br />Fife, WA 98424</p>
+              <p className="text-white">1701 Alexander Ave E<br />Fife, WA 98424</p>
             </div>
             <div>
               <Phone className="w-6 h-6 mx-auto mb-2 text-[#9b87f5]" />
               <h3 className="font-bold mb-2 text-white">Contact</h3>
-              <p className="text-gray-400">Sales: (253) 200-1140</p>
+              <p className="text-white">Sales: (253) 200-1140</p>
             </div>
           </div>
           <Dialog open={showCallDialog} onOpenChange={setShowCallDialog}>
@@ -238,21 +238,21 @@ const MercedesDealer = () => {
                 <span className="sr-only">Close</span>
               </button>
             </DialogTitle>
-            <DialogDescription className="text-gray-300 space-y-6 pt-4">
+            <DialogDescription className="text-white space-y-6 pt-4">
               <div className="space-y-4">
                 <div className="bg-black/30 p-6 rounded-lg border border-gray-800">
                   <h3 className="text-xl font-semibold mb-2 text-[#9b87f5]">Spring Bonus Special</h3>
-                  <p>Get up to 15% off MSRP on any 2024 Mercedes model in our inventory.</p>
-                  <p className="mt-2">Plus, take advantage of our $2,000 down payment option on most 2024 models.</p>
+                  <p className="text-white">Get up to 15% off MSRP on any 2024 Mercedes model in our inventory.</p>
+                  <p className="mt-2 text-white">Plus, take advantage of our $2,000 down payment option on most 2024 models.</p>
                 </div>
                 
                 <div className="bg-black/30 p-6 rounded-lg border border-gray-800">
                   <h3 className="text-xl font-semibold mb-2 text-[#9b87f5]">March Leasing Offer</h3>
-                  <p>Drive a new Mercedes with zero down payment!</p>
-                  <p className="mt-2">Enjoy 20% off your monthly lease payments for the first year.</p>
+                  <p className="text-white">Drive a new Mercedes with zero down payment!</p>
+                  <p className="mt-2 text-white">Enjoy 20% off your monthly lease payments for the first year.</p>
                 </div>
 
-                <div className="text-sm text-gray-400 mt-4">
+                <div className="text-white mt-4">
                   Offer valid March 1st through March 31st, 2024. Terms and conditions apply.
                 </div>
               </div>
