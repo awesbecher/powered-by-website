@@ -1,13 +1,13 @@
 
 import React from "react";
-import { PhoneCall, Phone, Mail, MessageSquare } from "lucide-react";
+import { PhoneCall, Phone, Mail, MessageSquare, Settings } from "lucide-react";
 
 export const NavigationButtons = () => {
   const buttons = [
     { title: "Inbound\nCalls", icon: <PhoneCall className="w-6 h-6 mb-2 mx-auto text-[#9b87f5]" /> },
     { title: "Outbound\nCalls", icon: <Phone className="w-6 h-6 mb-2 mx-auto text-[#9b87f5]" /> },
     { title: "Bi-Directional\nText & Email", icon: <Mail className="w-6 h-6 mb-2 mx-auto text-[#9b87f5]" /> },
-    { title: "Bi-Directional\nEmail", icon: <Mail className="w-6 h-6 mb-2 mx-auto text-[#9b87f5]" /> },
+    { title: "Internal\nWorkflows", icon: <Settings className="w-6 h-6 mb-2 mx-auto text-[#9b87f5]" /> },
     { title: "Website\nChatbot", icon: <MessageSquare className="w-6 h-6 mb-2 mx-auto text-[#9b87f5]" /> },
   ];
 
