@@ -8,6 +8,7 @@ const Contact = () => {
 
   useEffect(() => {
     setInitialLoad(false);
+    window.scrollTo(0, 0);
   }, []);
 
   return (
