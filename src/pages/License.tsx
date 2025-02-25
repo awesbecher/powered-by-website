@@ -46,7 +46,7 @@ const License = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#9b87f5]">
+    <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       {/* Back Button */}
       <button
         onClick={() => navigate(-1)}
