@@ -21,7 +21,7 @@ export const NavigationButtons = () => {
           {buttons.map((button, index) => (
             <div
               key={index}
-              className="w-[calc(50%-8px)] sm:w-[calc(33.333%-11px)] md:w-[calc(20%-13px)] min-w-[160px]
+              className="w-[calc(45%-8px)] sm:w-[calc(30%-11px)] md:w-[calc(18%-13px)] min-w-[140px] max-w-[160px]
                 backdrop-blur-xl bg-gradient-to-br from-[#2f1c4a]/80 to-[#1a0b2e]/80 
                 border border-[#9b87f5]/20 hover:border-[#9b87f5]/40
                 shadow-[0_8px_16px_-4px_rgba(0,0,0,0.3)]
