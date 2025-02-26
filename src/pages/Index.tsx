@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -164,7 +165,7 @@ const Index = () => {
         </DialogContent>
       </Dialog>
       
-      <div className="relative z-10 -mt-48 mb-0 flex justify-center">
+      <div className="relative z-10 -mt-48 mb-4 flex justify-center">
         <div className="w-full max-w-xl">
           <AIAgentIllustration />
         </div>
