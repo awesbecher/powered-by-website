@@ -36,16 +36,16 @@ export const ActionButtons = ({
   };
 
   return (
-    <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-8 -mt-20 mb-16">
-      <div className="flex flex-col sm:flex-row gap-4 justify-center">
+    <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-8 -mt-12 sm:-mt-20 mb-8 sm:mb-16">
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
           <DialogTrigger asChild>
-            <button className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2">
+            <button className="w-full sm:w-auto bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-4 sm:px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center justify-center gap-2">
               <Phone className="w-5 h-5" />
-              Speak with an Agent
+              <span className="whitespace-nowrap">Speak with an Agent</span>
             </button>
           </DialogTrigger>
-          <DialogContent className="bg-[#222222] text-white border-gray-800 sm:max-w-md">
+          <DialogContent className="bg-[#222222] text-white border-gray-800 w-[95%] max-w-md mx-auto">
             <DialogHeader>
               <DialogTitle>
                 {isLoading ? "Your Chat with Planter's Insurance is in progress" : "Start Voice Chat with Our Insurance Team"}
@@ -54,19 +54,19 @@ export const ActionButtons = ({
             <div className="flex flex-col space-y-4 pt-4">
               {!isLoading ? (
                 <>
-                  <p className="text-gray-300">
+                  <p className="text-gray-300 text-sm sm:text-base">
                     You'll be able to have a voice conversation with our Insurance Team directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately.
                   </p>
-                  <p className="text-gray-300 text-sm">
+                  <p className="text-gray-300 text-xs sm:text-sm">
                     By clicking "Start Voice Chat", you consent to having a voice conversation with Planter's Insurance. You can end the conversation at any time.
                   </p>
-                  <div className="flex gap-2">
+                  <div className="flex flex-col sm:flex-row gap-2">
                     <Button 
                       variant="outline"
                       onClick={() => setIsOpen(false)}
                       className="w-full border-gray-700 text-white hover:bg-gray-800 hover:text-white"
                     >
-                      End Call
+                      Cancel
                     </Button>
                     <Button 
                       className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
@@ -79,7 +79,7 @@ export const ActionButtons = ({
                 </>
               ) : (
                 <>
-                  <p className="text-gray-300">
+                  <p className="text-gray-300 text-sm sm:text-base">
                     Your voice chat is currently in progress. You can end the call at any time.
                   </p>
                   <div className="flex justify-center">
@@ -97,7 +97,7 @@ export const ActionButtons = ({
         </Dialog>
         <button 
           onClick={scrollToProperties}
-          className="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-md font-semibold transition-colors"
+          className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white px-4 sm:px-6 py-3 rounded-md font-semibold transition-colors"
         >
           View Featured Listings
         </button>
