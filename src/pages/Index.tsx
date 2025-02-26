@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -12,6 +11,7 @@ import AIAgentIllustration from "@/components/home/AIAgentIllustration";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { initiateVapiCall, stopVapiCall, getVapiInstance } from "@/services/vapiService";
 import { useToast } from "@/hooks/use-toast";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
 const Index = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -111,15 +111,24 @@ const Index = () => {
 
       <Dialog open={showDialog} onOpenChange={handleCloseDialog}>
         <DialogContent className="bg-[#222222] text-white border-gray-800">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-white mb-2">
-              {isCallActive ? "Voice Chat in Progress" : "Start Voice Chat with Michael on the Powered_by Solutions Design Team"}
-            </DialogTitle>
-            <DialogDescription className="text-gray-300">
-              {isCallActive 
-                ? "You are currently in a voice conversation with our AI Agent. You can continue browsing the site while keeping this dialog open."
-                : "You'll be able to have a voice conversation with Michael directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately."}
-            </DialogDescription>
+          <DialogHeader className="flex items-start space-x-4">
+            <Avatar className="w-20 h-20">
+              <AvatarImage
+                src="/lovable-uploads/d2c09a06-b1ad-4f03-bcc5-6ea523b06f41.png"
+                alt="Michael from Powered_by Solutions"
+                className="object-cover"
+              />
+            </Avatar>
+            <div className="flex-1">
+              <DialogTitle className="text-2xl font-bold text-white mb-2">
+                {isCallActive ? "Voice Chat in Progress" : "Start Voice Chat with Michael on the Powered_by Solutions Design Team"}
+              </DialogTitle>
+              <DialogDescription className="text-gray-300">
+                {isCallActive 
+                  ? "You are currently in a voice conversation with our AI Agent. You can continue browsing the site while keeping this dialog open."
+                  : "You'll be able to have a voice conversation with Michael directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately."}
+              </DialogDescription>
+            </div>
           </DialogHeader>
           <div className="flex flex-col space-y-4 pt-4">
             {!isCallActive && (
