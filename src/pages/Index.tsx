@@ -10,7 +10,7 @@ import { BlogSection } from "@/components/home/BlogSection";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import AIAgentIllustration from "@/components/home/AIAgentIllustration";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
+import { initiateVapiCall, stopVapiCall, getVapiInstance } from "@/services/vapiService";
 import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
@@ -36,7 +36,8 @@ const Index = () => {
   const handleStartCall = async () => {
     setIsSubmitting(true);
     try {
-      await initiateVapiCall();
+      const vapi = getVapiInstance();
+      await vapi.start("c7acc482-bee2-40a3-85d1-a192ce2a6685"); // Using the new assistant ID specifically for this page
       setIsCallActive(true);
       toast({
         title: "Voice Chat Started",
