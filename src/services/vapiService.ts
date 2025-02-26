@@ -37,10 +37,8 @@ const checkBrowserCompatibility = () => {
 
 export const getVapiInstance = () => {
   if (!vapiInstance) {
-    // Initialize with API key only, as newer versions expect only the API key
     vapiInstance = new Vapi("a212f18f-9d02-4703-914f-ac89661262c5");
     
-    // Set up event listeners
     vapiInstance.on("call-start", () => {
       console.log("Call has started");
     });
@@ -56,38 +54,32 @@ export const getVapiInstance = () => {
   return vapiInstance;
 };
 
-export const initiateVapiCall = async () => {
+export const initiateVapiCall = async (assistantId: string) => {
   try {
-    // Check browser compatibility before starting
     checkBrowserCompatibility();
     
-    // Request microphone permission with Safari-specific options
     try {
       await navigator.mediaDevices.getUserMedia({ 
         audio: {
           echoCancellation: true,
           noiseSuppression: true,
           autoGainControl: true,
-          sampleRate: 48000, // Explicitly set sample rate for Safari
-          channelCount: 1 // Use mono audio for better compatibility
+          sampleRate: 48000,
+          channelCount: 1
         } 
       });
     } catch (mediaError) {
       console.error('MediaDevices error:', mediaError);
-      // Try fallback with basic audio
       await navigator.mediaDevices.getUserMedia({ audio: true });
     }
     
     const vapi = getVapiInstance();
-    
-    // Start call with the new insurance assistant ID
-    await vapi.start("df42b616-337e-4877-8e9b-44fb0b5a0225");
+    await vapi.start(assistantId);
     
     return true;
   } catch (error) {
     console.error('Error in initiateVapiCall:', error);
     if (error instanceof Error) {
-      // Provide more specific error messages based on the error type
       let errorMessage = error.message;
       if (error.name === 'NotAllowedError') {
         errorMessage = 'Microphone access was denied. Please enable microphone permissions in your browser settings.';

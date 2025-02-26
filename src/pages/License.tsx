@@ -1,10 +1,8 @@
-
 import { Bot, Network, MessageSquare, BarChart, Phone, DollarSign, ChevronLeft } from "lucide-react";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 
@@ -164,21 +162,12 @@ const License = () => {
                 </DialogTrigger>
                 <DialogContent className="bg-[#222222] text-white border-gray-800 sm:max-w-md">
                   <DialogHeader>
-                    <DialogTitle>Enter your phone number to speak with a sales representative</DialogTitle>
+                    <DialogTitle>Click below to speak with a sales representative</DialogTitle>
                   </DialogHeader>
                   <div className="flex flex-col space-y-4 pt-4">
-                    <div className="flex items-center space-x-2">
-                      <div className="flex-shrink-0 bg-gray-800 p-2 rounded border border-gray-700">
-                        +1
-                      </div>
-                      <Input 
-                        type="tel" 
-                        placeholder="(555) 123-4567"
-                        value={formatPhoneNumber(phoneNumber)}
-                        onChange={handlePhoneNumberChange}
-                        className="flex-1 text-lg bg-gray-800 border-gray-700 text-white placeholder:text-gray-400"
-                      />
-                    </div>
+                    <p className="text-gray-300">
+                      You will be connected to a RightBloom sales representative through your browser. Please ensure your microphone is enabled.
+                    </p>
                     <div className="flex gap-2">
                       <Button 
                         variant="outline"
@@ -192,7 +181,7 @@ const License = () => {
                         onClick={handleCall}
                         disabled={isLoading}
                       >
-                        {isLoading ? "Initiating call..." : "Call Me"}
+                        {isLoading ? "Initiating call..." : "Start Call"}
                       </Button>
                     </div>
                   </div>
