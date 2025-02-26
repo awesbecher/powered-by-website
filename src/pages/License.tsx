@@ -6,48 +6,40 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { initiateVogentCall } from "@/services/vogentService";
+import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 
 const License = () => {
   const navigate = useNavigate();
   const [isCallDialogOpen, setIsCallDialogOpen] = useState(false);
   const [isPricingDialogOpen, setIsPricingDialogOpen] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [isCallActive, setIsCallActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const formatPhoneNumber = (value: string) => {
-    if (!value) return "";
-    const phoneNumber = value.replace(/\D/g, '');
-    if (phoneNumber.length <= 3) return phoneNumber;
-    if (phoneNumber.length <= 6) return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
-    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
-  };
-
-  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/\D/g, '');
-    if (value.length <= 10) {
-      setPhoneNumber(value);
+  const handleEndCall = async () => {
+    try {
+      await stopVapiCall();
+      setIsCallActive(false);
+      // Redirect to demo page
+      navigate('/demo');
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Failed to end call",
+        description: error.message || "Please try again later."
+      });
     }
   };
 
   const handleCall = async () => {
-    if (!phoneNumber) {
-      toast({
-        variant: "destructive",
-        title: "Please enter your phone number",
-        description: "A phone number is required to connect with a sales representative."
-      });
-      return;
-    }
-
     setIsLoading(true);
     try {
-      await initiateVogentCall(phoneNumber, 'saas');
-      setPhoneNumber("");
+      await initiateVapiCall("d7a8b20b-ca41-474e-bef2-4ca993f7de97");
+      setIsCallActive(true);
+      setIsCallDialogOpen(false);
       toast({
         title: "Call initiated",
-        description: "A sales representative will call you shortly."
+        description: "You are now connected to a RightBloom sales representative."
       });
     } catch (error) {
       toast({
@@ -80,12 +72,31 @@ const License = () => {
         />
       </div>
 
+      <Dialog open={isCallActive} onOpenChange={(open) => !open && handleEndCall()}>
+        <DialogContent className="bg-[#222222] text-white border-gray-800">
+          <DialogHeader>
+            <DialogTitle>Your call with RightBloom is in progress</DialogTitle>
+          </DialogHeader>
+          <div className="flex flex-col space-y-4 pt-4">
+            <p className="text-gray-300">
+              You are currently in a voice conversation with a RightBloom sales representative. You can end the call at any time by clicking the button below.
+            </p>
+            <Button 
+              onClick={handleEndCall}
+              className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white font-bold"
+            >
+              End Call
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       {/* Hero Section */}
       <div className="relative min-h-[100vh]">
         {/* Hero Text */}
         <div className="absolute inset-0 flex flex-col items-center pt-40">
           <h1 className="text-4xl md:text-5xl font-bold text-center max-w-4xl px-4 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400">
-            Transform Your Sales Outreach & Customer Experience with{' '}
+            <span>Transform Your Sales Outreach & Customer Experience with{' '}</span>
             <Link to="/blog/understanding-ai-agents" className="underline underline-offset-4 hover:text-purple-300 transition-colors">
               AI Agents
             </Link>
