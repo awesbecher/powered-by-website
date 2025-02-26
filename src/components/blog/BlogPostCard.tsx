@@ -14,6 +14,8 @@ const getPostImage = (slug: string) => {
   switch (slug) {
     case "understanding-ai-agents":
       return "/lovable-uploads/b9c7959b-bd61-40d9-b0b3-317a40353486.png";
+    case "build-or-buy-ai-agents-evaluation":
+      return "/lovable-uploads/02977ad8-a831-4b23-909d-7010d4bb02b6.png";
     case "openai-anthropic-smb-specialized-partners":
       return "/lovable-uploads/f971b5e9-817b-426a-9db0-5db472970633.png";
     case "voice-ai-agents-retail-customer-service":
