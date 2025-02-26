@@ -20,7 +20,7 @@ export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
           </h1>
           
           <p 
-            className={`mt-0 text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-tight font-bold whitespace-nowrap transition-all duration-1000 delay-300 ease-out transform
+            className={`mt-0 text-xl md:text-2xl text-gray-300 mx-auto leading-tight font-bold text-center px-4 transition-all duration-1000 delay-300 ease-out transform
               ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
           >
             Powered by AI. Run by small business. Why should those Silicon Valley <span className="font-extrabold text-purple-400">nerds</span> have all the fancy AI toys?
