@@ -70,16 +70,6 @@ const RetailServices = () => {
 
       <HeroSection onBookClick={() => setIsOpen(true)} />
 
-      {/* Centered Book an Appointment Button */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-        <button
-          onClick={() => setIsOpen(true)}
-          className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-8 py-3 rounded-lg transition-colors duration-200 inline-flex items-center gap-2 text-lg font-medium"
-        >
-          Book an Appointment
-        </button>
-      </div>
-
       <BookingDialog 
         isOpen={isOpen}
         setIsOpen={setIsOpen}
