@@ -13,7 +13,7 @@ export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
       <div className="mx-auto max-w-7xl">
         <div className="text-center">
           <h1 
-            className={`text-[16px] sm:text-[24px] font-bold tracking-tight text-white mb-4 transition-all duration-1000 ease-out transform
+            className={`text-[80px] sm:text-[120px] font-bold tracking-tight text-white mb-4 transition-all duration-1000 ease-out transform
               ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
           >
             Custom <WordAnimation /> AI for SMBs
