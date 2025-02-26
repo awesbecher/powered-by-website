@@ -14,9 +14,6 @@ export const NavigationButtons = () => {
   return (
     <div className="w-full px-4">
       <div className="max-w-7xl mx-auto">
-        <h3 className="text-gray-300 text-xl font-bold mb-4 text-center">
-          Run Human-like AI Agents Across:
-        </h3>
         <div className="flex flex-wrap gap-4 justify-center mb-16">
           {buttons.map((button, index) => (
             <div
