@@ -32,7 +32,7 @@ const Demo = () => {
           <div className="text-center">
             <h1 className={`text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6 transition-all duration-1000 ease-out transform
                 ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
-              We have <span className="text-[#9b87f5]">demos</span>! Now go have fun.
+              See our <span className="text-[#9b87f5]">AI Agents</span> in Action!
             </h1>
             <p className={`mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold transition-all duration-1000 delay-300 ease-out transform
                 ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>Our agents can automate &amp; improve even your most complex customer-facing or internal tasks. See our AI agents in action below. Order room service! Book a test drive with Mercedes! Get an insurance quote!</p>
