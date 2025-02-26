@@ -1,3 +1,4 @@
+
 import { BlogPost } from "../../types/blog";
 
 export const aiAgentsEvaluation: BlogPost = {
@@ -82,6 +83,6 @@ export const aiAgentsEvaluation: BlogPost = {
       <li class="ml-8">→ Ongoing Support to keep your AI agents performing optimally</li>
     </ul>
 
-    <p>We've seen firsthand how properly implemented AI agents can revolutionize a small business—dramatically reducing manual workload, boosting customer satisfaction, and driving real growth. Get in touch with us if you're ready to learn more about how Powered_by can deliver exceptional and cost-effective agent solutions to your business.</p>
+    <p class="mt-6">We've seen firsthand how properly implemented AI agents can revolutionize a small business—dramatically reducing manual workload, boosting customer satisfaction, and driving real growth. Get in touch with us if you're ready to learn more about how Powered_by can deliver exceptional and cost-effective agent solutions to your business.</p>
   `
 };
