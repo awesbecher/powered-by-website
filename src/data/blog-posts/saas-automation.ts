@@ -3,7 +3,7 @@ import { BlogPost } from "../../types/blog";
 
 export const saasAutomation: BlogPost = {
   id: "2",
-  title: "How SaaS Companies Can Automate Customer Engagement With AI Agents",
+  title: "How SaaS Companies Automate Customer Success With AI Agents",
   excerpt: "Discover how modern SaaS businesses are leveraging AI agents to transform customer engagement, reduce churn, and drive sustainable growth.",
   author: "Parlar AI",
   date: "January 3, 2025",
