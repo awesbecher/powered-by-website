@@ -48,17 +48,17 @@ export const ActionButtons = ({
           <DialogContent className="bg-[#222222] text-white border-gray-800 w-[95%] max-w-md mx-auto">
             <DialogHeader>
               <DialogTitle>
-                {isLoading ? "Your Chat with Planter's Insurance is in progress" : "Start Voice Chat with Our Insurance Team"}
+                {isLoading ? "Your call with Township Real Estate is now in progress. You can end the call at any time by clicking the End Call button below" : "Start Voice Chat with Our Real Estate Team"}
               </DialogTitle>
             </DialogHeader>
             <div className="flex flex-col space-y-4 pt-4">
               {!isLoading ? (
                 <>
                   <p className="text-gray-300 text-sm sm:text-base">
-                    You'll be able to have a voice conversation with our Insurance Team directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately.
+                    You'll be able to have a voice conversation with our Real Estate Team directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately.
                   </p>
                   <p className="text-gray-300 text-xs sm:text-sm">
-                    By clicking "Start Voice Chat", you consent to having a voice conversation with Planter's Insurance. You can end the conversation at any time.
+                    By clicking "Start Voice Chat", you consent to having a voice conversation with Township Real Estate. You can end the conversation at any time.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-2">
                     <Button 
@@ -78,19 +78,14 @@ export const ActionButtons = ({
                   </div>
                 </>
               ) : (
-                <>
-                  <p className="text-gray-300 text-sm sm:text-base">
-                    Your voice chat is currently in progress. You can end the call at any time.
-                  </p>
-                  <div className="flex justify-center">
-                    <Button 
-                      onClick={handleEndCall}
-                      className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white font-bold"
-                    >
-                      End Call
-                    </Button>
-                  </div>
-                </>
+                <div className="flex justify-center">
+                  <Button 
+                    onClick={handleEndCall}
+                    className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white font-bold"
+                  >
+                    End Call
+                  </Button>
+                </div>
               )}
             </div>
           </DialogContent>
