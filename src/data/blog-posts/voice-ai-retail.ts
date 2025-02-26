@@ -81,12 +81,5 @@ export const voiceAiRetail: BlogPost = {
 
     <br/>
     <p><a href="/contact"><strong>Contact us</strong></a> to schedule a consultation and see firsthand how a custom voice AI agent can revolutionize your retail customer service. Let us help you continue the tradition of exceptional customer experiences—powered by the best in modern AI.</p>
-
-    <br/>
-    <div class="flex justify-center">
-      <a href="/contact" class="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold text-white bg-purple-500 rounded-lg hover:bg-purple-600 transition-colors duration-200">
-        Book a consultation now
-      </a>
-    </div>
   `
 };
