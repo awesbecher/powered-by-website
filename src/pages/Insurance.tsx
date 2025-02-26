@@ -128,13 +128,13 @@ const Insurance = () => {
 
               <div className="flex justify-center">
                 <Button 
-                  className="w-64 h-[4.5rem] bg-accent hover:bg-accent/90 text-white text-lg px-6 flex flex-col items-center justify-center space-y-0"
+                  className="w-64 h-[4.5rem] bg-accent hover:bg-accent/90 text-white text-lg px-6 flex flex-col items-center justify-center space-y-1"
                   variant="default"
                   onClick={handleCall}
                   disabled={isLoading}
                 >
-                  <span className="leading-tight">Speak to a Planter's</span>
-                  <span className="flex items-center leading-tight">
+                  <span className="leading-none">Speak to a Planter's</span>
+                  <span className="flex items-center leading-none">
                     Insurance Agent Now
                     <Phone className="h-4 w-4 ml-2 flex-shrink-0" />
                   </span>
