@@ -1,6 +1,5 @@
 
 import { cn } from "@/lib/utils";
-import { WordAnimation } from "@/components/home/WordAnimation";
 
 interface ProductsHeroProps {
   initialLoad: boolean;
@@ -16,7 +15,7 @@ export const ProductsHero = ({ initialLoad, className }: ProductsHeroProps) => {
             className={`text-4xl font-bold tracking-tight text-white sm:text-6xl mb-4 transition-all duration-1000 ease-out transform
               ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
           >
-            <WordAnimation /> Agent Solutions Portfolio
+            Agent <span className="text-[#9b87f5]">Solutions</span> Portfolio
           </h1>
           <p 
             className={`mt-4 text-base md:text-lg lg:text-xl text-gray-300 max-w-5xl mx-auto leading-snug font-bold transition-all duration-1000 delay-300 ease-out transform
