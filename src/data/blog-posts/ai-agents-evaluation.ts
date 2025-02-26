@@ -76,10 +76,10 @@ export const aiAgentsEvaluation: BlogPost = {
 
     <p>That's why partnering with Powered_by strikes the perfect balance:</p>
     <ul>
-      <li>Expert Guidance from a dedicated team</li>
-      <li>Tailored Solutions that reflect your unique business processes</li>
-      <li>Cost-Efficiency with transparent budgeting</li>
-      <li>Ongoing Support to keep your AI agents performing optimally</li>
+      <li class="ml-8">→ Expert Guidance from a dedicated team</li>
+      <li class="ml-8">→ Tailored Solutions that reflect your unique business processes</li>
+      <li class="ml-8">→ Cost-Efficiency with transparent budgeting</li>
+      <li class="ml-8">→ Ongoing Support to keep your AI agents performing optimally</li>
     </ul>
 
     <p>We've seen firsthand how properly implemented AI agents can revolutionize a small business—dramatically reducing manual workload, boosting customer satisfaction, and driving real growth. Get in touch with us if you're ready to learn more about how Powered_by can deliver exceptional and cost-effective agent solutions to your business.</p>
