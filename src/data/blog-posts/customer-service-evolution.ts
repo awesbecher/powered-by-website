@@ -3,7 +3,7 @@ import { BlogPost } from "../../types/blog";
 
 export const customerServiceEvolution: BlogPost = {
   id: "5",
-  title: "From Phone Lines to Chatbots: The Story of AI's Rise in Customer Service",
+  title: "AI's Rise in Customer Service",
   excerpt: "Trace the journey of customer service from endless hold music to intelligent AI assistants, and discover how this evolution is reshaping how businesses connect with their customers.",
   author: "Powered_by",
   date: "February 1, 2025",
