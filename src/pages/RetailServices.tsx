@@ -69,18 +69,18 @@ const RetailServices = () => {
         />
       </div>
 
-      {/* Book a Free Consultation Button */}
-      <div className="absolute top-8 right-8 z-20">
+      <HeroSection onBookClick={() => setIsOpen(true)} />
+      
+      {/* Centered Book a Free Consultation Button */}
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
         <Link 
           to="/contact"
-          className="bg-accent hover:bg-accent/90 text-white px-4 py-2 rounded-lg transition-colors duration-200 inline-flex items-center gap-2"
+          className="bg-accent hover:bg-accent/90 text-white px-8 py-3 rounded-lg transition-colors duration-200 inline-flex items-center gap-2 text-lg font-medium"
         >
           Book a Free Consultation
         </Link>
       </div>
 
-      <HeroSection onBookClick={() => setIsOpen(true)} />
-      
       <BookingDialog 
         isOpen={isOpen}
         setIsOpen={setIsOpen}
