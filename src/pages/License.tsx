@@ -94,9 +94,16 @@ const License = () => {
           </button>
         </DialogTrigger>
         <DialogContent className="bg-[#222222] text-white border-gray-800 sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle>Start Voice Chat with Christina Bell on RightBloom's Sales Team</DialogTitle>
-          </DialogHeader>
+          <div className="flex items-start space-x-4 mb-4">
+            <img
+              src="/lovable-uploads/0d1c3dc0-7aad-4ddd-8b25-1edf45232f70.png"
+              alt="Christina Bell"
+              className="w-20 h-20 rounded-lg object-cover"
+            />
+            <DialogHeader className="flex-1">
+              <DialogTitle>Start Voice Chat with Christina Bell on RightBloom's Sales Team</DialogTitle>
+            </DialogHeader>
+          </div>
           <div className="flex flex-col space-y-4 pt-4">
             <p className="text-gray-300">
               You'll be able to have a voice conversation with Christina directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately.
