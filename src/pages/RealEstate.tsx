@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { initiateVogentCall } from "@/services/vogentService";
+import { initiateVapiCall } from "@/services/vapiService";
 import { HeroSection } from "@/components/real-estate/HeroSection";
 import { ActionButtons } from "@/components/real-estate/ActionButtons";
 import { ServicesSection } from "@/components/real-estate/ServicesSection";
@@ -14,37 +14,27 @@ const RealEstate = () => {
     featuredSection?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const [phoneNumber, setPhoneNumber] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [isScheduleOpen, setIsScheduleOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
   const handleCall = async () => {
-    if (!phoneNumber) {
-      toast({
-        variant: "destructive",
-        title: "Please enter your phone number",
-        description: "A phone number is required to connect with an agent."
-      });
-      return;
-    }
-
     setIsLoading(true);
     try {
-      await initiateVogentCall(phoneNumber, 'realEstate');
+      await initiateVapiCall();
       setIsOpen(false);
       setIsScheduleOpen(false);
-      setPhoneNumber("");
       toast({
         title: "Call initiated",
-        description: "An agent will call you shortly."
+        description: "Our AI agent is connecting with you."
       });
     } catch (error) {
+      console.error('Error initiating call:', error);
       toast({
         variant: "destructive",
         title: "Failed to initiate call",
-        description: "Please try again later."
+        description: error instanceof Error ? error.message : "Please try again later."
       });
     } finally {
       setIsLoading(false);
@@ -67,8 +57,8 @@ const RealEstate = () => {
       <ActionButtons 
         isOpen={isOpen}
         setIsOpen={setIsOpen}
-        phoneNumber={phoneNumber}
-        setPhoneNumber={setPhoneNumber}
+        phoneNumber=""
+        setPhoneNumber={() => {}}
         handleCall={handleCall}
         isLoading={isLoading}
         scrollToProperties={scrollToProperties}
@@ -81,8 +71,8 @@ const RealEstate = () => {
       <ContactSection 
         isScheduleOpen={isScheduleOpen}
         setIsScheduleOpen={setIsScheduleOpen}
-        phoneNumber={phoneNumber}
-        setPhoneNumber={setPhoneNumber}
+        phoneNumber=""
+        setPhoneNumber={() => {}}
         handleCall={handleCall}
         isLoading={isLoading}
       />
