@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall } from "@/services/vapiService";
@@ -8,6 +7,7 @@ import { ServicesSection } from "@/components/real-estate/ServicesSection";
 import { FeaturedProperties } from "@/components/real-estate/FeaturedProperties";
 import { ContactSection } from "@/components/real-estate/ContactSection";
 import { getVapiInstance } from "@/services/vapiService";
+import { useNavigate } from "react-router-dom";
 
 const RealEstate = () => {
   const scrollToProperties = () => {
@@ -19,27 +19,38 @@ const RealEstate = () => {
   const [isScheduleOpen, setIsScheduleOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleCall = async () => {
     setIsLoading(true);
     try {
       const vapi = getVapiInstance();
       await vapi.start("f8131f3d-58aa-4c81-a79e-1bf758803775"); // Use the specific Assistant ID for real estate
-      setIsOpen(false);
+      
+      // Keep dialog open during the call
+      setIsOpen(true);
       setIsScheduleOpen(false);
+      
+      // Listen for call end event
+      vapi.on("call-end", () => {
+        setIsLoading(false);
+        setIsOpen(false);
+        navigate('/demo');
+      });
+
       toast({
         title: "Call initiated",
         description: "Our AI agent is connecting with you."
       });
     } catch (error) {
       console.error('Error initiating call:', error);
+      setIsLoading(false);
+      setIsOpen(false);
       toast({
         variant: "destructive",
         title: "Failed to initiate call",
         description: error instanceof Error ? error.message : "Please try again later."
       });
-    } finally {
-      setIsLoading(false);
     }
   };
 
