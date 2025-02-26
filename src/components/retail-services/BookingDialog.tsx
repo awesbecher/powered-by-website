@@ -65,9 +65,8 @@ const BookingDialog = ({
               </p>
               <div className="flex justify-center">
                 <Button 
-                  variant="outline"
                   onClick={handleEndCall}
-                  className="w-full border-gray-700 text-white hover:bg-gray-800 hover:text-white"
+                  className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white font-bold"
                 >
                   End Call
                 </Button>
