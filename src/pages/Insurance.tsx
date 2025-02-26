@@ -43,7 +43,7 @@ const Insurance = () => {
   const handleCall = async () => {
     setIsLoading(true);
     try {
-      await initiateVapiCall();
+      await initiateVapiCall("df42b616-337e-4877-8e9b-44fb0b5a0225");
       setIsCallActive(true);
       toast({
         title: "Call initiated",
