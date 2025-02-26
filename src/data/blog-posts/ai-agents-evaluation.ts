@@ -1,4 +1,3 @@
-
 import { BlogPost } from "../../types/blog";
 
 export const aiAgentsEvaluation: BlogPost = {
@@ -22,9 +21,9 @@ export const aiAgentsEvaluation: BlogPost = {
 
     <h3 class="text-2xl font-bold text-[#9b87f5]">Potential Drawbacks</h3>
     <ul>
-      <li><strong>Limited Customization:</strong> Vendor solutions are designed for the average customer. This often means that advanced features or deeper integrations could be either costly add-ons or simply unavailable.</li>
-      <li><strong>Ongoing Subscription Fees:</strong> While the initial expense might be manageable, monthly or yearly subscription fees can add up over time.</li>
-      <li><strong>Lack of Ownership:</strong> When using a vendor tool, you're dependent on its roadmap and updates. If you want specific features, you may have little to no influence over the product's development.</li>
+      <li class="ml-16">→ <strong>Limited Customization:</strong> Vendor solutions are designed for the average customer. This often means that advanced features or deeper integrations could be either costly add-ons or simply unavailable.</li>
+      <li class="ml-16">→ <strong>Ongoing Subscription Fees:</strong> While the initial expense might be manageable, monthly or yearly subscription fees can add up over time.</li>
+      <li class="ml-16">→ <strong>Lack of Ownership:</strong> When using a vendor tool, you're dependent on its roadmap and updates. If you want specific features, you may have little to no influence over the product's development.</li>
     </ul>
 
     <p>For small businesses, a vendor tool might suffice, especially for simpler tasks. But if your AI agent needs are unique or mission-critical, a one-size-fits-all solution may leave you wanting more.</p>
@@ -38,9 +37,9 @@ export const aiAgentsEvaluation: BlogPost = {
 
     <h3 class="text-2xl font-bold text-[#9b87f5]">Potential Drawbacks</h3>
     <ul>
-      <li><strong>Higher Upfront Investment:</strong> Designing, developing, testing, and deploying an AI agent from scratch requires specialized skills, time, and capital—resources that many small businesses don't have in abundance.</li>
-      <li><strong>Maintenance Complexity:</strong> AI systems need regular monitoring, updates, and retraining to stay effective. Without a dedicated AI or data science team, this maintenance can become overwhelming.</li>
-      <li><strong>Longer Deployment Timelines:</strong> Building a solution internally is rarely "fast." You could easily spend months or even years refining your AI before it's truly ready for prime time.</li>
+      <li class="ml-16">→ <strong>Higher Upfront Investment:</strong> Designing, developing, testing, and deploying an AI agent from scratch requires specialized skills, time, and capital—resources that many small businesses don't have in abundance.</li>
+      <li class="ml-16">→ <strong>Maintenance Complexity:</strong> AI systems need regular monitoring, updates, and retraining to stay effective. Without a dedicated AI or data science team, this maintenance can become overwhelming.</li>
+      <li class="ml-16">→ <strong>Longer Deployment Timelines:</strong> Building a solution internally is rarely "fast." You could easily spend months or even years refining your AI before it's truly ready for prime time.</li>
     </ul>
 
     <h2>A Third Option: Partnering with a Specialized Agency</h2>
