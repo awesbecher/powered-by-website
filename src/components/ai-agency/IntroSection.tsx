@@ -14,7 +14,7 @@ export const IntroSection = ({ initialLoad }: IntroSectionProps) => {
       <h2 className="relative text-5xl font-bold text-white mb-4 transition-colors duration-300 hover:bg-gradient-to-r hover:from-purple-400 hover:to-indigo-400 hover:bg-clip-text hover:text-transparent pt-0 px-4 pb-4 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-purple-500 after:to-indigo-500">The world's first AI agency for SMB.</h2>
       
       <div className="space-y-8 text-lg text-gray-300">
-        <p className="text-left leading-snug mb-8">We design and deploy intelligent agents tailored from the ground up to fit your small business—whether it's voice-driven phone assistants, email automation bots, text-based support, Slack integrations, or chatbots that speak and communicate as human-like as possible. Our mission? To automate the repetitive, amplify the human, and supercharge your workflows with AI that feels like it was made just for you—because it was.</p>
+        <p className="text-left leading-snug mb-8">Powered_by designs and deploys intelligent agents tailored from the ground up to fit your small business—whether it's voice-driven phone assistants, email automation bots, text-based support, Slack integrations, or chatbots that speak and communicate as human-like as possible. Our mission? To automate the repetitive, amplify the human, and supercharge your workflows with AI that feels like it was made just for you—because it was.</p>
       </div>
     </div>
   );
