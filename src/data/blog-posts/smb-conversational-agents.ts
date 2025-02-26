@@ -1,3 +1,4 @@
+
 import { BlogPost } from "../../types/blog";
 
 export const smbConversationalAgents: BlogPost = {
@@ -36,12 +37,5 @@ export const smbConversationalAgents: BlogPost = {
     <br/>
     <hr class="border-t border-purple-400 w-full my-4"/>
     <p>In a world where personalization drives loyalty, AI agents help SMBs punch above their weight. By automating the small stuff, you create bandwidth for the big stuff—building relationships, innovating, and growing in ways that honor the legacy of personal service.</p>
-
-    <br/>
-    <div class="flex justify-center">
-      <a href="/contact" class="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold text-white bg-purple-500 rounded-lg hover:bg-purple-600 transition-colors duration-200">
-        Start your AI journey today
-      </a>
-    </div>
   `
 };

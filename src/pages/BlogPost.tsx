@@ -4,6 +4,7 @@ import { samplePosts } from "../data/blogPosts";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import { ClosingCTA } from "@/components/home/ClosingCTA";
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -55,17 +56,7 @@ const BlogPost = () => {
         />
       </div>
 
-      {/* Book a Consultation Button */}
-      <div className="container mx-auto px-4 max-w-4xl py-12">
-        <div className="flex justify-center">
-          <Link
-            to="/contact"
-            className="inline-flex items-center px-6 py-3 text-lg font-semibold text-white bg-[#9b87f5] hover:bg-[#8b77e5] rounded-lg transition-colors duration-200"
-          >
-            Book a Consultation
-          </Link>
-        </div>
-      </div>
+      <ClosingCTA />
     </div>
   );
 };

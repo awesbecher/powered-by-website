@@ -1,3 +1,4 @@
+
 import { BlogPost } from "../../types/blog";
 
 export const aiFearsSMB: BlogPost = {
@@ -32,12 +33,5 @@ export const aiFearsSMB: BlogPost = {
     <br/>
     <hr class="border-t border-purple-400 w-full my-4"/>
     <p>Embracing AI doesn't mean abandoning what made you great in the first place. Instead, it's a strategic move toward modernizing your customer experience while preserving the personal elements that define your brand. With the right blend of technology and humanity, SMBs can conquer fears and emerge stronger than ever.</p>
-
-    <br/>
-    <div class="flex justify-center">
-      <a href="/contact" class="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold text-white bg-purple-500 rounded-lg hover:bg-purple-600 transition-colors duration-200">
-        Start your AI journey with confidence
-      </a>
-    </div>
   `
 };
