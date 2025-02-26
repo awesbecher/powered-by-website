@@ -1,4 +1,3 @@
-
 import { BlogPost } from "../../types/blog";
 
 export const aiAgentsEvaluation: BlogPost = {
@@ -28,9 +27,7 @@ export const aiAgentsEvaluation: BlogPost = {
     <p class="mt-4">For small businesses, a vendor tool might suffice, especially for simpler tasks. But if your AI agent needs are unique or mission-critical, a one-size-fits-all solution may leave you wanting more.</p>
 
     <h2 class="text-5xl font-bold text-white mb-6 pb-2 border-b-4 border-[#9b87f5]">Building In-House</h2>
-    <p>Building in-house AI agents can yield significantly better outcomes. By developing internally, you have ultimate control over every detail. Your AI can be trained to reflect your specific processes, workflows, and brand values. That level of personalization can lead to better results over time, especially if your business model has unique requirements.</p>
-
-    <p>Equally, in building your own AI system, you own the underlying intellectual property. This can be a strategic advantage if your agent solution becomes a critical part of your business, or even a revenue-generating asset in its own right.</p>
+    <p>Building in-house AI agents can yield significantly better outcomes. By developing internally, you have ultimate control over every detail. Your AI can be trained to reflect your specific processes, workflows, and brand values. That level of personalization can lead to better results over time, especially if your business model has unique requirements. Equally, in building your own AI system, you own the underlying intellectual property. This can be a strategic advantage if your agent solution becomes a critical part of your business, or even a revenue-generating asset in its own right.</p>
 
     <p>However, building custom AI agents demands considerable internal IT and engineering resources, specialized knowledge, and long development cycles. For small businesses who may not have the budget to upskill their current IT teams or hire new AI engineers, this makes implementing new AI solutions out-of-reach.</p>
 
