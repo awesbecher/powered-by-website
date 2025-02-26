@@ -32,7 +32,7 @@ const AIAgency = () => {
                 gradientFrom="purple-600"
                 gradientTo="pink-600"
               >
-                <p>When most small and mid-sized businesses consider AI, they either see costly in-house builds or deeply expensive enterprise solutions. At Parlar, we bridge this gap by serving as your dedicated AI Agency—guiding you step-by-step with customized, human-like AI solutions that fit your budget, timeline, and brand. We handle the technical heavy lifting and deliver straightforward, powerful tools so you can focus on what truly matters: delighting your customers and growing your business. In other words, you don't need to hire a new AI engineering team!</p>
+                <p>When most small and mid-sized businesses consider AI, they either see costly in-house builds or deeply expensive enterprise solutions. At Powered_by, we bridge this gap by serving as your dedicated AI Agency—guiding you step-by-step with customized, human-like AI solutions that fit your budget, timeline, and brand. We handle the technical heavy lifting and deliver straightforward, powerful tools so you can focus on what truly matters: delighting your customers and growing your business. In other words, you don't need to hire a new AI engineering team!</p>
               </InfoCard>
 
               <InfoCard 
@@ -65,7 +65,7 @@ const AIAgency = () => {
                 gradientFrom="green-600"
                 gradientTo="blue-600"
               >
-                <p className="mb-6">We believe in a collaborative and transparent process that gets results. Here's what to expect when you work with Parlar:</p>
+                <p className="mb-6">We believe in a collaborative and transparent process that gets results. Here's what to expect when you work with Powered_by:</p>
                 
                 <div className="space-y-6">
                   <div>
@@ -126,7 +126,7 @@ const AIAgency = () => {
 
                   <div>
                     <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Trusted Partnerships</h4>
-                    <p>We collaborate with leading LLM providers behind the scenes but remain your single point of contact. You get the best AI technology—customized, delivered, and supported by Parlar.</p>
+                    <p>We collaborate with leading LLM providers behind the scenes but remain your single point of contact. You get the best AI technology—customized, delivered, and supported by Powered_by.</p>
                   </div>
                 </div>
               </InfoCard>
