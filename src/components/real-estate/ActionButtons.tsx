@@ -79,12 +79,12 @@ export const ActionButtons = ({
                 </>
               ) : (
                 <div className="flex justify-center">
-                  <Button 
+                  <button 
                     onClick={handleEndCall}
-                    className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white font-bold"
+                    className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white font-bold py-3 rounded-md transition-colors"
                   >
                     End Call
-                  </Button>
+                  </button>
                 </div>
               )}
             </div>
