@@ -47,19 +47,19 @@ export const aiAgentsEvaluation: BlogPost = {
     <p>Here's the truth: Small businesses often need a customized AI solution without sinking large sums into in-house development or relying on rigid vendor tools. That's where partnering with a specialized agency like Powered_by offers a balanced alternative.</p>
 
     <h2 class="text-5xl font-bold text-white mb-6 pb-2 border-b-4 border-[#9b87f5]">Why Partner with <span class="text-[#9b87f5]">Powered_by</span>?</h2>
-    <h4>Tailored Design Without the Full Burden</h4>
+    <h4 class="font-bold text-white">Tailored Design Without the Full Burden</h4>
     <p>We take the time to understand your processes, challenges, and goals. Then we design AI agents that operate like well-trained, knowledgeable team members—minus the overhead of building everything internally.</p>
 
-    <h4>Fast Deployment with Proven Frameworks</h4>
+    <h4 class="font-bold text-white">Fast Deployment with Proven Frameworks</h4>
     <p>Our in-house experts use streamlined development frameworks, so your AI agents can be up and running faster than a traditional in-house build. We've built solutions across multiple industries, which means we bring a tried-and-true foundation to your project.</p>
 
-    <h4>Transparent Cost Structure</h4>
+    <h4 class="font-bold text-white">Transparent Cost Structure</h4>
     <p>We recognize small businesses operate on tight budgets. Our goal is to help you see a clear return on investment. Instead of hidden fees or ballooning subscription models, we offer a predictable budget that covers development, deployment, and ongoing support.</p>
 
-    <h4>Ongoing Support and Maintenance</h4>
+    <h4 class="font-bold text-white">Ongoing Support and Maintenance</h4>
     <p>AI agents require routine tune-ups—everything from retraining models to updating integrations. Powered_by doesn't hand you an AI solution and walk away. We provide continuous support so your agents stay sharp and adapt to your evolving business needs.</p>
 
-    <h4>Industry-Relevant Expertise</h4>
+    <h4 class="font-bold text-white">Industry-Relevant Expertise</h4>
     <p>AI agent technology moves quickly. Our team stays on top of the latest advancements, ensuring you're leveraging leading-edge solutions without bearing the cost of training an internal team.</p>
 
     <h2 class="text-5xl font-bold text-white mb-6 pb-2 border-b-4 border-[#9b87f5]">Balancing Cost, Control, and Growth</h2>
