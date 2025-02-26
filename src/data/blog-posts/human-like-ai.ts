@@ -3,7 +3,7 @@ import { BlogPost } from "../../types/blog";
 
 export const humanLikeAi: BlogPost = {
   id: "3",
-  title: "The Secret Behind \"Human-Like\" AI: Decoding Language, Emotion, and Context",
+  title: "The Secret Behind \"Human-Like\" AI",
   excerpt: "Have you ever chatted with an online assistant and felt, for a fleeting moment, that you were speaking to a real person? Discover how modern AI combines natural language processing, emotional intelligence, and context awareness to create remarkably human-like interactions.",
   author: "Powered_by",
   date: "January 3, 2025",
