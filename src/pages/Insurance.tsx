@@ -1,16 +1,19 @@
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Car, Home, Key, Bike, Sailboat, Phone } from "lucide-react";
 import { useState } from "react";
 import { InsuranceProductCard } from "@/components/insurance/InsuranceProductCard";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { initiateVapiCall } from "@/services/vapiService";
+import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 const Insurance = () => {
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isCallActive, setIsCallActive] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleProductSelect = (productId: string) => {
     setSelectedProducts(prev => {
@@ -22,10 +25,26 @@ const Insurance = () => {
     });
   };
 
+  const handleEndCall = async () => {
+    try {
+      await stopVapiCall();
+      setIsCallActive(false);
+      // Redirect to demo page
+      navigate('/demo');
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Failed to end call",
+        description: error.message || "Please try again later."
+      });
+    }
+  };
+
   const handleCall = async () => {
     setIsLoading(true);
     try {
       await initiateVapiCall();
+      setIsCallActive(true);
       toast({
         title: "Call initiated",
         description: "You are now connected to a Planter's Insurance agent."
@@ -59,6 +78,25 @@ const Insurance = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#222222] via-transparent to-[#222222]"></div>
       </div>
+
+      <Dialog open={isCallActive} onOpenChange={(open) => !open && handleEndCall()}>
+        <DialogContent className="bg-[#222222] text-white border-gray-800">
+          <DialogHeader>
+            <DialogTitle>Your call with Planter's Insurance is in progress</DialogTitle>
+          </DialogHeader>
+          <div className="flex flex-col space-y-4 pt-4">
+            <p className="text-gray-300">
+              You are currently in a voice conversation with a Planter's Insurance agent. You can end the call at any time by clicking the button below.
+            </p>
+            <Button 
+              onClick={handleEndCall}
+              className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white font-bold"
+            >
+              End Call
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <div className="relative z-10 px-4 py-32 sm:px-6 lg:px-8">
         <Link 
