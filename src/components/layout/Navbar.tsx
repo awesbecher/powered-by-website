@@ -20,19 +20,8 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#222222]/80 backdrop-blur-lg">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          <div className="flex items-center">
-            {/* Logo */}
-            <Link to="/" className="flex-shrink-0">
-              <img 
-                src="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
-                alt="Parlar Logo"
-                className="h-8 w-auto"
-              />
-            </Link>
-          </div>
-
           {/* Navigation Items */}
-          <div className="hidden md:flex items-center justify-center flex-1">
+          <div className="flex items-center justify-center flex-1">
             <div className="flex space-x-2">
               {/* Home Link */}
               <Link

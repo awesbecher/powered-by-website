@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -76,14 +75,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
-      <div className="absolute top-6 left-6 lg:left-8">
-        <img 
-          src="/lovable-uploads/e8881317-eed8-45df-8a8d-34509d6701c6.png"
-          alt="Parlar Logo"
-          className="w-[192px] lg:w-[288px] h-auto"
-        />
-      </div>
-
       <HeroSection initialLoad={initialLoad} />
 
       <div className="relative z-10 mt-12 mb-12">
