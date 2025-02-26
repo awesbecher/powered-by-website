@@ -47,7 +47,7 @@ const Insurance = () => {
       setIsCallActive(true);
       toast({
         title: "Call initiated",
-        description: "You are now connected to a Planter's Insurance agent."
+        description: "You are now connected to Alex Fisher from Planter's Insurance."
       });
     } catch (error) {
       toast({
@@ -82,11 +82,11 @@ const Insurance = () => {
       <Dialog open={isCallActive} onOpenChange={(open) => !open && handleEndCall()}>
         <DialogContent className="bg-[#222222] text-white border-gray-800">
           <DialogHeader>
-            <DialogTitle>Your call with Planter's Insurance is in progress</DialogTitle>
+            <DialogTitle>Your call with Alex Fisher from Planter's Insurance is in progress</DialogTitle>
           </DialogHeader>
           <div className="flex flex-col space-y-4 pt-4">
             <p className="text-gray-300">
-              You are currently in a voice conversation with a Planter's Insurance agent. You can end the call at any time by clicking the button below.
+              You are currently in a voice conversation with Alex Fisher. You can end the call at any time by clicking the button below.
             </p>
             <Button 
               onClick={handleEndCall}

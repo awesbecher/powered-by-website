@@ -29,17 +29,17 @@ const BookingDialog = ({
       <DialogContent className="bg-[#222222] text-white border-gray-800">
         <DialogHeader>
           <DialogTitle>
-            {isLoading ? "Your Chat with Flagship Barbers is in progress" : "Start Voice Chat with Our Team"}
+            {isLoading ? "Your Chat with Flagship Barbers is in progress" : "Start Voice Chat with Alex Fisher on the Planter's Insurance Team"}
           </DialogTitle>
         </DialogHeader>
         <div className="flex flex-col space-y-4 pt-4">
           {!isLoading ? (
             <>
               <p className="text-gray-300">
-                You'll be able to have a voice conversation with our team directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately.
+                You'll be able to have a voice conversation with Alex directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately.
               </p>
               <p className="text-gray-300 text-sm">
-                By clicking "Start Voice Chat", you consent to having a voice conversation with Flagship Barbers. You can end the conversation at any time.
+                By clicking "Start Voice Chat", you consent to having a voice conversation with the Planter's Insurance team. You can end the conversation at any time.
               </p>
               <div className="flex gap-2">
                 <Button 
