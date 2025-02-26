@@ -1,12 +1,7 @@
 
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 
-interface HeroSectionProps {
-  onBookClick: () => void;
-}
-
-const HeroSection = ({ onBookClick }: HeroSectionProps) => {
+const HeroSection = () => {
   return (
     <div className="relative min-h-[80vh] flex items-center">
       <div className="absolute inset-0">
