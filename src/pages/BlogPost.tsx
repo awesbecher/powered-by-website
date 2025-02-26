@@ -3,10 +3,15 @@ import { useParams } from "react-router-dom";
 import { samplePosts } from "../data/blogPosts";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const BlogPost = () => {
   const { slug } = useParams();
   const post = samplePosts.find((post) => post.slug === slug);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (!post) {
     return (
@@ -66,4 +71,3 @@ const BlogPost = () => {
 };
 
 export default BlogPost;
-
