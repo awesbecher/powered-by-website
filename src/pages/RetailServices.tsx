@@ -58,7 +58,7 @@ const RetailServices = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
+    <div className="min-h-screen w-full bg-black">
       {/* Logo */}
       <div className="absolute top-24 right-8 z-10">
         <img 
