@@ -38,8 +38,7 @@ export const aiAgentsEvaluation: BlogPost = {
       <li class="ml-16">→ <strong>Longer Deployment Timelines:</strong> Building a solution internally is rarely "fast." You could easily spend months or even years refining your AI before it's truly ready for prime time.</li>
     </ul>
 
-    <h2 class="text-5xl font-bold text-white mb-6 pb-2 border-b-4 border-[#9b87f5]">Why Partner with <span class="text-[#9b87f5]">Powered_by</span>?</h2>
-    <p>Here's the truth: Small businesses often need a customized AI solution without sinking large sums into in-house development or relying on rigid vendor tools. That's where partnering with Powered_by offers a balanced alternative.</p>
+    <p class="mt-8">Why partner with <span class="font-bold text-[#9b87f5]">Powered_by</span>? Here's the truth: Small businesses often need a customized AI solution without sinking large sums into in-house development or relying on rigid vendor tools. That's where partnering with Powered_by offers a balanced alternative.</p>
 
     <h4 class="font-bold text-white">Tailored Design Without the Full Burden</h4>
     <p>We take the time to understand your processes, challenges, and goals. Then we design AI agents that operate like well-trained, knowledgeable team members—minus the overhead of building everything internally.</p>
