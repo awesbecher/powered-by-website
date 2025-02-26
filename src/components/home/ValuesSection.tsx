@@ -16,7 +16,7 @@ export const ValuesSection = () => {
   ];
 
   return (
-    <div className="w-full px-4">
+    <div className="w-full px-4 container mx-auto">
       <div className="w-full max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
           {values.map((value, index) => (
