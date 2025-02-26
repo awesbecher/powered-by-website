@@ -1,11 +1,10 @@
-
 import { BlogPost } from "../../types/blog";
 
 export const understandingAiAgents: BlogPost = {
   id: "understanding-ai-agents",
   title: "AI Agents: A Layman's Guide",
   excerpt: "Think of an AI agent as a super-smart, tireless assistant that handles tasks for you, without the coffee breaks. Learn how these digital helpers are transforming small and medium-sized businesses.",
-  author: "Parlar AI Team",
+  author: "Powered_by Team",
   date: "November 28, 2024",
   readTime: "8 min read",
   slug: "understanding-ai-agents",
@@ -263,7 +262,7 @@ export const understandingAiAgents: BlogPost = {
     <div class="mt-16 rounded-2xl bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] p-8 relative overflow-hidden border border-accent/20">
       <div class="relative z-10">
         <h3 class="text-2xl font-bold text-[#9b87f5] mb-4">Ready to Transform Your Business with AI Agents?</h3>
-        <p class="text-gray-300 mb-6">Experience the power of AI automation and customer service excellence. Let's discuss how Parlar can help your business thrive in the digital age.</p>
+        <p class="text-gray-300 mb-6">Experience the power of AI automation and customer service excellence. Let's discuss how Powered_by can help your business thrive in the digital age.</p>
         <a href="/contact" class="inline-block bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
           Get Started Today
         </a>

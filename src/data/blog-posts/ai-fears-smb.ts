@@ -1,11 +1,10 @@
-
 import { BlogPost } from "../../types/blog";
 
 export const aiFearsSMB: BlogPost = {
   id: "6",
   title: "Breaking Down Barriers: Common Fears About AI and How SMBs Can Overcome Them",
   excerpt: "Discover how small businesses can address concerns about AI implementation while maintaining their personal touch and protecting their team's interests.",
-  author: "Parlar AI",
+  author: "Powered_by",
   date: "February 20, 2025",
   readTime: "7 min read",
   slug: "breaking-down-ai-fears-smb",
@@ -24,7 +23,7 @@ export const aiFearsSMB: BlogPost = {
 
     <br/>
     <h2 class="text-2xl font-extrabold text-left bg-blue-400/10 inline-block px-2 py-1 rounded">Fear #3: Data Security and Privacy</h2>
-    <p>Safety concerns are valid. SMBs can be prime targets for cyberattacks if they don't secure customer data properly. Today's AI providers, including ParlarI, implement robust security measures and comply with regulations like GDPR and CCPA. This ensures data is handled responsibly, giving both you and your customers peace of mind.</p>
+    <p>Safety concerns are valid. SMBs can be prime targets for cyberattacks if they don't secure customer data properly. Today's AI providers, including Powered_by, implement robust security measures and comply with regulations like GDPR and CCPA. This ensures data is handled responsibly, giving both you and your customers peace of mind.</p>
 
     <br/>
     <h2 class="text-2xl font-extrabold text-left">Overcoming the Obstacles</h2>

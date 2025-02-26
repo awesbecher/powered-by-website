@@ -1,11 +1,10 @@
-
 import { BlogPost } from "../../types/blog";
 
 export const customerServiceEvolution: BlogPost = {
   id: "5",
   title: "From Phone Lines to Chatbots: The Story of AI's Rise in Customer Service",
   excerpt: "Trace the journey of customer service from endless hold music to intelligent AI assistants, and discover how this evolution is reshaping how businesses connect with their customers.",
-  author: "Parlar AI",
+  author: "Powered_by",
   date: "February 1, 2025",
   readTime: "8 min read",
   slug: "customer-service-evolution",
@@ -27,8 +26,8 @@ export const customerServiceEvolution: BlogPost = {
     <p>Despite these technological leaps, many worry about losing the personal connection they value in small businesses. After all, a big reason customers choose an SMB is the promise of a warm, human touch. Ironically, modern AI agents can offer a new kind of personalization: they're available at any hour, remember previous interactions, and learn customers' preferences to tailor responses. It's not about replacing people; it's about enhancing those interactions—offloading repetitive tasks so human teams can focus on higher-level problem-solving.</p>
 
     <br/>
-    <h2 class="text-2xl font-extrabold text-left">The Parlar Difference</h2>
-    <p>At Parlar, we believe the best customer experiences combine time-honored personal service with leading-edge innovation. Our AI solutions for SMBs address the old frustrations of long wait times and inconsistent availability. Now, even smaller companies can provide the kind of swift, empathic customer service once reserved for giant enterprises.</p>
+    <h2 class="text-2xl font-extrabold text-left">The Powered_by Difference</h2>
+    <p>At Powered_by, we believe the best customer experiences combine time-honored personal service with leading-edge innovation. Our AI solutions for SMBs address the old frustrations of long wait times and inconsistent availability. Now, even smaller companies can provide the kind of swift, empathic customer service once reserved for giant enterprises.</p>
 
     <br/>
     <hr class="border-t border-purple-400 w-full my-4"/>

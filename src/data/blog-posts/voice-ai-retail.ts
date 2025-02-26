@@ -1,10 +1,11 @@
+
 import { BlogPost } from "../../types/blog";
 
 export const voiceAiRetail: BlogPost = {
   id: "1",
   title: "Voice AI Agents: The New Frontier of Retail Customer Service",
   excerpt: "Customer service has always been the lifeblood of retail—shaped by well-trained staff offering personal attention, rapport, and timely responses. Yet, in today's fast-paced retail world, building on these traditional values requires leveraging innovative technology.",
-  author: "Parlar AI",
+  author: "Powered_by",
   date: "December 15, 2024",
   readTime: "12 min read",
   slug: "voice-ai-agents-retail-customer-service",

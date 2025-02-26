@@ -4,7 +4,7 @@ export const humanLikeAi: BlogPost = {
   id: "3",
   title: "The Secret Behind \"Human-Like\" AI: Decoding Language, Emotion, and Context",
   excerpt: "Have you ever chatted with an online assistant and felt, for a fleeting moment, that you were speaking to a real person? Discover how modern AI combines natural language processing, emotional intelligence, and context awareness to create remarkably human-like interactions.",
-  author: "Parlar AI",
+  author: "Powered_by",
   date: "January 3, 2025",
   readTime: "5 min read",
   slug: "human-like-ai-secrets",
@@ -26,8 +26,8 @@ export const humanLikeAi: BlogPost = {
     <p>Imagine talking to a friend who forgets everything you've ever told them—every few minutes! That was the problem with older systems. Today's AI agents retain context, recalling details from a user's past interactions, across multiple channels. This creates a seamless journey, so customers don't need to repeat their issues or preferences every time they reach out.</p>
 
     <br/>
-    <h2 class="text-2xl font-extrabold text-left">How Parlar AI Stands Out</h2>
-    <p>Parlar AI combines these three pillars—NLP, emotional intelligence, and context awareness—to deliver experiences that feel both advanced and personal. Our platform learns each SMB's unique brand voice, ensuring responses match the company's style and values.</p>
+    <h2 class="text-2xl font-extrabold text-left">How Powered_by Stands Out</h2>
+    <p>Powered_by combines these three pillars—NLP, emotional intelligence, and context awareness—to deliver experiences that feel both advanced and personal. Our platform learns each SMB's unique brand voice, ensuring responses match the company's style and values.</p>
 
     <br/>
     <hr class="border-t border-purple-400 w-full my-4"/>

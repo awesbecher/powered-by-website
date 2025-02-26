@@ -1,11 +1,10 @@
-
 import { BlogPost } from "../../types/blog";
 
 export const smbConversationalAgents: BlogPost = {
   id: "4",
   title: "Practical Ways SMBs Can Use Conversational Agents",
   excerpt: "Discover how small and mid-sized businesses can leverage AI-driven conversational agents for growth while maintaining their personal touch in customer interactions.",
-  author: "Parlar AI",
+  author: "Powered_by",
   date: "January 20, 2025",
   readTime: "6 min read",
   slug: "practical-ways-smbs-use-conversational-agents",
@@ -31,8 +30,8 @@ export const smbConversationalAgents: BlogPost = {
     <p>Track improvements in response times, conversion rates, and customer satisfaction (CSAT) scores. AI agents can compile valuable data on user behavior, which helps refine marketing strategies, product development, and overall customer experience.</p>
 
     <br/>
-    <h2 class="text-2xl font-extrabold text-left">Parlar: Your Trusted Partner</h2>
-    <p>At Parlar, we offer solutions specifically tailored to SMBs, ensuring the transition to AI-assisted customer interactions is smooth. We focus on cost-effectiveness, quick deployment, and easy customization—all while maintaining the human touch your customers expect.</p>
+    <h2 class="text-2xl font-extrabold text-left">Powered_by: Your Trusted Partner</h2>
+    <p>At Powered_by, we offer solutions specifically tailored to SMBs, ensuring the transition to AI-assisted customer interactions is smooth. We focus on cost-effectiveness, quick deployment, and easy customization—all while maintaining the human touch your customers expect.</p>
 
     <br/>
     <hr class="border-t border-purple-400 w-full my-4"/>
