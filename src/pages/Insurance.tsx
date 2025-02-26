@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
 const Insurance = () => {
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
@@ -81,7 +82,14 @@ const Insurance = () => {
 
       <Dialog open={isCallActive} onOpenChange={(open) => !open && handleEndCall()}>
         <DialogContent className="bg-[#222222] text-white border-gray-800">
-          <DialogHeader>
+          <DialogHeader className="flex flex-row items-center gap-4">
+            <Avatar className="w-16 h-16">
+              <AvatarImage 
+                src="/lovable-uploads/156d245d-e750-4ef3-8995-a7ae211eeeee.png"
+                alt="Alex Fisher"
+                className="object-cover"
+              />
+            </Avatar>
             <DialogTitle>Your call with Alex Fisher from Planter's Insurance is in progress</DialogTitle>
           </DialogHeader>
           <div className="flex flex-col space-y-4 pt-4">
