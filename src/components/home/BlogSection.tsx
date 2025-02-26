@@ -12,12 +12,14 @@ export const BlogSection = () => {
         </h2>
       </div>
 
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {samplePosts.slice(0, 3).map((post) => (
-            <Link key={post.slug} to={`/blog/${post.slug}`}>
-              <BlogPostCard post={post} />
-            </Link>
+      <div className="container mx-auto px-4 overflow-hidden">
+        <div className="flex overflow-x-auto pb-6 gap-8 snap-x snap-mandatory scrollbar-none">
+          {samplePosts.map((post) => (
+            <div key={post.slug} className="flex-none w-full md:w-[calc(50%-16px)] lg:w-[calc(33.333%-22px)] snap-start">
+              <Link to={`/blog/${post.slug}`}>
+                <BlogPostCard post={post} />
+              </Link>
+            </div>
           ))}
         </div>
       </div>
