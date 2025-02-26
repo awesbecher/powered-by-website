@@ -3,7 +3,7 @@ import { BlogPost } from "../../types/blog";
 
 export const aiFearsSMB: BlogPost = {
   id: "6",
-  title: "Breaking Down Barriers: Common Fears About AI and How SMBs Can Overcome Them",
+  title: "The Top Fears About Using AI Agents",
   excerpt: "Discover how small businesses can address concerns about AI implementation while maintaining their personal touch and protecting their team's interests.",
   author: "Powered_by",
   date: "February 20, 2025",
