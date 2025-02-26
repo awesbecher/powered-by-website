@@ -3,7 +3,7 @@ import { BlogPost } from "../../types/blog";
 
 export const voiceAiRetail: BlogPost = {
   id: "1",
-  title: "Voice AI Agents: The New Frontier of Retail Customer Service",
+  title: "How Can You Use Voice AI For Your Retail Store?",
   excerpt: "Customer service has always been the lifeblood of retail—shaped by well-trained staff offering personal attention, rapport, and timely responses. Yet, in today's fast-paced retail world, building on these traditional values requires leveraging innovative technology.",
   author: "Powered_by",
   date: "December 15, 2024",
