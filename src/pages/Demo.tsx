@@ -1,4 +1,3 @@
-
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { ServiceCard } from "@/components/home/ServiceCard";
 import { services, additionalServices } from "@/data/services";
@@ -36,8 +35,7 @@ const Demo = () => {
             </h1>
             <p className={`mt-4 text-lg leading-relaxed text-gray-300 max-w-3xl mx-auto font-bold transition-all duration-1000 delay-300 ease-out transform
                 ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
-              While we offer fully multi-channel solutions, you can experience our pre-built voice agents by clicking any one of the below.<br />
-              Order room service! Book a test drive with Mercedes! Get an insurance quote!
+              While we offer fully multi-channel solutions, you can experience our pre-built voice agents by clicking any one of the below.
             </p>
           </div>
         </div>
