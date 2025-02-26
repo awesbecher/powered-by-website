@@ -16,7 +16,7 @@ const CallConfirmation = () => {
         </h1>
         <div className="bg-white/5 rounded-lg p-8 backdrop-blur-sm">
           <p className="text-xl text-gray-300 mb-8">
-            Thank you for your order. Our team will call you shortly to confirm your selection.
+            Our In-Room Dining team will take your order and have it delivered to your room in 30-45 mins.
           </p>
         </div>
       </div>
