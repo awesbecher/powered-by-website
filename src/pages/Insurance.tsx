@@ -1,34 +1,16 @@
+
 import { Link } from "react-router-dom";
 import { ArrowLeft, Car, Home, Key, Bike, Sailboat, Phone } from "lucide-react";
 import { useState } from "react";
 import { InsuranceProductCard } from "@/components/insurance/InsuranceProductCard";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { initiateVogentCall } from "@/services/vogentService";
+import { initiateVapiCall } from "@/services/vapiService";
 
 const Insurance = () => {
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
-
-  const formatPhoneNumber = (value: string) => {
-    if (!value) return "";
-    const phoneNumber = value.replace(/\D/g, '');
-    if (phoneNumber.length <= 3) return phoneNumber;
-    if (phoneNumber.length <= 6) return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
-    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
-  };
-
-  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/\D/g, '');
-    if (value.length <= 10) {
-      setPhoneNumber(value);
-    }
-  };
 
   const handleProductSelect = (productId: string) => {
     setSelectedProducts(prev => {
@@ -41,23 +23,12 @@ const Insurance = () => {
   };
 
   const handleCall = async () => {
-    if (!phoneNumber) {
-      toast({
-        variant: "destructive",
-        title: "Please enter your phone number",
-        description: "A phone number is required to connect with an insurance agent."
-      });
-      return;
-    }
-
     setIsLoading(true);
     try {
-      await initiateVogentCall(phoneNumber, 'insurance');
-      setIsOpen(false);
-      setPhoneNumber("");
+      await initiateVapiCall();
       toast({
         title: "Call initiated",
-        description: "An insurance agent will call you shortly."
+        description: "You are now connected to a Planter's Insurance agent."
       });
     } catch (error) {
       toast({
@@ -118,55 +89,18 @@ const Insurance = () => {
               </div>
 
               <div className="flex justify-center">
-                <Dialog open={isOpen} onOpenChange={setIsOpen}>
-                  <DialogTrigger asChild>
-                    <Button 
-                      className="w-64 h-[4.5rem] bg-accent hover:bg-accent/90 text-white text-lg px-6 flex flex-col items-center justify-center space-y-0"
-                      variant="default"
-                    >
-                      <span className="leading-tight">Speak to a Planter's</span>
-                      <span className="flex items-center leading-tight">
-                        Insurance Agent Now
-                        <Phone className="h-4 w-4 ml-2 flex-shrink-0" />
-                      </span>
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="bg-[#222222] text-white border-gray-800 sm:max-w-md">
-                    <DialogHeader>
-                      <DialogTitle>Enter your phone number to speak with an insurance agent</DialogTitle>
-                    </DialogHeader>
-                    <div className="flex flex-col space-y-4 pt-4">
-                      <div className="flex items-center space-x-2">
-                        <div className="flex-shrink-0 bg-gray-800 p-2 rounded border border-gray-700">
-                          +1
-                        </div>
-                        <Input 
-                          type="tel" 
-                          placeholder="(555) 123-4567"
-                          value={formatPhoneNumber(phoneNumber)}
-                          onChange={handlePhoneNumberChange}
-                          className="flex-1 text-lg bg-gray-800 border-gray-700 text-white placeholder:text-gray-400"
-                        />
-                      </div>
-                      <div className="flex gap-2">
-                        <Button 
-                          variant="outline"
-                          onClick={() => setIsOpen(false)}
-                          className="w-full border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white"
-                        >
-                          Cancel
-                        </Button>
-                        <Button 
-                          className="w-full bg-accent hover:bg-accent/90 text-white transition-colors"
-                          onClick={handleCall}
-                          disabled={isLoading}
-                        >
-                          {isLoading ? "Initiating call..." : "Call Me"}
-                        </Button>
-                      </div>
-                    </div>
-                  </DialogContent>
-                </Dialog>
+                <Button 
+                  className="w-64 h-[4.5rem] bg-accent hover:bg-accent/90 text-white text-lg px-6 flex flex-col items-center justify-center space-y-0"
+                  variant="default"
+                  onClick={handleCall}
+                  disabled={isLoading}
+                >
+                  <span className="leading-tight">Speak to a Planter's</span>
+                  <span className="flex items-center leading-tight">
+                    Insurance Agent Now
+                    <Phone className="h-4 w-4 ml-2 flex-shrink-0" />
+                  </span>
+                </Button>
               </div>
 
               <div className="space-y-4">

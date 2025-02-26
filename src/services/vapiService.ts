@@ -80,8 +80,8 @@ export const initiateVapiCall = async () => {
     
     const vapi = getVapiInstance();
     
-    // Start call with the correct persistent assistant ID for Retail Services
-    await vapi.start("defa6102-2358-4347-a192-24c6bc23ea4c");
+    // Start call with the new insurance assistant ID
+    await vapi.start("df42b616-337e-4877-8e9b-44fb0b5a0225");
     
     return true;
   } catch (error) {
