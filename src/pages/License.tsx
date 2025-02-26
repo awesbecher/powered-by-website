@@ -201,11 +201,14 @@ const License = () => {
                 </DialogTrigger>
                 <DialogContent className="bg-[#222222] text-white border-gray-800 sm:max-w-md">
                   <DialogHeader>
-                    <DialogTitle>Click below to speak with a sales representative</DialogTitle>
+                    <DialogTitle>Start Voice Chat with Christina Bell on RightBloom's Sales Team</DialogTitle>
                   </DialogHeader>
                   <div className="flex flex-col space-y-4 pt-4">
                     <p className="text-gray-300">
-                      You will be connected to a RightBloom sales representative through your browser. Please ensure your microphone is enabled.
+                      You'll be able to have a voice conversation with Christina directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately.
+                    </p>
+                    <p className="text-gray-300 text-sm">
+                      By clicking "Start Voice Chat", you consent to having a voice conversation with RightBloom's sales team. You can end the conversation at any time.
                     </p>
                     <div className="flex gap-2">
                       <Button 
@@ -220,7 +223,7 @@ const License = () => {
                         onClick={handleCall}
                         disabled={isLoading}
                       >
-                        {isLoading ? "Initiating call..." : "Start Call"}
+                        {isLoading ? "Initiating call..." : "Start Voice Chat"}
                       </Button>
                     </div>
                   </div>
