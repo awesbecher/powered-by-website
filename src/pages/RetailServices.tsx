@@ -1,6 +1,5 @@
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { initiateVogentCall } from "@/services/vogentService";
 import HeroSection from "@/components/retail-services/HeroSection";
@@ -70,15 +69,15 @@ const RetailServices = () => {
       </div>
 
       <HeroSection onBookClick={() => setIsOpen(true)} />
-      
-      {/* Centered Book a Free Consultation Button */}
+
+      {/* Centered Book an Appointment Button */}
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-        <Link 
-          to="/contact"
-          className="bg-accent hover:bg-accent/90 text-white px-8 py-3 rounded-lg transition-colors duration-200 inline-flex items-center gap-2 text-lg font-medium"
+        <button
+          onClick={() => setIsOpen(true)}
+          className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-8 py-3 rounded-lg transition-colors duration-200 inline-flex items-center gap-2 text-lg font-medium"
         >
-          Book a Free Consultation
-        </Link>
+          Book an Appointment
+        </button>
       </div>
 
       <BookingDialog 
