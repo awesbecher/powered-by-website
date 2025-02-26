@@ -32,10 +32,15 @@ export const ActionButtons = ({
           </DialogTrigger>
           <DialogContent className="bg-[#222222] text-white border-gray-800 sm:max-w-md">
             <DialogHeader>
-              <DialogTitle>Connect with an AI Agent</DialogTitle>
+              <DialogTitle>Start Voice Chat with Our Insurance Team</DialogTitle>
             </DialogHeader>
             <div className="flex flex-col space-y-4 pt-4">
-              <p className="text-gray-300">Click below to start speaking with our AI agent about properties you're interested in.</p>
+              <p className="text-gray-300">
+                You'll be able to have a voice conversation with our Insurance Team directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately.
+              </p>
+              <p className="text-gray-300 text-sm">
+                By clicking "Start Voice Chat", you consent to having a voice conversation with Planter's Insurance. You can end the conversation at any time.
+              </p>
               <div className="flex gap-2">
                 <Button 
                   variant="outline"
@@ -49,7 +54,7 @@ export const ActionButtons = ({
                   onClick={handleCall}
                   disabled={isLoading}
                 >
-                  {isLoading ? "Connecting..." : "Start Call"}
+                  {isLoading ? "Connecting..." : "Start Voice Chat"}
                 </Button>
               </div>
             </div>
