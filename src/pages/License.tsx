@@ -69,9 +69,16 @@ const License = () => {
 
       <Dialog open={isCallActive} onOpenChange={(open) => !open && handleEndCall()}>
         <DialogContent className="bg-[#222222] text-white border-gray-800">
-          <DialogHeader>
-            <DialogTitle>Your call with Christina Bell is in progress</DialogTitle>
-          </DialogHeader>
+          <div className="flex items-start space-x-4 mb-4">
+            <img
+              src="/lovable-uploads/0d1c3dc0-7aad-4ddd-8b25-1edf45232f70.png"
+              alt="Christina Bell"
+              className="w-20 h-20 rounded-lg object-cover"
+            />
+            <DialogHeader className="flex-1">
+              <DialogTitle>Your call with Christina Bell is in progress</DialogTitle>
+            </DialogHeader>
+          </div>
           <div className="flex flex-col space-y-4 pt-4">
             <p className="text-gray-300">
               You are currently in a voice conversation with Christina Bell from RightBloom's sales team. You can end the call at any time by clicking the button below.
