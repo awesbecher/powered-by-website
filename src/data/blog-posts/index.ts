@@ -7,9 +7,11 @@ import { customerServiceEvolution } from "./customer-service-evolution";
 import { aiFearsSMB } from "./ai-fears-smb";
 import { openaiAnthropicSmb } from "./openai-anthropic-smb";
 import { understandingAiAgents } from "./understanding-ai-agents";
+import { aiAgentsEvaluation } from "./ai-agents-evaluation";
 import { BlogPost } from "../../types/blog";
 
 export const samplePosts: BlogPost[] = [
+  aiAgentsEvaluation,
   understandingAiAgents,
   openaiAnthropicSmb,
   voiceAiRetail,
