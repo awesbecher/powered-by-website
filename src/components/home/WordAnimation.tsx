@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 export const WordAnimation = () => {
   const [currentWord, setCurrentWord] = useState("Voice");
-  const words = ["Voice", "Phone", "Text", "Email", "Slack", "Chat", "Docs", "Survey"];
+  const words = ["Voice", "Phone", "Text", "Email", "Slack", "Chat", "Docs"];
   const [wordIndex, setWordIndex] = useState(0);
 
   useEffect(() => {
@@ -33,3 +33,4 @@ export const WordAnimation = () => {
     </span>
   );
 };
+
