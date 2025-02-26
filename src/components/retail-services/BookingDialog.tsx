@@ -1,27 +1,22 @@
 
 import { Phone } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 interface BookingDialogProps {
   isOpen: boolean;
   setIsOpen: (open: boolean) => void;
-  phoneNumber: string;
-  handlePhoneNumberChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleCall: () => Promise<void>;
+  handleEndCall: () => Promise<void>;
   isLoading: boolean;
-  formatPhoneNumber: (value: string) => string;
 }
 
 const BookingDialog = ({
   isOpen,
   setIsOpen,
-  phoneNumber,
-  handlePhoneNumberChange,
   handleCall,
-  isLoading,
-  formatPhoneNumber
+  handleEndCall,
+  isLoading
 }: BookingDialogProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -33,37 +28,52 @@ const BookingDialog = ({
       </DialogTrigger>
       <DialogContent className="bg-[#222222] text-white border-gray-800">
         <DialogHeader>
-          <DialogTitle>Enter your phone number to speak with an agent</DialogTitle>
+          <DialogTitle>
+            {isLoading ? "Your Chat with Flagship Barbers is in progress" : "Start Voice Chat with Our Team"}
+          </DialogTitle>
         </DialogHeader>
         <div className="flex flex-col space-y-4 pt-4">
-          <div className="flex items-center space-x-2">
-            <div className="flex-shrink-0 bg-gray-800 p-2 rounded border border-gray-700">
-              +1
-            </div>
-            <Input 
-              type="tel" 
-              placeholder="(555) 123-4567"
-              value={formatPhoneNumber(phoneNumber)}
-              onChange={handlePhoneNumberChange}
-              className="flex-1 text-lg bg-gray-800 border-gray-700 text-white placeholder:text-gray-400"
-            />
-          </div>
-          <div className="flex gap-2">
-            <Button 
-              variant="outline"
-              onClick={() => setIsOpen(false)}
-              className="w-full border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white"
-            >
-              Cancel
-            </Button>
-            <Button 
-              className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
-              onClick={handleCall}
-              disabled={isLoading}
-            >
-              {isLoading ? "Initiating call..." : "Call Me"}
-            </Button>
-          </div>
+          {!isLoading ? (
+            <>
+              <p className="text-gray-300">
+                You'll be able to have a voice conversation with our team directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately.
+              </p>
+              <p className="text-gray-300 text-sm">
+                By clicking "Start Voice Chat", you consent to having a voice conversation with Flagship Barbers. You can end the conversation at any time.
+              </p>
+              <div className="flex gap-2">
+                <Button 
+                  variant="outline"
+                  onClick={() => setIsOpen(false)}
+                  className="w-full border-gray-700 text-white hover:bg-gray-800 hover:text-white"
+                >
+                  End Call
+                </Button>
+                <Button 
+                  className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
+                  onClick={handleCall}
+                  disabled={isLoading}
+                >
+                  Start Voice Chat
+                </Button>
+              </div>
+            </>
+          ) : (
+            <>
+              <p className="text-gray-300">
+                Your voice chat is currently in progress. You can end the call at any time.
+              </p>
+              <div className="flex justify-center">
+                <Button 
+                  variant="outline"
+                  onClick={handleEndCall}
+                  className="w-full border-gray-700 text-white hover:bg-gray-800 hover:text-white"
+                >
+                  End Call
+                </Button>
+              </div>
+            </>
+          )}
         </div>
       </DialogContent>
     </Dialog>

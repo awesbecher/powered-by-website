@@ -1,59 +1,51 @@
 
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { initiateVogentCall } from "@/services/vogentService";
+import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 import HeroSection from "@/components/retail-services/HeroSection";
 import ServicesGrid from "@/components/retail-services/ServicesGrid";
 import BookingDialog from "@/components/retail-services/BookingDialog";
+import { useNavigate } from "react-router-dom";
 
 const RetailServices = () => {
-  const [phoneNumber, setPhoneNumber] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
-
-  const formatPhoneNumber = (value: string) => {
-    if (!value) return "";
-    const phoneNumber = value.replace(/\D/g, '');
-    if (phoneNumber.length <= 3) return phoneNumber;
-    if (phoneNumber.length <= 6) return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
-    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
-  };
-
-  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/\D/g, '');
-    if (value.length <= 10) {
-      setPhoneNumber(value);
-    }
-  };
+  const navigate = useNavigate();
 
   const handleCall = async () => {
-    if (!phoneNumber) {
-      toast({
-        variant: "destructive",
-        title: "Please enter your phone number",
-        description: "A phone number is required to connect with an agent."
-      });
-      return;
-    }
-
     setIsLoading(true);
     try {
-      await initiateVogentCall(phoneNumber, 'barbershop');
-      setIsOpen(false);
-      setPhoneNumber("");
+      await initiateVapiCall();
       toast({
-        title: "Call initiated",
-        description: "An agent will call you shortly."
+        title: "Voice chat initiated",
+        description: "You are now connected with our agent."
       });
     } catch (error) {
       toast({
         variant: "destructive",
-        title: "Failed to initiate call",
-        description: "Please try again later."
+        title: "Failed to start voice chat",
+        description: error instanceof Error ? error.message : "Please try again later."
       });
-    } finally {
       setIsLoading(false);
+      setIsOpen(false);
+    }
+  };
+
+  const handleEndCall = async () => {
+    try {
+      await stopVapiCall();
+      setIsOpen(false);
+      setIsLoading(false);
+      // Redirect to demo page
+      navigate('/demo');
+    } catch (error) {
+      console.error('Error ending call:', error);
+      toast({
+        variant: "destructive",
+        title: "Failed to end voice chat",
+        description: "Please try again."
+      });
     }
   };
 
@@ -73,11 +65,9 @@ const RetailServices = () => {
       <BookingDialog 
         isOpen={isOpen}
         setIsOpen={setIsOpen}
-        phoneNumber={phoneNumber}
-        handlePhoneNumberChange={handlePhoneNumberChange}
         handleCall={handleCall}
+        handleEndCall={handleEndCall}
         isLoading={isLoading}
-        formatPhoneNumber={formatPhoneNumber}
       />
 
       <ServicesGrid />
