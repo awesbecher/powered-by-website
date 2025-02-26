@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Clock, User, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -46,7 +45,7 @@ export const BlogPostCard = ({ post, featured = false }: BlogPostCardProps) => {
         "bg-white/5 rounded-lg overflow-hidden group-hover:bg-white/10 transition-all duration-300 transform group-hover:-translate-y-1 hover:shadow-lg",
         featured ? "col-span-full lg:col-span-2" : ""
       )}>
-        <div className="relative h-[170px]">
+        <div className="relative h-[250px]">
           {!isOnBlogPage && (
             <div className="absolute inset-0">
               <img 
@@ -58,16 +57,16 @@ export const BlogPostCard = ({ post, featured = false }: BlogPostCardProps) => {
             </div>
           )}
           <div className={cn(
-            "relative p-4 flex flex-col h-full",
+            "relative p-6 flex flex-col h-full",
             isOnBlogPage ? "bg-[#1a0b2e]" : ""
           )}>
             <h2 className={cn(
-              "font-bold text-white !important mb-2 group-hover:text-[#9b87f5] transition-colors text-shadow",
+              "font-bold text-white !important mb-4 group-hover:text-[#9b87f5] transition-colors text-shadow",
               featured ? "text-2xl" : "text-xl"
             )}>
               {post.title}
             </h2>
-            <p className="text-white text-sm leading-relaxed mb-2 line-clamp-2 text-shadow">
+            <p className="text-white text-sm leading-relaxed mb-4 line-clamp-3 text-shadow">
               {post.excerpt}
             </p>
             <div className="flex items-center justify-between text-xs text-white mt-auto">
@@ -94,4 +93,3 @@ export const BlogPostCard = ({ post, featured = false }: BlogPostCardProps) => {
     </Link>
   );
 };
-
