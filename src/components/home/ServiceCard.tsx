@@ -23,7 +23,7 @@ export const ServiceCard = ({ title, description, link, logo, category }: Servic
       </div>
 
       <div className="relative z-10 text-center flex-1 flex flex-col justify-center">
-        <h3 className="text-xl font-semibold tracking-tight text-white mb-1 whitespace-nowrap">
+        <h3 className="text-xl font-semibold tracking-tight text-white mb-1 whitespace-nowrap border-b-2 border-[#9b87f5] inline-block mx-auto pb-1">
           {title}
         </h3>
         <p className="text-gray-400 mb-3 text-sm font-bold">{description}</p>
