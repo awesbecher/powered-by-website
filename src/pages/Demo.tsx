@@ -1,3 +1,4 @@
+
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { ServiceCard } from "@/components/home/ServiceCard";
 import { services, additionalServices } from "@/data/services";
