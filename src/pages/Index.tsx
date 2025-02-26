@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -112,18 +113,18 @@ const Index = () => {
         <DialogContent className="bg-[#222222] text-white border-gray-800">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold text-white mb-2">
-              {isCallActive ? "Voice Chat in Progress" : "Start Voice Chat with AI Agent"}
+              {isCallActive ? "Voice Chat in Progress" : "Start Voice Chat with Michael on the Powered_by Solutions Design Team"}
             </DialogTitle>
             <DialogDescription className="text-gray-300">
               {isCallActive 
                 ? "You are currently in a voice conversation with our AI Agent. You can continue browsing the site while keeping this dialog open."
-                : "You'll be able to have a voice conversation with our AI Agent directly through your browser. Please ensure your microphone is enabled."}
+                : "You'll be able to have a voice conversation with Michael directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately."}
             </DialogDescription>
           </DialogHeader>
           <div className="flex flex-col space-y-4 pt-4">
             {!isCallActive && (
               <p className="text-sm text-gray-300">
-                By clicking "Start Voice Chat", you consent to having a voice conversation with our AI Agent. You can end the conversation at any time.
+                By clicking "Start Voice Chat", you consent to having a voice conversation with Powered_by's Design Team. You can end the conversation at any time.
               </p>
             )}
             <div className="flex gap-2">
