@@ -11,8 +11,8 @@ import { aiAgentsEvaluation } from "./ai-agents-evaluation";
 import { BlogPost } from "../../types/blog";
 
 export const samplePosts: BlogPost[] = [
-  aiAgentsEvaluation,
   understandingAiAgents,
+  aiAgentsEvaluation,
   openaiAnthropicSmb,
   voiceAiRetail,
   saasAutomation,
