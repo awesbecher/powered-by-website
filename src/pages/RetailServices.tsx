@@ -68,7 +68,7 @@ const RetailServices = () => {
         />
       </div>
 
-      <HeroSection onBookClick={() => setIsOpen(true)} />
+      <HeroSection />
 
       <BookingDialog 
         isOpen={isOpen}
