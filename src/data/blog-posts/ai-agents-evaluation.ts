@@ -1,4 +1,3 @@
-
 import { BlogPost } from "../../types/blog";
 
 export const aiAgentsEvaluation: BlogPost = {
@@ -15,7 +14,7 @@ export const aiAgentsEvaluation: BlogPost = {
 
     <p>Our mission here at <span class="font-bold text-[#9b87f5]">Power_by</span> is to help you make an informed decision on which path is best for you, whether or not we have the opportunity to partner with you. In this guide, we'll examine both options in detail, highlighting the tradeoffs in cost and deployment.</p>
 
-    <h2 class="text-5xl font-bold text-white mb-6">Buying an AI Vendor Tool</h2>
+    <h2 class="text-5xl font-bold text-white mb-6 pb-2 border-b-4 border-[#9b87f5]">Buying an AI Vendor Tool</h2>
     <p>The most obvious benefit of purchasing a vendor tool is convenience. Off-the-shelf solutions let you "plug and play," aiming for immediate results with minimal in-house setup. Small businesses that lack extensive IT and engineering resources often find these tools appealing because they promise a quick start.</p>
     
     <p>Buying an existing AI agent solution typically requires a lower initial investment than building your own from scratch. You pay for a subscription or license fee, and you're set to begin. For small businesses on tight budgets, this can be a big draw.</p>
@@ -29,7 +28,7 @@ export const aiAgentsEvaluation: BlogPost = {
 
     <p>For small businesses, a vendor tool might suffice, especially for simpler tasks. But if your AI agent needs are unique or mission-critical, a one-size-fits-all solution may leave you wanting more.</p>
 
-    <h2 class="text-5xl font-bold text-white mb-6">Building In-House</h2>
+    <h2 class="text-5xl font-bold text-white mb-6 pb-2 border-b-4 border-[#9b87f5]">Building In-House</h2>
     <p>Building in-house AI agents can yield significantly better outcomes. By developing internally, you have ultimate control over every detail. Your AI can be trained to reflect your specific processes, workflows, and brand values. That level of personalization can lead to better results over time, especially if your business model has unique requirements.</p>
 
     <p>Equally, in building your own AI system, you own the underlying intellectual property. This can be a strategic advantage if your agent solution becomes a critical part of your business, or even a revenue-generating asset in its own right.</p>
@@ -46,7 +45,7 @@ export const aiAgentsEvaluation: BlogPost = {
     <h2>A Third Option: Partnering with a Specialized Agency</h2>
     <p>Here's the truth: Small businesses often need a customized AI solution without sinking large sums into in-house development or relying on rigid vendor tools. That's where partnering with a specialized agency like Powered_by offers a balanced alternative.</p>
 
-    <h2 class="text-5xl font-bold text-white mb-6">Why Partner with Powered_by?</h2>
+    <h2 class="text-5xl font-bold text-white mb-6 pb-2 border-b-4 border-[#9b87f5]">Why Partner with Powered_by?</h2>
     <h4>Tailored Design Without the Full Burden</h4>
     <p>We take the time to understand your processes, challenges, and goals. Then we design AI agents that operate like well-trained, knowledgeable team members—minus the overhead of building everything internally.</p>
 
@@ -62,7 +61,7 @@ export const aiAgentsEvaluation: BlogPost = {
     <h4>Industry-Relevant Expertise</h4>
     <p>AI agent technology moves quickly. Our team stays on top of the latest advancements, ensuring you're leveraging leading-edge solutions without bearing the cost of training an internal team.</p>
 
-    <h2 class="text-5xl font-bold text-white mb-6">Balancing Cost, Control, and Growth</h2>
+    <h2 class="text-5xl font-bold text-white mb-6 pb-2 border-b-4 border-[#9b87f5]">Balancing Cost, Control, and Growth</h2>
     <p>Ultimately, the decision to buy, build, or partner comes down to how you balance these factors:</p>
     <ul>
       <li><strong>Cost:</strong> Are you prepared for ongoing subscription fees? Do you have the budget for in-house development?</li>
