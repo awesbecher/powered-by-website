@@ -37,8 +37,15 @@ const Index = () => {
     setIsSubmitting(true);
     try {
       const vapi = getVapiInstance();
-      await vapi.start("c7acc482-bee2-40a3-85d1-a192ce2a6685"); // Using the new assistant ID specifically for this page
+      await vapi.start("c7acc482-bee2-40a3-85d1-a192ce2a6685");
       setIsCallActive(true);
+      
+      vapi.on("call-end", () => {
+        setIsCallActive(false);
+        setShowDialog(false);
+        navigate('/');
+      });
+
       toast({
         title: "Voice Chat Started",
         description: "You can now speak with our AI Agent through your browser.",
@@ -57,6 +64,8 @@ const Index = () => {
   const handleEndCall = () => {
     stopVapiCall();
     setIsCallActive(false);
+    setShowDialog(false);
+    navigate('/');
     toast({
       title: "Call Ended",
       description: "Your conversation with the AI Agent has ended.",
