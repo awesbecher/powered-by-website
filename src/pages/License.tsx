@@ -18,7 +18,6 @@ const License = () => {
     try {
       await stopVapiCall();
       setIsCallActive(false);
-      // Redirect to demo page
       navigate('/demo');
     } catch (error) {
       toast({
@@ -37,7 +36,7 @@ const License = () => {
       setIsCallDialogOpen(false);
       toast({
         title: "Call initiated",
-        description: "You are now connected to a RightBloom sales representative."
+        description: "You are now connected with Christina Bell."
       });
     } catch (error) {
       toast({
@@ -52,7 +51,6 @@ const License = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
-      {/* Back Button */}
       <button
         onClick={() => navigate(-1)}
         className="absolute top-8 left-8 z-20 text-white hover:text-purple-400 transition-colors flex items-center gap-2"
@@ -61,7 +59,6 @@ const License = () => {
         <span className="font-medium">Back</span>
       </button>
 
-      {/* Logo */}
       <div className="absolute top-24 right-8 z-20">
         <img 
           src="/lovable-uploads/8505af38-6a90-44dc-b6bc-554d254475ea.png"
@@ -73,11 +70,11 @@ const License = () => {
       <Dialog open={isCallActive} onOpenChange={(open) => !open && handleEndCall()}>
         <DialogContent className="bg-[#222222] text-white border-gray-800">
           <DialogHeader>
-            <DialogTitle>Your call with RightBloom is in progress</DialogTitle>
+            <DialogTitle>Your call with Christina Bell is in progress</DialogTitle>
           </DialogHeader>
           <div className="flex flex-col space-y-4 pt-4">
             <p className="text-gray-300">
-              You are currently in a voice conversation with a RightBloom sales representative. You can end the call at any time by clicking the button below.
+              You are currently in a voice conversation with Christina Bell from RightBloom's sales team. You can end the call at any time by clicking the button below.
             </p>
             <Button 
               onClick={handleEndCall}
@@ -89,9 +86,45 @@ const License = () => {
         </DialogContent>
       </Dialog>
 
-      {/* Hero Section */}
+      <Dialog open={isCallDialogOpen} onOpenChange={setIsCallDialogOpen}>
+        <DialogTrigger asChild>
+          <button className="bg-purple-600 hover:bg-purple-700 text-white px-10 py-2 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2 text-lg w-[280px] whitespace-nowrap">
+            Speak to a Sales Rep
+            <Phone className="w-5 h-5" />
+          </button>
+        </DialogTrigger>
+        <DialogContent className="bg-[#222222] text-white border-gray-800 sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Start Voice Chat with Christina Bell on RightBloom's Sales Team</DialogTitle>
+          </DialogHeader>
+          <div className="flex flex-col space-y-4 pt-4">
+            <p className="text-gray-300">
+              You'll be able to have a voice conversation with Christina directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately.
+            </p>
+            <p className="text-gray-300 text-sm">
+              By clicking "Start Voice Chat", you consent to having a voice conversation with RightBloom's sales team. You can end the conversation at any time.
+            </p>
+            <div className="flex gap-2">
+              <Button 
+                variant="outline"
+                onClick={() => setIsCallDialogOpen(false)}
+                className="w-full border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white"
+              >
+                Cancel
+              </Button>
+              <Button 
+                className="w-full bg-purple-600 hover:bg-purple-700 text-white transition-colors"
+                onClick={handleCall}
+                disabled={isLoading}
+              >
+                {isLoading ? "Initiating call..." : "Start Voice Chat"}
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       <div className="relative min-h-[100vh]">
-        {/* Hero Text */}
         <div className="absolute inset-0 flex flex-col items-center pt-40">
           <h1 className="text-4xl md:text-5xl font-bold text-center max-w-4xl px-4 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400">
             <span>Transform Your Sales Outreach & Customer Experience with{' '}</span>
@@ -101,7 +134,6 @@ const License = () => {
           </h1>
         </div>
 
-        {/* Content */}
         <div className="relative z-10 container mx-auto px-4">
           <div className="min-h-[45vh]"></div>
           <div className="flex flex-col items-center justify-center gap-12 pb-20">
@@ -189,7 +221,6 @@ const License = () => {
               </Dialog>
             </div>
 
-            {/* Feature Cards */}
             <div className="grid grid-cols-2 gap-4 max-w-2xl">
               <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20">
                 <Bot className="w-8 h-8 text-purple-400 mb-4" />
