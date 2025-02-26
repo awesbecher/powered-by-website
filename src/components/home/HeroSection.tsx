@@ -1,6 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { NavigationButtons } from "@/components/home/NavigationButtons";
+import { WordAnimation } from "./WordAnimation";
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -15,7 +16,7 @@ export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
             className={`text-4xl font-bold tracking-tight text-white sm:text-6xl mb-4 transition-all duration-1000 ease-out transform
               ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
           >
-            Custom <span className="font-extrabold text-purple-400">Voice</span> AI for SMBs
+            Custom <WordAnimation /> AI for SMBs
           </h1>
           
           <p 
