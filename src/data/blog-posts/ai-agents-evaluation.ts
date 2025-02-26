@@ -1,4 +1,3 @@
-
 import { BlogPost } from "../../types/blog";
 
 export const aiAgentsEvaluation: BlogPost = {
@@ -65,10 +64,10 @@ export const aiAgentsEvaluation: BlogPost = {
     <h2 class="text-5xl font-bold text-white mb-6 pb-2 border-b-4 border-[#9b87f5]">Balancing Cost, Control, and Growth</h2>
     <p>Ultimately, the decision to buy, build, or partner comes down to how you balance these factors:</p>
     <ul>
-      <li><strong>Cost:</strong> Are you prepared for ongoing subscription fees? Do you have the budget for in-house development?</li>
-      <li><strong>Control:</strong> How important is it to own the entire system? Does a partially customized solution meet your requirements?</li>
-      <li><strong>Time-to-Deployment:</strong> Can you wait for a custom in-house build, or do you need immediate results?</li>
-      <li><strong>Long-Term Growth:</strong> Will your chosen solution scale as your business expands?</li>
+      <li class="ml-8"><strong>Cost:</strong> Are you prepared for ongoing subscription fees? Do you have the budget for in-house development?</li>
+      <li class="ml-8"><strong>Control:</strong> How important is it to own the entire system? Does a partially customized solution meet your requirements?</li>
+      <li class="ml-8"><strong>Time-to-Deployment:</strong> Can you wait for a custom in-house build, or do you need immediate results?</li>
+      <li class="ml-8"><strong>Long-Term Growth:</strong> Will your chosen solution scale as your business expands?</li>
     </ul>
 
     <p>For many small businesses, a "buy" or "build" decision often ends up being neither ideal nor fully cost-effective. A flexible, tailored approach—partnering with an agency that understands your specific needs—offers you the best shot at a solution that delivers immediate results, long-term scalability, and measurable ROI.</p>
