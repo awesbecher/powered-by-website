@@ -46,7 +46,7 @@ export const aiAgentsEvaluation: BlogPost = {
     <h2>A Third Option: Partnering with a Specialized Agency</h2>
     <p>Here's the truth: Small businesses often need a customized AI solution without sinking large sums into in-house development or relying on rigid vendor tools. That's where partnering with a specialized agency like Powered_by offers a balanced alternative.</p>
 
-    <h2 class="text-5xl font-bold text-white mb-6 pb-2 border-b-4 border-[#9b87f5]">Why Partner with Powered_by?</h2>
+    <h2 class="text-5xl font-bold text-white mb-6 pb-2 border-b-4 border-[#9b87f5]">Why Partner with <span class="text-[#9b87f5]">Powered_by</span>?</h2>
     <h4>Tailored Design Without the Full Burden</h4>
     <p>We take the time to understand your processes, challenges, and goals. Then we design AI agents that operate like well-trained, knowledgeable team members—minus the overhead of building everything internally.</p>
 
