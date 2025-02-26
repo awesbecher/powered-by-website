@@ -1,3 +1,4 @@
+
 import { BlogPost } from "../../types/blog";
 
 export const humanLikeAi: BlogPost = {
@@ -32,12 +33,5 @@ export const humanLikeAi: BlogPost = {
     <br/>
     <hr class="border-t border-purple-400 w-full my-4"/>
     <p>AI agents may not replace the warmth of a friendly conversation over coffee just yet, but they're getting ever closer to replicating key elements of human interaction. By embracing these capabilities, SMBs can scale customer support without sacrificing the personal connections their brands were built upon.</p>
-
-    <br/>
-    <div class="flex justify-center">
-      <a href="/contact" class="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold text-white bg-purple-500 rounded-lg hover:bg-purple-600 transition-colors duration-200">
-        Experience human-like AI today
-      </a>
-    </div>
   `
 };

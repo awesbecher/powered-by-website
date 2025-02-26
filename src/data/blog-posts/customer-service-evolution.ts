@@ -1,3 +1,4 @@
+
 import { BlogPost } from "../../types/blog";
 
 export const customerServiceEvolution: BlogPost = {
@@ -32,12 +33,5 @@ export const customerServiceEvolution: BlogPost = {
     <br/>
     <hr class="border-t border-purple-400 w-full my-4"/>
     <p>From old-school phone lines to AI-driven chat, the evolution of customer service has been guided by one goal: to serve people better. By embracing the newest technological tools, SMBs can carry forward their traditional values while propelling themselves into a future where responsiveness and empathy go hand in hand.</p>
-
-    <br/>
-    <div class="flex justify-center">
-      <a href="/contact" class="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold text-white bg-purple-500 rounded-lg hover:bg-purple-600 transition-colors duration-200">
-        Transform your customer service today
-      </a>
-    </div>
   `
 };
