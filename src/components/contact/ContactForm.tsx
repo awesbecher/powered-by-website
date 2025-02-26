@@ -43,6 +43,21 @@ export const ContactForm = () => {
     return personalEmailDomains.includes(domain?.toLowerCase());
   };
 
+  const isValidEmail = (email: string) => {
+    // RFC 5322 compliant email regex
+    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!emailRegex.test(email)) {
+      return false;
+    }
+
+    // Check for common mistakes
+    if (email.includes('..')) return false; // Double dots
+    if (email.startsWith('.') || email.endsWith('.')) return false; // Leading/trailing dots
+    if (email.split('@').length !== 2) return false; // Multiple @ symbols
+    
+    return true;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -50,6 +65,15 @@ export const ContactForm = () => {
       toast({
         title: "Verification required",
         description: "Please complete the reCAPTCHA verification before sending.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (!isValidEmail(formData.email)) {
+      toast({
+        title: "Invalid email format",
+        description: "Please enter a valid email address.",
         variant: "destructive"
       });
       return;
