@@ -37,7 +37,7 @@ export const BlogSection = () => {
   };
 
   const handlePrev = () => {
-    const newIndex = Math.max(activeIndex - 0, 0);
+    const newIndex = Math.max(activeIndex - 1, 0);
     setActiveIndex(newIndex);
     scrollToIndex(newIndex);
   };
@@ -68,45 +68,46 @@ export const BlogSection = () => {
           ))}
         </div>
 
-        {/* Navigation Arrows */}
-        <button 
-          onClick={handlePrev}
-          className={cn(
-            "absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 p-2 rounded-full transition-all",
-            activeIndex === 0 ? "opacity-50 cursor-not-allowed" : "opacity-100"
-          )}
-          disabled={activeIndex === 0}
-        >
-          <ChevronLeft className="w-6 h-6 text-white" />
-        </button>
-        
-        <button 
-          onClick={handleNext}
-          className={cn(
-            "absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 p-2 rounded-full transition-all",
-            activeIndex === samplePosts.length - 1 ? "opacity-50 cursor-not-allowed" : "opacity-100"
-          )}
-          disabled={activeIndex === samplePosts.length - 1}
-        >
-          <ChevronRight className="w-6 h-6 text-white" />
-        </button>
+        {/* Navigation Controls */}
+        <div className="flex items-center justify-center gap-4 mt-6">
+          <button 
+            onClick={handlePrev}
+            className={cn(
+              "p-2 rounded-full transition-all bg-white/10 hover:bg-white/20",
+              activeIndex === 0 ? "opacity-50 cursor-not-allowed" : "opacity-100"
+            )}
+            disabled={activeIndex === 0}
+          >
+            <ChevronLeft className="w-5 h-5 text-white" />
+          </button>
 
-        {/* Pagination Dots */}
-        <div className="flex justify-center gap-2 mt-6">
-          {samplePosts.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => {
-                setActiveIndex(index);
-                scrollToIndex(index);
-              }}
-              className={cn(
-                "w-2 h-2 rounded-full transition-all",
-                index === activeIndex ? "bg-white scale-125" : "bg-white/50 hover:bg-white/70"
-              )}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
+          <div className="flex justify-center gap-2">
+            {samplePosts.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setActiveIndex(index);
+                  scrollToIndex(index);
+                }}
+                className={cn(
+                  "w-2 h-2 rounded-full transition-all",
+                  index === activeIndex ? "bg-white scale-125" : "bg-white/50 hover:bg-white/70"
+                )}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+
+          <button 
+            onClick={handleNext}
+            className={cn(
+              "p-2 rounded-full transition-all bg-white/10 hover:bg-white/20",
+              activeIndex === samplePosts.length - 1 ? "opacity-50 cursor-not-allowed" : "opacity-100"
+            )}
+            disabled={activeIndex === samplePosts.length - 1}
+          >
+            <ChevronRight className="w-5 h-5 text-white" />
+          </button>
         </div>
       </div>
     </section>
