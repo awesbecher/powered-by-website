@@ -28,7 +28,7 @@ const HeroSection = ({ onBookClick }: HeroSectionProps) => {
           </p>
           <Button 
             onClick={onBookClick}
-            className="bg-accent hover:bg-accent-dark text-white px-8 py-6 text-lg font-semibold"
+            className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-8 py-6 text-lg font-semibold rounded-lg transition-transform duration-200 hover:scale-105"
           >
             Book an Appointment
           </Button>
