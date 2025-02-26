@@ -69,7 +69,7 @@ export const aiAgentsEvaluation: BlogPost = {
       <li><strong>Long-Term Growth:</strong> Will your chosen solution scale as your business expands?</li>
     </ol>
 
-    <p class="mb-0">For many small businesses, a "buy" or "build" decision often ends up being neither ideal nor fully cost-effective. A flexible, tailored approach—partnering with an agency that understands your specific needs—offers you the best shot at a solution that delivers immediate results, long-term scalability, and measurable ROI.</p>
+    <p class="mt-8">For many small businesses, a "buy" or "build" decision often ends up being neither ideal nor fully cost-effective. A flexible, tailored approach—partnering with an agency that understands your specific needs—offers you the best shot at a solution that delivers immediate results, long-term scalability, and measurable ROI.</p>
 
     <p class="mt-0">When it comes to AI agents, there's no universal approach that fits every small business. Buying an off-the-shelf tool might be fast but could leave you stuck with limited customization. Building in-house provides maximum control but requires significant resources and technical know-how.</p>
 
