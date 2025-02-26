@@ -1,4 +1,3 @@
-
 import { BlogPost } from "../../types/blog";
 
 export const aiAgentsEvaluation: BlogPost = {
@@ -27,7 +26,7 @@ export const aiAgentsEvaluation: BlogPost = {
       <li class="ml-16">→ <strong>Lack of Ownership:</strong> When using a vendor tool, you're dependent on its roadmap and updates. If you want specific features, you may have little to no influence over the product's development.</li>
     </ul>
 
-    <p>For small businesses, a vendor tool might suffice, especially for simpler tasks. But if your AI agent needs are unique or mission-critical, a one-size-fits-all solution may leave you wanting more.</p>
+    <p class="mt-4">For small businesses, a vendor tool might suffice, especially for simpler tasks. But if your AI agent needs are unique or mission-critical, a one-size-fits-all solution may leave you wanting more.</p>
 
     <h2 class="text-5xl font-bold text-white mb-6 pb-2 border-b-4 border-[#9b87f5]">Building In-House</h2>
     <p>Building in-house AI agents can yield significantly better outcomes. By developing internally, you have ultimate control over every detail. Your AI can be trained to reflect your specific processes, workflows, and brand values. That level of personalization can lead to better results over time, especially if your business model has unique requirements.</p>
