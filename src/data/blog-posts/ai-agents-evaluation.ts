@@ -1,3 +1,4 @@
+
 import { BlogPost } from "../../types/blog";
 
 export const aiAgentsEvaluation: BlogPost = {
@@ -19,7 +20,7 @@ export const aiAgentsEvaluation: BlogPost = {
     
     <p>Buying an existing AI agent solution typically requires a lower initial investment than building your own from scratch. You pay for a subscription or license fee, and you're set to begin. For small businesses on tight budgets, this can be a big draw.</p>
 
-    <h3>Potential Drawbacks</h3>
+    <h3 class="text-2xl font-bold text-[#9b87f5]">Potential Drawbacks</h3>
     <ul>
       <li><strong>Limited Customization:</strong> Vendor solutions are designed for the average customer. This often means that advanced features or deeper integrations could be either costly add-ons or simply unavailable.</li>
       <li><strong>Ongoing Subscription Fees:</strong> While the initial expense might be manageable, monthly or yearly subscription fees can add up over time.</li>
@@ -35,7 +36,7 @@ export const aiAgentsEvaluation: BlogPost = {
 
     <p>However, building custom AI agents demands considerable internal IT and engineering resources, specialized knowledge, and long development cycles. For small businesses who may not have the budget to upskill their current IT teams or hire new AI engineers, this makes implementing new AI solutions out-of-reach.</p>
 
-    <h3>Potential Drawbacks</h3>
+    <h3 class="text-2xl font-bold text-[#9b87f5]">Potential Drawbacks</h3>
     <ul>
       <li><strong>Higher Upfront Investment:</strong> Designing, developing, testing, and deploying an AI agent from scratch requires specialized skills, time, and capital—resources that many small businesses don't have in abundance.</li>
       <li><strong>Maintenance Complexity:</strong> AI systems need regular monitoring, updates, and retraining to stay effective. Without a dedicated AI or data science team, this maintenance can become overwhelming.</li>
