@@ -34,7 +34,7 @@ const Demo = () => {
                 ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
               See our <span className="text-[#9b87f5]">AI Agents</span> in Action!
             </h1>
-            <p className={`mt-4 text-lg leading-relaxed text-gray-300 max-w-3xl mx-auto transition-all duration-1000 delay-300 ease-out transform
+            <p className={`mt-4 text-lg leading-relaxed text-gray-300 max-w-3xl mx-auto font-bold transition-all duration-1000 delay-300 ease-out transform
                 ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
               Our agents can automate & improve even your most complex customer-facing or internal tasks.<br />
               Experience our pre-built voice agents by clicking any one of the below.<br />
