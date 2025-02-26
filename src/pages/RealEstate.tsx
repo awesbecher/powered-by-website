@@ -7,6 +7,7 @@ import { ActionButtons } from "@/components/real-estate/ActionButtons";
 import { ServicesSection } from "@/components/real-estate/ServicesSection";
 import { FeaturedProperties } from "@/components/real-estate/FeaturedProperties";
 import { ContactSection } from "@/components/real-estate/ContactSection";
+import { getVapiInstance } from "@/services/vapiService";
 
 const RealEstate = () => {
   const scrollToProperties = () => {
@@ -22,7 +23,8 @@ const RealEstate = () => {
   const handleCall = async () => {
     setIsLoading(true);
     try {
-      await initiateVapiCall();
+      const vapi = getVapiInstance();
+      await vapi.start("f8131f3d-58aa-4c81-a79e-1bf758803775"); // Use the specific Assistant ID for real estate
       setIsOpen(false);
       setIsScheduleOpen(false);
       toast({
