@@ -1,5 +1,6 @@
 
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 interface HeroSectionProps {
   onBookClick: () => void;
@@ -25,6 +26,12 @@ const HeroSection = ({ onBookClick }: HeroSectionProps) => {
           <p className="text-gray-200 max-w-2xl mx-auto text-lg mb-8">
             Flagship Barbers has been serving the Tacoma public for 25 years. We specialize in classic barbershop style and fades. Select which services you'd like and then click on Book an Appointment.
           </p>
+          <Button 
+            onClick={onBookClick}
+            className="bg-accent hover:bg-accent-dark text-white px-8 py-6 text-lg font-semibold"
+          >
+            Book an Appointment
+          </Button>
         </div>
       </div>
     </div>
