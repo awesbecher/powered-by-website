@@ -15,14 +15,14 @@ export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
             className={`text-4xl font-bold tracking-tight text-white sm:text-6xl mb-4 transition-all duration-1000 ease-out transform
               ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
           >
-            Why should those Silicon Valley <span className="font-extrabold text-purple-400">nerds</span> have all the fancy AI toys?
+            Custom <span className="font-extrabold text-purple-400">Voice</span> AI for SMBs
           </h1>
           
           <p 
             className={`mt-4 text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-tight font-bold transition-all duration-1000 delay-300 ease-out transform
               ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
           >
-            We're the world's first <Link to="/ai-agency" className="border-b-2 border-purple-400 hover:text-purple-400 transition-colors">AI agency</Link> delivering custom AI agent solutions to SMBs. Just like a web design firm, we build you bespoke AI agents quickly and cost effectively.
+            Why should those Silicon Valley <span className="font-extrabold text-purple-400">nerds</span> have all the fancy AI toys?
           </p>
 
           <div className={`mt-12 transition-all duration-1000 delay-500 ease-out transform
