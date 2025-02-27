@@ -8,13 +8,13 @@ interface AgentTypeProps {
 }
 
 const AgentType = ({ title, description, icon }: AgentTypeProps) => (
-  <div className="flex flex-col md:flex-row gap-8 py-8 border-t border-white/10">
-    <div className="md:w-1/3 flex items-start gap-3">
+  <div className="flex flex-col md:flex-row gap-4 py-4 border-t border-white/10">
+    <div className="md:w-1/3 flex items-start gap-3 justify-end">
       <div className="text-accent">{icon}</div>
-      <h3 className="text-2xl font-bold text-white">{title}</h3>
+      <h3 className="text-lg font-bold text-white">{title}</h3>
     </div>
     <div className="md:w-2/3">
-      <p className="text-gray-300 text-lg leading-relaxed">{description}</p>
+      <p className="text-gray-300 text-base leading-relaxed">{description}</p>
     </div>
   </div>
 );
@@ -50,7 +50,7 @@ export const AgentTypes = () => {
 
   return (
     <div className="container mx-auto px-4">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         {agentTypes.map((agent, index) => (
           <AgentType
             key={index}
