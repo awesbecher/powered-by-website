@@ -116,7 +116,7 @@ const Index = () => {
       </div>
 
       <div className="container mx-auto px-4 -mt-10 mb-8">
-        <SectionTitle title="Multi-Channel AI Agent Support:" />
+        <SectionTitle title="Deploy Multi-Channel Agents:" />
         <AgentTypes />
       </div>
 
