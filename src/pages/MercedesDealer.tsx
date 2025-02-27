@@ -15,6 +15,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const MercedesDealer = () => {
   const [showOffers, setShowOffers] = useState(false);
@@ -122,10 +123,16 @@ const MercedesDealer = () => {
         setShowCallDialog(open);
       }}>
         <DialogContent className="bg-[#222222] text-white border-gray-800 sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle>
-              {isCallActive ? "Call in Progress" : "Start Voice Chat with Dave Frankel at Mercedes of Tacoma"}
-            </DialogTitle>
+          <DialogHeader className="flex flex-row items-start">
+            <Avatar className="h-16 w-16 mr-4 border-2 border-[#9b87f5]">
+              <AvatarImage src="/lovable-uploads/f5d0a1ac-953b-4d29-8a63-83813f74efe2.png" alt="Dave Frankel" />
+              <AvatarFallback>DF</AvatarFallback>
+            </Avatar>
+            <div>
+              <DialogTitle>
+                {isCallActive ? "Call in Progress" : "Start Voice Chat with Dave Frankel at Mercedes of Tacoma"}
+              </DialogTitle>
+            </div>
           </DialogHeader>
           {isCallActive ? (
             <>
