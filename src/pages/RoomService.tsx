@@ -163,7 +163,9 @@ const RoomService = () => {
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>{isCallActive ? "Call in Progress" : "Enter your phone number"}</DialogTitle>
+            <DialogTitle>
+              {isCallActive ? "Call in Progress" : "Start Voice Chat with In-Room Dining Team"}
+            </DialogTitle>
           </DialogHeader>
           {isCallActive ? (
             <>
@@ -181,18 +183,26 @@ const RoomService = () => {
             </>
           ) : (
             <>
-              <div className="flex items-center space-x-2 pt-4">
-                <div className="flex-shrink-0 bg-gray-100 p-2 rounded">
-                  +1
+              <div className="space-y-4 pt-2">
+                <p className="text-sm text-gray-700">
+                  You'll be able to have a voice conversation with our staff directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately.
+                </p>
+                <p className="text-sm text-gray-700">
+                  By clicking "Start Voice Chat", you consent to having a voice conversation with Grandview. You can end the conversation at any time.
+                </p>
+                <div className="flex items-center space-x-2 pt-2">
+                  <div className="flex-shrink-0 bg-gray-100 p-2 rounded">
+                    +1
+                  </div>
+                  <Input
+                    type="tel"
+                    placeholder="(555) 123-4567"
+                    value={formatPhoneNumber(phoneNumber)}
+                    onChange={handlePhoneNumberChange}
+                    className="flex-1"
+                    disabled={isProcessing}
+                  />
                 </div>
-                <Input
-                  type="tel"
-                  placeholder="(555) 123-4567"
-                  value={formatPhoneNumber(phoneNumber)}
-                  onChange={handlePhoneNumberChange}
-                  className="flex-1"
-                  disabled={isProcessing}
-                />
               </div>
               <div className="flex justify-end space-x-2 mt-4">
                 <Button
@@ -207,7 +217,7 @@ const RoomService = () => {
                   className="bg-accent hover:bg-accent/90"
                   disabled={isProcessing}
                 >
-                  {isProcessing ? 'Connecting...' : 'Call Room Service'}
+                  {isProcessing ? 'Connecting...' : 'Start Voice Chat'}
                 </Button>
               </div>
             </>
