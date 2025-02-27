@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { getVapiInstance, stopVapiCall } from "@/services/vapiService";
@@ -123,7 +124,7 @@ const MercedesDealer = () => {
         <DialogContent className="bg-[#222222] text-white border-gray-800 sm:max-w-md">
           <DialogHeader>
             <DialogTitle>
-              {isCallActive ? "Call in Progress" : "Speak with a Mercedes-Benz Sales Representative"}
+              {isCallActive ? "Call in Progress" : "Start Voice Chat with Dave Frankel at Mercedes of Tacoma"}
             </DialogTitle>
           </DialogHeader>
           {isCallActive ? (
@@ -145,7 +146,7 @@ const MercedesDealer = () => {
             <>
               <div className="space-y-4 pt-2">
                 <p className="text-sm text-gray-400">
-                  You'll be able to have a voice conversation with our sales representative directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately.
+                  You'll be able to have a voice conversation with our staff directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately.
                 </p>
                 <p className="text-sm text-gray-400">
                   By clicking "Start Voice Chat", you consent to having a voice conversation with Mercedes of Tacoma. You can end the conversation at any time.
