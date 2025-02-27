@@ -62,13 +62,15 @@ const RetailServices = () => {
 
       <HeroSection />
 
-      <BookingDialog 
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        handleCall={handleCall}
-        handleEndCall={handleEndCall}
-        isLoading={isLoading}
-      />
+      <div className="flex justify-center items-center my-8">
+        <BookingDialog 
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          handleCall={handleCall}
+          handleEndCall={handleEndCall}
+          isLoading={isLoading}
+        />
+      </div>
 
       <ServicesGrid />
     </div>
