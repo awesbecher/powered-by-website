@@ -116,12 +116,12 @@ const Index = () => {
       </div>
 
       <div className="container mx-auto px-4 -mt-10 mb-8">
-        <SectionTitle title="Deploy Multi-Channel Agents:" />
+        <SectionTitle title="Deploy Multi-Channel Agents:" linked={false} />
         <AgentTypes />
       </div>
 
       <div className="container mx-auto px-4 mb-8">
-        <SectionTitle title="Our Approach:" />
+        <SectionTitle title="Our Approach:" linked={false} />
       </div>
 
       <ValuesSection />
