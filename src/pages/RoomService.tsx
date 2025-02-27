@@ -10,14 +10,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
 import { initiateVapiCall, stopVapiCall, getVapiInstance } from "@/services/vapiService";
 
 const RoomService = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
   const [isCallActive, setIsCallActive] = useState(false);
 
@@ -31,15 +29,6 @@ const RoomService = () => {
   }, [isCallActive]);
 
   const handleStartCall = async () => {
-    if (!phoneNumber) {
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: "Please enter your phone number.",
-      });
-      return;
-    }
-
     setIsProcessing(true);
     try {
       const vapi = getVapiInstance();
@@ -82,21 +71,6 @@ const RoomService = () => {
       title: "Call Ended",
       description: "Your call with room service has ended.",
     });
-  };
-
-  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/\D/g, '');
-    if (value.length <= 10) {
-      setPhoneNumber(value);
-    }
-  };
-
-  const formatPhoneNumber = (value: string) => {
-    if (!value) return "";
-    const phoneNumber = value.replace(/\D/g, '');
-    if (phoneNumber.length <= 3) return phoneNumber;
-    if (phoneNumber.length <= 6) return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
-    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
   };
 
   return (
@@ -191,19 +165,6 @@ const RoomService = () => {
                 <p className="text-sm text-gray-700">
                   By clicking "Start Voice Chat", you consent to having a voice conversation with Grandview. You can end the conversation at any time.
                 </p>
-                <div className="flex items-center space-x-2 pt-2">
-                  <div className="flex-shrink-0 bg-gray-100 p-2 rounded">
-                    +1
-                  </div>
-                  <Input
-                    type="tel"
-                    placeholder="(555) 123-4567"
-                    value={formatPhoneNumber(phoneNumber)}
-                    onChange={handlePhoneNumberChange}
-                    className="flex-1"
-                    disabled={isProcessing}
-                  />
-                </div>
               </div>
               <div className="flex justify-end space-x-2 mt-4">
                 <Button
