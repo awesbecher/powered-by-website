@@ -3,6 +3,13 @@ import React from "react";
 import { PhoneCall, Mail, MessageSquare, Settings, Slack } from "lucide-react";
 
 export const NavigationButtons = () => {
+  const scrollToAgentTypes = () => {
+    const agentTypesSection = document.getElementById('agent-types-section');
+    if (agentTypesSection) {
+      agentTypesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const buttons = [
     { title: "Inbound &\nOutbound Calls", icon: <PhoneCall className="w-6 h-6 mb-2 mx-auto text-[#9b87f5]" /> },
     { title: "Bi-Directional\nText & Email", icon: <Mail className="w-6 h-6 mb-2 mx-auto text-[#9b87f5]" /> },
@@ -16,8 +23,9 @@ export const NavigationButtons = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-wrap gap-4 justify-center mb-16">
           {buttons.map((button, index) => (
-            <div
+            <button
               key={index}
+              onClick={scrollToAgentTypes}
               className="w-[calc(45%-8px)] sm:w-[calc(30%-11px)] md:w-[calc(18%-13px)] min-w-[140px] max-w-[160px]
                 backdrop-blur-xl bg-gradient-to-br from-[#2f1c4a]/80 to-[#1a0b2e]/80 
                 border border-[#9b87f5]/20 hover:border-[#9b87f5]/40
@@ -29,7 +37,7 @@ export const NavigationButtons = () => {
             >
               {button.icon}
               {button.title}
-            </div>
+            </button>
           ))}
         </div>
         <h2 className="text-3xl md:text-5xl font-bold text-white mb-16 max-w-4xl mx-auto leading-[1.1] text-center">

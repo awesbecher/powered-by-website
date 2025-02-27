@@ -49,7 +49,7 @@ export const AgentTypes = () => {
   ];
 
   return (
-    <div className="container mx-auto px-4">
+    <div id="agent-types-section" className="container mx-auto px-4">
       <div className="max-w-5xl mx-auto">
         {agentTypes.map((agent, index) => (
           <AgentType
