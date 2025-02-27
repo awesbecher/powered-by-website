@@ -43,7 +43,7 @@ const MercedesDealer = () => {
       vapi.on("call-end", () => {
         setIsCallActive(false);
         setShowCallDialog(false);
-        navigate('/');
+        navigate('/demo');
         toast({
           title: "Call Completed",
           description: "Thank you for contacting Mercedes of Tacoma!",
@@ -70,7 +70,7 @@ const MercedesDealer = () => {
     stopVapiCall();
     setIsCallActive(false);
     setShowCallDialog(false);
-    navigate('/');
+    navigate('/demo');
     toast({
       title: "Call Ended",
       description: "Your call with Mercedes of Tacoma has ended.",
