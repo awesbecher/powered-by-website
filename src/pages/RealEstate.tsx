@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall } from "@/services/vapiService";
@@ -25,13 +26,11 @@ const RealEstate = () => {
     setIsLoading(true);
     try {
       const vapi = getVapiInstance();
-      await vapi.start("f8131f3d-58aa-4c81-a79e-1bf758803775"); // Use the specific Assistant ID for real estate
+      await vapi.start("f8131f3d-58aa-4c81-a79e-1bf758803775");
       
-      // Keep dialog open during the call
       setIsOpen(true);
       setIsScheduleOpen(false);
       
-      // Listen for call end event
       vapi.on("call-end", () => {
         setIsLoading(false);
         setIsOpen(false);
@@ -56,7 +55,6 @@ const RealEstate = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
-      {/* Township Logo */}
       <div className="fixed top-20 right-6 z-50">
         <img 
           src="/lovable-uploads/a5338bda-4580-432c-a1b8-71df71d89c29.png"

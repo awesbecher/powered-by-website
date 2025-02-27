@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { stopVapiCall } from "@/services/vapiService";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
 interface ActionButtonsProps {
   isOpen: boolean;
@@ -28,7 +29,6 @@ export const ActionButtons = ({
     try {
       await stopVapiCall();
       setIsOpen(false);
-      // Redirect to demo page
       navigate('/demo');
     } catch (error) {
       console.error('Error ending call:', error);
@@ -46,21 +46,41 @@ export const ActionButtons = ({
             </button>
           </DialogTrigger>
           <DialogContent className="bg-[#222222] text-white border-gray-800 w-[95%] max-w-md mx-auto">
-            <DialogHeader>
-              <DialogTitle>
-                {isLoading ? "Your call with Township Real Estate is now in progress. You can end the call at any time by clicking the End Call button below" : "Start Voice Chat with Our Real Estate Team"}
-              </DialogTitle>
+            <DialogHeader className="flex items-start space-x-4">
+              <Avatar className="w-20 h-20">
+                <AvatarImage
+                  src="/lovable-uploads/0d1c3dc0-7aad-4ddd-8b25-1edf45232f70.png"
+                  alt="Jeff Smith from Township Real Estate"
+                  className="object-cover"
+                />
+              </Avatar>
+              <div className="flex-1">
+                <DialogTitle className="text-2xl font-bold text-white mb-2">
+                  {isLoading ? "Voice Chat in Progress" : "Start Voice Chat with Jeff Smith on the Township Real Estate team"}
+                </DialogTitle>
+                <p className="text-gray-300">
+                  {isLoading 
+                    ? "You are currently in a voice conversation with our AI Agent. You can continue browsing the site while keeping this dialog open."
+                    : "You'll be able to have a voice conversation with Jeff directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately."}
+                </p>
+              </div>
             </DialogHeader>
             <div className="flex flex-col space-y-4 pt-4">
-              {!isLoading ? (
-                <>
-                  <p className="text-gray-300 text-sm sm:text-base">
-                    You'll be able to have a voice conversation with our Real Estate Team directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately.
-                  </p>
-                  <p className="text-gray-300 text-xs sm:text-sm">
-                    By clicking "Start Voice Chat", you consent to having a voice conversation with Township Real Estate. You can end the conversation at any time.
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-2">
+              {!isLoading && (
+                <p className="text-sm text-gray-300">
+                  By clicking "Start Voice Chat", you consent to having a voice conversation with Township Real Estate. You can end the conversation at any time.
+                </p>
+              )}
+              <div className="flex flex-col sm:flex-row gap-2">
+                {isLoading ? (
+                  <Button 
+                    onClick={handleEndCall}
+                    className="w-full bg-red-600 hover:bg-red-700 text-white font-bold"
+                  >
+                    End Call
+                  </Button>
+                ) : (
+                  <>
                     <Button 
                       variant="outline"
                       onClick={() => setIsOpen(false)}
@@ -73,20 +93,11 @@ export const ActionButtons = ({
                       onClick={handleCall}
                       disabled={isLoading}
                     >
-                      Start Voice Chat
+                      {isLoading ? "Starting..." : "Start Voice Chat"}
                     </Button>
-                  </div>
-                </>
-              ) : (
-                <div className="flex justify-center">
-                  <button 
-                    onClick={handleEndCall}
-                    className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white font-bold py-3 rounded-md transition-colors"
-                  >
-                    End Call
-                  </button>
-                </div>
-              )}
+                  </>
+                )}
+              </div>
             </div>
           </DialogContent>
         </Dialog>
