@@ -9,6 +9,7 @@ import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { VoiceChatDialog } from "@/components/home/VoiceChatDialog";
 import { CallToActionButtons } from "@/components/home/CallToActionButtons";
 import { SectionTitle } from "@/components/home/SectionTitle";
+import { AgentTypes } from "@/components/home/AgentTypes";
 import AIAgentIllustration from "@/components/home/AIAgentIllustration";
 import { initiateVapiCall, stopVapiCall, getVapiInstance } from "@/services/vapiService";
 import { useToast } from "@/hooks/use-toast";
@@ -116,6 +117,7 @@ const Index = () => {
 
       <div className="container mx-auto px-4 -mt-10 mb-8">
         <SectionTitle title="Multi-Channel AI Agent Support:" />
+        <AgentTypes />
       </div>
 
       <div className="container mx-auto px-4 mb-8">
