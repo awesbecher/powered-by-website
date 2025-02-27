@@ -19,7 +19,7 @@ const HeroSection = () => {
             Welcome to Flagship Barbers
           </h1>
           <p className="text-gray-200 max-w-2xl mx-auto text-lg">
-            Flagship Barbers has been serving the Tacoma public for 25 years. We specialize in classic barbershop style and fades.
+            Flagship Barbers has been serving the Tacoma public for 25 years. We specialize in classic barbershop style and fades. Click on the button below to speak to our Reservations Manager to book a haircut!
           </p>
         </div>
       </div>
