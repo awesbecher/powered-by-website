@@ -9,11 +9,11 @@ interface AgentTypeProps {
 
 const AgentType = ({ title, description, icon }: AgentTypeProps) => (
   <div className="flex flex-col md:flex-row gap-4 py-4 border-t border-white/10">
-    <div className="md:w-1/3 flex items-start gap-3 justify-end">
+    <div className="md:w-[240px] flex-shrink-0 flex items-start gap-3">
       <div className="text-accent">{icon}</div>
-      <h3 className="text-lg font-bold text-white">{title}</h3>
+      <h3 className="text-lg font-bold text-white whitespace-nowrap">{title}</h3>
     </div>
-    <div className="md:w-2/3">
+    <div className="flex-1 md:pl-16">
       <p className="text-gray-300 text-base leading-relaxed">{description}</p>
     </div>
   </div>
