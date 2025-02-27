@@ -1,4 +1,3 @@
-
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -45,7 +44,8 @@ const RoomService = () => {
         });
       });
 
-      setIsDialogOpen(false);
+      // Keep the dialog open but change its content to show call in progress
+      setIsProcessing(false);
       toast({
         title: "Call Started",
         description: "You are now connected to our room service. You can speak directly through your browser.",
@@ -57,7 +57,6 @@ const RoomService = () => {
         title: "Error",
         description: "Unable to connect to Room Service. Please try again.",
       });
-    } finally {
       setIsProcessing(false);
     }
   };
@@ -134,7 +133,13 @@ const RoomService = () => {
         </div>
       </div>
 
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+      <Dialog open={isDialogOpen || isCallActive} onOpenChange={(open) => {
+        // Prevent dialog from closing if call is active
+        if (isCallActive && !open) {
+          return;
+        }
+        setIsDialogOpen(open);
+      }}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>
