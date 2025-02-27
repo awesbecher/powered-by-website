@@ -1,5 +1,5 @@
 
-import { Phone, Mail, Smartphone, Settings, MessageSquare } from "lucide-react";
+import { Phone, Mail, Smartphone, Settings, MessageSquare, Slack } from "lucide-react";
 
 interface AgentTypeProps {
   title: string;
@@ -39,7 +39,7 @@ export const AgentTypes = () => {
     {
       title: "Team Collaboration Agents",
       description: "AI agents that act as virtual team members, helping coordinate tasks, tracking project milestones, and even sending timely reminders. These digital workers keep everyone on the same page, reducing communication gaps and facilitating smoother collaboration.",
-      icon: <MessageSquare size={24} />
+      icon: <Slack size={24} />
     },
     {
       title: "Website Chatbot Agents",
