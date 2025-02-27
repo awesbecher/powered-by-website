@@ -2,44 +2,23 @@
 import { Phone } from "lucide-react";
 import {
   Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
   DialogTrigger
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 
 interface SpringSalesEventProps {
-  phoneNumber: string;
-  setPhoneNumber: (value: string) => void;
-  handleCall: () => void;
-  isLoading: boolean;
+  isProcessing: boolean;
+  isCallActive: boolean;
   setShowOffers: (value: boolean) => void;
+  setShowCallDialog: (value: boolean) => void;
 }
 
 const SpringSalesEvent = ({ 
-  phoneNumber, 
-  setPhoneNumber, 
-  handleCall, 
-  isLoading,
-  setShowOffers 
+  isProcessing, 
+  isCallActive,
+  setShowOffers,
+  setShowCallDialog
 }: SpringSalesEventProps) => {
-  const formatPhoneNumber = (value: string) => {
-    if (!value) return "";
-    const phoneNumber = value.replace(/\D/g, '');
-    if (phoneNumber.length <= 3) return phoneNumber;
-    if (phoneNumber.length <= 6) return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
-    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
-  };
-
-  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/\D/g, '');
-    if (value.length <= 10) {
-      setPhoneNumber(value);
-    }
-  };
-
   return (
     <div className="rounded-xl overflow-hidden bg-black/50 backdrop-blur-sm p-12 mb-12">
       <div className="text-center">
@@ -55,47 +34,15 @@ const SpringSalesEvent = ({
           <div>
             <Dialog>
               <DialogTrigger asChild>
-                <button className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-8 py-3 rounded-md font-semibold transition-colors flex items-center justify-center gap-2 mx-auto">
+                <button 
+                  className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-8 py-3 rounded-md font-semibold transition-colors flex items-center justify-center gap-2 mx-auto"
+                  onClick={() => setShowCallDialog(true)}
+                  disabled={isProcessing || isCallActive}
+                >
                   Speak with us now!
                   <Phone className="w-5 h-5" />
                 </button>
               </DialogTrigger>
-              <DialogContent className="bg-[#222222] text-white border-gray-800 sm:max-w-md">
-                <DialogHeader>
-                  <DialogTitle>Enter your phone number to speak with a sales representative</DialogTitle>
-                </DialogHeader>
-                <div className="flex flex-col space-y-4 pt-4">
-                  <div className="flex items-center space-x-2">
-                    <div className="flex-shrink-0 bg-gray-800 p-2 rounded border border-gray-700">
-                      +1
-                    </div>
-                    <Input 
-                      type="tel" 
-                      placeholder="(555) 123-4567"
-                      value={formatPhoneNumber(phoneNumber)}
-                      onChange={handlePhoneNumberChange}
-                      className="flex-1 text-lg bg-gray-800 border-gray-700 text-white placeholder:text-gray-400"
-                    />
-                  </div>
-                  <div className="flex gap-2">
-                    <DialogTrigger asChild>
-                      <Button 
-                        variant="outline"
-                        className="w-full border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white"
-                      >
-                        Cancel
-                      </Button>
-                    </DialogTrigger>
-                    <Button 
-                      className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
-                      onClick={handleCall}
-                      disabled={isLoading}
-                    >
-                      {isLoading ? "Initiating call..." : "Call Me"}
-                    </Button>
-                  </div>
-                </div>
-              </DialogContent>
             </Dialog>
           </div>
         </div>
