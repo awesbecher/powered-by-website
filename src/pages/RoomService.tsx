@@ -170,12 +170,13 @@ const RoomService = () => {
           {isCallActive ? (
             <>
               <p className="text-sm text-gray-500 pt-2">
-                You are currently in a voice conversation with our Room Service. You can continue browsing the menu while keeping this conversation open.
+                You are now connected to In-Room Dining at Grandview Hotel. You can end the call at any time by clicking the button below.
               </p>
-              <div className="flex justify-end space-x-2 mt-4">
+              <div className="flex justify-center w-full mt-4">
                 <Button
                   variant="destructive"
                   onClick={handleEndCall}
+                  className="w-full font-bold text-white"
                 >
                   End Call
                 </Button>
