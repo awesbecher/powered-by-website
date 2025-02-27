@@ -31,7 +31,7 @@ const BookingDialog = ({
         <DialogHeader className="flex items-start space-x-4">
           <Avatar className="w-20 h-20">
             <AvatarImage
-              src="/lovable-uploads/2d521c8d-084d-4a87-8491-cb795033a1d6.png"
+              src="/lovable-uploads/75237bd9-59bf-497d-89fc-9805c49cf84e.png"
               alt="Alex from Flagship Barbers"
               className="object-cover"
             />
