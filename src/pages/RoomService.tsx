@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { initiateVogentCall } from "@/services/vogentService";
 import { useEffect, useState } from "react";
 import {
   Dialog,
@@ -12,6 +11,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { initiateVapiCall, stopVapiCall, getVapiInstance } from "@/services/vapiService";
 
 const RoomService = () => {
   const navigate = useNavigate();
@@ -19,24 +19,18 @@ const RoomService = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
+  const [isCallActive, setIsCallActive] = useState(false);
 
   useEffect(() => {
-    const handleCallEnd = (event: MessageEvent) => {
-      if (event.data.type === 'VOGENT_CALL_ENDED') {
-        window.removeEventListener('message', handleCallEnd);
-        navigate('/');
-        toast({
-          title: "Call Completed",
-          description: "Thank you for using our room service!",
-        });
+    // Clean up any active calls when the component unmounts
+    return () => {
+      if (isCallActive) {
+        stopVapiCall();
       }
     };
+  }, [isCallActive]);
 
-    window.addEventListener('message', handleCallEnd);
-    return () => window.removeEventListener('message', handleCallEnd);
-  }, [navigate, toast]);
-
-  const handlePhoneSubmit = async () => {
+  const handleStartCall = async () => {
     if (!phoneNumber) {
       toast({
         variant: "destructive",
@@ -48,9 +42,25 @@ const RoomService = () => {
 
     setIsProcessing(true);
     try {
-      await initiateVogentCall(phoneNumber, 'roomService');
+      const vapi = getVapiInstance();
+      await vapi.start("238616a3-b611-4faa-a216-74b8d7d8b277");
+      setIsCallActive(true);
+      
+      vapi.on("call-end", () => {
+        setIsCallActive(false);
+        setIsDialogOpen(false);
+        navigate('/');
+        toast({
+          title: "Call Completed",
+          description: "Thank you for using our room service!",
+        });
+      });
+
       setIsDialogOpen(false);
-      navigate("/call-confirmation");
+      toast({
+        title: "Call Started",
+        description: "You are now connected to our room service. You can speak directly through your browser.",
+      });
     } catch (error) {
       console.error('Error initiating call:', error);
       toast({
@@ -61,6 +71,17 @@ const RoomService = () => {
     } finally {
       setIsProcessing(false);
     }
+  };
+
+  const handleEndCall = () => {
+    stopVapiCall();
+    setIsCallActive(false);
+    setIsDialogOpen(false);
+    navigate('/');
+    toast({
+      title: "Call Ended",
+      description: "Your call with room service has ended.",
+    });
   };
 
   const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -120,10 +141,10 @@ const RoomService = () => {
         <Button 
           className="bg-accent hover:bg-accent/90 text-white mb-4 font-bold text-lg mx-auto block px-8 py-4 h-auto whitespace-nowrap flex items-center gap-3"
           onClick={() => setIsDialogOpen(true)}
-          disabled={isProcessing}
+          disabled={isProcessing || isCallActive}
         >
           <Phone className="h-6 w-6 flex-shrink-0" />
-          {isProcessing ? 'Connecting...' : 'Speak to Room Service'}
+          {isProcessing ? 'Connecting...' : isCallActive ? 'Call in Progress' : 'Speak to Room Service'}
         </Button>
         <div className="flex flex-col items-center space-y-1 mb-24">
           <img 
@@ -142,37 +163,55 @@ const RoomService = () => {
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>Enter your phone number</DialogTitle>
+            <DialogTitle>{isCallActive ? "Call in Progress" : "Enter your phone number"}</DialogTitle>
           </DialogHeader>
-          <div className="flex items-center space-x-2 pt-4">
-            <div className="flex-shrink-0 bg-gray-100 p-2 rounded">
-              +1
-            </div>
-            <Input
-              type="tel"
-              placeholder="(555) 123-4567"
-              value={formatPhoneNumber(phoneNumber)}
-              onChange={handlePhoneNumberChange}
-              className="flex-1"
-              disabled={isProcessing}
-            />
-          </div>
-          <div className="flex justify-end space-x-2 mt-4">
-            <Button
-              variant="secondary"
-              onClick={() => setIsDialogOpen(false)}
-              disabled={isProcessing}
-            >
-              Cancel
-            </Button>
-            <Button
-              onClick={handlePhoneSubmit}
-              className="bg-accent hover:bg-accent/90"
-              disabled={isProcessing}
-            >
-              {isProcessing ? 'Connecting...' : 'Call Me'}
-            </Button>
-          </div>
+          {isCallActive ? (
+            <>
+              <p className="text-sm text-gray-500 pt-2">
+                You are currently in a voice conversation with our Room Service. You can continue browsing the menu while keeping this conversation open.
+              </p>
+              <div className="flex justify-end space-x-2 mt-4">
+                <Button
+                  variant="destructive"
+                  onClick={handleEndCall}
+                >
+                  End Call
+                </Button>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="flex items-center space-x-2 pt-4">
+                <div className="flex-shrink-0 bg-gray-100 p-2 rounded">
+                  +1
+                </div>
+                <Input
+                  type="tel"
+                  placeholder="(555) 123-4567"
+                  value={formatPhoneNumber(phoneNumber)}
+                  onChange={handlePhoneNumberChange}
+                  className="flex-1"
+                  disabled={isProcessing}
+                />
+              </div>
+              <div className="flex justify-end space-x-2 mt-4">
+                <Button
+                  variant="secondary"
+                  onClick={() => setIsDialogOpen(false)}
+                  disabled={isProcessing}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  onClick={handleStartCall}
+                  className="bg-accent hover:bg-accent/90"
+                  disabled={isProcessing}
+                >
+                  {isProcessing ? 'Connecting...' : 'Call Room Service'}
+                </Button>
+              </div>
+            </>
+          )}
         </DialogContent>
       </Dialog>
     </div>
