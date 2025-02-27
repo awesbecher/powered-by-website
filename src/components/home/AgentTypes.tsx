@@ -1,5 +1,5 @@
 
-import { Phone, Mail, Smartphone, Gear, MessageSquare } from "lucide-react";
+import { Phone, Mail, Smartphone, Settings, MessageSquare } from "lucide-react";
 
 interface AgentTypeProps {
   title: string;
@@ -34,7 +34,7 @@ export const AgentTypes = () => {
     {
       title: "Internal Workflow Agents",
       description: "Streamline your back-end processes with agents designed to automate repetitive tasks and gather critical data. Whether it's coordinating employee schedules, managing approvals, or updating internal databases, accelerate routine workflows to keep your operations efficient.",
-      icon: <Gear size={24} />
+      icon: <Settings size={24} />
     },
     {
       title: "Team Collaboration Agents",
