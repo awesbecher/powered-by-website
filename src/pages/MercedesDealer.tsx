@@ -130,7 +130,7 @@ const MercedesDealer = () => {
           {isCallActive ? (
             <>
               <p className="text-sm text-gray-400 pt-2">
-                You are now connected to a sales representative at Mercedes of Tacoma. You can end the call at any time by clicking the button below.
+                You are now connected with Dave Frankel at the dealership. You can end the call at any time by clicking the button below.
               </p>
               <div className="flex justify-center w-full mt-4">
                 <Button
