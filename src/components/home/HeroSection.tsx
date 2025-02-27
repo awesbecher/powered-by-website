@@ -23,8 +23,7 @@ export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
             className={`mt-0 text-2xl md:text-3xl text-gray-300 mx-auto leading-tight font-bold text-center px-4 transition-all duration-1000 delay-300 ease-out transform
               ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
           >
-            Powered<span className="text-[#9b87f5]">_</span>by AI. Run<span className="text-[#9b87f5]">_</span>by small business.<br />
-            <span className="border-b-2 border-white text-xl md:text-2xl">Why should those Silicon Valley nerds have all the fancy AI toys?</span>
+            Powered<span className="text-[#9b87f5]">_</span>by AI. Run<span className="text-[#9b87f5]">_</span>by small business.
           </p>
 
           <div className={`mt-12 transition-all duration-1000 delay-500 ease-out transform
