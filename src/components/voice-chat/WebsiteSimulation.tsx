@@ -93,6 +93,9 @@ export const WebsiteSimulation = () => {
               if (cursorElement) {
                 cursorElement.classList.remove("clicking");
               }
+              
+              // Trigger the call after click animation
+              setSimState("loading");
             }, 300);
           }
         }, 1600);
