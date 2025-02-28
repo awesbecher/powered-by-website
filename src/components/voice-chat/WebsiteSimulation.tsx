@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Mic, MicOff, X, Activity } from "lucide-react";
+import { properties } from "@/data/properties";
 
 export const WebsiteSimulation = () => {
   const [simState, setSimState] = useState<"website" | "loading" | "call">("website");
@@ -29,6 +30,9 @@ export const WebsiteSimulation = () => {
     setIsMuted(false);
   };
 
+  // Get the first 4 properties from our data
+  const displayProperties = properties.slice(0, 4);
+
   return (
     <div className="relative w-full max-w-[400px] mx-auto">
       {/* Monitor frame with purple glow */}
@@ -55,13 +59,19 @@ export const WebsiteSimulation = () => {
               <p className="text-gray-600 mt-2">Discover beautiful properties that match your lifestyle</p>
             </div>
             
-            {/* Sample property cards */}
+            {/* Property cards with real images */}
             <div className="grid grid-cols-2 gap-3 mb-6">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="bg-gray-100 rounded-lg p-2">
-                  <div className="bg-gray-300 h-24 rounded-md mb-2"></div>
-                  <div className="h-2 bg-gray-300 rounded w-3/4 mb-1"></div>
-                  <div className="h-2 bg-gray-300 rounded w-1/2"></div>
+              {displayProperties.map((property, i) => (
+                <div key={i} className="bg-gray-50 rounded-lg p-2 shadow-sm">
+                  <div className="h-24 rounded-md mb-2 overflow-hidden">
+                    <img 
+                      src={property.image} 
+                      alt={property.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="text-xs font-semibold text-gray-800 truncate">{property.price}</div>
+                  <div className="text-xs text-gray-600 truncate">{property.location}</div>
                 </div>
               ))}
             </div>
