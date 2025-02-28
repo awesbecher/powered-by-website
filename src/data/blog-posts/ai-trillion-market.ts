@@ -22,11 +22,11 @@ export const aiTrillionMarket: BlogPost = {
     <p>Yet, despite the complexity, SaaS solutions remain static in one crucial way: they are rule-based systems. They do what they're programmed to do—no more, no less. AI agents, however, are different:</p>
     
     <ul>
-      <li>--> They interpret complex instructions.</li>
-      <li>--> They learn from observations and continuously improve.</li>
-      <li>--> They communicate fluidly with other systems.</li>
-      <li>--> They make informed decisions independently.</li>
-      <li>--> They self-correct and solve problems on the fly.</li>
+      <li>✦ They interpret complex instructions.</li>
+      <li>✦ They learn from observations and continuously improve.</li>
+      <li>✦ They communicate fluidly with other systems.</li>
+      <li>✦ They make informed decisions independently.</li>
+      <li>✦ They self-correct and solve problems on the fly.</li>
     </ul>
     
     <p></p>
@@ -40,11 +40,11 @@ export const aiTrillionMarket: BlogPost = {
     <p>Now, imagine an AI agent overseeing procurement from start to finish:</p>
     
     <ul>
-      <li>--> It forecasts inventory needs by analyzing multiple data points.</li>
-      <li>--> It identifies and assesses potential suppliers in real time.</li>
-      <li>--> It negotiates and locks in the best prices.</li>
-      <li>--> It places orders and follows up on shipping.</li>
-      <li>--> It monitors product quality, addresses delays, and adjusts strategies accordingly.</li>
+      <li>✦ It forecasts inventory needs by analyzing multiple data points.</li>
+      <li>✦ It identifies and assesses potential suppliers in real time.</li>
+      <li>✦ It negotiates and locks in the best prices.</li>
+      <li>✦ It places orders and follows up on shipping.</li>
+      <li>✦ It monitors product quality, addresses delays, and adjusts strategies accordingly.</li>
     </ul>
     
     <p></p>
@@ -56,10 +56,10 @@ export const aiTrillionMarket: BlogPost = {
     <p>A single AI agent can do remarkable things. But the real magic happens when multiple agents collaborate across different departments or functions—like an orchestra of virtual workers all coordinating toward a shared goal. Envision a scenario where:</p>
     
     <ul>
-      <li>--> One AI agent handles every aspect of customer support.</li>
-      <li>--> Another AI agent optimizes inventory and supply chain.</li>
-      <li>--> A third AI agent fine-tunes product pricing.</li>
-      <li>--> A fourth AI agent designs and executes marketing campaigns.</li>
+      <li>✦ One AI agent handles every aspect of customer support.</li>
+      <li>✦ Another AI agent optimizes inventory and supply chain.</li>
+      <li>✦ A third AI agent fine-tunes product pricing.</li>
+      <li>✦ A fourth AI agent designs and executes marketing campaigns.</li>
     </ul>
     
     <p></p>
@@ -71,10 +71,10 @@ export const aiTrillionMarket: BlogPost = {
     <p>Early adopters who embrace AI agents are reporting dramatic improvements:</p>
     
     <ul>
-      <li><strong>--> 30–50% cost savings</strong></li>
-      <li><strong>--> 50–70% faster operational cycles</strong></li>
-      <li><strong>--> 90% fewer errors</strong></li>
-      <li><strong>--> 50% higher conversion rates</strong></li>
+      <li><strong>⭐ 30–50% cost savings</strong></li>
+      <li><strong>⭐ 50–70% faster operational cycles</strong></li>
+      <li><strong>⭐ 90% fewer errors</strong></li>
+      <li><strong>⭐ 50% higher conversion rates</strong></li>
     </ul>
     
     <p></p>
@@ -92,10 +92,10 @@ export const aiTrillionMarket: BlogPost = {
     <p>This transformation, while inevitable, is not automatic. Thriving in the AI agent era demands new skill sets:</p>
     
     <ul>
-      <li>--> Learning how to collaborate effectively with AI.</li>
-      <li>--> Designing processes that allow AI to make decisions responsibly.</li>
-      <li>--> Building robust data infrastructure and secure pipelines.</li>
-      <li>--> Integrating ethical considerations and oversight at every level.</li>
+      <li>✦ Learning how to collaborate effectively with AI.</li>
+      <li>✦ Designing processes that allow AI to make decisions responsibly.</li>
+      <li>✦ Building robust data infrastructure and secure pipelines.</li>
+      <li>✦ Integrating ethical considerations and oversight at every level.</li>
     </ul>
     
     <p></p>
