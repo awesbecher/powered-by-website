@@ -22,11 +22,11 @@ export const aiTrillionMarket: BlogPost = {
     <p>Yet, despite the complexity, SaaS solutions remain static in one crucial way: they are rule-based systems. They do what they're programmed to do—no more, no less. AI agents, however, are different:</p>
     
     <ul>
-      <li>&nbsp;&nbsp;&nbsp;-->They interpret complex instructions.</li>
-      <li>&nbsp;&nbsp;&nbsp;-->They learn from observations and continuously improve.</li>
-      <li>&nbsp;&nbsp;&nbsp;-->They communicate fluidly with other systems.</li>
-      <li>&nbsp;&nbsp;&nbsp;-->They make informed decisions independently.</li>
-      <li>&nbsp;&nbsp;&nbsp;-->They self-correct and solve problems on the fly.</li>
+      <li>--> They interpret complex instructions.</li>
+      <li>--> They learn from observations and continuously improve.</li>
+      <li>--> They communicate fluidly with other systems.</li>
+      <li>--> They make informed decisions independently.</li>
+      <li>--> They self-correct and solve problems on the fly.</li>
     </ul>
     
     <p>This is not just software that automates a single step—it's an intelligent entity capable of managing entire business functions.</p>
@@ -38,11 +38,11 @@ export const aiTrillionMarket: BlogPost = {
     <p>Now, imagine an AI agent overseeing procurement from start to finish:</p>
     
     <ul>
-      <li>&nbsp;&nbsp;&nbsp;-->It forecasts inventory needs by analyzing multiple data points.</li>
-      <li>&nbsp;&nbsp;&nbsp;-->It identifies and assesses potential suppliers in real time.</li>
-      <li>&nbsp;&nbsp;&nbsp;-->It negotiates and locks in the best prices.</li>
-      <li>&nbsp;&nbsp;&nbsp;-->It places orders and follows up on shipping.</li>
-      <li>&nbsp;&nbsp;&nbsp;-->It monitors product quality, addresses delays, and adjusts strategies accordingly.</li>
+      <li>--> It forecasts inventory needs by analyzing multiple data points.</li>
+      <li>--> It identifies and assesses potential suppliers in real time.</li>
+      <li>--> It negotiates and locks in the best prices.</li>
+      <li>--> It places orders and follows up on shipping.</li>
+      <li>--> It monitors product quality, addresses delays, and adjusts strategies accordingly.</li>
     </ul>
     
     <p>This shift isn't theoretical. Studies by McKinsey suggest that AI could automate up to <strong>45% of all knowledge worker activities</strong>. That's a staggering figure—one that reflects just how far we've come from simple task automation.</p>
@@ -52,10 +52,10 @@ export const aiTrillionMarket: BlogPost = {
     <p>A single AI agent can do remarkable things. But the real magic happens when multiple agents collaborate across different departments or functions—like an orchestra of virtual workers all coordinating toward a shared goal. Envision a scenario where:</p>
     
     <ul>
-      <li>&nbsp;&nbsp;&nbsp;-->One AI agent handles every aspect of customer support.</li>
-      <li>&nbsp;&nbsp;&nbsp;-->Another AI agent optimizes inventory and supply chain.</li>
-      <li>&nbsp;&nbsp;&nbsp;-->A third AI agent fine-tunes product pricing.</li>
-      <li>&nbsp;&nbsp;&nbsp;-->A fourth AI agent designs and executes marketing campaigns.</li>
+      <li>--> One AI agent handles every aspect of customer support.</li>
+      <li>--> Another AI agent optimizes inventory and supply chain.</li>
+      <li>--> A third AI agent fine-tunes product pricing.</li>
+      <li>--> A fourth AI agent designs and executes marketing campaigns.</li>
     </ul>
     
     <p></p>
@@ -67,10 +67,10 @@ export const aiTrillionMarket: BlogPost = {
     <p>Early adopters who embrace AI agents are reporting dramatic improvements:</p>
     
     <ul>
-      <li>&nbsp;&nbsp;&nbsp;<strong>-->30–50% cost savings</strong></li>
-      <li>&nbsp;&nbsp;&nbsp;<strong>-->50–70% faster operational cycles</strong></li>
-      <li>&nbsp;&nbsp;&nbsp;<strong>-->90% fewer errors</strong></li>
-      <li>&nbsp;&nbsp;&nbsp;<strong>-->50% higher conversion rates</strong></li>
+      <li><strong>--> 30–50% cost savings</strong></li>
+      <li><strong>--> 50–70% faster operational cycles</strong></li>
+      <li><strong>--> 90% fewer errors</strong></li>
+      <li><strong>--> 50% higher conversion rates</strong></li>
     </ul>
     
     <p></p>
@@ -88,10 +88,10 @@ export const aiTrillionMarket: BlogPost = {
     <p>This transformation, while inevitable, is not automatic. Thriving in the AI agent era demands new skill sets:</p>
     
     <ul>
-      <li>&nbsp;&nbsp;&nbsp;-->Learning how to collaborate effectively with AI.</li>
-      <li>&nbsp;&nbsp;&nbsp;-->Designing processes that allow AI to make decisions responsibly.</li>
-      <li>&nbsp;&nbsp;&nbsp;-->Building robust data infrastructure and secure pipelines.</li>
-      <li>&nbsp;&nbsp;&nbsp;-->Integrating ethical considerations and oversight at every level.</li>
+      <li>--> Learning how to collaborate effectively with AI.</li>
+      <li>--> Designing processes that allow AI to make decisions responsibly.</li>
+      <li>--> Building robust data infrastructure and secure pipelines.</li>
+      <li>--> Integrating ethical considerations and oversight at every level.</li>
     </ul>
     
     <p></p>
@@ -103,3 +103,4 @@ export const aiTrillionMarket: BlogPost = {
     <p>Much like how SaaS revolutionized the business world by offering agility, AI agents bring a sweeping paradigm shift that stands to create even more wealth and opportunity. It's not a piecemeal upgrade; it's an entirely new strategy for running a company. In the coming years, businesses will run on teams of AI agents. Will your organization be at the forefront of this change—or will you be left on the sidelines, wondering how you missed the tidal wave when it was right on the horizon? The next generation of business isn't waiting. The path forward is clear: embrace AI agents and position yourself to thrive in a world that will inevitably demand them.</p>
   `
 };
+
