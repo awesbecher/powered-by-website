@@ -89,7 +89,7 @@ export const WebsiteSimulation = () => {
 
         {/* Website Content */}
         {simState === "website" && (
-          <div className="p-4 bg-white min-h-[380px] max-h-[380px] overflow-hidden">
+          <div className="p-4 bg-white min-h-[480px] max-h-[480px] overflow-hidden">
             {/* Logo at top left */}
             <div className="mb-3">
               <img 
@@ -132,7 +132,7 @@ export const WebsiteSimulation = () => {
 
         {/* Loading state */}
         {simState === "loading" && (
-          <div className="p-4 bg-white min-h-[380px] max-h-[380px] flex flex-col items-center justify-center">
+          <div className="p-4 bg-white min-h-[480px] max-h-[480px] flex flex-col items-center justify-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#9b87f5]"></div>
             <p className="mt-4 text-base text-gray-600">Connecting to an agent...</p>
           </div>
@@ -140,7 +140,7 @@ export const WebsiteSimulation = () => {
 
         {/* Call in progress state */}
         {simState === "call" && (
-          <div className="bg-white min-h-[380px] max-h-[380px] flex flex-col">
+          <div className="bg-white min-h-[480px] max-h-[480px] flex flex-col">
             <div className="flex-1 flex items-center justify-center p-4">
               <div className="bg-black rounded-xl shadow-xl max-w-md w-full p-4">
                 <div className="flex justify-between items-center mb-3">
