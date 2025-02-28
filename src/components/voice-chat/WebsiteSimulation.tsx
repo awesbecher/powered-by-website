@@ -102,6 +102,36 @@ export const WebsiteSimulation = () => {
       }, 500); // Short delay to ensure DOM is ready
     };
 
+    // Function to move cursor to the call popup center
+    const animateCursorToCallPopup = () => {
+      if (simState !== "call") return;
+      
+      const cursorElement = document.querySelector(".cursor-simulation") as HTMLDivElement | null;
+      if (!cursorElement) return;
+      
+      // Get the call popup container
+      setTimeout(() => {
+        const callContainer = document.querySelector(".bg-white .bg-black");
+        if (!callContainer || !cursorElement) return;
+        
+        const callRect = callContainer.getBoundingClientRect();
+        const pageContainer = callContainer.closest(".bg-white");
+        
+        if (!pageContainer) return;
+        
+        const containerRect = pageContainer.getBoundingClientRect();
+        
+        // Calculate center of the call popup
+        const targetTop = callRect.top - containerRect.top + callRect.height / 2;
+        const targetLeft = callRect.left - containerRect.left + callRect.width / 2;
+        
+        // Apply animation with delay
+        cursorElement.style.transition = "top 1s ease-in-out, left 1s ease-in-out";
+        cursorElement.style.top = `${targetTop}px`;
+        cursorElement.style.left = `${targetLeft}px`;
+      }, 500);
+    };
+
     // Start the complete simulation cycle
     const startSimulationCycle = () => {
       // Reset to initial state
@@ -140,6 +170,35 @@ export const WebsiteSimulation = () => {
         setSimState("call");
       }, 1500); // Show loading for 1.5 seconds
     } else if (simState === "call" && autoSimulate) {
+      // Add cursor animation to call popup
+      setTimeout(() => {
+        const animateCursorToCallPopup = () => {
+          const cursorElement = document.querySelector(".cursor-simulation") as HTMLDivElement | null;
+          if (!cursorElement) return;
+          
+          const callContainer = document.querySelector(".bg-white .bg-black");
+          if (!callContainer) return;
+          
+          const callRect = callContainer.getBoundingClientRect();
+          const pageContainer = callContainer.closest(".bg-white");
+          
+          if (!pageContainer) return;
+          
+          const containerRect = pageContainer.getBoundingClientRect();
+          
+          // Calculate center of the call popup
+          const targetTop = callRect.top - containerRect.top + callRect.height / 2;
+          const targetLeft = callRect.left - containerRect.left + callRect.width / 2;
+          
+          // Apply animation
+          cursorElement.style.transition = "top 1s ease-in-out, left 1s ease-in-out";
+          cursorElement.style.top = `${targetTop}px`;
+          cursorElement.style.left = `${targetLeft}px`;
+        };
+        
+        animateCursorToCallPopup();
+      }, 300);
+      
       // Auto restart after showing call for a while
       timer = setTimeout(() => {
         setSimState("website");
