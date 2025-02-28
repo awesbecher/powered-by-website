@@ -15,7 +15,7 @@ export const properties: Property[] = [
     location: "Scottsdale",
     specs: "17 Dale Dr • Landscaped Grounds",
     type: "Single Family",
-    image: "/lovable-uploads/5f6f1434-9daa-4864-b7b5-1c016acd2169.png"
+    image: "/lovable-uploads/55af1e29-b9b8-4ff9-97be-370778010c17.png"
   },
   {
     title: "Historic Colonial",
@@ -23,7 +23,7 @@ export const properties: Property[] = [
     location: "Mesa",
     specs: "321 Main St-Mountainville • Classic Details",
     type: "Single Family",
-    image: "/lovable-uploads/1cfbedce-9045-47a7-b81f-4eb7381a7576.png"
+    image: "/lovable-uploads/113ea6ec-ce48-47fa-991d-93aa8edc5da7.png"
   },
   {
     title: "Luxury Estate",
@@ -31,7 +31,7 @@ export const properties: Property[] = [
     location: "Gilbert",
     specs: "9 Maria Dr • Pool & Landscaped Grounds",
     type: "Single Family",
-    image: "/lovable-uploads/fb2b365b-82f1-49db-9f01-3400903c0199.png"
+    image: "/lovable-uploads/ae57b26e-163f-4cf7-bc1a-eab353cf3fae.png"
   },
   {
     title: "Victorian Estate",
@@ -39,7 +39,7 @@ export const properties: Property[] = [
     location: "Glendale",
     specs: "530 Houses Corner Rd • Wraparound Porch",
     type: "Single Family",
-    image: "/lovable-uploads/e504e0c0-aac1-498a-9e32-e6e42a133dee.png"
+    image: "/lovable-uploads/c5847a3c-a4e9-4810-b57c-14d61f3a271c.png"
   },
   {
     title: "Luxury Pool Estate",
