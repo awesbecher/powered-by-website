@@ -20,7 +20,7 @@ export const WebsiteContent = ({ onStartCall }: WebsiteContentProps) => {
         <img 
           src="/lovable-uploads/f6cd5c39-f85a-4586-9140-cd8e12d9b947.png" 
           alt="Phoenix Realty Inc. Logo" 
-          className="h-10 mb-2"
+          className="h-16 mb-2"  // Changed from h-10 to h-16 to increase the logo size
         />
         <h2 className="text-xl font-bold text-gray-800">Find Your Dream Home</h2>
         <p className="text-sm text-gray-600">Discover beautiful properties that match your lifestyle</p>
