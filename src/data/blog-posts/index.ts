@@ -12,8 +12,8 @@ import { aiTrillionMarket } from "./ai-trillion-market";
 import { BlogPost } from "../../types/blog";
 
 export const samplePosts: BlogPost[] = [
-  aiTrillionMarket,
   understandingAiAgents,
+  aiTrillionMarket,
   aiAgentsEvaluation,
   openaiAnthropicSmb,
   voiceAiRetail,
