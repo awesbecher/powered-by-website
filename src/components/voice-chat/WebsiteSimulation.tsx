@@ -89,7 +89,7 @@ export const WebsiteSimulation = () => {
 
         {/* Website Content */}
         {simState === "website" && (
-          <div className="p-2 bg-white min-h-[320px] max-h-[320px] overflow-y-auto">
+          <div className="p-2 bg-white min-h-[320px] max-h-[320px] overflow-hidden">
             {/* Logo at top left */}
             <div className="mb-2">
               <img 
