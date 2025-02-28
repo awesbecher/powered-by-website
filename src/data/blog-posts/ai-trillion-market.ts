@@ -6,7 +6,7 @@ export const aiTrillionMarket: BlogPost = {
   title: "AI Agents Represent the Next Trillion Market Opportunity",
   excerpt: "Explore why AI agents are poised to become one of the biggest market opportunities of the decade, revolutionizing how businesses operate and creating unprecedented economic value.",
   author: "Powered_by",
-  date: "April 15, 2025",
+  date: "December 11, 2024",
   readTime: "8 min read",
   slug: "ai-agents-trillion-market-opportunity",
   category: "Market Analysis",
