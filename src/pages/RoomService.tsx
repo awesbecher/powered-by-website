@@ -1,5 +1,6 @@
+
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, Phone } from "lucide-react";
+import { ArrowLeft, Phone, Mic, MicOff, X, Activity } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { useEffect, useState } from "react";
@@ -9,6 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { initiateVapiCall, stopVapiCall, getVapiInstance } from "@/services/vapiService";
 
 const RoomService = () => {
@@ -17,6 +19,7 @@ const RoomService = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [isCallActive, setIsCallActive] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
     // Clean up any active calls when the component unmounts
@@ -70,6 +73,12 @@ const RoomService = () => {
       title: "Call Ended",
       description: "Your call with room service has ended.",
     });
+  };
+
+  const toggleMute = () => {
+    // In a real implementation, this would interact with the Vapi SDK to mute/unmute
+    // For now, we'll just toggle the state
+    setIsMuted(!isMuted);
   };
 
   return (
@@ -140,29 +149,93 @@ const RoomService = () => {
         }
         setIsDialogOpen(open);
       }}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle>
-              {isCallActive ? "Call in Progress" : "Start Voice Chat with In-Room Dining Team"}
-            </DialogTitle>
-          </DialogHeader>
+        <DialogContent className="bg-white text-black border-gray-200 sm:max-w-md p-6 rounded-xl">
           {isCallActive ? (
-            <>
-              <p className="text-sm text-gray-500 pt-2">
-                You are now connected to In-Room Dining at Grandview Hotel. You can end the call at any time by clicking the button below.
-              </p>
-              <div className="flex justify-center w-full mt-4">
-                <Button
-                  variant="destructive"
-                  onClick={handleEndCall}
-                  className="w-full font-bold text-white"
-                >
-                  End Call
-                </Button>
+            <div className="flex flex-col space-y-6">
+              <div className="flex justify-between items-center">
+                <h2 className="text-2xl font-bold">You are now Connected</h2>
+                <button onClick={handleEndCall} className="text-gray-500 hover:text-gray-700">
+                  <X className="w-6 h-6" />
+                </button>
               </div>
-            </>
+              
+              <div className="flex items-center space-x-4">
+                <div className="relative">
+                  <Avatar className="h-20 w-20 rounded-full border-2 border-white shadow-md">
+                    <AvatarImage src="/lovable-uploads/ec9dd264-4bb3-4b03-9b50-e31383652af9.png" alt="Grandview Room Service" />
+                    <AvatarFallback>GV</AvatarFallback>
+                  </Avatar>
+                  <div className="absolute bottom-1 left-1 flex items-center">
+                    <div className="h-3 w-3 bg-green-500 rounded-full"></div>
+                    <div className="ml-1 flex space-x-0.5">
+                      {[...Array(4)].map((_, i) => (
+                        <div 
+                          key={i} 
+                          className={`h-3 w-1 rounded-full ${i === 0 ? 'bg-gray-800' : 'bg-gray-300'}`}
+                        ></div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold">Room Service</h3>
+                  <p className="text-gray-500">Grandview Hotel</p>
+                </div>
+              </div>
+              
+              <div className="bg-gray-100 p-4 rounded-xl">
+                <div className="flex justify-between items-center mb-4">
+                  <h3 className="text-lg font-bold">Call in progress</h3>
+                  <div className="flex items-center text-gray-700">
+                    <Activity className="w-5 h-5 mr-2" />
+                    <span>Live</span>
+                  </div>
+                </div>
+                
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center">
+                    <p className="text-gray-600">Your microphone</p>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="flex space-x-0.5 mr-2">
+                      <div className="h-3 w-1 bg-black rounded-full"></div>
+                      {[...Array(4)].map((_, i) => (
+                        <div 
+                          key={i} 
+                          className={`h-3 w-1 rounded-full ${i < 2 ? 'bg-gray-400' : 'bg-gray-300'}`}
+                        ></div>
+                      ))}
+                    </div>
+                    <span className="text-gray-600">Active</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="flex space-x-4">
+                <button 
+                  onClick={toggleMute}
+                  className="flex-1 py-3 px-4 border border-gray-300 rounded-md flex items-center justify-center space-x-2 hover:bg-gray-50 transition-colors"
+                >
+                  {isMuted ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
+                  <span>{isMuted ? "Unmute" : "Mute"}</span>
+                </button>
+                
+                <button 
+                  onClick={handleEndCall}
+                  className="flex-1 py-3 px-4 bg-red-500 text-white rounded-md flex items-center justify-center space-x-2 hover:bg-red-600 transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                  <span>End Call</span>
+                </button>
+              </div>
+            </div>
           ) : (
             <>
+              <DialogHeader>
+                <DialogTitle>
+                  Start Voice Chat with In-Room Dining Team
+                </DialogTitle>
+              </DialogHeader>
               <div className="space-y-4 pt-2">
                 <p className="text-sm text-gray-700">
                   You'll be able to have a voice conversation with our staff directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately.
