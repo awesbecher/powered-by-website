@@ -1,10 +1,12 @@
-import { Bot, Network, MessageSquare, BarChart, Phone, DollarSign, ChevronLeft } from "lucide-react";
+
+import { Bot, Network, MessageSquare, BarChart, Phone, DollarSign, ChevronLeft, Mic, MicOff, X, Activity } from "lucide-react";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const License = () => {
   const navigate = useNavigate();
@@ -12,6 +14,7 @@ const License = () => {
   const [isPricingDialogOpen, setIsPricingDialogOpen] = useState(false);
   const [isCallActive, setIsCallActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
   const { toast } = useToast();
 
   const handleEndCall = async () => {
@@ -49,6 +52,11 @@ const License = () => {
     }
   };
 
+  const toggleMute = () => {
+    // In a real implementation, this would interact with the Vapi SDK to mute/unmute
+    setIsMuted(!isMuted);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <button
@@ -67,28 +75,86 @@ const License = () => {
         />
       </div>
 
+      {/* Active Call Dialog - New Design */}
       <Dialog open={isCallActive} onOpenChange={(open) => !open && handleEndCall()}>
-        <DialogContent className="bg-[#222222] text-white border-gray-800">
-          <div className="flex items-start space-x-4 mb-4">
-            <img
-              src="/lovable-uploads/0d1c3dc0-7aad-4ddd-8b25-1edf45232f70.png"
-              alt="Christina Bell"
-              className="w-20 h-20 rounded-lg object-cover"
-            />
-            <DialogHeader className="flex-1">
-              <DialogTitle>Your call with Christina Bell is in progress</DialogTitle>
-            </DialogHeader>
-          </div>
-          <div className="flex flex-col space-y-4 pt-4">
-            <p className="text-gray-300">
-              You are currently in a voice conversation with Christina Bell from RightBloom's sales team. You can end the call at any time by clicking the button below.
-            </p>
-            <Button 
-              onClick={handleEndCall}
-              className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white font-bold"
-            >
-              End Call
-            </Button>
+        <DialogContent className="bg-white text-black border-gray-200 sm:max-w-md p-6 rounded-xl">
+          <div className="flex flex-col space-y-6">
+            <div className="flex justify-between items-center">
+              <h2 className="text-3xl font-bold">You are now Connected</h2>
+              <button onClick={handleEndCall} className="text-gray-500 hover:text-gray-700">
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            
+            <div className="flex items-center space-x-4">
+              <div className="relative">
+                <Avatar className="h-20 w-20 rounded-full border-2 border-white shadow-md">
+                  <AvatarImage src="/lovable-uploads/0d1c3dc0-7aad-4ddd-8b25-1edf45232f70.png" alt="Christina Bell" />
+                  <AvatarFallback>CB</AvatarFallback>
+                </Avatar>
+                <div className="absolute bottom-1 left-1 flex items-center">
+                  <div className="h-3 w-3 bg-green-500 rounded-full"></div>
+                  <div className="ml-1 flex space-x-0.5">
+                    {[...Array(4)].map((_, i) => (
+                      <div 
+                        key={i} 
+                        className={`h-3 w-1 rounded-full ${i === 0 ? 'bg-gray-800' : 'bg-gray-300'}`}
+                      ></div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold">Christina Bell</h3>
+                <p className="text-gray-500">RightBloom</p>
+              </div>
+            </div>
+            
+            <div className="bg-gray-100 p-4 rounded-xl">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-xl font-bold">Call in progress</h3>
+                <div className="flex items-center text-gray-700">
+                  <Activity className="w-5 h-5 mr-2" />
+                  <span>Live</span>
+                </div>
+              </div>
+              
+              <div className="flex justify-between items-center">
+                <div className="flex items-center">
+                  <p className="text-gray-600">Your microphone</p>
+                </div>
+                <div className="flex items-center">
+                  <div className="flex space-x-0.5 mr-2">
+                    <div className="h-3 w-1 bg-black rounded-full"></div>
+                    {[...Array(4)].map((_, i) => (
+                      <div 
+                        key={i} 
+                        className={`h-3 w-1 rounded-full ${i < 2 ? 'bg-gray-400' : 'bg-gray-300'}`}
+                      ></div>
+                    ))}
+                  </div>
+                  <span className="text-gray-600">Active</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="flex space-x-4">
+              <button 
+                onClick={toggleMute}
+                className="flex-1 py-3 px-4 border border-gray-300 rounded-md flex items-center justify-center space-x-2 hover:bg-gray-50 transition-colors"
+              >
+                {isMuted ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
+                <span>{isMuted ? "Unmute" : "Mute"}</span>
+              </button>
+              
+              <button 
+                onClick={handleEndCall}
+                className="flex-1 py-3 px-4 bg-red-500 text-white rounded-md flex items-center justify-center space-x-2 hover:bg-red-600 transition-colors"
+              >
+                <X className="w-5 h-5" />
+                <span>End Call</span>
+              </button>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
@@ -102,11 +168,14 @@ const License = () => {
         </DialogTrigger>
         <DialogContent className="bg-[#222222] text-white border-gray-800 sm:max-w-md">
           <div className="flex items-start space-x-4 mb-4">
-            <img
-              src="/lovable-uploads/0d1c3dc0-7aad-4ddd-8b25-1edf45232f70.png"
-              alt="Christina Bell"
-              className="w-20 h-20 rounded-lg object-cover"
-            />
+            <Avatar className="w-20 h-20">
+              <AvatarImage 
+                src="/lovable-uploads/0d1c3dc0-7aad-4ddd-8b25-1edf45232f70.png"
+                alt="Christina Bell"
+                className="rounded-lg object-cover"
+              />
+              <AvatarFallback className="rounded-lg">CB</AvatarFallback>
+            </Avatar>
             <DialogHeader className="flex-1">
               <DialogTitle>Start Voice Chat with Christina Bell on RightBloom's Sales Team</DialogTitle>
             </DialogHeader>
