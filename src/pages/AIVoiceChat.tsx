@@ -29,7 +29,7 @@ const AIVoiceChat = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0f0f0f] via-[#121212] to-[#0f0f0f]">
       {/* Hero Section */}
-      <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
+      <section className="pt-24 pb-32 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
         <div className="flex flex-col lg:flex-row items-center gap-12">
           <div className={`w-full lg:w-1/2 space-y-8 transition-all duration-1000 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
