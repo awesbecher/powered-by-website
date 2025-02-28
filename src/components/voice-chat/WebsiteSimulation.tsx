@@ -53,23 +53,23 @@ export const WebsiteSimulation = () => {
 
         {/* Website Content */}
         {simState === "website" && (
-          <div className="p-4 bg-white min-h-[500px]">
+          <div className="p-3 bg-white min-h-[400px] max-h-[400px]">
             {/* Logo at top left */}
-            <div className="mb-6">
+            <div className="mb-3">
               <img 
                 src="/lovable-uploads/f6cd5c39-f85a-4586-9140-cd8e12d9b947.png" 
                 alt="Phoenix Realty Inc. Logo" 
-                className="h-16 mb-4"
+                className="h-10 mb-2"
               />
-              <h2 className="text-2xl font-bold text-gray-800">Find Your Dream Home</h2>
-              <p className="text-gray-600 mt-2">Discover beautiful properties that match your lifestyle</p>
+              <h2 className="text-xl font-bold text-gray-800">Find Your Dream Home</h2>
+              <p className="text-sm text-gray-600">Discover beautiful properties that match your lifestyle</p>
             </div>
             
             {/* Property cards with real images */}
-            <div className="grid grid-cols-2 gap-3 mb-6">
+            <div className="grid grid-cols-2 gap-2 mb-3">
               {displayProperties.map((property, i) => (
-                <div key={i} className="bg-gray-50 rounded-lg p-2 shadow-sm">
-                  <div className="h-24 rounded-md mb-2 overflow-hidden">
+                <div key={i} className="bg-gray-50 rounded-lg p-1.5 shadow-sm">
+                  <div className="h-20 rounded-md mb-1 overflow-hidden">
                     <img 
                       src={property.image} 
                       alt={property.title}
@@ -83,12 +83,12 @@ export const WebsiteSimulation = () => {
             </div>
             
             {/* Call to action button */}
-            <div className="mt-4 flex justify-center">
+            <div className="mt-2 flex justify-center">
               <Button 
                 onClick={handleStartCall} 
-                className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-4 py-2 rounded-md"
+                className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-3 py-1.5 rounded-md text-sm"
               >
-                <Mic className="w-4 h-4 mr-2" /> Speak to a Real Estate Agent Now
+                <Mic className="w-3 h-3 mr-1" /> Speak to a Real Estate Agent Now
               </Button>
             </div>
           </div>
@@ -96,27 +96,27 @@ export const WebsiteSimulation = () => {
 
         {/* Loading state */}
         {simState === "loading" && (
-          <div className="p-6 bg-white min-h-[500px] flex flex-col items-center justify-center">
-            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-[#9b87f5]"></div>
+          <div className="p-6 bg-white min-h-[400px] max-h-[400px] flex flex-col items-center justify-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#9b87f5]"></div>
             <p className="mt-4 text-gray-600">Connecting to an agent...</p>
           </div>
         )}
 
         {/* Call in progress state */}
         {simState === "call" && (
-          <div className="bg-white min-h-[500px] flex flex-col">
-            <div className="flex-1 flex items-center justify-center p-4">
-              <div className="bg-black rounded-2xl shadow-xl max-w-md w-full p-6">
-                <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-2xl font-bold text-white">You are now Connected</h2>
+          <div className="bg-white min-h-[400px] max-h-[400px] flex flex-col">
+            <div className="flex-1 flex items-center justify-center p-3">
+              <div className="bg-black rounded-xl shadow-xl max-w-md w-full p-4">
+                <div className="flex justify-between items-center mb-3">
+                  <h2 className="text-lg font-bold text-white">You are now Connected</h2>
                   <button onClick={handleRestart} className="text-gray-300 hover:text-white">
-                    <X className="w-6 h-6" />
+                    <X className="w-5 h-5" />
                   </button>
                 </div>
                 
-                <div className="flex items-center space-x-4 mb-6">
+                <div className="flex items-center space-x-3 mb-3">
                   <div className="relative">
-                    <div className="h-16 w-16 rounded-full overflow-hidden border-2 border-gray-700 shadow-md">
+                    <div className="h-12 w-12 rounded-full overflow-hidden border-2 border-gray-700 shadow-md">
                       <img 
                         src="/lovable-uploads/f8dcc881-9e41-4bee-b8e5-78e0fdbccabb.png" 
                         alt="Melissa Thomas" 
@@ -124,63 +124,63 @@ export const WebsiteSimulation = () => {
                       />
                     </div>
                     <div className="absolute bottom-0 left-0 flex items-center">
-                      <div className="h-3 w-3 bg-green-500 rounded-full"></div>
+                      <div className="h-2 w-2 bg-green-500 rounded-full"></div>
                       <div className="ml-1 flex space-x-0.5">
                         {[...Array(4)].map((_, i) => (
                           <div 
                             key={i} 
-                            className={`h-2 w-1 rounded-full ${i === 0 ? 'bg-white' : 'bg-gray-500'}`}
+                            className={`h-1.5 w-0.5 rounded-full ${i === 0 ? 'bg-white' : 'bg-gray-500'}`}
                           ></div>
                         ))}
                       </div>
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-white">Melissa Thomas</h3>
-                    <p className="text-gray-400">Phoenix Realty Inc.</p>
+                    <h3 className="text-base font-bold text-white">Melissa Thomas</h3>
+                    <p className="text-xs text-gray-400">Phoenix Realty Inc.</p>
                   </div>
                 </div>
                 
-                <div className="bg-gray-900 p-4 rounded-xl mb-6">
-                  <div className="flex justify-between items-center mb-3">
-                    <h3 className="text-lg font-bold text-white">Call in progress</h3>
+                <div className="bg-gray-900 p-3 rounded-lg mb-3">
+                  <div className="flex justify-between items-center mb-2">
+                    <h3 className="text-sm font-bold text-white">Call in progress</h3>
                     <div className="flex items-center text-gray-300">
-                      <Activity className="w-4 h-4 mr-1" />
-                      <span className="text-sm">Live</span>
+                      <Activity className="w-3 h-3 mr-1" />
+                      <span className="text-xs">Live</span>
                     </div>
                   </div>
                   
                   <div className="flex justify-between items-center">
-                    <p className="text-gray-400 text-sm">Your microphone</p>
+                    <p className="text-gray-400 text-xs">Your microphone</p>
                     <div className="flex items-center">
                       <div className="flex space-x-0.5 mr-2">
-                        <div className="h-3 w-1 bg-white rounded-full"></div>
+                        <div className="h-2 w-0.5 bg-white rounded-full"></div>
                         {[...Array(4)].map((_, i) => (
                           <div 
                             key={i} 
-                            className={`h-3 w-1 rounded-full ${i < 2 ? 'bg-gray-400' : 'bg-gray-600'}`}
+                            className={`h-2 w-0.5 rounded-full ${i < 2 ? 'bg-gray-400' : 'bg-gray-600'}`}
                           ></div>
                         ))}
                       </div>
-                      <span className="text-gray-300 text-sm">Active</span>
+                      <span className="text-gray-300 text-xs">Active</span>
                     </div>
                   </div>
                 </div>
                 
-                <div className="flex space-x-4">
+                <div className="flex space-x-3">
                   <button 
                     onClick={() => setIsMuted(!isMuted)}
-                    className="flex-1 py-2 px-4 border border-gray-600 rounded-md flex items-center justify-center space-x-2 hover:bg-gray-900 transition-colors text-white"
+                    className="flex-1 py-1.5 px-3 border border-gray-600 rounded-md flex items-center justify-center space-x-1 hover:bg-gray-900 transition-colors text-white text-xs"
                   >
-                    {isMuted ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
+                    {isMuted ? <MicOff className="w-3 h-3" /> : <Mic className="w-3 h-3" />}
                     <span>{isMuted ? "Unmute" : "Mute"}</span>
                   </button>
                   
                   <button 
                     onClick={handleRestart}
-                    className="flex-1 py-2 px-4 bg-red-500 text-white rounded-md flex items-center justify-center space-x-2 hover:bg-red-600 transition-colors"
+                    className="flex-1 py-1.5 px-3 bg-red-500 text-white rounded-md flex items-center justify-center space-x-1 hover:bg-red-600 transition-colors text-xs"
                   >
-                    <X className="w-4 h-4" />
+                    <X className="w-3 h-3" />
                     <span>End Call</span>
                   </button>
                 </div>
