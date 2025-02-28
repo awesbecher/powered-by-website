@@ -47,7 +47,8 @@ export const WebsiteSimulation = () => {
 
     // Function to move cursor to the button
     const animateCursor = () => {
-      const cursorElement = document.querySelector(".cursor-simulation") as HTMLElement;
+      // Use type assertion to fix the TypeScript error
+      const cursorElement = document.querySelector(".cursor-simulation") as HTMLDivElement | null;
       if (!cursorElement) return;
       
       // Store reference to cursor
