@@ -17,20 +17,20 @@ export const aiTrillionMarket: BlogPost = {
 
     <h2 class="text-4xl font-bold pb-4 mb-6 border-b-4 border-purple-500">A Crowded Landscape</h2>
     
-    <p>Today's typical enterprise manages a whopping 288 SaaS applications. Each app has its own workflows, its own support costs, its own training requirements. Each one also has updates, permissions, and integration challenges. This kind of sprawl didn't exist in the pre-SaaS on-premise software days. It has led to new complexities that few companies anticipated.</p>
+    <p>Today's typical enterprise manages a whopping <strong>288 SaaS applications</strong>. Each app has its own workflows, its own support costs, its own training requirements. Each one also has updates, permissions, and integration challenges. This kind of sprawl didn't exist in the pre-SaaS on-premise software days. It has led to new complexities that few companies anticipated.</p>
     
     <p>Yet, despite the complexity, SaaS solutions remain static in one crucial way: they are rule-based systems. They do what they're programmed to do—no more, no less. AI agents, however, are different:</p>
     
     <ul>
-      <li>&nbsp;&nbsp;&nbsp;--> They interpret complex instructions.</li>
-      <li>&nbsp;&nbsp;&nbsp;--> They learn from observations and continuously improve.</li>
-      <li>&nbsp;&nbsp;&nbsp;--> They communicate fluidly with other systems.</li>
-      <li>&nbsp;&nbsp;&nbsp;--> They make informed decisions independently.</li>
+      <li>&nbsp;&nbsp;&nbsp;-->They interpret complex instructions.</li>
+      <li>&nbsp;&nbsp;&nbsp;-->They learn from observations and continuously improve.</li>
+      <li>&nbsp;&nbsp;&nbsp;-->They communicate fluidly with other systems.</li>
+      <li>&nbsp;&nbsp;&nbsp;-->They make informed decisions independently.</li>
     </ul>
     
     <p></p>
     
-    <p>&nbsp;&nbsp;&nbsp;--> They self-correct and solve problems on the fly.</p>
+    <p>&nbsp;&nbsp;&nbsp;-->They self-correct and solve problems on the fly.</p>
     
     <p>This is not just software that automates a single step—it's an intelligent entity capable of managing entire business functions.</p>
 
@@ -41,26 +41,26 @@ export const aiTrillionMarket: BlogPost = {
     <p>Now, imagine an AI agent overseeing procurement from start to finish:</p>
     
     <ul>
-      <li>&nbsp;&nbsp;&nbsp;--> It forecasts inventory needs by analyzing multiple data points.</li>
-      <li>&nbsp;&nbsp;&nbsp;--> It identifies and assesses potential suppliers in real time.</li>
-      <li>&nbsp;&nbsp;&nbsp;--> It negotiates and locks in the best prices.</li>
-      <li>&nbsp;&nbsp;&nbsp;--> It places orders and follows up on shipping.</li>
-      <li>&nbsp;&nbsp;&nbsp;--> It monitors product quality, addresses delays, and adjusts strategies accordingly.</li>
+      <li>&nbsp;&nbsp;&nbsp;-->It forecasts inventory needs by analyzing multiple data points.</li>
+      <li>&nbsp;&nbsp;&nbsp;-->It identifies and assesses potential suppliers in real time.</li>
+      <li>&nbsp;&nbsp;&nbsp;-->It negotiates and locks in the best prices.</li>
+      <li>&nbsp;&nbsp;&nbsp;-->It places orders and follows up on shipping.</li>
+      <li>&nbsp;&nbsp;&nbsp;-->It monitors product quality, addresses delays, and adjusts strategies accordingly.</li>
     </ul>
     
     <p></p>
     
-    <p>This shift isn't theoretical. Studies by McKinsey suggest that AI could automate up to 45% of all knowledge worker activities. That's a staggering figure—one that reflects just how far we've come from simple task automation.</p>
+    <p>This shift isn't theoretical. Studies by McKinsey suggest that AI could automate up to <strong>45% of all knowledge worker activities</strong>. That's a staggering figure—one that reflects just how far we've come from simple task automation.</p>
 
     <h2 class="text-4xl font-bold pb-4 mb-6 border-b-4 border-purple-500">When AI Agents Work Together</h2>
     
     <p>A single AI agent can do remarkable things. But the real magic happens when multiple agents collaborate across different departments or functions—like an orchestra of virtual workers all coordinating toward a shared goal. Envision a scenario where:</p>
     
     <ul>
-      <li>&nbsp;&nbsp;&nbsp;--> One AI agent handles every aspect of customer support.</li>
-      <li>&nbsp;&nbsp;&nbsp;--> Another AI agent optimizes inventory and supply chain.</li>
-      <li>&nbsp;&nbsp;&nbsp;--> A third AI agent fine-tunes product pricing.</li>
-      <li>&nbsp;&nbsp;&nbsp;--> A fourth AI agent designs and executes marketing campaigns.</li>
+      <li>&nbsp;&nbsp;&nbsp;-->One AI agent handles every aspect of customer support.</li>
+      <li>&nbsp;&nbsp;&nbsp;-->Another AI agent optimizes inventory and supply chain.</li>
+      <li>&nbsp;&nbsp;&nbsp;-->A third AI agent fine-tunes product pricing.</li>
+      <li>&nbsp;&nbsp;&nbsp;-->A fourth AI agent designs and executes marketing campaigns.</li>
     </ul>
     
     <p>Rather than simply reducing expenses, these coordinated AI agents can create brand-new revenue models. They free human teams to focus on creativity and strategy. They gather deeper insights. They tailor customer experiences at scale. In short, AI agents aren't merely a cost-trimming tool; they are catalysts for innovation and expansion.</p>
@@ -70,15 +70,15 @@ export const aiTrillionMarket: BlogPost = {
     <p>Early adopters who embrace AI agents are reporting dramatic improvements:</p>
     
     <ul>
-      <li>&nbsp;&nbsp;&nbsp;--> 30–50% cost savings</li>
-      <li>&nbsp;&nbsp;&nbsp;--> 50–70% faster operational cycles</li>
-      <li>&nbsp;&nbsp;&nbsp;--> 90% fewer errors</li>
-      <li>&nbsp;&nbsp;&nbsp;--> 50% higher conversion rates</li>
+      <li>&nbsp;&nbsp;&nbsp;-->30–50% cost savings</li>
+      <li>&nbsp;&nbsp;&nbsp;-->50–70% faster operational cycles</li>
+      <li>&nbsp;&nbsp;&nbsp;-->90% fewer errors</li>
+      <li>&nbsp;&nbsp;&nbsp;-->50% higher conversion rates</li>
     </ul>
     
     <p></p>
     
-    <p>In raw economic terms, McKinsey values this opportunity at $2.6–4.4 trillion annually. It's a figure so large that even a fraction of that potential can reshape entire industries.</p>
+    <p>In raw economic terms, McKinsey values this opportunity at <strong>$2.6–4.4 trillion</strong> annually. It's a figure so large that even a fraction of that potential can reshape entire industries.</p>
 
     <h2 class="text-4xl font-bold pb-4 mb-6 border-b-4 border-purple-500">Beyond the Bottom Line</h2>
     
@@ -91,10 +91,10 @@ export const aiTrillionMarket: BlogPost = {
     <p>This transformation, while inevitable, is not automatic. Thriving in the AI agent era demands new skill sets:</p>
     
     <ul>
-      <li>&nbsp;&nbsp;&nbsp;--> Learning how to collaborate effectively with AI.</li>
-      <li>&nbsp;&nbsp;&nbsp;--> Designing processes that allow AI to make decisions responsibly.</li>
-      <li>&nbsp;&nbsp;&nbsp;--> Building robust data infrastructure and secure pipelines.</li>
-      <li>&nbsp;&nbsp;&nbsp;--> Integrating ethical considerations and oversight at every level.</li>
+      <li>&nbsp;&nbsp;&nbsp;-->Learning how to collaborate effectively with AI.</li>
+      <li>&nbsp;&nbsp;&nbsp;-->Designing processes that allow AI to make decisions responsibly.</li>
+      <li>&nbsp;&nbsp;&nbsp;-->Building robust data infrastructure and secure pipelines.</li>
+      <li>&nbsp;&nbsp;&nbsp;-->Integrating ethical considerations and oversight at every level.</li>
     </ul>
     
     <p></p>
