@@ -46,7 +46,7 @@ export const WebsiteSimulation = () => {
             <div className="w-3 h-3 rounded-full bg-green-500"></div>
           </div>
           <div className="bg-gray-100 rounded-full px-2 py-1 text-xs text-gray-500 flex-1 mx-4 text-center">
-            realestatecompany.com
+            www.phxrealtyinc.com
           </div>
           <div className="w-4"></div>
         </div>
