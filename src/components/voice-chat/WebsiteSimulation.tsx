@@ -86,7 +86,7 @@ export const WebsiteSimulation = () => {
             <div className="mt-4 flex justify-center">
               <Button 
                 onClick={handleStartCall} 
-                className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-4 py-2 rounded-md animate-pulse"
+                className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-4 py-2 rounded-md"
               >
                 <Mic className="w-4 h-4 mr-2" /> Speak to a Real Estate Agent Now
               </Button>
