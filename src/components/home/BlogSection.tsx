@@ -61,9 +61,7 @@ export const BlogSection = () => {
               key={post.slug} 
               className="flex-none w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[30vw] snap-start"
             >
-              <Link to={`/blog/${post.slug}`}>
-                <BlogPostCard post={post} />
-              </Link>
+              <BlogPostCard post={post} />
             </div>
           ))}
         </div>
