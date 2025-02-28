@@ -46,8 +46,8 @@ const AIVoiceChat = () => {
                 Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button 
-                variant="outline" 
-                className="border-gray-700 text-white hover:bg-gray-800 px-8 py-6 text-lg rounded-md"
+                variant="gradient"
+                className="text-white px-8 py-6 text-lg rounded-md"
                 onClick={() => navigate("/demo")}
               >
                 See Live Demo
