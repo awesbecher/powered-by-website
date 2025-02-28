@@ -12,7 +12,7 @@ export const properties: Property[] = [
   {
     title: "Elegant Colonial",
     price: "$1,199,000",
-    location: "Morris Township",
+    location: "Scottsdale",
     specs: "17 Dale Dr • Landscaped Grounds",
     type: "Single Family",
     image: "/lovable-uploads/5f6f1434-9daa-4864-b7b5-1c016acd2169.png"
@@ -20,7 +20,7 @@ export const properties: Property[] = [
   {
     title: "Historic Colonial",
     price: "$1,185,000",
-    location: "Tewksbury Township",
+    location: "Mesa",
     specs: "321 Main St-Mountainville • Classic Details",
     type: "Single Family",
     image: "/lovable-uploads/1cfbedce-9045-47a7-b81f-4eb7381a7576.png"
@@ -28,7 +28,7 @@ export const properties: Property[] = [
   {
     title: "Luxury Estate",
     price: "$1,200,000",
-    location: "Sparta Township",
+    location: "Gilbert",
     specs: "9 Maria Dr • Pool & Landscaped Grounds",
     type: "Single Family",
     image: "/lovable-uploads/fb2b365b-82f1-49db-9f01-3400903c0199.png"
@@ -36,7 +36,7 @@ export const properties: Property[] = [
   {
     title: "Victorian Estate",
     price: "$1,175,000",
-    location: "Sparta Township",
+    location: "Glendale",
     specs: "530 Houses Corner Rd • Wraparound Porch",
     type: "Single Family",
     image: "/lovable-uploads/e504e0c0-aac1-498a-9e32-e6e42a133dee.png"
