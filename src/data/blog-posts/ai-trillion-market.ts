@@ -102,7 +102,7 @@ export const aiTrillionMarket: BlogPost = {
     
     <p>Businesses that recognize the change and invest early will enjoy a competitive edge—greater efficiency, responsiveness, innovation, and profitability. Those who underestimate the speed of this shift could find themselves scrambling to catch up.</p>
 
-    <h2 class="text-4xl font-bold pb-4 mb-6 border-b-4 border-purple-500">The Future Is AI-Driven</h2>
+    <h2 class="text-4xl font-bold pb-4 mb-6 border-b-4 border-purple-500">The Future Is Agent-Driven</h2>
     
     <p>Much like how SaaS revolutionized the business world by offering agility, AI agents bring a sweeping paradigm shift that stands to create even more wealth and opportunity. It's not a piecemeal upgrade; it's an entirely new strategy for running a company. In the coming years, businesses will run on teams of AI agents. Will your organization be at the forefront of this change—or will you be left on the sidelines, wondering how you missed the tidal wave when it was right on the horizon? The next generation of business isn't waiting. The path forward is clear: embrace AI agents and position yourself to thrive in a world that will inevitably demand them.</p>
   `
