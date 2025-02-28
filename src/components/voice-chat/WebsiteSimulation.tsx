@@ -106,17 +106,17 @@ export const WebsiteSimulation = () => {
         {simState === "call" && (
           <div className="bg-white min-h-[500px] flex flex-col">
             <div className="flex-1 flex items-center justify-center p-4">
-              <div className="bg-white rounded-2xl shadow-xl max-w-md w-full p-6">
+              <div className="bg-black rounded-2xl shadow-xl max-w-md w-full p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-2xl font-bold">You are now Connected</h2>
-                  <button onClick={handleRestart} className="text-gray-500 hover:text-gray-700">
+                  <h2 className="text-2xl font-bold text-white">You are now Connected</h2>
+                  <button onClick={handleRestart} className="text-gray-300 hover:text-white">
                     <X className="w-6 h-6" />
                   </button>
                 </div>
                 
                 <div className="flex items-center space-x-4 mb-6">
                   <div className="relative">
-                    <div className="h-16 w-16 rounded-full overflow-hidden border-2 border-white shadow-md">
+                    <div className="h-16 w-16 rounded-full overflow-hidden border-2 border-gray-700 shadow-md">
                       <img 
                         src="/lovable-uploads/f8dcc881-9e41-4bee-b8e5-78e0fdbccabb.png" 
                         alt="Melissa Thomas" 
@@ -129,40 +129,40 @@ export const WebsiteSimulation = () => {
                         {[...Array(4)].map((_, i) => (
                           <div 
                             key={i} 
-                            className={`h-2 w-1 rounded-full ${i === 0 ? 'bg-gray-700' : 'bg-gray-300'}`}
+                            className={`h-2 w-1 rounded-full ${i === 0 ? 'bg-white' : 'bg-gray-500'}`}
                           ></div>
                         ))}
                       </div>
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold">Melissa Thomas</h3>
-                    <p className="text-gray-500">Phoenix Realty Inc.</p>
+                    <h3 className="text-xl font-bold text-white">Melissa Thomas</h3>
+                    <p className="text-gray-400">Phoenix Realty Inc.</p>
                   </div>
                 </div>
                 
-                <div className="bg-gray-100 p-4 rounded-xl mb-6">
+                <div className="bg-gray-900 p-4 rounded-xl mb-6">
                   <div className="flex justify-between items-center mb-3">
-                    <h3 className="text-lg font-bold">Call in progress</h3>
-                    <div className="flex items-center text-gray-700">
+                    <h3 className="text-lg font-bold text-white">Call in progress</h3>
+                    <div className="flex items-center text-gray-300">
                       <Activity className="w-4 h-4 mr-1" />
                       <span className="text-sm">Live</span>
                     </div>
                   </div>
                   
                   <div className="flex justify-between items-center">
-                    <p className="text-gray-600 text-sm">Your microphone</p>
+                    <p className="text-gray-400 text-sm">Your microphone</p>
                     <div className="flex items-center">
                       <div className="flex space-x-0.5 mr-2">
-                        <div className="h-3 w-1 bg-black rounded-full"></div>
+                        <div className="h-3 w-1 bg-white rounded-full"></div>
                         {[...Array(4)].map((_, i) => (
                           <div 
                             key={i} 
-                            className={`h-3 w-1 rounded-full ${i < 2 ? 'bg-gray-400' : 'bg-gray-300'}`}
+                            className={`h-3 w-1 rounded-full ${i < 2 ? 'bg-gray-400' : 'bg-gray-600'}`}
                           ></div>
                         ))}
                       </div>
-                      <span className="text-gray-600 text-sm">Active</span>
+                      <span className="text-gray-300 text-sm">Active</span>
                     </div>
                   </div>
                 </div>
@@ -170,7 +170,7 @@ export const WebsiteSimulation = () => {
                 <div className="flex space-x-4">
                   <button 
                     onClick={() => setIsMuted(!isMuted)}
-                    className="flex-1 py-2 px-4 border border-gray-300 rounded-md flex items-center justify-center space-x-2 hover:bg-gray-50 transition-colors"
+                    className="flex-1 py-2 px-4 border border-gray-600 rounded-md flex items-center justify-center space-x-2 hover:bg-gray-900 transition-colors text-white"
                   >
                     {isMuted ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
                     <span>{isMuted ? "Unmute" : "Mute"}</span>
