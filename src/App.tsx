@@ -24,6 +24,7 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import AIVoiceChat from "./pages/AIVoiceChat";
 
+// Create a new query client instance
 const queryClient = new QueryClient();
 
 const App = () => (
