@@ -4,9 +4,45 @@ import { Button } from "@/components/ui/button";
 import { Mic, MicOff, X, Activity } from "lucide-react";
 import { properties } from "@/data/properties";
 
+// Helper function to preload images
+const preloadImage = (src: string): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve();
+    img.onerror = () => reject();
+    img.src = src;
+  });
+};
+
 export const WebsiteSimulation = () => {
   const [simState, setSimState] = useState<"website" | "loading" | "call">("website");
   const [isMuted, setIsMuted] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  // Preload images when component mounts
+  useEffect(() => {
+    const preloadImages = async () => {
+      try {
+        // Get the first 4 properties for preloading
+        const displayProperties = properties.slice(0, 4);
+        
+        // Preload all property images and agent image
+        await Promise.all([
+          ...displayProperties.map(property => preloadImage(property.image)),
+          preloadImage("/lovable-uploads/f8dcc881-9e41-4bee-b8e5-78e0fdbccabb.png"), // Agent image
+          preloadImage("/lovable-uploads/f6cd5c39-f85a-4586-9140-cd8e12d9b947.png")  // Logo
+        ]);
+        
+        setImagesLoaded(true);
+      } catch (error) {
+        console.error("Failed to preload images:", error);
+        // Still set as loaded if there's an error to avoid blocking the UI
+        setImagesLoaded(true);
+      }
+    };
+
+    preloadImages();
+  }, []);
 
   // Auto progress simulation for demo purposes
   useEffect(() => {
@@ -34,42 +70,42 @@ export const WebsiteSimulation = () => {
   const displayProperties = properties.slice(0, 4);
 
   return (
-    <div className="relative w-full max-w-[400px] mx-auto">
+    <div className="relative w-full max-w-[360px] mx-auto">
       {/* Monitor frame with purple glow */}
-      <div className="absolute -inset-4 bg-gradient-to-r from-purple-600 to-[#9b87f5] rounded-xl blur-lg opacity-75"></div>
+      <div className="absolute -inset-3 bg-gradient-to-r from-purple-600 to-[#9b87f5] rounded-xl blur-lg opacity-75"></div>
       <div className="relative bg-black rounded-xl overflow-hidden border border-gray-800">
         {/* Simulated website header */}
-        <div className="bg-white p-2 flex justify-between items-center border-b">
-          <div className="flex space-x-2">
-            <div className="w-3 h-3 rounded-full bg-red-500"></div>
-            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-            <div className="w-3 h-3 rounded-full bg-green-500"></div>
+        <div className="bg-white p-1.5 flex justify-between items-center border-b">
+          <div className="flex space-x-1.5">
+            <div className="w-2 h-2 rounded-full bg-red-500"></div>
+            <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
+            <div className="w-2 h-2 rounded-full bg-green-500"></div>
           </div>
-          <div className="bg-gray-100 rounded-full px-2 py-1 text-xs text-gray-500 flex-1 mx-4 text-center">
+          <div className="bg-gray-100 rounded-full px-2 py-0.5 text-xs text-gray-500 flex-1 mx-3 text-center">
             www.phxrealtyinc.com
           </div>
-          <div className="w-4"></div>
+          <div className="w-3"></div>
         </div>
 
         {/* Website Content */}
         {simState === "website" && (
-          <div className="p-3 bg-white min-h-[400px] max-h-[400px]">
+          <div className="p-2 bg-white min-h-[320px] max-h-[320px] overflow-y-auto">
             {/* Logo at top left */}
-            <div className="mb-3">
+            <div className="mb-2">
               <img 
                 src="/lovable-uploads/f6cd5c39-f85a-4586-9140-cd8e12d9b947.png" 
                 alt="Phoenix Realty Inc. Logo" 
-                className="h-10 mb-2"
+                className="h-8 mb-1.5"
               />
-              <h2 className="text-xl font-bold text-gray-800">Find Your Dream Home</h2>
-              <p className="text-sm text-gray-600">Discover beautiful properties that match your lifestyle</p>
+              <h2 className="text-base font-bold text-gray-800">Find Your Dream Home</h2>
+              <p className="text-xs text-gray-600">Discover beautiful properties that match your lifestyle</p>
             </div>
             
             {/* Property cards with real images */}
-            <div className="grid grid-cols-2 gap-2 mb-3">
+            <div className="grid grid-cols-2 gap-1.5 mb-2">
               {displayProperties.map((property, i) => (
-                <div key={i} className="bg-gray-50 rounded-lg p-1.5 shadow-sm">
-                  <div className="h-20 rounded-md mb-1 overflow-hidden">
+                <div key={i} className="bg-gray-50 rounded-lg p-1 shadow-sm">
+                  <div className="h-16 rounded-md mb-1 overflow-hidden">
                     <img 
                       src={property.image} 
                       alt={property.title}
@@ -83,10 +119,10 @@ export const WebsiteSimulation = () => {
             </div>
             
             {/* Call to action button */}
-            <div className="mt-2 flex justify-center">
+            <div className="mt-1.5 flex justify-center">
               <Button 
                 onClick={handleStartCall} 
-                className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-3 py-1.5 rounded-md text-sm"
+                className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-2 py-1 rounded-md text-xs"
               >
                 <Mic className="w-3 h-3 mr-1" /> Speak to a Real Estate Agent Now
               </Button>
@@ -96,27 +132,27 @@ export const WebsiteSimulation = () => {
 
         {/* Loading state */}
         {simState === "loading" && (
-          <div className="p-6 bg-white min-h-[400px] max-h-[400px] flex flex-col items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#9b87f5]"></div>
-            <p className="mt-4 text-gray-600">Connecting to an agent...</p>
+          <div className="p-4 bg-white min-h-[320px] max-h-[320px] flex flex-col items-center justify-center">
+            <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#9b87f5]"></div>
+            <p className="mt-3 text-sm text-gray-600">Connecting to an agent...</p>
           </div>
         )}
 
         {/* Call in progress state */}
         {simState === "call" && (
-          <div className="bg-white min-h-[400px] max-h-[400px] flex flex-col">
-            <div className="flex-1 flex items-center justify-center p-3">
-              <div className="bg-black rounded-xl shadow-xl max-w-md w-full p-4">
-                <div className="flex justify-between items-center mb-3">
-                  <h2 className="text-lg font-bold text-white">You are now Connected</h2>
+          <div className="bg-white min-h-[320px] max-h-[320px] flex flex-col">
+            <div className="flex-1 flex items-center justify-center p-2">
+              <div className="bg-black rounded-xl shadow-xl max-w-md w-full p-3">
+                <div className="flex justify-between items-center mb-2">
+                  <h2 className="text-sm font-bold text-white">You are now Connected</h2>
                   <button onClick={handleRestart} className="text-gray-300 hover:text-white">
-                    <X className="w-5 h-5" />
+                    <X className="w-4 h-4" />
                   </button>
                 </div>
                 
-                <div className="flex items-center space-x-3 mb-3">
+                <div className="flex items-center space-x-2 mb-2">
                   <div className="relative">
-                    <div className="h-12 w-12 rounded-full overflow-hidden border-2 border-gray-700 shadow-md">
+                    <div className="h-10 w-10 rounded-full overflow-hidden border-2 border-gray-700 shadow-md">
                       <img 
                         src="/lovable-uploads/f8dcc881-9e41-4bee-b8e5-78e0fdbccabb.png" 
                         alt="Melissa Thomas" 
@@ -124,28 +160,28 @@ export const WebsiteSimulation = () => {
                       />
                     </div>
                     <div className="absolute bottom-0 left-0 flex items-center">
-                      <div className="h-2 w-2 bg-green-500 rounded-full"></div>
-                      <div className="ml-1 flex space-x-0.5">
+                      <div className="h-1.5 w-1.5 bg-green-500 rounded-full"></div>
+                      <div className="ml-0.5 flex space-x-0.5">
                         {[...Array(4)].map((_, i) => (
                           <div 
                             key={i} 
-                            className={`h-1.5 w-0.5 rounded-full ${i === 0 ? 'bg-white' : 'bg-gray-500'}`}
+                            className={`h-1 w-0.5 rounded-full ${i === 0 ? 'bg-white' : 'bg-gray-500'}`}
                           ></div>
                         ))}
                       </div>
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-base font-bold text-white">Melissa Thomas</h3>
+                    <h3 className="text-sm font-bold text-white">Melissa Thomas</h3>
                     <p className="text-xs text-gray-400">Phoenix Realty Inc.</p>
                   </div>
                 </div>
                 
-                <div className="bg-gray-900 p-3 rounded-lg mb-3">
-                  <div className="flex justify-between items-center mb-2">
-                    <h3 className="text-sm font-bold text-white">Call in progress</h3>
+                <div className="bg-gray-900 p-2 rounded-lg mb-2">
+                  <div className="flex justify-between items-center mb-1">
+                    <h3 className="text-xs font-bold text-white">Call in progress</h3>
                     <div className="flex items-center text-gray-300">
-                      <Activity className="w-3 h-3 mr-1" />
+                      <Activity className="w-2.5 h-2.5 mr-1" />
                       <span className="text-xs">Live</span>
                     </div>
                   </div>
@@ -153,12 +189,12 @@ export const WebsiteSimulation = () => {
                   <div className="flex justify-between items-center">
                     <p className="text-gray-400 text-xs">Your microphone</p>
                     <div className="flex items-center">
-                      <div className="flex space-x-0.5 mr-2">
-                        <div className="h-2 w-0.5 bg-white rounded-full"></div>
+                      <div className="flex space-x-0.5 mr-1.5">
+                        <div className="h-1.5 w-0.5 bg-white rounded-full"></div>
                         {[...Array(4)].map((_, i) => (
                           <div 
                             key={i} 
-                            className={`h-2 w-0.5 rounded-full ${i < 2 ? 'bg-gray-400' : 'bg-gray-600'}`}
+                            className={`h-1.5 w-0.5 rounded-full ${i < 2 ? 'bg-gray-400' : 'bg-gray-600'}`}
                           ></div>
                         ))}
                       </div>
@@ -167,20 +203,20 @@ export const WebsiteSimulation = () => {
                   </div>
                 </div>
                 
-                <div className="flex space-x-3">
+                <div className="flex space-x-2">
                   <button 
                     onClick={() => setIsMuted(!isMuted)}
-                    className="flex-1 py-1.5 px-3 border border-gray-600 rounded-md flex items-center justify-center space-x-1 hover:bg-gray-900 transition-colors text-white text-xs"
+                    className="flex-1 py-1 px-2 border border-gray-600 rounded-md flex items-center justify-center space-x-1 hover:bg-gray-900 transition-colors text-white text-xs"
                   >
-                    {isMuted ? <MicOff className="w-3 h-3" /> : <Mic className="w-3 h-3" />}
+                    {isMuted ? <MicOff className="w-2.5 h-2.5" /> : <Mic className="w-2.5 h-2.5" />}
                     <span>{isMuted ? "Unmute" : "Mute"}</span>
                   </button>
                   
                   <button 
                     onClick={handleRestart}
-                    className="flex-1 py-1.5 px-3 bg-red-500 text-white rounded-md flex items-center justify-center space-x-1 hover:bg-red-600 transition-colors text-xs"
+                    className="flex-1 py-1 px-2 bg-red-500 text-white rounded-md flex items-center justify-center space-x-1 hover:bg-red-600 transition-colors text-xs"
                   >
-                    <X className="w-3 h-3" />
+                    <X className="w-2.5 h-2.5" />
                     <span>End Call</span>
                   </button>
                 </div>
