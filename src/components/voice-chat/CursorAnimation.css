@@ -7,6 +7,9 @@
   pointer-events: none;
   filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.7));
   z-index: 100;
+  position: absolute;
+  width: 24px;
+  height: 24px;
 }
 
 .cursor-simulation.clicking {

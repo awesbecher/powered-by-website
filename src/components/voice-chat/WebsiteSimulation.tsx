@@ -43,58 +43,59 @@ export const WebsiteSimulation = () => {
 
   // Animation logic for cursor
   useEffect(() => {
-    if (!autoSimulate) return;
+    if (!autoSimulate || !imagesLoaded) return;
 
-    const cursorElement = document.querySelector(".cursor-simulation") as HTMLElement;
-    if (!cursorElement) return;
-    
-    cursorRef.current = cursorElement;
-
-    // Initial position
-    cursorElement.style.top = "100px";
-    cursorElement.style.left = "50%";
-
-    // Move cursor to button
-    const moveCursorToButton = () => {
-      if (simState !== "website") return;
+    // Function to move cursor to the button
+    const animateCursor = () => {
+      const cursorElement = document.querySelector(".cursor-simulation") as HTMLElement;
+      if (!cursorElement) return;
       
-      const button = document.getElementById("cta-button");
-      if (!button || !cursorElement) return;
+      // Store reference to cursor
+      cursorRef.current = cursorElement;
 
-      const buttonRect = button.getBoundingClientRect();
-      const containerRect = button.parentElement?.getBoundingClientRect();
+      // Reset cursor position first
+      cursorElement.style.transition = "none";
+      cursorElement.style.top = "100px";
+      cursorElement.style.left = "50%";
       
-      if (!containerRect) return;
+      // Force reflow to make sure the reset takes effect
+      void cursorElement.offsetWidth;
       
-      // Calculate relative position within the container
-      const targetTop = buttonRect.top - containerRect.top + buttonRect.height / 2;
-      const targetLeft = buttonRect.left - containerRect.left + buttonRect.width / 2;
-
-      // Apply animation
-      cursorElement.style.transition = "top 1.5s ease-in-out, left 1.5s ease-in-out";
-      cursorElement.style.top = `${targetTop}px`;
-      cursorElement.style.left = `${targetLeft}px`;
-      
-      // Add clicking animation
+      // Get the CTA button
       setTimeout(() => {
-        if (cursorElement && simState === "website") {
-          cursorElement.classList.add("clicking");
-          
-          // Remove clicking animation
-          setTimeout(() => {
-            if (cursorElement) {
-              cursorElement.classList.remove("clicking");
-            }
-          }, 300);
-        }
-      }, 1600);
-    };
-
-    // Start the animation sequence
-    const startAnimation = () => {
-      if (simState === "website") {
-        moveCursorToButton();
-      }
+        const button = document.getElementById("cta-button");
+        if (!button || !cursorElement) return;
+        
+        const buttonRect = button.getBoundingClientRect();
+        const contentContainer = button.closest(".bg-white");
+        
+        if (!contentContainer) return;
+        
+        const containerRect = contentContainer.getBoundingClientRect();
+        
+        // Calculate relative position within the container
+        const targetTop = buttonRect.top - containerRect.top + buttonRect.height / 2;
+        const targetLeft = buttonRect.left - containerRect.left + buttonRect.width / 2;
+        
+        // Apply animation with delay
+        cursorElement.style.transition = "top 1.5s ease-in-out, left 1.5s ease-in-out";
+        cursorElement.style.top = `${targetTop}px`;
+        cursorElement.style.left = `${targetLeft}px`;
+        
+        // Add clicking animation after cursor arrives
+        setTimeout(() => {
+          if (cursorElement && simState === "website") {
+            cursorElement.classList.add("clicking");
+            
+            // Remove clicking animation after a short delay
+            setTimeout(() => {
+              if (cursorElement) {
+                cursorElement.classList.remove("clicking");
+              }
+            }, 300);
+          }
+        }, 1600);
+      }, 500); // Short delay to ensure DOM is ready
     };
 
     // Start the complete simulation cycle
@@ -103,10 +104,15 @@ export const WebsiteSimulation = () => {
       setSimState("website");
       
       // Start cursor animation with delay
-      setTimeout(startAnimation, 1000);
+      setTimeout(animateCursor, 1000);
     };
 
-    // Set up the simulation cycle
+    // Clear any existing interval
+    if (simulationCycleRef.current) {
+      clearInterval(simulationCycleRef.current);
+    }
+    
+    // Initial cycle
     startSimulationCycle();
     
     // Set up loop for the simulation
@@ -119,7 +125,7 @@ export const WebsiteSimulation = () => {
         clearInterval(simulationCycleRef.current);
       }
     };
-  }, [autoSimulate, imagesLoaded]);
+  }, [autoSimulate, imagesLoaded, simState]);
 
   // Auto progress simulation for demo purposes
   useEffect(() => {
