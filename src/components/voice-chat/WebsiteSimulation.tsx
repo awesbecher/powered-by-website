@@ -112,8 +112,8 @@ export const WebsiteSimulation = () => {
                   <div className="relative">
                     <div className="h-16 w-16 rounded-full overflow-hidden border-2 border-white shadow-md">
                       <img 
-                        src="/lovable-uploads/c67eef52-3386-4a9c-9700-1ddd518e09c9.png" 
-                        alt="Dave Frankel" 
+                        src="/lovable-uploads/f8dcc881-9e41-4bee-b8e5-78e0fdbccabb.png" 
+                        alt="Melissa Thomas" 
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -130,8 +130,8 @@ export const WebsiteSimulation = () => {
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold">Dave Frankel</h3>
-                    <p className="text-gray-500">Mercedes of Tacoma</p>
+                    <h3 className="text-xl font-bold">Melissa Thomas</h3>
+                    <p className="text-gray-500">Phoenix Realty Inc.</p>
                   </div>
                 </div>
                 
