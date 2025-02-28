@@ -71,10 +71,10 @@ export const aiTrillionMarket: BlogPost = {
     <p>Early adopters who embrace AI agents are reporting dramatic improvements:</p>
     
     <ul>
-      <li><strong>📊 30–50% cost savings</strong></li>
-      <li><strong>📊 50–70% faster operational cycles</strong></li>
-      <li><strong>📊 90% fewer errors</strong></li>
-      <li><strong>📊 50% higher conversion rates</strong></li>
+      <li><strong>• 30–50% cost savings</strong></li>
+      <li><strong>• 50–70% faster operational cycles</strong></li>
+      <li><strong>• 90% fewer errors</strong></li>
+      <li><strong>• 50% higher conversion rates</strong></li>
     </ul>
     
     <p></p>
