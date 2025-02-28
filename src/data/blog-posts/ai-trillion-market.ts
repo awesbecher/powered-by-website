@@ -26,11 +26,8 @@ export const aiTrillionMarket: BlogPost = {
       <li>&nbsp;&nbsp;&nbsp;-->They learn from observations and continuously improve.</li>
       <li>&nbsp;&nbsp;&nbsp;-->They communicate fluidly with other systems.</li>
       <li>&nbsp;&nbsp;&nbsp;-->They make informed decisions independently.</li>
+      <li>&nbsp;&nbsp;&nbsp;-->They self-correct and solve problems on the fly.</li>
     </ul>
-    
-    <p></p>
-    
-    <p>&nbsp;&nbsp;&nbsp;-->They self-correct and solve problems on the fly.</p>
     
     <p>This is not just software that automates a single step—it's an intelligent entity capable of managing entire business functions.</p>
 
@@ -48,8 +45,6 @@ export const aiTrillionMarket: BlogPost = {
       <li>&nbsp;&nbsp;&nbsp;-->It monitors product quality, addresses delays, and adjusts strategies accordingly.</li>
     </ul>
     
-    <p></p>
-    
     <p>This shift isn't theoretical. Studies by McKinsey suggest that AI could automate up to <strong>45% of all knowledge worker activities</strong>. That's a staggering figure—one that reflects just how far we've come from simple task automation.</p>
 
     <h2 class="text-4xl font-bold pb-4 mb-6 border-b-4 border-purple-500">When AI Agents Work Together</h2>
@@ -63,6 +58,8 @@ export const aiTrillionMarket: BlogPost = {
       <li>&nbsp;&nbsp;&nbsp;-->A fourth AI agent designs and executes marketing campaigns.</li>
     </ul>
     
+    <p></p>
+    
     <p>Rather than simply reducing expenses, these coordinated AI agents can create brand-new revenue models. They free human teams to focus on creativity and strategy. They gather deeper insights. They tailor customer experiences at scale. In short, AI agents aren't merely a cost-trimming tool; they are catalysts for innovation and expansion.</p>
 
     <h2 class="text-4xl font-bold pb-4 mb-6 border-b-4 border-purple-500">The Measurable Impact</h2>
@@ -70,10 +67,10 @@ export const aiTrillionMarket: BlogPost = {
     <p>Early adopters who embrace AI agents are reporting dramatic improvements:</p>
     
     <ul>
-      <li>&nbsp;&nbsp;&nbsp;-->30–50% cost savings</li>
-      <li>&nbsp;&nbsp;&nbsp;-->50–70% faster operational cycles</li>
-      <li>&nbsp;&nbsp;&nbsp;-->90% fewer errors</li>
-      <li>&nbsp;&nbsp;&nbsp;-->50% higher conversion rates</li>
+      <li>&nbsp;&nbsp;&nbsp;<strong>-->30–50% cost savings</strong></li>
+      <li>&nbsp;&nbsp;&nbsp;<strong>-->50–70% faster operational cycles</strong></li>
+      <li>&nbsp;&nbsp;&nbsp;<strong>-->90% fewer errors</strong></li>
+      <li>&nbsp;&nbsp;&nbsp;<strong>-->50% higher conversion rates</strong></li>
     </ul>
     
     <p></p>
