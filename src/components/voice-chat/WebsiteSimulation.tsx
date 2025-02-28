@@ -54,7 +54,13 @@ export const WebsiteSimulation = () => {
         {/* Website Content */}
         {simState === "website" && (
           <div className="p-4 bg-white min-h-[500px]">
+            {/* Logo at top left */}
             <div className="mb-6">
+              <img 
+                src="/lovable-uploads/f6cd5c39-f85a-4586-9140-cd8e12d9b947.png" 
+                alt="Phoenix Realty Inc. Logo" 
+                className="h-16 mb-4"
+              />
               <h2 className="text-2xl font-bold text-gray-800">Find Your Dream Home</h2>
               <p className="text-gray-600 mt-2">Discover beautiful properties that match your lifestyle</p>
             </div>
