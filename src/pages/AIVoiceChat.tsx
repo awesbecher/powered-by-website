@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Mic, MessageCircle, Settings, Clock, Shield, Phone, ArrowRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
+import { WebsiteSimulation } from "@/components/voice-chat/WebsiteSimulation";
 
 const AIVoiceChat = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -56,18 +57,7 @@ const AIVoiceChat = () => {
           </div>
           <div className={`w-full lg:w-1/2 transition-all duration-1000 delay-300 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-            <div className="relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-[#9b87f5] to-purple-600 rounded-lg blur-lg opacity-75"></div>
-              <div className="relative bg-black rounded-lg overflow-hidden border border-gray-800">
-                <div className="p-6">
-                  <img 
-                    src="/lovable-uploads/2d521c8d-084d-4a87-8491-cb795033a1d6.png" 
-                    alt="AI Voice Chat Interface" 
-                    className="w-full h-auto rounded-md shadow-lg"
-                  />
-                </div>
-              </div>
-            </div>
+            <WebsiteSimulation />
           </div>
         </div>
       </section>
