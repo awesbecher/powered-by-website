@@ -8,9 +8,11 @@ import { aiFearsSMB } from "./ai-fears-smb";
 import { openaiAnthropicSmb } from "./openai-anthropic-smb";
 import { understandingAiAgents } from "./understanding-ai-agents";
 import { aiAgentsEvaluation } from "./ai-agents-evaluation";
+import { aiTrillionMarket } from "./ai-trillion-market";
 import { BlogPost } from "../../types/blog";
 
 export const samplePosts: BlogPost[] = [
+  aiTrillionMarket,
   understandingAiAgents,
   aiAgentsEvaluation,
   openaiAnthropicSmb,
