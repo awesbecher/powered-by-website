@@ -21,7 +21,7 @@ export const WebsiteContent = ({ onStartCall, autoSimulate = false }: WebsiteCon
         <img 
           src="/lovable-uploads/f6cd5c39-f85a-4586-9140-cd8e12d9b947.png" 
           alt="Phoenix Realty Inc. Logo" 
-          className="h-18 mb-1" // Changed from h-12 to h-18 (1.5x increase)
+          className="h-12 mb-1" // Changed from h-18 to h-12 (reduced by 1.5x)
         />
         <h2 className="text-lg font-bold text-gray-800">Find Your Dream Home</h2>
         <p className="text-sm text-gray-600">Discover beautiful properties that match your lifestyle</p>
