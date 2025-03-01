@@ -104,15 +104,38 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
         </div>
         <div className={`w-full lg:w-1/2 transition-all duration-1000 delay-300 ease-out transform
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-          <div className="relative w-full max-w-[380px] mx-auto">
-            {/* Vintage telephone image with purple glow effect */}
-            <div className="absolute -inset-3 bg-gradient-to-r from-purple-600 to-[#9b87f5] rounded-xl blur-lg opacity-75"></div>
-            <div className="relative rounded-xl overflow-hidden">
-              <img 
-                src="/lovable-uploads/cb89434a-efcd-49fb-a3fa-ffb81f5f723c.png" 
-                alt="Vintage telephone" 
-                className="w-full h-auto rounded-xl"
-              />
+          <div className="grid grid-cols-2 gap-4 max-w-[380px] mx-auto">
+            {/* 2x2 Grid of service boxes */}
+            <div className="relative rounded-lg overflow-hidden">
+              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-[#9b87f5] rounded-lg blur-sm opacity-75"></div>
+              <div className="relative p-4 bg-gray-900 rounded-lg h-full flex flex-col justify-between">
+                <div className="text-sm font-bold text-white">Schedule a Test Drive!</div>
+                <div className="text-xs text-gray-300 mt-2">Call Mercedes of Tacoma @ (555) 555-5555</div>
+              </div>
+            </div>
+            
+            <div className="relative rounded-lg overflow-hidden">
+              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-[#9b87f5] rounded-lg blur-sm opacity-75"></div>
+              <div className="relative p-4 bg-gray-900 rounded-lg h-full flex flex-col justify-between">
+                <div className="text-sm font-bold text-white">Schedule a House Tour!</div>
+                <div className="text-xs text-gray-300 mt-2">Call Township Real Estate @ (555) 555-5555</div>
+              </div>
+            </div>
+            
+            <div className="relative rounded-lg overflow-hidden">
+              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-[#9b87f5] rounded-lg blur-sm opacity-75"></div>
+              <div className="relative p-4 bg-gray-900 rounded-lg h-full flex flex-col justify-between">
+                <div className="text-sm font-bold text-white">Order a Pizza!</div>
+                <div className="text-xs text-gray-300 mt-2">Call The Slice House @ (555) 555-5555</div>
+              </div>
+            </div>
+            
+            <div className="relative rounded-lg overflow-hidden">
+              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-[#9b87f5] rounded-lg blur-sm opacity-75"></div>
+              <div className="relative p-4 bg-gray-900 rounded-lg h-full flex flex-col justify-between">
+                <div className="text-sm font-bold text-white">Get a Haircut!</div>
+                <div className="text-xs text-gray-300 mt-2">Call Flagship Barbers @ (555) 555-5555</div>
+              </div>
             </div>
           </div>
         </div>
