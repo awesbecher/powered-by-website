@@ -19,7 +19,7 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
       icon: Building,
       category: "Real Estate",
       businessName: "Township Real Estate",
-      phoneNumber: "(555) 555-5555"
+      phoneNumber: "+1 (732) 702 8348"
     },
     {
       icon: Coffee,
