@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Activity, Mic, MicOff, X } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface VoiceChatDialogProps {
   showDialog: boolean;
@@ -23,10 +24,16 @@ export const VoiceChatDialog = ({
   handleEndCall,
 }: VoiceChatDialogProps) => {
   const [isMuted, setIsMuted] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMute = () => {
     // In a real implementation, this would interact with the Vapi SDK to mute/unmute
     setIsMuted(!isMuted);
+  };
+
+  const handleEndCallAndRedirect = () => {
+    handleEndCall();
+    navigate('/contact');
   };
 
   // Initial dialog before call starts
@@ -37,24 +44,24 @@ export const VoiceChatDialog = ({
           <DialogHeader className="flex items-start space-x-4">
             <Avatar className="w-20 h-20">
               <AvatarImage
-                src="/lovable-uploads/d2c09a06-b1ad-4f03-bcc5-6ea523b06f41.png"
-                alt="Michael from Powered_by Solutions"
+                src="/lovable-uploads/8c4d903b-42b2-48ef-9625-676d1f6aa106.png"
+                alt="Paul Berman, Chief Technical Evangelist @ Powered_by Agency"
                 className="object-cover"
               />
-              <AvatarFallback>MS</AvatarFallback>
+              <AvatarFallback>PB</AvatarFallback>
             </Avatar>
             <div className="flex-1">
               <DialogTitle className="text-2xl font-bold text-white mb-2">
-                Start Voice Chat with Michael on the Powered_by Solutions Design Team
+                Good choice!
               </DialogTitle>
               <DialogDescription className="text-gray-300">
-                You'll be able to have a voice conversation with Michael directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately.
+                You're one step closer to implementing AI Receptionist for your business lines.
               </DialogDescription>
             </div>
           </DialogHeader>
           <div className="flex flex-col space-y-4 pt-4">
             <p className="text-sm text-gray-300">
-              By clicking "Start Voice Chat", you consent to having a voice conversation with Powered_by's Design Team. You can end the conversation at any time.
+              By clicking "Start AI Receptionist Demo", you consent to having a voice conversation with Powered_by's Solutions Team. You can end the conversation at any time.
             </p>
             <div className="flex gap-2">
               <Button 
@@ -69,7 +76,7 @@ export const VoiceChatDialog = ({
                 disabled={isSubmitting}
                 className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
               >
-                {isSubmitting ? "Starting..." : "Start Voice Chat"}
+                {isSubmitting ? "Starting..." : "Start AI Receptionist Demo"}
               </Button>
             </div>
           </div>
@@ -78,9 +85,9 @@ export const VoiceChatDialog = ({
     );
   }
 
-  // Active call dialog with BLACK background
+  // Active call dialog
   return (
-    <Dialog open={showDialog} onOpenChange={(open) => !open && handleEndCall()}>
+    <Dialog open={showDialog} onOpenChange={(open) => !open && handleEndCallAndRedirect()}>
       <DialogContent className="bg-black text-white border-gray-800 sm:max-w-md p-6 rounded-xl">
         <div className="flex flex-col space-y-6">
           <div className="flex justify-between items-center">
