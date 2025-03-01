@@ -45,7 +45,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
                 className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
                 onClick={handleContact}
               >
-                Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
+                Get Started <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
           </div>
