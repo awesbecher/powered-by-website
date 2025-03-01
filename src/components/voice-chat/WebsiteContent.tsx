@@ -14,11 +14,8 @@ export const WebsiteContent = ({ onStartCall, autoSimulate = false }: WebsiteCon
   // Get the first 4 properties from our data
   const displayProperties = properties.slice(0, 4);
 
-  // We no longer need to auto-click the button since the cursor animation now handles this
-  // by directly changing the state after the click animation
-
   return (
-    <div className="p-3 bg-white min-h-[600px] max-h-[600px] overflow-hidden relative">
+    <div className="p-3 bg-white min-h-[500px] max-h-[500px] overflow-hidden relative">
       {/* Logo at top left */}
       <div className="mb-2">
         <img 
@@ -37,8 +34,8 @@ export const WebsiteContent = ({ onStartCall, autoSimulate = false }: WebsiteCon
         ))}
       </div>
       
-      {/* Call to action button */}
-      <div className="mt-2 flex justify-center" id="cta-button">
+      {/* Call to action button - reduced margin top and added fixed bottom positioning */}
+      <div className="mt-1 flex justify-center" id="cta-button">
         <Button 
           onClick={onStartCall} 
           className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-3 py-2 rounded-md text-sm"

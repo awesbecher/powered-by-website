@@ -64,7 +64,7 @@ export const WebsiteSimulation = () => {
 
         {/* Website content in background when call is active */}
         {simState === "call" && (
-          <div className="relative min-h-[600px] max-h-[600px]">
+          <div className="relative min-h-[500px] max-h-[500px]">
             <WebsiteContent onStartCall={() => {}} autoSimulate={false} />
             
             {/* Call overlay */}
