@@ -54,7 +54,7 @@ const App = () => (
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/voice-chat" element={<AIVoiceChat />} />
-              <Route path="/voice-business" element={<AIVoiceBusinessLines />} />
+              <Route path="/ai-assistant" element={<AIVoiceBusinessLines />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
