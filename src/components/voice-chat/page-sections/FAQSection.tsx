@@ -1,5 +1,4 @@
 
-
 interface FAQItemProps {
   question: string;
   answer: string;
@@ -27,7 +26,7 @@ export const FAQSection = () => {
         />
         <FAQItem 
           question="Will the AI understand my industry terminology?"
-          answer="Yes! We train your AI on your specific industry, products, and services to ensure accurate and relevant conversations." 
+          answer="Yes! We train your AI on your specific industry, products, and services to ensure accurate and relevant conversations. The voice agent will retain all your business context and desired call outcomes." 
         />
         <FAQItem 
           question="Can I customize the voice and personality of the AI?"
@@ -41,4 +40,3 @@ export const FAQSection = () => {
     </section>
   );
 };
-
