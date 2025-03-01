@@ -21,7 +21,7 @@ export const FeaturesSection = () => {
   return (
     <section className="py-2 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
       <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-16">
-        Powerful Voice AI Features For Your Business
+        Human-like Voice AI Chat For Your Website
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <FeatureCard 
