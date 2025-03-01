@@ -30,6 +30,11 @@ export const FeaturesSection = () => {
           description="AI agents that speak as human-like as possible and listen naturally, creating genuine conversations with your customers." 
         />
         <FeatureCard 
+          icon={<Phone className="w-10 h-10 text-[#9b87f5]" />}
+          title="Call Handling"
+          description="Manage inbound calls, schedule appointments, qualify leads, and transfer to human agents when needed." 
+        />
+        <FeatureCard 
           icon={<MessageCircle className="w-10 h-10 text-[#9b87f5]" />}
           title="Omnichannel Support"
           description="Integrate voice AI with your existing chat, phone, and messaging platforms." 
@@ -48,11 +53,6 @@ export const FeaturesSection = () => {
           icon={<Shield className="w-10 h-10 text-[#9b87f5]" />}
           title="Data Security"
           description="Enterprise-grade security to protect customer conversations and sensitive information." 
-        />
-        <FeatureCard 
-          icon={<Phone className="w-10 h-10 text-[#9b87f5]" />}
-          title="Call Handling"
-          description="Manage inbound calls, schedule appointments, qualify leads, and transfer to human agents when needed." 
         />
       </div>
     </section>
