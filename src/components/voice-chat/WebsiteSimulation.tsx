@@ -252,9 +252,9 @@ export const WebsiteSimulation = () => {
   };
 
   return (
-    <div className="relative w-full max-w-[420px] mx-auto">
+    <div className="relative w-full max-w-[380px] mx-auto">
       {/* Monitor frame with purple glow */}
-      <div className="absolute -inset-4 bg-gradient-to-r from-purple-600 to-[#9b87f5] rounded-xl blur-lg opacity-75"></div>
+      <div className="absolute -inset-3 bg-gradient-to-r from-purple-600 to-[#9b87f5] rounded-xl blur-lg opacity-75"></div>
       <div className="relative bg-black rounded-xl overflow-hidden border border-gray-800">
         {/* Simulated website header */}
         <WebsiteHeader />

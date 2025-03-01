@@ -15,27 +15,27 @@ export const WebsiteContent = ({ onStartCall, autoSimulate = false }: WebsiteCon
   const displayProperties = properties.slice(0, 4);
 
   return (
-    <div className="p-4 bg-white min-h-[600px] max-h-[600px] overflow-hidden relative">
+    <div className="p-3 bg-white min-h-[600px] max-h-[600px] overflow-hidden relative">
       {/* Logo at top left */}
-      <div className="mb-3">
+      <div className="mb-2">
         <img 
           src="/lovable-uploads/f6cd5c39-f85a-4586-9140-cd8e12d9b947.png" 
           alt="Phoenix Realty Inc. Logo" 
-          className="h-16 mb-2"
+          className="h-12 mb-1"
         />
-        <h2 className="text-xl font-bold text-gray-800">Find Your Dream Home</h2>
+        <h2 className="text-lg font-bold text-gray-800">Find Your Dream Home</h2>
         <p className="text-sm text-gray-600">Discover beautiful properties that match your lifestyle</p>
       </div>
       
       {/* Property cards with real images */}
-      <div className="grid grid-cols-2 gap-3 mb-3">
+      <div className="grid grid-cols-2 gap-2 mb-2">
         {displayProperties.map((property, i) => (
           <PropertyCard key={i} property={property} />
         ))}
       </div>
       
       {/* Call to action button */}
-      <div className="mt-3 flex justify-center" id="cta-button">
+      <div className="mt-2 flex justify-center" id="cta-button">
         <Button 
           onClick={onStartCall} 
           className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-3 py-2 rounded-md text-sm"
