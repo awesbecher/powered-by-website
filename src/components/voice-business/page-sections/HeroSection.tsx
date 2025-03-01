@@ -114,14 +114,19 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
               <div className="absolute -inset-1 bg-gradient-to-r from-[#6342ff] to-[#9b87f5] rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
               <div className="relative backdrop-blur-sm bg-gray-900/80 p-6 rounded-xl border border-purple-500/20 shadow-xl h-full flex flex-col justify-between hover:translate-y-[-4px] transition-transform duration-300">
                 <div>
-                  <div className="text-base sm:text-lg font-bold text-white mb-2">
-                    <span className="text-[#F97316]">🚗</span> Schedule a Test Drive!
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[#F97316] text-xl">🚗</span>
+                    <h3 className="font-sans text-lg font-bold text-white leading-tight tracking-wide">
+                      Test Drive
+                    </h3>
                   </div>
-                  <div className="flex items-center text-xs sm:text-sm text-gray-300 mt-3">
+                  <div className="my-2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+                  <div className="flex items-center text-xs text-gray-300 mt-3">
                     <Phone className="h-3 w-3 mr-1 text-[#9b87f5]" />
-                    <span>Call <span className="font-semibold text-[#9b87f5]">Mercedes of Tacoma</span> @</span>
+                    <span className="text-gray-400 font-medium">Call</span>
                   </div>
-                  <div className="text-white font-bold mt-1">(555) 555-5555</div>
+                  <div className="font-sans text-sm font-semibold text-[#9b87f5] mb-1">Mercedes of Tacoma</div>
+                  <div className="text-white font-mono text-sm tracking-wide">(555) 555-5555</div>
                 </div>
               </div>
             </div>
@@ -131,14 +136,19 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
               <div className="absolute -inset-1 bg-gradient-to-r from-[#D946EF] to-[#9b87f5] rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
               <div className="relative backdrop-blur-sm bg-gray-900/80 p-6 rounded-xl border border-purple-500/20 shadow-xl h-full flex flex-col justify-between hover:translate-y-[-4px] transition-transform duration-300">
                 <div>
-                  <div className="text-base sm:text-lg font-bold text-white mb-2">
-                    <span className="text-[#0EA5E9]">🏠</span> Schedule a House Tour!
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[#0EA5E9] text-xl">🏠</span>
+                    <h3 className="font-sans text-lg font-bold text-white leading-tight tracking-wide">
+                      House Tour
+                    </h3>
                   </div>
-                  <div className="flex items-center text-xs sm:text-sm text-gray-300 mt-3">
+                  <div className="my-2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+                  <div className="flex items-center text-xs text-gray-300 mt-3">
                     <Phone className="h-3 w-3 mr-1 text-[#D946EF]" />
-                    <span>Call <span className="font-semibold text-[#D946EF]">Township Real Estate</span> @</span>
+                    <span className="text-gray-400 font-medium">Call</span>
                   </div>
-                  <div className="text-white font-bold mt-1">(555) 555-5555</div>
+                  <div className="font-sans text-sm font-semibold text-[#D946EF] mb-1">Township Real Estate</div>
+                  <div className="text-white font-mono text-sm tracking-wide">(555) 555-5555</div>
                 </div>
               </div>
             </div>
@@ -148,14 +158,19 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
               <div className="absolute -inset-1 bg-gradient-to-r from-[#F97316] to-[#9b87f5] rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
               <div className="relative backdrop-blur-sm bg-gray-900/80 p-6 rounded-xl border border-purple-500/20 shadow-xl h-full flex flex-col justify-between hover:translate-y-[-4px] transition-transform duration-300">
                 <div>
-                  <div className="text-base sm:text-lg font-bold text-white mb-2">
-                    <span className="text-[#F97316]">🍕</span> Order a Pizza!
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[#F97316] text-xl">🍕</span>
+                    <h3 className="font-sans text-lg font-bold text-white leading-tight tracking-wide">
+                      Order Pizza
+                    </h3>
                   </div>
-                  <div className="flex items-center text-xs sm:text-sm text-gray-300 mt-3">
+                  <div className="my-2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+                  <div className="flex items-center text-xs text-gray-300 mt-3">
                     <Phone className="h-3 w-3 mr-1 text-[#F97316]" />
-                    <span>Call <span className="font-semibold text-[#F97316]">The Slice House</span> @</span>
+                    <span className="text-gray-400 font-medium">Call</span>
                   </div>
-                  <div className="text-white font-bold mt-1">(555) 555-5555</div>
+                  <div className="font-sans text-sm font-semibold text-[#F97316] mb-1">The Slice House</div>
+                  <div className="text-white font-mono text-sm tracking-wide">(555) 555-5555</div>
                 </div>
               </div>
             </div>
@@ -165,14 +180,19 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
               <div className="absolute -inset-1 bg-gradient-to-r from-[#0EA5E9] to-[#9b87f5] rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
               <div className="relative backdrop-blur-sm bg-gray-900/80 p-6 rounded-xl border border-purple-500/20 shadow-xl h-full flex flex-col justify-between hover:translate-y-[-4px] transition-transform duration-300">
                 <div>
-                  <div className="text-base sm:text-lg font-bold text-white mb-2">
-                    <span className="text-[#D946EF]">✂️</span> Get a Haircut!
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[#D946EF] text-xl">✂️</span>
+                    <h3 className="font-sans text-lg font-bold text-white leading-tight tracking-wide">
+                      Get Haircut
+                    </h3>
                   </div>
-                  <div className="flex items-center text-xs sm:text-sm text-gray-300 mt-3">
+                  <div className="my-2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+                  <div className="flex items-center text-xs text-gray-300 mt-3">
                     <Phone className="h-3 w-3 mr-1 text-[#0EA5E9]" />
-                    <span>Call <span className="font-semibold text-[#0EA5E9]">Flagship Barbers</span> @</span>
+                    <span className="text-gray-400 font-medium">Call</span>
                   </div>
-                  <div className="text-white font-bold mt-1">(555) 555-5555</div>
+                  <div className="font-sans text-sm font-semibold text-[#0EA5E9] mb-1">Flagship Barbers</div>
+                  <div className="text-white font-mono text-sm tracking-wide">(555) 555-5555</div>
                 </div>
               </div>
             </div>
