@@ -10,7 +10,7 @@ export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl text-center">
       <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8">
-        Revolutionize Your Business Communications Today
+        Stop missing calls. Stop putting customers on hold. Start impressing them from <span className="italic text-[#9b87f5]">Hello</span>.
       </h2>
       <p className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto">
         Join the businesses eliminating hold times and enhancing customer experiences with AI voice technology for phone systems.
