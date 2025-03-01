@@ -15,7 +15,7 @@ export const WebsiteContent = ({ onStartCall, autoSimulate = false }: WebsiteCon
   const displayProperties = properties.slice(0, 4);
 
   return (
-    <div className="p-3 bg-white min-h-[500px] max-h-[500px] overflow-hidden relative">
+    <div className="p-3 bg-white min-h-[500px] max-h-[500px] h-[500px] overflow-hidden relative">
       {/* Logo at top left */}
       <div className="mb-2">
         <img 
