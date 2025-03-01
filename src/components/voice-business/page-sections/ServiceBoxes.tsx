@@ -4,9 +4,10 @@ import { ServiceBox } from "./ServiceBox";
 
 interface ServiceBoxesProps {
   initialLoad: boolean;
+  onTryNow?: () => void;
 }
 
-export const ServiceBoxes = ({ initialLoad }: ServiceBoxesProps) => {
+export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
   const services = [
     {
       icon: Car,
@@ -50,6 +51,7 @@ export const ServiceBoxes = ({ initialLoad }: ServiceBoxesProps) => {
             category={service.category}
             businessName={service.businessName}
             phoneNumber={service.phoneNumber}
+            onTryNow={onTryNow}
           />
         ))}
       </div>
