@@ -9,10 +9,6 @@ export const preloadImage = (src: string): Promise<void> => {
       return;
     }
     
-    // Add cache busting for development, but use cached version in production
-    const cacheBuster = process.env.NODE_ENV === 'development' ? `?cache=${Date.now()}` : '';
-    const imgSrc = src + cacheBuster;
-    
     // Check if image is already cached by the browser
     const cachedImage = new Image();
     cachedImage.src = src;
@@ -24,7 +20,7 @@ export const preloadImage = (src: string): Promise<void> => {
       return;
     }
     
-    // Not cached, so load it properly
+    // Not cached, so load it properly with high priority
     const img = new Image();
     
     img.onload = () => {
@@ -45,8 +41,8 @@ export const preloadImage = (src: string): Promise<void> => {
     // Set cache control headers
     img.setAttribute('crossOrigin', 'anonymous');
     
-    // Set source last to trigger loading
-    img.src = imgSrc;
+    // Load the image immediately
+    img.src = src;
   });
 };
 
@@ -60,13 +56,14 @@ export const preloadAndCacheImage = async (src: string): Promise<void> => {
     cachedImage.src = src;
     if (cachedImage.complete) return;
     
-    // Fetch image and store in cache
+    // Use modern fetch API to load image with cache priorities
     const response = await fetch(src, {
       method: 'GET',
       headers: {
         'Cache-Control': 'max-age=31536000',
       },
       cache: 'force-cache',
+      priority: 'high', // Use high priority for fetch
     });
     
     if (!response.ok) throw new Error(`Failed to fetch image: ${src}`);
@@ -77,15 +74,19 @@ export const preloadAndCacheImage = async (src: string): Promise<void> => {
     
     // Create and load image from blob
     const img = new Image();
+    img.onload = () => {
+      // Once loaded, add to cache by forcing a paint
+      document.body.appendChild(img);
+      document.body.removeChild(img);
+      // Release object URL to free memory
+      URL.revokeObjectURL(objectUrl);
+    };
+    img.style.position = 'absolute';
+    img.style.opacity = '0';
+    img.style.pointerEvents = 'none';
+    img.style.width = '1px';
+    img.style.height = '1px';
     img.src = objectUrl;
-    
-    await new Promise((resolve) => {
-      img.onload = resolve;
-      img.onerror = resolve; // Still resolve to avoid blocking
-    });
-    
-    // Release object URL to free memory
-    URL.revokeObjectURL(objectUrl);
     
     console.log(`Cached as blob: ${src}`);
   } catch (error) {

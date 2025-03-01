@@ -11,21 +11,18 @@ export const useImagePreloader = () => {
   useEffect(() => {
     const preloadImages = async () => {
       try {
-        console.log("Starting advanced image preloading...");
+        console.log("Starting aggressive image preloading...");
         
-        // Critical images that need to load first (logo and first property)
-        const criticalImages = [
+        // Preload ALL property images immediately with high priority
+        const propertyImages = properties.map(property => property.image);
+        const otherImages = [
           "/lovable-uploads/f6cd5c39-f85a-4586-9140-cd8e12d9b947.png",  // Logo
-          properties[0].image,  // First property image
-        ];
-        
-        // Secondary images that can load afterwards
-        const secondaryImages = [
-          ...properties.slice(1).map(property => property.image),
           "/lovable-uploads/f8dcc881-9e41-4bee-b8e5-78e0fdbccabb.png", // Agent image
         ];
         
-        const totalImages = criticalImages.length + secondaryImages.length;
+        // Combine all images to preload
+        const allImages = [...propertyImages, ...otherImages];
+        const totalImages = allImages.length;
         let loadedCount = 0;
         
         // Helper function to update progress
@@ -33,31 +30,32 @@ export const useImagePreloader = () => {
           loadedCount++;
           const percentage = Math.floor((loadedCount / totalImages) * 100);
           setProgress(percentage);
+          
+          // Mark as loaded once we have at least 50% of images
+          if (percentage >= 50 && !imagesLoaded) {
+            setImagesLoaded(true);
+          }
+          
           console.log(`Image preloading progress: ${percentage}%`);
         };
         
-        // First preload critical images (await them)
-        console.log("Preloading critical images first...");
-        await Promise.all(
-          criticalImages.map(src => 
+        // Use Promise.all but don't await - this allows processing to continue
+        // while images are still loading
+        Promise.all(
+          allImages.map(src => 
             preloadImage(src).then(updateProgress)
           )
         );
         
-        // Mark as loaded as soon as critical images are ready
-        // This allows the animation to start while remaining images load in background
-        console.log("Critical images loaded, starting animation...");
-        setImagesLoaded(true);
+        // Mark as loaded after a short timeout even if images aren't all loaded yet
+        // This ensures the animation starts regardless of network conditions
+        setTimeout(() => {
+          if (!imagesLoaded) {
+            console.log("Forcing animation start despite incomplete image loading");
+            setImagesLoaded(true);
+          }
+        }, 400); // Short timeout to ensure animation doesn't wait too long
         
-        // Then load the rest in the background (don't await)
-        console.log("Loading remaining images in background...");
-        Promise.all(
-          secondaryImages.map(src => 
-            preloadAndCacheImage(src).then(updateProgress)
-          )
-        ).then(() => {
-          console.log("All images fully loaded and cached");
-        });
       } catch (error) {
         console.error("Failed to preload images:", error);
         // Still set as loaded if there's an error to avoid blocking the UI

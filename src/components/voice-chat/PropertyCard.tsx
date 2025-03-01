@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Property } from "@/data/properties";
 
 interface PropertyCardProps {
@@ -21,6 +21,18 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
   
   const placeholderColor = generatePlaceholderColor(property.title);
   
+  // Preload the image when component mounts
+  useEffect(() => {
+    const img = new Image();
+    img.onload = () => setImageLoaded(true);
+    img.src = property.image;
+    
+    // Return early if the image is already in browser cache
+    if (img.complete) {
+      setImageLoaded(true);
+    }
+  }, [property.image]);
+  
   return (
     <div className="bg-gray-50 rounded-lg p-2 shadow-sm">
       <div className="h-24 rounded-md mb-2 overflow-hidden relative">
@@ -37,8 +49,10 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
           src={property.image} 
           alt={property.title}
           className="w-full h-full object-cover"
-          onLoad={() => setImageLoaded(true)}
-          style={{ opacity: imageLoaded ? 1 : 0 }}
+          style={{ 
+            opacity: imageLoaded ? 1 : 0,
+            transition: "opacity 0.3s ease-in-out"
+          }}
           loading="eager"
           fetchPriority="high"
         />
