@@ -14,24 +14,8 @@ export const WebsiteContent = ({ onStartCall, autoSimulate = false }: WebsiteCon
   // Get the first 4 properties from our data
   const displayProperties = properties.slice(0, 4);
 
-  // Add effect to handle the auto-click for the button
-  useEffect(() => {
-    if (autoSimulate) {
-      const handleAutoClick = () => {
-        const button = document.getElementById("cta-button")?.querySelector("button");
-        if (button) {
-          // Add a small delay to make sure cursor is positioned properly
-          setTimeout(() => {
-            button.click(); // Programmatically click the button
-          }, 2000);
-        }
-      };
-      
-      // Let the cursor animation complete first
-      const timer = setTimeout(handleAutoClick, 4000);
-      return () => clearTimeout(timer);
-    }
-  }, [autoSimulate, onStartCall]);
+  // We no longer need to auto-click the button since the cursor animation now handles this
+  // by directly changing the state after the click animation
 
   return (
     <div className="p-3 bg-white min-h-[600px] max-h-[600px] overflow-hidden relative">

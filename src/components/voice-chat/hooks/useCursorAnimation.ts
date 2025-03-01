@@ -48,6 +48,11 @@ export const useCursorAnimation = (
       // Add clicking animation after cursor arrives at button
       setTimeout(() => {
         animateCursorClick(cursorElement);
+        
+        // Trigger button click after animation
+        setTimeout(() => {
+          setSimState("loading");
+        }, 300); // Small delay after click animation
       }, speedValue * 1100); // Wait for cursor to arrive at button
     }, scaledDelay);
   };
@@ -58,9 +63,6 @@ export const useCursorAnimation = (
       // Calculate delays based on animation speed
       const speedValue = parseFloat(animationSpeed);
       const loadingDelay = 1500 * (2 / speedValue);
-      const callInitialDelay = 500 * (2 / speedValue);
-      const centerToButtonDelay = 1500 * (2 / speedValue);
-      const endCallButtonDelay = 2000 * (2 / speedValue);
       
       setTimeout(() => {
         setSimState("call");
@@ -70,38 +72,25 @@ export const useCursorAnimation = (
           const cursorElement = document.querySelector(".cursor-simulation") as HTMLDivElement | null;
           if (!cursorElement) return;
           
-          const callContainer = document.querySelector(".bg-white .bg-black");
+          const endCallButton = document.querySelector(".bg-red-500");
+          if (!endCallButton) return;
+          
+          const callContainer = document.querySelector(".bg-white");
           if (!callContainer) return;
           
-          const pageContainer = callContainer.closest(".bg-white");
-          if (!pageContainer) return;
-          
-          // Animate to center of call popup
+          // Move cursor directly to end call button
           moveCursorToElement(
-            cursorElement, 
+            cursorElement,
+            endCallButton as HTMLElement,
             callContainer as HTMLElement,
-            pageContainer as HTMLElement,
-            animationSpeed.replace("s", "") + "s"
+            animationSpeed
           );
           
-          // After reaching center, move to end call button
+          // Wait at the end call button for a moment, then restart animation without clicking
           setTimeout(() => {
-            const endCallButton = document.querySelector(".bg-red-500");
-            if (!endCallButton || !cursorElement) return;
-            
-            moveCursorToElement(
-              cursorElement,
-              endCallButton as HTMLElement,
-              pageContainer as HTMLElement,
-              animationSpeed.replace("s", "") + "s"
-            );
-            
-            // Wait at button for a moment, then restart animation
-            setTimeout(() => {
-              runAnimation();
-            }, endCallButtonDelay);
-          }, centerToButtonDelay);
-        }, callInitialDelay);
+            runAnimation();
+          }, speedValue * 2000); // Longer pause at the end call button before restarting
+        }, 800); // Short delay before moving to end call button
       }, loadingDelay);
     }
   };
