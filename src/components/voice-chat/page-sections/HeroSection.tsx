@@ -33,9 +33,9 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
             </ul>
           </div>
           <div className="flex flex-col gap-4 pt-2 items-center">
-            <p className="text-gray-300 font-medium">See for yourself:</p>
+            <p className="text-gray-300 font-bold">See for yourself:</p>
             <Button 
-              className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md max-w-md whitespace-normal md:whitespace-nowrap"
+              className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md max-w-md whitespace-normal md:whitespace-nowrap mt-1"
               onClick={handleContact}
             >
               Speak to our Voice Agent Now
