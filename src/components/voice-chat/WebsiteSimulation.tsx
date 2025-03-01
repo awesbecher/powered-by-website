@@ -102,7 +102,7 @@ export const WebsiteSimulation = () => {
       }, 500); // Short delay to ensure DOM is ready
     };
 
-    // Function to move cursor to the call popup center
+    // Function to move cursor to the call popup center first, then to the end call button
     const animateCursorToCallPopup = () => {
       if (simState !== "call") return;
       
@@ -125,10 +125,27 @@ export const WebsiteSimulation = () => {
         const targetTop = callRect.top - containerRect.top + callRect.height / 2;
         const targetLeft = callRect.left - containerRect.left + callRect.width / 2;
         
-        // Apply animation with delay
+        // Apply animation to center of popup first
         cursorElement.style.transition = "top 1s ease-in-out, left 1s ease-in-out";
         cursorElement.style.top = `${targetTop}px`;
         cursorElement.style.left = `${targetLeft}px`;
+        
+        // After moving to center, move to the End Call button
+        setTimeout(() => {
+          const endCallButton = document.querySelector(".bg-red-500");
+          if (!endCallButton || !cursorElement) return;
+          
+          const buttonRect = endCallButton.getBoundingClientRect();
+          
+          // Calculate position of end call button relative to container
+          const buttonTop = buttonRect.top - containerRect.top + buttonRect.height / 2;
+          const buttonLeft = buttonRect.left - containerRect.left + buttonRect.width / 2;
+          
+          // Animate cursor to end call button
+          cursorElement.style.transition = "top 1.2s ease-in-out, left 1.2s ease-in-out";
+          cursorElement.style.top = `${buttonTop}px`;
+          cursorElement.style.left = `${buttonLeft}px`;
+        }, 1500); // Wait 1.5s before moving to end call button
       }, 500);
     };
 
@@ -170,9 +187,9 @@ export const WebsiteSimulation = () => {
         setSimState("call");
       }, 1500); // Show loading for 1.5 seconds
     } else if (simState === "call" && autoSimulate) {
-      // Add cursor animation to call popup
+      // Add cursor animation to call popup and end call button
       setTimeout(() => {
-        const animateCursorToCallPopup = () => {
+        const animateCursorToCallPopupAndButton = () => {
           const cursorElement = document.querySelector(".cursor-simulation") as HTMLDivElement | null;
           if (!cursorElement) return;
           
@@ -190,19 +207,36 @@ export const WebsiteSimulation = () => {
           const targetTop = callRect.top - containerRect.top + callRect.height / 2;
           const targetLeft = callRect.left - containerRect.left + callRect.width / 2;
           
-          // Apply animation
+          // Apply animation to center first
           cursorElement.style.transition = "top 1s ease-in-out, left 1s ease-in-out";
           cursorElement.style.top = `${targetTop}px`;
           cursorElement.style.left = `${targetLeft}px`;
+          
+          // After moving to center, move to the End Call button
+          setTimeout(() => {
+            const endCallButton = document.querySelector(".bg-red-500");
+            if (!endCallButton || !cursorElement) return;
+            
+            const buttonRect = endCallButton.getBoundingClientRect();
+            
+            // Calculate position of end call button relative to container
+            const buttonTop = buttonRect.top - containerRect.top + buttonRect.height / 2;
+            const buttonLeft = buttonRect.left - containerRect.left + buttonRect.width / 2;
+            
+            // Animate cursor to end call button
+            cursorElement.style.transition = "top 1.2s ease-in-out, left 1.2s ease-in-out";
+            cursorElement.style.top = `${buttonTop}px`;
+            cursorElement.style.left = `${buttonLeft}px`;
+          }, 1500); // Wait 1.5s before moving to end call button
         };
         
-        animateCursorToCallPopup();
+        animateCursorToCallPopupAndButton();
       }, 300);
       
-      // Auto restart after showing call for a while
+      // Auto restart after showing call for a while (extended to allow animation to complete)
       timer = setTimeout(() => {
         setSimState("website");
-      }, 5000); // Show call for 5 seconds before restarting
+      }, 7000); // Show call for 7 seconds before restarting to allow for the complete animation
     }
     
     return () => clearTimeout(timer);
