@@ -22,7 +22,7 @@ export const BenefitsSection = () => {
     <section className="py-16 bg-[#121218] px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-16">
-          Why Businesses Choose Our Voice AI
+          Why SMBs Choose Our Voice Agents
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           <div className="space-y-12">
