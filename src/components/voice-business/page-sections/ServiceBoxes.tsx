@@ -13,7 +13,7 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
       icon: Car,
       category: "Auto Dealership",
       businessName: "Mercedes of Tacoma",
-      phoneNumber: "(555) 555-5555"
+      phoneNumber: "+1 (732) 638 0513"
     },
     {
       icon: Building,
