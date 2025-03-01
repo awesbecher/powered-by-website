@@ -19,7 +19,7 @@ const FeatureCard = ({ icon, title, description }: FeatureCardProps) => {
 
 export const FeaturesSection = () => {
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
+    <section className="py-8 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
       <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-16">
         Powerful Voice AI Features For Your Business
       </h2>
