@@ -13,7 +13,7 @@ export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
         Stop missing calls. Stop putting customers on hold. Start impressing them from <span className="italic text-[#9b87f5]">Hello</span>.
       </h2>
       <p className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto">
-        Join the businesses eliminating hold times and enhancing customer experiences with AI voice technology for phone systems.
+        Boost efficiency, reduce wait times, and enhance customer satisfaction—all with the power of a Powered_by AI Receptionist.
       </p>
       <Button 
         className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-8 py-6 text-lg rounded-md mx-auto"
