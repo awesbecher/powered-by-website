@@ -17,6 +17,7 @@ const propertyImages = properties.map(property => property.image);
 const otherImages = [
   "/lovable-uploads/f6cd5c39-f85a-4586-9140-cd8e12d9b947.png",  // Logo
   "/lovable-uploads/f8dcc881-9e41-4bee-b8e5-78e0fdbccabb.png", // Agent image
+  "/lovable-uploads/cb89434a-efcd-49fb-a3fa-ffb81f5f723c.png", // Telephone image
 ];
 const allImages = [...propertyImages, ...otherImages];
 forcePrefetchImages(allImages);

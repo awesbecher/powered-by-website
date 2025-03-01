@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mic } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { WebsiteSimulation } from "@/components/voice-business/WebsiteSimulation";
 import { VoiceChatDialog } from "@/components/voice-business/VoiceChatDialog";
 import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
@@ -111,7 +110,17 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
         </div>
         <div className={`w-full lg:w-1/2 transition-all duration-1000 delay-300 ease-out transform
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-          <WebsiteSimulation />
+          <div className="relative w-full max-w-[380px] mx-auto">
+            {/* Vintage telephone image with purple glow effect */}
+            <div className="absolute -inset-3 bg-gradient-to-r from-purple-600 to-[#9b87f5] rounded-xl blur-lg opacity-75"></div>
+            <div className="relative rounded-xl overflow-hidden">
+              <img 
+                src="/lovable-uploads/cb89434a-efcd-49fb-a3fa-ffb81f5f723c.png" 
+                alt="Vintage telephone" 
+                className="w-full h-auto rounded-xl"
+              />
+            </div>
+          </div>
         </div>
       </div>
 
