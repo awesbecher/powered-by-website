@@ -77,7 +77,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
         <div className={`w-full lg:w-1/2 space-y-6 transition-all duration-1000 ease-out transform
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-            Voice AI for <span className="text-[#9b87f5]">Business Phone Lines</span>
+            Meet Your New <span className="text-[#9b87f5]">AI Receptionist</span>
           </h1>
           <p className="text-xl text-gray-300">
             Transform your business phone systems with AI that understands, responds, and resolves customer inquiries in real-time. Elevate your customer experience with intelligent voice automation.
