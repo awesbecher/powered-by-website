@@ -118,7 +118,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
                   <div className="flex items-center gap-2 mb-3">
                     <Car className="text-[#9b87f5] text-xl" />
                     <h3 className="font-sans text-lg font-bold text-white leading-tight tracking-wide">
-                      Test Drive
+                      Auto Dealership
                     </h3>
                   </div>
                   <div className="my-2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
@@ -140,7 +140,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
                   <div className="flex items-center gap-2 mb-3">
                     <Building className="text-[#9b87f5] text-xl" />
                     <h3 className="font-sans text-lg font-bold text-white leading-tight tracking-wide">
-                      Office Space
+                      Real Estate
                     </h3>
                   </div>
                   <div className="my-2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
@@ -162,7 +162,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
                   <div className="flex items-center gap-2 mb-3">
                     <Coffee className="text-[#9b87f5] text-xl" />
                     <h3 className="font-sans text-lg font-bold text-white leading-tight tracking-wide">
-                      Cafe Order
+                      Restaurant
                     </h3>
                   </div>
                   <div className="my-2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
@@ -184,7 +184,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
                   <div className="flex items-center gap-2 mb-3">
                     <Briefcase className="text-[#9b87f5] text-xl" />
                     <h3 className="font-sans text-lg font-bold text-white leading-tight tracking-wide">
-                      Consultation
+                      Retail Services
                     </h3>
                   </div>
                   <div className="my-2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
