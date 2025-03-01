@@ -67,11 +67,12 @@ export const WebsiteSimulation = () => {
           <div className="relative min-h-[500px] max-h-[500px]">
             <WebsiteContent onStartCall={() => {}} autoSimulate={false} />
             
-            {/* Call overlay */}
+            {/* Call overlay - now with isSimulation prop */}
             <CallInProgress 
               isMuted={isMuted} 
               setIsMuted={setIsMuted} 
-              onRestart={handleRestart} 
+              onRestart={handleRestart}
+              isSimulation={true}
             />
           </div>
         )}

@@ -7,23 +7,36 @@ interface CallInProgressProps {
   isMuted: boolean;
   setIsMuted: (isMuted: boolean) => void;
   onRestart: () => void;
+  isSimulation?: boolean; // Add this prop to determine if this is in the simulation or real UI
 }
 
-export const CallInProgress = ({ isMuted, setIsMuted, onRestart }: CallInProgressProps) => {
+export const CallInProgress = ({ 
+  isMuted, 
+  setIsMuted, 
+  onRestart, 
+  isSimulation = false 
+}: CallInProgressProps) => {
   const navigate = useNavigate();
   
   const handleEndCall = () => {
     // First call the original restart function
     onRestart();
-    // Then navigate to the contact page
-    navigate('/contact');
+    
+    // Then navigate to the contact page if not in simulation
+    if (!isSimulation) {
+      navigate('/contact');
+    }
   };
 
   return (
     <div className="absolute inset-0 bg-black/20 flex items-center justify-center z-10">
       <div className="bg-black rounded-xl shadow-xl max-w-[300px] w-full p-4 m-4">
         <div className="flex justify-between items-center mb-3">
-          <h2 className="text-base font-bold text-white">You are now connected with Paul Berman</h2>
+          <h2 className="text-base font-bold text-white">
+            {isSimulation 
+              ? "You are now connected with an agent" 
+              : "You are now connected with Paul Berman"}
+          </h2>
           <button onClick={handleEndCall} className="text-gray-300 hover:text-white">
             <X className="w-5 h-5" />
           </button>
@@ -32,11 +45,15 @@ export const CallInProgress = ({ isMuted, setIsMuted, onRestart }: CallInProgres
         <div className="flex items-center space-x-3 mb-3">
           <div className="relative">
             <div className="h-12 w-12 rounded-full overflow-hidden border-2 border-gray-700 shadow-md">
-              <img 
-                src="/lovable-uploads/df68b31e-fef9-46d0-ab2a-1cc9d5161e4e.png" 
-                alt="Paul Berman" 
-                className="w-full h-full object-cover"
-              />
+              {isSimulation ? (
+                <div className="w-full h-full bg-gray-600"></div>
+              ) : (
+                <img 
+                  src="/lovable-uploads/df68b31e-fef9-46d0-ab2a-1cc9d5161e4e.png" 
+                  alt="Paul Berman" 
+                  className="w-full h-full object-cover"
+                />
+              )}
             </div>
             <div className="absolute bottom-0 left-0 flex items-center">
               <div className="h-2 w-2 bg-green-500 rounded-full"></div>
@@ -51,8 +68,12 @@ export const CallInProgress = ({ isMuted, setIsMuted, onRestart }: CallInProgres
             </div>
           </div>
           <div>
-            <h3 className="text-base font-bold text-white">Paul Berman</h3>
-            <p className="text-sm text-gray-400">Chief Technical Evangelist @ Powered_by</p>
+            <h3 className="text-base font-bold text-white">
+              {isSimulation ? "Agent" : "Paul Berman"}
+            </h3>
+            <p className="text-sm text-gray-400">
+              {isSimulation ? "Real Estate Assistant" : "Chief Technical Evangelist @ Powered_by"}
+            </p>
           </div>
         </div>
         
