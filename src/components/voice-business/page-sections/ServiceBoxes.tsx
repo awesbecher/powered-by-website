@@ -25,7 +25,7 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
       icon: Coffee,
       category: "Restaurant",
       businessName: "The Slice House",
-      phoneNumber: "(555) 555-5555"
+      phoneNumber: "(657) 464 2712"
     },
     {
       icon: Briefcase,
