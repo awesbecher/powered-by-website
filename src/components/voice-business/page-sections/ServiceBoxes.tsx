@@ -38,11 +38,11 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
   return (
     <div className={`w-full lg:w-1/2 transition-all duration-1000 delay-300 ease-out transform flex flex-col items-start justify-start
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-      <p className="text-center text-white text-xl mb-6 font-medium bg-gradient-to-br from-[#6342ff] via-[#7a6cc5] to-[#9b87f5] p-6 rounded-2xl shadow-lg border border-purple-500/20 backdrop-blur-sm w-full">
-        Talk to an AI Receptionist Now!
-        <span className="block mt-2 text-base">Call any one of the businesses below.</span>
-        <span className="block mt-2 text-sm text-gray-200 italic">Don't worry, they're not actually real businesses.</span>
-      </p>
+      <div className="text-center w-full mb-6 border border-purple-500/20 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+        <h3 className="text-white text-2xl font-bold mb-2">Talk to an AI Receptionist Now!</h3>
+        <p className="text-gray-300 text-xl mb-2">Call any one of the businesses below.</p>
+        <p className="text-gray-200 text-sm italic">Don't worry, they're not actually real businesses.</p>
+      </div>
       <div className="grid grid-cols-2 gap-6 w-full">
         {services.map((service, index) => (
           <ServiceBox
