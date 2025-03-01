@@ -37,7 +37,7 @@ const checkBrowserCompatibility = () => {
 
 export const getVapiInstance = () => {
   if (!vapiInstance) {
-    vapiInstance = new Vapi("YOUR_VAPI_API_KEY"); // Replace with the actual API key when provided
+    vapiInstance = new Vapi("a212f18f-9d02-4703-914f-ac89661262c5"); // Updated with the provided API key
     
     vapiInstance.on("call-start", () => {
       console.log("Call has started");
