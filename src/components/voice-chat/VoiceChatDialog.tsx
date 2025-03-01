@@ -38,23 +38,23 @@ export const VoiceChatDialog = ({
             <Avatar className="w-20 h-20">
               <AvatarImage
                 src="/lovable-uploads/f8dcc881-9e41-4bee-b8e5-78e0fdbccabb.png"
-                alt="AI Voice Assistant"
+                alt="Paul Berman, Chief Technical Evangelist @ Powered_by Agency"
                 className="object-cover"
               />
-              <AvatarFallback>AI</AvatarFallback>
+              <AvatarFallback>PB</AvatarFallback>
             </Avatar>
             <div className="flex-1">
               <DialogTitle className="text-2xl font-bold text-white mb-2">
-                Start Voice Chat with our AI Assistant
+                Start Voice Chat with Paul Berman, Chief Technical Evangelist @ Powered_by Agency
               </DialogTitle>
               <DialogDescription className="text-gray-300">
-                You'll be able to have a voice conversation with our AI Assistant directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately.
+                You'll be able to have a voice conversation with Paul directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately.
               </DialogDescription>
             </div>
           </DialogHeader>
           <div className="flex flex-col space-y-4 pt-4">
             <p className="text-sm text-gray-300">
-              By clicking "Start Voice Chat", you consent to having a voice conversation with our AI Assistant. You can end the conversation at any time.
+              By clicking "Start Voice Chat", you consent to having a voice conversation with Powered_by's Solutions Team. You can end the conversation at any time.
             </p>
             <div className="flex gap-2">
               <Button 
@@ -93,9 +93,9 @@ export const VoiceChatDialog = ({
               <Avatar className="h-20 w-20 rounded-full border-2 border-white shadow-md">
                 <AvatarImage 
                   src="/lovable-uploads/f8dcc881-9e41-4bee-b8e5-78e0fdbccabb.png" 
-                  alt="AI Voice Assistant" 
+                  alt="Paul Berman, Chief Technical Evangelist" 
                 />
-                <AvatarFallback>AI</AvatarFallback>
+                <AvatarFallback>PB</AvatarFallback>
               </Avatar>
               <div className="absolute bottom-1 left-1 flex items-center">
                 <div className="h-3 w-3 bg-green-500 rounded-full"></div>
@@ -110,8 +110,8 @@ export const VoiceChatDialog = ({
               </div>
             </div>
             <div>
-              <h3 className="text-2xl font-bold">AI Assistant</h3>
-              <p className="text-gray-500">Voice Chat Support</p>
+              <h3 className="text-2xl font-bold">Paul Berman</h3>
+              <p className="text-gray-500">Powered_by Agency</p>
             </div>
           </div>
           
