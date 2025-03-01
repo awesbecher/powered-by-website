@@ -33,8 +33,8 @@ export const FAQSection = () => {
           answer="Absolutely. You set the rules for when and how calls are escalated to your team, based on criteria like customer value, issue complexity, or specific requests." 
         />
         <FAQItem 
-          question="How does pricing work for business phone AI?"
-          answer="We offer flexible pricing models based on call volume, with plans starting at just $299/month for small businesses. There are no per-minute charges or hidden fees." 
+          question="How does pricing work for an AI phone receptionist?"
+          answer="We offer flexible pricing models based on call volume and call workflow complexities. Pricing is designed for small businesses budgets." 
         />
       </div>
     </section>
