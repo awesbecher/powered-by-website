@@ -23,7 +23,7 @@ export const CallInProgress = ({ isMuted, setIsMuted, onRestart }: CallInProgres
           <div className="relative">
             <div className="h-12 w-12 rounded-full overflow-hidden border-2 border-gray-700 shadow-md">
               <img 
-                src="/lovable-uploads/f8dcc881-9e41-4bee-b8e5-78e0fdbccabb.png" 
+                src="/lovable-uploads/df68b31e-fef9-46d0-ab2a-1cc9d5161e4e.png" 
                 alt="Paul Berman" 
                 className="w-full h-full object-cover"
               />

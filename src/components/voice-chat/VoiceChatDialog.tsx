@@ -37,7 +37,7 @@ export const VoiceChatDialog = ({
           <DialogHeader className="flex items-start space-x-4">
             <Avatar className="w-20 h-20">
               <AvatarImage
-                src="/lovable-uploads/f8dcc881-9e41-4bee-b8e5-78e0fdbccabb.png"
+                src="/lovable-uploads/df68b31e-fef9-46d0-ab2a-1cc9d5161e4e.png"
                 alt="Paul Berman, Chief Technical Evangelist @ Powered_by Agency"
                 className="object-cover"
               />
@@ -92,7 +92,7 @@ export const VoiceChatDialog = ({
             <div className="relative">
               <Avatar className="h-20 w-20 rounded-full border-2 border-white shadow-md">
                 <AvatarImage 
-                  src="/lovable-uploads/f8dcc881-9e41-4bee-b8e5-78e0fdbccabb.png" 
+                  src="/lovable-uploads/df68b31e-fef9-46d0-ab2a-1cc9d5161e4e.png" 
                   alt="Paul Berman, Chief Technical Evangelist" 
                 />
                 <AvatarFallback>PB</AvatarFallback>
