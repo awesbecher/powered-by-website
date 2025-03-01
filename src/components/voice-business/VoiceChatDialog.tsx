@@ -52,16 +52,16 @@ export const VoiceChatDialog = ({
             </Avatar>
             <div className="flex-1">
               <DialogTitle className="text-2xl font-bold text-white mb-2">
-                Start Voice Chat with Paul Berman, Chief Technical Evangelist @ Powered_by Agency
+                Experience Our AI Phone Receptionist Demo with Paul Berman
               </DialogTitle>
               <DialogDescription className="text-gray-300">
-                You'll be able to have a voice conversation with Paul directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately.
+                You'll be able to have a voice conversation with Paul directly through your browser to experience the AI phone receptionist. Please ensure your microphone is enabled and your speaker volume is turned on appropriately.
               </DialogDescription>
             </div>
           </DialogHeader>
           <div className="flex flex-col space-y-4 pt-4">
             <p className="text-sm text-gray-300">
-              By clicking "Start Voice Chat", you consent to having a voice conversation with Powered_by's Solutions Team. You can end the conversation at any time.
+              By clicking "Start AI Receptionist Demo", you consent to having a voice conversation with Powered_by's Solutions Team. You can end the conversation at any time.
             </p>
             <div className="flex gap-2">
               <Button 
@@ -76,7 +76,7 @@ export const VoiceChatDialog = ({
                 disabled={isSubmitting}
                 className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
               >
-                {isSubmitting ? "Starting..." : "Start Voice Chat"}
+                {isSubmitting ? "Starting..." : "Start AI Receptionist Demo"}
               </Button>
             </div>
           </div>
@@ -125,7 +125,7 @@ export const VoiceChatDialog = ({
           
           <div className="bg-gray-900 p-4 rounded-xl">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-bold text-white">Call in progress</h3>
+              <h3 className="text-xl font-bold text-white">AI Receptionist Demo in Progress</h3>
               <div className="flex items-center text-gray-300">
                 <Activity className="w-5 h-5 mr-2" />
                 <span>Live</span>
@@ -173,3 +173,4 @@ export const VoiceChatDialog = ({
     </Dialog>
   );
 };
+
