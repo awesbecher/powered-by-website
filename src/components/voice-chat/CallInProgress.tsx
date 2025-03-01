@@ -1,6 +1,7 @@
 
 import React from "react";
 import { X, Mic, MicOff, Activity } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface CallInProgressProps {
   isMuted: boolean;
@@ -9,12 +10,21 @@ interface CallInProgressProps {
 }
 
 export const CallInProgress = ({ isMuted, setIsMuted, onRestart }: CallInProgressProps) => {
+  const navigate = useNavigate();
+  
+  const handleEndCall = () => {
+    // First call the original restart function
+    onRestart();
+    // Then navigate to the contact page
+    navigate('/contact');
+  };
+
   return (
     <div className="absolute inset-0 bg-black/20 flex items-center justify-center z-10">
       <div className="bg-black rounded-xl shadow-xl max-w-[300px] w-full p-4 m-4">
         <div className="flex justify-between items-center mb-3">
           <h2 className="text-base font-bold text-white">You are now connected with Paul Berman</h2>
-          <button onClick={onRestart} className="text-gray-300 hover:text-white">
+          <button onClick={handleEndCall} className="text-gray-300 hover:text-white">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -82,7 +92,7 @@ export const CallInProgress = ({ isMuted, setIsMuted, onRestart }: CallInProgres
           </button>
           
           <button 
-            onClick={onRestart}
+            onClick={handleEndCall}
             className="flex-1 py-2 px-3 bg-red-500 text-white rounded-md flex items-center justify-center space-x-2 hover:bg-red-600 transition-colors text-sm"
           >
             <X className="w-3 h-3 mr-1" />

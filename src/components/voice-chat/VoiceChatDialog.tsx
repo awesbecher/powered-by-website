@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Activity, Mic, MicOff, X } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface VoiceChatDialogProps {
   showDialog: boolean;
@@ -23,10 +24,16 @@ export const VoiceChatDialog = ({
   handleEndCall,
 }: VoiceChatDialogProps) => {
   const [isMuted, setIsMuted] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMute = () => {
     // In a real implementation, this would interact with the Vapi SDK to mute/unmute
     setIsMuted(!isMuted);
+  };
+
+  const handleEndCallAndRedirect = () => {
+    handleEndCall();
+    navigate('/contact');
   };
 
   // Initial dialog before call starts
@@ -80,7 +87,7 @@ export const VoiceChatDialog = ({
 
   // Active call dialog
   return (
-    <Dialog open={showDialog} onOpenChange={(open) => !open && handleEndCall()}>
+    <Dialog open={showDialog} onOpenChange={(open) => !open && handleEndCallAndRedirect()}>
       <DialogContent className="bg-white text-black border-gray-200 sm:max-w-md p-6 rounded-xl">
         <div className="flex flex-col space-y-6">
           <div className="flex justify-between items-center">
@@ -153,7 +160,7 @@ export const VoiceChatDialog = ({
             </button>
             
             <button 
-              onClick={handleEndCall}
+              onClick={handleEndCallAndRedirect}
               className="flex-1 py-3 px-4 bg-red-500 text-white rounded-md flex items-center justify-center space-x-2 hover:bg-red-600 transition-colors"
             >
               <X className="w-5 h-5" />
