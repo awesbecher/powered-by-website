@@ -1,4 +1,5 @@
 
+
 interface FAQItemProps {
   question: string;
   answer: string;
@@ -29,16 +30,8 @@ export const FAQSection = () => {
           answer="Yes! We train your AI on your specific industry, products, and services to ensure accurate and relevant conversations." 
         />
         <FAQItem 
-          question="How does pricing work for voice AI?"
-          answer="We offer flexible pricing based on conversation volume. Monthly plans start at $299 with options to scale as your needs grow." 
-        />
-        <FAQItem 
           question="Can I customize the voice and personality of the AI?"
           answer="Absolutely. Choose from various voice options or create a custom voice that matches your brand identity perfectly." 
-        />
-        <FAQItem 
-          question="What languages are supported?"
-          answer="Our voice AI currently supports 25+ languages including English, Spanish, French, German, Portuguese, Japanese, and Mandarin." 
         />
         <FAQItem 
           question="How does the AI handle complex customer inquiries?"
@@ -48,3 +41,4 @@ export const FAQSection = () => {
     </section>
   );
 };
+
