@@ -104,7 +104,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
         </div>
         <div className={`w-full lg:w-1/2 transition-all duration-1000 delay-300 ease-out transform
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-          <p className="text-center text-white text-xl mb-6 font-medium bg-gradient-to-r from-[#6342ff] to-[#9b87f5] p-4 rounded-lg shadow-lg">
+          <p className="text-center text-white text-xl mb-6 font-medium bg-gradient-to-br from-[#6342ff] via-[#7a6cc5] to-[#9b87f5] p-6 rounded-2xl shadow-lg border border-purple-500/20 backdrop-blur-sm">
             Talk to an AI Receptionist Now!
             <span className="block mt-2 text-base">Call any one of the businesses below.</span>
             <span className="block mt-2 text-sm text-gray-200 italic">Don't worry, they're not actually real businesses.</span>
