@@ -31,7 +31,7 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
       icon: Briefcase,
       category: "Retail Services",
       businessName: "Flagship Barbers",
-      phoneNumber: "(555) 555-5555"
+      phoneNumber: "+1 (978) 818 8357"
     }
   ];
 
