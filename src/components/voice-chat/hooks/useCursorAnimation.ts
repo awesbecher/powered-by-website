@@ -58,17 +58,16 @@ export const useCursorAnimation = (
   };
 
   // Handle state transitions for loading and call states
-  const handleStateTransitions = () => {
+  useEffect(() => {
     if (simState === "loading") {
       // Calculate delays based on animation speed
       const speedValue = parseFloat(animationSpeed);
       const loadingDelay = 1500 * (2 / speedValue);
       
-      setTimeout(() => {
+      const loadingTimer = setTimeout(() => {
         setSimState("call");
         
-        // Once in call state, animate cursor to end call button
-        setTimeout(() => {
+        const callTimer = setTimeout(() => {
           const cursorElement = document.querySelector(".cursor-simulation") as HTMLDivElement | null;
           if (!cursorElement) return;
           
@@ -86,39 +85,44 @@ export const useCursorAnimation = (
             animationSpeed
           );
           
-          // Wait at the end call button for a moment, then restart animation without clicking
-          setTimeout(() => {
-            // Add a 15-second pause before restarting the animation
-            setTimeout(() => {
-              runAnimation();
-            }, 15000); // 15-second pause before restarting
-          }, speedValue * 2000); // Pause at the end call button
+          // Wait for cursor to arrive at end call button, then restart after 15 seconds
+          const endCallDelay = speedValue * 1100;
+          const restartDelay = 15000; // 15 seconds pause before restarting
+          
+          const restartTimer = setTimeout(() => {
+            runAnimation();
+          }, endCallDelay + restartDelay);
+          
+          // Clean up on unmount or state change
+          return () => clearTimeout(restartTimer);
         }, 800); // Short delay before moving to end call button
+        
+        // Clean up on unmount or state change
+        return () => clearTimeout(callTimer);
       }, loadingDelay);
+      
+      // Clean up on unmount or state change
+      return () => clearTimeout(loadingTimer);
     }
-  };
-
-  // Main effect for auto simulation
+  }, [simState, animationSpeed]);
+  
+  // Initial animation setup
   useEffect(() => {
     if (!imagesLoaded) return;
     
-    // Start initial animation
-    runAnimation();
+    // Start initial animation with a small delay to ensure everything is ready
+    const initialTimer = setTimeout(() => {
+      runAnimation();
+    }, 300);
     
     // Clean up function
     return () => {
+      clearTimeout(initialTimer);
       if (simulationCycleRef.current) {
         clearTimeout(simulationCycleRef.current);
       }
     };
   }, [imagesLoaded]);
-  
-  // Effect for state transitions
-  useEffect(() => {
-    if (simState === "loading") {
-      handleStateTransitions();
-    }
-  }, [simState]);
 
   return {
     cursorRef
