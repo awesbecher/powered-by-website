@@ -80,7 +80,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
             Meet Your New <span className="text-[#9b87f5]">AI Receptionist</span>
           </h1>
           <p className="text-xl text-gray-300">
-            There's nothing quite like a warm, welcoming voice on the other end of the line. With Powered_by's AI Receptionist, you get the same personable experience customers expect from a traditional receptionist—only now it never sleeps, forgets, or drops a call.
+            There's nothing quite like a warm, welcoming voice on the other end of the line. With <span className="text-[#9b87f5] font-bold">Powered_by</span>'s AI Receptionist, you get the same personable experience customers expect from a traditional receptionist—only now it never sleeps, forgets, or drops a call.
           </p>
           <div className="space-y-4 text-gray-300">
             <p className="text-xl">Our AI Receptionist adapts to your business needs:</p>
