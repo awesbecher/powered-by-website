@@ -7,6 +7,8 @@ import { CallInProgress } from "./CallInProgress";
 import { useImagePreloader } from "./hooks/useImagePreloader";
 import { useCursorAnimation } from "./hooks/useCursorAnimation";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { properties } from "@/data/properties";
+import { forcePrefetchImages } from "./utils/imageUtils";
 import "./CursorAnimation.css";
 
 export const WebsiteSimulation = () => {
@@ -18,19 +20,19 @@ export const WebsiteSimulation = () => {
   // Check if on mobile device
   const isMobile = useIsMobile();
   
+  // Critical first render optimization - force prefetch images immediately
+  useEffect(() => {
+    // Get all property images and prefetch them right away
+    const propertyImages = properties.map(property => property.image);
+    forcePrefetchImages(propertyImages);
+    
+    // Skip initial render animation delay
+    setInitialRender(false);
+  }, []);
+  
   // Use our custom hooks
   const { imagesLoaded, progress } = useImagePreloader();
   const { cursorRef } = useCursorAnimation(simState, setSimState, true, imagesLoaded, animationSpeed);
-  
-  // Skip initial render animation delay
-  useEffect(() => {
-    if (initialRender) {
-      const timer = setTimeout(() => {
-        setInitialRender(false);
-      }, 10);
-      return () => clearTimeout(timer);
-    }
-  }, [initialRender]);
 
   // Handle manual state transitions
   const handleStartCall = () => {

@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Property } from "@/data/properties";
 
 interface PropertyCardProps {
@@ -8,6 +8,7 @@ interface PropertyCardProps {
 
 export const PropertyCard = ({ property }: PropertyCardProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
   
   // Generate a placeholder color based on property title (deterministic)
   const generatePlaceholderColor = (title: string) => {
@@ -20,25 +21,21 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
   };
   
   const placeholderColor = generatePlaceholderColor(property.title);
-  
-  // Preload the image when component mounts
+
+  // When component mounts, check if image is already in browser cache
   useEffect(() => {
-    const img = new Image();
-    img.onload = () => setImageLoaded(true);
-    img.src = property.image;
-    
-    // Return early if the image is already in browser cache
-    if (img.complete) {
+    // Immediately show image if it's in cache
+    if (imgRef.current && imgRef.current.complete) {
       setImageLoaded(true);
     }
-  }, [property.image]);
+  }, []);
   
   return (
     <div className="bg-gray-50 rounded-lg p-2 shadow-sm">
       <div className="h-24 rounded-md mb-2 overflow-hidden relative">
         {/* Placeholder color while image loads */}
         <div 
-          className="absolute inset-0 transition-opacity duration-300" 
+          className="absolute inset-0 transition-opacity duration-100" 
           style={{ 
             backgroundColor: placeholderColor,
             opacity: imageLoaded ? 0 : 1 
@@ -46,12 +43,14 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
         />
         
         <img 
+          ref={imgRef}
           src={property.image} 
           alt={property.title}
           className="w-full h-full object-cover"
+          onLoad={() => setImageLoaded(true)}
           style={{ 
             opacity: imageLoaded ? 1 : 0,
-            transition: "opacity 0.3s ease-in-out"
+            transition: "opacity 0.15s ease-in-out"
           }}
           loading="eager"
           fetchPriority="high"

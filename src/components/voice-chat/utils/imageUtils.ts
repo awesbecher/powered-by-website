@@ -1,5 +1,5 @@
 
-// Helper function to preload images with enhanced caching
+// Helper function to preload images with browser cache prioritization
 export const preloadImage = (src: string): Promise<void> => {
   return new Promise((resolve, reject) => {
     // Skip processing if the image URL is invalid
@@ -9,12 +9,18 @@ export const preloadImage = (src: string): Promise<void> => {
       return;
     }
     
-    // Check if image is already cached by the browser
+    // Check if image is already cached by the browser using a DOM check
     const cachedImage = new Image();
-    cachedImage.src = src;
     
+    // If image is already in cache, resolve immediately
+    if (document.querySelector(`img[src="${src}"]`)) {
+      console.log(`Image already in DOM: ${src}`);
+      resolve();
+      return;
+    }
+    
+    cachedImage.src = src;
     if (cachedImage.complete) {
-      // Image is already cached, resolve immediately
       console.log(`Image already cached: ${src}`);
       resolve();
       return;
@@ -24,7 +30,6 @@ export const preloadImage = (src: string): Promise<void> => {
     const img = new Image();
     
     img.onload = () => {
-      // Image loaded successfully
       console.log(`Successfully preloaded: ${src}`);
       resolve();
     };
@@ -35,15 +40,49 @@ export const preloadImage = (src: string): Promise<void> => {
       resolve();
     };
     
-    // Set priority to high for critical images
-    img.fetchPriority = 'high';
+    // Set attributes for high priority loading
+    img.setAttribute('loading', 'eager');
+    img.setAttribute('fetchpriority', 'high');
+    img.setAttribute('importance', 'high');
     
     // Set cache control headers
     img.setAttribute('crossOrigin', 'anonymous');
     
-    // Load the image immediately
+    // Actually start loading the image
     img.src = src;
   });
+};
+
+// Force preload images before rendering by creating DOM elements that load the images
+export const forcePrefetchImages = (urls: string[]): void => {
+  // Create a hidden container for preloaded images
+  const preloadContainer = document.createElement('div');
+  preloadContainer.style.position = 'absolute';
+  preloadContainer.style.width = '0';
+  preloadContainer.style.height = '0';
+  preloadContainer.style.opacity = '0';
+  preloadContainer.style.overflow = 'hidden';
+  preloadContainer.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(preloadContainer);
+
+  // Create image elements for each URL
+  urls.forEach(url => {
+    const img = document.createElement('img');
+    img.src = url;
+    img.loading = 'eager';
+    img.fetchPriority = 'high';
+    img.style.position = 'absolute';
+    img.style.width = '1px';
+    img.style.height = '1px';
+    preloadContainer.appendChild(img);
+  });
+
+  // Clean up after a delay (images should be cached by then)
+  setTimeout(() => {
+    if (document.body.contains(preloadContainer)) {
+      document.body.removeChild(preloadContainer);
+    }
+  }, 5000);
 };
 
 // Utility to fetch and cache images as blobs for better memory management
@@ -63,7 +102,7 @@ export const preloadAndCacheImage = async (src: string): Promise<void> => {
         'Cache-Control': 'max-age=31536000',
       },
       cache: 'force-cache',
-      priority: 'high', // Use high priority for fetch
+      priority: 'high', 
     });
     
     if (!response.ok) throw new Error(`Failed to fetch image: ${src}`);
