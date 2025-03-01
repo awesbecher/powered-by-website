@@ -27,7 +27,7 @@ export const FeaturesSection = () => {
         <FeatureCard 
           icon={<Mic className="w-10 h-10 text-[#9b87f5]" />}
           title="Natural Voice Interactions"
-          description="AI that speaks and listens naturally, creating comfortable conversations with your customers." 
+          description="AI agents that speak as human-like as possible and listen naturally, creating genuine conversations with your customers." 
         />
         <FeatureCard 
           icon={<MessageCircle className="w-10 h-10 text-[#9b87f5]" />}
