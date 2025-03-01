@@ -1,11 +1,9 @@
-
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
 import { HeroSection } from "@/components/voice-chat/page-sections/HeroSection";
 import { FeaturesSection } from "@/components/voice-chat/page-sections/FeaturesSection";
 import { BenefitsSection } from "@/components/voice-chat/page-sections/BenefitsSection";
-import { SocialProofSection } from "@/components/voice-chat/page-sections/SocialProofSection";
 import { CTASection } from "@/components/voice-chat/page-sections/CTASection";
 import { FAQSection } from "@/components/voice-chat/page-sections/FAQSection";
 import { FinalCTASection } from "@/components/voice-chat/page-sections/FinalCTASection";
@@ -46,7 +44,6 @@ const AIVoiceChat = () => {
       <HeroSection initialLoad={initialLoad} handleContact={handleContact} />
       <FeaturesSection />
       <BenefitsSection />
-      <SocialProofSection />
       <CTASection handleContact={handleContact} />
       <FAQSection />
       <FinalCTASection handleContact={handleContact} />
