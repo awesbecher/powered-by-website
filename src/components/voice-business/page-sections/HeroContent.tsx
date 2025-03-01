@@ -17,6 +17,9 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
       <p className="text-xl text-gray-300">
         With an AI Receptionist by <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span>, you get the same personable experience customers expect from a traditional receptionist—only now it never sleeps, forgets, or drops a call.
       </p>
+      <p className="text-xl text-gray-300">
+        Boost efficiency, reduce wait times, and enhance customer satisfaction—all with the power of a <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> AI Receptionist.
+      </p>
       <div className="space-y-4 text-gray-300">
         <p className="text-xl">Our AI Receptionist adapts to your business needs:</p>
         <ul className="list-disc list-inside space-y-2 pl-2 text-sm">
