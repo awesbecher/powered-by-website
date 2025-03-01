@@ -26,7 +26,7 @@ export const FAQSection = () => {
         />
         <FAQItem 
           question="Will the AI understand my industry terminology?"
-          answer="Yes! We train your AI on your specific industry, products, services, and company policies to ensure accurate and relevant conversations with your customers." 
+          answer="Yes! We train our AI Reception on the specifics of your business, how the calls typically flow when a human handles them, and your desired call outcomes." 
         />
         <FAQItem 
           question="Can I customize when calls transfer to human agents?"
