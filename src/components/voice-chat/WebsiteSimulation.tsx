@@ -7,15 +7,14 @@ import { CallInProgress } from "./CallInProgress";
 import { useImagePreloader } from "./hooks/useImagePreloader";
 import { useCursorAnimation } from "./hooks/useCursorAnimation";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Settings, FastForward, PauseCircle, PlayCircle } from "lucide-react";
+import { PauseCircle, PlayCircle } from "lucide-react";
 import "./CursorAnimation.css";
 
 export const WebsiteSimulation = () => {
   const [simState, setSimState] = useState<"website" | "loading" | "call">("website");
   const [isMuted, setIsMuted] = useState(false);
   const [autoSimulate, setAutoSimulate] = useState(true);
-  const [showControls, setShowControls] = useState(false);
-  const [animationSpeed, setAnimationSpeed] = useState<string>("2s");
+  const animationSpeed = "2s"; // Fixed animation speed
   
   // Check if on mobile device
   const isMobile = useIsMobile();
@@ -37,11 +36,6 @@ export const WebsiteSimulation = () => {
   // Toggle simulation
   const toggleSimulation = () => {
     setAutoSimulate(!autoSimulate);
-  };
-
-  // Update animation speed
-  const handleSpeedChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setAnimationSpeed(e.target.value);
   };
 
   return (
@@ -67,15 +61,8 @@ export const WebsiteSimulation = () => {
           />
         )}
 
-        {/* Animation controls */}
+        {/* Animation controls - only play/pause button */}
         <div className="absolute bottom-2 right-2 flex items-center gap-2 z-50">
-          <button 
-            onClick={() => setShowControls(!showControls)} 
-            className="bg-gray-800 p-2 rounded-full hover:bg-gray-700 text-white"
-            aria-label="Animation settings"
-          >
-            <Settings size={16} />
-          </button>
           <button 
             onClick={toggleSimulation} 
             className="bg-gray-800 p-2 rounded-full hover:bg-gray-700 text-white"
@@ -84,28 +71,6 @@ export const WebsiteSimulation = () => {
             {autoSimulate ? <PauseCircle size={16} /> : <PlayCircle size={16} />}
           </button>
         </div>
-
-        {/* Animation speed controls */}
-        {showControls && (
-          <div className="absolute bottom-12 right-2 bg-gray-800 rounded-md p-2 text-white text-xs z-50">
-            <div className="flex flex-col gap-1">
-              <label htmlFor="animation-speed" className="font-medium">
-                Animation Speed:
-              </label>
-              <select 
-                id="animation-speed" 
-                value={animationSpeed}
-                onChange={handleSpeedChange}
-                className="bg-gray-700 rounded p-1 text-xs"
-              >
-                <option value="3s">Slow</option>
-                <option value="2s">Normal</option>
-                <option value="1s">Fast</option>
-                <option value="0.5s">Very Fast</option>
-              </select>
-            </div>
-          </div>
-        )}
       </div>
       
       {/* Responsive design indicator - only shown in development */}

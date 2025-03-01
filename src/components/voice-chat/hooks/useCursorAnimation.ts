@@ -119,14 +119,14 @@ export const useCursorAnimation = (
         clearTimeout(simulationCycleRef.current);
       }
     };
-  }, [autoSimulate, imagesLoaded, animationSpeed]);
+  }, [autoSimulate, imagesLoaded]);
   
   // Effect for state transitions
   useEffect(() => {
     if (simState === "loading" && autoSimulate) {
       handleStateTransitions();
     }
-  }, [simState, autoSimulate, animationSpeed]);
+  }, [simState, autoSimulate]);
 
   return {
     cursorRef
