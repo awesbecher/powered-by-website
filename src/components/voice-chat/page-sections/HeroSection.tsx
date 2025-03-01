@@ -32,20 +32,22 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
               <li>Offer 24/7 Availability: Ensure reliable, personalized support day or night</li>
             </ul>
           </div>
-          <div className="flex flex-col gap-0 items-center">
-            <p className="text-gray-300 font-bold mb-1">See for yourself:</p>
-            <Button 
-              className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md max-w-md whitespace-normal md:whitespace-nowrap mb-1 flex items-center"
-              onClick={handleContact}
-            >
-              <Mic className="mr-2 h-5 w-5" /> Speak to our Voice Agent Now
-            </Button>
-            <Button 
-              className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md max-w-md flex items-center"
-              onClick={handleContact}
-            >
-              Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+          <div className="flex flex-col items-center">
+            <p className="text-gray-300 font-bold mb-3 text-center w-full">See for yourself:</p>
+            <div className="flex flex-wrap gap-3 self-start">
+              <Button 
+                className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
+                onClick={handleContact}
+              >
+                <Mic className="mr-2 h-5 w-5" /> Speak to our Voice Agent Now
+              </Button>
+              <Button 
+                className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
+                onClick={handleContact}
+              >
+                Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
           </div>
         </div>
         <div className={`w-full lg:w-1/2 transition-all duration-1000 delay-300 ease-out transform
