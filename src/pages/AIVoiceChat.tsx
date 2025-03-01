@@ -10,24 +10,27 @@ import { CTASection } from "@/components/voice-chat/page-sections/CTASection";
 import { FAQSection } from "@/components/voice-chat/page-sections/FAQSection";
 import { FinalCTASection } from "@/components/voice-chat/page-sections/FinalCTASection";
 import { properties } from "@/data/properties";
-import { forcePrefetchImages } from "@/components/voice-chat/utils/imageUtils";
+import { forcePrefetchImages, addCSSImagePreloading } from "@/components/voice-chat/utils/imageUtils";
+
+// Preload images immediately without waiting for component mounting
+// This runs at module load time, before any components are rendered
+const propertyImages = properties.map(property => property.image);
+const otherImages = [
+  "/lovable-uploads/f6cd5c39-f85a-4586-9140-cd8e12d9b947.png",  // Logo
+  "/lovable-uploads/f8dcc881-9e41-4bee-b8e5-78e0fdbccabb.png", // Agent image
+];
+const allImages = [...propertyImages, ...otherImages];
+forcePrefetchImages(allImages);
+addCSSImagePreloading(allImages);
 
 const AIVoiceChat = () => {
-  const [initialLoad, setInitialLoad] = useState(true);
+  const [initialLoad, setInitialLoad] = useState(false); // Start as false to skip animation
   const { toast } = useToast();
   const navigate = useNavigate();
 
-  // Preload images as soon as this component mounts
   useEffect(() => {
-    // Get all property images and prefetch them immediately
-    const propertyImages = properties.map(property => property.image);
-    forcePrefetchImages(propertyImages);
-    
-    // Short timeout to allow for immediate preloading before animation
-    const timer = setTimeout(() => {
-      setInitialLoad(false);
-    }, 100);
-    return () => clearTimeout(timer);
+    // Set to false immediately to avoid any initial load animation
+    setInitialLoad(false);
   }, []);
 
   const handleContact = () => {

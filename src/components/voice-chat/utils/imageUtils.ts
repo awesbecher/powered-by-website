@@ -12,7 +12,7 @@ export const preloadImage = (src: string): Promise<void> => {
     // Check if image is already cached by the browser using a DOM check
     const cachedImage = new Image();
     
-    // If image is already in cache, resolve immediately
+    // If image is already in DOM, resolve immediately
     if (document.querySelector(`img[src="${src}"]`)) {
       console.log(`Image already in DOM: ${src}`);
       resolve();
@@ -43,7 +43,7 @@ export const preloadImage = (src: string): Promise<void> => {
     // Set attributes for high priority loading
     img.setAttribute('loading', 'eager');
     img.setAttribute('fetchpriority', 'high');
-    img.setAttribute('importance', 'high');
+    img.setAttribute('decoding', 'sync');
     
     // Set cache control headers
     img.setAttribute('crossOrigin', 'anonymous');
@@ -53,83 +53,90 @@ export const preloadImage = (src: string): Promise<void> => {
   });
 };
 
-// Force preload images before rendering by creating DOM elements that load the images
+// Force preload images before rendering by embedding them directly in the DOM with dataURIs or CSS
 export const forcePrefetchImages = (urls: string[]): void => {
+  // Add to localStorage cache to maintain across sessions
+  try {
+    const cachedImages = JSON.parse(localStorage.getItem('cachedImageUrls') || '[]');
+    const newUrls = urls.filter(url => !cachedImages.includes(url));
+    
+    if (newUrls.length > 0) {
+      localStorage.setItem('cachedImageUrls', JSON.stringify([...cachedImages, ...newUrls]));
+    }
+  } catch (e) {
+    console.warn('Could not cache image URLs in localStorage');
+  }
+
   // Create a hidden container for preloaded images
-  const preloadContainer = document.createElement('div');
-  preloadContainer.style.position = 'absolute';
-  preloadContainer.style.width = '0';
-  preloadContainer.style.height = '0';
-  preloadContainer.style.opacity = '0';
-  preloadContainer.style.overflow = 'hidden';
-  preloadContainer.setAttribute('aria-hidden', 'true');
-  document.body.appendChild(preloadContainer);
+  const preloadContainer = document.getElementById('image-preload-container') || 
+    document.createElement('div');
+    
+  if (!document.getElementById('image-preload-container')) {
+    preloadContainer.id = 'image-preload-container';
+    preloadContainer.style.position = 'absolute';
+    preloadContainer.style.width = '0';
+    preloadContainer.style.height = '0';
+    preloadContainer.style.opacity = '0';
+    preloadContainer.style.overflow = 'hidden';
+    preloadContainer.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(preloadContainer);
+  }
 
   // Create image elements for each URL
   urls.forEach(url => {
+    // Skip if already in the DOM
+    if (document.querySelector(`#image-preload-container img[src="${url}"]`)) {
+      return;
+    }
+    
     const img = document.createElement('img');
     img.src = url;
     img.loading = 'eager';
     img.fetchPriority = 'high';
+    img.decoding = 'sync'; // Request synchronous decode
     img.style.position = 'absolute';
     img.style.width = '1px';
     img.style.height = '1px';
     preloadContainer.appendChild(img);
+    
+    // Also create a link preload tag in head
+    const linkPreload = document.createElement('link');
+    linkPreload.rel = 'preload';
+    linkPreload.href = url;
+    linkPreload.as = 'image';
+    linkPreload.importance = 'high';
+    document.head.appendChild(linkPreload);
   });
-
-  // Clean up after a delay (images should be cached by then)
-  setTimeout(() => {
-    if (document.body.contains(preloadContainer)) {
-      document.body.removeChild(preloadContainer);
-    }
-  }, 5000);
 };
 
-// Utility to fetch and cache images as blobs for better memory management
-export const preloadAndCacheImage = async (src: string): Promise<void> => {
-  if (!src) return;
-  
-  try {
-    // Check if already cached
-    const cachedImage = new Image();
-    cachedImage.src = src;
-    if (cachedImage.complete) return;
+// Add CSS background-image preloading for even faster visual rendering
+export const addCSSImagePreloading = (urls: string[]): void => {
+  if (!document.getElementById('preload-css')) {
+    const style = document.createElement('style');
+    style.id = 'preload-css';
     
-    // Use modern fetch API to load image with cache priorities
-    const response = await fetch(src, {
-      method: 'GET',
-      headers: {
-        'Cache-Control': 'max-age=31536000',
-      },
-      cache: 'force-cache',
-      priority: 'high', 
-    });
+    const cssRules = urls.map((url, index) => 
+      `.preload-image-${index} { background-image: url(${url}); }`
+    ).join('\n');
     
-    if (!response.ok) throw new Error(`Failed to fetch image: ${src}`);
-    
-    // Convert to blob and create object URL for better memory management
-    const blob = await response.blob();
-    const objectUrl = URL.createObjectURL(blob);
-    
-    // Create and load image from blob
-    const img = new Image();
-    img.onload = () => {
-      // Once loaded, add to cache by forcing a paint
-      document.body.appendChild(img);
-      document.body.removeChild(img);
-      // Release object URL to free memory
-      URL.revokeObjectURL(objectUrl);
-    };
-    img.style.position = 'absolute';
-    img.style.opacity = '0';
-    img.style.pointerEvents = 'none';
-    img.style.width = '1px';
-    img.style.height = '1px';
-    img.src = objectUrl;
-    
-    console.log(`Cached as blob: ${src}`);
-  } catch (error) {
-    console.error(`Error in preloadAndCacheImage for ${src}:`, error);
-    // Don't throw, just log, so we don't block the animation
+    style.textContent = cssRules;
+    document.head.appendChild(style);
   }
 };
+
+// Create an image stylesheet to force browser to download all images on page load
+export const preloadAllProjectImages = (): void => {
+  // Load from all known image sources
+  try {
+    const cachedUrls = JSON.parse(localStorage.getItem('cachedImageUrls') || '[]');
+    if (cachedUrls.length > 0) {
+      forcePrefetchImages(cachedUrls);
+      addCSSImagePreloading(cachedUrls);
+    }
+  } catch (e) {
+    console.warn('Could not load cached image URLs from localStorage');
+  }
+};
+
+// Initialize preloading right away
+preloadAllProjectImages();

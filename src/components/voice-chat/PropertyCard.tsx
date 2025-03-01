@@ -7,7 +7,7 @@ interface PropertyCardProps {
 }
 
 export const PropertyCard = ({ property }: PropertyCardProps) => {
-  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(true); // Start as true to avoid showing placeholder
   const imgRef = useRef<HTMLImageElement>(null);
   
   // Generate a placeholder color based on property title (deterministic)
@@ -24,36 +24,28 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
 
   // When component mounts, check if image is already in browser cache
   useEffect(() => {
-    // Immediately show image if it's in cache
-    if (imgRef.current && imgRef.current.complete) {
-      setImageLoaded(true);
-    }
-  }, []);
+    // Always assume image is loaded
+    setImageLoaded(true);
+    
+    // Preload image in background to ensure it's cached for future visits
+    const img = new Image();
+    img.src = property.image;
+    img.fetchPriority = "high";
+  }, [property.image]);
   
   return (
     <div className="bg-gray-50 rounded-lg p-2 shadow-sm">
       <div className="h-24 rounded-md mb-2 overflow-hidden relative">
-        {/* Placeholder color while image loads */}
-        <div 
-          className="absolute inset-0 transition-opacity duration-100" 
-          style={{ 
-            backgroundColor: placeholderColor,
-            opacity: imageLoaded ? 0 : 1 
-          }} 
-        />
-        
+        {/* Image without placeholder overlay */}
         <img 
           ref={imgRef}
           src={property.image} 
           alt={property.title}
           className="w-full h-full object-cover"
-          onLoad={() => setImageLoaded(true)}
-          style={{ 
-            opacity: imageLoaded ? 1 : 0,
-            transition: "opacity 0.15s ease-in-out"
-          }}
+          style={{ opacity: 1 }}
           loading="eager"
           fetchPriority="high"
+          decoding="sync"
         />
       </div>
       <div className="text-sm font-semibold text-gray-800 truncate">{property.price}</div>

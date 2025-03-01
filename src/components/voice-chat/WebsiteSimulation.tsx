@@ -8,31 +8,35 @@ import { useImagePreloader } from "./hooks/useImagePreloader";
 import { useCursorAnimation } from "./hooks/useCursorAnimation";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { properties } from "@/data/properties";
-import { forcePrefetchImages } from "./utils/imageUtils";
+import { forcePrefetchImages, addCSSImagePreloading } from "./utils/imageUtils";
 import "./CursorAnimation.css";
+
+// Immediately preload all images when this module is imported
+// This runs before the component is even mounted
+const propertyImages = properties.map(property => property.image);
+forcePrefetchImages(propertyImages);
+addCSSImagePreloading(propertyImages);
 
 export const WebsiteSimulation = () => {
   const [simState, setSimState] = useState<"website" | "loading" | "call">("website");
   const [isMuted, setIsMuted] = useState(false);
-  const [initialRender, setInitialRender] = useState(true);
+  const [initialRender, setInitialRender] = useState(false); // Skip initial render animation
   const animationSpeed = "2s"; // Fixed animation speed
   
   // Check if on mobile device
   const isMobile = useIsMobile();
   
-  // Critical first render optimization - force prefetch images immediately
+  // Set images as already loaded
+  const [imagesLoaded, setImagesLoaded] = useState(true);
+  
+  // Skip initial render
   useEffect(() => {
-    // Get all property images and prefetch them right away
-    const propertyImages = properties.map(property => property.image);
-    forcePrefetchImages(propertyImages);
-    
-    // Skip initial render animation delay
     setInitialRender(false);
+    setImagesLoaded(true);
   }, []);
   
-  // Use our custom hooks
-  const { imagesLoaded, progress } = useImagePreloader();
-  const { cursorRef } = useCursorAnimation(simState, setSimState, true, imagesLoaded, animationSpeed);
+  // Use our custom hooks with predetermined loaded state
+  const { cursorRef } = useCursorAnimation(simState, setSimState, true, true, animationSpeed);
 
   // Handle manual state transitions
   const handleStartCall = () => {
