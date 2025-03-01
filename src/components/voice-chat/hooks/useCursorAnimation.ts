@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef, RefObject } from "react";
 import { animateCursorClick, moveCursorToElement, resetCursorPosition } from "../utils/animationUtils";
 
@@ -13,6 +14,7 @@ export const useCursorAnimation = (
   const cursorRef = useRef<HTMLDivElement | null>(null);
   const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
   const isAnimatingRef = useRef(false);
+  const hasStartedFirstAnimationRef = useRef(false);
 
   // Clear all pending timeouts to prevent memory leaks
   const clearAllTimeouts = () => {
@@ -51,8 +53,10 @@ export const useCursorAnimation = (
     
     // Calculate delay based on animation speed
     const speedValue = parseFloat(animationSpeed);
-    const baseDelay = 500; // base delay in ms
+    const baseDelay = hasStartedFirstAnimationRef.current ? 500 : 100; // Much shorter initial delay
     const scaledDelay = baseDelay * (2 / speedValue); // Scale delay inversely with speed
+    
+    console.log("Starting animation with delay:", scaledDelay);
     
     // First move down to the button with a delay
     safeSetTimeout(() => {
@@ -78,6 +82,7 @@ export const useCursorAnimation = (
         // Trigger button click after animation
         safeSetTimeout(() => {
           setSimState("loading");
+          hasStartedFirstAnimationRef.current = true;
         }, 300); // Small delay after click animation
       }, speedValue * 1100); // Wait for cursor to arrive at button
     }, scaledDelay);
@@ -85,7 +90,7 @@ export const useCursorAnimation = (
 
   // Complete the animation cycle: handle end-call and restart
   const completeAnimationCycle = () => {
-    const cursorElement = document.querySelector(".cursor-simulation") as HTMLDivElement | null;
+    const cursorElement = cursorRef.current || document.querySelector(".cursor-simulation") as HTMLDivElement | null;
     if (!cursorElement) {
       isAnimatingRef.current = false;
       return;
@@ -126,8 +131,11 @@ export const useCursorAnimation = (
         // Pause before restarting the animation loop
         safeSetTimeout(() => {
           isAnimatingRef.current = false;
-          runAnimation();
-        }, 5000); // 5 second pause before restarting
+          console.log("Animation cycle completed, restarting in 15 seconds");
+          safeSetTimeout(() => {
+            runAnimation();
+          }, 15000); // 15 second pause before restarting
+        }, 500); // Small delay before resetting animation state
       }, 300); // Small delay after click animation
     }, cursorMoveDuration);
   };
@@ -153,12 +161,15 @@ export const useCursorAnimation = (
   
   // Initial animation setup
   useEffect(() => {
+    // Only proceed if images are loaded
     if (!imagesLoaded) return;
     
-    // Start initial animation with a small delay to ensure everything is ready
+    console.log("Images loaded, preparing to start animation");
+    
+    // Start animation almost immediately (50ms delay to ensure DOM is ready)
     const initialTimer = safeSetTimeout(() => {
       runAnimation();
-    }, 1000);
+    }, 50);
     
     // Clean up function
     return () => {

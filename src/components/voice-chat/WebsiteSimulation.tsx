@@ -12,15 +12,26 @@ import "./CursorAnimation.css";
 export const WebsiteSimulation = () => {
   const [simState, setSimState] = useState<"website" | "loading" | "call">("website");
   const [isMuted, setIsMuted] = useState(false);
+  const [initialRender, setInitialRender] = useState(true);
   const animationSpeed = "2s"; // Fixed animation speed
   
   // Check if on mobile device
   const isMobile = useIsMobile();
   
   // Use our custom hooks
-  const imagesLoaded = useImagePreloader();
+  const { imagesLoaded, progress } = useImagePreloader();
   const { cursorRef } = useCursorAnimation(simState, setSimState, true, imagesLoaded, animationSpeed);
   
+  // Skip initial render animation delay
+  useEffect(() => {
+    if (initialRender) {
+      const timer = setTimeout(() => {
+        setInitialRender(false);
+      }, 10);
+      return () => clearTimeout(timer);
+    }
+  }, [initialRender]);
+
   // Handle manual state transitions
   const handleStartCall = () => {
     setSimState("loading");
@@ -38,6 +49,19 @@ export const WebsiteSimulation = () => {
       <div className="relative bg-black rounded-xl overflow-hidden border border-gray-800">
         {/* Simulated website header */}
         <WebsiteHeader />
+
+        {/* Loading indicator while images are loading */}
+        {!imagesLoaded && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-white z-10">
+            <div className="w-1/2 h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-[#9b87f5] transition-all duration-300" 
+                style={{ width: `${progress}%` }}
+              ></div>
+            </div>
+            <p className="text-sm text-gray-500 mt-2">Loading assets ({progress}%)...</p>
+          </div>
+        )}
 
         {/* Website Content */}
         {simState === "website" && <WebsiteContent onStartCall={handleStartCall} autoSimulate={true} />}
