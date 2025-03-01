@@ -22,7 +22,7 @@ export const FAQSection = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
         <FAQItem 
           question="How quickly can I integrate AI with my phone system?"
-          answer="Most businesses are up and running within 1-2 weeks. We integrate with most major business phone systems and can provide custom solutions when needed." 
+          answer="Most businesses are up and running within days. We integrate with most major business phone systems via API. If its an order phone system, we can provide easy work-arounds." 
         />
         <FAQItem 
           question="Will the AI understand my industry terminology?"
