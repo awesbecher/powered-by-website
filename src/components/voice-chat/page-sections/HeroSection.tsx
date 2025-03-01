@@ -26,7 +26,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
           </p>
           <div className="space-y-4 text-gray-300">
             <p>Deploy Human-like AI Voice Chat Directly on Your Website to:</p>
-            <ul className="list-disc list-inside space-y-2 pl-2">
+            <ul className="list-disc list-inside space-y-2 pl-2 text-sm">
               <li>Boost Conversions: Turn visitors into customers with engaging conversations</li>
               <li>Automate Customer Support: Provide immediate answers & reduce response times</li>
               <li>Offer 24/7 Availability: Ensure reliable, personalized support day or night</li>
