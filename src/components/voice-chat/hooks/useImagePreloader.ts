@@ -10,12 +10,9 @@ export const useImagePreloader = () => {
   useEffect(() => {
     const preloadImages = async () => {
       try {
-        // Get the first 4 properties for preloading
-        const displayProperties = properties.slice(0, 4);
-        
-        // Preload all property images and agent image
+        // Preload ALL property images instead of just the first 4
         await Promise.all([
-          ...displayProperties.map(property => preloadImage(property.image)),
+          ...properties.map(property => preloadImage(property.image)),
           preloadImage("/lovable-uploads/f8dcc881-9e41-4bee-b8e5-78e0fdbccabb.png"), // Agent image
           preloadImage("/lovable-uploads/f6cd5c39-f85a-4586-9140-cd8e12d9b947.png")  // Logo
         ]);
