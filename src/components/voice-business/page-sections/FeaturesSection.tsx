@@ -25,6 +25,11 @@ export const FeaturesSection = () => {
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <FeatureCard 
+          icon={<Calendar className="w-10 h-10 text-[#9b87f5]" />}
+          title="Automate Bookings & Reservations"
+          description="Restaurants, salons, and service businesses can schedule appointments with zero hassle, eliminating scheduling conflicts." 
+        />
+        <FeatureCard 
           icon={<Phone className="w-10 h-10 text-[#9b87f5]" />}
           title="Inbound Call Automation"
           description="Handle high call volumes effortlessly with AI agents that answer calls instantly, reducing wait times and improving customer satisfaction." 
@@ -33,11 +38,6 @@ export const FeaturesSection = () => {
           icon={<User className="w-10 h-10 text-[#9b87f5]" />}
           title="Answer Customer Questions"
           description="From product details to pricing, your AI receptionist has the answers to common questions, providing immediate assistance 24/7." 
-        />
-        <FeatureCard 
-          icon={<Calendar className="w-10 h-10 text-[#9b87f5]" />}
-          title="Automate Bookings & Reservations"
-          description="Restaurants, salons, and service businesses can schedule appointments with zero hassle, eliminating scheduling conflicts." 
         />
         <FeatureCard 
           icon={<BarChart className="w-10 h-10 text-[#9b87f5]" />}
