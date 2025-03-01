@@ -102,14 +102,14 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
             </div>
           </div>
         </div>
-        <div className={`w-full lg:w-1/2 transition-all duration-1000 delay-300 ease-out transform
+        <div className={`w-full lg:w-1/2 transition-all duration-1000 delay-300 ease-out transform flex flex-col items-start justify-start
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-          <p className="text-center text-white text-xl mb-6 font-medium bg-gradient-to-br from-[#6342ff] via-[#7a6cc5] to-[#9b87f5] p-6 rounded-2xl shadow-lg border border-purple-500/20 backdrop-blur-sm">
+          <p className="text-center text-white text-xl mb-6 font-medium bg-gradient-to-br from-[#6342ff] via-[#7a6cc5] to-[#9b87f5] p-6 rounded-2xl shadow-lg border border-purple-500/20 backdrop-blur-sm w-full">
             Talk to an AI Receptionist Now!
             <span className="block mt-2 text-base">Call any one of the businesses below.</span>
             <span className="block mt-2 text-sm text-gray-200 italic">Don't worry, they're not actually real businesses.</span>
           </p>
-          <div className="grid grid-cols-2 gap-6 max-w-[480px] mx-auto">
+          <div className="grid grid-cols-2 gap-6 w-full">
             {/* Service Box 1 */}
             <div className="relative group cursor-pointer">
               <div className="absolute -inset-1 bg-gradient-to-r from-[#6342ff] to-[#9b87f5] rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
@@ -127,7 +127,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
                     <span className="text-gray-400 font-medium">Call</span>
                   </div>
                   <div className="font-sans text-sm font-semibold text-[#9b87f5] mb-1">Mercedes of Tacoma</div>
-                  <div className="text-white font-mono text-sm tracking-wide">(555) 555-5555</div>
+                  <div className="text-white font-mono text-sm tracking-wide font-bold">(555) 555-5555</div>
                 </div>
               </div>
             </div>
@@ -149,7 +149,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
                     <span className="text-gray-400 font-medium">Call</span>
                   </div>
                   <div className="font-sans text-sm font-semibold text-[#9b87f5] mb-1">Township Real Estate</div>
-                  <div className="text-white font-mono text-sm tracking-wide">(555) 555-5555</div>
+                  <div className="text-white font-mono text-sm tracking-wide font-bold">(555) 555-5555</div>
                 </div>
               </div>
             </div>
@@ -171,7 +171,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
                     <span className="text-gray-400 font-medium">Call</span>
                   </div>
                   <div className="font-sans text-sm font-semibold text-[#9b87f5] mb-1">The Slice House</div>
-                  <div className="text-white font-mono text-sm tracking-wide">(555) 555-5555</div>
+                  <div className="text-white font-mono text-sm tracking-wide font-bold">(555) 555-5555</div>
                 </div>
               </div>
             </div>
@@ -193,7 +193,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
                     <span className="text-gray-400 font-medium">Call</span>
                   </div>
                   <div className="font-sans text-sm font-semibold text-[#9b87f5] mb-1">Flagship Barbers</div>
-                  <div className="text-white font-mono text-sm tracking-wide">(555) 555-5555</div>
+                  <div className="text-white font-mono text-sm tracking-wide font-bold">(555) 555-5555</div>
                 </div>
               </div>
             </div>
