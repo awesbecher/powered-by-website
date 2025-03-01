@@ -1,5 +1,5 @@
 
-import { Mic, MessageCircle, Settings, Clock, Shield, Phone } from "lucide-react";
+import { Mic, MessageCircle, Settings, Clock, Shield, Phone, Calendar, User, BarChart, ArrowRightCircle } from "lucide-react";
 
 interface FeatureCardProps {
   icon: React.ReactNode;
@@ -27,27 +27,27 @@ export const FeaturesSection = () => {
         <FeatureCard 
           icon={<Phone className="w-10 h-10 text-[#9b87f5]" />}
           title="Inbound Call Automation"
-          description="Handle high call volumes with AI agents that answer calls instantly, reducing wait times and improving customer satisfaction." 
+          description="Handle high call volumes effortlessly with AI agents that answer calls instantly, reducing wait times and improving customer satisfaction." 
         />
         <FeatureCard 
-          icon={<Mic className="w-10 h-10 text-[#9b87f5]" />}
-          title="Natural Voice Interactions"
-          description="Our AI understands context, customer history, and can handle complex conversations with human-like understanding." 
+          icon={<User className="w-10 h-10 text-[#9b87f5]" />}
+          title="Answer Customer Questions"
+          description="From product details to pricing, your AI receptionist has the answers to common questions, providing immediate assistance 24/7." 
         />
         <FeatureCard 
-          icon={<MessageCircle className="w-10 h-10 text-[#9b87f5]" />}
-          title="Multilingual Support"
-          description="Serve customers in their preferred language with AI that speaks and understands multiple languages fluently." 
+          icon={<Calendar className="w-10 h-10 text-[#9b87f5]" />}
+          title="Automate Bookings & Reservations"
+          description="Restaurants, salons, and service businesses can schedule appointments with zero hassle, eliminating scheduling conflicts." 
         />
         <FeatureCard 
-          icon={<Settings className="w-10 h-10 text-[#9b87f5]" />}
-          title="Easy Integration"
-          description="Seamlessly connects with your existing phone systems and CRM software with minimal IT requirements." 
+          icon={<BarChart className="w-10 h-10 text-[#9b87f5]" />}
+          title="Pre-Screen Leads & Qualify Clients"
+          description="Auto dealerships, loan offices, and professional services can gather key details upfront, ensuring quality leads for your sales team." 
         />
         <FeatureCard 
-          icon={<Clock className="w-10 h-10 text-[#9b87f5]" />}
-          title="24/7 Availability"
-          description="Never miss a customer call again with round-the-clock AI voice agents that never sleep or take breaks." 
+          icon={<ArrowRightCircle className="w-10 h-10 text-[#9b87f5]" />}
+          title="Smart Handoff to Humans"
+          description="Seamlessly transfer complex issues to human representatives only when needed, ensuring proper escalation for special cases." 
         />
         <FeatureCard 
           icon={<Shield className="w-10 h-10 text-[#9b87f5]" />}
