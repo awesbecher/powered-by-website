@@ -84,7 +84,7 @@ export const VoiceChatDialog = ({
       <DialogContent className="bg-white text-black border-gray-200 sm:max-w-md p-6 rounded-xl">
         <div className="flex flex-col space-y-6">
           <div className="flex justify-between items-center">
-            <h2 className="text-3xl font-bold">You are now Connected</h2>
+            <h2 className="text-3xl font-bold">You are now connected with Paul Berman</h2>
             {/* Close button is already provided by DialogContent */}
           </div>
           
@@ -111,7 +111,7 @@ export const VoiceChatDialog = ({
             </div>
             <div>
               <h3 className="text-2xl font-bold">Paul Berman</h3>
-              <p className="text-gray-500">Powered_by Agency</p>
+              <p className="text-gray-500">Chief Technical Evangelist @ Powered_by</p>
             </div>
           </div>
           

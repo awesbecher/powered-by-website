@@ -13,7 +13,7 @@ export const CallInProgress = ({ isMuted, setIsMuted, onRestart }: CallInProgres
     <div className="absolute inset-0 bg-black/20 flex items-center justify-center z-10">
       <div className="bg-black rounded-xl shadow-xl max-w-[300px] w-full p-4 m-4">
         <div className="flex justify-between items-center mb-3">
-          <h2 className="text-base font-bold text-white">You are now Connected</h2>
+          <h2 className="text-base font-bold text-white">You are now connected with Paul Berman</h2>
           <button onClick={onRestart} className="text-gray-300 hover:text-white">
             <X className="w-5 h-5" />
           </button>
@@ -24,7 +24,7 @@ export const CallInProgress = ({ isMuted, setIsMuted, onRestart }: CallInProgres
             <div className="h-12 w-12 rounded-full overflow-hidden border-2 border-gray-700 shadow-md">
               <img 
                 src="/lovable-uploads/f8dcc881-9e41-4bee-b8e5-78e0fdbccabb.png" 
-                alt="Melissa Thomas" 
+                alt="Paul Berman" 
                 className="w-full h-full object-cover"
               />
             </div>
@@ -41,8 +41,8 @@ export const CallInProgress = ({ isMuted, setIsMuted, onRestart }: CallInProgres
             </div>
           </div>
           <div>
-            <h3 className="text-base font-bold text-white">Melissa Thomas</h3>
-            <p className="text-sm text-gray-400">Phoenix Realty Inc.</p>
+            <h3 className="text-base font-bold text-white">Paul Berman</h3>
+            <p className="text-sm text-gray-400">Chief Technical Evangelist @ Powered_by</p>
           </div>
         </div>
         
