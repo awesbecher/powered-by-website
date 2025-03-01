@@ -104,37 +104,37 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
         </div>
         <div className={`w-full lg:w-1/2 transition-all duration-1000 delay-300 ease-out transform
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-          <div className="grid grid-cols-2 gap-4 max-w-[380px] mx-auto">
-            {/* 2x2 Grid of service boxes */}
-            <div className="relative rounded-lg overflow-hidden">
-              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-[#9b87f5] rounded-lg blur-sm opacity-75"></div>
-              <div className="relative p-4 bg-gray-900 rounded-lg h-full flex flex-col justify-between">
-                <div className="text-sm font-bold text-white">Schedule a Test Drive!</div>
-                <div className="text-xs text-gray-300 mt-2">Call Mercedes of Tacoma @ (555) 555-5555</div>
+          <div className="grid grid-cols-2 gap-6 max-w-[480px] mx-auto">
+            {/* 2x2 Grid of service boxes with glass-like effect */}
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#6342ff] to-[#9b87f5] rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
+              <div className="relative backdrop-blur-sm bg-gray-900/80 p-5 rounded-xl border border-purple-500/20 shadow-xl h-full flex flex-col justify-between hover:translate-y-[-4px] transition-transform duration-300">
+                <div className="text-sm sm:text-base font-bold text-white mb-1">Schedule a Test Drive!</div>
+                <div className="text-xs sm:text-sm text-gray-300 mt-2">Call Mercedes of Tacoma @ (555) 555-5555</div>
               </div>
             </div>
             
-            <div className="relative rounded-lg overflow-hidden">
-              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-[#9b87f5] rounded-lg blur-sm opacity-75"></div>
-              <div className="relative p-4 bg-gray-900 rounded-lg h-full flex flex-col justify-between">
-                <div className="text-sm font-bold text-white">Schedule a House Tour!</div>
-                <div className="text-xs text-gray-300 mt-2">Call Township Real Estate @ (555) 555-5555</div>
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#6342ff] to-[#9b87f5] rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
+              <div className="relative backdrop-blur-sm bg-gray-900/80 p-5 rounded-xl border border-purple-500/20 shadow-xl h-full flex flex-col justify-between hover:translate-y-[-4px] transition-transform duration-300">
+                <div className="text-sm sm:text-base font-bold text-white mb-1">Schedule a House Tour!</div>
+                <div className="text-xs sm:text-sm text-gray-300 mt-2">Call Township Real Estate @ (555) 555-5555</div>
               </div>
             </div>
             
-            <div className="relative rounded-lg overflow-hidden">
-              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-[#9b87f5] rounded-lg blur-sm opacity-75"></div>
-              <div className="relative p-4 bg-gray-900 rounded-lg h-full flex flex-col justify-between">
-                <div className="text-sm font-bold text-white">Order a Pizza!</div>
-                <div className="text-xs text-gray-300 mt-2">Call The Slice House @ (555) 555-5555</div>
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#6342ff] to-[#9b87f5] rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
+              <div className="relative backdrop-blur-sm bg-gray-900/80 p-5 rounded-xl border border-purple-500/20 shadow-xl h-full flex flex-col justify-between hover:translate-y-[-4px] transition-transform duration-300">
+                <div className="text-sm sm:text-base font-bold text-white mb-1">Order a Pizza!</div>
+                <div className="text-xs sm:text-sm text-gray-300 mt-2">Call The Slice House @ (555) 555-5555</div>
               </div>
             </div>
             
-            <div className="relative rounded-lg overflow-hidden">
-              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-[#9b87f5] rounded-lg blur-sm opacity-75"></div>
-              <div className="relative p-4 bg-gray-900 rounded-lg h-full flex flex-col justify-between">
-                <div className="text-sm font-bold text-white">Get a Haircut!</div>
-                <div className="text-xs text-gray-300 mt-2">Call Flagship Barbers @ (555) 555-5555</div>
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#6342ff] to-[#9b87f5] rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
+              <div className="relative backdrop-blur-sm bg-gray-900/80 p-5 rounded-xl border border-purple-500/20 shadow-xl h-full flex flex-col justify-between hover:translate-y-[-4px] transition-transform duration-300">
+                <div className="text-sm sm:text-base font-bold text-white mb-1">Get a Haircut!</div>
+                <div className="text-xs sm:text-sm text-gray-300 mt-2">Call Flagship Barbers @ (555) 555-5555</div>
               </div>
             </div>
           </div>
