@@ -15,7 +15,7 @@ export const CTASection = ({ handleContact }: CTASectionProps) => {
             Curious About Adding an AI Receptionist to Your Business?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
-            Book a free consultation with our solutions team to learn how voice AI can transform your business phone lines.
+            Book a free consultation with the Powered_by solutions team to learn how we could quickly and frictionlessly deliver you a receptionist that is remarkably human-like, lightning-fast, and always on.
           </p>
           <Button 
             className="bg-white hover:bg-gray-100 text-[#6342ff] font-bold px-8 py-6 text-lg rounded-md"
