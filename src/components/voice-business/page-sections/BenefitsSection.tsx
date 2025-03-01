@@ -22,7 +22,7 @@ export const BenefitsSection = () => {
     <section className="py-10 bg-[#121218] px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-4">
-          Business Benefits of AI Receptionist
+          The Business Benefits of AI Receptionists
         </h2>
         <p className="text-xl text-gray-300 text-center max-w-3xl mx-auto mb-12">
           Say goodbye to missed calls and missed opportunities. By staying available around the clock, our AI Receptionist ensures your business captures every lead, books every appointment, and fields every customer query—no matter the time of day.
