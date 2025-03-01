@@ -34,7 +34,7 @@ export const CallInProgress = ({
         <div className="flex justify-between items-center mb-3">
           <h2 className="text-base font-bold text-white">
             {isSimulation 
-              ? "You are now connected with an agent" 
+              ? "You are now connected with Stephanie Tolson" 
               : "You are now connected with Paul Berman"}
           </h2>
           <button onClick={handleEndCall} className="text-gray-300 hover:text-white">
@@ -46,7 +46,11 @@ export const CallInProgress = ({
           <div className="relative">
             <div className="h-12 w-12 rounded-full overflow-hidden border-2 border-gray-700 shadow-md">
               {isSimulation ? (
-                <div className="w-full h-full bg-gray-600"></div>
+                <img 
+                  src="/lovable-uploads/7fafe6a4-b6c1-4526-9310-a32650aec834.png" 
+                  alt="Stephanie Tolson" 
+                  className="w-full h-full object-cover"
+                />
               ) : (
                 <img 
                   src="/lovable-uploads/df68b31e-fef9-46d0-ab2a-1cc9d5161e4e.png" 
@@ -69,10 +73,10 @@ export const CallInProgress = ({
           </div>
           <div>
             <h3 className="text-base font-bold text-white">
-              {isSimulation ? "Agent" : "Paul Berman"}
+              {isSimulation ? "Stephanie Tolson" : "Paul Berman"}
             </h3>
             <p className="text-sm text-gray-400">
-              {isSimulation ? "Real Estate Assistant" : "Chief Technical Evangelist @ Powered_by"}
+              {isSimulation ? "Senior Realtor" : "Chief Technical Evangelist @ Powered_by"}
             </p>
           </div>
         </div>
