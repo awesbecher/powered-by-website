@@ -123,6 +123,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
         handleCloseDialog={handleCloseDialog}
         handleStartCall={handleStartCall}
         handleEndCall={handleEndCall}
+        source="voice-chat"
       />
     </section>
   );

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { HeroSection } from "@/components/home/HeroSection";
@@ -107,6 +106,7 @@ const Index = () => {
         handleCloseDialog={handleCloseDialog}
         handleStartCall={handleStartCall}
         handleEndCall={handleEndCall}
+        source="home"
       />
       
       <div className="relative z-10 -mt-48 mb-8">

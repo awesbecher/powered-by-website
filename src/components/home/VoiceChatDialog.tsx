@@ -13,6 +13,7 @@ interface VoiceChatDialogProps {
   handleCloseDialog: () => void;
   handleStartCall: () => void;
   handleEndCall: () => void;
+  source?: 'voice-chat' | 'voice-business' | 'home';
 }
 
 export const VoiceChatDialog = ({
@@ -22,6 +23,7 @@ export const VoiceChatDialog = ({
   handleCloseDialog,
   handleStartCall,
   handleEndCall,
+  source = 'home',
 }: VoiceChatDialogProps) => {
   const [isMuted, setIsMuted] = useState(false);
   const navigate = useNavigate();
@@ -35,6 +37,35 @@ export const VoiceChatDialog = ({
     handleEndCall();
     navigate('/contact');
   };
+
+  // Determine the text based on the source
+  const getDialogContent = () => {
+    if (source === 'voice-chat') {
+      return {
+        title: "Good choice!",
+        description: "You're one step closer to implementing AI Voice Chat for your website.",
+        buttonText: "Start Voice Chat Demo",
+        consent: "By clicking \"Start Voice Chat Demo\", you consent to having a voice conversation with Powered_by's Solutions Team. You can end the conversation at any time."
+      };
+    } else if (source === 'voice-business') {
+      return {
+        title: "Good choice!",
+        description: "You're one step closer to implementing AI Receptionist for your business lines.",
+        buttonText: "Start AI Receptionist Demo",
+        consent: "By clicking \"Start AI Receptionist Demo\", you consent to having a voice conversation with Powered_by's Solutions Team. You can end the conversation at any time."
+      };
+    } else {
+      // Default (home page)
+      return {
+        title: "Good choice!",
+        description: "You're one step closer to implementing AI for your business.",
+        buttonText: "Start AI Demo",
+        consent: "By clicking \"Start AI Demo\", you consent to having a voice conversation with Powered_by's Solutions Team. You can end the conversation at any time."
+      };
+    }
+  };
+
+  const dialogContent = getDialogContent();
 
   // Initial dialog before call starts
   if (!isCallActive) {
@@ -52,16 +83,16 @@ export const VoiceChatDialog = ({
             </Avatar>
             <div className="flex-1">
               <DialogTitle className="text-2xl font-bold text-white mb-2">
-                Good choice!
+                {dialogContent.title}
               </DialogTitle>
               <DialogDescription className="text-gray-300">
-                You're one step closer to implementing AI Receptionist for your business lines.
+                {dialogContent.description}
               </DialogDescription>
             </div>
           </DialogHeader>
           <div className="flex flex-col space-y-4 pt-4">
             <p className="text-sm text-gray-300">
-              By clicking "Start AI Receptionist Demo", you consent to having a voice conversation with Powered_by's Solutions Team. You can end the conversation at any time.
+              {dialogContent.consent}
             </p>
             <div className="flex gap-2">
               <Button 
@@ -76,7 +107,7 @@ export const VoiceChatDialog = ({
                 disabled={isSubmitting}
                 className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
               >
-                {isSubmitting ? "Starting..." : "Start AI Receptionist Demo"}
+                {isSubmitting ? "Starting..." : dialogContent.buttonText}
               </Button>
             </div>
           </div>
