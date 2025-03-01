@@ -104,7 +104,7 @@ export const forcePrefetchImages = (urls: string[]): void => {
     linkPreload.rel = 'preload';
     linkPreload.href = url;
     linkPreload.as = 'image';
-    linkPreload.importance = 'high';
+    // Remove the 'importance' property that's causing the error
     document.head.appendChild(linkPreload);
   });
 };
