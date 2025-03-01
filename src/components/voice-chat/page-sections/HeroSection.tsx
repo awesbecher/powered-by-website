@@ -31,13 +31,6 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
             >
               Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-            <Button 
-              variant="gradient"
-              className="text-white px-8 py-6 text-lg rounded-md"
-              onClick={() => navigate("/demo")}
-            >
-              See Live Demo
-            </Button>
           </div>
         </div>
         <div className={`w-full lg:w-1/2 transition-all duration-1000 delay-300 ease-out transform
