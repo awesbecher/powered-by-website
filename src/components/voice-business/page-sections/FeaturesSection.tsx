@@ -26,7 +26,7 @@ export const FeaturesSection = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <FeatureCard 
           icon={<Phone className="w-10 h-10 text-[#9b87f5]" />}
-          title="Call Center Automation"
+          title="Inbound Call Automation"
           description="Handle high call volumes with AI agents that answer calls instantly, reducing wait times and improving customer satisfaction." 
         />
         <FeatureCard 
