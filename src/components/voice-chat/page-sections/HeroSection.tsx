@@ -32,18 +32,18 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
               <li>Offer 24/7 Availability: Ensure reliable, personalized support day or night</li>
             </ul>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 pt-2">
-            <Button 
-              className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-8 py-6 text-lg rounded-md"
-              onClick={handleContact}
-            >
-              Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+          <div className="flex flex-col gap-4 pt-2">
             <Button 
               className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-8 py-6 text-lg rounded-md"
               onClick={handleContact}
             >
               Speak to our Voice Agent Now & Learn How it Works
+            </Button>
+            <Button 
+              className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-8 py-6 text-lg rounded-md"
+              onClick={handleContact}
+            >
+              Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
         </div>
