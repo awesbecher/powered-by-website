@@ -164,28 +164,24 @@ export const WebsiteSimulation = () => {
       }
     };
 
-    // Set up state change listener
-    const stateChangeEffect = () => {
-      handleStateTransitions();
-    };
-    
-    // Clear any existing intervals
-    if (simulationCycleRef.current) {
-      clearTimeout(simulationCycleRef.current);
-    }
-    
-    // Start initial animation
+    // Set up state change listener and start animation
     runAnimation();
     
-    // Set up state change listener
-    const unsubscribe = stateChangeEffect();
+    // Add effect to handle state transitions
+    const stateChangeEffect = () => {
+      // Set up a watch on simState
+      useEffect(() => {
+        handleStateTransitions();
+      }, [simState]);
+    };
     
+    // Execute the state change effect
+    stateChangeEffect();
+    
+    // Clean up function
     return () => {
       if (simulationCycleRef.current) {
         clearTimeout(simulationCycleRef.current);
-      }
-      if (unsubscribe) {
-        unsubscribe();
       }
     };
   }, [autoSimulate, imagesLoaded]);
