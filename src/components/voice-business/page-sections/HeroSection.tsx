@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { VoiceChatDialog } from "@/components/voice-business/VoiceChatDialog";
 import { useToast } from "@/hooks/use-toast";
@@ -109,36 +109,71 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
             <span className="block text-sm mt-1 text-gray-200">Don't worry, they're not actually real businesses.</span>
           </p>
           <div className="grid grid-cols-2 gap-6 max-w-[480px] mx-auto">
-            {/* 2x2 Grid of service boxes with glass-like effect */}
-            <div className="relative group">
+            {/* Service Box 1 */}
+            <div className="relative group cursor-pointer">
               <div className="absolute -inset-1 bg-gradient-to-r from-[#6342ff] to-[#9b87f5] rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
-              <div className="relative backdrop-blur-sm bg-gray-900/80 p-5 rounded-xl border border-purple-500/20 shadow-xl h-full flex flex-col justify-between hover:translate-y-[-4px] transition-transform duration-300">
-                <div className="text-sm sm:text-base font-bold text-white mb-1">Schedule a Test Drive!</div>
-                <div className="text-xs sm:text-sm text-gray-300 mt-2">Call Mercedes of Tacoma @ (555) 555-5555</div>
+              <div className="relative backdrop-blur-sm bg-gray-900/80 p-6 rounded-xl border border-purple-500/20 shadow-xl h-full flex flex-col justify-between hover:translate-y-[-4px] transition-transform duration-300">
+                <div>
+                  <div className="text-base sm:text-lg font-bold text-white mb-2">
+                    <span className="text-[#F97316]">🚗</span> Schedule a Test Drive!
+                  </div>
+                  <div className="flex items-center text-xs sm:text-sm text-gray-300 mt-3">
+                    <Phone className="h-3 w-3 mr-1 text-[#9b87f5]" />
+                    <span>Call <span className="font-semibold text-[#9b87f5]">Mercedes of Tacoma</span> @</span>
+                  </div>
+                  <div className="text-white font-bold mt-1">(555) 555-5555</div>
+                </div>
               </div>
             </div>
             
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-[#6342ff] to-[#9b87f5] rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
-              <div className="relative backdrop-blur-sm bg-gray-900/80 p-5 rounded-xl border border-purple-500/20 shadow-xl h-full flex flex-col justify-between hover:translate-y-[-4px] transition-transform duration-300">
-                <div className="text-sm sm:text-base font-bold text-white mb-1">Schedule a House Tour!</div>
-                <div className="text-xs sm:text-sm text-gray-300 mt-2">Call Township Real Estate @ (555) 555-5555</div>
+            {/* Service Box 2 */}
+            <div className="relative group cursor-pointer">
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#D946EF] to-[#9b87f5] rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
+              <div className="relative backdrop-blur-sm bg-gray-900/80 p-6 rounded-xl border border-purple-500/20 shadow-xl h-full flex flex-col justify-between hover:translate-y-[-4px] transition-transform duration-300">
+                <div>
+                  <div className="text-base sm:text-lg font-bold text-white mb-2">
+                    <span className="text-[#0EA5E9]">🏠</span> Schedule a House Tour!
+                  </div>
+                  <div className="flex items-center text-xs sm:text-sm text-gray-300 mt-3">
+                    <Phone className="h-3 w-3 mr-1 text-[#D946EF]" />
+                    <span>Call <span className="font-semibold text-[#D946EF]">Township Real Estate</span> @</span>
+                  </div>
+                  <div className="text-white font-bold mt-1">(555) 555-5555</div>
+                </div>
               </div>
             </div>
             
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-[#6342ff] to-[#9b87f5] rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
-              <div className="relative backdrop-blur-sm bg-gray-900/80 p-5 rounded-xl border border-purple-500/20 shadow-xl h-full flex flex-col justify-between hover:translate-y-[-4px] transition-transform duration-300">
-                <div className="text-sm sm:text-base font-bold text-white mb-1">Order a Pizza!</div>
-                <div className="text-xs sm:text-sm text-gray-300 mt-2">Call The Slice House @ (555) 555-5555</div>
+            {/* Service Box 3 */}
+            <div className="relative group cursor-pointer">
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#F97316] to-[#9b87f5] rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
+              <div className="relative backdrop-blur-sm bg-gray-900/80 p-6 rounded-xl border border-purple-500/20 shadow-xl h-full flex flex-col justify-between hover:translate-y-[-4px] transition-transform duration-300">
+                <div>
+                  <div className="text-base sm:text-lg font-bold text-white mb-2">
+                    <span className="text-[#F97316]">🍕</span> Order a Pizza!
+                  </div>
+                  <div className="flex items-center text-xs sm:text-sm text-gray-300 mt-3">
+                    <Phone className="h-3 w-3 mr-1 text-[#F97316]" />
+                    <span>Call <span className="font-semibold text-[#F97316]">The Slice House</span> @</span>
+                  </div>
+                  <div className="text-white font-bold mt-1">(555) 555-5555</div>
+                </div>
               </div>
             </div>
             
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-[#6342ff] to-[#9b87f5] rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
-              <div className="relative backdrop-blur-sm bg-gray-900/80 p-5 rounded-xl border border-purple-500/20 shadow-xl h-full flex flex-col justify-between hover:translate-y-[-4px] transition-transform duration-300">
-                <div className="text-sm sm:text-base font-bold text-white mb-1">Get a Haircut!</div>
-                <div className="text-xs sm:text-sm text-gray-300 mt-2">Call Flagship Barbers @ (555) 555-5555</div>
+            {/* Service Box 4 */}
+            <div className="relative group cursor-pointer">
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#0EA5E9] to-[#9b87f5] rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
+              <div className="relative backdrop-blur-sm bg-gray-900/80 p-6 rounded-xl border border-purple-500/20 shadow-xl h-full flex flex-col justify-between hover:translate-y-[-4px] transition-transform duration-300">
+                <div>
+                  <div className="text-base sm:text-lg font-bold text-white mb-2">
+                    <span className="text-[#D946EF]">✂️</span> Get a Haircut!
+                  </div>
+                  <div className="flex items-center text-xs sm:text-sm text-gray-300 mt-3">
+                    <Phone className="h-3 w-3 mr-1 text-[#0EA5E9]" />
+                    <span>Call <span className="font-semibold text-[#0EA5E9]">Flagship Barbers</span> @</span>
+                  </div>
+                  <div className="text-white font-bold mt-1">(555) 555-5555</div>
+                </div>
               </div>
             </div>
           </div>
