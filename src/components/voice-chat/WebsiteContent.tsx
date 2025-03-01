@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Mic } from "lucide-react";
 import { properties } from "@/data/properties";
@@ -13,6 +13,25 @@ interface WebsiteContentProps {
 export const WebsiteContent = ({ onStartCall, autoSimulate = false }: WebsiteContentProps) => {
   // Get the first 4 properties from our data
   const displayProperties = properties.slice(0, 4);
+
+  // Add effect to handle the auto-click for the button
+  useEffect(() => {
+    if (autoSimulate) {
+      const handleAutoClick = () => {
+        const button = document.getElementById("cta-button")?.querySelector("button");
+        if (button) {
+          // Add a small delay to make sure cursor is positioned properly
+          setTimeout(() => {
+            button.click(); // Programmatically click the button
+          }, 2000);
+        }
+      };
+      
+      // Set a timeout to trigger the click after cursor animation completes
+      const timer = setTimeout(handleAutoClick, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [autoSimulate, onStartCall]);
 
   return (
     <div className="p-3 bg-white min-h-[600px] max-h-[600px] overflow-hidden relative">
