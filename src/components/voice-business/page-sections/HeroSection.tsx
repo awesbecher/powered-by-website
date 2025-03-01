@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowRight, Phone, Car, Building, Briefcase, Coffee } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { VoiceChatDialog } from "@/components/voice-business/VoiceChatDialog";
 import { useToast } from "@/hooks/use-toast";
@@ -115,7 +115,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
               <div className="relative backdrop-blur-sm bg-gray-900/80 p-6 rounded-xl border border-purple-500/20 shadow-xl h-full flex flex-col justify-between hover:translate-y-[-4px] transition-transform duration-300">
                 <div>
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="text-[#F97316] text-xl">🚗</span>
+                    <Car className="text-[#F97316] text-xl" />
                     <h3 className="font-sans text-lg font-bold text-white leading-tight tracking-wide">
                       Test Drive
                     </h3>
@@ -137,9 +137,9 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
               <div className="relative backdrop-blur-sm bg-gray-900/80 p-6 rounded-xl border border-purple-500/20 shadow-xl h-full flex flex-col justify-between hover:translate-y-[-4px] transition-transform duration-300">
                 <div>
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="text-[#0EA5E9] text-xl">🏠</span>
+                    <Building className="text-[#0EA5E9] text-xl" />
                     <h3 className="font-sans text-lg font-bold text-white leading-tight tracking-wide">
-                      House Tour
+                      Office Space
                     </h3>
                   </div>
                   <div className="my-2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
@@ -159,9 +159,9 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
               <div className="relative backdrop-blur-sm bg-gray-900/80 p-6 rounded-xl border border-purple-500/20 shadow-xl h-full flex flex-col justify-between hover:translate-y-[-4px] transition-transform duration-300">
                 <div>
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="text-[#F97316] text-xl">🍕</span>
+                    <Coffee className="text-[#F97316] text-xl" />
                     <h3 className="font-sans text-lg font-bold text-white leading-tight tracking-wide">
-                      Order Pizza
+                      Cafe Order
                     </h3>
                   </div>
                   <div className="my-2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
@@ -181,9 +181,9 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
               <div className="relative backdrop-blur-sm bg-gray-900/80 p-6 rounded-xl border border-purple-500/20 shadow-xl h-full flex flex-col justify-between hover:translate-y-[-4px] transition-transform duration-300">
                 <div>
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="text-[#D946EF] text-xl">✂️</span>
+                    <Briefcase className="text-[#D946EF] text-xl" />
                     <h3 className="font-sans text-lg font-bold text-white leading-tight tracking-wide">
-                      Get Haircut
+                      Consultation
                     </h3>
                   </div>
                   <div className="my-2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
@@ -212,4 +212,3 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
     </section>
   );
 };
-

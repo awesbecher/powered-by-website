@@ -1,67 +1,51 @@
 
-interface BenefitItemProps {
-  number: string;
-  title: string;
-  description: string;
-}
-
-const BenefitItem = ({ number, title, description }: BenefitItemProps) => {
-  return (
-    <div className="flex gap-4">
-      <div className="text-3xl font-bold text-[#9b87f5]">{number}</div>
-      <div>
-        <h3 className="text-xl font-bold text-white mb-1">{title}</h3>
-        <p className="text-gray-400">{description}</p>
-      </div>
-    </div>
-  );
-};
+import { PhoneCall, Clock, MessageSquare, DollarSign } from "lucide-react";
 
 export const BenefitsSection = () => {
   return (
-    <section className="py-10 bg-[#121218] px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-4">
-          The Business Benefits of AI Receptionists
-        </h2>
-        <p className="text-xl text-gray-300 text-center max-w-3xl mx-auto mb-12">
-          Say goodbye to missed calls and missed opportunities. By staying available around the clock, our AI Receptionist ensures your business captures every lead, books every appointment, and fields every customer query—no matter the time of day.
+    <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl bg-gradient-to-b from-[#121212] via-[#151515] to-[#121212]">
+      <div className="text-center max-w-3xl mx-auto mb-16">
+        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">The Business Benefits of AI Receptionists</h2>
+        <p className="text-xl text-gray-300">
+          Boost efficiency, reduce wait times, and enhance customer satisfaction—all with the power of a <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> AI Receptionist.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="space-y-8">
-            <BenefitItem 
-              number="01"
-              title="Reduce Operational Costs"
-              description="Hiring, training, and managing receptionist staff costs time and money. Our AI Receptionist seamlessly plugs into your existing phone system to reduce overhead and keep your attention where it belongs: growing your business."
-            />
-            <BenefitItem 
-              number="02"
-              title="Eliminate Hold Times"
-              description="Answer every call on the first ring, even during peak hours, reducing abandonment rates by up to 90%."
-            />
-            <BenefitItem 
-              number="03"
-              title="Data-Driven Insights"
-              description="Gain valuable business intelligence from every customer interaction through comprehensive call analytics."
-            />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Benefit 1 */}
+        <div className="glass-card rounded-xl p-6 text-center">
+          <div className="bg-gradient-to-br from-[#6342ff] to-[#9b87f5] w-14 h-14 flex items-center justify-center rounded-full mx-auto mb-4">
+            <PhoneCall className="w-6 h-6 text-white" />
           </div>
-          <div className="space-y-8">
-            <BenefitItem 
-              number="04"
-              title="Consistent Customer Experience"
-              description="Deliver the same high-quality service to every caller, regardless of time, day, or call volume."
-            />
-            <BenefitItem 
-              number="05"
-              title="Improve Agent Satisfaction"
-              description="Free your human agents from repetitive calls, allowing them to focus on complex, high-value interactions."
-            />
-            <BenefitItem 
-              number="06"
-              title="Scale Without Hiring"
-              description="Expand your business operations without the need to hire, train, and manage additional call center staff."
-            />
+          <h3 className="text-xl font-bold text-white mb-2">Never Miss a Call</h3>
+          <p className="text-gray-300">Your AI receptionist answers every call 24/7, ensuring no opportunity slips through the cracks.</p>
+        </div>
+
+        {/* Benefit 2 */}
+        <div className="glass-card rounded-xl p-6 text-center">
+          <div className="bg-gradient-to-br from-[#6342ff] to-[#9b87f5] w-14 h-14 flex items-center justify-center rounded-full mx-auto mb-4">
+            <Clock className="w-6 h-6 text-white" />
           </div>
+          <h3 className="text-xl font-bold text-white mb-2">Save Hours Daily</h3>
+          <p className="text-gray-300">Automate routine inquiries and appointment bookings while your team focuses on high-value tasks.</p>
+        </div>
+
+        {/* Benefit 3 */}
+        <div className="glass-card rounded-xl p-6 text-center">
+          <div className="bg-gradient-to-br from-[#6342ff] to-[#9b87f5] w-14 h-14 flex items-center justify-center rounded-full mx-auto mb-4">
+            <MessageSquare className="w-6 h-6 text-white" />
+          </div>
+          <h3 className="text-xl font-bold text-white mb-2">Consistent Experience</h3>
+          <p className="text-gray-300">Deliver the same high-quality professional greeting and service to every caller, every time.</p>
+        </div>
+
+        {/* Benefit 4 */}
+        <div className="glass-card rounded-xl p-6 text-center">
+          <div className="bg-gradient-to-br from-[#6342ff] to-[#9b87f5] w-14 h-14 flex items-center justify-center rounded-full mx-auto mb-4">
+            <DollarSign className="w-6 h-6 text-white" />
+          </div>
+          <h3 className="text-xl font-bold text-white mb-2">Cost Effective</h3>
+          <p className="text-gray-300">Reduce the need for multiple receptionists while maintaining exceptional service quality.</p>
         </div>
       </div>
     </section>
