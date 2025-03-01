@@ -8,7 +8,8 @@ export const useCursorAnimation = (
   simState: SimState,
   setSimState: (state: SimState) => void,
   autoSimulate: boolean,
-  imagesLoaded: boolean
+  imagesLoaded: boolean,
+  animationSpeed: string = "2s" // Default animation speed
 ) => {
   const cursorRef = useRef<HTMLDivElement | null>(null);
   const simulationCycleRef = useRef<NodeJS.Timeout | null>(null);
@@ -28,6 +29,11 @@ export const useCursorAnimation = (
     // Reset cursor position
     resetCursorPosition(cursorElement);
     
+    // Calculate delay based on animation speed
+    const speedValue = parseFloat(animationSpeed);
+    const baseDelay = 500; // base delay in ms
+    const scaledDelay = baseDelay * (2 / speedValue); // Scale delay inversely with speed
+    
     // First move down to the button with a delay
     setTimeout(() => {
       const button = document.getElementById("cta-button");
@@ -37,18 +43,25 @@ export const useCursorAnimation = (
       if (!contentContainer) return;
       
       // Move cursor to button
-      moveCursorToElement(cursorElement, button, contentContainer as HTMLElement);
+      moveCursorToElement(cursorElement, button, contentContainer as HTMLElement, animationSpeed);
       
       // Add clicking animation after cursor arrives at button
       setTimeout(() => {
         animateCursorClick(cursorElement);
-      }, 2200); // Wait for cursor to arrive at button
-    }, 500);
+      }, speedValue * 1100); // Wait for cursor to arrive at button
+    }, scaledDelay);
   };
 
   // Handle state transitions for loading and call states
   const handleStateTransitions = () => {
     if (simState === "loading") {
+      // Calculate delays based on animation speed
+      const speedValue = parseFloat(animationSpeed);
+      const loadingDelay = 1500 * (2 / speedValue);
+      const callInitialDelay = 500 * (2 / speedValue);
+      const centerToButtonDelay = 1500 * (2 / speedValue);
+      const endCallButtonDelay = 2000 * (2 / speedValue);
+      
       setTimeout(() => {
         setSimState("call");
         
@@ -68,7 +81,7 @@ export const useCursorAnimation = (
             cursorElement, 
             callContainer as HTMLElement,
             pageContainer as HTMLElement,
-            "1s"
+            animationSpeed.replace("s", "") + "s"
           );
           
           // After reaching center, move to end call button
@@ -80,16 +93,16 @@ export const useCursorAnimation = (
               cursorElement,
               endCallButton as HTMLElement,
               pageContainer as HTMLElement,
-              "1s"
+              animationSpeed.replace("s", "") + "s"
             );
             
             // Wait at button for a moment, then restart animation
             setTimeout(() => {
               runAnimation();
-            }, 2000); // Wait at end call button
-          }, 1500); // Time to move from center to button
-        }, 500); // Time before starting cursor movement in call state
-      }, 1500); // Time in loading state
+            }, endCallButtonDelay);
+          }, centerToButtonDelay);
+        }, callInitialDelay);
+      }, loadingDelay);
     }
   };
 
@@ -106,14 +119,14 @@ export const useCursorAnimation = (
         clearTimeout(simulationCycleRef.current);
       }
     };
-  }, [autoSimulate, imagesLoaded]);
+  }, [autoSimulate, imagesLoaded, animationSpeed]);
   
   // Effect for state transitions
   useEffect(() => {
     if (simState === "loading" && autoSimulate) {
       handleStateTransitions();
     }
-  }, [simState, autoSimulate]);
+  }, [simState, autoSimulate, animationSpeed]);
 
   return {
     cursorRef

@@ -19,6 +19,24 @@
   transition: transform 0.1s ease-in-out, opacity 0.1s ease-in-out;
 }
 
+/* Add animation variations */
+.cursor-simulation.pulse {
+  animation: pulse 2s infinite;
+}
+
+.cursor-simulation.wiggle {
+  animation: wiggle 1s infinite;
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  .cursor-simulation {
+    width: 20px; /* Slightly smaller on mobile */
+    height: 20px;
+  }
+}
+
+/* Animation keyframes */
 @keyframes pulse {
   0% { transform: translate(-50%, -50%) scale(1); }
   50% { transform: translate(-50%, -50%) scale(1.2); }
