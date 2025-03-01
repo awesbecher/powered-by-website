@@ -45,13 +45,18 @@ export const WebsiteSimulation = () => {
         {/* Loading state */}
         {simState === "loading" && <LoadingState />}
 
-        {/* Call in progress state */}
+        {/* Website content in background when call is active */}
         {simState === "call" && (
-          <CallInProgress 
-            isMuted={isMuted} 
-            setIsMuted={setIsMuted} 
-            onRestart={handleRestart} 
-          />
+          <div className="relative min-h-[600px] max-h-[600px]">
+            <WebsiteContent onStartCall={() => {}} autoSimulate={false} />
+            
+            {/* Call overlay */}
+            <CallInProgress 
+              isMuted={isMuted} 
+              setIsMuted={setIsMuted} 
+              onRestart={handleRestart} 
+            />
+          </div>
         )}
       </div>
       
