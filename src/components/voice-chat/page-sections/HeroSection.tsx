@@ -39,6 +39,12 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
             >
               Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
+            <Button 
+              className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-8 py-6 text-lg rounded-md"
+              onClick={handleContact}
+            >
+              Speak to our Voice Agent Now & Learn How it Works
+            </Button>
           </div>
         </div>
         <div className={`w-full lg:w-1/2 transition-all duration-1000 delay-300 ease-out transform
