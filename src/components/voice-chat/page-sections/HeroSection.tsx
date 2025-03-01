@@ -4,6 +4,9 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Mic } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { WebsiteSimulation } from "@/components/voice-chat/WebsiteSimulation";
+import { VoiceChatDialog } from "@/components/voice-chat/VoiceChatDialog";
+import { useToast } from "@/hooks/use-toast";
+import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -12,6 +15,62 @@ interface HeroSectionProps {
 
 export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
   const navigate = useNavigate();
+  const { toast } = useToast();
+  const [showVoiceChatDialog, setShowVoiceChatDialog] = useState(false);
+  const [isCallActive, setIsCallActive] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Assistant ID for Vapi - will be provided by the user
+  const ASSISTANT_ID = "assistant_63b83822-b59a-4f56-bcea-4a5fd4fcb6e2";
+
+  const handleVoiceChatClick = () => {
+    setShowVoiceChatDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    if (isCallActive) {
+      handleEndCall();
+    }
+    setShowVoiceChatDialog(false);
+  };
+
+  const handleStartCall = async () => {
+    setIsSubmitting(true);
+    try {
+      const success = await initiateVapiCall(ASSISTANT_ID);
+      if (success) {
+        setIsCallActive(true);
+        toast({
+          title: "Call started successfully",
+          description: "You're now connected to our AI voice agent.",
+        });
+      }
+    } catch (error) {
+      console.error("Failed to start call:", error);
+      toast({
+        title: "Failed to start call",
+        description: error instanceof Error ? error.message : "Please check your microphone settings and try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleEndCall = async () => {
+    try {
+      await stopVapiCall();
+      toast({
+        title: "Call ended",
+        description: "Thank you for trying our AI voice agent.",
+      });
+    } catch (error) {
+      console.error("Error ending call:", error);
+    } finally {
+      setIsCallActive(false);
+      setShowVoiceChatDialog(false);
+    }
+  };
 
   return (
     <section className="pt-28 pb-36 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
@@ -37,7 +96,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
             <div className="flex flex-wrap gap-3 self-start">
               <Button 
                 className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
-                onClick={handleContact}
+                onClick={handleVoiceChatClick}
               >
                 <Mic className="mr-2 h-5 w-5" /> Speak to our Voice Agent Now
               </Button>
@@ -55,6 +114,16 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
           <WebsiteSimulation />
         </div>
       </div>
+
+      {/* Voice Chat Dialog Component */}
+      <VoiceChatDialog
+        showDialog={showVoiceChatDialog}
+        isCallActive={isCallActive}
+        isSubmitting={isSubmitting}
+        handleCloseDialog={handleCloseDialog}
+        handleStartCall={handleStartCall}
+        handleEndCall={handleEndCall}
+      />
     </section>
   );
 };
