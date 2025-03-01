@@ -25,7 +25,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
             Engage website visitors in natural conversations that convert. Unlock new opportunities to upsell and cross-sell. Delight your customers with state-of-the-art in voice AI.
           </p>
           <div className="space-y-4 text-gray-300">
-            <p>Deploy Human-like AI Voice Chat Directly on Your Website to:</p>
+            <p className="text-xl">Deploy Human-like AI Voice Chat Directly on Your Website to:</p>
             <ul className="list-disc list-inside space-y-2 pl-2 text-sm">
               <li>Boost Conversions: Turn visitors into customers with engaging conversations</li>
               <li>Automate Customer Support: Provide immediate answers & reduce response times</li>
