@@ -32,7 +32,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
               <li>Offer 24/7 Availability: Ensure reliable, personalized support day or night</li>
             </ul>
           </div>
-          <div className="flex flex-col gap-4 pt-2 items-center">
+          <div className="flex flex-col gap-2 pt-1 items-center">
             <p className="text-gray-300 font-bold">See for yourself:</p>
             <Button 
               className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md max-w-md whitespace-normal md:whitespace-nowrap mt-1"
