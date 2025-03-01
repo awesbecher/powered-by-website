@@ -1,6 +1,5 @@
 
-import { LucideIcon, Phone, Play } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { LucideIcon, Phone } from "lucide-react";
 
 interface ServiceBoxProps {
   icon: LucideIcon;
@@ -14,8 +13,7 @@ export const ServiceBox = ({
   icon: Icon, 
   category, 
   businessName, 
-  phoneNumber, 
-  onTryNow 
+  phoneNumber
 }: ServiceBoxProps) => {
   return (
     <div className="relative group cursor-pointer">
@@ -36,15 +34,6 @@ export const ServiceBox = ({
           <div className="font-sans text-sm font-semibold text-[#9b87f5] mb-1">{businessName}</div>
           <div className="text-white font-mono text-sm tracking-wide font-bold">{phoneNumber}</div>
         </div>
-        
-        <Button 
-          onClick={onTryNow}
-          variant="gradient" 
-          size="sm" 
-          className="mt-4 w-full"
-        >
-          <Play className="h-4 w-4" /> Try It Now
-        </Button>
       </div>
     </div>
   );
