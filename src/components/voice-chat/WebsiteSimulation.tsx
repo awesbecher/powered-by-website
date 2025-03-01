@@ -7,13 +7,11 @@ import { CallInProgress } from "./CallInProgress";
 import { useImagePreloader } from "./hooks/useImagePreloader";
 import { useCursorAnimation } from "./hooks/useCursorAnimation";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { PauseCircle, PlayCircle } from "lucide-react";
 import "./CursorAnimation.css";
 
 export const WebsiteSimulation = () => {
   const [simState, setSimState] = useState<"website" | "loading" | "call">("website");
   const [isMuted, setIsMuted] = useState(false);
-  const [autoSimulate, setAutoSimulate] = useState(true);
   const animationSpeed = "2s"; // Fixed animation speed
   
   // Check if on mobile device
@@ -21,7 +19,7 @@ export const WebsiteSimulation = () => {
   
   // Use our custom hooks
   const imagesLoaded = useImagePreloader();
-  const { cursorRef } = useCursorAnimation(simState, setSimState, autoSimulate, imagesLoaded, animationSpeed);
+  const { cursorRef } = useCursorAnimation(simState, setSimState, true, imagesLoaded, animationSpeed);
   
   // Handle manual state transitions
   const handleStartCall = () => {
@@ -33,11 +31,6 @@ export const WebsiteSimulation = () => {
     setIsMuted(false);
   };
 
-  // Toggle simulation
-  const toggleSimulation = () => {
-    setAutoSimulate(!autoSimulate);
-  };
-
   return (
     <div className="relative w-full max-w-[380px] mx-auto">
       {/* Monitor frame with purple glow */}
@@ -47,7 +40,7 @@ export const WebsiteSimulation = () => {
         <WebsiteHeader />
 
         {/* Website Content */}
-        {simState === "website" && <WebsiteContent onStartCall={handleStartCall} autoSimulate={autoSimulate} />}
+        {simState === "website" && <WebsiteContent onStartCall={handleStartCall} autoSimulate={true} />}
 
         {/* Loading state */}
         {simState === "loading" && <LoadingState />}
@@ -60,17 +53,6 @@ export const WebsiteSimulation = () => {
             onRestart={handleRestart} 
           />
         )}
-
-        {/* Animation controls - only play/pause button */}
-        <div className="absolute bottom-2 right-2 flex items-center gap-2 z-50">
-          <button 
-            onClick={toggleSimulation} 
-            className="bg-gray-800 p-2 rounded-full hover:bg-gray-700 text-white"
-            aria-label={autoSimulate ? "Pause animation" : "Play animation"}
-          >
-            {autoSimulate ? <PauseCircle size={16} /> : <PlayCircle size={16} />}
-          </button>
-        </div>
       </div>
       
       {/* Responsive design indicator - only shown in development */}

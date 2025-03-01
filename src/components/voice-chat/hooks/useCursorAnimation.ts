@@ -88,8 +88,11 @@ export const useCursorAnimation = (
           
           // Wait at the end call button for a moment, then restart animation without clicking
           setTimeout(() => {
-            runAnimation();
-          }, speedValue * 2000); // Longer pause at the end call button before restarting
+            // Add a 15-second pause before restarting the animation
+            setTimeout(() => {
+              runAnimation();
+            }, 15000); // 15-second pause before restarting
+          }, speedValue * 2000); // Pause at the end call button
         }, 800); // Short delay before moving to end call button
       }, loadingDelay);
     }
@@ -97,7 +100,7 @@ export const useCursorAnimation = (
 
   // Main effect for auto simulation
   useEffect(() => {
-    if (!autoSimulate || !imagesLoaded) return;
+    if (!imagesLoaded) return;
     
     // Start initial animation
     runAnimation();
@@ -108,14 +111,14 @@ export const useCursorAnimation = (
         clearTimeout(simulationCycleRef.current);
       }
     };
-  }, [autoSimulate, imagesLoaded]);
+  }, [imagesLoaded]);
   
   // Effect for state transitions
   useEffect(() => {
-    if (simState === "loading" && autoSimulate) {
+    if (simState === "loading") {
       handleStateTransitions();
     }
-  }, [simState, autoSimulate]);
+  }, [simState]);
 
   return {
     cursorRef
