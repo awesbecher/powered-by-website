@@ -20,8 +20,8 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
   const [isCallActive, setIsCallActive] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Assistant ID for Vapi - will be provided by the user
-  const ASSISTANT_ID = "assistant_63b83822-b59a-4f56-bcea-4a5fd4fcb6e2";
+  // Assistant ID for Vapi - updated with the provided ID
+  const ASSISTANT_ID = "07e97137-ad5c-4846-ab6f-cff48c3e2da9";
 
   const handleVoiceChatClick = () => {
     setShowVoiceChatDialog(true);
