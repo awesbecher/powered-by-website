@@ -40,7 +40,7 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
           onLoad={() => setImageLoaded(true)}
           style={{ opacity: imageLoaded ? 1 : 0 }}
           loading="eager"
-          fetchpriority="high"
+          fetchPriority="high"
         />
       </div>
       <div className="text-sm font-semibold text-gray-800 truncate">{property.price}</div>
