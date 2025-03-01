@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Mic } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { WebsiteSimulation } from "@/components/voice-chat/WebsiteSimulation";
 
@@ -35,10 +35,10 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
           <div className="flex flex-col gap-0 items-center">
             <p className="text-gray-300 font-bold mb-1">See for yourself:</p>
             <Button 
-              className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md max-w-md whitespace-normal md:whitespace-nowrap mb-1"
+              className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md max-w-md whitespace-normal md:whitespace-nowrap mb-1 flex items-center"
               onClick={handleContact}
             >
-              Speak to our Voice Agent Now
+              <Mic className="mr-2 h-5 w-5" /> Speak to our Voice Agent Now
             </Button>
             <Button 
               className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md max-w-md flex items-center"
