@@ -23,6 +23,7 @@ import Contact from "./pages/Contact";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import AIVoiceChat from "./pages/AIVoiceChat";
+import AIVoiceBusinessLines from "./pages/AIVoiceBusinessLines";
 
 // Create a new query client instance
 const queryClient = new QueryClient();
@@ -53,6 +54,7 @@ const App = () => (
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/voice-chat" element={<AIVoiceChat />} />
+              <Route path="/voice-business" element={<AIVoiceBusinessLines />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
