@@ -80,14 +80,15 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
             Meet Your New <span className="text-[#9b87f5]">AI Receptionist</span>
           </h1>
           <p className="text-xl text-gray-300">
-            Transform your business phone systems with AI that understands, responds, and resolves customer inquiries in real-time. Elevate your customer experience with intelligent voice automation.
+            There's nothing quite like a warm, welcoming voice on the other end of the line. With Powered_by's AI Receptionist, you get the same personable experience customers expect from a traditional receptionist—only now it never sleeps, forgets, or drops a call.
           </p>
           <div className="space-y-4 text-gray-300">
-            <p className="text-xl">Replace Hold Times with Instant AI-Powered Voice Support:</p>
+            <p className="text-xl">Our AI Receptionist adapts to your business needs:</p>
             <ul className="list-disc list-inside space-y-2 pl-2 text-sm">
-              <li>Handle Call Overflows: Never miss a customer call during peak periods</li>
-              <li>Automate Routine Tasks: From appointment setting to order status checks</li>
-              <li>Seamless Handoff: Transfer to human agents only when necessary</li>
+              <li>Restaurant: Automate reservations and answer menu questions</li>
+              <li>Auto Dealership: Pre-screen leads for test drives</li>
+              <li>Retail: Answer product questions and handle order inquiries</li>
+              <li>Small Business: Capture every lead, 24/7/365</li>
             </ul>
           </div>
           <div className="flex flex-col items-start">
