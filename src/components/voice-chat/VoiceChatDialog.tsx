@@ -44,7 +44,7 @@ export const VoiceChatDialog = ({
           <DialogHeader className="flex items-start space-x-4">
             <Avatar className="w-20 h-20">
               <AvatarImage
-                src="/lovable-uploads/df68b31e-fef9-46d0-ab2a-1cc9d5161e4e.png"
+                src="/lovable-uploads/8c4d903b-42b2-48ef-9625-676d1f6aa106.png"
                 alt="Paul Berman, Chief Technical Evangelist @ Powered_by Agency"
                 className="object-cover"
               />
@@ -88,19 +88,20 @@ export const VoiceChatDialog = ({
   // Active call dialog
   return (
     <Dialog open={showDialog} onOpenChange={(open) => !open && handleEndCallAndRedirect()}>
-      <DialogContent className="bg-white text-black border-gray-200 sm:max-w-md p-6 rounded-xl">
+      <DialogContent className="bg-black text-white border-gray-800 sm:max-w-md p-6 rounded-xl">
         <div className="flex flex-col space-y-6">
           <div className="flex justify-between items-center">
-            <h2 className="text-3xl font-bold">You are now connected with Paul Berman</h2>
+            <h2 className="text-3xl font-bold text-white">You are now connected with Paul Berman</h2>
             {/* Close button is already provided by DialogContent */}
           </div>
           
           <div className="flex items-center space-x-4">
             <div className="relative">
-              <Avatar className="h-20 w-20 rounded-full border-2 border-white shadow-md">
+              <Avatar className="h-20 w-20 rounded-full border-2 border-gray-700 shadow-md">
                 <AvatarImage 
-                  src="/lovable-uploads/df68b31e-fef9-46d0-ab2a-1cc9d5161e4e.png" 
+                  src="/lovable-uploads/8c4d903b-42b2-48ef-9625-676d1f6aa106.png" 
                   alt="Paul Berman, Chief Technical Evangelist" 
+                  className="object-cover"
                 />
                 <AvatarFallback>PB</AvatarFallback>
               </Avatar>
@@ -110,22 +111,22 @@ export const VoiceChatDialog = ({
                   {[...Array(4)].map((_, i) => (
                     <div 
                       key={i} 
-                      className={`h-3 w-1 rounded-full ${i === 0 ? 'bg-gray-800' : 'bg-gray-300'}`}
+                      className={`h-3 w-1 rounded-full ${i === 0 ? 'bg-white' : 'bg-gray-500'}`}
                     ></div>
                   ))}
                 </div>
               </div>
             </div>
             <div>
-              <h3 className="text-2xl font-bold">Paul Berman</h3>
-              <p className="text-gray-500">Chief Technical Evangelist @ Powered_by</p>
+              <h3 className="text-2xl font-bold text-white">Paul Berman</h3>
+              <p className="text-gray-400">Chief Technical Evangelist @ Powered_by</p>
             </div>
           </div>
           
-          <div className="bg-gray-100 p-4 rounded-xl">
+          <div className="bg-gray-900 p-4 rounded-xl">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-bold">Call in progress</h3>
-              <div className="flex items-center text-gray-700">
+              <h3 className="text-xl font-bold text-white">Call in progress</h3>
+              <div className="flex items-center text-gray-300">
                 <Activity className="w-5 h-5 mr-2" />
                 <span>Live</span>
               </div>
@@ -133,19 +134,19 @@ export const VoiceChatDialog = ({
             
             <div className="flex justify-between items-center">
               <div className="flex items-center">
-                <p className="text-gray-600">Your microphone</p>
+                <p className="text-gray-400">Your microphone</p>
               </div>
               <div className="flex items-center">
                 <div className="flex space-x-0.5 mr-2">
-                  <div className="h-3 w-1 bg-black rounded-full"></div>
+                  <div className="h-3 w-1 bg-white rounded-full"></div>
                   {[...Array(4)].map((_, i) => (
                     <div 
                       key={i} 
-                      className={`h-3 w-1 rounded-full ${i < 2 ? 'bg-gray-400' : 'bg-gray-300'}`}
+                      className={`h-3 w-1 rounded-full ${i < 2 ? 'bg-gray-400' : 'bg-gray-600'}`}
                     ></div>
                   ))}
                 </div>
-                <span className="text-gray-600">Active</span>
+                <span className="text-gray-400">Active</span>
               </div>
             </div>
           </div>
@@ -153,7 +154,7 @@ export const VoiceChatDialog = ({
           <div className="flex space-x-4">
             <button 
               onClick={toggleMute}
-              className="flex-1 py-3 px-4 border border-gray-300 rounded-md flex items-center justify-center space-x-2 hover:bg-gray-50 transition-colors"
+              className="flex-1 py-3 px-4 border border-gray-700 rounded-md flex items-center justify-center space-x-2 hover:bg-gray-900 transition-colors text-white"
             >
               {isMuted ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
               <span>{isMuted ? "Unmute" : "Mute"}</span>

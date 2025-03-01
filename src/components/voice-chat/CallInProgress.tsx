@@ -53,7 +53,7 @@ export const CallInProgress = ({
                 />
               ) : (
                 <img 
-                  src="/lovable-uploads/df68b31e-fef9-46d0-ab2a-1cc9d5161e4e.png" 
+                  src="/lovable-uploads/8c4d903b-42b2-48ef-9625-676d1f6aa106.png" 
                   alt="Paul Berman" 
                   className="w-full h-full object-cover"
                 />
