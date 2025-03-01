@@ -10,7 +10,9 @@ export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl text-center">
       <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8">
-        Stop missing calls. Stop putting customers on hold. Start impressing them from <span className="italic text-[#9b87f5]">Hello</span>.
+        Stop missing calls. Stop putting customers on hold.
+        <br />
+        Start impressing them from <span className="italic text-[#9b87f5]">Hello</span>.
       </h2>
       <p className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto">
         Boost efficiency, reduce wait times, and enhance customer satisfaction—all with the power of a <span className="text-[#9b87f5] font-bold">Powered_by</span> AI Receptionist.
