@@ -164,19 +164,15 @@ export const WebsiteSimulation = () => {
       }
     };
 
-    // Set up state change listener and start animation
+    // Start initial animation
     runAnimation();
     
-    // Add effect to handle state transitions
-    const stateChangeEffect = () => {
-      // Set up a watch on simState
-      useEffect(() => {
+    // Set up effect for state transitions
+    useEffect(() => {
+      if (simState === "loading") {
         handleStateTransitions();
-      }, [simState]);
-    };
-    
-    // Execute the state change effect
-    stateChangeEffect();
+      }
+    }, [simState]);
     
     // Clean up function
     return () => {
