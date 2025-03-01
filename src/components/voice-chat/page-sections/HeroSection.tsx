@@ -22,8 +22,16 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
             Transform Your Website With <span className="text-[#9b87f5]">AI Voice Chat</span>
           </h1>
           <p className="text-xl text-gray-300">
-            Engage visitors in natural conversations that convert. Our AI voice integration creates human-like interactions without hiring a call center.
+            Engage website visitors in natural conversations that convert. Unlock new opportunities to upsell and cross-sell. Delight your customers with state-of-the-art in voice AI.
           </p>
+          <div className="space-y-4 text-gray-300">
+            <p>Deploy Human-like AI Voice Chat Directly on Your Website to:</p>
+            <ul className="list-disc list-inside space-y-2 pl-2">
+              <li>Boost Conversions: Turn visitors into customers with engaging conversations</li>
+              <li>Automate Customer Support: Provide immediate answers & reduce response times</li>
+              <li>Offer 24/7 Availability: Ensure reliable, personalized support day or night</li>
+            </ul>
+          </div>
           <div className="flex flex-col sm:flex-row gap-4 pt-2">
             <Button 
               className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-8 py-6 text-lg rounded-md"
