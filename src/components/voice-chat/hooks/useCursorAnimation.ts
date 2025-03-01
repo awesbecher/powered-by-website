@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useRef, RefObject } from "react";
+import { useEffect, useRef, RefObject } from "react";
 import { animateCursorClick, moveCursorToElement, resetCursorPosition } from "../utils/animationUtils";
 
 type SimState = "website" | "loading" | "call";
@@ -53,7 +53,8 @@ export const useCursorAnimation = (
     
     // Calculate delay based on animation speed
     const speedValue = parseFloat(animationSpeed);
-    const baseDelay = hasStartedFirstAnimationRef.current ? 500 : 100; // Much shorter initial delay
+    // Ultra-short initial delay to ensure DOM is ready
+    const baseDelay = hasStartedFirstAnimationRef.current ? 500 : 50; 
     const scaledDelay = baseDelay * (2 / speedValue); // Scale delay inversely with speed
     
     console.log("Starting animation with delay:", scaledDelay);
@@ -164,12 +165,12 @@ export const useCursorAnimation = (
     // Only proceed if images are loaded
     if (!imagesLoaded) return;
     
-    console.log("Images loaded, preparing to start animation");
+    console.log("Critical images loaded, preparing to start animation");
     
-    // Start animation almost immediately (50ms delay to ensure DOM is ready)
+    // Start animation almost immediately (25ms delay to ensure DOM is ready)
     const initialTimer = safeSetTimeout(() => {
       runAnimation();
-    }, 50);
+    }, 25);
     
     // Clean up function
     return () => {
