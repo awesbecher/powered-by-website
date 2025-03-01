@@ -45,27 +45,32 @@ export const WebsiteSimulation = () => {
   useEffect(() => {
     if (!autoSimulate || !imagesLoaded) return;
 
-    // Function to move cursor to the button
-    const animateCursor = () => {
-      // Use type assertion to fix the TypeScript error
+    // Full animation sequence
+    const runAnimation = () => {
+      // Reset state first
+      setSimState("website");
+      
+      // Initialize cursor at the top of the page
       const cursorElement = document.querySelector(".cursor-simulation") as HTMLDivElement | null;
       if (!cursorElement) return;
       
       // Store reference to cursor
       cursorRef.current = cursorElement;
-
-      // Reset cursor position first
+      
+      // Reset cursor position to top
       cursorElement.style.transition = "none";
-      cursorElement.style.top = "100px";
+      cursorElement.style.top = "30px";
       cursorElement.style.left = "50%";
       
-      // Force reflow to make sure the reset takes effect
+      // Force reflow
       void cursorElement.offsetWidth;
       
-      // Get the CTA button
+      // First move down to the button with a delay
       setTimeout(() => {
+        if (!cursorElement) return;
+        
         const button = document.getElementById("cta-button");
-        if (!button || !cursorElement) return;
+        if (!button) return;
         
         const buttonRect = button.getBoundingClientRect();
         const contentContainer = button.closest(".bg-white");
@@ -74,174 +79,127 @@ export const WebsiteSimulation = () => {
         
         const containerRect = contentContainer.getBoundingClientRect();
         
-        // Calculate relative position within the container
+        // Calculate button position
         const targetTop = buttonRect.top - containerRect.top + buttonRect.height / 2;
         const targetLeft = buttonRect.left - containerRect.left + buttonRect.width / 2;
         
-        // Apply animation with delay
-        cursorElement.style.transition = "top 1.5s ease-in-out, left 1.5s ease-in-out";
+        // Animate cursor to button
+        cursorElement.style.transition = "top 2s ease-in-out, left 2s ease-in-out";
         cursorElement.style.top = `${targetTop}px`;
         cursorElement.style.left = `${targetLeft}px`;
         
-        // Add clicking animation after cursor arrives
+        // Add clicking animation after cursor arrives at button
         setTimeout(() => {
-          if (cursorElement && simState === "website") {
+          if (cursorElement) {
             cursorElement.classList.add("clicking");
             
-            // Remove clicking animation after a short delay
+            // Remove clicking class after animation completes
             setTimeout(() => {
               if (cursorElement) {
                 cursorElement.classList.remove("clicking");
               }
-              
-              // Trigger the call after click animation
-              setSimState("loading");
             }, 300);
           }
-        }, 1600);
-      }, 500); // Short delay to ensure DOM is ready
-    };
-
-    // Function to move cursor to the call popup center first, then to the end call button
-    const animateCursorToCallPopup = () => {
-      if (simState !== "call") return;
-      
-      const cursorElement = document.querySelector(".cursor-simulation") as HTMLDivElement | null;
-      if (!cursorElement) return;
-      
-      // Get the call popup container
-      setTimeout(() => {
-        const callContainer = document.querySelector(".bg-white .bg-black");
-        if (!callContainer || !cursorElement) return;
-        
-        const callRect = callContainer.getBoundingClientRect();
-        const pageContainer = callContainer.closest(".bg-white");
-        
-        if (!pageContainer) return;
-        
-        const containerRect = pageContainer.getBoundingClientRect();
-        
-        // Calculate center of the call popup
-        const targetTop = callRect.top - containerRect.top + callRect.height / 2;
-        const targetLeft = callRect.left - containerRect.left + callRect.width / 2;
-        
-        // Apply animation to center of popup first
-        cursorElement.style.transition = "top 1s ease-in-out, left 1s ease-in-out";
-        cursorElement.style.top = `${targetTop}px`;
-        cursorElement.style.left = `${targetLeft}px`;
-        
-        // After moving to center, move to the End Call button
-        setTimeout(() => {
-          const endCallButton = document.querySelector(".bg-red-500");
-          if (!endCallButton || !cursorElement) return;
           
-          const buttonRect = endCallButton.getBoundingClientRect();
-          
-          // Calculate position of end call button relative to container
-          const buttonTop = buttonRect.top - containerRect.top + buttonRect.height / 2;
-          const buttonLeft = buttonRect.left - containerRect.left + buttonRect.width / 2;
-          
-          // Animate cursor to end call button
-          cursorElement.style.transition = "top 1.2s ease-in-out, left 1.2s ease-in-out";
-          cursorElement.style.top = `${buttonTop}px`;
-          cursorElement.style.left = `${buttonLeft}px`;
-        }, 1500); // Wait 1.5s before moving to end call button
+          // State transitions will be handled by the click handler in WebsiteContent
+        }, 2200); // Wait for cursor to arrive at button
       }, 500);
     };
 
-    // Start the complete simulation cycle
-    const startSimulationCycle = () => {
-      // Reset to initial state
-      setSimState("website");
-      
-      // Start cursor animation with delay
-      setTimeout(animateCursor, 1000);
+    // Auto progress simulation for demo purposes
+    const handleStateTransitions = () => {
+      // When in loading state, transition to call after a delay
+      if (simState === "loading") {
+        setTimeout(() => {
+          setSimState("call");
+          
+          // Once in call state, animate cursor to end call button
+          setTimeout(() => {
+            // Move cursor to call popup center first, then to end call button
+            const cursorElement = document.querySelector(".cursor-simulation") as HTMLDivElement | null;
+            if (!cursorElement) return;
+            
+            const callContainer = document.querySelector(".bg-white .bg-black");
+            if (!callContainer) return;
+            
+            const callRect = callContainer.getBoundingClientRect();
+            const pageContainer = callContainer.closest(".bg-white");
+            
+            if (!pageContainer) return;
+            
+            const containerRect = pageContainer.getBoundingClientRect();
+            
+            // Calculate center of call popup
+            const targetTop = callRect.top - containerRect.top + callRect.height / 2;
+            const targetLeft = callRect.left - containerRect.left + callRect.width / 2;
+            
+            // Animate to center of call popup
+            cursorElement.style.transition = "top 1s ease-in-out, left 1s ease-in-out";
+            cursorElement.style.top = `${targetTop}px`;
+            cursorElement.style.left = `${targetLeft}px`;
+            
+            // After reaching center, move to end call button
+            setTimeout(() => {
+              const endCallButton = document.querySelector(".bg-red-500");
+              if (!endCallButton || !cursorElement) return;
+              
+              const buttonRect = endCallButton.getBoundingClientRect();
+              
+              // Calculate position relative to container
+              const buttonTop = buttonRect.top - containerRect.top + buttonRect.height / 2;
+              const buttonLeft = buttonRect.left - containerRect.left + buttonRect.width / 2;
+              
+              // Animate cursor to end call button
+              cursorElement.style.transition = "top 1s ease-in-out, left 1s ease-in-out";
+              cursorElement.style.top = `${buttonTop}px`;
+              cursorElement.style.left = `${buttonLeft}px`;
+              
+              // Wait at button for a moment, then restart animation
+              setTimeout(() => {
+                runAnimation();
+              }, 2000); // Wait at end call button
+            }, 1500); // Time to move from center to button
+          }, 500); // Time before starting cursor movement in call state
+        }, 1500); // Time in loading state
+      }
     };
 
-    // Clear any existing interval
+    // Set up state change listener
+    const stateChangeEffect = () => {
+      handleStateTransitions();
+    };
+    
+    // Clear any existing intervals
     if (simulationCycleRef.current) {
-      clearInterval(simulationCycleRef.current);
+      clearTimeout(simulationCycleRef.current);
     }
     
-    // Initial cycle
-    startSimulationCycle();
+    // Start initial animation
+    runAnimation();
     
-    // Set up loop for the simulation
-    simulationCycleRef.current = setInterval(() => {
-      startSimulationCycle();
-    }, 12000); // Full cycle takes 12 seconds
+    // Set up state change listener
+    const unsubscribe = stateChangeEffect();
     
     return () => {
       if (simulationCycleRef.current) {
-        clearInterval(simulationCycleRef.current);
+        clearTimeout(simulationCycleRef.current);
+      }
+      if (unsubscribe) {
+        unsubscribe();
       }
     };
-  }, [autoSimulate, imagesLoaded, simState]);
-
-  // Auto progress simulation for demo purposes
+  }, [autoSimulate, imagesLoaded]);
+  
+  // Listen for state changes and handle transitions
   useEffect(() => {
-    let timer: NodeJS.Timeout;
-    
     if (simState === "loading") {
-      timer = setTimeout(() => {
+      // Transition to call after loading
+      const timer = setTimeout(() => {
         setSimState("call");
-      }, 1500); // Show loading for 1.5 seconds
-    } else if (simState === "call" && autoSimulate) {
-      // Add cursor animation to call popup and end call button
-      setTimeout(() => {
-        animateCursorToCallPopupAndButton();
-      }, 300);
-      
-      // Auto restart after showing call for a while
-      timer = setTimeout(() => {
-        setSimState("website");
-      }, 7000); // Show call for 7 seconds before restarting
+      }, 1500);
+      return () => clearTimeout(timer);
     }
-    
-    return () => clearTimeout(timer);
-  }, [simState, autoSimulate]);
-
-  // Function for animating cursor to call popup and end call button
-  const animateCursorToCallPopupAndButton = () => {
-    const cursorElement = document.querySelector(".cursor-simulation") as HTMLDivElement | null;
-    if (!cursorElement) return;
-    
-    const callContainer = document.querySelector(".bg-white .bg-black");
-    if (!callContainer) return;
-    
-    const callRect = callContainer.getBoundingClientRect();
-    const pageContainer = callContainer.closest(".bg-white");
-    
-    if (!pageContainer) return;
-    
-    const containerRect = pageContainer.getBoundingClientRect();
-    
-    // Calculate center of the call popup
-    const targetTop = callRect.top - containerRect.top + callRect.height / 2;
-    const targetLeft = callRect.left - containerRect.left + callRect.width / 2;
-    
-    // Apply animation to center first
-    cursorElement.style.transition = "top 1s ease-in-out, left 1s ease-in-out";
-    cursorElement.style.top = `${targetTop}px`;
-    cursorElement.style.left = `${targetLeft}px`;
-    
-    // After moving to center, move to the End Call button
-    setTimeout(() => {
-      const endCallButton = document.querySelector(".bg-red-500");
-      if (!endCallButton || !cursorElement) return;
-      
-      const buttonRect = endCallButton.getBoundingClientRect();
-      
-      // Calculate position of end call button relative to container
-      const buttonTop = buttonRect.top - containerRect.top + buttonRect.height / 2;
-      const buttonLeft = buttonRect.left - containerRect.left + buttonRect.width / 2;
-      
-      // Animate cursor to end call button
-      cursorElement.style.transition = "top 1.2s ease-in-out, left 1.2s ease-in-out";
-      cursorElement.style.top = `${buttonTop}px`;
-      cursorElement.style.left = `${buttonLeft}px`;
-    }, 1500); // Wait 1.5s before moving to end call button
-  };
+  }, [simState]);
 
   const handleStartCall = () => {
     setSimState("loading");

@@ -27,8 +27,8 @@ export const WebsiteContent = ({ onStartCall, autoSimulate = false }: WebsiteCon
         }
       };
       
-      // Set a timeout to trigger the click after cursor animation completes
-      const timer = setTimeout(handleAutoClick, 2000);
+      // Let the cursor animation complete first
+      const timer = setTimeout(handleAutoClick, 4000);
       return () => clearTimeout(timer);
     }
   }, [autoSimulate, onStartCall]);
