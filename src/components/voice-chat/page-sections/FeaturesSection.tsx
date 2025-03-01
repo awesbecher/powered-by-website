@@ -37,7 +37,7 @@ export const FeaturesSection = () => {
         <FeatureCard 
           icon={<Settings className="w-10 h-10 text-[#9b87f5]" />}
           title="Easy Setup"
-          description="Simple integration with your website - no coding required. Be up and running in hours, not months." 
+          description="Simple integration with your website - no coding required. Be up and running quickly without disruption to your current website." 
         />
         <FeatureCard 
           icon={<Clock className="w-10 h-10 text-[#9b87f5]" />}
