@@ -1,6 +1,5 @@
-
 import React, { useState } from "react";
-import { DollarSign, FileText, Shield, Stethoscope, Mic } from "lucide-react";
+import { DollarSign, FileText, Shield, Stethoscope, Mic, Car, House, Pizza } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface AgentType {
@@ -15,34 +14,34 @@ interface AgentType {
 const AssetTest = () => {
   const [agentTypes, setAgentTypes] = useState<AgentType[]>([
     {
-      id: "debt-collection",
-      name: "Debt Collection",
+      id: "insurance-quote",
+      name: "Insurance: Get a Quote!",
       icon: DollarSign,
-      description: "AI agent for handling debt collection calls",
+      description: "AI agent for handling insurance quote requests",
       phoneNumber: "+1 (650) 640-1015",
       isSelected: true
     },
     {
-      id: "claims-fnol",
-      name: "Claims FNOL (Intake)",
-      icon: FileText,
-      description: "First notice of loss claims processing",
+      id: "auto-dealership",
+      name: "Auto Dealership: Take a Test Drive",
+      icon: Car,
+      description: "Schedule a test drive with our dealership",
       phoneNumber: "+1 (732) 638-0513",
       isSelected: false
     },
     {
-      id: "auto-insurance",
-      name: "Auto Insurance Quote",
-      icon: Shield,
-      description: "Get instant auto insurance quotes",
+      id: "restaurant-order",
+      name: "Restaurant: Order a Pizza",
+      icon: Pizza,
+      description: "Order delicious pizza for delivery or pickup",
       phoneNumber: "+1 (732) 702-8348",
       isSelected: false
     },
     {
-      id: "doctor-appointment",
-      name: "Doctor Appointment Booking",
-      icon: Stethoscope,
-      description: "Schedule your next doctor visit",
+      id: "real-estate",
+      name: "Real Estate: Find a House",
+      icon: House,
+      description: "Find your dream home with our AI assistant",
       phoneNumber: "+1 (657) 464-2712",
       isSelected: false
     }
