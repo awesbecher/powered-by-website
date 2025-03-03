@@ -19,7 +19,7 @@ export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
           
           <div className={`mt-4 flex flex-col space-y-1 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold transition-all duration-1000 delay-300 ease-out transform
               ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
-            <p><span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_By: AI Agents</span> for SMBs.</p>
+            <p><span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span>: AI Agents for SMBs.</p>
             <p>Why should those Silicon Valley nerds have all the fancy AI toys?</p>
           </div>
         </div>
