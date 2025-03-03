@@ -19,7 +19,7 @@ export const defaultAgents: AgentType[] = [
     description: "Schedule a test drive with our dealership",
     phoneNumber: "+1 (732) 638-0513",
     isSelected: false,
-    assistantId: ""
+    assistantId: "6c02f892-3082-4c68-a3ee-92ca86444331"
   },
   {
     id: "restaurant-order",

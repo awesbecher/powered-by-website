@@ -9,11 +9,13 @@ import MicButton from "@/components/asset-test/MicButton";
 import AgentInfo from "@/components/asset-test/AgentInfo";
 import ConsentDialog from "@/components/asset-test/ConsentDialog";
 import CallDialog from "@/components/asset-test/CallDialog";
+import MercedesConsentDialog from "@/components/asset-test/MercedesConsentDialog";
 
 const AssetTest = () => {
   const [agentTypes, setAgentTypes] = useState<AgentType[]>(defaultAgents);
   const [isCallActive, setIsCallActive] = useState(false);
   const [showConsentDialog, setShowConsentDialog] = useState(false);
+  const [showMercedesDialog, setShowMercedesDialog] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
@@ -32,6 +34,8 @@ const AssetTest = () => {
     
     if (selectedAgent?.id === "insurance-quote") {
       setShowConsentDialog(true);
+    } else if (selectedAgent?.id === "auto-dealership") {
+      setShowMercedesDialog(true);
     } else {
       setIsCallActive(!isCallActive);
       // In a real implementation, this would initiate the voice assistant based on the selected agent
@@ -49,6 +53,31 @@ const AssetTest = () => {
         toast({
           title: "Call initiated",
           description: `You are now connected to Alex Fisher from Planter's Insurance.`
+        });
+      }
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Failed to initiate call",
+        description: error instanceof Error ? error.message : "Please try again later."
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleMercedesCall = async () => {
+    setIsLoading(true);
+    try {
+      const selectedAgent = agentTypes.find(agent => agent.isSelected);
+      if (selectedAgent) {
+        // Use a placeholder assistant ID for now
+        await initiateVapiCall(selectedAgent.assistantId || "6c02f892-3082-4c68-a3ee-92ca86444331");
+        setIsCallActive(true);
+        setShowMercedesDialog(false);
+        toast({
+          title: "Call initiated",
+          description: `You are now connected to Dave Frankel from Mercedes of Tacoma.`
         });
       }
     } catch (error) {
@@ -113,6 +142,13 @@ const AssetTest = () => {
         open={showConsentDialog} 
         onOpenChange={setShowConsentDialog}
         onConfirm={handleCall}
+        isLoading={isLoading}
+      />
+
+      <MercedesConsentDialog
+        open={showMercedesDialog}
+        onOpenChange={setShowMercedesDialog}
+        onConfirm={handleMercedesCall}
         isLoading={isLoading}
       />
 
