@@ -8,7 +8,7 @@ export const defaultAgents: AgentType[] = [
     name: "Insurance: Get a Quote",
     icon: DollarSign,
     description: "AI agent for handling insurance quote requests",
-    phoneNumber: "+1 (650) 640-1015",
+    phoneNumber: "(575) 305 9390",
     isSelected: true,
     assistantId: "df42b616-337e-4877-8e9b-44fb0b5a0225"
   },
