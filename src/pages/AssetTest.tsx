@@ -1,5 +1,6 @@
+
 import React, { useState } from "react";
-import { DollarSign, FileText, Shield, Stethoscope } from "lucide-react";
+import { DollarSign, FileText, Shield, Stethoscope, Mic } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface AgentType {
