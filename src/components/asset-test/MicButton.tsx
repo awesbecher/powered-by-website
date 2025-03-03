@@ -21,7 +21,7 @@ const MicButton: React.FC<MicButtonProps> = ({ isCallActive, onClick }) => {
         <Mic className={`w-12 h-12 ${isCallActive ? "text-white" : "text-black"}`} />
       </div>
       <p className="mt-6 text-center text-gray-300 max-w-xs">
-        Click on the mic to try the AI voice agents after you choose the Agent Type on the left.
+        Choose which AI Voice Agent use case you'd like by selecting from the four options on the left. Then click on the mic above to speak with the agent.
       </p>
     </div>
   );
