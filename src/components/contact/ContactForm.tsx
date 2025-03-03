@@ -1,14 +1,16 @@
 
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { ContactFormFields } from "./ContactFormFields";
 import { FormData } from "./types";
 import { isPersonalEmail, isValidEmail } from "@/utils/emailValidation";
+import { useNavigate } from "react-router-dom";
 
 export const ContactForm = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -64,6 +66,12 @@ export const ContactForm = () => {
         reason: "",
         message: ""
       });
+      
+      // Redirect to home page after showing the success toast
+      setTimeout(() => {
+        navigate('/');
+      }, 1500); // Short delay to ensure toast is visible
+      
     } catch (error) {
       console.error('Error sending message:', error);
       toast({
