@@ -11,6 +11,7 @@ interface CallDialogProps {
   onToggleMute: () => void;
   isMuted: boolean;
   isMercedesAgent?: boolean;
+  isRestaurantAgent?: boolean;
 }
 
 const CallDialog: React.FC<CallDialogProps> = ({ 
@@ -19,8 +20,38 @@ const CallDialog: React.FC<CallDialogProps> = ({
   onEndCall, 
   onToggleMute, 
   isMuted,
-  isMercedesAgent = false
+  isMercedesAgent = false,
+  isRestaurantAgent = false
 }) => {
+  // Determine which agent is active
+  const getAgentName = () => {
+    if (isMercedesAgent) return 'Dave Frankel';
+    if (isRestaurantAgent) return 'Dominic';
+    return 'Alex Fisher';
+  };
+
+  const getCompanyName = () => {
+    if (isMercedesAgent) return 'Mercedes of Tacoma';
+    if (isRestaurantAgent) return 'Slice House of Anaheim';
+    return 'Planter\'s Insurance';
+  };
+
+  const getAvatarImage = () => {
+    if (isMercedesAgent) {
+      return "/lovable-uploads/f5d0a1ac-953b-4d29-8a63-83813f74efe2.png";
+    }
+    if (isRestaurantAgent) {
+      return "/lovable-uploads/9793533b-ce65-4073-babd-b90b6b5c99ef.png";
+    }
+    return "/lovable-uploads/156d245d-e750-4ef3-8995-a7ae211eeeee.png";
+  };
+
+  const getAvatarFallback = () => {
+    if (isMercedesAgent) return 'DF';
+    if (isRestaurantAgent) return 'DO';
+    return 'AF';
+  };
+
   return (
     <Dialog open={open} onOpenChange={(open) => !open && onEndCall()}>
       <DialogContent className="bg-white text-black border-gray-200 sm:max-w-md p-6 rounded-xl">
@@ -33,22 +64,15 @@ const CallDialog: React.FC<CallDialogProps> = ({
         
         <div className="flex items-center mb-6">
           <Avatar className="h-16 w-16 mr-4">
-            {isMercedesAgent ? (
-              <AvatarImage 
-                src="/lovable-uploads/f5d0a1ac-953b-4d29-8a63-83813f74efe2.png"
-                alt="Dave Frankel"
-              />
-            ) : (
-              <AvatarImage 
-                src="/lovable-uploads/156d245d-e750-4ef3-8995-a7ae211eeeee.png"
-                alt="Alex Fisher"
-              />
-            )}
-            <AvatarFallback>{isMercedesAgent ? 'DF' : 'AF'}</AvatarFallback>
+            <AvatarImage 
+              src={getAvatarImage()}
+              alt={getAgentName()}
+            />
+            <AvatarFallback>{getAvatarFallback()}</AvatarFallback>
           </Avatar>
           <div>
-            <h3 className="text-2xl font-bold">{isMercedesAgent ? 'Dave Frankel' : 'Alex Fisher'}</h3>
-            <p className="text-gray-500">{isMercedesAgent ? 'Mercedes of Tacoma' : 'Planter\'s Insurance'}</p>
+            <h3 className="text-2xl font-bold">{getAgentName()}</h3>
+            <p className="text-gray-500">{getCompanyName()}</p>
           </div>
         </div>
         

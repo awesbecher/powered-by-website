@@ -31,7 +31,6 @@ const AssetTest = () => {
       }))
     );
     
-    // Set the appropriate agent type flags
     setIsMercedesAgent(selectedId === "auto-dealership");
     setIsRestaurantAgent(selectedId === "restaurant-order");
   };
@@ -47,7 +46,6 @@ const AssetTest = () => {
       setShowRestaurantDialog(true);
     } else {
       setIsCallActive(!isCallActive);
-      // In a real implementation, this would initiate the voice assistant based on the selected agent
     }
   };
 
@@ -80,7 +78,6 @@ const AssetTest = () => {
     try {
       const selectedAgent = agentTypes.find(agent => agent.isSelected);
       if (selectedAgent) {
-        // Use the provided assistant ID
         await initiateVapiCall("6c02f892-3082-4c68-a3ee-92ca86444331");
         setIsCallActive(true);
         setShowMercedesDialog(false);
@@ -105,8 +102,7 @@ const AssetTest = () => {
     try {
       const selectedAgent = agentTypes.find(agent => agent.isSelected);
       if (selectedAgent) {
-        // Use the assistant ID for restaurant
-        await initiateVapiCall(selectedAgent.assistantId || "");
+        await initiateVapiCall("23a2ccf0-044e-4340-8c88-850b272e2abf");
         setIsCallActive(true);
         setShowRestaurantDialog(false);
         toast({
@@ -144,7 +140,6 @@ const AssetTest = () => {
   };
 
   const toggleMute = () => {
-    // In a real implementation, this would interact with the Vapi SDK to mute/unmute
     setIsMuted(!isMuted);
   };
 
@@ -200,6 +195,7 @@ const AssetTest = () => {
         onToggleMute={toggleMute}
         isMuted={isMuted}
         isMercedesAgent={isMercedesAgent}
+        isRestaurantAgent={isRestaurantAgent}
       />
     </div>
   );
