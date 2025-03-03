@@ -7,9 +7,10 @@ interface AgentInfoProps {
 }
 
 const AgentInfo: React.FC<AgentInfoProps> = ({ selectedAgent }) => {
-  // Display different text for insurance and auto dealership agents
+  // Display different text for insurance, auto dealership, and restaurant agents
   const isInsuranceAgent = selectedAgent.id === "insurance-quote";
   const isAutoDealershipAgent = selectedAgent.id === "auto-dealership";
+  const isRestaurantAgent = selectedAgent.id === "restaurant-order";
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -30,6 +31,15 @@ const AgentInfo: React.FC<AgentInfoProps> = ({ selectedAgent }) => {
             </h2>
             <div className="bg-white text-black rounded-full py-3 px-8 font-bold text-xl inline-block">
               {selectedAgent.phoneNumber}
+            </div>
+          </>
+        ) : isRestaurantAgent ? (
+          <>
+            <h2 className="text-xl font-semibold mb-4 text-[#9b87f5]">
+              OR call the AI Agent directly for the Restaurant use case using this phone number:
+            </h2>
+            <div className="bg-white text-black rounded-full py-3 px-8 font-bold text-xl inline-block">
+              (657) 464 2712
             </div>
           </>
         ) : (

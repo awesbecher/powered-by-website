@@ -26,7 +26,7 @@ export const defaultAgents: AgentType[] = [
     name: "Restaurant: Order a Pizza",
     icon: Pizza,
     description: "Order delicious pizza for delivery or pickup",
-    phoneNumber: "+1 (732) 702-8348",
+    phoneNumber: "(657) 464 2712",
     isSelected: false,
     assistantId: "23a2ccf0-044e-4340-8c88-850b272e2abf"
   },
