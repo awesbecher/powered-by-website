@@ -15,7 +15,7 @@ export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
         Start impressing them from <span className="italic text-[#9b87f5]">Hello</span>.
       </h2>
       <p className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto">
-        Boost efficiency, reduce wait times, and enhance customer satisfaction—all with the power of a <span className="text-[#9b87f5] font-bold">Powered_by</span> AI Receptionist.
+        Boost efficiency, reduce wait times, and enhance customer satisfaction—all with the power of a <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> AI Receptionist.
       </p>
       <Button 
         className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-8 py-6 text-lg rounded-md mx-auto"
