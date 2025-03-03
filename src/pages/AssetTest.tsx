@@ -1,6 +1,5 @@
-
 import React, { useState } from "react";
-import { Mic, Dollar, FileText, Shield, Stethoscope } from "lucide-react";
+import { DollarSign, FileText, Shield, Stethoscope } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface AgentType {
@@ -17,7 +16,7 @@ const AssetTest = () => {
     {
       id: "debt-collection",
       name: "Debt Collection",
-      icon: Dollar,
+      icon: DollarSign,
       description: "AI agent for handling debt collection calls",
       phoneNumber: "+1 (650) 640-1015",
       isSelected: true
