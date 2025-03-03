@@ -11,7 +11,7 @@ export const ContactHeader = ({ initialLoad }: ContactHeaderProps) => {
       </h1>
       
       <p className="mt-4 text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-snug font-bold">
-        Ready to put AI agents to work? Book a Free Consultation with our Solutions Design Leader. In this 30-minute meeting, we'll help you build your AI vision and review your project needs.
+        Ready to put AI agents to work? Book a Free Consultation with <span className="text-white">Powered_by</span> Solutions Design Leader. In this 30-minute meeting, we'll help you build your AI vision and review your project needs.
       </p>
     </div>
   );
