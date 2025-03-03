@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { BlogPostCard } from "@/components/blog/BlogPostCard";
 import { samplePosts } from "@/data/blogPosts";
