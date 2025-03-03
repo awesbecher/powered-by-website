@@ -5,7 +5,7 @@ export const saasAutomation: BlogPost = {
   id: "2",
   title: "How SaaS Companies Automate Customer Success With AI Agents",
   excerpt: "Discover how modern SaaS businesses are leveraging AI agents to transform customer engagement, reduce churn, and drive sustainable growth.",
-  author: "Parlar AI",
+  author: "Powered_by AI",
   date: "January 3, 2025",
   readTime: "7 min read",
   slug: "saas-customer-engagement-automation",
@@ -76,9 +76,10 @@ export const saasAutomation: BlogPost = {
     <br/>
     <hr class="border-t border-purple-400 w-full my-4"/>
     <p class="text-2xl font-extrabold text-left">Ready to "Agentify" Your SaaS Company?</p>
-    <p>At Parlar, we specialize in crafting bespoke voice AI solutions that seamlessly integrate into your unique SaaS workflows. We respect the bedrock principles of strong customer and sales experiences while harnessing the power of modern AI to elevate your service offerings.</p>
+    <p>At Powered_by, we specialize in crafting bespoke voice AI solutions that seamlessly integrate into your unique SaaS workflows. We respect the bedrock principles of strong customer and sales experiences while harnessing the power of modern AI to elevate your service offerings.</p>
 
     <br/>
-    <p><a href="/contact"><strong>Contact Parlar</strong></a> to explore how we can bring your SaaS vision to life through our cutting-edge, human-like voice AI solutions. Let's shape the future of customer engagement together.</p>
+    <p><a href="/contact"><strong>Contact Powered_by</strong></a> to explore how we can bring your SaaS vision to life through our cutting-edge, human-like voice AI solutions. Let's shape the future of customer engagement together.</p>
   `
 };
+
