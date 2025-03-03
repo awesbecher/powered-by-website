@@ -24,6 +24,7 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import AIVoiceChat from "./pages/AIVoiceChat";
 import AIVoiceBusinessLines from "./pages/AIVoiceBusinessLines";
+import AssetTest from "./pages/AssetTest";
 
 // Create a new query client instance
 const queryClient = new QueryClient();
@@ -55,6 +56,7 @@ const App = () => (
               <Route path="/contact" element={<Contact />} />
               <Route path="/voice-chat" element={<AIVoiceChat />} />
               <Route path="/ai-assistant" element={<AIVoiceBusinessLines />} />
+              <Route path="/asset-test" element={<AssetTest />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
