@@ -1,7 +1,6 @@
 
 import React from "react";
 import { X, Mic, MicOff, Activity } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
@@ -11,6 +10,7 @@ interface CallDialogProps {
   onEndCall: () => void;
   onToggleMute: () => void;
   isMuted: boolean;
+  isMercedesAgent?: boolean;
 }
 
 const CallDialog: React.FC<CallDialogProps> = ({ 
@@ -18,7 +18,8 @@ const CallDialog: React.FC<CallDialogProps> = ({
   onOpenChange, 
   onEndCall, 
   onToggleMute, 
-  isMuted 
+  isMuted,
+  isMercedesAgent = false
 }) => {
   return (
     <Dialog open={open} onOpenChange={(open) => !open && onEndCall()}>
@@ -32,15 +33,22 @@ const CallDialog: React.FC<CallDialogProps> = ({
         
         <div className="flex items-center mb-6">
           <Avatar className="h-16 w-16 mr-4">
-            <AvatarImage 
-              src="/lovable-uploads/156d245d-e750-4ef3-8995-a7ae211eeeee.png"
-              alt="Alex Fisher"
-            />
-            <AvatarFallback>AF</AvatarFallback>
+            {isMercedesAgent ? (
+              <AvatarImage 
+                src="/lovable-uploads/f5d0a1ac-953b-4d29-8a63-83813f74efe2.png"
+                alt="Dave Frankel"
+              />
+            ) : (
+              <AvatarImage 
+                src="/lovable-uploads/156d245d-e750-4ef3-8995-a7ae211eeeee.png"
+                alt="Alex Fisher"
+              />
+            )}
+            <AvatarFallback>{isMercedesAgent ? 'DF' : 'AF'}</AvatarFallback>
           </Avatar>
           <div>
-            <h3 className="text-2xl font-bold">Alex Fisher</h3>
-            <p className="text-gray-500">Planter's Insurance</p>
+            <h3 className="text-2xl font-bold">{isMercedesAgent ? 'Dave Frankel' : 'Alex Fisher'}</h3>
+            <p className="text-gray-500">{isMercedesAgent ? 'Mercedes of Tacoma' : 'Planter\'s Insurance'}</p>
           </div>
         </div>
         
@@ -70,23 +78,21 @@ const CallDialog: React.FC<CallDialogProps> = ({
         </div>
         
         <div className="grid grid-cols-2 gap-4">
-          <Button 
-            variant="outline"
+          <button 
             onClick={onToggleMute}
-            className="flex items-center justify-center py-6"
+            className="flex items-center justify-center py-6 px-4 bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition-colors"
           >
             {isMuted ? <MicOff className="mr-2" /> : <Mic className="mr-2" />}
             {isMuted ? "Unmute" : "Mute"}
-          </Button>
+          </button>
           
-          <Button 
-            variant="destructive"
+          <button 
             onClick={onEndCall}
-            className="flex items-center justify-center py-6 text-white"
+            className="flex items-center justify-center py-6 px-4 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors"
           >
             <X className="mr-2" />
             End Call
-          </Button>
+          </button>
         </div>
       </DialogContent>
     </Dialog>

@@ -18,6 +18,7 @@ const AssetTest = () => {
   const [showMercedesDialog, setShowMercedesDialog] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isMercedesAgent, setIsMercedesAgent] = useState(false);
   const { toast } = useToast();
 
   const handleAgentSelect = (selectedId: string) => {
@@ -27,6 +28,9 @@ const AssetTest = () => {
         isSelected: agent.id === selectedId
       }))
     );
+    
+    // Set the appropriate agent type flag
+    setIsMercedesAgent(selectedId === "auto-dealership");
   };
 
   const handleMicClick = () => {
@@ -71,8 +75,8 @@ const AssetTest = () => {
     try {
       const selectedAgent = agentTypes.find(agent => agent.isSelected);
       if (selectedAgent) {
-        // Use a placeholder assistant ID for now
-        await initiateVapiCall(selectedAgent.assistantId || "6c02f892-3082-4c68-a3ee-92ca86444331");
+        // Use the provided assistant ID
+        await initiateVapiCall("6c02f892-3082-4c68-a3ee-92ca86444331");
         setIsCallActive(true);
         setShowMercedesDialog(false);
         toast({
@@ -158,6 +162,7 @@ const AssetTest = () => {
         onEndCall={handleEndCall}
         onToggleMute={toggleMute}
         isMuted={isMuted}
+        isMercedesAgent={isMercedesAgent}
       />
     </div>
   );
