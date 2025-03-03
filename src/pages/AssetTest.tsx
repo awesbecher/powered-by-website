@@ -1,6 +1,5 @@
-
 import React, { useState } from "react";
-import { DollarSign, FileText, Shield, Stethoscope, Mic, Car, House, Pizza, X, Activity } from "lucide-react";
+import { DollarSign, FileText, Shield, Stethoscope, Mic, MicOff, Car, House, Pizza, X, Activity } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -111,6 +110,7 @@ const AssetTest = () => {
     try {
       await stopVapiCall();
       setIsCallActive(false);
+      setIsMuted(false);
       toast({
         title: "Call ended",
         description: "Thank you for trying our voice assistant."
@@ -138,7 +138,6 @@ const AssetTest = () => {
         
         <div className="bg-[#1A1A1A] p-8 rounded-3xl shadow-xl border border-gray-800">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Left section - Agent Type Selection */}
             <div className="space-y-4">
               <h2 className="text-2xl font-semibold mb-6 text-[#9b87f5]">Choose Agent Use Case</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
@@ -168,7 +167,6 @@ const AssetTest = () => {
               </div>
             </div>
 
-            {/* Middle section - Microphone */}
             <div className="flex flex-col items-center justify-center">
               <div
                 className={`w-32 h-32 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 ${
@@ -185,7 +183,6 @@ const AssetTest = () => {
               </p>
             </div>
 
-            {/* Right section - Phone Number */}
             <div className="flex flex-col items-center justify-center">
               <div className="text-center">
                 <h2 className="text-xl font-semibold mb-4 text-[#9b87f5]">
@@ -203,7 +200,6 @@ const AssetTest = () => {
         </div>
       </div>
 
-      {/* Consent Dialog */}
       <Dialog open={showConsentDialog} onOpenChange={setShowConsentDialog}>
         <DialogContent className="bg-[#222222] text-white border-gray-800">
           <DialogHeader className="flex flex-row items-center gap-4">
@@ -244,86 +240,72 @@ const AssetTest = () => {
         </DialogContent>
       </Dialog>
 
-      {/* Active Call Dialog */}
       <Dialog open={isCallActive} onOpenChange={(open) => !open && handleEndCall()}>
         <DialogContent className="bg-white text-black border-gray-200 sm:max-w-md p-6 rounded-xl">
-          <div className="flex flex-col space-y-6">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-3xl font-bold">You are now Connected</h2>
+            <button onClick={handleEndCall} className="text-gray-500 hover:text-gray-700">
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+          
+          <div className="flex items-center mb-6">
+            <Avatar className="h-16 w-16 mr-4">
+              <AvatarImage 
+                src="/lovable-uploads/156d245d-e750-4ef3-8995-a7ae211eeeee.png"
+                alt="Alex Fisher"
+              />
+              <AvatarFallback>AF</AvatarFallback>
+            </Avatar>
+            <div>
+              <h3 className="text-2xl font-bold">Alex Fisher</h3>
+              <p className="text-gray-500">Planter's Insurance</p>
+            </div>
+          </div>
+          
+          <div className="bg-gray-100 p-4 rounded-lg mb-6">
+            <div className="flex justify-between items-center mb-2">
+              <h3 className="text-xl font-semibold">Call in progress</h3>
+              <div className="flex items-center">
+                <Activity className="w-5 h-5 mr-2" />
+                <span>Live</span>
+              </div>
+            </div>
+            
             <div className="flex justify-between items-center">
-              <h2 className="text-3xl font-bold">You are now Connected</h2>
-              <button onClick={handleEndCall} className="text-gray-500 hover:text-gray-700">
-                <X className="w-6 h-6" />
-              </button>
+              <p className="text-gray-600">Your microphone</p>
+              <div className="flex items-center">
+                <div className="flex space-x-1 mr-2">
+                  {[...Array(5)].map((_, i) => (
+                    <div 
+                      key={i} 
+                      className={`h-4 w-1 rounded-full ${i === 0 ? 'bg-black' : i < 3 ? 'bg-gray-400' : 'bg-gray-300'}`}
+                    />
+                  ))}
+                </div>
+                <span className="text-gray-600">Active</span>
+              </div>
             </div>
+          </div>
+          
+          <div className="grid grid-cols-2 gap-4">
+            <Button 
+              variant="outline"
+              onClick={toggleMute}
+              className="flex items-center justify-center py-6"
+            >
+              {isMuted ? <MicOff className="mr-2" /> : <Mic className="mr-2" />}
+              {isMuted ? "Unmute" : "Mute"}
+            </Button>
             
-            <div className="flex items-center space-x-4">
-              <div className="relative">
-                <Avatar className="h-20 w-20 rounded-full border-2 border-white shadow-md">
-                  <AvatarImage src="/lovable-uploads/156d245d-e750-4ef3-8995-a7ae211eeeee.png" alt="Alex Fisher" />
-                  <AvatarFallback>AF</AvatarFallback>
-                </Avatar>
-                <div className="absolute bottom-1 left-1 flex items-center">
-                  <div className="h-3 w-3 bg-green-500 rounded-full"></div>
-                  <div className="ml-1 flex space-x-0.5">
-                    {[...Array(4)].map((_, i) => (
-                      <div 
-                        key={i} 
-                        className={`h-3 w-1 rounded-full ${i === 0 ? 'bg-gray-800' : 'bg-gray-300'}`}
-                      ></div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold">Alex Fisher</h3>
-                <p className="text-gray-500">Planter's Insurance</p>
-              </div>
-            </div>
-            
-            <div className="bg-gray-100 p-4 rounded-xl">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-xl font-bold">Call in progress</h3>
-                <div className="flex items-center text-gray-700">
-                  <Activity className="w-5 h-5 mr-2" />
-                  <span>Live</span>
-                </div>
-              </div>
-              
-              <div className="flex justify-between items-center">
-                <div className="flex items-center">
-                  <p className="text-gray-600">Your microphone</p>
-                </div>
-                <div className="flex items-center">
-                  <div className="flex space-x-0.5 mr-2">
-                    <div className="h-3 w-1 bg-black rounded-full"></div>
-                    {[...Array(4)].map((_, i) => (
-                      <div 
-                        key={i} 
-                        className={`h-3 w-1 rounded-full ${i < 2 ? 'bg-gray-400' : 'bg-gray-300'}`}
-                      ></div>
-                    ))}
-                  </div>
-                  <span className="text-gray-600">Active</span>
-                </div>
-              </div>
-            </div>
-            
-            <div className="flex space-x-4">
-              <button 
-                onClick={toggleMute}
-                className="flex-1 py-3 px-4 border border-gray-300 rounded-md flex items-center justify-center space-x-2 hover:bg-gray-50 transition-colors"
-              >
-                {isMuted ? <Mic className="w-5 h-5 text-gray-400" /> : <Mic className="w-5 h-5" />}
-                <span>{isMuted ? "Unmute" : "Mute"}</span>
-              </button>
-              
-              <button 
-                onClick={handleEndCall}
-                className="flex-1 py-3 px-4 bg-red-500 text-white rounded-md flex items-center justify-center space-x-2 hover:bg-red-600 transition-colors"
-              >
-                <X className="w-5 h-5" />
-                <span>End Call</span>
-              </button>
-            </div>
+            <Button 
+              variant="destructive"
+              onClick={handleEndCall}
+              className="flex items-center justify-center py-6"
+            >
+              <X className="mr-2" />
+              End Call
+            </Button>
           </div>
         </DialogContent>
       </Dialog>
