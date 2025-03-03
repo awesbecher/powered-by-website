@@ -15,7 +15,7 @@ export const CTASection = ({ handleContact }: CTASectionProps) => {
             Ready to Add Voice AI to Your Website?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
-            Book a free consultation with our solutions team to learn how voice AI can transform your customer interactions.
+            Book a free consultation with the <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> solutions team to learn how voice AI can transform your customer interactions.
           </p>
           <Button 
             className="bg-white hover:bg-gray-100 text-[#6342ff] font-bold px-8 py-6 text-lg rounded-md"
