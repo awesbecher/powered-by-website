@@ -75,7 +75,7 @@ const AssetTest = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Left section - Agent Type Selection */}
             <div className="space-y-4">
-              <h2 className="text-2xl font-semibold mb-6 text-[#9b87f5]">Choose Agent Type</h2>
+              <h2 className="text-2xl font-semibold mb-6 text-[#9b87f5]">Choose Agent Use Case</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
                 {agentTypes.map(agent => (
                   <div
