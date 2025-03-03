@@ -1,0 +1,17 @@
+
+# robots.txt for Powered_By: AI Agents for SMBs
+
+User-agent: *
+Allow: /
+
+# Main pages
+Allow: /index.html
+Allow: /blog
+Allow: /products
+Allow: /contact
+
+# Disallow admin or private areas if any are added in the future
+# Disallow: /admin/
+
+# Sitemap
+Sitemap: https://lovable.ai/sitemap.xml
