@@ -81,7 +81,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
             Transform Your Website With <span className="text-[#9b87f5]">AI Voice Chat</span>
           </h1>
           <p className="text-xl text-gray-300">
-            Engage website visitors in natural conversations that convert. Unlock new opportunities to upsell and cross-sell. Delight your customers with state-of-the-art in voice AI.
+            <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md mr-1">Powered_by</span>: AI Voice Chat. Engage website visitors in natural conversations that convert. Unlock new opportunities to upsell and cross-sell. Delight your customers with state-of-the-art in voice AI.
           </p>
           <div className="space-y-4 text-gray-300">
             <p className="text-xl">Deploy Human-like AI Voice Chat Directly on Your Website to:</p>
