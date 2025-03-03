@@ -82,7 +82,7 @@ const CallDialog: React.FC<CallDialogProps> = ({
           <Button 
             variant="destructive"
             onClick={onEndCall}
-            className="flex items-center justify-center py-6"
+            className="flex items-center justify-center py-6 text-white"
           >
             <X className="mr-2" />
             End Call
