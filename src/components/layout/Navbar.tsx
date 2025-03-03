@@ -1,4 +1,3 @@
-
 import { cn } from "@/lib/utils";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -16,7 +15,7 @@ const Navbar = () => {
   ];
 
   // Check if we should show the consultation button on current page
-  const showConsultButton = ['/', '/ai-agency', '/products', '/demo', '/blog', '/voice-chat'].includes(location.pathname);
+  const showConsultButton = ['/', '/ai-agency', '/products', '/demo', '/blog', '/voice-chat', '/ai-assistant'].includes(location.pathname);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#222222]/80 backdrop-blur-lg">
