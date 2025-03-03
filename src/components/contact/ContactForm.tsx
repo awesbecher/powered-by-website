@@ -43,11 +43,13 @@ export const ContactForm = () => {
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase.functions.invoke('send-contact-email', {
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
         body: { ...formData }
       });
 
       if (error) throw error;
+
+      console.log('Form submission response:', data);
 
       toast({
         title: "Message sent!",
