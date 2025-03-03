@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { DollarSign, FileText, Shield, Stethoscope, Mic, Car, House, Pizza } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -118,12 +117,6 @@ const AssetTest = () => {
               <p className="mt-6 text-center text-gray-300 max-w-xs">
                 Click on the mic to try the AI voice agents after you choose the Agent Type on the left.
               </p>
-              <Button 
-                variant="outline" 
-                className="mt-8 border-[#9b87f5] text-[#9b87f5] hover:bg-[#9b87f5]/10"
-              >
-                Explore More
-              </Button>
             </div>
 
             {/* Right section - Phone Number */}
