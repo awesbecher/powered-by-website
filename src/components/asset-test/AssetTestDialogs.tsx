@@ -3,6 +3,7 @@ import React from "react";
 import ConsentDialog from "@/components/asset-test/ConsentDialog";
 import MercedesConsentDialog from "@/components/asset-test/MercedesConsentDialog";
 import RestaurantConsentDialog from "@/components/asset-test/RestaurantConsentDialog";
+import RealEstateConsentDialog from "@/components/asset-test/RealEstateConsentDialog";
 import CallDialog from "@/components/asset-test/CallDialog";
 
 interface AssetTestDialogsProps {
@@ -12,14 +13,18 @@ interface AssetTestDialogsProps {
   setShowMercedesDialog: (show: boolean) => void;
   showRestaurantDialog: boolean;
   setShowRestaurantDialog: (show: boolean) => void;
+  showRealEstateDialog: boolean;
+  setShowRealEstateDialog: (show: boolean) => void;
   isCallActive: boolean;
   isMuted: boolean;
   isMercedesAgent: boolean;
   isRestaurantAgent: boolean;
+  isRealEstateAgent: boolean;
   isLoading: boolean;
   onCall: () => void;
   onMercedesCall: () => void;
   onRestaurantCall: () => void;
+  onRealEstateCall: () => void;
   onEndCall: () => void;
   onToggleMute: () => void;
 }
@@ -31,14 +36,18 @@ const AssetTestDialogs: React.FC<AssetTestDialogsProps> = ({
   setShowMercedesDialog,
   showRestaurantDialog,
   setShowRestaurantDialog,
+  showRealEstateDialog,
+  setShowRealEstateDialog,
   isCallActive,
   isMuted,
   isMercedesAgent,
   isRestaurantAgent,
+  isRealEstateAgent,
   isLoading,
   onCall,
   onMercedesCall,
   onRestaurantCall,
+  onRealEstateCall,
   onEndCall,
   onToggleMute
 }) => {
@@ -65,6 +74,13 @@ const AssetTestDialogs: React.FC<AssetTestDialogsProps> = ({
         isLoading={isLoading}
       />
 
+      <RealEstateConsentDialog
+        open={showRealEstateDialog}
+        onOpenChange={setShowRealEstateDialog}
+        onConfirm={onRealEstateCall}
+        isLoading={isLoading}
+      />
+
       <CallDialog 
         open={isCallActive} 
         onOpenChange={(open) => !open && onEndCall()}
@@ -73,6 +89,7 @@ const AssetTestDialogs: React.FC<AssetTestDialogsProps> = ({
         isMuted={isMuted}
         isMercedesAgent={isMercedesAgent}
         isRestaurantAgent={isRestaurantAgent}
+        isRealEstateAgent={isRealEstateAgent}
       />
     </>
   );

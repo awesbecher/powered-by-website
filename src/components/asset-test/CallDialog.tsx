@@ -1,8 +1,9 @@
 
 import React from "react";
-import { X, Mic, MicOff, Activity } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { X, Mic, MicOff } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface CallDialogProps {
   open: boolean;
@@ -10,113 +11,74 @@ interface CallDialogProps {
   onEndCall: () => void;
   onToggleMute: () => void;
   isMuted: boolean;
-  isMercedesAgent?: boolean;
-  isRestaurantAgent?: boolean;
+  isMercedesAgent: boolean;
+  isRestaurantAgent: boolean;
+  isRealEstateAgent?: boolean;
 }
 
-const CallDialog: React.FC<CallDialogProps> = ({ 
-  open, 
-  onOpenChange, 
-  onEndCall, 
-  onToggleMute, 
+const CallDialog: React.FC<CallDialogProps> = ({
+  open,
+  onOpenChange,
+  onEndCall,
+  onToggleMute,
   isMuted,
-  isMercedesAgent = false,
-  isRestaurantAgent = false
+  isMercedesAgent,
+  isRestaurantAgent,
+  isRealEstateAgent = false
 }) => {
-  // Determine which agent is active
-  const getAgentName = () => {
-    if (isMercedesAgent) return 'Dave Frankel';
-    if (isRestaurantAgent) return 'Dominic';
-    return 'Alex Fisher';
-  };
-
-  const getCompanyName = () => {
-    if (isMercedesAgent) return 'Mercedes of Tacoma';
-    if (isRestaurantAgent) return 'Slice House of Anaheim';
-    return 'Planter\'s Insurance';
-  };
-
-  const getAvatarImage = () => {
-    if (isMercedesAgent) {
-      return "/lovable-uploads/f5d0a1ac-953b-4d29-8a63-83813f74efe2.png";
-    }
-    if (isRestaurantAgent) {
-      return "/lovable-uploads/9793533b-ce65-4073-babd-b90b6b5c99ef.png";
-    }
-    return "/lovable-uploads/156d245d-e750-4ef3-8995-a7ae211eeeee.png";
-  };
-
-  const getAvatarFallback = () => {
-    if (isMercedesAgent) return 'DF';
-    if (isRestaurantAgent) return 'DO';
-    return 'AF';
-  };
+  let agentName = "Alex Fisher";
+  let agentRole = "Planter's Insurance";
+  let avatarSrc = "/lovable-uploads/156d245d-e750-4ef3-8995-a7ae211eeeee.png";
+  
+  if (isMercedesAgent) {
+    agentName = "Dave Frankel";
+    agentRole = "Mercedes of Tacoma";
+    avatarSrc = "/lovable-uploads/f6cd5c39-f85a-4586-9140-cd8e12d9b947.png";
+  } else if (isRestaurantAgent) {
+    agentName = "Dominic";
+    agentRole = "Slice House of Anaheim";
+    avatarSrc = "/lovable-uploads/9793533b-ce65-4073-babd-b90b6b5c99ef.png";
+  } else if (isRealEstateAgent) {
+    agentName = "Jeff Smith";
+    agentRole = "Township Real Estate";
+    avatarSrc = "/lovable-uploads/2d521c8d-084d-4a87-8491-cb795033a1d6.png";
+  }
 
   return (
-    <Dialog open={open} onOpenChange={(open) => !open && onEndCall()}>
-      <DialogContent className="bg-white text-black border-gray-200 sm:max-w-md p-6 rounded-xl">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-3xl font-bold">You are now Connected</h2>
-          <button onClick={onEndCall} className="text-gray-500 hover:text-gray-700">
-            <X className="w-6 h-6" />
-          </button>
-        </div>
-        
-        <div className="flex items-center mb-6">
-          <Avatar className="h-16 w-16 mr-4">
-            <AvatarImage 
-              src={getAvatarImage()}
-              alt={getAgentName()}
-            />
-            <AvatarFallback>{getAvatarFallback()}</AvatarFallback>
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="bg-[#222222] text-white border-gray-800">
+        <div className="flex items-center space-x-4 mb-4">
+          <Avatar className="h-12 w-12">
+            <AvatarImage src={avatarSrc} alt={agentName} />
+            <AvatarFallback>{agentName.charAt(0)}</AvatarFallback>
           </Avatar>
           <div>
-            <h3 className="text-2xl font-bold">{getAgentName()}</h3>
-            <p className="text-gray-500">{getCompanyName()}</p>
+            <h3 className="text-lg font-semibold">{agentName}</h3>
+            <p className="text-sm text-gray-400">{agentRole}</p>
           </div>
         </div>
         
-        <div className="bg-gray-100 p-4 rounded-lg mb-6">
-          <div className="flex justify-between items-center mb-2">
-            <h3 className="text-xl font-semibold">Call in progress</h3>
-            <div className="flex items-center">
-              <Activity className="w-5 h-5 mr-2" />
-              <span>Live</span>
-            </div>
-          </div>
-          
-          <div className="flex justify-between items-center">
-            <p className="text-gray-600">Your microphone</p>
-            <div className="flex items-center">
-              <div className="flex space-x-1 mr-2">
-                {[...Array(5)].map((_, i) => (
-                  <div 
-                    key={i} 
-                    className={`h-4 w-1 rounded-full ${i === 0 ? 'bg-black' : i < 3 ? 'bg-gray-400' : 'bg-gray-300'}`}
-                  />
-                ))}
-              </div>
-              <span className="text-gray-600">Active</span>
-            </div>
-          </div>
+        <div className="bg-[#2a2a2a] p-4 rounded-lg mb-4">
+          <p className="text-gray-300">Call in progress</p>
         </div>
         
-        <div className="grid grid-cols-2 gap-4">
-          <button 
+        <div className="flex gap-2">
+          <Button
+            variant="outline"
+            className="w-full border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white"
             onClick={onToggleMute}
-            className="flex items-center justify-center py-6 px-4 bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition-colors"
           >
-            {isMuted ? <MicOff className="mr-2" /> : <Mic className="mr-2" />}
+            {isMuted ? <MicOff className="mr-2 h-4 w-4" /> : <Mic className="mr-2 h-4 w-4" />}
             {isMuted ? "Unmute" : "Mute"}
-          </button>
-          
-          <button 
+          </Button>
+          <Button
+            variant="destructive"
+            className="w-full"
             onClick={onEndCall}
-            className="flex items-center justify-center py-6 px-4 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors"
           >
-            <X className="mr-2" />
+            <X className="mr-2 h-4 w-4" />
             End Call
-          </button>
+          </Button>
         </div>
       </DialogContent>
     </Dialog>

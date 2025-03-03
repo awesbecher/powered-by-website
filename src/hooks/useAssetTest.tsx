@@ -11,10 +11,12 @@ export const useAssetTest = () => {
   const [showConsentDialog, setShowConsentDialog] = useState(false);
   const [showMercedesDialog, setShowMercedesDialog] = useState(false);
   const [showRestaurantDialog, setShowRestaurantDialog] = useState(false);
+  const [showRealEstateDialog, setShowRealEstateDialog] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isMercedesAgent, setIsMercedesAgent] = useState(false);
   const [isRestaurantAgent, setIsRestaurantAgent] = useState(false);
+  const [isRealEstateAgent, setIsRealEstateAgent] = useState(false);
   const { toast } = useToast();
 
   const handleAgentSelect = (selectedId: string) => {
@@ -27,6 +29,7 @@ export const useAssetTest = () => {
     
     setIsMercedesAgent(selectedId === "auto-dealership");
     setIsRestaurantAgent(selectedId === "restaurant-order");
+    setIsRealEstateAgent(selectedId === "real-estate");
   };
 
   const handleMicClick = () => {
@@ -38,6 +41,8 @@ export const useAssetTest = () => {
       setShowMercedesDialog(true);
     } else if (selectedAgent?.id === "restaurant-order") {
       setShowRestaurantDialog(true);
+    } else if (selectedAgent?.id === "real-estate") {
+      setShowRealEstateDialog(true);
     } else {
       setIsCallActive(!isCallActive);
     }
@@ -115,6 +120,30 @@ export const useAssetTest = () => {
     }
   };
 
+  const handleRealEstateCall = async () => {
+    setIsLoading(true);
+    try {
+      const selectedAgent = agentTypes.find(agent => agent.isSelected);
+      if (selectedAgent) {
+        await initiateVapiCall("f8131f3d-58aa-4c81-a79e-1bf758803775");
+        setIsCallActive(true);
+        setShowRealEstateDialog(false);
+        toast({
+          title: "Call initiated",
+          description: `You are now connected to Jeff Smith from Township Real Estate.`
+        });
+      }
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Failed to initiate call",
+        description: error instanceof Error ? error.message : "Please try again later."
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleEndCall = async () => {
     try {
       await stopVapiCall();
@@ -148,16 +177,20 @@ export const useAssetTest = () => {
     setShowMercedesDialog,
     showRestaurantDialog,
     setShowRestaurantDialog,
+    showRealEstateDialog,
+    setShowRealEstateDialog,
     isMuted,
     isLoading,
     isMercedesAgent,
     isRestaurantAgent,
+    isRealEstateAgent,
     selectedAgent,
     handleAgentSelect,
     handleMicClick,
     handleCall,
     handleMercedesCall,
     handleRestaurantCall,
+    handleRealEstateCall,
     handleEndCall,
     toggleMute
   };

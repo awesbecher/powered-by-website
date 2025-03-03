@@ -14,16 +14,20 @@ const AssetTest = () => {
     setShowMercedesDialog,
     showRestaurantDialog,
     setShowRestaurantDialog,
+    showRealEstateDialog,
+    setShowRealEstateDialog,
     isMuted,
     isLoading,
     isMercedesAgent,
     isRestaurantAgent,
+    isRealEstateAgent,
     selectedAgent,
     handleAgentSelect,
     handleMicClick,
     handleCall,
     handleMercedesCall,
     handleRestaurantCall,
+    handleRealEstateCall,
     handleEndCall,
     toggleMute
   } = useAssetTest();
@@ -45,14 +49,18 @@ const AssetTest = () => {
         setShowMercedesDialog={setShowMercedesDialog}
         showRestaurantDialog={showRestaurantDialog}
         setShowRestaurantDialog={setShowRestaurantDialog}
+        showRealEstateDialog={showRealEstateDialog}
+        setShowRealEstateDialog={setShowRealEstateDialog}
         isCallActive={isCallActive}
         isMuted={isMuted}
         isMercedesAgent={isMercedesAgent}
         isRestaurantAgent={isRestaurantAgent}
+        isRealEstateAgent={isRealEstateAgent}
         isLoading={isLoading}
         onCall={handleCall}
         onMercedesCall={handleMercedesCall}
         onRestaurantCall={handleRestaurantCall}
+        onRealEstateCall={handleRealEstateCall}
         onEndCall={handleEndCall}
         onToggleMute={toggleMute}
       />

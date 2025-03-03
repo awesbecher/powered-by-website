@@ -28,7 +28,7 @@ export const defaultAgents: AgentType[] = [
     description: "Order delicious pizza for delivery or pickup",
     phoneNumber: "+1 (732) 702-8348",
     isSelected: false,
-    assistantId: "23a2ccf0-044e-4340-8c88-850b272e2abf" // Updated to the correct assistant ID
+    assistantId: "23a2ccf0-044e-4340-8c88-850b272e2abf"
   },
   {
     id: "real-estate",
@@ -37,6 +37,6 @@ export const defaultAgents: AgentType[] = [
     description: "Find your dream home with our AI assistant",
     phoneNumber: "+1 (657) 464-2712",
     isSelected: false,
-    assistantId: ""
+    assistantId: "f8131f3d-58aa-4c81-a79e-1bf758803775"
   }
 ];
