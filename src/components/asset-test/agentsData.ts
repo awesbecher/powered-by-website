@@ -35,7 +35,7 @@ export const defaultAgents: AgentType[] = [
     name: "Real Estate: Find a House",
     icon: House,
     description: "Find your dream home with our AI assistant",
-    phoneNumber: "+1 (657) 464-2712",
+    phoneNumber: "(732) 702 8348",
     isSelected: false,
     assistantId: "f8131f3d-58aa-4c81-a79e-1bf758803775"
   }
