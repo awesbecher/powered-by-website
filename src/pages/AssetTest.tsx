@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
@@ -10,15 +9,18 @@ import AgentInfo from "@/components/asset-test/AgentInfo";
 import ConsentDialog from "@/components/asset-test/ConsentDialog";
 import CallDialog from "@/components/asset-test/CallDialog";
 import MercedesConsentDialog from "@/components/asset-test/MercedesConsentDialog";
+import RestaurantConsentDialog from "@/components/asset-test/RestaurantConsentDialog";
 
 const AssetTest = () => {
   const [agentTypes, setAgentTypes] = useState<AgentType[]>(defaultAgents);
   const [isCallActive, setIsCallActive] = useState(false);
   const [showConsentDialog, setShowConsentDialog] = useState(false);
   const [showMercedesDialog, setShowMercedesDialog] = useState(false);
+  const [showRestaurantDialog, setShowRestaurantDialog] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isMercedesAgent, setIsMercedesAgent] = useState(false);
+  const [isRestaurantAgent, setIsRestaurantAgent] = useState(false);
   const { toast } = useToast();
 
   const handleAgentSelect = (selectedId: string) => {
@@ -29,8 +31,9 @@ const AssetTest = () => {
       }))
     );
     
-    // Set the appropriate agent type flag
+    // Set the appropriate agent type flags
     setIsMercedesAgent(selectedId === "auto-dealership");
+    setIsRestaurantAgent(selectedId === "restaurant-order");
   };
 
   const handleMicClick = () => {
@@ -40,6 +43,8 @@ const AssetTest = () => {
       setShowConsentDialog(true);
     } else if (selectedAgent?.id === "auto-dealership") {
       setShowMercedesDialog(true);
+    } else if (selectedAgent?.id === "restaurant-order") {
+      setShowRestaurantDialog(true);
     } else {
       setIsCallActive(!isCallActive);
       // In a real implementation, this would initiate the voice assistant based on the selected agent
@@ -82,6 +87,31 @@ const AssetTest = () => {
         toast({
           title: "Call initiated",
           description: `You are now connected to Dave Frankel from Mercedes of Tacoma.`
+        });
+      }
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Failed to initiate call",
+        description: error instanceof Error ? error.message : "Please try again later."
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleRestaurantCall = async () => {
+    setIsLoading(true);
+    try {
+      const selectedAgent = agentTypes.find(agent => agent.isSelected);
+      if (selectedAgent) {
+        // Use the assistant ID for restaurant
+        await initiateVapiCall(selectedAgent.assistantId || "");
+        setIsCallActive(true);
+        setShowRestaurantDialog(false);
+        toast({
+          title: "Call initiated",
+          description: `You are now connected to Dominic from Slice House of Anaheim.`
         });
       }
     } catch (error) {
@@ -153,6 +183,13 @@ const AssetTest = () => {
         open={showMercedesDialog}
         onOpenChange={setShowMercedesDialog}
         onConfirm={handleMercedesCall}
+        isLoading={isLoading}
+      />
+
+      <RestaurantConsentDialog
+        open={showRestaurantDialog}
+        onOpenChange={setShowRestaurantDialog}
+        onConfirm={handleRestaurantCall}
         isLoading={isLoading}
       />
 

@@ -28,7 +28,7 @@ export const defaultAgents: AgentType[] = [
     description: "Order delicious pizza for delivery or pickup",
     phoneNumber: "+1 (732) 702-8348",
     isSelected: false,
-    assistantId: ""
+    assistantId: "df42b616-337e-4877-8e9b-44fb0b5a0225" // Using the insurance assistant ID for now
   },
   {
     id: "real-estate",
