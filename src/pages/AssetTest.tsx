@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { DollarSign, FileText, Shield, Stethoscope, Mic, Car, House, Pizza } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -15,7 +16,7 @@ const AssetTest = () => {
   const [agentTypes, setAgentTypes] = useState<AgentType[]>([
     {
       id: "insurance-quote",
-      name: "Insurance: Get a Quote!",
+      name: "Insurance: Get a Quote",
       icon: DollarSign,
       description: "AI agent for handling insurance quote requests",
       phoneNumber: "+1 (650) 640-1015",
