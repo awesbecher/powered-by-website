@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { BlogPostCard } from "@/components/blog/BlogPostCard";
 import { samplePosts } from "@/data/blogPosts";
@@ -27,7 +26,7 @@ const Blog = () => {
                 className={`mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold transition-all duration-1000 delay-300 ease-out transform
                   ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
               >
-                AI agents aren't just tools—<span className="border-b-2 border-[#9b87f5]">they're game-changers</span>. For small to medium-sized businesses, they mean doing more with less, delighting customers, and unlocking growth you didn't think was possible.
+                AI agents from <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> aren't just tools—<span className="border-b-2 border-[#9b87f5]">they're game-changers</span>. For small to medium-sized businesses, they mean doing more with less, delighting customers, and unlocking growth you didn't think was possible.
               </p>
             </div>
           </div>
@@ -58,4 +57,3 @@ const Blog = () => {
 };
 
 export default Blog;
-
