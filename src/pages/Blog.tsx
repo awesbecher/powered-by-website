@@ -1,7 +1,7 @@
 
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { blogPosts } from "@/data/blogPosts";
+import { blogPosts } from "@/data/blog-posts";
 import Navbar from "@/components/layout/Navbar";
 import { ChevronRight } from "lucide-react";
 

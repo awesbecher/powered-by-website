@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { BlogPostCard } from "@/components/blog/BlogPostCard";
-import { blogPosts } from "@/data/blogPosts";
+import { blogPosts } from "@/data/blog-posts";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useRef } from "react";
 import { cn } from "@/lib/utils";

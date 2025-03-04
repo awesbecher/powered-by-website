@@ -1,6 +1,6 @@
 
 import { useParams } from "react-router-dom";
-import { blogPosts } from "../data/blogPosts";
+import { blogPosts } from "@/data/blog-posts";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
@@ -100,4 +100,3 @@ const BlogPost = () => {
 };
 
 export default BlogPost;
-
