@@ -35,27 +35,27 @@ export const aiAgentsVsRpa: BlogPost = {
 
     <h2 class="text-4xl font-bold pb-4 mb-6 border-b-4 border-purple-500">Use Cases: Where AI Agents Excel Over RPA</h2>
     
-    <h3>Voice Agent Automation</h3>
+    <h3 class="text-2xl font-bold mt-6 mb-4">Voice Agent Automation</h3>
     
     <p>Voice-driven interactions are becoming a staple in modern business communication, yet RPA tools generally lack the sophistication to handle conversational voice tasks. AI agents can seamlessly integrate with voice recognition systems, enabling businesses to offer voice-activated customer support, appointment scheduling, or even voice-controlled data entry. This is particularly beneficial for SMBs looking to provide a hands-free, intuitive customer experience that RPA simply cannot match.</p>
     
-    <h3>Email Automation with a Human Touch</h3>
+    <h3 class="text-2xl font-bold mt-6 mb-4">Email Automation with a Human Touch</h3>
     
     <p>Email automation is another domain where AI agents truly shine. Traditional RPA may automate the sending and routing of emails, but it falls short when it comes to understanding context, tone, or customer sentiment embedded in email communications. Powered_by's AI agents, however, are designed to comprehend and analyze email content, tailor responses based on historical interactions, and even predict follow-up needs. This level of sophistication transforms email from a simple transactional tool into a strategic channel for personalized communication and relationship building.</p>
     
-    <h3>Customer Support and Engagement</h3>
+    <h3 class="text-2xl font-bold mt-6 mb-4">Customer Support and Engagement</h3>
     
     <p>One of the most compelling use cases for AI agents is in customer support. Unlike RPA bots that might simply route tickets or transfer data, AI agents can engage in meaningful conversations with customers. They can analyze sentiment from interactions, predict customer needs, and provide personalized responses—turning routine support into a proactive engagement opportunity. This not only improves customer satisfaction but also builds brand loyalty over time.</p>
     
-    <h3>Personalized Marketing and Sales Enablement</h3>
+    <h3 class="text-2xl font-bold mt-6 mb-4">Personalized Marketing and Sales Enablement</h3>
     
     <p>In marketing, personalization is key. AI agents can process and analyze vast amounts of customer data to tailor marketing messages, predict purchasing behavior, and even suggest cross-selling or up-selling opportunities. While RPA tools can execute repetitive tasks like sending out bulk emails, they lack the capability to analyze customer behavior on the fly. Powered_by's AI agents, however, offer a dynamic approach that combines automation with data-driven insights to enhance every stage of the customer journey.</p>
     
-    <h3>Dynamic Document Processing</h3>
+    <h3 class="text-2xl font-bold mt-6 mb-4">Dynamic Document Processing</h3>
     
     <p>Many SMBs deal with a mix of structured and unstructured data, such as invoices, contracts, and customer feedback. RPA tools are effective for processing structured documents but falter when the data is unstructured or varies in format. AI agents, equipped with natural language processing capabilities, can extract key information from a variety of document types, classify content, and even flag discrepancies for further review. This ability to handle diverse data types not only streamlines document management but also reduces the risk of human error.</p>
     
-    <h3>Intelligent Data Analysis and Reporting</h3>
+    <h3 class="text-2xl font-bold mt-6 mb-4">Intelligent Data Analysis and Reporting</h3>
     
     <p>Data is the new currency for business growth, yet transforming raw data into actionable insights remains a challenge. RPA can automate the data gathering process, but AI agents go further by analyzing patterns, forecasting trends, and generating strategic reports. For SMBs looking to leverage their data for competitive advantage, Powered_by's AI agents offer a proactive solution that evolves with market trends and internal business metrics.</p>
 
