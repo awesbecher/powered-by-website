@@ -16,12 +16,12 @@ const getPostImage = (slug: string) => {
       return "/lovable-uploads/b9c7959b-bd61-40d9-b0b3-317a40353486.png";
     case "ai-agents-trillion-market-opportunity":
       return "/lovable-uploads/248b1b18-6411-432d-8281-dc0d70f64a28.png";
+    case "workflow-automation-ai-agents-vs-rpa":
+      return "/lovable-uploads/13d3a8ff-b938-4d03-9efe-99fe283b96fe.png";
     case "build-or-buy-ai-agents-evaluation":
       return "/lovable-uploads/02977ad8-a831-4b23-909d-7010d4bb02b6.png";
     case "openai-anthropic-smb-specialized-partners":
       return "/lovable-uploads/f971b5e9-817b-426a-9db0-5db472970633.png";
-    case "workflow-automation-ai-agents-vs-rpa":
-      return "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89";
     case "voice-ai-retail-customer-service":
       return "https://images.unsplash.com/photo-1556745753-b2904692b3cd";
     case "saas-customer-engagement-automation":
