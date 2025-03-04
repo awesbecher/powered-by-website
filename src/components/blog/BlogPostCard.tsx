@@ -23,19 +23,25 @@ const getPostImage = (slug: string) => {
     case "openai-anthropic-smb-specialized-partners":
       return "/lovable-uploads/f971b5e9-817b-426a-9db0-5db472970633.png";
     case "voice-ai-retail-customer-service":
-      return "https://images.unsplash.com/photo-1556745753-b2904692b3cd";
+      return "/lovable-uploads/ba13be0d-77b7-49f3-aa99-9524e25c5294.png";
     case "saas-customer-engagement-automation":
-      return "https://images.unsplash.com/photo-1551288049-bebda4e38f71";
+      return "/lovable-uploads/d2c09a06-b1ad-4f03-bcc5-6ea523b06f41.png";
     case "human-like-ai-secrets":
-      return "https://images.unsplash.com/photo-1535378917042-10a22c95931a";
+      return "/lovable-uploads/ba7183d3-c2d6-46b1-b51e-afa9de2b5af2.png";
     case "practical-ways-smbs-use-conversational-agents":
-      return "https://images.unsplash.com/photo-1553877522-43269d4ea984";
+      return "/lovable-uploads/57b14d49-eab1-4dd2-827d-dceb363f5514.png";
     case "customer-service-evolution":
-      return "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4";
+      return "/lovable-uploads/8505af38-6a90-44dc-b6bc-554d254475ea.png";
     case "breaking-down-ai-fears-smb":
-      return "https://images.unsplash.com/photo-1485827404703-89b55fcc595e";
+      return "/lovable-uploads/e504e0c0-aac1-498a-9e32-e6e42a133dee.png";
+    case "ai-voice-customer-service":
+      return "/lovable-uploads/ec9dd264-4bb3-4b03-9b50-e31383652af9.png";
+    case "future-of-ai-interactions":
+      return "/lovable-uploads/d496422a-1cc8-4b83-9d26-16bfda3ac8ed.png";
+    case "ai-driven-personalization":
+      return "/lovable-uploads/e305eace-d64d-4437-9d8e-533d49b3d934.png";
     default:
-      return "";
+      return "/lovable-uploads/af07ee0c-70fa-4261-a83e-98ef6108f8ae.png"; // Default image
   }
 };
 

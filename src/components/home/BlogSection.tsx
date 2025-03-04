@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { BlogPostCard } from "@/components/blog/BlogPostCard";
-import { samplePosts } from "@/data/blogPosts";
+import { blogPosts } from "@/data/blogPosts";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useRef } from "react";
 import { cn } from "@/lib/utils";
@@ -32,7 +32,7 @@ export const BlogSection = () => {
   };
 
   const handleNext = () => {
-    const newIndex = Math.min(activeIndex + 1, samplePosts.length - 1);
+    const newIndex = Math.min(activeIndex + 1, blogPosts.length - 1);
     setActiveIndex(newIndex);
     scrollToIndex(newIndex);
   };
@@ -55,7 +55,7 @@ export const BlogSection = () => {
           onScroll={handleScroll}
           className="flex overflow-x-auto gap-8 pb-12 snap-x snap-mandatory scrollbar-none -mx-4 px-4"
         >
-          {samplePosts.map((post) => (
+          {blogPosts.map((post) => (
             <div 
               key={post.slug} 
               className="flex-none w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[30vw] snap-start"
@@ -79,7 +79,7 @@ export const BlogSection = () => {
           </button>
 
           <div className="flex justify-center gap-2">
-            {samplePosts.map((_, index) => (
+            {blogPosts.map((_, index) => (
               <button
                 key={index}
                 onClick={() => {
@@ -99,9 +99,9 @@ export const BlogSection = () => {
             onClick={handleNext}
             className={cn(
               "p-2 rounded-full transition-all bg-white/10 hover:bg-white/20",
-              activeIndex === samplePosts.length - 1 ? "opacity-50 cursor-not-allowed" : "opacity-100"
+              activeIndex === blogPosts.length - 1 ? "opacity-50 cursor-not-allowed" : "opacity-100"
             )}
-            disabled={activeIndex === samplePosts.length - 1}
+            disabled={activeIndex === blogPosts.length - 1}
           >
             <ChevronRight className="w-5 h-5 text-white" />
           </button>
