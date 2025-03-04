@@ -26,7 +26,8 @@ export const WhitepaperUploadForm = ({ onSuccess }: { onSuccess?: () => void }) 
         toast({
           title: "Invalid file type",
           description: "Only PDF files are allowed",
-          variant: "destructive"
+          variant: "destructive",
+          className: "bg-red-800 border-red-700 text-white"
         });
         return;
       }
@@ -36,7 +37,8 @@ export const WhitepaperUploadForm = ({ onSuccess }: { onSuccess?: () => void }) 
         toast({
           title: "File too large",
           description: "File size must be less than 10MB",
-          variant: "destructive"
+          variant: "destructive",
+          className: "bg-red-800 border-red-700 text-white"
         });
         return;
       }
@@ -52,7 +54,8 @@ export const WhitepaperUploadForm = ({ onSuccess }: { onSuccess?: () => void }) 
       toast({
         title: "Missing information",
         description: "Please fill in all required fields and select a file",
-        variant: "destructive"
+        variant: "destructive",
+        className: "bg-red-800 border-red-700 text-white"
       });
       return;
     }
@@ -108,6 +111,8 @@ export const WhitepaperUploadForm = ({ onSuccess }: { onSuccess?: () => void }) 
       toast({
         title: "Upload successful",
         description: "Your whitepaper has been uploaded",
+        variant: "default",
+        className: "bg-green-800 text-white border-green-700"
       });
       
       // Reset form
@@ -129,7 +134,8 @@ export const WhitepaperUploadForm = ({ onSuccess }: { onSuccess?: () => void }) 
       toast({
         title: "Upload failed",
         description: error instanceof Error ? error.message : "An error occurred during upload",
-        variant: "destructive"
+        variant: "destructive",
+        className: "bg-red-800 border-red-700 text-white"
       });
     } finally {
       setUploading(false);

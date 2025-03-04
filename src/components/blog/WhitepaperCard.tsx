@@ -42,6 +42,8 @@ export const WhitepaperCard = ({ whitepaper }: WhitepaperCardProps) => {
         toast({
           title: "Download started",
           description: "Your whitepaper download has started",
+          variant: "default",
+          className: "bg-green-800 text-white border-green-700",
         });
       }
     } catch (error) {
@@ -49,7 +51,8 @@ export const WhitepaperCard = ({ whitepaper }: WhitepaperCardProps) => {
       toast({
         title: "Download failed",
         description: "There was a problem downloading this whitepaper. Please try again.",
-        variant: "destructive"
+        variant: "destructive",
+        className: "bg-red-800 border-red-700"
       });
     }
   };
