@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Index from "./pages/Index";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
@@ -40,6 +40,8 @@ function App() {
             <Route path="/voice-chat" element={<AIVoiceChat />} />
             <Route path="/voice-business-lines" element={<AIVoiceBusinessLines />} />
             <Route path="/mercedes-dealer" element={<MercedesDealer />} />
+            {/* Add a case-insensitive route for Mercedes */}
+            <Route path="/Mercedes" element={<Navigate to="/mercedes-dealer" replace />} />
             <Route path="/retail-services" element={<RetailServices />} />
             <Route path="/insurance" element={<Insurance />} />
             <Route path="/license" element={<License />} />

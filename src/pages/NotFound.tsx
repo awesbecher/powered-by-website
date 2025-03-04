@@ -23,9 +23,9 @@ const NotFound = () => {
                 Back to Home
               </Button>
             </Link>
-            <Link to="/blog">
+            <Link to="/mercedes-dealer">
               <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                Visit Our Blog
+                Mercedes Dealer Page
               </Button>
             </Link>
           </div>
