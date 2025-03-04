@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Index from "./pages/Index";
@@ -19,8 +20,6 @@ import CallConfirmation from "./pages/CallConfirmation";
 import FoodMenu from "./pages/FoodMenu";
 import RoomService from "./pages/RoomService";
 import NotFound from "./pages/NotFound";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import { Toaster } from "@/components/ui/toaster"
 import Admin from "./pages/admin/Admin";
 
@@ -28,7 +27,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className="flex flex-col min-h-screen">
-        <Navbar />
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Index />} />
@@ -53,7 +51,6 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
-        <Footer />
         <Toaster />
       </div>
     </BrowserRouter>
