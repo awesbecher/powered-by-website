@@ -9,11 +9,13 @@ import { openaiAnthropicSmb } from "./openai-anthropic-smb";
 import { understandingAiAgents } from "./understanding-ai-agents";
 import { aiAgentsEvaluation } from "./ai-agents-evaluation";
 import { aiTrillionMarket } from "./ai-trillion-market";
+import { aiAgentsVsRpa } from "./ai-agents-vs-rpa";
 import { BlogPost } from "../../types/blog";
 
 export const samplePosts: BlogPost[] = [
   understandingAiAgents,
   aiTrillionMarket,
+  aiAgentsVsRpa,
   aiAgentsEvaluation,
   openaiAnthropicSmb,
   voiceAiRetail,
