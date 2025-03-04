@@ -5,6 +5,7 @@ import { ProductsHero } from "@/components/products/ProductsHero";
 import { ProductIndex } from "@/components/products/ProductIndex";
 import { serviceCardsData } from "@/data/serviceCardsData";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
+import Navbar from "@/components/layout/Navbar";
 
 const Products = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -16,6 +17,7 @@ const Products = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
+      <Navbar />
       <ProductsHero initialLoad={initialLoad} className="hero-section" />
       
       <ProductIndex />

@@ -5,6 +5,7 @@ import { services, additionalServices } from "@/data/services";
 import { useState, useEffect } from "react";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { useLocation } from "react-router-dom";
+import Navbar from "@/components/layout/Navbar";
 
 const Demo = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -26,6 +27,7 @@ const Demo = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
+      <Navbar />
       {/* Hero Section */}
       <div className="relative overflow-hidden px-6 lg:px-8 pb-8 pt-28">
         <div className="mx-auto max-w-7xl">

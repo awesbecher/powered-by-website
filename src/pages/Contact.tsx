@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { ContactHeader } from "@/components/contact/ContactHeader";
 import { ContactForm } from "@/components/contact/ContactForm";
+import Navbar from "@/components/layout/Navbar";
 
 const Contact = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -13,6 +14,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
+      <Navbar />
       {/* Content */}
       <div className="relative z-10 pt-36">
         <div className="max-w-2xl mx-auto px-4">
