@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import Navbar from "@/components/layout/Navbar";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -100,3 +100,4 @@ const BlogPost = () => {
 };
 
 export default BlogPost;
+
