@@ -1,10 +1,8 @@
-
 import { useState, useEffect } from "react";
 import { BlogPostCard } from "@/components/blog/BlogPostCard";
 import { samplePosts } from "@/data/blogPosts";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { SectionTitle } from "@/components/home/SectionTitle";
-import { WhitepaperUploadDialog } from "@/components/blog/WhitepaperUploadDialog";
 import { WhitepaperCard } from "@/components/blog/WhitepaperCard";
 import { supabase } from "@/integrations/supabase/client";
 import { Whitepaper } from "@/types/whitepaper";
@@ -100,10 +98,7 @@ const Blog = () => {
         </div>
 
         <div className="mx-auto max-w-7xl mt-20">
-          <div className="flex justify-between items-center">
-            <SectionTitle title="Whitepapers:" />
-            <WhitepaperUploadDialog onUploadSuccess={fetchWhitepapers} />
-          </div>
+          <SectionTitle title="Whitepapers:" />
         </div>
 
         <div className="max-w-7xl mx-auto mt-8 mb-16">
@@ -113,9 +108,9 @@ const Blog = () => {
             </div>
           ) : whitepapers.length === 0 ? (
             <div className="bg-white/5 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
-              <p className="text-white opacity-60 mb-2">No whitepapers yet</p>
-              <h3 className="text-xl font-bold text-white mb-2">Upload your first whitepaper to get started</h3>
-              <p className="text-white text-sm opacity-80">Use the "Upload Whitepaper" button to add your first PDF document.</p>
+              <p className="text-white opacity-60 mb-2">No whitepapers available</p>
+              <h3 className="text-xl font-bold text-white mb-2">Check back later</h3>
+              <p className="text-white text-sm opacity-80">Our team will be adding whitepapers soon.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 gap-6">

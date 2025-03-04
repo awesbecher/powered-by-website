@@ -10,6 +10,21 @@ serve(async (req) => {
   }
 
   try {
+    // Extract the authorization header
+    const authHeader = req.headers.get('Authorization')
+    const adminKey = Deno.env.get('ADMIN_UPLOAD_KEY')
+    
+    // Check for admin key - this restricts uploads to admins only
+    if (!authHeader || authHeader !== `Bearer ${adminKey}`) {
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized: Admin access required' }),
+        { 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }, 
+          status: 401 
+        }
+      )
+    }
+    
     const formData = await req.formData()
     const file = formData.get('file') as File
     const title = formData.get('title') as string
