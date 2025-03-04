@@ -63,6 +63,36 @@ export type Database = {
         }
         Relationships: []
       }
+      whitepapers: {
+        Row: {
+          description: string | null
+          downloads: number | null
+          file_path: string
+          filename: string
+          id: string
+          published_at: string | null
+          title: string
+        }
+        Insert: {
+          description?: string | null
+          downloads?: number | null
+          file_path: string
+          filename: string
+          id?: string
+          published_at?: string | null
+          title: string
+        }
+        Update: {
+          description?: string | null
+          downloads?: number | null
+          file_path?: string
+          filename?: string
+          id?: string
+          published_at?: string | null
+          title?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

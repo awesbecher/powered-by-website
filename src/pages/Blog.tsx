@@ -4,12 +4,61 @@ import { BlogPostCard } from "@/components/blog/BlogPostCard";
 import { samplePosts } from "@/data/blogPosts";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { SectionTitle } from "@/components/home/SectionTitle";
+import { WhitepaperUploadDialog } from "@/components/blog/WhitepaperUploadDialog";
+import { WhitepaperCard } from "@/components/blog/WhitepaperCard";
+import { supabase } from "@/integrations/supabase/client";
+import { Whitepaper } from "@/types/whitepaper";
+import { useToast } from "@/hooks/use-toast";
 
 const Blog = () => {
   const [initialLoad, setInitialLoad] = useState(true);
+  const [whitepapers, setWhitepapers] = useState<Whitepaper[]>([]);
+  const [loading, setLoading] = useState(true);
+  const { toast } = useToast();
+
+  const fetchWhitepapers = async () => {
+    try {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from('whitepapers')
+        .select('*')
+        .order('published_at', { ascending: false });
+      
+      if (error) {
+        throw error;
+      }
+      
+      setWhitepapers(data as Whitepaper[]);
+    } catch (error) {
+      console.error("Error fetching whitepapers:", error);
+      toast({
+        title: "Error",
+        description: "Failed to load whitepapers",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDownload = async (id: string) => {
+    try {
+      // Increment the download counter
+      await supabase
+        .from('whitepapers')
+        .update({ downloads: whitepapers.find(wp => wp.id === id)!.downloads + 1 })
+        .eq('id', id);
+      
+      // Refresh the whitepaper list
+      fetchWhitepapers();
+    } catch (error) {
+      console.error("Error updating download count:", error);
+    }
+  };
 
   useEffect(() => {
     setInitialLoad(false);
+    fetchWhitepapers();
   }, []);
 
   return (
@@ -51,15 +100,34 @@ const Blog = () => {
         </div>
 
         <div className="mx-auto max-w-7xl mt-20">
-          <SectionTitle title="Whitepapers:" />
+          <div className="flex justify-between items-center">
+            <SectionTitle title="Whitepapers:" />
+            <WhitepaperUploadDialog onUploadSuccess={fetchWhitepapers} />
+          </div>
         </div>
 
         <div className="max-w-7xl mx-auto mt-8 mb-16">
-          <div className="bg-white/5 rounded-lg p-8 hover:bg-white/10 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg cursor-pointer">
-            <p className="text-white opacity-60 mb-2">Coming soon...</p>
-            <h3 className="text-xl font-bold text-white mb-2">Upload your first whitepaper to get started</h3>
-            <p className="text-white text-sm opacity-80">Once you upload a PDF, it will appear here for download.</p>
-          </div>
+          {loading ? (
+            <div className="bg-white/5 rounded-lg p-8 text-center">
+              <p className="text-white">Loading whitepapers...</p>
+            </div>
+          ) : whitepapers.length === 0 ? (
+            <div className="bg-white/5 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
+              <p className="text-white opacity-60 mb-2">No whitepapers yet</p>
+              <h3 className="text-xl font-bold text-white mb-2">Upload your first whitepaper to get started</h3>
+              <p className="text-white text-sm opacity-80">Use the "Upload Whitepaper" button to add your first PDF document.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 gap-6">
+              {whitepapers.map(whitepaper => (
+                <WhitepaperCard 
+                  key={whitepaper.id} 
+                  whitepaper={whitepaper} 
+                  onDownload={() => handleDownload(whitepaper.id)} 
+                />
+              ))}
+            </div>
+          )}
         </div>
 
         <ClosingCTA />
