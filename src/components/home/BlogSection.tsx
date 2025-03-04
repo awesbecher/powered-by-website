@@ -1,112 +1,56 @@
 
+import React from "react";
 import { Link } from "react-router-dom";
-import { BlogPostCard } from "@/components/blog/BlogPostCard";
-import { samplePosts } from "@/data/blogPosts";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useState, useRef } from "react";
-import { cn } from "@/lib/utils";
 import { SectionTitle } from "./SectionTitle";
+import { blogPosts } from "@/data/blogPosts";
 
-export const BlogSection = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-  const scrollToIndex = (index: number) => {
-    if (scrollContainerRef.current) {
-      const container = scrollContainerRef.current;
-      const itemWidth = container.children[0].clientWidth;
-      container.scrollTo({
-        left: itemWidth * index,
-        behavior: 'smooth'
-      });
-    }
-  };
-
-  const handleScroll = () => {
-    if (scrollContainerRef.current) {
-      const container = scrollContainerRef.current;
-      const itemWidth = container.children[0].clientWidth;
-      const index = Math.round(container.scrollLeft / itemWidth);
-      setActiveIndex(index);
-    }
-  };
-
-  const handleNext = () => {
-    const newIndex = Math.min(activeIndex + 1, samplePosts.length - 1);
-    setActiveIndex(newIndex);
-    scrollToIndex(newIndex);
-  };
-
-  const handlePrev = () => {
-    const newIndex = Math.max(activeIndex - 1, 0);
-    setActiveIndex(newIndex);
-    scrollToIndex(newIndex);
-  };
+const BlogSection = () => {
+  // Show only the first 3 blog posts
+  const displayPosts = blogPosts.slice(0, 3);
 
   return (
-    <section className="relative z-10 py-16">
+    <section className="py-20 bg-gradient-to-b from-[#1a0b2e]/50 to-[#1a0b2e]">
       <div className="container mx-auto px-4">
-        <SectionTitle title="Our Latest Insights:" />
-      </div>
-
-      <div className="container mx-auto px-4 relative">
-        <div 
-          ref={scrollContainerRef}
-          onScroll={handleScroll}
-          className="flex overflow-x-auto gap-8 pb-12 snap-x snap-mandatory scrollbar-none -mx-4 px-4"
-        >
-          {samplePosts.map((post) => (
+        <SectionTitle 
+          title="Our Latest Insights" 
+          subtitle="Discover our thoughts on AI voice technology, customer service innovations, and more"
+        />
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+          {displayPosts.map((post) => (
             <div 
-              key={post.slug} 
-              className="flex-none w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[30vw] snap-start"
+              key={post.id}
+              className="bg-white/5 border border-white/10 rounded-lg overflow-hidden hover:bg-white/10 transition-colors"
             >
-              <BlogPostCard post={post} />
+              <div className="p-6">
+                <div className="text-xs text-purple-400 mb-2">{post.category} • {post.date}</div>
+                <h3 className="text-xl font-semibold mb-3 text-white">{post.title}</h3>
+                <p className="text-gray-300 mb-4 line-clamp-3">{post.excerpt}</p>
+                <Link 
+                  to={`/blog/${post.slug}`} 
+                  className="text-purple-400 hover:text-purple-300 inline-flex items-center"
+                >
+                  Read more
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
             </div>
           ))}
         </div>
-
-        {/* Navigation Controls */}
-        <div className="flex items-center justify-center gap-4 mt-6">
-          <button 
-            onClick={handlePrev}
-            className={cn(
-              "p-2 rounded-full transition-all bg-white/10 hover:bg-white/20",
-              activeIndex === 0 ? "opacity-50 cursor-not-allowed" : "opacity-100"
-            )}
-            disabled={activeIndex === 0}
+        
+        <div className="text-center mt-12">
+          <Link 
+            to="/blog" 
+            className="inline-flex items-center px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-md transition-colors text-white"
           >
-            <ChevronLeft className="w-5 h-5 text-white" />
-          </button>
-
-          <div className="flex justify-center gap-2">
-            {samplePosts.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  setActiveIndex(index);
-                  scrollToIndex(index);
-                }}
-                className={cn(
-                  "w-2 h-2 rounded-full transition-all",
-                  index === activeIndex ? "bg-white scale-125" : "bg-white/50 hover:bg-white/70"
-                )}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
-
-          <button 
-            onClick={handleNext}
-            className={cn(
-              "p-2 rounded-full transition-all bg-white/10 hover:bg-white/20",
-              activeIndex === samplePosts.length - 1 ? "opacity-50 cursor-not-allowed" : "opacity-100"
-            )}
-            disabled={activeIndex === samplePosts.length - 1}
-          >
-            <ChevronRight className="w-5 h-5 text-white" />
-          </button>
+            View All Articles
+          </Link>
         </div>
       </div>
     </section>
   );
 };
+
+export default BlogSection;

@@ -1,35 +1,37 @@
-import { BlogPost } from "@/types/blog";
+import { BlogPost } from '@/types/blog';
 
-// Make sure we're exporting a variable named 'blogPosts' to match the import
 export const blogPosts: BlogPost[] = [
   {
-    id: 1,
-    slug: "ai-voice-customer-service",
-    category: "AI Voice",
-    title: "Revolutionizing Customer Service with AI Voice Technology",
-    excerpt: "Explore how AI voice technology is transforming customer service, offering personalized and efficient support experiences.",
-    date: "March 15, 2024",
-    imageUrl: "/images/blog/ai-voice-customer-service.jpg",
-    content: "This is the full content of the blog post about AI voice in customer service.",
+    id: "1",
+    title: "Understanding AI Agents and Their Impact on Customer Service",
+    slug: "understanding-ai-agents",
+    excerpt: "Learn about AI agents and how they're transforming customer service experiences across industries.",
+    content: "Full article content here...",
+    author: "Sarah Johnson",
+    date: "April 10, 2023",
+    category: "AI Technology",
+    imageUrl: "/placeholder.svg"
   },
   {
-    id: 2,
-    slug: "future-of-ai-interactions",
-    category: "Artificial Intelligence",
-    title: "The Future of AI Interactions: Conversational AI and Beyond",
-    excerpt: "Discover the latest trends in conversational AI and how they're shaping the future of human-computer interactions.",
-    date: "February 28, 2024",
-    imageUrl: "/images/blog/future-of-ai-interactions.jpg",
-    content: "This is the full content of the blog post about the future of AI interactions.",
+    id: "2",
+    title: "Voice AI: The Future of Retail Customer Experience",
+    slug: "voice-ai-retail",
+    excerpt: "Discover how voice AI is changing the retail landscape and enhancing customer experiences.",
+    content: "Full article content here...",
+    author: "Michael Chen",
+    date: "March 25, 2023",
+    category: "Retail",
+    imageUrl: "/placeholder.svg"
   },
   {
-    id: 3,
-    slug: "ai-driven-personalization",
-    category: "Personalization",
-    title: "AI-Driven Personalization: Creating Tailored Customer Experiences",
-    excerpt: "Learn how AI algorithms are used to personalize customer experiences, enhancing engagement and satisfaction.",
-    date: "January 20, 2024",
-    imageUrl: "/images/blog/ai-driven-personalization.jpg",
-    content: "This is the full content of the blog post about AI-driven personalization.",
-  },
+    id: "3",
+    title: "How Small Businesses Can Leverage Conversational AI Agents",
+    slug: "smb-conversational-agents",
+    excerpt: "A practical guide for small businesses looking to implement conversational AI agents.",
+    content: "Full article content here...",
+    author: "Jessica Williams",
+    date: "February 18, 2023",
+    category: "Business",
+    imageUrl: "/placeholder.svg"
+  }
 ];
