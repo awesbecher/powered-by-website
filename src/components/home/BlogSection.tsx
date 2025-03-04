@@ -5,6 +5,7 @@ import { samplePosts } from "@/data/blogPosts";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useRef } from "react";
 import { cn } from "@/lib/utils";
+import { SectionTitle } from "./SectionTitle";
 
 export const BlogSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -45,9 +46,7 @@ export const BlogSection = () => {
   return (
     <section className="relative z-10 py-16">
       <div className="container mx-auto px-4">
-        <h2 className="relative text-5xl font-bold text-white mb-16 transition-colors duration-300 hover:bg-gradient-to-r hover:from-purple-400 hover:to-indigo-400 hover:bg-clip-text hover:text-transparent pt-0 pb-4 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-purple-500 after:to-indigo-500">
-          Our Latest Insights:
-        </h2>
+        <SectionTitle title="Our Latest Insights:" />
       </div>
 
       <div className="container mx-auto px-4 relative">
