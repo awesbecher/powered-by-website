@@ -1,4 +1,3 @@
-
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.7.1"
 import { corsHeaders } from "../_shared/cors.ts"
@@ -12,7 +11,7 @@ serve(async (req) => {
   try {
     // Extract the authorization header
     const authHeader = req.headers.get('Authorization')
-    const adminKey = Deno.env.get('ADMIN_UPLOAD_KEY')
+    const adminKey = Deno.env.get('PDF Upload')
     
     // Check for admin key - this restricts uploads to admins only
     if (!authHeader || authHeader !== `Bearer ${adminKey}`) {

@@ -12,7 +12,7 @@ POST https://cinohyzbtfzfcdtkgvij.supabase.co/functions/v1/upload-whitepaper
 ## Headers Required
 
 ```
-Authorization: Bearer YOUR_ADMIN_UPLOAD_KEY
+Authorization: Bearer YOUR_PDF_UPLOAD_KEY
 apikey: YOUR_SUPABASE_ANON_KEY
 ```
 
@@ -26,7 +26,7 @@ apikey: YOUR_SUPABASE_ANON_KEY
 
 ```bash
 curl -X POST https://cinohyzbtfzfcdtkgvij.supabase.co/functions/v1/upload-whitepaper \
-  -H "Authorization: Bearer YOUR_ADMIN_UPLOAD_KEY" \
+  -H "Authorization: Bearer YOUR_PDF_UPLOAD_KEY" \
   -H "apikey: YOUR_SUPABASE_ANON_KEY" \
   -F "file=@/path/to/your/whitepaper.pdf" \
   -F "title=Your Whitepaper Title" \
@@ -35,4 +35,4 @@ curl -X POST https://cinohyzbtfzfcdtkgvij.supabase.co/functions/v1/upload-whitep
 
 ## Security Note
 
-Keep your ADMIN_UPLOAD_KEY secure and never share it publicly. This key restricts whitepaper uploads to administrators only.
+Keep your PDF Upload key secure and never share it publicly. This key restricts whitepaper uploads to administrators only.
