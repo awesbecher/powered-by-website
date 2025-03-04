@@ -4,7 +4,6 @@ import { AgentType } from "@/components/asset-test/types";
 import AgentSelector from "@/components/asset-test/AgentSelector";
 import MicButton from "@/components/asset-test/MicButton";
 import AgentInfo from "@/components/asset-test/AgentInfo";
-import AIAgentFlowchart from "@/components/asset-test/AIAgentFlowchart";
 
 interface AssetTestContentProps {
   agentTypes: AgentType[];
@@ -39,15 +38,6 @@ const AssetTestContent: React.FC<AssetTestContentProps> = ({
 
           <AgentInfo selectedAgent={selectedAgent} />
         </div>
-      </div>
-      
-      {/* AI Agent Flowchart */}
-      <div className="mt-16">
-        <h2 className="text-3xl font-bold mb-6 text-[#9b87f5] text-center">AI Agents for Small Businesses</h2>
-        <p className="text-white text-center max-w-3xl mx-auto mb-8">
-          See how our AI agents streamline operations, improve customer service, and free up valuable time for small business owners.
-        </p>
-        <AIAgentFlowchart />
       </div>
     </div>
   );
