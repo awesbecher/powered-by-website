@@ -11,9 +11,12 @@ interface ServiceProps {
 }
 
 export const ServiceCard = ({ title, description, link, logo, category }: ServiceProps) => {
+  // Ensure the link for Retail Services is always lowercase and correctly formatted
+  const formattedLink = category === "Retail Services" ? "/retail-services" : link;
+  
   return (
     <Link
-      to={link}
+      to={formattedLink}
       className="group relative overflow-hidden rounded-2xl bg-[#1a0b2e] border border-accent/20 p-6 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/5 hover:-translate-y-1 transform-gpu hover:scale-[1.02] min-h-[200px] flex flex-col cursor-pointer"
     >
       <div className="flex flex-col items-center mb-1">

@@ -43,6 +43,10 @@ function App() {
             {/* Add a case-insensitive route for Mercedes */}
             <Route path="/Mercedes" element={<Navigate to="/mercedes-dealer" replace />} />
             <Route path="/retail-services" element={<RetailServices />} />
+            {/* Add a case-insensitive route for Retail Services */}
+            <Route path="/Retail-Services" element={<Navigate to="/retail-services" replace />} />
+            <Route path="/retail" element={<Navigate to="/retail-services" replace />} />
+            <Route path="/Retail" element={<Navigate to="/retail-services" replace />} />
             <Route path="/insurance" element={<Insurance />} />
             <Route path="/license" element={<License />} />
             <Route path="/call-confirmation" element={<CallConfirmation />} />
