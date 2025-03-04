@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { blogPosts } from "@/data/blogPosts";
 import Navbar from "@/components/layout/Navbar";
+import { ChevronRight } from "lucide-react";
 
 const Blog = () => {
   useEffect(() => {
@@ -27,19 +28,23 @@ const Blog = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {blogPosts.map((post) => (
-            <div key={post.id} className="bg-white/5 rounded-lg overflow-hidden hover:bg-white/10 transition-colors">
-              <div className="p-6">
-                <div className="text-xs text-purple-400 mb-2">{post.category} • {post.date}</div>
+            <Link 
+              key={post.id} 
+              to={`/blog/${post.slug}`}
+              className="bg-white/5 rounded-lg overflow-hidden hover:bg-white/10 transition-colors"
+            >
+              <div className="p-6 h-full flex flex-col">
+                <div className="text-xs text-purple-400 mb-2">
+                  {post.category} • {post.date}
+                </div>
                 <h3 className="text-xl font-semibold mb-3">{post.title}</h3>
-                <p className="text-gray-300 mb-4 line-clamp-3">{post.excerpt}</p>
-                <Link to={`/blog/${post.slug}`} className="text-purple-400 hover:text-purple-300 inline-flex items-center">
+                <p className="text-gray-300 mb-4 line-clamp-3 flex-grow">{post.excerpt}</p>
+                <div className="flex items-center text-purple-400 hover:text-purple-300 mt-auto">
                   Read more
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
+                  <ChevronRight className="h-4 w-4 ml-1" />
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>

@@ -1,15 +1,16 @@
 
 import { useParams } from "react-router-dom";
-import { samplePosts } from "../data/blogPosts";
+import { blogPosts } from "../data/blogPosts";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import Navbar from "@/components/layout/Navbar";
+import { ChevronLeft } from "lucide-react";
 
 const BlogPost = () => {
   const { slug } = useParams();
-  const post = samplePosts.find((post) => post.slug === slug);
+  const post = blogPosts.find((post) => post.slug === slug);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -22,6 +23,12 @@ const BlogPost = () => {
         <div className="container mx-auto px-4 pt-36">
           <h1 className="text-4xl font-bold text-white mb-4">Article not found</h1>
           <p className="text-gray-400">The article you're looking for doesn't exist.</p>
+          <Link to="/blog">
+            <Button className="mt-4">
+              <ChevronLeft className="mr-2 h-4 w-4" />
+              Back to Blog
+            </Button>
+          </Link>
         </div>
       </div>
     );
@@ -30,33 +37,61 @@ const BlogPost = () => {
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <Navbar />
-      <div className="relative w-full min-h-[30vh] overflow-hidden flex items-center py-8 pt-32">
-        <div className="absolute top-0 w-full h-[1px] bg-white/20" />
-        <div className="relative w-full">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-[#9b87f5] mb-2 drop-shadow-xl bg-[#1a0b2e]/70 p-4 rounded-lg backdrop-blur-sm break-words hyphens-auto">
-              {post.title}
-            </h1>
-            <div className="flex flex-wrap items-center gap-4 md:gap-6 text-gray-200 text-sm bg-[#1a0b2e]/70 p-3 rounded-lg backdrop-blur-sm inline-block">
-              <div className="flex items-center gap-2">
-                <span>{post.author}</span>
-              </div>
-              <div>
-                <span>{post.date}</span>
-              </div>
-              <div>
-                <span>{post.readTime}</span>
-              </div>
-            </div>
+      <div className="container mx-auto px-4 pt-32 pb-6">
+        <Link to="/blog" className="text-purple-400 hover:text-purple-300 inline-flex items-center mb-6">
+          <ChevronLeft className="mr-2 h-4 w-4" />
+          Back to Blog
+        </Link>
+        
+        <div className="bg-white/5 rounded-lg p-6 md:p-10">
+          <div className="flex flex-wrap items-center gap-4 text-sm text-purple-400 mb-4">
+            <span>{post.category}</span>
+            <span>•</span>
+            <span>{post.date}</span>
+            <span>•</span>
+            <span>{post.readTime}</span>
           </div>
+          
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-6">{post.title}</h1>
+          
+          <div className="text-sm text-gray-300 mb-8">
+            By {post.author}
+          </div>
+          
+          <div 
+            className="prose prose-invert max-w-none [&>*]:text-white [&>p]:text-gray-300 [&>p]:leading-relaxed [&>p]:mb-6 prose-li:text-gray-300 prose-h2:text-2xl prose-h2:text-purple-400 prose-h2:mt-10 prose-h2:mb-6 prose-h3:text-xl prose-h3:text-purple-300 prose-h3:mt-8 prose-h3:mb-4 prose-h4:text-lg prose-h4:text-purple-200 prose-h4:mt-6 prose-h4:mb-3 prose-strong:text-white prose-ul:my-6 prose-li:mb-2"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
         </div>
       </div>
 
-      <div className="container mx-auto px-4 max-w-4xl py-6">
-        <div 
-          className="prose prose-invert max-w-none [&>*]:text-white [&>p]:text-justify prose-h2:text-[#9b87f5] prose-h3:text-[#9b87f5] [&>p]:leading-relaxed [&>p]:mb-8 prose-li:text-white prose-strong:text-[#D6BCFA] prose-em:text-[#7E69AB] prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4 prose-ul:my-6 prose-li:mb-3 prose-a:text-[#9b87f5] [&>hr]:my-8"
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
+      <div className="container mx-auto px-4 py-12">
+        <h2 className="text-2xl font-bold mb-8">Related Articles</h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {blogPosts
+            .filter(relatedPost => relatedPost.id !== post.id)
+            .slice(0, 3)
+            .map((relatedPost) => (
+              <Link 
+                key={relatedPost.id} 
+                to={`/blog/${relatedPost.slug}`}
+                className="bg-white/5 rounded-lg overflow-hidden hover:bg-white/10 transition-colors"
+              >
+                <div className="p-6">
+                  <div className="text-xs text-purple-400 mb-2">
+                    {relatedPost.category} • {relatedPost.date}
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">{relatedPost.title}</h3>
+                  <p className="text-gray-300 mb-4 line-clamp-2">{relatedPost.excerpt}</p>
+                  <div className="flex items-center text-purple-400 hover:text-purple-300">
+                    Read more
+                    <ChevronRight className="h-4 w-4 ml-1" />
+                  </div>
+                </div>
+              </Link>
+            ))}
+        </div>
       </div>
 
       <ClosingCTA />
