@@ -5,7 +5,6 @@ import { SectionTitle } from "@/components/home/SectionTitle";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
-import Navbar from "@/components/layout/Navbar";
 
 const Admin = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -21,7 +20,6 @@ const Admin = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] pt-36 pb-20">
-      <Navbar />
       <div className="container mx-auto px-4">
         <div className="mb-8">
           <Button
