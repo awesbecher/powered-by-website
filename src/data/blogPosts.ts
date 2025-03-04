@@ -1,7 +1,6 @@
 
 import { BlogPost } from "@/types/blog";
 
-// Make sure we're exporting a variable named 'samplePosts' to match the import in BlogSection.tsx
 export const samplePosts: BlogPost[] = [
   {
     id: "1",

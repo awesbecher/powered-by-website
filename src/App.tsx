@@ -21,7 +21,6 @@ import FoodMenu from "./pages/FoodMenu";
 import RoomService from "./pages/RoomService";
 import NotFound from "./pages/NotFound";
 import { Toaster } from "@/components/ui/toaster"
-import Admin from "./pages/admin/Admin";
 
 function App() {
   return (
@@ -47,7 +46,6 @@ function App() {
             <Route path="/call-confirmation" element={<CallConfirmation />} />
             <Route path="/food-menu" element={<FoodMenu />} />
             <Route path="/room-service" element={<RoomService />} />
-            <Route path="/admin" element={<Admin />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
