@@ -66,7 +66,7 @@ const BlogPost = () => {
       </div>
 
       <div className="container mx-auto px-4 py-12">
-        <h2 className="text-2xl font-bold mb-8">Related Articles</h2>
+        <h2 className="text-2xl font-bold text-white mb-8">Related Articles</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {blogPosts
@@ -82,7 +82,7 @@ const BlogPost = () => {
                   <div className="text-xs text-purple-400 mb-2">
                     {relatedPost.category} • {relatedPost.date}
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">{relatedPost.title}</h3>
+                  <h3 className="text-xl font-semibold text-white mb-3">{relatedPost.title}</h3>
                   <p className="text-gray-300 mb-4 line-clamp-2">{relatedPost.excerpt}</p>
                   <div className="flex items-center text-purple-400 hover:text-purple-300">
                     Read more
