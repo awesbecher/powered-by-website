@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Whitepaper } from "@/types/whitepaper";
-import { BlogPost } from "@/types/blog";
 import { WhitepaperCard } from "@/components/blog/WhitepaperCard";
 import { blogPosts } from "@/data/blogPosts";
+import Navbar from "@/components/layout/Navbar";
 
 const Blog = () => {
   const [whitepapers, setWhitepapers] = useState<Whitepaper[]>([]);
@@ -39,7 +40,8 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] text-white pb-20">
-      <header className="py-16 text-center">
+      <Navbar />
+      <header className="py-16 pt-36 text-center">
         <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-300">
           Blog & Resources
         </h1>

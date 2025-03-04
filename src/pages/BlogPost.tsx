@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
+import Navbar from "@/components/layout/Navbar";
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -16,8 +17,9 @@ const BlogPost = () => {
 
   if (!post) {
     return (
-      <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] pt-36">
-        <div className="container mx-auto px-4">
+      <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
+        <Navbar />
+        <div className="container mx-auto px-4 pt-36">
           <h1 className="text-4xl font-bold text-white mb-4">Article not found</h1>
           <p className="text-gray-400">The article you're looking for doesn't exist.</p>
         </div>
@@ -27,6 +29,7 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
+      <Navbar />
       <div className="relative w-full min-h-[30vh] overflow-hidden flex items-center py-8 pt-32">
         <div className="absolute top-0 w-full h-[1px] bg-white/20" />
         <div className="relative w-full">

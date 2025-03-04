@@ -46,7 +46,7 @@ export const BlogSection = () => {
   return (
     <section className="relative z-10 py-16">
       <div className="container mx-auto px-4">
-        <SectionTitle title="Our Latest Insights:" />
+        <SectionTitle title="Our Latest Insights" />
       </div>
 
       <div className="container mx-auto px-4 relative">
@@ -110,3 +110,5 @@ export const BlogSection = () => {
     </section>
   );
 };
+
+export default BlogSection;
