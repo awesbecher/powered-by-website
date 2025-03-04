@@ -4,7 +4,7 @@ import { BlogPost } from "@/types/blog";
 // Make sure we're exporting a variable named 'samplePosts' to match the import in BlogSection.tsx
 export const samplePosts: BlogPost[] = [
   {
-    id: 1,
+    id: "1",
     slug: "ai-voice-customer-service",
     category: "AI Voice",
     title: "Revolutionizing Customer Service with AI Voice Technology",
@@ -15,7 +15,7 @@ export const samplePosts: BlogPost[] = [
     content: "This is the full content of the blog post about AI voice in customer service.",
   },
   {
-    id: 2,
+    id: "2",
     slug: "future-of-ai-interactions",
     category: "Artificial Intelligence",
     title: "The Future of AI Interactions: Conversational AI and Beyond",
@@ -26,7 +26,7 @@ export const samplePosts: BlogPost[] = [
     content: "This is the full content of the blog post about the future of AI interactions.",
   },
   {
-    id: 3,
+    id: "3",
     slug: "ai-driven-personalization",
     category: "Personalization",
     title: "AI-Driven Personalization: Creating Tailored Customer Experiences",
