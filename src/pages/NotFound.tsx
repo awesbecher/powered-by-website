@@ -16,16 +16,28 @@ const NotFound = () => {
           <p className="text-gray-300 text-xl mb-12">
             The page you're looking for doesn't exist or has been moved.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
             <Link to="/">
               <Button size="lg" className="w-full sm:w-auto bg-white text-purple-900 hover:bg-gray-100">
                 <ChevronLeft className="mr-2 h-4 w-4" />
                 Back to Home
               </Button>
             </Link>
+            <Link to="/ai-agency">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto border-white text-white hover:bg-white/10">
+                AI Agency
+              </Button>
+            </Link>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/blog">
               <Button variant="outline" size="lg" className="w-full sm:w-auto border-white text-white hover:bg-white/10">
                 Visit Our Blog
+              </Button>
+            </Link>
+            <Link to="/products">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto border-white text-white hover:bg-white/10">
+                Explore Solutions
               </Button>
             </Link>
           </div>

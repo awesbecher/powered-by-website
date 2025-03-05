@@ -37,6 +37,8 @@ function App() {
             <Route path="/real-estate" element={<RealEstate />} />
             <Route path="/asset-test" element={<AssetTest />} />
             <Route path="/ai-agency" element={<AIAgency />} />
+            {/* Add redirect for ai-assistant */}
+            <Route path="/ai-assistant" element={<Navigate to="/ai-agency" replace />} />
             <Route path="/voice-chat" element={<AIVoiceChat />} />
             <Route path="/voice-business-lines" element={<AIVoiceBusinessLines />} />
             <Route path="/mercedes-dealer" element={<MercedesDealer />} />
