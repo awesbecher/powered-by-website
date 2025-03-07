@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Clock, User, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -11,6 +10,7 @@ interface BlogPostCardProps {
   externalUrl?: string;
   customImage?: string;
   titleOverride?: string;
+  excerptOverride?: string;
 }
 
 const getPostImage = (slug: string, customImage?: string) => {
@@ -58,7 +58,14 @@ const getPostImage = (slug: string, customImage?: string) => {
   }
 };
 
-export const BlogPostCard = ({ post, featured = false, externalUrl, customImage, titleOverride }: BlogPostCardProps) => {
+export const BlogPostCard = ({ 
+  post, 
+  featured = false, 
+  externalUrl, 
+  customImage, 
+  titleOverride,
+  excerptOverride 
+}: BlogPostCardProps) => {
   const location = useLocation();
   const isOnBlogPage = location.pathname === "/blog";
 
@@ -89,7 +96,7 @@ export const BlogPostCard = ({ post, featured = false, externalUrl, customImage,
             {titleOverride || post.title}
           </h2>
           <p className="text-white text-sm leading-relaxed mb-6 line-clamp-4 text-shadow">
-            {post.excerpt}
+            {excerptOverride || post.excerpt}
           </p>
           <div className="flex items-center justify-between text-xs text-white mt-auto">
             <div className="flex items-center gap-2">

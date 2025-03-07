@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { BlogPostCard } from "@/components/blog/BlogPostCard";
 import { blogPosts } from "@/data/blog-posts";
@@ -55,41 +54,55 @@ export const BlogSection = () => {
           onScroll={handleScroll}
           className="flex overflow-x-auto gap-8 pb-12 snap-x snap-mandatory scrollbar-none -mx-4 px-4"
         >
-          {blogPosts.map((post, index) => (
-            <div 
-              key={post.slug} 
-              className="flex-none w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[30vw] snap-start"
-            >
-              <BlogPostCard 
-                post={post} 
-                externalUrl={
-                  index === 0 
-                    ? "https://poweredbyagency.ghost.io/ai-agents-a-laymans-guide/" 
-                    : index === 1 
-                      ? "https://poweredbyagency.ghost.io/how-has-ai-become-so-human-like/" 
-                      : index === 2
-                        ? "https://poweredbyagency.ghost.io/ai-agents-the-next-1-trillion-mopportunity/"
-                        : index === 3
-                          ? "https://poweredbyagency.ghost.io/how-can-saas-customer-success-benefit-from-ai-agents-2/"
-                          : index === 4
-                            ? "https://poweredbyagency.ghost.io/practical-ways-smbs-can-use-conversational-ai-agents/"
-                            : index === 5
-                              ? "https://poweredbyagency.ghost.io/ai-agents-the-most-common-fears-for-smbs/"
-                              : index === 6
-                                ? "https://poweredbyagency.ghost.io/build-or-buy-the-ai-agents-evaluation-guide/"
-                                : index === 7
-                                  ? "https://poweredbyagency.ghost.io/5-reasons-why-powered_by-exists/"
-                                  : index === 8
-                                    ? "https://poweredbyagency.ghost.io/ai-agents-vs-rpa-whats-the-difference/"
-                                    : index === 9
-                                      ? "https://poweredbyagency.ghost.io/the-agentic-revolution-is-here/"
-                                      : undefined
-                }
-                customImage={
-                  index === 0 
-                    ? "/lovable-uploads/1d9e2ce4-55d8-420a-83ba-9f66a644ade8.png" 
-                    : index === 1 
-                      ? "/lovable-uploads/d01b909c-5068-4b11-99e2-56b8eed3c895.png" 
+          {blogPosts.map((post, index) => {
+            let customExcerpt;
+            if (index === 0) {
+              customExcerpt = "What are AI Agents? How hard would they be for us to implement? Will they take my job? All common questions answered in the following definitive A Layman's Guide to AI Agents";
+            } else if (index === 1) {
+              customExcerpt = "The AI that was was considered science fiction in the 2013 film \"Her\", has now become our reality. Learn how has the state-of-the-art in AI engineering has made this possible.";
+            } else if (index === 2) {
+              customExcerpt = "Powered_by's research estimates that AI agents represent the next $1 Trillion market opportunity. All businesses stand to benefit from this tidal shift in computing. See why in this article.";
+            } else if (index === 3) {
+              customExcerpt = "The sales and customer support functions of any SaaS company are deeply human-intensive. In this article, we detail how SaaS organizations can reduce the human labor strain on their sales & support functions while upholding the highest standard of quality and customer centricity.";
+            } else if (index === 9) {
+              customExcerpt = "For SMBs, evaluating any new technology investment can be daunting. How do you build a business case for implementing AI agents? How do you justify the spend? How will it positively impact our business quickly? To help, we present: The Business Case for AI Agents.";
+            }
+            
+            return (
+              <div 
+                key={post.slug} 
+                className="flex-none w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[30vw] snap-start"
+              >
+                <BlogPostCard 
+                  post={post} 
+                  externalUrl={
+                    index === 0 
+                      ? "https://poweredbyagency.ghost.io/ai-agents-a-laymans-guide/" 
+                      : index === 1 
+                        ? "https://poweredbyagency.ghost.io/how-has-ai-become-so-human-like/" 
+                        : index === 2
+                          ? "https://poweredbyagency.ghost.io/ai-agents-the-next-1-trillion-mopportunity/"
+                          : index === 3
+                            ? "https://poweredbyagency.ghost.io/how-can-saas-customer-success-benefit-from-ai-agents-2/"
+                            : index === 4
+                              ? "https://poweredbyagency.ghost.io/practical-ways-smbs-can-use-conversational-ai-agents/"
+                              : index === 5
+                                ? "https://poweredbyagency.ghost.io/ai-agents-the-most-common-fears-for-smbs/"
+                                : index === 6
+                                  ? "https://poweredbyagency.ghost.io/build-or-buy-the-ai-agents-evaluation-guide/"
+                                  : index === 7
+                                    ? "https://poweredbyagency.ghost.io/5-reasons-why-powered_by-exists/"
+                                    : index === 8
+                                      ? "https://poweredbyagency.ghost.io/ai-agents-vs-rpa-whats-the-difference/"
+                                      : index === 9
+                                        ? "https://poweredbyagency.ghost.io/the-agentic-revolution-is-here/"
+                                        : undefined
+                  }
+                  customImage={
+                    index === 0 
+                      ? "/lovable-uploads/1d9e2ce4-55d8-420a-83ba-9f66a644ade8.png" 
+                      : index === 1 
+                        ? "/lovable-uploads/d01b909c-5068-4b11-99e2-56b8eed3c895.png" 
                       : index === 2
                         ? "/lovable-uploads/cb3348ad-fffb-48e3-ae8f-f12e86dda512.png"
                         : index === 3
@@ -107,36 +120,37 @@ export const BlogSection = () => {
                                     : index === 9
                                       ? "/lovable-uploads/7815dd46-92f4-4475-809a-a644ec7fd3b9.png"
                                       : undefined
-                }
-                titleOverride={
-                  index === 0 
-                    ? "AI Agents: A Layman's Guide" 
-                    : index === 1 
-                      ? "How Has AI Become So \"Human-like\"?" 
-                      : index === 2
-                        ? "AI Agents: The Next $1 Trillion Market Opportunity?"
-                        : index === 3
-                          ? "How Can SaaS Customer Success Benefit from AI Agents?"
-                          : index === 4
-                            ? "Practical Ways SMBs Can Use Conversational AI Agents"
-                            : index === 5
-                              ? "AI Agents: The Most Common Fears for SMBs"
-                              : index === 6
-                                ? "Build Or Buy? The AI Agents Evaluation Guide"
-                                : index === 7
-                                  ? "5 Reasons Why Powered_by Exists"
-                                  : index === 8
-                                    ? "AI Agents vs. RPA. What's the difference?"
-                                    : index === 9
-                                      ? "The Agentic Revolution is Here"
-                                      : undefined
-                }
-              />
-            </div>
-          ))}
+                  }
+                  titleOverride={
+                    index === 0 
+                      ? "AI Agents: A Layman's Guide" 
+                      : index === 1 
+                        ? "How Has AI Become So \"Human-like\"?" 
+                        : index === 2
+                          ? "AI Agents: The Next $1 Trillion Market Opportunity?"
+                          : index === 3
+                            ? "How Can SaaS Customer Success Benefit from AI Agents?"
+                            : index === 4
+                              ? "Practical Ways SMBs Can Use Conversational AI Agents"
+                              : index === 5
+                                ? "AI Agents: The Most Common Fears for SMBs"
+                                : index === 6
+                                  ? "Build Or Buy? The AI Agents Evaluation Guide"
+                                  : index === 7
+                                    ? "5 Reasons Why Powered_by Exists"
+                                    : index === 8
+                                      ? "AI Agents vs. RPA. What's the difference?"
+                                      : index === 9
+                                        ? "The Agentic Revolution is Here"
+                                        : undefined
+                  }
+                  excerptOverride={customExcerpt}
+                />
+              </div>
+            );
+          })}
         </div>
 
-        {/* Navigation Controls */}
         <div className="flex items-center justify-center gap-4 mt-6">
           <button 
             onClick={handlePrev}
