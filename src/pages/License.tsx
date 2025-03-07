@@ -97,7 +97,7 @@ const License = () => {
         <span className="font-medium">Back</span>
       </button>
 
-      <div className="absolute top-24 right-8 z-20">
+      <div className="flex justify-center w-full absolute top-24 z-20">
         <img 
           src="/lovable-uploads/8505af38-6a90-44dc-b6bc-554d254475ea.png"
           alt="RightBloom"
