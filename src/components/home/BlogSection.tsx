@@ -67,21 +67,27 @@ export const BlogSection = () => {
                     ? "https://poweredbyagency.ghost.io/ai-agents-a-laymans-guide/" 
                     : index === 1 
                       ? "https://poweredbyagency.ghost.io/how-has-ai-become-so-human-like/" 
-                      : undefined
+                      : index === 2
+                        ? "https://poweredbyagency.ghost.io/ai-agents-the-next-1-trillion-mopportunity/"
+                        : undefined
                 }
                 customImage={
                   index === 0 
                     ? "/lovable-uploads/1d9e2ce4-55d8-420a-83ba-9f66a644ade8.png" 
                     : index === 1 
                       ? "/lovable-uploads/d01b909c-5068-4b11-99e2-56b8eed3c895.png" 
-                      : undefined
+                      : index === 2
+                        ? "/lovable-uploads/cb3348ad-fffb-48e3-ae8f-f12e86dda512.png"
+                        : undefined
                 }
                 titleOverride={
                   index === 0 
                     ? "AI Agents: A Layman's Guide" 
                     : index === 1 
                       ? "How Has AI Become So \"Human-like\"?" 
-                      : undefined
+                      : index === 2
+                        ? "AI Agents: The Next $1 Trillion Market Opportunity?"
+                        : undefined
                 }
               />
             </div>
