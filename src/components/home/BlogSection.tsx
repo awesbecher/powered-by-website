@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { BlogPostCard } from "@/components/blog/BlogPostCard";
 import { blogPosts } from "@/data/blog-posts";
@@ -64,6 +65,12 @@ export const BlogSection = () => {
               customExcerpt = "Powered_by's research estimates that AI agents represent the next $1 Trillion market opportunity. All businesses stand to benefit from this tidal shift in computing. See why in this article.";
             } else if (index === 3) {
               customExcerpt = "The sales and customer support functions of any SaaS company are deeply human-intensive. In this article, we detail how SaaS organizations can reduce the human labor strain on their sales & support functions while upholding the highest standard of quality and customer centricity.";
+            } else if (index === 4) {
+              customExcerpt = "Conversational AI agents sound and behave in a staggeringly human-like manner. Whether its an AI voice agent that answers your support calls, or an AI email agent that automates customer inquiries, we offer insights into the most practical areas where they can be implemented.";
+            } else if (index === 5) {
+              customExcerpt = "While AI agents can offer a multitude of benefits to your SMB, they can also generate concerns. In this article, we outline the common fears our customers express about adopting AI agents and how they overcame them.";
+            } else if (index === 6) {
+              customExcerpt = "AI agents can supercharge your small business, but should you buy a ready-made tool or build your own? This guide weighs the pros and cons to help your SMB make an informed, cost conscious decision.";
             } else if (index === 9) {
               customExcerpt = "For SMBs, evaluating any new technology investment can be daunting. How do you build a business case for implementing AI agents? How do you justify the spend? How will it positively impact our business quickly? To help, we present: The Business Case for AI Agents.";
             }
