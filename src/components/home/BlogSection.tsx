@@ -71,8 +71,14 @@ export const BlogSection = () => {
               customExcerpt = "While AI agents can offer a multitude of benefits to your SMB, they can also generate concerns. In this article, we outline the common fears our customers express about adopting AI agents and how they overcame them.";
             } else if (index === 6) {
               customExcerpt = "AI agents can supercharge your small business, but should you buy a ready-made tool or build your own? This guide weighs the pros and cons to help your SMB make an informed, cost conscious decision.";
+            } else if (index === 7) {
+              customExcerpt = "If you are already using ChatGPT and other products from OpenAI, why would you need a specialized partner like Powered_by? In this report, we explain why SMBs chose to partner with us to develop and implement their AI agent visions.";
+            } else if (index === 8) {
+              customExcerpt = "What's the difference between AI agents and Robotic Process Automation (RPA)? In this guide, we provide insights on the history of RPA and how new innovations in AI agent automation is upending the game in workflow automation.";
             } else if (index === 9) {
               customExcerpt = "For SMBs, evaluating any new technology investment can be daunting. How do you build a business case for implementing AI agents? How do you justify the spend? How will it positively impact our business quickly? To help, we present: The Business Case for AI Agents.";
+            } else if (index === 10) {
+              customExcerpt = "From SaaS to Agentic AI: A bigger wave is cresting in the enterprise software game.";
             }
             
             return (
@@ -103,7 +109,9 @@ export const BlogSection = () => {
                                       ? "https://poweredbyagency.ghost.io/ai-agents-vs-rpa-whats-the-difference/"
                                       : index === 9
                                         ? "https://poweredbyagency.ghost.io/the-agentic-revolution-is-here/"
-                                        : undefined
+                                        : index === 10
+                                          ? "https://poweredbyagency.ghost.io/from-saas-to-agentic-ai/"
+                                          : undefined
                   }
                   customImage={
                     index === 0 
@@ -126,7 +134,9 @@ export const BlogSection = () => {
                                     ? "/lovable-uploads/4a4cd2c8-60ca-4613-afa8-cf62ebc5ee1a.png"
                                     : index === 9
                                       ? "/lovable-uploads/7815dd46-92f4-4475-809a-a644ec7fd3b9.png"
-                                      : undefined
+                                      : index === 10
+                                        ? "/lovable-uploads/f971b5e9-817b-426a-9db0-5db472970633.png"
+                                        : undefined
                   }
                   titleOverride={
                     index === 0 
@@ -149,7 +159,9 @@ export const BlogSection = () => {
                                       ? "AI Agents vs. RPA. What's the difference?"
                                       : index === 9
                                         ? "The Agentic Revolution is Here"
-                                        : undefined
+                                        : index === 10
+                                          ? "From SaaS to Agentic AI"
+                                          : undefined
                   }
                   excerptOverride={customExcerpt}
                 />
