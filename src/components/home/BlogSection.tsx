@@ -46,13 +46,18 @@ export const BlogSection = () => {
             />
           </a>
           
-          <div className="transition-transform hover:scale-105 rounded-lg">
+          <a 
+            href="https://www.linkedin.com/company/poweredbyagents" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#9b87f5] focus:ring-offset-2 focus:ring-offset-[#1a0b2e] rounded-lg"
+          >
             <img 
               src="/lovable-uploads/04bfc221-da05-4bee-b0ca-c32f544d4baf.png" 
               alt="LinkedIn" 
               className="w-16 h-16 md:w-20 md:h-20 object-contain"
             />
-          </div>
+          </a>
         </div>
       </div>
     </section>
