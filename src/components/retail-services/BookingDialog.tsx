@@ -66,7 +66,7 @@ const BookingDialog = ({
                 <Button 
                   variant="outline"
                   onClick={() => setIsOpen(false)}
-                  className="w-full border-gray-700 text-white hover:bg-gray-800 hover:text-white"
+                  className="w-full border-gray-700 text-white hover:bg-gray-800"
                 >
                   Cancel
                 </Button>
