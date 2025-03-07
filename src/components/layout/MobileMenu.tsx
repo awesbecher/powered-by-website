@@ -1,9 +1,10 @@
 
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { NavItem } from "./NavLinks";
 import { AnimatePresence, motion } from "framer-motion";
+import NavLink from "./NavLink";
 
 interface MobileMenuProps {
   navItems: NavItem[];
@@ -11,7 +12,6 @@ interface MobileMenuProps {
 }
 
 const MobileMenu = ({ navItems, showConsultButton }: MobileMenuProps) => {
-  const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
@@ -37,58 +37,34 @@ const MobileMenu = ({ navItems, showConsultButton }: MobileMenuProps) => {
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
             <div className="flex flex-col space-y-2">
-              <Link
+              <NavLink 
                 to="/"
-                className={cn(
-                  "px-4 py-2 text-sm font-medium",
-                  location.pathname === '/'
-                    ? "text-[#9b87f5]"
-                    : "text-gray-300"
-                )}
+                isMobile
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Home
-              </Link>
-              <Link
+              </NavLink>
+              
+              <NavLink 
                 to="/ai-agency"
-                className={cn(
-                  "px-4 py-2 text-sm font-medium",
-                  location.pathname === '/ai-agency'
-                    ? "text-[#9b87f5]"
-                    : "text-gray-300"
-                )}
+                isMobile
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 AI Agency
-              </Link>
+              </NavLink>
+              
               {navItems.map((item) => (
-                item.isExternal ? (
-                  <a
-                    key={item.name}
-                    href={item.path}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 text-sm font-medium text-gray-300"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </a>
-                ) : (
-                  <Link
-                    key={item.name}
-                    to={item.path}
-                    className={cn(
-                      "px-4 py-2 text-sm font-medium",
-                      location.pathname === item.path
-                        ? "text-[#9b87f5]"
-                        : "text-gray-300"
-                    )}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                )
+                <NavLink
+                  key={item.name}
+                  to={item.path}
+                  isExternal={item.isExternal}
+                  isMobile
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </NavLink>
               ))}
+              
               {showConsultButton && (
                 <Link
                   to="/contact"
