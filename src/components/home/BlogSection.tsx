@@ -69,7 +69,9 @@ export const BlogSection = () => {
                       ? "https://poweredbyagency.ghost.io/how-has-ai-become-so-human-like/" 
                       : index === 2
                         ? "https://poweredbyagency.ghost.io/ai-agents-the-next-1-trillion-mopportunity/"
-                        : undefined
+                        : index === 3
+                          ? "https://poweredbyagency.ghost.io/how-can-saas-customer-success-benefit-from-ai-agents-2/"
+                          : undefined
                 }
                 customImage={
                   index === 0 
@@ -78,7 +80,9 @@ export const BlogSection = () => {
                       ? "/lovable-uploads/d01b909c-5068-4b11-99e2-56b8eed3c895.png" 
                       : index === 2
                         ? "/lovable-uploads/cb3348ad-fffb-48e3-ae8f-f12e86dda512.png"
-                        : undefined
+                        : index === 3
+                          ? "/lovable-uploads/628d30f0-dbf5-4a0a-8ed9-2b193dee90c6.png"
+                          : undefined
                 }
                 titleOverride={
                   index === 0 
@@ -87,7 +91,9 @@ export const BlogSection = () => {
                       ? "How Has AI Become So \"Human-like\"?" 
                       : index === 2
                         ? "AI Agents: The Next $1 Trillion Market Opportunity?"
-                        : undefined
+                        : index === 3
+                          ? "How Can SaaS Customer Success Benefit from AI Agents?"
+                          : undefined
                 }
               />
             </div>
