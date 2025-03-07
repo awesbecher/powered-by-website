@@ -73,7 +73,9 @@ export const BlogSection = () => {
                           ? "https://poweredbyagency.ghost.io/how-can-saas-customer-success-benefit-from-ai-agents-2/"
                           : index === 4
                             ? "https://poweredbyagency.ghost.io/practical-ways-smbs-can-use-conversational-ai-agents/"
-                            : undefined
+                            : index === 5
+                              ? "https://poweredbyagency.ghost.io/ai-agents-the-most-common-fears-for-smbs/"
+                              : undefined
                 }
                 customImage={
                   index === 0 
@@ -86,7 +88,9 @@ export const BlogSection = () => {
                           ? "/lovable-uploads/628d30f0-dbf5-4a0a-8ed9-2b193dee90c6.png"
                           : index === 4
                             ? "/lovable-uploads/95284a6f-5cd3-4e2c-abf1-b7b5d98cb8bd.png"
-                            : undefined
+                            : index === 5
+                              ? "/lovable-uploads/ac998611-204a-4c1d-984c-5f8d400f57ef.png"
+                              : undefined
                 }
                 titleOverride={
                   index === 0 
@@ -99,7 +103,9 @@ export const BlogSection = () => {
                           ? "How Can SaaS Customer Success Benefit from AI Agents?"
                           : index === 4
                             ? "Practical Ways SMBs Can Use Conversational AI Agents"
-                            : undefined
+                            : index === 5
+                              ? "AI Agents: The Most Common Fears for SMBs"
+                              : undefined
                 }
               />
             </div>

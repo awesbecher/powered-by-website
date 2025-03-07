@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Clock, User, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -40,7 +39,7 @@ const getPostImage = (slug: string, customImage?: string) => {
     case "customer-service-evolution":
       return "/lovable-uploads/8505af38-6a90-44dc-b6bc-554d254475ea.png";
     case "breaking-down-ai-fears-smb":
-      return "/lovable-uploads/e504e0c0-aac1-498a-9e32-e6e42a133dee.png";
+      return "/lovable-uploads/ac998611-204a-4c1d-984c-5f8d400f57ef.png";
     case "ai-voice-customer-service":
       return "/lovable-uploads/ec9dd264-4bb3-4b03-9b50-e31383652af9.png";
     case "future-of-ai-interactions":
