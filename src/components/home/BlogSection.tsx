@@ -71,7 +71,9 @@ export const BlogSection = () => {
                         ? "https://poweredbyagency.ghost.io/ai-agents-the-next-1-trillion-mopportunity/"
                         : index === 3
                           ? "https://poweredbyagency.ghost.io/how-can-saas-customer-success-benefit-from-ai-agents-2/"
-                          : undefined
+                          : index === 4
+                            ? "https://poweredbyagency.ghost.io/practical-ways-smbs-can-use-conversational-ai-agents/"
+                            : undefined
                 }
                 customImage={
                   index === 0 
@@ -82,7 +84,9 @@ export const BlogSection = () => {
                         ? "/lovable-uploads/cb3348ad-fffb-48e3-ae8f-f12e86dda512.png"
                         : index === 3
                           ? "/lovable-uploads/628d30f0-dbf5-4a0a-8ed9-2b193dee90c6.png"
-                          : undefined
+                          : index === 4
+                            ? "/lovable-uploads/95284a6f-5cd3-4e2c-abf1-b7b5d98cb8bd.png"
+                            : undefined
                 }
                 titleOverride={
                   index === 0 
@@ -93,7 +97,9 @@ export const BlogSection = () => {
                         ? "AI Agents: The Next $1 Trillion Market Opportunity?"
                         : index === 3
                           ? "How Can SaaS Customer Success Benefit from AI Agents?"
-                          : undefined
+                          : index === 4
+                            ? "Practical Ways SMBs Can Use Conversational AI Agents"
+                            : undefined
                 }
               />
             </div>

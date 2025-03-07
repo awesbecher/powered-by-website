@@ -36,7 +36,7 @@ const getPostImage = (slug: string, customImage?: string) => {
     case "human-like-ai-secrets":
       return "/lovable-uploads/ba7183d3-c2d6-46b1-b51e-afa9de2b5af2.png";
     case "practical-ways-smbs-use-conversational-agents":
-      return "/lovable-uploads/57b14d49-eab1-4dd2-827d-dceb363f5514.png";
+      return "/lovable-uploads/95284a6f-5cd3-4e2c-abf1-b7b5d98cb8bd.png";
     case "customer-service-evolution":
       return "/lovable-uploads/8505af38-6a90-44dc-b6bc-554d254475ea.png";
     case "breaking-down-ai-fears-smb":
