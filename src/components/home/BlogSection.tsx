@@ -32,7 +32,7 @@ export const BlogSection = () => {
       
       <div className="container mx-auto px-4 mt-16">
         <SectionTitle title="Follow Us on X:" />
-        <div className="flex justify-center mt-8">
+        <div className="flex justify-start mt-8">
           <a 
             href="https://x.com/poweredbyagency" 
             target="_blank" 
