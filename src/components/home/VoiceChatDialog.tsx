@@ -75,7 +75,7 @@ export const VoiceChatDialog = ({
           <DialogHeader className="flex items-start space-x-4">
             <Avatar className="w-20 h-20">
               <AvatarImage
-                src="/lovable-uploads/8c4d903b-42b2-48ef-9625-676d1f6aa106.png"
+                src="/lovable-uploads/f9fc929a-db9f-43e0-be73-0da1db8c8a46.png"
                 alt="Paul Berman, Chief Technical Evangelist @ Powered_by Agency"
                 className="object-cover"
               />
