@@ -62,9 +62,27 @@ export const BlogSection = () => {
             >
               <BlogPostCard 
                 post={post} 
-                externalUrl={index === 0 ? "https://poweredbyagency.ghost.io/ai-agents-a-laymans-guide/" : undefined}
-                customImage={index === 0 ? "/lovable-uploads/1d9e2ce4-55d8-420a-83ba-9f66a644ade8.png" : undefined}
-                titleOverride={index === 0 ? "AI Agents: A Layman's Guide" : undefined}
+                externalUrl={
+                  index === 0 
+                    ? "https://poweredbyagency.ghost.io/ai-agents-a-laymans-guide/" 
+                    : index === 1 
+                      ? "https://poweredbyagency.ghost.io/the-business-case-for-ai-agents/" 
+                      : undefined
+                }
+                customImage={
+                  index === 0 
+                    ? "/lovable-uploads/1d9e2ce4-55d8-420a-83ba-9f66a644ade8.png" 
+                    : index === 1 
+                      ? "/lovable-uploads/7345be9e-e9a4-4996-8686-5a23760aa0c3.png" 
+                      : undefined
+                }
+                titleOverride={
+                  index === 0 
+                    ? "AI Agents: A Layman's Guide" 
+                    : index === 1 
+                      ? "The Business Case for AI Agents" 
+                      : undefined
+                }
               />
             </div>
           ))}
