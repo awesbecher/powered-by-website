@@ -11,8 +11,8 @@ const Navbar = () => {
   const navItems = [
     { name: "Solutions", path: "/products" },
     { name: "Demos", path: "/demo" },
-    // Changed Resources to use an absolute URL
-    { name: "Resources", path: "https://yourghost.blog", isExternal: true }
+    // Updated with the correct Ghost URL
+    { name: "Resources", path: "https://poweredbyagency.ghost.io", isExternal: true }
   ];
 
   // Check if we should show the consultation button on current page
