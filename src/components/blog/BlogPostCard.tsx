@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { Clock, User, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -8,9 +9,15 @@ interface BlogPostCardProps {
   post: BlogPost;
   featured?: boolean;
   externalUrl?: string;
+  customImage?: string;
+  titleOverride?: string;
 }
 
-const getPostImage = (slug: string) => {
+const getPostImage = (slug: string, customImage?: string) => {
+  if (customImage) {
+    return customImage;
+  }
+  
   switch (slug) {
     case "understanding-ai-agents":
       return "/lovable-uploads/b9c7959b-bd61-40d9-b0b3-317a40353486.png";
@@ -45,7 +52,7 @@ const getPostImage = (slug: string) => {
   }
 };
 
-export const BlogPostCard = ({ post, featured = false, externalUrl }: BlogPostCardProps) => {
+export const BlogPostCard = ({ post, featured = false, externalUrl, customImage, titleOverride }: BlogPostCardProps) => {
   const location = useLocation();
   const isOnBlogPage = location.pathname === "/blog";
 
@@ -58,8 +65,8 @@ export const BlogPostCard = ({ post, featured = false, externalUrl }: BlogPostCa
         {!isOnBlogPage && (
           <div className="absolute inset-0">
             <img 
-              src={getPostImage(post.slug)} 
-              alt={post.title}
+              src={getPostImage(post.slug, customImage)} 
+              alt={titleOverride || post.title}
               className="w-full h-full object-cover opacity-60 group-hover:opacity-70 transition-opacity duration-300"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60" />
@@ -73,7 +80,7 @@ export const BlogPostCard = ({ post, featured = false, externalUrl }: BlogPostCa
             "font-bold text-white !important mb-6 group-hover:text-[#9b87f5] transition-colors text-shadow",
             featured ? "text-2xl" : "text-xl"
           )}>
-            {post.title}
+            {titleOverride || post.title}
           </h2>
           <p className="text-white text-sm leading-relaxed mb-6 line-clamp-4 text-shadow">
             {post.excerpt}

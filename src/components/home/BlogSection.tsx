@@ -63,6 +63,8 @@ export const BlogSection = () => {
               <BlogPostCard 
                 post={post} 
                 externalUrl={index === 0 ? "https://poweredbyagency.ghost.io/ai-agents-a-laymans-guide/" : undefined}
+                customImage={index === 0 ? "/lovable-uploads/1d9e2ce4-55d8-420a-83ba-9f66a644ade8.png" : undefined}
+                titleOverride={index === 0 ? "AI Agents: A Layman's Guide" : undefined}
               />
             </div>
           ))}
