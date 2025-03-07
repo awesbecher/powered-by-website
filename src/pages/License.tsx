@@ -1,4 +1,3 @@
-
 import { Bot, Network, MessageSquare, BarChart, Phone, DollarSign, ChevronLeft, Mic, MicOff, X, Activity } from "lucide-react";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
@@ -53,7 +52,6 @@ const License = () => {
   };
 
   const toggleMute = () => {
-    // In a real implementation, this would interact with the Vapi SDK to mute/unmute
     setIsMuted(!isMuted);
   };
 
@@ -75,7 +73,6 @@ const License = () => {
         />
       </div>
 
-      {/* Active Call Dialog - New Design */}
       <Dialog open={isCallActive} onOpenChange={(open) => !open && handleEndCall()}>
         <DialogContent className="bg-white text-black border-gray-200 sm:max-w-md p-6 rounded-xl">
           <div className="flex flex-col space-y-6">
@@ -160,12 +157,6 @@ const License = () => {
       </Dialog>
 
       <Dialog open={isCallDialogOpen} onOpenChange={setIsCallDialogOpen}>
-        <DialogTrigger asChild>
-          <button className="bg-purple-600 hover:bg-purple-700 text-white px-10 py-2 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2 text-lg w-[280px] whitespace-nowrap">
-            Speak to a Sales Rep
-            <Phone className="w-5 h-5" />
-          </button>
-        </DialogTrigger>
         <DialogContent className="bg-[#222222] text-white border-gray-800 sm:max-w-md">
           <div className="flex items-start space-x-4 mb-4">
             <Avatar className="w-20 h-20">
@@ -268,35 +259,6 @@ const License = () => {
                     <Phone className="w-5 h-5" />
                   </button>
                 </DialogTrigger>
-                <DialogContent className="bg-[#222222] text-white border-gray-800 sm:max-w-md">
-                  <DialogHeader>
-                    <DialogTitle>Start Voice Chat with Christina Bell on RightBloom's Sales Team</DialogTitle>
-                  </DialogHeader>
-                  <div className="flex flex-col space-y-4 pt-4">
-                    <p className="text-gray-300">
-                      You'll be able to have a voice conversation with Christina directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately.
-                    </p>
-                    <p className="text-gray-300 text-sm">
-                      By clicking "Start Voice Chat", you consent to having a voice conversation with RightBloom's sales team. You can end the conversation at any time.
-                    </p>
-                    <div className="flex gap-2">
-                      <Button 
-                        variant="outline"
-                        onClick={() => setIsCallDialogOpen(false)}
-                        className="w-full border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white"
-                      >
-                        Cancel
-                      </Button>
-                      <Button 
-                        className="w-full bg-purple-600 hover:bg-purple-700 text-white transition-colors"
-                        onClick={handleCall}
-                        disabled={isLoading}
-                      >
-                        {isLoading ? "Initiating call..." : "Start Voice Chat"}
-                      </Button>
-                    </div>
-                  </div>
-                </DialogContent>
               </Dialog>
             </div>
 
