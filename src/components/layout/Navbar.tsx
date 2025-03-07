@@ -11,7 +11,8 @@ const Navbar = () => {
   const navItems = [
     { name: "Solutions", path: "/products" },
     { name: "Demos", path: "/demo" },
-    { name: "Resources", path: "/blog" }
+    // Changed Resources to use an absolute URL
+    { name: "Resources", path: "https://yourghost.blog", isExternal: true }
   ];
 
   // Check if we should show the consultation button on current page
@@ -72,19 +73,35 @@ const Navbar = () => {
               {/* Other Nav Items */}
               {navItems.map((item, index) => (
                 <React.Fragment key={item.name}>
-                  <Link
-                    to={item.path}
-                    className={cn(
-                      "px-3 py-2 text-sm font-bold relative group",
-                      location.pathname === item.path
-                        ? "text-[#9b87f5]"
-                        : "text-gray-300 hover:text-white",
-                      "transition-colors duration-200"
-                    )}
-                  >
-                    {item.name}
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#9b87f5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
-                  </Link>
+                  {item.isExternal ? (
+                    <a
+                      href={item.path}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={cn(
+                        "px-3 py-2 text-sm font-bold relative group",
+                        "text-gray-300 hover:text-white",
+                        "transition-colors duration-200"
+                      )}
+                    >
+                      {item.name}
+                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#9b87f5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
+                    </a>
+                  ) : (
+                    <Link
+                      to={item.path}
+                      className={cn(
+                        "px-3 py-2 text-sm font-bold relative group",
+                        location.pathname === item.path
+                          ? "text-[#9b87f5]"
+                          : "text-gray-300 hover:text-white",
+                        "transition-colors duration-200"
+                      )}
+                    >
+                      {item.name}
+                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#9b87f5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
+                    </Link>
+                  )}
                   {index < navItems.length - 1 && (
                     <span className="text-gray-600">|</span>
                   )}
@@ -148,19 +165,32 @@ const Navbar = () => {
                 AI Agency
               </Link>
               {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.path}
-                  className={cn(
-                    "px-4 py-2 text-sm font-medium",
-                    location.pathname === item.path
-                      ? "text-[#9b87f5]"
-                      : "text-gray-300"
-                  )}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
+                item.isExternal ? (
+                  <a
+                    key={item.name}
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 text-sm font-medium text-gray-300"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    className={cn(
+                      "px-4 py-2 text-sm font-medium",
+                      location.pathname === item.path
+                        ? "text-[#9b87f5]"
+                        : "text-gray-300"
+                    )}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                )
               ))}
               {showConsultButton && (
                 <Link
