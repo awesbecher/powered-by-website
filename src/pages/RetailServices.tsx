@@ -5,10 +5,10 @@ import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 import HeroSection from "@/components/retail-services/HeroSection";
 import ServicesGrid from "@/components/retail-services/ServicesGrid";
 import BookingDialog from "@/components/retail-services/BookingDialog";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Activity, Mic, MicOff, X } from "lucide-react";
+import { Activity, Mic, MicOff, X, ChevronLeft } from "lucide-react";
 
 const RetailServices = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -62,6 +62,15 @@ const RetailServices = () => {
 
   return (
     <div className="min-h-screen w-full bg-black">
+      {/* Back Navigation */}
+      <Link 
+        to="/demo" 
+        className="absolute top-8 left-8 z-10 flex items-center text-white hover:text-gray-300 transition-colors"
+      >
+        <ChevronLeft className="w-6 h-6 mr-1" />
+        <span>Back to Demo</span>
+      </Link>
+
       {/* Logo */}
       <div className="absolute top-24 right-8 z-10">
         <img 
