@@ -66,21 +66,21 @@ export const BlogSection = () => {
                   index === 0 
                     ? "https://poweredbyagency.ghost.io/ai-agents-a-laymans-guide/" 
                     : index === 1 
-                      ? "https://poweredbyagency.ghost.io/the-business-case-for-ai-agents/" 
+                      ? "https://poweredbyagency.ghost.io/how-has-ai-become-so-human-like/" 
                       : undefined
                 }
                 customImage={
                   index === 0 
                     ? "/lovable-uploads/1d9e2ce4-55d8-420a-83ba-9f66a644ade8.png" 
                     : index === 1 
-                      ? "/lovable-uploads/7345be9e-e9a4-4996-8686-5a23760aa0c3.png" 
+                      ? "/lovable-uploads/d01b909c-5068-4b11-99e2-56b8eed3c895.png" 
                       : undefined
                 }
                 titleOverride={
                   index === 0 
                     ? "AI Agents: A Layman's Guide" 
                     : index === 1 
-                      ? "The Business Case for AI Agents" 
+                      ? "How Has AI Become So \"Human-like\"?" 
                       : undefined
                 }
               />
