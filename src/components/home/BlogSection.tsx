@@ -75,7 +75,9 @@ export const BlogSection = () => {
                             ? "https://poweredbyagency.ghost.io/practical-ways-smbs-can-use-conversational-ai-agents/"
                             : index === 5
                               ? "https://poweredbyagency.ghost.io/ai-agents-the-most-common-fears-for-smbs/"
-                              : undefined
+                              : index === 6
+                                ? "https://poweredbyagency.ghost.io/build-or-buy-the-ai-agents-evaluation-guide/"
+                                : undefined
                 }
                 customImage={
                   index === 0 
@@ -90,7 +92,9 @@ export const BlogSection = () => {
                             ? "/lovable-uploads/95284a6f-5cd3-4e2c-abf1-b7b5d98cb8bd.png"
                             : index === 5
                               ? "/lovable-uploads/ac998611-204a-4c1d-984c-5f8d400f57ef.png"
-                              : undefined
+                              : index === 6
+                                ? "/lovable-uploads/18fb4a10-0b23-4838-8db0-7e02de039f1a.png"
+                                : undefined
                 }
                 titleOverride={
                   index === 0 
@@ -105,7 +109,9 @@ export const BlogSection = () => {
                             ? "Practical Ways SMBs Can Use Conversational AI Agents"
                             : index === 5
                               ? "AI Agents: The Most Common Fears for SMBs"
-                              : undefined
+                              : index === 6
+                                ? "Build Or Buy? The AI Agents Evaluation Guide"
+                                : undefined
                 }
               />
             </div>

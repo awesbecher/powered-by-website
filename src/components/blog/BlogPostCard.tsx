@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { Clock, User, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -25,7 +26,7 @@ const getPostImage = (slug: string, customImage?: string) => {
     case "workflow-automation-ai-agents-vs-rpa":
       return "/lovable-uploads/13d3a8ff-b938-4d03-9efe-99fe283b96fe.png";
     case "build-or-buy-ai-agents-evaluation":
-      return "/lovable-uploads/02977ad8-a831-4b23-909d-7010d4bb02b6.png";
+      return "/lovable-uploads/18fb4a10-0b23-4838-8db0-7e02de039f1a.png";
     case "openai-anthropic-smb-specialized-partners":
       return "/lovable-uploads/f971b5e9-817b-426a-9db0-5db472970633.png";
     case "voice-ai-retail-customer-service":
