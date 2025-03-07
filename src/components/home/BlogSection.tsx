@@ -3,6 +3,7 @@ import { blogPosts } from "@/data/blog-posts";
 import { SectionTitle } from "./SectionTitle";
 import { BlogCarousel } from "./BlogCarousel";
 import { ExternalLink, Twitter } from "lucide-react";
+import { Button } from "../ui/button";
 
 export const BlogSection = () => {
   return (
@@ -31,7 +32,20 @@ export const BlogSection = () => {
       
       <div className="container mx-auto px-4 mt-16">
         <SectionTitle title="Follow Us on X:" />
-        {/* Empty section - content will be added later per user's instructions */}
+        <div className="flex justify-center mt-8">
+          <a 
+            href="https://x.com/poweredbyagency" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#9b87f5] focus:ring-offset-2 focus:ring-offset-[#1a0b2e] rounded-lg"
+          >
+            <img 
+              src="/lovable-uploads/7b5001f3-aa26-4f7f-affb-0bc5bb38b8b1.png" 
+              alt="Follow us on X" 
+              className="w-24 h-24 md:w-32 md:h-32 object-contain"
+            />
+          </a>
+        </div>
       </div>
     </section>
   );
