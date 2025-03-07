@@ -11,7 +11,7 @@ export const CallToActionButtons = ({ handleNavigation, setShowDialog }: CallToA
   return (
     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-4xl">
       <Button
-        onClick={() => handleNavigation('/blog/understanding-ai-agents')}
+        onClick={() => window.open("https://poweredbyagency.ghost.io/ai-agents-a-laymans-guide/", "_blank")}
         className="relative z-20 text-white bg-[#6E59A5] hover:bg-[#6E59A5]/80 px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
       >
         What's an AI agent?
