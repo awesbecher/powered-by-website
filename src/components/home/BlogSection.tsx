@@ -31,7 +31,7 @@ export const BlogSection = () => {
       </div>
       
       <div className="container mx-auto px-4 mt-16">
-        <SectionTitle title="Follow Us on X:" />
+        <SectionTitle title="Follow Us:" />
         <div className="flex justify-start mt-8">
           <a 
             href="https://x.com/poweredbyagency" 
@@ -42,7 +42,7 @@ export const BlogSection = () => {
             <img 
               src="/lovable-uploads/9e0bc0a2-04e0-4179-bc8f-d7ad5f20dd32.png" 
               alt="Follow us on X" 
-              className="w-24 h-24 md:w-32 md:h-32 object-contain"
+              className="w-16 h-16 md:w-20 md:h-20 object-contain"
             />
           </a>
         </div>
