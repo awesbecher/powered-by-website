@@ -7,10 +7,10 @@ import { ActionButtons } from "@/components/real-estate/ActionButtons";
 import { ServicesSection } from "@/components/real-estate/ServicesSection";
 import { FeaturedProperties } from "@/components/real-estate/FeaturedProperties";
 import { ContactSection } from "@/components/real-estate/ContactSection";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Activity, Mic, MicOff, X } from "lucide-react";
+import { Activity, Mic, MicOff, X, ChevronLeft } from "lucide-react";
 
 const RealEstate = () => {
   const scrollToProperties = () => {
@@ -83,6 +83,15 @@ const RealEstate = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
+      {/* Back Navigation */}
+      <Link 
+        to="/demo" 
+        className="absolute top-8 left-8 z-10 flex items-center text-white hover:text-gray-300 transition-colors"
+      >
+        <ChevronLeft className="w-6 h-6 mr-1" />
+        <span>Back to Demo</span>
+      </Link>
+
       <div className="fixed top-20 right-6 z-50">
         <img 
           src="/lovable-uploads/a5338bda-4580-432c-a1b8-71df71d89c29.png"

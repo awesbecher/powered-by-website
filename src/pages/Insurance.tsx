@@ -213,11 +213,11 @@ const Insurance = () => {
 
       <div className="relative z-10 px-4 py-32 sm:px-6 lg:px-8">
         <Link 
-          to="/" 
-          className="absolute top-8 left-8 flex items-center text-accent hover:text-accent/80 transition-colors"
+          to="/demo" 
+          className="absolute top-16 left-8 flex items-center text-accent hover:text-accent/80 transition-colors"
         >
           <ArrowLeft className="h-6 w-6 mr-2" />
-          <span>Back to Services</span>
+          <span>Back</span>
         </Link>
 
         <div className="mx-auto max-w-3xl text-center">
