@@ -32,7 +32,7 @@ export const BlogSection = () => {
       
       <div className="container mx-auto px-4 mt-16">
         <SectionTitle title="Follow Us:" />
-        <div className="flex justify-start mt-8">
+        <div className="flex justify-start items-center gap-6 mt-8">
           <a 
             href="https://x.com/poweredbyagency" 
             target="_blank" 
@@ -45,6 +45,14 @@ export const BlogSection = () => {
               className="w-16 h-16 md:w-20 md:h-20 object-contain"
             />
           </a>
+          
+          <div className="transition-transform hover:scale-105 rounded-lg">
+            <img 
+              src="/lovable-uploads/04bfc221-da05-4bee-b0ca-c32f544d4baf.png" 
+              alt="LinkedIn" 
+              className="w-16 h-16 md:w-20 md:h-20 object-contain"
+            />
+          </div>
         </div>
       </div>
     </section>
