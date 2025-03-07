@@ -47,6 +47,8 @@ const getPostImage = (slug: string, customImage?: string) => {
       return "/lovable-uploads/d496422a-1cc8-4b83-9d26-16bfda3ac8ed.png";
     case "ai-driven-personalization":
       return "/lovable-uploads/e305eace-d64d-4437-9d8e-533d49b3d934.png";
+    case "powered-by-reasons":
+      return "/lovable-uploads/ce50f548-f2b7-4f05-820b-79c23bb58625.png";
     default:
       return "/lovable-uploads/af07ee0c-70fa-4261-a83e-98ef6108f8ae.png"; // Default image
   }

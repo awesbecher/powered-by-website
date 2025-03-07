@@ -77,7 +77,9 @@ export const BlogSection = () => {
                               ? "https://poweredbyagency.ghost.io/ai-agents-the-most-common-fears-for-smbs/"
                               : index === 6
                                 ? "https://poweredbyagency.ghost.io/build-or-buy-the-ai-agents-evaluation-guide/"
-                                : undefined
+                                : index === 7
+                                  ? "https://poweredbyagency.ghost.io/5-reasons-why-powered_by-exists/"
+                                  : undefined
                 }
                 customImage={
                   index === 0 
@@ -94,7 +96,9 @@ export const BlogSection = () => {
                               ? "/lovable-uploads/ac998611-204a-4c1d-984c-5f8d400f57ef.png"
                               : index === 6
                                 ? "/lovable-uploads/18fb4a10-0b23-4838-8db0-7e02de039f1a.png"
-                                : undefined
+                                : index === 7
+                                  ? "/lovable-uploads/ce50f548-f2b7-4f05-820b-79c23bb58625.png"
+                                  : undefined
                 }
                 titleOverride={
                   index === 0 
@@ -111,7 +115,9 @@ export const BlogSection = () => {
                               ? "AI Agents: The Most Common Fears for SMBs"
                               : index === 6
                                 ? "Build Or Buy? The AI Agents Evaluation Guide"
-                                : undefined
+                                : index === 7
+                                  ? "5 Reasons Why Powered_by Exists"
+                                  : undefined
                 }
               />
             </div>
