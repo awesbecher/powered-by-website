@@ -51,6 +51,8 @@ const getPostImage = (slug: string, customImage?: string) => {
       return "/lovable-uploads/ce50f548-f2b7-4f05-820b-79c23bb58625.png";
     case "ai-agents-vs-rpa":
       return "/lovable-uploads/4a4cd2c8-60ca-4613-afa8-cf62ebc5ee1a.png";
+    case "agentic-revolution":
+      return "/lovable-uploads/7815dd46-92f4-4475-809a-a644ec7fd3b9.png";
     default:
       return "/lovable-uploads/af07ee0c-70fa-4261-a83e-98ef6108f8ae.png"; // Default image
   }

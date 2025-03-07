@@ -81,7 +81,9 @@ export const BlogSection = () => {
                                   ? "https://poweredbyagency.ghost.io/5-reasons-why-powered_by-exists/"
                                   : index === 8
                                     ? "https://poweredbyagency.ghost.io/ai-agents-vs-rpa-whats-the-difference/"
-                                    : undefined
+                                    : index === 9
+                                      ? "https://poweredbyagency.ghost.io/the-agentic-revolution-is-here/"
+                                      : undefined
                 }
                 customImage={
                   index === 0 
@@ -102,7 +104,9 @@ export const BlogSection = () => {
                                   ? "/lovable-uploads/ce50f548-f2b7-4f05-820b-79c23bb58625.png"
                                   : index === 8
                                     ? "/lovable-uploads/4a4cd2c8-60ca-4613-afa8-cf62ebc5ee1a.png"
-                                    : undefined
+                                    : index === 9
+                                      ? "/lovable-uploads/7815dd46-92f4-4475-809a-a644ec7fd3b9.png"
+                                      : undefined
                 }
                 titleOverride={
                   index === 0 
@@ -123,7 +127,9 @@ export const BlogSection = () => {
                                   ? "5 Reasons Why Powered_by Exists"
                                   : index === 8
                                     ? "AI Agents vs. RPA. What's the difference?"
-                                    : undefined
+                                    : index === 9
+                                      ? "The Agentic Revolution is Here"
+                                      : undefined
                 }
               />
             </div>
