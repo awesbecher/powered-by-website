@@ -28,6 +28,11 @@ export const BlogSection = () => {
       <div className="container mx-auto px-4 relative">
         <BlogCarousel blogPosts={blogPosts} />
       </div>
+      
+      <div className="container mx-auto px-4 mt-16">
+        <SectionTitle title="Follow Us on X:" />
+        {/* Empty section - content will be added later per user's instructions */}
+      </div>
     </section>
   );
 };
