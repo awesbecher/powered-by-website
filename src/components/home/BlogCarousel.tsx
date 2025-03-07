@@ -57,7 +57,7 @@ export const BlogCarousel = ({ blogPosts }: BlogCarouselProps) => {
       case 6: return "https://poweredbyagency.ghost.io/build-or-buy-the-ai-agents-evaluation-guide/";
       case 7: return "https://poweredbyagency.ghost.io/5-reasons-why-powered_by-exists/";
       case 8: return "https://poweredbyagency.ghost.io/ai-agents-vs-rpa-whats-the-difference/";
-      case 9: return "https://poweredbyagency.ghost.io/the-agentic-revolution-is-here/";
+      case 9: return "https://poweredbyagency.ghost.io/the-business-case-for-ai-agents/";
       case 10: return "https://poweredbyagency.ghost.io/from-saas-to-agentic-ai/";
       default: return undefined;
     }
@@ -74,7 +74,7 @@ export const BlogCarousel = ({ blogPosts }: BlogCarouselProps) => {
       case 6: return "/lovable-uploads/18fb4a10-0b23-4838-8db0-7e02de039f1a.png";
       case 7: return "/lovable-uploads/ce50f548-f2b7-4f05-820b-79c23bb58625.png";
       case 8: return "/lovable-uploads/4a4cd2c8-60ca-4613-afa8-cf62ebc5ee1a.png";
-      case 9: return "/lovable-uploads/7815dd46-92f4-4475-809a-a644ec7fd3b9.png";
+      case 9: return "/lovable-uploads/fdae0d27-7df9-4062-b863-55b0961f6e23.png";
       case 10: return "/lovable-uploads/f971b5e9-817b-426a-9db0-5db472970633.png";
       default: return undefined;
     }
@@ -91,7 +91,7 @@ export const BlogCarousel = ({ blogPosts }: BlogCarouselProps) => {
       case 6: return "Build Or Buy? The AI Agents Evaluation Guide";
       case 7: return "5 Reasons Why Powered_by Exists";
       case 8: return "AI Agents vs. RPA. What's the difference?";
-      case 9: return "The Agentic Revolution is Here";
+      case 9: return "The Business Case for AI Agents";
       case 10: return "From SaaS to Agentic AI";
       default: return undefined;
     }
