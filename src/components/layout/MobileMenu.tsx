@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { NavItem } from "./NavLinks";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface MobileMenuProps {
   navItems: NavItem[];
@@ -25,74 +26,82 @@ const MobileMenu = ({ navItems, showConsultButton }: MobileMenuProps) => {
         </svg>
       </button>
 
-      {/* Mobile Menu Dropdown */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden py-4 bg-[#222222] border-t border-gray-700 absolute top-20 left-0 right-0">
-          <div className="flex flex-col space-y-2">
-            <Link
-              to="/"
-              className={cn(
-                "px-4 py-2 text-sm font-medium",
-                location.pathname === '/'
-                  ? "text-[#9b87f5]"
-                  : "text-gray-300"
-              )}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Home
-            </Link>
-            <Link
-              to="/ai-agency"
-              className={cn(
-                "px-4 py-2 text-sm font-medium",
-                location.pathname === '/ai-agency'
-                  ? "text-[#9b87f5]"
-                  : "text-gray-300"
-              )}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              AI Agency
-            </Link>
-            {navItems.map((item) => (
-              item.isExternal ? (
-                <a
-                  key={item.name}
-                  href={item.path}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 text-sm font-medium text-gray-300"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </a>
-              ) : (
-                <Link
-                  key={item.name}
-                  to={item.path}
-                  className={cn(
-                    "px-4 py-2 text-sm font-medium",
-                    location.pathname === item.path
-                      ? "text-[#9b87f5]"
-                      : "text-gray-300"
-                  )}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              )
-            ))}
-            {showConsultButton && (
+      {/* Mobile Menu Dropdown with Animation */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div 
+            className="md:hidden py-4 bg-[#222222] border-t border-gray-700 absolute top-20 left-0 right-0"
+            initial={{ opacity: 0, height: 0, y: -20 }}
+            animate={{ opacity: 1, height: "auto", y: 0 }}
+            exit={{ opacity: 0, height: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            <div className="flex flex-col space-y-2">
               <Link
-                to="/contact"
-                className="mx-4 mt-2 inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#9b87f5]"
+                to="/"
+                className={cn(
+                  "px-4 py-2 text-sm font-medium",
+                  location.pathname === '/'
+                    ? "text-[#9b87f5]"
+                    : "text-gray-300"
+                )}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Book a Free Consultation
+                Home
               </Link>
-            )}
-          </div>
-        </div>
-      )}
+              <Link
+                to="/ai-agency"
+                className={cn(
+                  "px-4 py-2 text-sm font-medium",
+                  location.pathname === '/ai-agency'
+                    ? "text-[#9b87f5]"
+                    : "text-gray-300"
+                )}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                AI Agency
+              </Link>
+              {navItems.map((item) => (
+                item.isExternal ? (
+                  <a
+                    key={item.name}
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 text-sm font-medium text-gray-300"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    className={cn(
+                      "px-4 py-2 text-sm font-medium",
+                      location.pathname === item.path
+                        ? "text-[#9b87f5]"
+                        : "text-gray-300"
+                    )}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                )
+              ))}
+              {showConsultButton && (
+                <Link
+                  to="/contact"
+                  className="mx-4 mt-2 inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#9b87f5]"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Book a Free Consultation
+                </Link>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
