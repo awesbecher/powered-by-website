@@ -14,7 +14,7 @@ const BlogPost = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [slug]); // Add slug as dependency to scroll to top when post changes
 
   if (!post) {
     return (
@@ -33,6 +33,9 @@ const BlogPost = () => {
       </div>
     );
   }
+
+  // Debug the content to see if it's available
+  console.log(`Blog post content for ${slug}:`, post.content ? post.content.substring(0, 100) + "..." : "No content");
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
@@ -58,10 +61,16 @@ const BlogPost = () => {
             By {post.author}
           </div>
           
-          <div 
-            className="prose prose-invert max-w-none [&>*]:text-white [&>p]:text-gray-300 [&>p]:leading-relaxed [&>p]:mb-6 prose-li:text-gray-300 prose-h2:text-2xl prose-h2:text-purple-400 prose-h2:mt-10 prose-h2:mb-6 prose-h3:text-xl prose-h3:text-purple-300 prose-h3:mt-8 prose-h3:mb-4 prose-h4:text-lg prose-h4:text-purple-200 prose-h4:mt-6 prose-h4:mb-3 prose-strong:text-white prose-ul:my-6 prose-li:mb-2"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
+          {post.content ? (
+            <div 
+              className="prose prose-invert max-w-none [&>*]:text-white [&>p]:text-gray-300 [&>p]:leading-relaxed [&>p]:mb-6 prose-li:text-gray-300 prose-h2:text-2xl prose-h2:text-purple-400 prose-h2:mt-10 prose-h2:mb-6 prose-h3:text-xl prose-h3:text-purple-300 prose-h3:mt-8 prose-h3:mb-4 prose-h4:text-lg prose-h4:text-purple-200 prose-h4:mt-6 prose-h4:mb-3 prose-strong:text-white prose-ul:my-6 prose-li:mb-2"
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
+          ) : (
+            <div className="text-gray-300">
+              <p>Content for this article is currently unavailable. Please check back later.</p>
+            </div>
+          )}
         </div>
       </div>
 
