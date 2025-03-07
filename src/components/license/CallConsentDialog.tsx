@@ -23,7 +23,7 @@ const CallConsentDialog: React.FC<CallConsentDialogProps> = ({
         <div className="flex items-start space-x-4 mb-4">
           <Avatar className="w-20 h-20">
             <AvatarImage 
-              src="/lovable-uploads/0d1c3dc0-7aad-4ddd-8b25-1edf45232f70.png"
+              src="/lovable-uploads/57453f35-07c2-4c91-992b-02a0c59b1b7e.png"
               alt="Christina Bell"
               className="rounded-lg object-cover"
             />
