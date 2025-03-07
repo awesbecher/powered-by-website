@@ -55,12 +55,15 @@ export const BlogSection = () => {
           onScroll={handleScroll}
           className="flex overflow-x-auto gap-8 pb-12 snap-x snap-mandatory scrollbar-none -mx-4 px-4"
         >
-          {blogPosts.map((post) => (
+          {blogPosts.map((post, index) => (
             <div 
               key={post.slug} 
               className="flex-none w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[30vw] snap-start"
             >
-              <BlogPostCard post={post} />
+              <BlogPostCard 
+                post={post} 
+                externalUrl={index === 0 ? "https://poweredbyagency.ghost.io/ai-agents-a-laymans-guide/" : undefined}
+              />
             </div>
           ))}
         </div>
