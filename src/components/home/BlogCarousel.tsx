@@ -1,4 +1,3 @@
-
 import { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { BlogPost } from "@/types/blog";
@@ -58,7 +57,7 @@ export const BlogCarousel = ({ blogPosts }: BlogCarouselProps) => {
       case 7: return "https://poweredbyagency.ghost.io/5-reasons-why-powered_by-exists/";
       case 8: return "https://poweredbyagency.ghost.io/ai-agents-vs-rpa-whats-the-difference/";
       case 9: return "https://poweredbyagency.ghost.io/the-business-case-for-ai-agents/";
-      case 10: return "https://poweredbyagency.ghost.io/from-saas-to-agentic-ai/";
+      case 10: return "https://poweredbyagency.ghost.io/the-agentic-revolution-is-here/";
       default: return undefined;
     }
   };
