@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Index from "./pages/Index";
@@ -38,9 +37,10 @@ function App() {
             <Route path="/asset-test" element={<AssetTest />} />
             <Route path="/ai-agency" element={<AIAgency />} />
             {/* Add redirect for ai-assistant */}
-            <Route path="/ai-assistant" element={<Navigate to="/ai-agency" replace />} />
+            <Route path="/ai-assistant" element={<AIVoiceBusinessLines />} />
             <Route path="/voice-chat" element={<AIVoiceChat />} />
-            <Route path="/voice-business-lines" element={<AIVoiceBusinessLines />} />
+            {/* Keep the old route with a redirect for backward compatibility */}
+            <Route path="/voice-business-lines" element={<Navigate to="/ai-assistant" replace />} />
             <Route path="/mercedes-dealer" element={<MercedesDealer />} />
             {/* Add a case-insensitive route for Mercedes */}
             <Route path="/Mercedes" element={<Navigate to="/mercedes-dealer" replace />} />
