@@ -79,7 +79,9 @@ export const BlogSection = () => {
                                 ? "https://poweredbyagency.ghost.io/build-or-buy-the-ai-agents-evaluation-guide/"
                                 : index === 7
                                   ? "https://poweredbyagency.ghost.io/5-reasons-why-powered_by-exists/"
-                                  : undefined
+                                  : index === 8
+                                    ? "https://poweredbyagency.ghost.io/ai-agents-vs-rpa-whats-the-difference/"
+                                    : undefined
                 }
                 customImage={
                   index === 0 
@@ -98,7 +100,9 @@ export const BlogSection = () => {
                                 ? "/lovable-uploads/18fb4a10-0b23-4838-8db0-7e02de039f1a.png"
                                 : index === 7
                                   ? "/lovable-uploads/ce50f548-f2b7-4f05-820b-79c23bb58625.png"
-                                  : undefined
+                                  : index === 8
+                                    ? "/lovable-uploads/4a4cd2c8-60ca-4613-afa8-cf62ebc5ee1a.png"
+                                    : undefined
                 }
                 titleOverride={
                   index === 0 
@@ -117,7 +121,9 @@ export const BlogSection = () => {
                                 ? "Build Or Buy? The AI Agents Evaluation Guide"
                                 : index === 7
                                   ? "5 Reasons Why Powered_by Exists"
-                                  : undefined
+                                  : index === 8
+                                    ? "AI Agents vs. RPA. What's the difference?"
+                                    : undefined
                 }
               />
             </div>
