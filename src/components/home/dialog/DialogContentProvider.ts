@@ -11,7 +11,7 @@ export const getDialogContent = (source: 'voice-chat' | 'voice-business' | 'home
     return {
       title: "Start Voice Chat with Michael @ Powered_By",
       description: "You'll be able to have a voice conversation with Michael (our AI voice agent) directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately.",
-      buttonText: "Start Voice Chat",
+      buttonText: "Start Voice Chat Now",
       consent: "By clicking \"Start Voice Chat\", you consent to having a voice conversation with RightBloom's sales team. You can end the conversation at any time."
     };
   } else if (source === 'voice-business') {
