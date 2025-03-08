@@ -41,8 +41,6 @@ export const ServiceBoxes = ({ initialLoad }: ServiceBoxesProps) => {
         <h3 className="text-white text-3xl md:text-4xl font-bold mb-2 tracking-tight">
           Autonomous Email Communication
         </h3>
-        <p className="text-gray-300 text-xl md:text-2xl mb-2">Meet "Michael," your AI email representative</p>
-        <p className="text-gray-400 text-sm italic">Handles follow-ups and inquiries with human-like understanding</p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
         {services.map((service, index) => (
