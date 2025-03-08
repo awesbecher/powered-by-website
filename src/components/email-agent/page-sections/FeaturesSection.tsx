@@ -27,7 +27,7 @@ export const FeaturesSection = () => {
         <FeatureCard 
           icon={<Mail className="w-10 h-10 text-[#9b87f5]" />}
           title="Automated Follow-ups"
-          description="Send personalized follow-up emails after customer calls with summaries, next steps, and relevant information." 
+          description="Send personalized follow-up emails after customer calls with summaries, next steps, and relevant information and documents." 
         />
         <FeatureCard 
           icon={<Reply className="w-10 h-10 text-[#9b87f5]" />}
