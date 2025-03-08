@@ -12,3 +12,4 @@
   from = "/ai-assistant"
   to = "/ai-receptionist"
   status = 301
+
