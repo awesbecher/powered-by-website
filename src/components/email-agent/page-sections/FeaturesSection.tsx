@@ -31,7 +31,7 @@ export const FeaturesSection = () => {
         />
         <FeatureCard 
           icon={<Reply className="w-10 h-10 text-[#9b87f5]" />}
-          title="Supper intelligent & Privacy Compliant"
+          title="Super Intelligent & Privacy Compliant"
           description="Automatically reply to customer inquiries with accurate information based on your business knowledge base & privacy standards." 
         />
         <FeatureCard 
