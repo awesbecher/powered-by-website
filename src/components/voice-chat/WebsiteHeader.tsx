@@ -1,7 +1,6 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 
 export const WebsiteHeader = () => {
   return (
@@ -19,12 +18,14 @@ export const WebsiteHeader = () => {
         www.phxrealtyinc.com
       </div>
       <div className="flex items-center">
-        <Link 
-          to="/contact" 
-          className="text-[0.55rem] text-white bg-[#9b87f5] hover:bg-[#8b77e5] px-1.5 py-0.5 rounded"
+        <a 
+          href="https://poweredby.agency/contact" 
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm text-white bg-[#9b87f5] hover:bg-[#8b77e5] px-3 py-1.5 rounded-md font-medium transition-colors"
         >
           Book a Free Consultation
-        </Link>
+        </a>
       </div>
     </div>
   );
