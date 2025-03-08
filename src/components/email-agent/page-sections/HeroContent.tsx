@@ -24,7 +24,7 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
         <p className="text-lg">Our AI Email Agent adapts to your business needs:</p>
         <ul className="list-disc list-inside space-y-1 pl-2 text-sm">
           <li>Follow-up emails after customer calls with personalized summaries</li>
-          <li>Intelligent responses to customer inquiries based on your business rules</li>
+          {/* Removed "Intelligent responses to customer inquiries based on your business rules" bullet point */}
           <li>Appointment scheduling and confirmation emails</li>
           <li>Meeting coordination and document preparation</li>
           <li>Fully "guardrailed" and compliant to your policy guidelines & privacy standards</li>
