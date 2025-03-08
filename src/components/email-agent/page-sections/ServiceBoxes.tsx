@@ -15,7 +15,7 @@ export const ServiceBoxes = ({ initialLoad }: ServiceBoxesProps) => {
           
           <div className="flex items-center justify-center mb-4">
             <Mail className="text-[#9b87f5] w-10 h-10 mr-3" />
-            <p className="text-xl text-white font-medium">Email Michael. He's our favorite AI agent here at Powered_by:</p>
+            <p className="text-xl text-white font-medium">Email Michael. He's our favorite AI agent here at <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span>:</p>
           </div>
           
           <a 
