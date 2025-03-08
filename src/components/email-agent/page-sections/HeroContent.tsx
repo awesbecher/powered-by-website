@@ -12,7 +12,7 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
     <div className={`w-full lg:w-1/2 space-y-4 transition-all duration-1000 ease-out transform
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
       <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
-        Meet Your New <span className="text-[#9b87f5]">AI Email Agent</span>
+        Meet Your New <span className="text-[#9b87f5]">AI Email Agent</span>: Genius unleashed!
       </h1>
       <p className="text-lg text-gray-300">
         With an AI Email Agent by <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span>, you get intelligent email communication that handles follow-ups, inquiries, and customer interactions—all autonomously and personably.
