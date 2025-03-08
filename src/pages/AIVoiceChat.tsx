@@ -20,6 +20,7 @@ const otherImages = [
   "/lovable-uploads/f8dcc881-9e41-4bee-b8e5-78e0fdbccabb.png", // Agent image
   "/lovable-uploads/314cb21d-7fdb-4cdd-a44e-da8af003a7f9.png", // Phoenix Realty Inc. Logo
   "/lovable-uploads/b73aa6e5-5a81-4225-a13d-a2b900e9c3c7.png", // New uploaded logo
+  "/lovable-uploads/4bf8609b-100b-47bc-83ab-a1a376a57c4d.png", // New profile picture
 ];
 const allImages = [...propertyImages, ...otherImages];
 forcePrefetchImages(allImages);
