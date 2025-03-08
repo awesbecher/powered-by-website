@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
+import Navbar from "@/components/layout/Navbar";
 import { WebsiteHeader } from "@/components/voice-business/WebsiteHeader";
 import { HeroSection } from "@/components/voice-business/page-sections/HeroSection";
 import { FeaturesSection } from "@/components/voice-business/page-sections/FeaturesSection";
@@ -45,6 +46,7 @@ const AIVoiceBusinessLines = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0f0f0f] via-[#121212] to-[#0f0f0f]">
+      <Navbar />
       <WebsiteHeader />
       <HeroSection initialLoad={initialLoad} handleContact={handleContact} />
       <FeaturesSection />
