@@ -15,6 +15,9 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
         Meet Your New <span className="text-[#9b87f5]">AI Email Agent</span>: Genius unleashed!
       </h1>
       <p className="text-lg text-gray-300">
+        Imagine an AI agent that sends and receives emails for your business completely by itself. Sounds scary, right? Well, with the latest in AI agent intelligence, you can now deploy autonomous email agents that think, write, and behave exactly as your most well-trained staff.
+      </p>
+      <p className="text-lg text-gray-300">
         With an AI Email Agent by <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span>, you get intelligent email communication that handles follow-ups, inquiries, and customer interactions—all autonomously and compliant with company policies and privacy requirements.
       </p>
       <div className="space-y-3 text-gray-300">
