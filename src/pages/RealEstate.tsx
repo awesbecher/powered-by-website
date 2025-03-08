@@ -18,6 +18,7 @@ const RealEstate = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isScheduleOpen, setIsScheduleOpen] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState("");
   const {
     isLoading,
     isCallActive,
@@ -59,8 +60,8 @@ const RealEstate = () => {
       <ActionButtons 
         isOpen={isOpen}
         setIsOpen={setIsOpen}
-        phoneNumber=""
-        setPhoneNumber={() => {}}
+        phoneNumber={phoneNumber}
+        setPhoneNumber={setPhoneNumber}
         handleCall={handleCall}
         isLoading={isLoading}
         scrollToProperties={scrollToProperties}
@@ -73,8 +74,8 @@ const RealEstate = () => {
       <ContactSection 
         isScheduleOpen={isScheduleOpen}
         setIsScheduleOpen={setIsScheduleOpen}
-        phoneNumber=""
-        setPhoneNumber={() => {}}
+        phoneNumber={phoneNumber}
+        setPhoneNumber={setPhoneNumber}
         handleCall={handleCall}
         isLoading={isLoading}
       />

@@ -1,7 +1,6 @@
 import { Phone } from "lucide-react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import { ScheduleCallDialog } from "./ScheduleCallDialog";
 
 interface ContactSectionProps {
   isScheduleOpen: boolean;
@@ -36,36 +35,17 @@ export const ContactSection = ({
         
         {/* Keep the dialog for functionality but don't display the trigger button */}
         <Dialog open={isScheduleOpen} onOpenChange={setIsScheduleOpen}>
-          <DialogContent className="bg-[#222222] text-white border-gray-800">
-            <DialogHeader>
-              <DialogTitle>Schedule a property viewing</DialogTitle>
-            </DialogHeader>
-            <div className="flex flex-col space-y-4 pt-4">
-              <Input 
-                type="tel" 
-                placeholder="Enter your phone number" 
-                value={phoneNumber} 
-                onChange={e => setPhoneNumber(e.target.value)} 
-                className="text-lg bg-gray-800 border-gray-700 text-white placeholder:text-gray-400"
-              />
-              <div className="flex gap-2">
-                <Button 
-                  variant="outline"
-                  onClick={() => setIsScheduleOpen(false)}
-                  className="w-full border-gray-700 text-white hover:bg-gray-800 hover:text-white"
-                >
-                  Cancel
-                </Button>
-                <Button 
-                  className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
-                  onClick={handleCall}
-                  disabled={isLoading}
-                >
-                  {isLoading ? "Initiating call..." : "Schedule Now"}
-                </Button>
-              </div>
-            </div>
-          </DialogContent>
+          <DialogTrigger className="hidden">
+            Schedule Viewing
+          </DialogTrigger>
+          <ScheduleCallDialog
+            isOpen={isScheduleOpen}
+            setIsOpen={setIsScheduleOpen}
+            phoneNumber={phoneNumber}
+            setPhoneNumber={setPhoneNumber}
+            handleCall={handleCall}
+            isLoading={isLoading}
+          />
         </Dialog>
       </div>
     </div>
