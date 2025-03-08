@@ -7,4 +7,4 @@ export const navItems: NavItem[] = [
   { name: "Resources", path: "https://poweredbyagency.ghost.io", isExternal: true }
 ];
 
-export const consultationPaths = ['/', '/ai-agency', '/products', '/demo', '/blog', '/voice-chat', '/ai-assistant'];
+export const consultationPaths = ['/', '/ai-agency', '/products', '/demo', '/blog', '/voice-chat', '/ai-receptionist'];

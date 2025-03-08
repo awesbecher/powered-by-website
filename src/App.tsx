@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Index from "./pages/Index";
@@ -36,9 +37,10 @@ function App() {
             <Route path="/real-estate" element={<RealEstate />} />
             <Route path="/asset-test" element={<AssetTest />} />
             <Route path="/ai-agency" element={<AIAgency />} />
-            <Route path="/ai-assistant" element={<AIVoiceBusinessLines />} />
+            <Route path="/ai-receptionist" element={<AIVoiceBusinessLines />} />
             <Route path="/voice-chat" element={<AIVoiceChat />} />
-            <Route path="/voice-business-lines" element={<Navigate to="/ai-assistant" replace />} />
+            <Route path="/ai-assistant" element={<Navigate to="/ai-receptionist" replace />} />
+            <Route path="/voice-business-lines" element={<Navigate to="/ai-receptionist" replace />} />
             <Route path="/mercedes-dealer" element={<MercedesDealer />} />
             <Route path="/Mercedes" element={<Navigate to="/mercedes-dealer" replace />} />
             <Route path="/retail-services" element={<RetailServices />} />
