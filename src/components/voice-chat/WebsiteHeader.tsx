@@ -10,7 +10,7 @@ export const WebsiteHeader = () => {
           <img 
             src="/lovable-uploads/64bb9d7d-aaaa-4015-9a4b-839ae9f0114d.png" 
             alt="Powered By Agency" 
-            className="h-6 w-auto"
+            className="h-8 w-auto" // Increased size from h-6 to h-8
           />
         </a>
       </div>
@@ -22,7 +22,7 @@ export const WebsiteHeader = () => {
           href="https://poweredby.agency/contact" 
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm text-white bg-[#9b87f5] hover:bg-[#8b77e5] px-3 py-1.5 rounded-md font-medium transition-colors"
+          className="text-sm text-white bg-[#9b87f5] hover:bg-[#8b77e5] px-4 py-2 rounded-md font-medium transition-colors" // Increased padding and adjusted styles
         >
           Book a Free Consultation
         </a>

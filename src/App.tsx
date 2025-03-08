@@ -36,16 +36,12 @@ function App() {
             <Route path="/real-estate" element={<RealEstate />} />
             <Route path="/asset-test" element={<AssetTest />} />
             <Route path="/ai-agency" element={<AIAgency />} />
-            {/* Add redirect for ai-assistant */}
             <Route path="/ai-assistant" element={<AIVoiceBusinessLines />} />
             <Route path="/voice-chat" element={<AIVoiceChat />} />
-            {/* Keep the old route with a redirect for backward compatibility */}
             <Route path="/voice-business-lines" element={<Navigate to="/ai-assistant" replace />} />
             <Route path="/mercedes-dealer" element={<MercedesDealer />} />
-            {/* Add a case-insensitive route for Mercedes */}
             <Route path="/Mercedes" element={<Navigate to="/mercedes-dealer" replace />} />
             <Route path="/retail-services" element={<RetailServices />} />
-            {/* Add a case-insensitive route for Retail Services */}
             <Route path="/Retail-Services" element={<Navigate to="/retail-services" replace />} />
             <Route path="/retail" element={<Navigate to="/retail-services" replace />} />
             <Route path="/Retail" element={<Navigate to="/retail-services" replace />} />

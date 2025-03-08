@@ -1,6 +1,8 @@
+
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
+import { WebsiteHeader } from "@/components/voice-chat/WebsiteHeader";
 import { HeroSection } from "@/components/voice-chat/page-sections/HeroSection";
 import { FeaturesSection } from "@/components/voice-chat/page-sections/FeaturesSection";
 import { BenefitsSection } from "@/components/voice-chat/page-sections/BenefitsSection";
@@ -16,6 +18,7 @@ const propertyImages = properties.map(property => property.image);
 const otherImages = [
   "/lovable-uploads/f6cd5c39-f85a-4586-9140-cd8e12d9b947.png",  // Logo
   "/lovable-uploads/f8dcc881-9e41-4bee-b8e5-78e0fdbccabb.png", // Agent image
+  "/lovable-uploads/64bb9d7d-aaaa-4015-9a4b-839ae9f0114d.png", // Powered By Agency logo
 ];
 const allImages = [...propertyImages, ...otherImages];
 forcePrefetchImages(allImages);

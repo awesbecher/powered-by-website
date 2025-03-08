@@ -14,8 +14,12 @@ import "./CursorAnimation.css";
 // Immediately preload all images when this module is imported
 // This runs before the component is even mounted
 const propertyImages = properties.map(property => property.image);
-forcePrefetchImages(propertyImages);
-addCSSImagePreloading(propertyImages);
+const headerImages = [
+  "/lovable-uploads/64bb9d7d-aaaa-4015-9a4b-839ae9f0114d.png", // PBA logo
+];
+const allImagesToPreload = [...propertyImages, ...headerImages];
+forcePrefetchImages(allImagesToPreload);
+addCSSImagePreloading(allImagesToPreload);
 
 export const WebsiteSimulation = () => {
   const [simState, setSimState] = useState<"website" | "loading" | "call">("website");
