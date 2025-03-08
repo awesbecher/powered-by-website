@@ -9,27 +9,27 @@ interface HeroContentProps {
 
 export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) => {
   return (
-    <div className={`w-full lg:w-1/2 space-y-6 transition-all duration-1000 ease-out transform
+    <div className={`w-full lg:w-1/2 space-y-4 transition-all duration-1000 ease-out transform
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-      <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
         Meet Your New <span className="text-[#9b87f5]">AI Receptionist</span>
       </h1>
-      <p className="text-xl text-gray-300">
+      <p className="text-lg text-gray-300">
         With an AI Receptionist by <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span>, you get the same personable experience customers expect from a traditional receptionist—only now it never sleeps, forgets, or drops a call.
       </p>
-      <div className="space-y-4 text-gray-300">
-        <p className="text-xl">Our AI Receptionist adapts to your business needs:</p>
-        <ul className="list-disc list-inside space-y-2 pl-2 text-sm">
+      <div className="space-y-3 text-gray-300">
+        <p className="text-lg">Our AI Receptionist adapts to your business needs:</p>
+        <ul className="list-disc list-inside space-y-1 pl-2 text-sm">
           <li>Restaurant: Automate reservations and answer menu questions</li>
           <li>Auto Dealership: Pre-screen leads for test drives</li>
           <li>Retail: Answer product questions and handle order inquiries</li>
           <li>Small Business: Capture every lead, 24/7/365</li>
         </ul>
       </div>
-      <div className="flex flex-col items-start">
+      <div className="flex flex-col items-start mt-2">
         <div className="flex flex-wrap gap-3 self-start">
           <Button 
-            className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
+            className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-5 py-4 text-base rounded-md flex items-center"
             onClick={handleContact}
           >
             Get Started <ArrowRight className="ml-2 h-5 w-5" />
