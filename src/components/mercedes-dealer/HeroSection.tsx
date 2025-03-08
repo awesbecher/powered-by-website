@@ -14,8 +14,8 @@ const HeroSection = () => {
       </div>
       
       <div className="relative h-full flex flex-col items-center justify-center px-4 lg:px-8">
-        <Link to="/" className="absolute top-8 left-8 text-white hover:text-gray-200 transition-colors">
-          ← Back
+        <Link to="/demo" className="absolute top-8 left-8 text-white hover:text-gray-200 transition-colors">
+          ← Back to Demos
         </Link>
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-5xl font-bold mb-4 text-white">
