@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
+import Navbar from "@/components/layout/Navbar";
 import { HeroSection } from "@/components/voice-chat/page-sections/HeroSection";
 import { FeaturesSection } from "@/components/voice-chat/page-sections/FeaturesSection";
 import { BenefitsSection } from "@/components/voice-chat/page-sections/BenefitsSection";
@@ -18,6 +19,7 @@ const otherImages = [
   "/lovable-uploads/f6cd5c39-f85a-4586-9140-cd8e12d9b947.png",  // Logo
   "/lovable-uploads/f8dcc881-9e41-4bee-b8e5-78e0fdbccabb.png", // Agent image
   "/lovable-uploads/314cb21d-7fdb-4cdd-a44e-da8af003a7f9.png", // Phoenix Realty Inc. Logo
+  "/lovable-uploads/b73aa6e5-5a81-4225-a13d-a2b900e9c3c7.png", // New uploaded logo
 ];
 const allImages = [...propertyImages, ...otherImages];
 forcePrefetchImages(allImages);
@@ -43,6 +45,7 @@ const AIVoiceChat = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0f0f0f] via-[#121212] to-[#0f0f0f]">
+      <Navbar />
       <HeroSection initialLoad={initialLoad} handleContact={handleContact} />
       <FeaturesSection />
       <BenefitsSection />
