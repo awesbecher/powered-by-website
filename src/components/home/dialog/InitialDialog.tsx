@@ -2,6 +2,7 @@
 import { DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { useNavigate } from "react-router-dom";
 
 interface InitialDialogProps {
   dialogContent: {
@@ -21,6 +22,13 @@ export const InitialDialog = ({
   handleStartCall,
   isSubmitting
 }: InitialDialogProps) => {
+  const navigate = useNavigate();
+  
+  const handleCancel = () => {
+    handleCloseDialog();
+    navigate('/voice-chat');
+  };
+
   return (
     <DialogContent className="bg-[#222222] text-white border-gray-800">
       <DialogHeader className="flex items-start space-x-4">
@@ -47,9 +55,8 @@ export const InitialDialog = ({
         </p>
         <div className="flex gap-2">
           <Button 
-            variant="outline"
-            onClick={() => handleCloseDialog()}
-            className="w-full border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white"
+            onClick={handleCancel}
+            className="w-full bg-red-600 hover:bg-red-700 text-white"
           >
             Cancel
           </Button>

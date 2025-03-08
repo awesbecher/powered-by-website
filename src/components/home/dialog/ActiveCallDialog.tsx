@@ -3,6 +3,7 @@ import { DialogContent } from "@/components/ui/dialog";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Activity, Mic, MicOff, X } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface ActiveCallDialogProps {
   handleEndCall: () => void;
@@ -10,10 +11,16 @@ interface ActiveCallDialogProps {
 
 export const ActiveCallDialog = ({ handleEndCall }: ActiveCallDialogProps) => {
   const [isMuted, setIsMuted] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMute = () => {
     // In a real implementation, this would interact with the Vapi SDK to mute/unmute
     setIsMuted(!isMuted);
+  };
+
+  const handleEndCallAndNavigate = () => {
+    handleEndCall();
+    navigate('/voice-chat');
   };
 
   return (
@@ -89,8 +96,8 @@ export const ActiveCallDialog = ({ handleEndCall }: ActiveCallDialogProps) => {
           </button>
           
           <button 
-            onClick={handleEndCall}
-            className="flex-1 py-3 px-4 bg-red-500 text-white rounded-md flex items-center justify-center space-x-2 hover:bg-red-600 transition-colors"
+            onClick={handleEndCallAndNavigate}
+            className="flex-1 py-3 px-4 bg-red-600 hover:bg-red-700 text-white rounded-md flex items-center justify-center space-x-2 transition-colors"
           >
             <X className="w-5 h-5" />
             <span>End Call</span>
