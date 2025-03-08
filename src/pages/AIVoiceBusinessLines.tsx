@@ -47,7 +47,7 @@ const AIVoiceBusinessLines = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0f0f0f] via-[#121212] to-[#0f0f0f]">
       <Navbar />
-      <WebsiteHeader />
+      {/* Remove the WebsiteHeader component which may be causing the double header */}
       <HeroSection initialLoad={initialLoad} handleContact={handleContact} />
       <FeaturesSection />
       <BenefitsSection />
