@@ -94,7 +94,7 @@ const License = () => {
         className="absolute top-8 left-8 z-20 text-white hover:text-purple-400 transition-colors flex items-center gap-2"
       >
         <ChevronLeft className="w-6 h-6" />
-        <span className="font-medium">Back</span>
+        <span className="font-medium">Back to Demos</span>
       </button>
 
       <div className="flex justify-center w-full absolute top-24 z-20">
