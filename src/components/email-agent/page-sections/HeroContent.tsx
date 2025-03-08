@@ -24,6 +24,7 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
           <li>Intelligent responses to customer inquiries based on your business rules</li>
           <li>Appointment scheduling and confirmation emails</li>
           <li>Meeting coordination and document preparation</li>
+          <li>Fully "guardrailed" and compliant to your policy guidelines & privacy standards</li>
         </ul>
       </div>
       <div className="flex flex-col items-start mt-2">
