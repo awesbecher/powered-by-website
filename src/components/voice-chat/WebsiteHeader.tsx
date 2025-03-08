@@ -8,7 +8,7 @@ export const WebsiteHeader = () => {
       <div className="flex items-center space-x-2">
         <a href="https://poweredby.agency/" target="_blank" rel="noopener noreferrer">
           <img 
-            src="/lovable-uploads/65c7ad96-17cd-4bc0-8a6d-0148a49f3402.png" 
+            src="/lovable-uploads/64bb9d7d-aaaa-4015-9a4b-839ae9f0114d.png" 
             alt="Powered By Agency" 
             className="h-6 w-auto"
           />
