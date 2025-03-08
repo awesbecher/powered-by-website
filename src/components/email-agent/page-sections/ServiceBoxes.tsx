@@ -1,39 +1,11 @@
 
-import { Mail, MailCheck, MailPlus, MailQuestion } from "lucide-react";
-import { ServiceBox } from "./ServiceBox";
+import { Mail } from "lucide-react";
 
 interface ServiceBoxesProps {
   initialLoad: boolean;
 }
 
 export const ServiceBoxes = ({ initialLoad }: ServiceBoxesProps) => {
-  const services = [
-    {
-      icon: MailPlus,
-      category: "Follow-Up",
-      name: "Post-Call Summary",
-      description: "Automated follow-up emails with key points from calls"
-    },
-    {
-      icon: MailQuestion,
-      category: "Response",
-      name: "Inquiry Handling",
-      description: "Intelligent replies to customer questions"
-    },
-    {
-      icon: Mail,
-      category: "Automation",
-      name: "Email Workflow",
-      description: "Streamlined email sequences for customer journeys"
-    },
-    {
-      icon: MailCheck,
-      category: "Analytics",
-      name: "Email Insights",
-      description: "Data-driven reporting on email performance"
-    }
-  ];
-
   return (
     <div className={`w-full lg:w-1/2 transition-all duration-1000 delay-300 ease-out transform flex flex-col items-start justify-start
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
@@ -42,16 +14,28 @@ export const ServiceBoxes = ({ initialLoad }: ServiceBoxesProps) => {
           Autonomous Email Communication
         </h3>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-        {services.map((service, index) => (
-          <ServiceBox
-            key={index}
-            icon={service.icon}
-            category={service.category}
-            name={service.name}
-            description={service.description}
-          />
-        ))}
+      
+      <div className="w-full text-center border border-gray-700/30 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg bg-black/40">
+        <div className="max-w-lg mx-auto">
+          <h4 className="text-white text-2xl font-bold mb-4">Don't believe us? Try it yourself:</h4>
+          
+          <div className="flex items-center justify-center mb-4">
+            <Mail className="text-[#9b87f5] w-10 h-10 mr-3" />
+            <p className="text-xl text-white font-medium">Email Michael. He's our favorite AI agent here at Powered_by:</p>
+          </div>
+          
+          <a 
+            href="mailto:michael@poweredby.agency" 
+            className="inline-block text-xl font-bold text-[#9b87f5] hover:text-[#8a75e3] transition-colors underline underline-offset-4"
+          >
+            michael@poweredby.agency
+          </a>
+          
+          <p className="mt-6 text-gray-300 text-sm">
+            Michael will respond automatically with the intelligence of a well-trained employee, showcasing 
+            exactly what our AI email agents can do for your business.
+          </p>
+        </div>
       </div>
     </div>
   );
