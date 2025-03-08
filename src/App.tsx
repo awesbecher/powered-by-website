@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Index from "./pages/Index";
@@ -19,7 +18,7 @@ import Insurance from "./pages/Insurance";
 import License from "./pages/License";
 import CallConfirmation from "./pages/CallConfirmation";
 import FoodMenu from "./pages/FoodMenu";
-import RoomService from "./pages/RoomService";
+import RoomService from "./pages/room-service";
 import NotFound from "./pages/NotFound";
 import { Toaster } from "@/components/ui/toaster"
 

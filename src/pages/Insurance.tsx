@@ -217,7 +217,7 @@ const Insurance = () => {
           className="absolute top-16 left-8 flex items-center text-accent hover:text-accent/80 transition-colors"
         >
           <ArrowLeft className="h-6 w-6 mr-2" />
-          <span>Back</span>
+          <span>Back to Demos</span>
         </Link>
 
         <div className="mx-auto max-w-3xl text-center">
