@@ -44,6 +44,7 @@ const AIVoiceChat = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0f0f0f] via-[#121212] to-[#0f0f0f]">
+      <WebsiteHeader />
       <HeroSection initialLoad={initialLoad} handleContact={handleContact} />
       <FeaturesSection />
       <BenefitsSection />

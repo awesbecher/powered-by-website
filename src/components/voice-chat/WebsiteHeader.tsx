@@ -4,13 +4,13 @@ import { Button } from "@/components/ui/button";
 
 export const WebsiteHeader = () => {
   return (
-    <div className="bg-white p-2 flex justify-between items-center border-b">
+    <div className="bg-white p-3 flex justify-between items-center border-b shadow-sm">
       <div className="flex items-center space-x-2">
         <a href="https://poweredby.agency/" target="_blank" rel="noopener noreferrer">
           <img 
             src="/lovable-uploads/64bb9d7d-aaaa-4015-9a4b-839ae9f0114d.png" 
             alt="Powered By Agency" 
-            className="h-8 w-auto" // Increased size from h-6 to h-8
+            className="h-10 w-auto" // Increased size from h-8 to h-10 for better visibility
           />
         </a>
       </div>
@@ -22,7 +22,7 @@ export const WebsiteHeader = () => {
           href="https://poweredby.agency/contact" 
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm text-white bg-[#9b87f5] hover:bg-[#8b77e5] px-4 py-2 rounded-md font-medium transition-colors" // Increased padding and adjusted styles
+          className="text-sm font-medium text-white bg-[#8871e6] hover:bg-[#7860d5] px-5 py-2.5 rounded-md transition-colors shadow-md" // Enhanced button style
         >
           Book a Free Consultation
         </a>
