@@ -1,5 +1,4 @@
 
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
 import { HeroSection } from "@/components/real-estate/HeroSection";
@@ -9,6 +8,7 @@ import { FeaturedProperties } from "@/components/real-estate/FeaturedProperties"
 import { ContactSection } from "@/components/real-estate/ContactSection";
 import { ActiveCallDialog } from "@/components/real-estate/ActiveCallDialog";
 import { useRealEstateCall } from "@/hooks/useRealEstateCall";
+import { useRealEstateCallState } from "@/hooks/useRealEstateCallState";
 
 const RealEstate = () => {
   const scrollToProperties = () => {
@@ -16,9 +16,15 @@ const RealEstate = () => {
     featuredSection?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScheduleOpen, setIsScheduleOpen] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const {
+    isOpen,
+    setIsOpen,
+    isScheduleOpen,
+    setIsScheduleOpen,
+    phoneNumber,
+    setPhoneNumber
+  } = useRealEstateCallState();
+
   const {
     isLoading,
     isCallActive,

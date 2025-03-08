@@ -1,5 +1,6 @@
 
 import { Button } from "@/components/ui/button";
+import { Phone } from "lucide-react";
 
 interface InsuranceHeroProps {
   onShowConsentDialog: () => void;
