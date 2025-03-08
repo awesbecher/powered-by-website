@@ -1,3 +1,4 @@
+
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -35,7 +36,7 @@ const RoomService = () => {
       vapi.on("call-end", () => {
         setIsCallActive(false);
         setIsDialogOpen(false);
-        navigate('/');
+        navigate('/demo');
         toast({
           title: "Call Completed",
           description: "Thank you for using our room service!",
@@ -63,7 +64,7 @@ const RoomService = () => {
     stopVapiCall();
     setIsCallActive(false);
     setIsDialogOpen(false);
-    navigate('/');
+    navigate('/demo');
     toast({
       title: "Call Ended",
       description: "Your call with room service has ended.",
@@ -79,7 +80,7 @@ const RoomService = () => {
       <RoomServiceHeader />
       
       <Link 
-        to="/" 
+        to="/demo" 
         className="absolute top-8 left-8 flex items-center text-white hover:text-white/80 transition-colors"
       >
         <ArrowLeft className="h-6 w-6 mr-2" />
