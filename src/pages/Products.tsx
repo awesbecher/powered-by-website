@@ -6,6 +6,7 @@ import { ProductIndex } from "@/components/products/ProductIndex";
 import { serviceCardsData } from "@/data/serviceCardsData";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import Navbar from "@/components/layout/Navbar";
+import { SectionTitle } from "@/components/home/SectionTitle";
 
 const Products = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -44,6 +45,23 @@ const Products = () => {
               />
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Featured Agent Solutions Section */}
+      <div className="container mx-auto px-4 py-12">
+        <SectionTitle title="Featured Agent Solutions:" linked={false} />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+          {/* Placeholder for featured agent solutions content */}
+          <div className="bg-white/5 rounded-lg p-6 backdrop-blur-sm border border-white/10 h-64 flex items-center justify-center">
+            <p className="text-white text-center">Featured solution content will be added soon</p>
+          </div>
+          <div className="bg-white/5 rounded-lg p-6 backdrop-blur-sm border border-white/10 h-64 flex items-center justify-center">
+            <p className="text-white text-center">Featured solution content will be added soon</p>
+          </div>
+          <div className="bg-white/5 rounded-lg p-6 backdrop-blur-sm border border-white/10 h-64 flex items-center justify-center">
+            <p className="text-white text-center">Featured solution content will be added soon</p>
+          </div>
         </div>
       </div>
 
