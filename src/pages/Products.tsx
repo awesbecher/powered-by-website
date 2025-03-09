@@ -33,7 +33,7 @@ const Products = () => {
     },
     {
       title: "Email Agent",
-      description: "Deploy autonomous email agents that think, write, and behave exactly as your most well-trained staff. Handle follow-ups, inquiries, and customer interactions—all autonomously, secure, & compliant.",
+      description: "Deploy autonomous email agents that think, write, and behave exactly as your most well-trained staff. Autonomously and securely handle follow-ups, inquiries, & customer workflows.",
       icon: Mail,
       link: "/email-agent"
     },
