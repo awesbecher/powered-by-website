@@ -23,10 +23,10 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
       <div className="space-y-3 text-gray-300">
         <p className="text-lg">Our AI Text Agent adapts to your business needs:</p>
         <ul className="list-disc list-inside space-y-1 pl-2 text-sm">
-          <li>Automated SMS campaigns and personalized follow-ups</li>
-          <li>Appointment scheduling and confirmation texts</li>
-          <li>Customer support and query resolution via SMS</li>
-          <li>Fully "guardrailed" and compliant to your policy guidelines & privacy standards</li>
+          <li>Automates SMS marketing & lead gen campaigns</li>
+          <li>Writes human-like texts using advanced NLP, ensuring every message feels on-brand</li>
+          <li>Schedules, sends, and follows up on texts automatically based on triggers</li>
+          <li>Stays TCPA and GDPR-friendly with opt-in/out handling and secure data management</li>
         </ul>
       </div>
       <div className="flex flex-col items-center mt-2">
