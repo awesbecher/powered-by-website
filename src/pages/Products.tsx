@@ -41,7 +41,7 @@ const Products = () => {
       title: "Text Agent",
       description: "Smart texting solution that engages customers with personalized conversations on demand.",
       icon: MessageCircle,
-      link: "/voice-chat" // Fallback to voice chat for now, will be updated later
+      link: "/text-agent"
     }
   ];
 

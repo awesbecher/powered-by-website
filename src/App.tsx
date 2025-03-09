@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Index from "./pages/Index";
@@ -12,6 +13,7 @@ import AIAgency from "./pages/AIAgency";
 import AIVoiceChat from "./pages/AIVoiceChat";
 import AIVoiceBusinessLines from "./pages/AIVoiceBusinessLines";
 import EmailAgent from "./pages/EmailAgent";
+import TextAgent from "./pages/TextAgent";
 import MercedesDealer from "./pages/MercedesDealer";
 import RetailServices from "./pages/RetailServices";
 import Insurance from "./pages/Insurance";
@@ -40,6 +42,7 @@ function App() {
             <Route path="/ai-receptionist" element={<AIVoiceBusinessLines />} />
             <Route path="/voice-chat" element={<AIVoiceChat />} />
             <Route path="/email-agent" element={<EmailAgent />} />
+            <Route path="/text-agent" element={<TextAgent />} />
             <Route path="/ai-assistant" element={<Navigate to="/ai-receptionist" replace />} />
             <Route path="/voice-business-lines" element={<Navigate to="/ai-receptionist" replace />} />
             <Route path="/mercedes-dealer" element={<MercedesDealer />} />
