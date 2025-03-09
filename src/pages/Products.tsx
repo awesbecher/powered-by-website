@@ -21,7 +21,7 @@ const Products = () => {
   const featuredSolutions = [
     {
       title: "AI Voice Chat",
-      description: "Advanced AI-powered voice assistant for natural customer interactions and 24/7 support.",
+      description: "Deploy remarkably human-like voice agents into your existing website to automate 24/7 customer support, appointment bookings, or upsell/cross-sell campaigns.",
       icon: MessageSquare,
       link: "/voice-chat"
     },

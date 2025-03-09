@@ -49,7 +49,7 @@ export const FeaturedSolutionCard = ({ title, description, icon: Icon, link }: F
       
       <h3 className="text-xl font-semibold text-white mb-2">{title}</h3>
       
-      <p className="text-gray-300 mb-4 flex-grow">{description}</p>
+      <p className={`text-gray-300 mb-4 flex-grow ${description.length > 100 ? 'text-sm' : ''}`}>{description}</p>
       
       <div className="mt-auto">
         <span className="text-accent text-sm font-medium group-hover:underline">Learn more</span>
