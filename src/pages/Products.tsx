@@ -51,6 +51,22 @@ const Products = () => {
       <ProductsHero initialLoad={initialLoad} className="hero-section" />
       
       <ProductIndex />
+      
+      {/* Featured Agent Solutions Section - Now placed between ProductIndex and detailed solutions */}
+      <div className="container mx-auto px-4 py-12">
+        <SectionTitle title="Featured Agent Solutions:" linked={false} />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
+          {featuredSolutions.map((solution, index) => (
+            <FeaturedSolutionCard
+              key={index}
+              title={solution.title}
+              description={solution.description}
+              icon={solution.icon}
+              link={solution.link}
+            />
+          ))}
+        </div>
+      </div>
 
       {/* Detailed Solutions */}
       <div className="max-w-full pt-12">
@@ -73,22 +89,6 @@ const Products = () => {
                 features={card.features}
               />
             </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Featured Agent Solutions Section */}
-      <div className="container mx-auto px-4 py-12">
-        <SectionTitle title="Featured Agent Solutions:" linked={false} />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
-          {featuredSolutions.map((solution, index) => (
-            <FeaturedSolutionCard
-              key={index}
-              title={solution.title}
-              description={solution.description}
-              icon={solution.icon}
-              link={solution.link}
-            />
           ))}
         </div>
       </div>
