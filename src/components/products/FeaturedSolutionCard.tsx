@@ -1,7 +1,7 @@
 
-import { LucideIcon, Sparkles, Zap, Star, Flame } from "lucide-react";
+import { LucideIcon } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface FeaturedSolutionCardProps {
   title: string;
@@ -18,22 +18,6 @@ export const FeaturedSolutionCard = ({ title, description, icon: Icon, link }: F
     window.scrollTo(0, 0);
   };
 
-  // Select appropriate accent icon based on title
-  const getAccentIcon = () => {
-    switch (title) {
-      case "AI Voice Chat":
-        return <Sparkles className={`w-8 h-8 transition-all duration-300 ${isHovered ? 'text-accent scale-110' : 'text-accent/70'}`} />;
-      case "AI Receptionist":
-        return <Zap className={`w-8 h-8 transition-all duration-300 ${isHovered ? 'text-accent scale-110' : 'text-accent/70'}`} />;
-      case "Email Agent":
-        return <Star className={`w-8 h-8 transition-all duration-300 ${isHovered ? 'text-accent scale-110' : 'text-accent/70'}`} />;
-      case "Text Agent":
-        return <Flame className={`w-8 h-8 transition-all duration-300 ${isHovered ? 'text-accent scale-110' : 'text-accent/70'}`} />;
-      default:
-        return <Sparkles className={`w-8 h-8 transition-all duration-300 ${isHovered ? 'text-accent scale-110' : 'text-accent/70'}`} />;
-    }
-  };
-
   return (
     <Link 
       to={link}
@@ -42,9 +26,8 @@ export const FeaturedSolutionCard = ({ title, description, icon: Icon, link }: F
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="flex justify-between items-start mb-4">
+      <div className="flex justify-start items-start mb-4">
         <Icon className="w-8 h-8 text-accent" />
-        {getAccentIcon()}
       </div>
       
       <h3 className="text-xl font-semibold text-white mb-2">{title}</h3>
