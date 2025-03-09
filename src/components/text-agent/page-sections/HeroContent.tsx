@@ -15,7 +15,7 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
         Meet Your New <span className="text-[#9b87f5]">AI Text Agent</span>: Texting reinvented!
       </h1>
       <p className="text-lg text-gray-300">
-        Imagine an AI agent that sends and receives text messages for your business completely by itself. With the latest in AI agent intelligence, you can now deploy autonomous text agents that think, write, and behave exactly as your most well-trained staff.
+        Automate your SMS text messages, turning every text into an opportunity to connect, convert, and delight. Whether you're chasing leads, supporting customers, or boosting sales, our AI Text Agent works tirelessly to make your messaging effortless and effective.
       </p>
       <p className="text-lg text-gray-300">
         With an AI Text Agent by <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span>, you get intelligent SMS communication that handles follow-ups, inquiries, and customer interactions—all autonomously while meeting your company policies and privacy requirements.
