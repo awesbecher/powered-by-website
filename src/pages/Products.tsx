@@ -7,6 +7,8 @@ import { serviceCardsData } from "@/data/serviceCardsData";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import Navbar from "@/components/layout/Navbar";
 import { SectionTitle } from "@/components/home/SectionTitle";
+import { FeaturedSolutionCard } from "@/components/products/FeaturedSolutionCard";
+import { MessageSquare, Phone, Mail, MessageCircle } from "lucide-react";
 
 const Products = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -15,6 +17,33 @@ const Products = () => {
     setInitialLoad(false);
     window.scrollTo(0, 0);
   }, []);
+
+  const featuredSolutions = [
+    {
+      title: "AI Voice Chat",
+      description: "Advanced AI-powered voice assistant for natural customer interactions and 24/7 support.",
+      icon: MessageSquare,
+      link: "/ai-voice-chat"
+    },
+    {
+      title: "AI Receptionist",
+      description: "Intelligent virtual receptionist that handles calls, schedules appointments, and answers questions.",
+      icon: Phone,
+      link: "/ai-voice-business-lines"
+    },
+    {
+      title: "Email Agent",
+      description: "Automated email response system that understands context and delivers human-like replies.",
+      icon: Mail,
+      link: "/email-agent"
+    },
+    {
+      title: "Text Agent",
+      description: "Smart texting solution that engages customers with personalized conversations on demand.",
+      icon: MessageCircle,
+      link: "/ai-voice-chat" // Fallback to voice chat for now
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
@@ -51,17 +80,16 @@ const Products = () => {
       {/* Featured Agent Solutions Section */}
       <div className="container mx-auto px-4 py-12">
         <SectionTitle title="Featured Agent Solutions:" linked={false} />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
-          {/* Placeholder for featured agent solutions content */}
-          <div className="bg-white/5 rounded-lg p-6 backdrop-blur-sm border border-white/10 h-64 flex items-center justify-center">
-            <p className="text-white text-center">Featured solution content will be added soon</p>
-          </div>
-          <div className="bg-white/5 rounded-lg p-6 backdrop-blur-sm border border-white/10 h-64 flex items-center justify-center">
-            <p className="text-white text-center">Featured solution content will be added soon</p>
-          </div>
-          <div className="bg-white/5 rounded-lg p-6 backdrop-blur-sm border border-white/10 h-64 flex items-center justify-center">
-            <p className="text-white text-center">Featured solution content will be added soon</p>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
+          {featuredSolutions.map((solution, index) => (
+            <FeaturedSolutionCard
+              key={index}
+              title={solution.title}
+              description={solution.description}
+              icon={solution.icon}
+              link={solution.link}
+            />
+          ))}
         </div>
       </div>
 
