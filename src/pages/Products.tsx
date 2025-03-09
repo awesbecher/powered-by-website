@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { ServiceCard } from "@/components/products/ServiceCard";
 import { ProductsHero } from "@/components/products/ProductsHero";
@@ -38,7 +39,7 @@ const Products = () => {
     },
     {
       title: "Text Agent",
-      description: "Use an AI agent that automates SMS text messaging with smart, human-like, and personalized texts that engage customers instantly. Save time, boost conversions, and scale effortlessly—all securely, private, and compliant.",
+      description: "Automate your SMS text messaging with smart, human-like, and personalized texts that engage customers instantly. Save time, boost conversions, and scale—all securely, private, & compliant.",
       icon: Smartphone,
       link: "/text-agent"
     }
