@@ -13,20 +13,20 @@ export const ServiceBoxes = ({ initialLoad }: ServiceBoxesProps) => {
         <div className="max-w-lg mx-auto">
           <h4 className="text-white text-2xl font-bold mb-8">Don't believe us? Try it yourself:</h4>
           
-          <p className="text-xl text-white font-medium mb-6">Email Michael. He's our favorite AI agent here at <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span>:</p>
+          <p className="text-xl text-white font-medium mb-6">Email Andrew. He's our favorite AI agent here at <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span>:</p>
           
           <div className="flex items-center justify-center mb-6">
             <Mail className="text-[#9b87f5] w-10 h-10 mr-3" />
             <a 
-              href="mailto:michael@poweredby.agency" 
+              href="mailto:andrew@poweredby.agency" 
               className="inline-block text-xl font-bold text-[#9b87f5] hover:text-[#8a75e3] transition-colors underline underline-offset-4"
             >
-              michael@poweredby.agency
+              andrew@poweredby.agency
             </a>
           </div>
           
           <p className="mt-6 text-gray-300 text-sm">
-            Michael will respond automatically with the intelligence of a well-trained employee, showcasing 
+            Andrew will respond automatically with the intelligence of a well-trained employee, showcasing 
             exactly what our AI email agents can do for your business.
           </p>
         </div>
