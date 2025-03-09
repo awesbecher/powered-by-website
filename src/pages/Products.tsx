@@ -27,7 +27,7 @@ const Products = () => {
     },
     {
       title: "AI Receptionist",
-      description: "Intelligent virtual receptionist that handles calls, schedules appointments, and answers questions.",
+      description: "Greet and manage callers to your business with voice AI. Automatically answer calls 24/7, handle any inquiry, book reservations, or take messages.",
       icon: Phone,
       link: "/ai-receptionist"
     },
