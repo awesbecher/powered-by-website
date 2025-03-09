@@ -52,10 +52,10 @@ const Products = () => {
       
       <ProductIndex />
       
-      {/* Featured Agent Solutions Section - Now placed between ProductIndex and detailed solutions */}
-      <div className="container mx-auto px-4 py-12">
+      {/* Featured Agent Solutions Section - Reduced padding */}
+      <div className="container mx-auto px-4 py-6">
         <SectionTitle title="Featured Agent Solutions:" linked={false} />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-6">
           {featuredSolutions.map((solution, index) => (
             <FeaturedSolutionCard
               key={index}
@@ -69,7 +69,7 @@ const Products = () => {
       </div>
 
       {/* Detailed Solutions */}
-      <div className="max-w-full pt-12">
+      <div className="max-w-full pt-8">
         <div className="space-y-0 divide-y divide-white/10">
           {serviceCardsData.map((card, index) => (
             <div 
