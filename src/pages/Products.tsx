@@ -23,13 +23,13 @@ const Products = () => {
       title: "AI Voice Chat",
       description: "Advanced AI-powered voice assistant for natural customer interactions and 24/7 support.",
       icon: MessageSquare,
-      link: "/ai-voice-chat"
+      link: "/voice-chat"
     },
     {
       title: "AI Receptionist",
       description: "Intelligent virtual receptionist that handles calls, schedules appointments, and answers questions.",
       icon: Phone,
-      link: "/ai-voice-business-lines"
+      link: "/ai-receptionist"
     },
     {
       title: "Email Agent",
@@ -41,7 +41,7 @@ const Products = () => {
       title: "Text Agent",
       description: "Smart texting solution that engages customers with personalized conversations on demand.",
       icon: MessageCircle,
-      link: "/ai-voice-chat" // Fallback to voice chat for now
+      link: "/voice-chat" // Fallback to voice chat for now, will be updated later
     }
   ];
 
