@@ -8,7 +8,7 @@ import { ClosingCTA } from "@/components/home/ClosingCTA";
 import Navbar from "@/components/layout/Navbar";
 import { SectionTitle } from "@/components/home/SectionTitle";
 import { FeaturedSolutionCard } from "@/components/products/FeaturedSolutionCard";
-import { MessageSquare, Phone, Mail, MessageCircle } from "lucide-react";
+import { MessageSquare, Phone, Mail, Smartphone } from "lucide-react";
 
 const Products = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -40,7 +40,7 @@ const Products = () => {
     {
       title: "Text Agent",
       description: "Smart texting solution that engages customers with personalized conversations on demand.",
-      icon: MessageCircle,
+      icon: Smartphone,
       link: "/text-agent"
     }
   ];
@@ -103,3 +103,4 @@ const Products = () => {
 };
 
 export default Products;
+
