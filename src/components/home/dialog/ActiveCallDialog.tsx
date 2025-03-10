@@ -36,9 +36,9 @@ export const ActiveCallDialog = ({ handleEndCall }: ActiveCallDialogProps) => {
             <Avatar className="h-20 w-20 rounded-full border-2 border-gray-700 shadow-md">
               <AvatarImage 
                 src="/lovable-uploads/4bf8609b-100b-47bc-83ab-a1a376a57c4d.png" 
-                alt="Paul from Powered_by Solutions" 
+                alt="Michael from Powered_by Solutions" 
               />
-              <AvatarFallback>PB</AvatarFallback>
+              <AvatarFallback>MB</AvatarFallback>
             </Avatar>
             <div className="absolute bottom-1 left-1 flex items-center">
               <div className="h-3 w-3 bg-green-500 rounded-full"></div>
@@ -53,7 +53,7 @@ export const ActiveCallDialog = ({ handleEndCall }: ActiveCallDialogProps) => {
             </div>
           </div>
           <div>
-            <h3 className="text-2xl font-bold text-white">Paul</h3>
+            <h3 className="text-2xl font-bold text-white">Michael</h3>
             <p className="text-gray-400">Powered_by Solutions</p>
           </div>
         </div>
