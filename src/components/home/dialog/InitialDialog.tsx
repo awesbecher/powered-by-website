@@ -35,10 +35,10 @@ export const InitialDialog = ({
         <Avatar className="w-20 h-20">
           <AvatarImage
             src="/lovable-uploads/4bf8609b-100b-47bc-83ab-a1a376a57c4d.png"
-            alt="Paul Berman, Chief Technical Evangelist @ Powered_by Agency"
+            alt="Michael, AI Voice Agent @ Powered_by Agency"
             className="object-cover"
           />
-          <AvatarFallback>PB</AvatarFallback>
+          <AvatarFallback>MA</AvatarFallback>
         </Avatar>
         <div className="flex-1">
           <DialogTitle className="text-2xl font-bold text-white mb-2">
