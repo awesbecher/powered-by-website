@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { WebsiteSimulation } from "@/components/voice-chat/WebsiteSimulation";
 import { VoiceChatDialog } from "@/components/voice-chat/VoiceChatDialog";
 import { useToast } from "@/hooks/use-toast";
+import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -19,8 +20,8 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
   const [isCallActive, setIsCallActive] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Assistant ID for Vapi - removed as requested
-  // const ASSISTANT_ID = "07e97137-ad5c-4846-ab6f-cff48c3e2da9";
+  // Assistant ID for Vapi - updated with the new ID
+  const ASSISTANT_ID = "c7acc482-bee2-40a3-85d1-a192ce2a6685";
 
   const handleVoiceChatClick = () => {
     setShowVoiceChatDialog(true);
@@ -36,15 +37,14 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
   const handleStartCall = async () => {
     setIsSubmitting(true);
     try {
-      // Removed the call to initiateVapiCall service
-      // Will be replaced with new service in future update
-      
-      // For now, just simulate a successful call start
-      setIsCallActive(true);
-      toast({
-        title: "Call functionality temporarily unavailable",
-        description: "The voice agent service is being updated. Please check back soon.",
-      });
+      const success = await initiateVapiCall(ASSISTANT_ID);
+      if (success) {
+        setIsCallActive(true);
+        toast({
+          title: "Call started successfully",
+          description: "You're now connected to our AI voice agent.",
+        });
+      }
     } catch (error) {
       console.error("Failed to start call:", error);
       toast({
@@ -59,9 +59,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
 
   const handleEndCall = async () => {
     try {
-      // Removed the call to stopVapiCall service
-      // Will be replaced with new service in future update
-      
+      await stopVapiCall();
       toast({
         title: "Call ended",
         description: "Thank you for trying our AI voice agent.",
