@@ -26,7 +26,7 @@ const AnnouncementBanner = ({
           >
             OutboundAI
           </Link>
-          <span>: AI Agents to Automate Outbound Calls Sales & Marketing Leads. </span>
+          <span>: Automation Agents for Outbound Sales & Marketing Calls. </span>
           <Link 
             to={OUTBOUND_AI_URL} 
             target="_blank" 
