@@ -89,9 +89,13 @@ const Index = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
-      <AnnouncementBanner />
-      <Navbar />
-      <HeroSection initialLoad={initialLoad} />
+      <div className="pt-8">
+        <AnnouncementBanner />
+        <div className="relative">
+          <Navbar />
+        </div>
+        <HeroSection initialLoad={initialLoad} />
+      </div>
 
       <div className="relative z-10 mt-12 mb-12">
         <FeaturesGrid />
