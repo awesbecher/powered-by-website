@@ -26,39 +26,28 @@ export const ActiveCallDialog = ({ handleEndCall }: ActiveCallDialogProps) => {
   return (
     <DialogContent className="bg-black text-white border-gray-800 sm:max-w-md p-6 rounded-xl">
       <div className="flex flex-col space-y-6">
-        <div className="flex justify-between items-center">
-          <h2 className="text-3xl font-bold text-white">You are now Connected</h2>
-          {/* Removed the manual close button here, since DialogContent already has one */}
-        </div>
+        <h2 className="text-4xl font-bold text-white mb-2">You are now Connected</h2>
         
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center">
           <div className="relative">
-            <Avatar className="h-20 w-20 rounded-full border-2 border-gray-700 shadow-md">
+            <Avatar className="h-20 w-20 rounded-full">
               <AvatarImage 
-                src="/lovable-uploads/4bf8609b-100b-47bc-83ab-a1a376a57c4d.png" 
+                src="/lovable-uploads/ec1260f7-a3ab-4acc-9a21-06f9d4ae5105.png" 
                 alt="Michael from Powered_by Solutions" 
               />
               <AvatarFallback>MB</AvatarFallback>
             </Avatar>
-            <div className="absolute bottom-1 left-1 flex items-center">
+            <div className="absolute bottom-1 left-1">
               <div className="h-3 w-3 bg-green-500 rounded-full"></div>
-              <div className="ml-1 flex space-x-0.5">
-                {[...Array(4)].map((_, i) => (
-                  <div 
-                    key={i} 
-                    className={`h-3 w-1 rounded-full ${i === 0 ? 'bg-white' : 'bg-gray-500'}`}
-                  ></div>
-                ))}
-              </div>
             </div>
           </div>
-          <div>
-            <h3 className="text-2xl font-bold text-white">Michael</h3>
+          <div className="ml-4">
+            <h3 className="text-3xl font-bold text-white">Michael</h3>
             <p className="text-gray-400">Powered_by Solutions</p>
           </div>
         </div>
         
-        <div className="bg-gray-900 p-4 rounded-xl">
+        <div className="bg-[#1e2a3b] p-4 rounded-xl">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-xl font-bold text-white">Call in progress</h3>
             <div className="flex items-center text-gray-300">
@@ -73,11 +62,10 @@ export const ActiveCallDialog = ({ handleEndCall }: ActiveCallDialogProps) => {
             </div>
             <div className="flex items-center">
               <div className="flex space-x-0.5 mr-2">
-                <div className="h-3 w-1 bg-white rounded-full"></div>
-                {[...Array(4)].map((_, i) => (
+                {[...Array(5)].map((_, i) => (
                   <div 
                     key={i} 
-                    className={`h-3 w-1 rounded-full ${i < 2 ? 'bg-gray-400' : 'bg-gray-600'}`}
+                    className="h-3 w-1 bg-white rounded-full"
                   ></div>
                 ))}
               </div>
@@ -89,17 +77,17 @@ export const ActiveCallDialog = ({ handleEndCall }: ActiveCallDialogProps) => {
         <div className="flex space-x-4">
           <button 
             onClick={toggleMute}
-            className="flex-1 py-3 px-4 border border-gray-700 rounded-md flex items-center justify-center space-x-2 hover:bg-gray-900 transition-colors text-white"
+            className="flex-1 py-4 px-6 bg-[#1e2a3b] rounded-md flex items-center justify-center space-x-2 hover:bg-gray-900 transition-colors text-white"
           >
-            {isMuted ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
+            {isMuted ? <MicOff className="w-5 h-5 mr-2" /> : <Mic className="w-5 h-5 mr-2" />}
             <span>{isMuted ? "Unmute" : "Mute"}</span>
           </button>
           
           <button 
             onClick={handleEndCallAndNavigate}
-            className="flex-1 py-3 px-4 bg-red-600 hover:bg-red-700 text-white rounded-md flex items-center justify-center space-x-2 transition-colors"
+            className="flex-1 py-4 px-6 bg-red-600 hover:bg-red-700 text-white rounded-md flex items-center justify-center space-x-2 transition-colors"
           >
-            <X className="w-5 h-5" />
+            <X className="w-5 h-5 mr-2" />
             <span>End Call</span>
           </button>
         </div>
