@@ -9,7 +9,7 @@ interface HeroSectionProps {
 
 export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
   return (
-    <div className="relative overflow-hidden px-6 lg:px-8 pt-24 pb-8">
+    <div className="relative overflow-hidden px-6 lg:px-8 pt-8 pb-8">
       <div className="mx-auto max-w-7xl">
         <div className="text-center">
           <h1 
