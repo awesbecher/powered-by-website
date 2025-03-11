@@ -1,4 +1,3 @@
-
 import { DialogContent } from "@/components/ui/dialog";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Activity, Mic, MicOff, X } from "lucide-react";
@@ -14,7 +13,6 @@ export const ActiveCallDialog = ({ handleEndCall }: ActiveCallDialogProps) => {
   const navigate = useNavigate();
 
   const toggleMute = () => {
-    // In a real implementation, this would interact with the Vapi SDK to mute/unmute
     setIsMuted(!isMuted);
   };
 
@@ -32,8 +30,9 @@ export const ActiveCallDialog = ({ handleEndCall }: ActiveCallDialogProps) => {
           <div className="relative">
             <Avatar className="h-20 w-20 rounded-full">
               <AvatarImage 
-                src="/lovable-uploads/f56882c3-c5d5-4388-a7c4-6aa6f7202b41.png" 
+                src="/lovable-uploads/bd9e9055-ba23-4fcc-9c2a-4fda4b9dd627.png" 
                 alt="Michael from Powered_by Solutions" 
+                className="object-cover"
               />
               <AvatarFallback>MB</AvatarFallback>
             </Avatar>
