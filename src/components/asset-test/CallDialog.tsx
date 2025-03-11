@@ -28,12 +28,12 @@ const CallDialog: React.FC<CallDialogProps> = ({
 }) => {
   let agentName = "Alex Fisher";
   let agentRole = "Planter's Insurance";
-  let avatarSrc = "/lovable-uploads/156d245d-e750-4ef3-8995-a7ae211eeeee.png";
+  let avatarSrc = "/lovable-uploads/d346b971-ac00-4e01-b998-88ba7938a22f.png";
   
   if (isMercedesAgent) {
     agentName = "Dave Frankel";
     agentRole = "Mercedes of Tacoma";
-    avatarSrc = "/lovable-uploads/f6cd5c39-f85a-4586-9140-cd8e12d9b947.png";
+    avatarSrc = "/lovable-uploads/1a963891-b5e5-4c4c-85fd-e5ec489343bd.png";
   } else if (isRestaurantAgent) {
     agentName = "Dominic";
     agentRole = "Slice House of Anaheim";
@@ -130,7 +130,7 @@ const CallDialog: React.FC<CallDialogProps> = ({
       <DialogContent className="bg-[#222222] text-white border-gray-800">
         <div className="flex items-center space-x-4 mb-4">
           <Avatar className="h-12 w-12">
-            <AvatarImage src={avatarSrc} alt={agentName} />
+            <AvatarImage src={avatarSrc} alt={agentName} className="object-cover" />
             <AvatarFallback>{agentName.charAt(0)}</AvatarFallback>
           </Avatar>
           <div>
