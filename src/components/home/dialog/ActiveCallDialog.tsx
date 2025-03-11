@@ -32,7 +32,7 @@ export const ActiveCallDialog = ({ handleEndCall }: ActiveCallDialogProps) => {
           <div className="relative">
             <Avatar className="h-20 w-20 rounded-full">
               <AvatarImage 
-                src="/lovable-uploads/ec1260f7-a3ab-4acc-9a21-06f9d4ae5105.png" 
+                src="/lovable-uploads/f56882c3-c5d5-4388-a7c4-6aa6f7202b41.png" 
                 alt="Michael from Powered_by Solutions" 
               />
               <AvatarFallback>MB</AvatarFallback>
