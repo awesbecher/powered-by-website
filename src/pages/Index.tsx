@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
+import AnnouncementBanner from "@/components/layout/AnnouncementBanner";
 import { HeroSection } from "@/components/home/HeroSection";
 import { FeaturesGrid } from "@/components/home/FeaturesGrid";
 import { ValuesSection } from "@/components/home/ValuesSection";
@@ -88,6 +89,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
+      <AnnouncementBanner />
       <Navbar />
       <HeroSection initialLoad={initialLoad} />
 
