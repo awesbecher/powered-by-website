@@ -43,9 +43,8 @@ const About = () => {
               by
             </span> small business
           </h1>
-          <div className="relative inline-block mt-4">
-            <div className="absolute inset-0 bg-white/20 rounded-full blur-sm -z-10"></div>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto px-8 py-2 rounded-full">
+          <div className="mt-4 flex justify-center">
+            <p className="text-xl bg-white text-[#6342ff] font-bold px-4 py-2 rounded-md inline-block">
               Our mission is to democratize access to AI agents for SMBs.
             </p>
           </div>
