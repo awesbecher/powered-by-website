@@ -1,6 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import Footer from "@/components/layout/Footer";
 
 const CallConfirmation = () => {
   return (
@@ -20,6 +21,8 @@ const CallConfirmation = () => {
           </p>
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 };

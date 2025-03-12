@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { blogPosts } from "@/data/blog-posts";
 import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import { ChevronRight } from "lucide-react";
 
 const Blog = () => {
@@ -48,6 +49,8 @@ const Blog = () => {
           ))}
         </div>
       </section>
+      
+      <Footer />
     </div>
   );
 };

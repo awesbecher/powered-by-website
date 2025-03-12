@@ -1,3 +1,4 @@
+
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Phone } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -6,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import Footer from "@/components/layout/Footer";
 
 const FoodMenu = () => {
   const isMobile = useIsMobile();
@@ -114,6 +116,8 @@ const FoodMenu = () => {
           />
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 };

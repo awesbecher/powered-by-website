@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 
 const NotFound = () => {
@@ -44,6 +45,7 @@ const NotFound = () => {
         </div>
       </div>
       <ClosingCTA />
+      <Footer />
     </div>
   );
 };

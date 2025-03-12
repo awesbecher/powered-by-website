@@ -1,6 +1,7 @@
 
 import React from "react";
 import { useAssetTest } from "@/hooks/useAssetTest";
+import Footer from "@/components/layout/Footer";
 import AssetTestContent from "@/components/asset-test/AssetTestContent";
 import AssetTestDialogs from "@/components/asset-test/AssetTestDialogs";
 
@@ -64,6 +65,8 @@ const AssetTest = () => {
         onEndCall={handleEndCall}
         onToggleMute={toggleMute}
       />
+      
+      <Footer />
     </div>
   );
 };

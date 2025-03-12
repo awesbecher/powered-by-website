@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import { Phone } from "lucide-react";
+import Footer from "@/components/layout/Footer";
 import InsuranceHeader from "@/components/insurance/InsuranceHeader";
 import InsuranceHero from "@/components/insurance/InsuranceHero";
 import InsuranceProductGrid from "@/components/insurance/InsuranceProductGrid";
@@ -60,6 +61,8 @@ const Insurance = () => {
         handleCall={handleCall}
         handleEndCall={handleEndCall}
       />
+      
+      <Footer />
     </div>
   );
 };

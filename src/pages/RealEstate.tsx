@@ -1,6 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
+import Footer from "@/components/layout/Footer";
 import { HeroSection } from "@/components/real-estate/HeroSection";
 import { ActionButtons } from "@/components/real-estate/ActionButtons";
 import { ServicesSection } from "@/components/real-estate/ServicesSection";
@@ -85,6 +86,8 @@ const RealEstate = () => {
         handleCall={handleCall}
         isLoading={isLoading}
       />
+
+      <Footer />
     </div>
   );
 };

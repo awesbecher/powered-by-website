@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import { WebsiteHeader } from "@/components/voice-business/WebsiteHeader";
 import { HeroSection } from "@/components/voice-business/page-sections/HeroSection";
 import { FeaturesSection } from "@/components/voice-business/page-sections/FeaturesSection";
@@ -54,6 +55,7 @@ const AIVoiceBusinessLines = () => {
       <CTASection handleContact={handleContact} />
       <FAQSection />
       <FinalCTASection handleContact={handleContact} />
+      <Footer />
     </div>
   );
 };

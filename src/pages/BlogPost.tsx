@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const BlogPost = () => {
@@ -30,6 +31,7 @@ const BlogPost = () => {
             </Button>
           </Link>
         </div>
+        <Footer />
       </div>
     );
   }
@@ -104,6 +106,7 @@ const BlogPost = () => {
       </div>
 
       <ClosingCTA />
+      <Footer />
     </div>
   );
 };

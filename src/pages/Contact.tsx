@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { ContactHeader } from "@/components/contact/ContactHeader";
 import { ContactForm } from "@/components/contact/ContactForm";
 import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 
 const Contact = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -26,6 +27,8 @@ const Contact = () => {
       {/* Background gradient orbs */}
       <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
       <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
+      
+      <Footer />
     </div>
   );
 };

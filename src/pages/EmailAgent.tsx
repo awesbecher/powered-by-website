@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import { HeroSection } from "@/components/email-agent/page-sections/HeroSection";
 import { FeaturesSection } from "@/components/email-agent/page-sections/FeaturesSection";
 import { BenefitsSection } from "@/components/email-agent/page-sections/BenefitsSection";
@@ -46,6 +47,7 @@ const EmailAgent = () => {
       <CTASection handleContact={handleContact} />
       <FAQSection />
       <FinalCTASection handleContact={handleContact} />
+      <Footer />
     </div>
   );
 };

@@ -15,6 +15,7 @@ import { AgentTypes } from "@/components/home/AgentTypes";
 import AIAgentIllustration from "@/components/home/AIAgentIllustration";
 import { initiateVapiCall, stopVapiCall, getVapiInstance } from "@/services/vapiService";
 import { useToast } from "@/hooks/use-toast";
+import Footer from "@/components/layout/Footer";
 
 const Index = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -139,6 +140,7 @@ const Index = () => {
       <ValuesSection />
       <BlogSection />
       <ClosingCTA />
+      <Footer />
 
       <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
       <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />

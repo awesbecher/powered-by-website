@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { useLocation } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 
 const Demo = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -66,6 +67,7 @@ const Demo = () => {
 
       {/* Closing CTA */}
       <ClosingCTA />
+      <Footer />
     </div>
   );
 };
