@@ -19,24 +19,26 @@ const Contact = () => {
     
     return () => {
       // Clean up script when component unmounts
-      document.body.removeChild(script);
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
     };
   }, []);
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
+    <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] flex flex-col">
       <Navbar />
-      {/* Content */}
-      <div className="relative z-10 pt-36">
+      {/* Content - Reduced top padding and added more bottom spacing */}
+      <div className="relative z-10 pt-24 pb-20 flex-grow">
         <div className="max-w-2xl mx-auto px-4">
           <ContactHeader initialLoad={initialLoad} />
           
-          {/* Calendly widget replacing ContactForm */}
-          <div className="mt-8 bg-neutral-900/50 p-8 rounded-xl backdrop-blur">
+          {/* Calendly widget - adjusted container with better spacing */}
+          <div className="mt-8 bg-neutral-900/50 p-6 rounded-xl backdrop-blur mb-12">
             <div 
               className="calendly-inline-widget" 
               data-url="https://calendly.com/d/crrs-fbd-3hf?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=a800ff" 
-              style={{ minWidth: "320px", height: "700px" }}
+              style={{ minWidth: "320px", height: "650px" }}
             ></div>
           </div>
         </div>
