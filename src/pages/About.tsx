@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import { ArrowRight, Users, Building } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { NavigationButtons } from "@/components/home/NavigationButtons";
+import { ClosingCTA } from "@/components/home/ClosingCTA";
 
 const About = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -132,6 +133,9 @@ const About = () => {
           </p>
         </div>
       </div>
+
+      {/* Adding the CTA from ClosingCTA component */}
+      <ClosingCTA />
 
       <Footer />
     </div>
