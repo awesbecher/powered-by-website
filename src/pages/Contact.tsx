@@ -33,7 +33,7 @@ const Contact = () => {
       <div className="flex-grow flex flex-col relative z-10 pt-6 px-4">
         <div className="max-w-2xl mx-auto w-full">
           {/* Minimized margin for header */}
-          <div className="mb-1">
+          <div className="mb-6">
             <ContactHeader initialLoad={initialLoad} />
           </div>
           
