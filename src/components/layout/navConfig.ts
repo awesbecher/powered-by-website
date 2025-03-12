@@ -9,4 +9,3 @@ export const navItems: NavItem[] = [
 ];
 
 export const consultationPaths = ['/', '/ai-agency', '/products', '/demo', '/blog', '/voice-chat', '/ai-receptionist', '/email-agent', '/about', '/contact'];
-
