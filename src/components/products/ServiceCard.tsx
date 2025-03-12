@@ -22,7 +22,7 @@ export const ServiceCard = ({ title, icon, description, features }: ServiceCardP
             <h2 className="text-2xl sm:text-3xl">{title}</h2>
           </div>
           <p className="text-gray-300 text-lg">{description}</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-1 gap-y-1">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-2 gap-y-1">
             {features.map((feature, index) => (
               <div key={index} className="flex items-start pl-0 pr-2">
                 <span className="text-accent mr-1 mt-1 flex-shrink-0">•</span>
