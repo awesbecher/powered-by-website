@@ -1,8 +1,9 @@
+
 import { useEffect, useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Users } from "lucide-react";
+import { ArrowRight, Users, Building } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const About = () => {
@@ -62,7 +63,7 @@ const About = () => {
 
       {/* Main Content */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           {/* Who We Are */}
           <div className={`transition-all duration-1000 delay-200 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
@@ -70,6 +71,22 @@ const About = () => {
               <Users className="h-8 w-8 text-[#9b87f5] mr-3" />
               <h2 className="text-3xl font-bold text-white">Who We Are</h2>
             </div>
+            
+            {/* Team Image with caption */}
+            <div className="mb-8 rounded-xl overflow-hidden relative group">
+              <img 
+                src="/lovable-uploads/56a7819d-cd81-49c5-bfdf-cd6b0c6f61f6.png" 
+                alt="Our team collaborating in our office space" 
+                className="w-full h-auto rounded-xl transition-all duration-500 shadow-lg hover:shadow-2xl"
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#1a0b2e]/95 to-transparent p-4 transform translate-y-0 group-hover:translate-y-0 transition-transform">
+                <div className="flex items-center">
+                  <Building className="h-5 w-5 text-[#9b87f5] mr-2" />
+                  <p className="text-white font-medium">Where the magic happens: Our team's collaborative workspace</p>
+                </div>
+              </div>
+            </div>
+            
             <div className="space-y-6 text-gray-300">
               <p className="text-lg">
                 PoweredBy is an agency that designs and builds bespoke AI agent solutions for diverse industries. From auto dealerships to real estate agencies, retail stores to hospitality providers, our team has a proven track record of delivering AI agent solutions that empower our clients to thrive and compete.
