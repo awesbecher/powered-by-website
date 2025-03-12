@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { Button } from "@/components/ui/button";
 import { ArrowRight, Users, Building } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { NavigationButtons } from "@/components/home/NavigationButtons";
@@ -14,11 +13,6 @@ const About = () => {
   useEffect(() => {
     setInitialLoad(false);
   }, []);
-
-  const handleContact = () => {
-    window.scrollTo(0, 0);
-    navigate("/contact");
-  };
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
@@ -136,15 +130,6 @@ const About = () => {
           <p className="text-xl text-gray-300 mb-8">
             You don't need vast resources or pools of cash to run the latest AI agents. You just need a great partner. With <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span>, we're not just building you solutions, we're powering your success. One agent at a time.
           </p>
-          <div className="flex justify-center">
-            <Button 
-              onClick={handleContact}
-              size="lg" 
-              className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-8 py-6 text-lg"
-            >
-              Partner With Us <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </div>
         </div>
       </div>
 
