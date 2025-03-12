@@ -19,6 +19,9 @@ export const NavigationButtons = () => {
     if (index === 0) {
       // Navigate to AIVoiceChat when "Inbound & Outbound Calls" is clicked
       navigate("/voice-chat");
+    } else if (index === 1) {
+      // Navigate to EmailAgent when "Bi-Directional Text & Email" is clicked
+      navigate("/email-agent");
     } else {
       scrollToAgentTypes();
     }
