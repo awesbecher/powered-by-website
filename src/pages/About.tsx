@@ -88,25 +88,25 @@ const About = () => {
 
         {/* Customer Centricity Section */}
         <div className={`mt-16 p-8 bg-gradient-to-r from-[#2a1a47]/50 to-[#1a0b2e]/50 rounded-xl border border-[#9b87f5]/20 text-left
-          transition-all duration-1000 delay-400 ease-out transform
+          transition-all duration-1000 delay-400 ease-out transform max-w-4xl mx-auto
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
           <div className="mb-4">
             <h2 className="text-3xl font-bold text-white">Customer Centricity</h2>
           </div>
-          <p className="text-xl text-gray-300 mb-4 max-w-3xl">
+          <p className="text-xl text-gray-300 mb-4">
             Customer centricity is the foundation to our work here. We place the needs, preferences, and success of our customers at the heart of every decision and action. We build genuine relationships with our customers, listen intently to feedback, and commit to your success equalling ours.
           </p>
-          <p className="text-xl text-gray-300 max-w-3xl">
+          <p className="text-xl text-gray-300">
             Advancements in AI are moving at astonishing speed. What is state-of-the-art in agent technology today might be legacy within a year. When you work with us, you're not just getting a project delivered. You're getting a long-term partner dedicated to ensuring you stay ahead of the AI curve.
           </p>
         </div>
 
         {/* Closing Section */}
         <div className={`mt-16 p-8 bg-gradient-to-r from-[#2a1a47]/50 to-[#1a0b2e]/50 rounded-xl border border-[#9b87f5]/20 text-left
-          transition-all duration-1000 delay-600 ease-out transform
+          transition-all duration-1000 delay-600 ease-out transform max-w-4xl mx-auto
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
           <h2 className="text-3xl font-bold text-white mb-4">Our Promise</h2>
-          <p className="text-xl text-gray-300 mb-8 max-w-3xl">
+          <p className="text-xl text-gray-300 mb-8">
             You don't need vast resources or pools of cash to run the latest AI agents. You just need a great partner. With <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span>, we're not just building you solutions, we're powering your success. One agent at a time.
           </p>
           <div className="flex justify-center">
