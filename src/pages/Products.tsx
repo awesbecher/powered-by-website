@@ -9,14 +9,20 @@ import Navbar from "@/components/layout/Navbar";
 import { SectionTitle } from "@/components/home/SectionTitle";
 import { FeaturedSolutionCard } from "@/components/products/FeaturedSolutionCard";
 import { MessageSquare, Phone, Mail, Smartphone } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Products = () => {
   const [initialLoad, setInitialLoad] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setInitialLoad(false);
     window.scrollTo(0, 0);
   }, []);
+
+  const handleContact = () => {
+    navigate('/contact');
+  };
 
   const featuredSolutions = [
     {
@@ -87,13 +93,14 @@ const Products = () => {
                 icon={card.icon}
                 description={card.description}
                 features={card.features}
+                onContactClick={handleContact}
               />
             </div>
           ))}
         </div>
       </div>
 
-      <ClosingCTA />
+      <ClosingCTA onContactClick={handleContact} />
 
       {/* Gradient orbs for visual interest */}
       <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
