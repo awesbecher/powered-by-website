@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import AnnouncementBanner from "@/components/layout/AnnouncementBanner";
@@ -39,7 +40,7 @@ const About = () => {
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#9b87f5] to-[#6342ff]">
               by
             </span> AI 
-            <span className="text-[#9b87f5] text-4xl md:text-5xl"> /</span> 
+            <span className="text-[#9b87f5] text-4xl md:text-5xl"> / </span> 
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] to-[#d4d4d4]">
               Run
             </span>
