@@ -30,19 +30,19 @@ const Contact = () => {
       <Navbar />
       
       {/* Content section with minimal padding to maximize space */}
-      <div className="flex-grow flex flex-col relative z-10 pt-12 px-4">
+      <div className="flex-grow flex flex-col relative z-10 pt-8 px-4">
         <div className="max-w-2xl mx-auto w-full">
-          {/* Reduced margin for header to give more space to Calendly */}
-          <div className="mb-4">
+          {/* Even more reduced margin for header */}
+          <div className="mb-2">
             <ContactHeader initialLoad={initialLoad} />
           </div>
           
-          {/* Increased height for Calendly widget to show full form */}
-          <div className="bg-neutral-900/50 p-4 rounded-xl backdrop-blur mb-12">
+          {/* Further increased height for Calendly widget and reduced padding */}
+          <div className="bg-neutral-900/50 p-3 rounded-xl backdrop-blur mb-8">
             <div 
               className="calendly-inline-widget" 
               data-url="https://calendly.com/d/crrs-fbd-3hf?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=a800ff" 
-              style={{ minWidth: "320px", height: "750px" }}
+              style={{ minWidth: "320px", height: "830px" }}
             ></div>
           </div>
         </div>
