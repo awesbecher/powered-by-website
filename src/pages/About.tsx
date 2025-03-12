@@ -26,8 +26,8 @@ const About = () => {
         <Navbar />
       </div>
 
-      {/* Header Section */}
-      <section className="pt-24 pb-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
+      {/* Header Section - Reduced padding from pt-24 to pt-12 */}
+      <section className="pt-12 pb-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
         <div className={`text-center transition-all duration-1000 ease-out transform
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
           <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
