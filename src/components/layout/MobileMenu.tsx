@@ -1,10 +1,9 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { cn } from "@/lib/utils";
-import { NavItem } from "./NavLinks";
 import { AnimatePresence, motion } from "framer-motion";
 import NavLink from "./NavLink";
+import { NavItem } from "./NavLinks";
 
 interface MobileMenuProps {
   navItems: NavItem[];
