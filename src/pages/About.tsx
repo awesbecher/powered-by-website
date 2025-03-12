@@ -34,14 +34,13 @@ const About = () => {
             <span className="text-white">
               Powered
             </span>
-            <span className="text-[#9b87f5] text-4xl md:text-5xl"> / </span> 
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] to-[#d4d4d4]">
-              Run
-            </span>
-            <span className="text-[#9b87f5]">_</span>
+            <span className="text-[#9b87f5] text-4xl md:text-5xl">_</span> 
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] to-[#d4d4d4]">
               by
-            </span> small business
+            </span>
+            <span className="ml-2 bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] to-[#d4d4d4]">
+              AI
+            </span>
           </h1>
           <div className="mt-4 flex justify-center">
             <p className="text-xl bg-white text-[#6342ff] font-bold px-4 py-2 rounded-md inline-block">
