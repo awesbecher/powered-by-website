@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface CallToActionButtonsProps {
   handleNavigation: (path: string) => void;
@@ -17,13 +18,15 @@ export const CallToActionButtons = ({ handleNavigation, setShowDialog }: CallToA
         What's an AI agent?
         <ArrowRight className="ml-2 h-5 w-5" />
       </Button>
-      <Button
-        onClick={() => handleNavigation('/contact')}
-        className="relative z-20 bg-accent hover:bg-accent-dark text-white px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
-      >
-        Book a Free Consultation
-        <ArrowRight className="ml-2 h-5 w-5" />
-      </Button>
+      <Link to="/contact">
+        <Button
+          onClick={() => handleNavigation('/contact')}
+          className="relative z-20 bg-accent hover:bg-accent-dark text-white px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
+        >
+          Book a Free Consultation
+          <ArrowRight className="ml-2 h-5 w-5" />
+        </Button>
+      </Link>
       <Button 
         onClick={() => setShowDialog(true)}
         className="relative z-20 bg-white hover:bg-gray-100 text-accent px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"

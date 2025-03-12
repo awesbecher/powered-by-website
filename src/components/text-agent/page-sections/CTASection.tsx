@@ -1,5 +1,6 @@
 
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 interface CTASectionProps {
   handleContact: () => void;
@@ -17,12 +18,14 @@ export const CTASection = ({ handleContact }: CTASectionProps) => {
           <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
             Book a free consultation with the <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> solutions team to learn how we could quickly implement an AI Text Agent that handles follow-ups, inquiries, and customer communication with remarkable efficiency.
           </p>
-          <Button 
-            className="bg-white hover:bg-gray-100 text-[#6342ff] font-bold px-8 py-6 text-lg rounded-md"
-            onClick={handleContact}
-          >
-            Schedule Your Free Consultation
-          </Button>
+          <Link to="/contact">
+            <Button 
+              className="bg-white hover:bg-gray-100 text-[#6342ff] font-bold px-8 py-6 text-lg rounded-md"
+              onClick={handleContact}
+            >
+              Schedule Your Free Consultation
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
