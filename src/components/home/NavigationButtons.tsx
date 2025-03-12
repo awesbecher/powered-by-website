@@ -1,8 +1,12 @@
 
 import React from "react";
 import { PhoneCall, Mail, MessageSquare, Settings, Slack } from "lucide-react";
+import { useLocation } from "react-router-dom";
 
 export const NavigationButtons = () => {
+  const location = useLocation();
+  const isAboutPage = location.pathname === "/about";
+  
   const scrollToAgentTypes = () => {
     const agentTypesSection = document.getElementById('agent-types-section');
     if (agentTypesSection) {
@@ -40,12 +44,14 @@ export const NavigationButtons = () => {
             </button>
           ))}
         </div>
-        <h2 className="text-3xl md:text-5xl font-bold text-white mb-16 max-w-4xl mx-auto leading-[1.1] text-center">
-          Custom AI Agent Solutions Built for you.{" "}
-          <span className="text-[#9b87f5] block mt-4 bg-gradient-to-r from-[#9b87f5] to-[#7a6cc5] bg-clip-text text-transparent">
-            Quick. Easy. Powerful.
-          </span>
-        </h2>
+        {!isAboutPage && (
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-16 max-w-4xl mx-auto leading-[1.1] text-center">
+            Custom AI Agent Solutions Built for you.{" "}
+            <span className="text-[#9b87f5] block mt-4 bg-gradient-to-r from-[#9b87f5] to-[#7a6cc5] bg-clip-text text-transparent">
+              Quick. Easy. Powerful.
+            </span>
+          </h2>
+        )}
       </div>
     </div>
   );
