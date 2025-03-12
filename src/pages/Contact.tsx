@@ -1,7 +1,6 @@
 
 import { useState, useEffect } from "react";
 import { ContactHeader } from "@/components/contact/ContactHeader";
-import { ContactForm } from "@/components/contact/ContactForm";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -11,6 +10,17 @@ const Contact = () => {
   useEffect(() => {
     setInitialLoad(false);
     window.scrollTo(0, 0);
+    
+    // Load Calendly script
+    const script = document.createElement('script');
+    script.src = "https://assets.calendly.com/assets/external/widget.js";
+    script.async = true;
+    document.body.appendChild(script);
+    
+    return () => {
+      // Clean up script when component unmounts
+      document.body.removeChild(script);
+    };
   }, []);
 
   return (
@@ -20,7 +30,15 @@ const Contact = () => {
       <div className="relative z-10 pt-36">
         <div className="max-w-2xl mx-auto px-4">
           <ContactHeader initialLoad={initialLoad} />
-          <ContactForm />
+          
+          {/* Calendly widget replacing ContactForm */}
+          <div className="mt-8 bg-neutral-900/50 p-8 rounded-xl backdrop-blur">
+            <div 
+              className="calendly-inline-widget" 
+              data-url="https://calendly.com/d/crqh-wyh-bnt?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=5e00ff" 
+              style={{ minWidth: "320px", height: "700px" }}
+            ></div>
+          </div>
         </div>
       </div>
 
