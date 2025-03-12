@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Users, Building } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { NavigationButtons } from "@/components/home/NavigationButtons";
 
 const About = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -113,6 +114,18 @@ const About = () => {
           <p className="text-xl text-gray-300">
             Advancements in AI are moving at astonishing speed. What the state-of-the-art in agent technology is today might be legacy within a year. When you work with us, you're not just getting a project delivered. You're getting a long-term partner dedicated to ensuring you stay ahead of the AI curve.
           </p>
+        </div>
+
+        {/* Multi-Channel Agent Expertise Section */}
+        <div className={`mt-16 p-8 bg-gradient-to-r from-[#2a1a47]/50 to-[#1a0b2e]/50 rounded-xl border border-[#9b87f5]/20 text-left
+          transition-all duration-1000 delay-500 ease-out transform max-w-4xl mx-auto
+          ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
+          <div className="mb-6">
+            <h2 className="text-3xl font-bold text-white">Multi-Channel Agent Expertise</h2>
+          </div>
+          <div className="py-2">
+            <NavigationButtons />
+          </div>
         </div>
 
         {/* Closing Section */}
