@@ -24,8 +24,8 @@ export const ServiceCard = ({ title, icon, description, features }: ServiceCardP
           <p className="text-gray-300 text-lg">{description}</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
             {features.map((feature, index) => (
-              <div key={index} className="flex items-start gap-1">
-                <span className="text-accent mt-1">•</span>
+              <div key={index} className="flex items-start">
+                <span className="text-accent mr-1 mt-1">•</span>
                 <span className="text-gray-300">{feature}</span>
               </div>
             ))}
