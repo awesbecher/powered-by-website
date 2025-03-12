@@ -6,7 +6,7 @@ interface ContactHeaderProps {
 export const ContactHeader = ({ initialLoad }: ContactHeaderProps) => {
   return (
     <div className="text-center">
-      <h1 className="text-2xl font-bold tracking-tight text-white sm:text-4xl mb-2">
+      <h1 className="text-3xl font-bold tracking-tight text-white sm:text-5xl mb-2">
         Book a <span className="text-accent">Free</span> Consultation Meeting
       </h1>
       
