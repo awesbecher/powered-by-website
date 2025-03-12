@@ -29,7 +29,7 @@ const MobileMenu = ({ navItems, showConsultButton }: MobileMenuProps) => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 
-            className="md:hidden py-4 bg-[#222222] border-t border-gray-700 absolute top-20 left-0 right-0"
+            className="md:hidden py-4 bg-[#222222] border-t border-gray-700 absolute top-20 left-0 right-0 z-50"
             initial={{ opacity: 0, height: 0, y: -20 }}
             animate={{ opacity: 1, height: "auto", y: 0 }}
             exit={{ opacity: 0, height: 0, y: -20 }}
