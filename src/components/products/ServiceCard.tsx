@@ -1,6 +1,8 @@
 
 import { ReactNode } from "react";
 import { LucideIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 interface ServiceCardProps {
   title: ReactNode;
@@ -10,7 +12,7 @@ interface ServiceCardProps {
   onContactClick?: () => void;
 }
 
-export const ServiceCard = ({ title, icon, description, features }: ServiceCardProps) => {
+export const ServiceCard = ({ title, icon, description, features, onContactClick }: ServiceCardProps) => {
   const Icon = icon;
   
   return (
@@ -22,15 +24,22 @@ export const ServiceCard = ({ title, icon, description, features }: ServiceCardP
             <h2 className="text-2xl sm:text-3xl">{title}</h2>
           </div>
           <p className="text-gray-300 text-lg">{description}</p>
-          {/* Updated grid with reduced horizontal spacing */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-2 gap-y-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-1 gap-y-1">
             {features.map((feature, index) => (
-              <div key={index} className="flex items-start pl-0">
+              <div key={index} className="flex items-start pl-0 pr-2">
                 <span className="text-accent mr-1 mt-1 flex-shrink-0">•</span>
                 <span className="text-gray-300">{feature}</span>
               </div>
             ))}
           </div>
+          
+          {onContactClick && (
+            <div className="mt-6">
+              <Button onClick={onContactClick} variant="gradient" size="lg">
+                Book a Free Consultation
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </div>

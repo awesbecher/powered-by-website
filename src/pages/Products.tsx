@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { ServiceCard } from "@/components/products/ServiceCard";
 import { ProductsHero } from "@/components/products/ProductsHero";
@@ -92,6 +93,7 @@ const Products = () => {
                 icon={card.icon}
                 description={card.description}
                 features={card.features}
+                onContactClick={handleContact}
               />
             </div>
           ))}
