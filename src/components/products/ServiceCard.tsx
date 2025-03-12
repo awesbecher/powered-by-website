@@ -1,8 +1,6 @@
 
 import { ReactNode } from "react";
 import { LucideIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 
 interface ServiceCardProps {
   title: ReactNode;
@@ -12,7 +10,7 @@ interface ServiceCardProps {
   onContactClick?: () => void;
 }
 
-export const ServiceCard = ({ title, icon, description, features, onContactClick }: ServiceCardProps) => {
+export const ServiceCard = ({ title, icon, description, features }: ServiceCardProps) => {
   const Icon = icon;
   
   return (
@@ -32,14 +30,6 @@ export const ServiceCard = ({ title, icon, description, features, onContactClick
               </div>
             ))}
           </div>
-          
-          {onContactClick && (
-            <div className="mt-6">
-              <Button onClick={onContactClick} variant="gradient" size="lg">
-                Book a Free Consultation
-              </Button>
-            </div>
-          )}
         </div>
       </div>
     </div>
