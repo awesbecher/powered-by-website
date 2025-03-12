@@ -30,7 +30,7 @@ const About = () => {
       <section className="pt-12 pb-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
         <div className={`text-center transition-all duration-1000 ease-out transform
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
+          <h1 className="text-3xl md:text-5xl font-bold text-white mb-8">
             <span className="text-white">
               Powered
             </span>
@@ -53,7 +53,7 @@ const About = () => {
               small business
             </span>
           </h1>
-          <div className="mt-4 flex justify-center">
+          <div className="mt-8 flex justify-center">
             <p className="text-xl bg-white text-[#6342ff] font-bold px-4 py-2 rounded-md inline-block">
               Our mission is to democratize access to AI agents for SMBs.
             </p>
