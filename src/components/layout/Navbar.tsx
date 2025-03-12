@@ -9,12 +9,11 @@ import { navItems, consultationPaths } from "./navConfig";
 const Navbar = () => {
   const location = useLocation();
 
-  // Check if we should show the consultation button on current page
-  const showConsultButton = consultationPaths.includes(location.pathname);
+  // Always show consultation button on all pages
+  const showConsultButton = true;
   
   console.log("Current path:", location.pathname);
   console.log("Show consult button:", showConsultButton);
-  console.log("Consultation paths:", consultationPaths);
 
   return (
     <nav className="bg-[#222222]/80 backdrop-blur-lg border-b border-gray-800/50">
