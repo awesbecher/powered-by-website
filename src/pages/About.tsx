@@ -61,6 +61,20 @@ const About = () => {
         </div>
       </section>
 
+      {/* Image Frame */}
+      <div className={`max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 transition-all duration-1000 ease-out transform
+        ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
+        <div className="relative w-full h-[350px] overflow-hidden rounded-md border border-[#9b87f5]/30">
+          <img 
+            src="/lovable-uploads/79330a0b-f47e-4785-b5be-d22a6127fe74.png" 
+            alt="Developer workspace with code on screen" 
+            className="w-full h-full object-cover object-center"
+            style={{ objectPosition: "0 -200px" }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1a0b2e]/80 to-transparent opacity-50"></div>
+        </div>
+      </div>
+
       {/* Main Content */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="max-w-4xl mx-auto">
