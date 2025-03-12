@@ -37,8 +37,8 @@ const Contact = () => {
             <ContactHeader initialLoad={initialLoad} />
           </div>
           
-          {/* Further increased height for Calendly widget and minimal padding */}
-          <div className="bg-neutral-900/50 p-2 rounded-xl backdrop-blur mb-6">
+          {/* Reduced padding for Calendly widget */}
+          <div className="bg-neutral-900/50 p-0 rounded-xl backdrop-blur mb-6">
             <div 
               className="calendly-inline-widget" 
               data-url="https://calendly.com/d/crrs-fbd-3hf?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=a800ff" 
