@@ -1,7 +1,6 @@
 
 import { useEffect, useState } from "react";
 import Navbar from "@/components/layout/Navbar";
-import AnnouncementBanner from "@/components/layout/AnnouncementBanner";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Users } from "lucide-react";
@@ -22,9 +21,8 @@ const About = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
-      {/* Banner and Navigation - Fixed to top */}
+      {/* Navigation - Fixed to top (without banner) */}
       <div className="sticky top-0 z-50 w-full">
-        <AnnouncementBanner />
         <Navbar />
       </div>
 
