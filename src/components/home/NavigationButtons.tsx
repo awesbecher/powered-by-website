@@ -1,16 +1,26 @@
 
 import React from "react";
 import { PhoneCall, Mail, MessageSquare, Settings, Slack } from "lucide-react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const NavigationButtons = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const isAboutPage = location.pathname === "/about";
   
   const scrollToAgentTypes = () => {
     const agentTypesSection = document.getElementById('agent-types-section');
     if (agentTypesSection) {
       agentTypesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleButtonClick = (index: number) => {
+    if (index === 0) {
+      // Navigate to AIVoiceChat when "Inbound & Outbound Calls" is clicked
+      navigate("/voice-chat");
+    } else {
+      scrollToAgentTypes();
     }
   };
 
@@ -29,7 +39,7 @@ export const NavigationButtons = () => {
           {buttons.map((button, index) => (
             <button
               key={index}
-              onClick={scrollToAgentTypes}
+              onClick={() => handleButtonClick(index)}
               className="w-[calc(45%-8px)] sm:w-[calc(30%-11px)] md:w-[calc(18%-13px)] min-w-[140px] max-w-[160px]
                 backdrop-blur-xl bg-gradient-to-br from-[#2f1c4a]/80 to-[#1a0b2e]/80 
                 border border-[#9b87f5]/20 hover:border-[#9b87f5]/40
