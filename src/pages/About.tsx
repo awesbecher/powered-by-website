@@ -1,9 +1,8 @@
-
 import { useEffect, useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Users, Building, Heart } from "lucide-react";
+import { ArrowRight, Users, Building } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const About = () => {
@@ -87,17 +86,16 @@ const About = () => {
         </div>
 
         {/* Customer Centricity Section */}
-        <div className={`mt-16 p-8 bg-gradient-to-r from-[#2a1a47]/50 to-[#1a0b2e]/50 rounded-xl border border-[#9b87f5]/20 text-center
+        <div className={`mt-16 p-8 bg-gradient-to-r from-[#2a1a47]/50 to-[#1a0b2e]/50 rounded-xl border border-[#9b87f5]/20 text-left
           transition-all duration-1000 delay-400 ease-out transform
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-          <div className="flex items-center justify-center mb-4">
-            <Heart className="h-6 w-6 text-[#9b87f5] mr-2" />
+          <div className="mb-4">
             <h2 className="text-3xl font-bold text-white">Customer Centricity</h2>
           </div>
-          <p className="text-xl text-gray-300 mb-4 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 mb-4 max-w-3xl">
             Customer centricity is the foundation to our work here. We place the needs, preferences, and success of our customers at the heart of every decision and action. We build genuine relationships with our customers, listen intently to feedback, and commit to your success equalling ours.
           </p>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl">
             Advancements in AI are moving at astonishing speed. What is state-of-the-art in agent technology today might be legacy within a year. When you work with us, you're not just getting a project delivered. You're getting a long-term partner dedicated to ensuring you stay ahead of the AI curve.
           </p>
         </div>
