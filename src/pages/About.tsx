@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import AnnouncementBanner from "@/components/layout/AnnouncementBanner";
@@ -34,10 +33,19 @@ const About = () => {
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
           <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#9b87f5] to-[#6342ff]">
-              Powered_by
-            </span> AI // 
+              Powered
+            </span>
+            <span className="text-[#9b87f5]">_</span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#9b87f5] to-[#6342ff]">
+              by
+            </span> AI 
+            <span className="text-[#9b87f5] text-4xl md:text-5xl"> /</span> 
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] to-[#d4d4d4]">
-              Run_by
+              Run
+            </span>
+            <span className="text-[#9b87f5]">_</span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] to-[#d4d4d4]">
+              by
             </span> small business
           </h1>
           <p className="text-xl text-gray-300 mt-4 max-w-3xl mx-auto">
