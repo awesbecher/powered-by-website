@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -40,6 +39,17 @@ const About = () => {
             </span>
             <span className="ml-2 bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] to-[#d4d4d4]">
               AI
+            </span>
+            <span className="text-[#9b87f5] text-4xl md:text-5xl ml-2">/</span> 
+            <span className="ml-2 bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] to-[#d4d4d4]">
+              Run
+            </span>
+            <span className="text-[#9b87f5] text-4xl md:text-5xl">_</span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] to-[#d4d4d4]">
+              by
+            </span>
+            <span className="ml-2 bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] to-[#d4d4d4]">
+              small business
             </span>
           </h1>
           <div className="mt-4 flex justify-center">
