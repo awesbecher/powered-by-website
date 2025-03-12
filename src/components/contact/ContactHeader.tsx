@@ -12,7 +12,7 @@ export const ContactHeader = ({ initialLoad }: ContactHeaderProps) => {
       </h1>
       
       <p className="text-sm md:text-base text-gray-300 max-w-4xl mx-auto leading-snug font-bold">
-        Ready to put AI agents to work? Book a Free Consultation with the <span className="bg-white text-[#6342ff] font-bold px-1 py-0.5 rounded-md">Powered_by</span> Solutions Design Leader.
+        Ready to put AI agents to work? Want to find a good use case? Book a Free Consultation with the <span className="bg-white text-[#6342ff] font-bold px-1 py-0.5 rounded-md">Powered_by</span> Solutions Design Team to learn more!
       </p>
     </div>
   );
