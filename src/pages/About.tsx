@@ -34,10 +34,6 @@ const About = () => {
             <span className="text-white">
               Powered
             </span>
-            <span className="text-[#9b87f5]">_</span>
-            <span className="text-white">
-              by
-            </span> AI 
             <span className="text-[#9b87f5] text-4xl md:text-5xl"> / </span> 
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] to-[#d4d4d4]">
               Run
@@ -47,9 +43,12 @@ const About = () => {
               by
             </span> small business
           </h1>
-          <p className="text-xl text-gray-300 mt-4 max-w-3xl mx-auto">
-            Our mission is to democratize access to AI agents for SMBs.
-          </p>
+          <div className="relative inline-block mt-4">
+            <div className="absolute inset-0 bg-white/20 rounded-full blur-sm -z-10"></div>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto px-8 py-2 rounded-full">
+              Our mission is to democratize access to AI agents for SMBs.
+            </p>
+          </div>
         </div>
       </section>
 
