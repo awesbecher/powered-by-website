@@ -31,11 +31,11 @@ const About = () => {
         <div className={`text-center transition-all duration-1000 ease-out transform
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
           <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#9b87f5] to-[#6342ff]">
+            <span className="text-white">
               Powered
             </span>
             <span className="text-[#9b87f5]">_</span>
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#9b87f5] to-[#6342ff]">
+            <span className="text-white">
               by
             </span> AI 
             <span className="text-[#9b87f5] text-4xl md:text-5xl"> / </span> 
