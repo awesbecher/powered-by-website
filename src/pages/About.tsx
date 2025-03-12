@@ -4,7 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import AnnouncementBanner from "@/components/layout/AnnouncementBanner";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Users, Briefcase, Target, Lightbulb, Flag } from "lucide-react";
+import { ArrowRight, Users } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const About = () => {
@@ -57,8 +57,8 @@ const About = () => {
 
       {/* Main Content */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Left Column - Who We Are */}
+        <div className="max-w-3xl mx-auto">
+          {/* Who We Are */}
           <div className={`transition-all duration-1000 delay-200 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <div className="flex items-center mb-6">
@@ -75,47 +75,6 @@ const About = () => {
               <p className="text-lg">
                 Our team is composed of seasoned AI builders, forward deployed engineers, and SaaS startup executives with decades of combined software experience. We've mastered the intricacies of natural language processing, speech synthesis, and multi-channel communication systems, allowing us to build AI agents that seamlessly integrate into your existing workflows.
               </p>
-            </div>
-          </div>
-
-          {/* Right Column - Our Principles */}
-          <div className={`transition-all duration-1000 delay-400 ease-out transform
-            ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-            <div className="flex items-center mb-6">
-              <Flag className="h-8 w-8 text-[#9b87f5] mr-3" />
-              <h2 className="text-3xl font-bold text-white">Our Principles</h2>
-            </div>
-            
-            <div className="space-y-8">
-              <div className="bg-[#222222]/50 p-6 rounded-lg border border-gray-700">
-                <div className="flex items-center mb-4">
-                  <Briefcase className="h-6 w-6 text-[#9b87f5] mr-2" />
-                  <h3 className="text-xl font-bold text-white">Expertise</h3>
-                </div>
-                <p className="text-gray-300">
-                  We're experts in voice AI, email agents, process automation, and how to stack them together for a seamless experience.
-                </p>
-              </div>
-
-              <div className="bg-[#222222]/50 p-6 rounded-lg border border-gray-700">
-                <div className="flex items-center mb-4">
-                  <Target className="h-6 w-6 text-[#9b87f5] mr-2" />
-                  <h3 className="text-xl font-bold text-white">Customer Centricity</h3>
-                </div>
-                <p className="text-gray-300">
-                  Customer centricity is the foundation to our work here. We place the needs, preferences, and success of our customers at the heart of every decision and action. We build genuine relationships with our customers, listen intently to feedback, and commit to your success equalling ours.
-                </p>
-              </div>
-
-              <div className="bg-[#222222]/50 p-6 rounded-lg border border-gray-700">
-                <div className="flex items-center mb-4">
-                  <Lightbulb className="h-6 w-6 text-[#9b87f5] mr-2" />
-                  <h3 className="text-xl font-bold text-white">Innovation</h3>
-                </div>
-                <p className="text-gray-300">
-                  Advancements in AI are moving at astonishing speed. What is state-of-the-art in agent technology today might be legacy within a year. When you work with us, you're not just getting a project delivered. You're getting a long-term partner dedicated to ensuring you stay ahead of the AI curve.
-                </p>
-              </div>
             </div>
           </div>
         </div>
