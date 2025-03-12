@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
-    https: false, // Disable HTTPS in development mode
+    // Proper way to disable HTTPS - leave it undefined instead of setting to false
     cors: true,
     headers: {
       "Access-Control-Allow-Origin": "*",
