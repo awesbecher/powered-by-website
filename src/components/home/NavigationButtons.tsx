@@ -22,6 +22,15 @@ export const NavigationButtons = () => {
     } else if (index === 1) {
       // Navigate to EmailAgent when "Bi-Directional Text & Email" is clicked
       navigate("/email-agent");
+    } else if (index === 2) {
+      // Navigate to Products when "Internal Workflows" is clicked
+      navigate("/products");
+    } else if (index === 3) {
+      // Navigate to Products when "Team Collaboration" is clicked
+      navigate("/products");
+    } else if (index === 4) {
+      // Navigate to Products when "Website Chatbots" is clicked
+      navigate("/products");
     } else {
       scrollToAgentTypes();
     }
