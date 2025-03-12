@@ -89,7 +89,9 @@ const About = () => {
             
             <div className="space-y-6 text-gray-300">
               <p className="text-lg">
-                PoweredBy is an agency that designs and builds bespoke AI agent solutions for diverse industries. From auto dealerships to real estate agencies, retail stores to hospitality providers, our team has a proven track record of delivering AI agent solutions that empower our clients to thrive and compete.
+                <span className="text-white font-bold">Powered</span>
+                <span className="text-[#9b87f5] font-bold">_</span>
+                <span className="text-white font-bold">by</span> is an agency that designs and builds bespoke AI agent solutions for diverse industries. From auto dealerships to real estate agencies, retail stores to hospitality providers, our team has a proven track record of delivering AI agent solutions that empower our clients to thrive and compete.
               </p>
               <p className="text-lg">
                 Our founding thesis is that SMBs deserve the same access to the advanced AI systems currently deployed across the Fortune 500. We take the cutting-edge AI agent technology pioneered in Silicon Valley and make it deadly simple and economical to operate.
@@ -107,7 +109,7 @@ const About = () => {
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
           <h2 className="text-3xl font-bold text-white mb-4">Our Promise</h2>
           <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            You don't need vast resources or pools of cash to run the latest AI agents. You just need a great partner. With Powered_by, we're not just building you solutions, we're powering your success. One agent at a time.
+            You don't need vast resources or pools of cash to run the latest AI agents. You just need a great partner. With Powered<span className="text-[#9b87f5]">_</span>by, we're not just building you solutions, we're powering your success. One agent at a time.
           </p>
           <Button 
             onClick={handleContact}
