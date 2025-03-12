@@ -7,7 +7,8 @@ export const ContactHeader = ({ initialLoad }: ContactHeaderProps) => {
   return (
     <div className="text-center">
       <h1 className="text-3xl font-bold tracking-tight text-white sm:text-5xl mb-2">
-        Book a <span className="text-accent">Free</span> Consultation Meeting
+        Book a <span className="text-accent">Free</span><br />
+        Consultation Meeting
       </h1>
       
       <p className="text-sm md:text-base text-gray-300 max-w-4xl mx-auto leading-snug font-bold">
