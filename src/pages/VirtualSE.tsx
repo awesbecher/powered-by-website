@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -37,22 +36,13 @@ const VirtualSE = () => {
               <p className="text-xl text-gray-300 text-center">
                 Meet Virtual SE. An AI-driven voice and email agent solution designed to offload busy SE teams by supporting sales reps in pre-sales meetings, demos, and qualification calls. Deploy in Zoom, Google Meet, over email, & Slack.
               </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center mt-4 gap-4">
+              <div className="flex justify-center mt-4">
                 <Link to="/contact">
                   <Button 
                     className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
                     onClick={handleContact}
                   >
                     Schedule a Demo <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-                <Link to="/contact">
-                  <Button 
-                    variant="outline"
-                    className="border-[#9b87f5] text-[#9b87f5] bg-transparent hover:bg-[#9b87f5]/10 px-6 py-5 text-base rounded-md flex items-center"
-                    onClick={handleContact}
-                  >
-                    Contact Sales <ChevronRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
               </div>
