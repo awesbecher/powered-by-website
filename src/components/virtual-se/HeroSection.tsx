@@ -20,7 +20,7 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
               <span className="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#9b87f5] block">
                 Virtual SE
               </span>
-              <span className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+              <span className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
                 Force-Multiply Your Sales Engineering Team
               </span>
             </h1>
