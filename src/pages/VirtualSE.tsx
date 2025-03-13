@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -34,7 +35,7 @@ const VirtualSE = () => {
                 Force-Multiply Your Sales Engineering Team
               </h1>
               <p className="text-xl text-gray-300 text-center">
-                Meet Virtual SE. An AI-driven voice and email agent solution designed to offload busy SE teams by supporting sales reps in pre-sales meetings, demos, and qualification calls. Deploy in Zoom, Google Meet, over email, & Slack.
+                Meet <strong>Virtual SE</strong>. An AI-driven voice and email agent solution designed to offload busy SE teams by supporting sales reps in pre-sales meetings, demos, and qualification calls. Deploy in Zoom, Google Meet, over email, & Slack.
               </p>
               <div className="flex justify-center mt-4">
                 <Link to="/contact">
