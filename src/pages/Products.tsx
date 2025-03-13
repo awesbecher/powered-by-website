@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { ServiceCard } from "@/components/products/ServiceCard";
 import { ProductsHero } from "@/components/products/ProductsHero";
@@ -7,7 +8,7 @@ import { ClosingCTA } from "@/components/home/ClosingCTA";
 import Navbar from "@/components/layout/Navbar";
 import { SectionTitle } from "@/components/home/SectionTitle";
 import { FeaturedSolutionCard } from "@/components/products/FeaturedSolutionCard";
-import { MessageSquare, Phone, Mail, Smartphone } from "lucide-react";
+import { MessageSquare, Phone, Mail, Smartphone, Cpu } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const Products = () => {
@@ -47,6 +48,12 @@ const Products = () => {
       description: "Automate your SMS text messaging with smart, human-like, and personalized texts that engage customers instantly. Save time, boost conversions, and scale—all securely, private, & compliant.",
       icon: Smartphone,
       link: "/text-agent"
+    },
+    {
+      title: "Virtual SE",
+      description: "Force-multiply your sales engineering team with AI pre-sales engineers that join unlimited meetings to provide technical support with minimal incremental expense.",
+      icon: Cpu,
+      link: "/virtual-se"
     }
   ];
 
