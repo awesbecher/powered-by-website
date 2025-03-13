@@ -9,8 +9,8 @@ interface ContentSectionsProps {
 
 const ContentSections = ({ initialLoad }: ContentSectionsProps) => {
   return (
-    <section className="py-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
-      <div className="relative mt-8 px-6 lg:px-8">
+    <section className="py-6 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
+      <div className="relative mt-0 px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <div className={`text-left transition-all duration-1000 delay-500 ease-out transform
               ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
