@@ -27,19 +27,19 @@ const VirtualSE = () => {
       <main className="flex-grow">
         {/* Hero Section */}
         <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
-          <div className="flex flex-col-reverse lg:flex-row items-center gap-10">
-            <div className={`w-full lg:w-1/2 space-y-6 transition-all duration-1000 ease-out transform
+          <div className="flex flex-col items-center gap-10">
+            <div className={`w-full lg:w-2/3 space-y-6 transition-all duration-1000 ease-out transform
               ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight text-center">
                 <span className="text-[#9b87f5]">Virtual SE:</span> Force-Multiply Your Sales Engineering Efforts
               </h1>
-              <p className="text-lg text-gray-300">
+              <p className="text-lg text-gray-300 text-center">
                 In modern SaaS sales, the Sales Engineer (SE) is indispensable—bridging the gap between a product's technical capabilities and the customer's real-world needs. Unfortunately, SEs often find themselves overworked in high-pressure sales environments.
               </p>
-              <p className="text-lg text-gray-300">
+              <p className="text-lg text-gray-300 text-center">
                 That's why <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> has developed Virtual SE, an AI-driven voice and email agent solution designed to offload busy SE teams by supporting sales reps in pre-sales meetings, demos, and qualification calls.
               </p>
-              <div className="flex flex-col sm:flex-row items-start mt-4 gap-4">
+              <div className="flex flex-col sm:flex-row items-center justify-center mt-4 gap-4">
                 <Link to="/contact">
                   <Button 
                     className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
@@ -57,38 +57,6 @@ const VirtualSE = () => {
                     Contact Sales <ChevronRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
-              </div>
-            </div>
-            <div className={`w-full lg:w-1/2 transition-all duration-1000 delay-300 ease-out transform
-              ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-              <div className="relative rounded-2xl overflow-hidden border border-[#9b87f5]/30 bg-gradient-to-br from-[#2f1c4a]/80 to-[#1a0b2e]/80 shadow-2xl p-6">
-                <div className="absolute top-0 left-0 w-full h-full bg-[#1a0b2e] opacity-50 z-0"></div>
-                <div className="relative z-10">
-                  <div className="flex items-center justify-center mb-4">
-                    <div className="w-16 h-16 bg-[#9b87f5] rounded-full flex items-center justify-center">
-                      <Server className="w-8 h-8 text-white" />
-                    </div>
-                  </div>
-                  <h3 className="text-2xl font-bold text-white text-center mb-4">How Virtual SE Works</h3>
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-[#9b87f5] mt-1 flex-shrink-0" />
-                      <p className="text-gray-300">Connects to Zoom, Google Meet, and Microsoft Teams</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-[#9b87f5] mt-1 flex-shrink-0" />
-                      <p className="text-gray-300">Listens and responds with human-like voice to technical questions</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-[#9b87f5] mt-1 flex-shrink-0" />
-                      <p className="text-gray-300">Draws from your product docs, training materials, and messaging</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-[#9b87f5] mt-1 flex-shrink-0" />
-                      <p className="text-gray-300">Automatically logs meeting notes to HubSpot or Salesforce</p>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
