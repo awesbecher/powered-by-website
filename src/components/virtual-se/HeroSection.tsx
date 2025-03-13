@@ -25,7 +25,7 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
               </span>
             </h1>
             <p className="text-xl text-gray-300 text-center">
-              Meet <strong>Virtual SE</strong>. An AI-driven voice and email agent solution designed to offload busy SE teams by supporting sales reps in pre-sales meetings, demos, and qualification calls. Deploy into Zoom, Google Meet, Slack, & more.
+              <strong>Virtual SE</strong> gives SaaS sales organizations the ability to deploy AI pre-sales engineers to unlimited meetings with minimal incremental expense. Free up your scarce human SE resources for the highest value customer activities by utilizing super-intelligent, tireless SE agents.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 mt-4">
               <a 
