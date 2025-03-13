@@ -54,6 +54,12 @@ const Products = () => {
       description: "Force-multiply your sales engineering team with AI pre-sales engineers that join unlimited meetings to provide technical support with minimal incremental expense.",
       icon: Cpu,
       link: "/virtual-se"
+    },
+    {
+      title: "OutboundAI",
+      description: "Deploy AI agents to handle outbound sales calls at scale, booking more meetings and qualifying leads without expanding headcount or dealing with call reluctance.",
+      icon: Phone,
+      link: "/outbound-ai"
     }
   ];
 
@@ -67,7 +73,7 @@ const Products = () => {
       {/* Featured Agent Solutions Section - Reduced padding */}
       <div className="container mx-auto px-4 py-6">
         <SectionTitle title="Featured Agent Solutions:" linked={false} />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
           {featuredSolutions.map((solution, index) => (
             <FeaturedSolutionCard
               key={index}
