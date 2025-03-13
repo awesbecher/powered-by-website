@@ -3,9 +3,13 @@ import { useState, useEffect } from "react";
 import { ContactHeader } from "@/components/contact/ContactHeader";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
   const [initialLoad, setInitialLoad] = useState(true);
+  const [webhookSetup, setWebhookSetup] = useState(false);
+  const { toast } = useToast();
 
   useEffect(() => {
     setInitialLoad(false);
@@ -17,13 +21,45 @@ const Contact = () => {
     script.async = true;
     document.body.appendChild(script);
     
+    // Setup Calendly webhook if not already done
+    const setupWebhook = async () => {
+      try {
+        if (!webhookSetup) {
+          const { data, error } = await supabase.functions.invoke('calendly-manage-webhook');
+          
+          if (error) {
+            console.error("Error setting up webhook:", error);
+            toast({
+              title: "Webhook Setup Error",
+              description: "Failed to set up meeting notifications. Please try again later.",
+              variant: "destructive"
+            });
+          } else {
+            console.log("Webhook setup response:", data);
+            setWebhookSetup(true);
+            toast({
+              title: "Notifications Enabled",
+              description: "Meeting notifications have been successfully set up.",
+            });
+          }
+        }
+      } catch (err) {
+        console.error("Webhook setup error:", err);
+      }
+    };
+    
+    // Only setup webhook in production environment
+    if (import.meta.env.PROD) {
+      setupWebhook();
+    }
+    
     return () => {
       // Clean up script when component unmounts
       if (document.body.contains(script)) {
         document.body.removeChild(script);
       }
     };
-  }, []);
+  }, [webhookSetup, toast]);
 
   return (
     <div className="flex flex-col min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
