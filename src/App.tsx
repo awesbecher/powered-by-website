@@ -23,6 +23,7 @@ import FoodMenu from "./pages/FoodMenu";
 import RoomService from "./pages/room-service";
 import About from "./pages/About";
 import TermsOfService from "./pages/TermsOfService";
+import PrivacyStatement from "./pages/PrivacyStatement";
 import NotFound from "./pages/NotFound";
 import { Toaster } from "@/components/ui/toaster"
 
@@ -47,6 +48,7 @@ function App() {
             <Route path="/text-agent" element={<TextAgent />} />
             <Route path="/about" element={<About />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/privacy-statement" element={<PrivacyStatement />} />
             <Route path="/ai-assistant" element={<Navigate to="/ai-receptionist" replace />} />
             <Route path="/voice-business-lines" element={<Navigate to="/ai-receptionist" replace />} />
             <Route path="/mercedes-dealer" element={<MercedesDealer />} />

@@ -25,12 +25,20 @@ const Footer = () => {
             © 2025 Powered_by Agency, LLC. All rights reserved.
           </p>
           
-          <div className="text-sm text-gray-400 hover:text-white transition-colors">
+          <div className="flex space-x-4 text-sm text-gray-400">
             <Link 
               to="/terms-of-service" 
               onClick={() => window.scrollTo(0, 0)}
+              className="hover:text-white transition-colors"
             >
               Terms of Service
+            </Link>
+            <Link 
+              to="/privacy-statement" 
+              onClick={() => window.scrollTo(0, 0)}
+              className="hover:text-white transition-colors"
+            >
+              Privacy Statement
             </Link>
           </div>
           
