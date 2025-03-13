@@ -21,11 +21,11 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
                 OutboundAI
               </span>
               <span className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
-                Automate Your Outbound Call Strategy
+                AI Voice Agents for Outbound Sales & Marketing
               </span>
             </h1>
             <p className="text-xl text-gray-300 text-center">
-              <strong>OutboundAI</strong> delivers intelligent, personalized outbound call automation that helps your team reach more prospects, book more meetings, and close more deals without expanding headcount.
+              Transform high-volume outbound calling with AI voice agents that scale, personalize outreach, cut costs, and sound & act astonishing human-like.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 mt-4">
               <a 
