@@ -22,7 +22,7 @@ const VirtualSE = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0f0b18]">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <Navbar />
       <main className="flex-grow">
         {/* Hero Section */}
@@ -30,11 +30,11 @@ const VirtualSE = () => {
           <div className="flex flex-col items-center gap-10">
             <div className={`w-full lg:w-2/3 space-y-6 transition-all duration-1000 ease-out transform
               ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight text-center">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight text-center">
                 <span className="text-[#9b87f5] block">Virtual SE</span>
                 Force-Multiply Your Sales Engineering Team
               </h1>
-              <p className="text-lg text-gray-300 text-center">
+              <p className="text-xl text-gray-300 text-center">
                 In modern SaaS sales, the Sales Engineer (SE) is indispensable—bridging the gap between a product's technical capabilities and the customer's real-world needs. Unfortunately, SEs often find themselves overworked in high-pressure sales environments.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center mt-4 gap-4">
