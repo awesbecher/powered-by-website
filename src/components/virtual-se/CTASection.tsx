@@ -1,0 +1,36 @@
+
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from "@/components/ui/button";
+
+interface CTASectionProps {
+  handleContact: () => void;
+}
+
+const CTASection = ({ handleContact }: CTASectionProps) => {
+  return (
+    <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
+      <div className="relative overflow-hidden rounded-2xl">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#6342ff] to-[#a87cff] opacity-90"></div>
+        <div className="relative z-10 px-8 py-16 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+            Experience the Future of SaaS Pre-Sales Engineering
+          </h2>
+          <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
+            Empower your sales team with an AI-driven ally that eliminates scheduling conflicts, delivers consistent technical messaging, and ensures every customer conversation is properly documented.
+          </p>
+          <Link to="/contact">
+            <Button 
+              className="bg-white hover:bg-gray-100 text-[#6342ff] font-bold px-8 py-6 text-lg rounded-md"
+              onClick={handleContact}
+            >
+              Schedule Your Demo Today
+            </Button>
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default CTASection;
