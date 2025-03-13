@@ -35,7 +35,7 @@ const VirtualSE = () => {
                 Force-Multiply Your Sales Engineering Team
               </h1>
               <p className="text-xl text-gray-300 text-center">
-                In modern SaaS sales, the Sales Engineer (SE) is indispensable—bridging the gap between a product's technical capabilities and the customer's real-world needs. Unfortunately, SEs often find themselves overworked in high-pressure sales environments.
+                Meet Virtual SE. An AI-driven voice and email agent solution designed to offload busy SE teams by supporting sales reps in pre-sales meetings, demos, and qualification calls. Deploy in Zoom, Google Meet, over email, & Slack.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center mt-4 gap-4">
                 <Link to="/contact">
