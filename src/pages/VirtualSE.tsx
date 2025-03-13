@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -64,7 +63,7 @@ const VirtualSE = () => {
               <div className={`text-left transition-all duration-1000 delay-500 ease-out transform
                   ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
                 <h2 className="relative text-5xl font-bold text-white mb-12 transition-colors duration-300 hover:bg-gradient-to-r hover:from-purple-400 hover:to-indigo-400 hover:bg-clip-text hover:text-transparent pt-0 px-4 pb-4 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-purple-500 after:to-indigo-500">
-                  Get SE coverage for all of your customer meetings
+                  SE coverage for ALL of your customer meetings
                 </h2>
                 
                 <div className="space-y-8">
