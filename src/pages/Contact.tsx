@@ -9,6 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 const Contact = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   const [webhookSetup, setWebhookSetup] = useState(false);
+  const [setupAttempted, setSetupAttempted] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -24,8 +25,14 @@ const Contact = () => {
     // Setup Calendly webhook if not already done
     const setupWebhook = async () => {
       try {
-        if (!webhookSetup) {
+        if (!webhookSetup && !setupAttempted) {
+          setSetupAttempted(true);
+          console.log("Attempting to set up Calendly webhook");
+          
           const { data, error } = await supabase.functions.invoke('calendly-manage-webhook');
+          
+          console.log("Webhook setup response:", data);
+          console.log("Webhook setup error:", error);
           
           if (error) {
             console.error("Error setting up webhook:", error);
@@ -51,6 +58,8 @@ const Contact = () => {
     // Only setup webhook in production environment
     if (import.meta.env.PROD) {
       setupWebhook();
+    } else {
+      console.log("Skipping webhook setup in development environment");
     }
     
     return () => {
@@ -59,7 +68,7 @@ const Contact = () => {
         document.body.removeChild(script);
       }
     };
-  }, [webhookSetup, toast]);
+  }, [webhookSetup, setupAttempted, toast]);
 
   return (
     <div className="flex flex-col min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">

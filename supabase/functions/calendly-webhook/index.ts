@@ -8,18 +8,27 @@ const SLACK_WEBHOOK_URL = Deno.env.get("SLACK_WEBHOOK_URL");
 const NOTIFICATION_EMAIL = Deno.env.get("NOTIFICATION_EMAIL");
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 
-// Enhanced debugging logs for environment variables
-console.log("Environment check:");
-console.log("- SLACK_WEBHOOK_URL configured:", !!SLACK_WEBHOOK_URL);
-console.log("- NOTIFICATION_EMAIL configured:", !!NOTIFICATION_EMAIL);
-console.log("- RESEND_API_KEY configured:", !!RESEND_API_KEY);
+// Enhanced debugging logs for environment variables and their availability
+console.log("Environment check for calendly-webhook function:");
+console.log("- SLACK_WEBHOOK_URL configured:", !!SLACK_WEBHOOK_URL, SLACK_WEBHOOK_URL ? SLACK_WEBHOOK_URL.substring(0, 15) + "..." : "");
+console.log("- NOTIFICATION_EMAIL configured:", !!NOTIFICATION_EMAIL, NOTIFICATION_EMAIL || "");
+console.log("- RESEND_API_KEY configured:", !!RESEND_API_KEY, RESEND_API_KEY ? "Valid key present" : "Missing");
 
-const resend = RESEND_API_KEY ? new Resend(RESEND_API_KEY) : null;
+let resend = null;
+if (RESEND_API_KEY) {
+  try {
+    resend = new Resend(RESEND_API_KEY);
+    console.log("Resend client initialized successfully");
+  } catch (error) {
+    console.error("Failed to initialize Resend client:", error);
+  }
+}
 
 const handler = async (req: Request): Promise<Response> => {
   // Log full request details
   console.log("Request method:", req.method);
   console.log("Request headers:", Object.fromEntries(req.headers.entries()));
+  console.log("Request URL:", req.url);
   
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
@@ -27,8 +36,29 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    // Log webhook event
-    const payload = await req.json();
+    // Parse and log webhook event
+    let payload;
+    try {
+      const body = await req.text();
+      console.log("Raw request body:", body);
+      
+      try {
+        payload = JSON.parse(body);
+      } catch (parseError) {
+        console.error("Error parsing JSON body:", parseError);
+        return new Response(JSON.stringify({ error: "Invalid JSON payload" }), {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          status: 400,
+        });
+      }
+    } catch (bodyError) {
+      console.error("Error reading request body:", bodyError);
+      return new Response(JSON.stringify({ error: "Failed to read request body" }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 400,
+      });
+    }
+    
     console.log("Received Calendly webhook event:", JSON.stringify(payload));
 
     // Event validation - more lenient detection of meeting scheduled events
