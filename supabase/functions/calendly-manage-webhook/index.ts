@@ -5,13 +5,24 @@ import { corsHeaders } from "../_shared/cors.ts";
 const CALENDLY_API_KEY = Deno.env.get("CALENDLY_API_KEY");
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
 
+// Enhanced debugging logs for environment variables
+console.log("Environment check:");
+console.log("- CALENDLY_API_KEY configured:", !!CALENDLY_API_KEY);
+console.log("- SUPABASE_URL configured:", !!SUPABASE_URL);
+
 const handler = async (req: Request): Promise<Response> => {
+  // Log request details
+  console.log("Request method:", req.method);
+  console.log("Request headers:", Object.fromEntries(req.headers.entries()));
+  
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
+    console.log("Attempting to fetch user organization with API key");
+    
     // Get user organization
     const orgResponse = await fetch("https://api.calendly.com/users/me", {
       headers: {
@@ -20,11 +31,15 @@ const handler = async (req: Request): Promise<Response> => {
       }
     });
 
+    const orgResponseText = await orgResponse.text();
+    console.log("Organization API response status:", orgResponse.status);
+    console.log("Organization API response:", orgResponseText);
+
     if (!orgResponse.ok) {
-      throw new Error(`Failed to fetch user information: ${orgResponse.status}`);
+      throw new Error(`Failed to fetch user information: ${orgResponse.status} - ${orgResponseText}`);
     }
 
-    const userData = await orgResponse.json();
+    const userData = JSON.parse(orgResponseText);
     const currentUser = userData.resource;
     const organizationUri = currentUser.current_organization;
     
@@ -32,6 +47,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Create webhook subscription
     const webhookUrl = `${SUPABASE_URL}/functions/v1/calendly-webhook`;
+    console.log("Creating webhook subscription to URL:", webhookUrl);
     
     const webhookResponse = await fetch("https://api.calendly.com/webhook_subscriptions", {
       method: "POST",
@@ -47,14 +63,18 @@ const handler = async (req: Request): Promise<Response> => {
       })
     });
 
-    const webhookData = await webhookResponse.json();
+    const webhookResponseText = await webhookResponse.text();
+    console.log("Webhook API response status:", webhookResponse.status);
+    console.log("Webhook API response:", webhookResponseText);
+    
+    const webhookData = JSON.parse(webhookResponseText);
     
     if (!webhookResponse.ok) {
       console.error("Webhook creation failed:", webhookData);
       throw new Error(`Failed to create webhook: ${webhookResponse.status} - ${JSON.stringify(webhookData)}`);
     }
 
-    console.log("Webhook created successfully:", webhookData);
+    console.log("Webhook created successfully:", JSON.stringify(webhookData));
 
     return new Response(JSON.stringify({ 
       success: true, 
@@ -65,7 +85,7 @@ const handler = async (req: Request): Promise<Response> => {
       status: 200,
     });
   } catch (error) {
-    console.error("Error setting up Calendly webhook:", error);
+    console.error("Error setting up Calendly webhook:", error.message, error.stack);
     return new Response(
       JSON.stringify({ error: error.message }),
       {

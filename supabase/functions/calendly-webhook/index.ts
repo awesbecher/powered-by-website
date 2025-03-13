@@ -8,9 +8,19 @@ const SLACK_WEBHOOK_URL = Deno.env.get("SLACK_WEBHOOK_URL");
 const NOTIFICATION_EMAIL = Deno.env.get("NOTIFICATION_EMAIL");
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 
+// Enhanced debugging logs for environment variables
+console.log("Environment check:");
+console.log("- SLACK_WEBHOOK_URL configured:", !!SLACK_WEBHOOK_URL);
+console.log("- NOTIFICATION_EMAIL configured:", !!NOTIFICATION_EMAIL);
+console.log("- RESEND_API_KEY configured:", !!RESEND_API_KEY);
+
 const resend = RESEND_API_KEY ? new Resend(RESEND_API_KEY) : null;
 
 const handler = async (req: Request): Promise<Response> => {
+  // Log full request details
+  console.log("Request method:", req.method);
+  console.log("Request headers:", Object.fromEntries(req.headers.entries()));
+  
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -19,17 +29,20 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     // Log webhook event
     const payload = await req.json();
-    console.log("Received Calendly webhook event:", payload);
+    console.log("Received Calendly webhook event:", JSON.stringify(payload));
 
-    // Event validation - check if this is an invitee.created event
+    // Event validation - more lenient detection of meeting scheduled events
     if (
       payload?.event === "invitee.created" || 
-      payload?.payload?.event_type?.name === "Meeting scheduled"
+      payload?.payload?.event_type?.name?.includes("Meeting") ||
+      payload?.payload?.event?.name?.includes("Meeting")
     ) {
       const eventData = payload.payload;
+      console.log("Event payload:", JSON.stringify(eventData));
+      
       const inviteeInfo = eventData?.invitee;
-      const eventInfo = eventData?.event_type;
-      const scheduledEvent = eventData?.scheduled_event;
+      const eventInfo = eventData?.event_type || eventData?.event;
+      const scheduledEvent = eventData?.scheduled_event || eventData;
       
       console.log("Meeting scheduled by:", inviteeInfo?.name);
       console.log("Email:", inviteeInfo?.email);
@@ -46,6 +59,8 @@ const handler = async (req: Request): Promise<Response> => {
       // Send notification to Slack
       if (SLACK_WEBHOOK_URL) {
         try {
+          console.log("Preparing to send Slack notification to:", SLACK_WEBHOOK_URL);
+          
           const slackMessage = {
             text: "New Calendly Meeting Scheduled",
             blocks: [
@@ -98,6 +113,8 @@ const handler = async (req: Request): Promise<Response> => {
             ]
           };
           
+          console.log("Sending Slack message:", JSON.stringify(slackMessage));
+          
           const slackResponse = await fetch(SLACK_WEBHOOK_URL, {
             method: 'POST',
             headers: {
@@ -106,9 +123,12 @@ const handler = async (req: Request): Promise<Response> => {
             body: JSON.stringify(slackMessage)
           });
           
+          const slackResponseText = await slackResponse.text();
+          console.log("Slack API response status:", slackResponse.status);
+          console.log("Slack API response:", slackResponseText);
+          
           if (!slackResponse.ok) {
-            const slackError = await slackResponse.text();
-            console.error("Failed to send Slack notification:", slackError);
+            console.error("Failed to send Slack notification:", slackResponseText);
           } else {
             console.log("Slack notification sent successfully");
           }
@@ -122,6 +142,8 @@ const handler = async (req: Request): Promise<Response> => {
       // Send notification via email
       if (resend && NOTIFICATION_EMAIL) {
         try {
+          console.log("Preparing to send email notification to:", NOTIFICATION_EMAIL);
+          
           const emailResult = await resend.emails.send({
             from: "Lovable AI <onboarding@resend.dev>",
             to: NOTIFICATION_EMAIL,
@@ -139,13 +161,17 @@ const handler = async (req: Request): Promise<Response> => {
             `,
           });
           
-          console.log("Email notification sent successfully:", emailResult);
+          console.log("Email notification result:", JSON.stringify(emailResult));
         } catch (emailError) {
-          console.error("Error sending email notification:", emailError);
+          console.error("Error sending email notification:", emailError.message, emailError.stack);
         }
       } else {
         console.log("Email notification skipped: Missing Resend API key or notification email");
+        console.log("- Resend initialized:", !!resend);
+        console.log("- NOTIFICATION_EMAIL value:", NOTIFICATION_EMAIL);
       }
+    } else {
+      console.log("Ignoring non-meeting event:", payload?.event);
     }
 
     return new Response(JSON.stringify({ success: true }), {
@@ -153,7 +179,7 @@ const handler = async (req: Request): Promise<Response> => {
       status: 200,
     });
   } catch (error) {
-    console.error("Error handling Calendly webhook:", error);
+    console.error("Error handling Calendly webhook:", error.message, error.stack);
     return new Response(
       JSON.stringify({ error: error.message }),
       {
