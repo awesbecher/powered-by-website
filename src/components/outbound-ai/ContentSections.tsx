@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { InfoCard } from "@/components/ai-agency/InfoCard";
 import { MessageSquare, Phone, Cpu, ShieldCheck, Smartphone } from "lucide-react";
@@ -70,23 +69,28 @@ const ContentSections = ({ initialLoad }: ContentSectionsProps) => {
               >
                 <div className="space-y-6">
                   <div>
-                    <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">SaaS Sales</h4>
-                    <p>OutboundAI helps SaaS companies efficiently target and qualify prospects at scale, booking more demos and discovery calls while ensuring consistent messaging about product features and benefits.</p>
+                    <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Auto Dealerships</h4>
+                    <p>Personalize invites to test drives or sales events; schedule appointments automatically.</p>
+                  </div>
+                  
+                  <div>
+                    <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">SaaS Companies</h4>
+                    <p>Qualify leads, follow up on free trials, and nurture contacts without tying up busy reps.</p>
                   </div>
                   
                   <div>
                     <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Real Estate</h4>
-                    <p>For real estate agencies, OutboundAI can handle lead qualification, appointment setting, and follow-ups with potential buyers and sellers, freeing agents to focus on high-value activities like showings and closings.</p>
+                    <p>Respond to buyer inquiries in minutes; schedule viewings and pass serious prospects to an agent.</p>
                   </div>
                   
                   <div>
-                    <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Financial Services</h4>
-                    <p>OutboundAI enables financial advisors and insurance agents to reach more potential clients, conduct initial qualification calls, and schedule consultations while maintaining compliance with industry regulations.</p>
+                    <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Pharma & Healthcare</h4>
+                    <p>Keep doctors informed on new products or events, while remaining compliant and efficient.</p>
                   </div>
                   
                   <div>
-                    <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Healthcare</h4>
-                    <p>For healthcare providers, OutboundAI can handle appointment scheduling, follow-ups, and patient outreach campaigns, ensuring timely care while reducing administrative burden on staff.</p>
+                    <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Hospitality</h4>
+                    <p>Reach loyalty program members with promotions; gather post-stay feedback via automated voice follow-ups.</p>
                   </div>
                 </div>
               </InfoCard>
