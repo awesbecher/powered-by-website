@@ -1,13 +1,18 @@
 
 import { ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <footer className="w-full py-4 px-6 bg-gradient-to-r from-[#1a0b2e]/50 via-[#2f1c4a]/50 to-[#1a0b2e]/50 backdrop-blur-sm border-t border-white/5">
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
         <p className="text-sm text-gray-400 font-light">
           © 2025 Powered_by Agency, LLC. All rights reserved.
         </p>
+        
+        <div className="text-sm text-gray-400 hover:text-white transition-colors">
+          <Link to="/terms-of-service">Terms of Service</Link>
+        </div>
         
         <div className="flex items-center space-x-3">
           <a 
