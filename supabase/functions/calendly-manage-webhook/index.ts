@@ -7,14 +7,14 @@ const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
 
 // Enhanced debugging logs for environment variables
 console.log("Environment check for calendly-manage-webhook function:");
-console.log("- CALENDLY_API_KEY configured:", !!CALENDLY_API_KEY, CALENDLY_API_KEY ? "Valid key present" : "Missing");
-console.log("- SUPABASE_URL configured:", !!SUPABASE_URL, SUPABASE_URL || "");
+console.log(`- CALENDLY_API_KEY configured: ${!!CALENDLY_API_KEY}, ${CALENDLY_API_KEY ? "Valid key present" : "MISSING - THIS IS REQUIRED"}`);
+console.log(`- SUPABASE_URL configured: ${!!SUPABASE_URL}, ${SUPABASE_URL || "MISSING - THIS IS REQUIRED"}`);
 
 const handler = async (req: Request): Promise<Response> => {
   // Log request details
-  console.log("Request method:", req.method);
-  console.log("Request headers:", Object.fromEntries(req.headers.entries()));
-  console.log("Request URL:", req.url);
+  console.log(`Request method: ${req.method}`);
+  console.log(`Request headers: ${JSON.stringify(Object.fromEntries(req.headers.entries()))}`);
+  console.log(`Request URL: ${req.url}`);
   
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
@@ -28,8 +28,8 @@ const handler = async (req: Request): Promise<Response> => {
       return new Response(
         JSON.stringify({ 
           success: false, 
-          error: "Missing configuration", 
-          message: "Calendly API key is not configured. Please check your environment variables." 
+          error: "missing_api_key", 
+          message: "Calendly API key is not configured. Please check your Supabase environment variables." 
         }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
       );
@@ -40,8 +40,8 @@ const handler = async (req: Request): Promise<Response> => {
       return new Response(
         JSON.stringify({ 
           success: false, 
-          error: "Missing configuration", 
-          message: "Supabase URL is not configured. Please check your environment variables." 
+          error: "missing_supabase_url", 
+          message: "Supabase URL is not configured. Please check your Supabase environment variables." 
         }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
       );
@@ -58,28 +58,40 @@ const handler = async (req: Request): Promise<Response> => {
     });
 
     const orgResponseText = await orgResponse.text();
-    console.log("Organization API response status:", orgResponse.status);
-    console.log("Organization API response:", orgResponseText);
+    console.log(`Organization API response status: ${orgResponse.status}`);
+    console.log(`Organization API response: ${orgResponseText}`);
 
     if (!orgResponse.ok) {
-      let errorMessage = `Failed to fetch user information: ${orgResponse.status}`;
+      let errorMessage = `Failed to fetch user information: Status ${orgResponse.status}`;
+      let errorCode = "api_authorization_failed";
+      
       try {
         const errorData = JSON.parse(orgResponseText);
         console.error("Detailed error from Calendly API:", errorData);
         
         if (errorData.message) {
           errorMessage = `Calendly API error: ${errorData.message}`;
+          
+          // Set specific error codes for common issues
+          if (errorData.message.includes("authentication")) {
+            errorCode = "invalid_api_key";
+          } else if (errorData.message.includes("permission")) {
+            errorCode = "insufficient_permissions";
+          }
         }
       } catch (e) {
         // If we can't parse the JSON, use the raw text
         errorMessage = `Calendly API error: ${orgResponseText}`;
+        errorCode = "api_response_error";
       }
       
       return new Response(
         JSON.stringify({ 
           success: false, 
-          error: "API authorization failed", 
-          message: errorMessage
+          error: errorCode, 
+          message: errorMessage,
+          status: orgResponse.status,
+          raw_response: orgResponseText.substring(0, 200) // Include truncated raw response for debugging
         }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 401 }
       );
@@ -93,7 +105,7 @@ const handler = async (req: Request): Promise<Response> => {
       return new Response(
         JSON.stringify({ 
           success: false, 
-          error: "Invalid response", 
+          error: "invalid_response", 
           message: "Failed to parse Calendly user data. Please try again later." 
         }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
@@ -103,11 +115,11 @@ const handler = async (req: Request): Promise<Response> => {
     const currentUser = userData.resource;
     const organizationUri = currentUser.current_organization;
     
-    console.log("User organization:", organizationUri);
+    console.log(`User organization: ${organizationUri}`);
 
     // Generate the webhook URL
     const webhookUrl = `${SUPABASE_URL}/functions/v1/calendly-webhook`;
-    console.log("Creating webhook subscription to URL:", webhookUrl);
+    console.log(`Creating webhook subscription to URL: ${webhookUrl}`);
     
     // Get existing webhooks first to avoid duplicates
     const existingWebhooksResponse = await fetch("https://api.calendly.com/webhook_subscriptions", {
@@ -118,15 +130,15 @@ const handler = async (req: Request): Promise<Response> => {
     });
     
     const existingWebhooksText = await existingWebhooksResponse.text();
-    console.log("Existing webhooks API response status:", existingWebhooksResponse.status);
+    console.log(`Existing webhooks API response status: ${existingWebhooksResponse.status}`);
     
     if (!existingWebhooksResponse.ok) {
       console.error("Failed to fetch existing webhooks:", existingWebhooksText);
       return new Response(
         JSON.stringify({ 
           success: false, 
-          error: "API request failed", 
-          message: "Failed to fetch existing webhooks. Please try again later." 
+          error: "webhook_list_failed", 
+          message: `Failed to fetch existing webhooks. Status: ${existingWebhooksResponse.status}`
         }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
       );
@@ -135,7 +147,7 @@ const handler = async (req: Request): Promise<Response> => {
     let existingWebhooksData;
     try {
       existingWebhooksData = JSON.parse(existingWebhooksText);
-      console.log("Existing webhooks:", JSON.stringify(existingWebhooksData));
+      console.log(`Existing webhooks: ${JSON.stringify(existingWebhooksData)}`);
       
       // Check if a webhook with the same URL already exists
       const existingWebhook = existingWebhooksData.collection.find(
@@ -143,7 +155,7 @@ const handler = async (req: Request): Promise<Response> => {
       );
       
       if (existingWebhook) {
-        console.log("Webhook already exists:", JSON.stringify(existingWebhook));
+        console.log(`Webhook already exists: ${JSON.stringify(existingWebhook)}`);
         return new Response(JSON.stringify({ 
           success: true, 
           message: "Calendly webhook subscription already exists",
@@ -158,7 +170,7 @@ const handler = async (req: Request): Promise<Response> => {
       return new Response(
         JSON.stringify({ 
           success: false, 
-          error: "Invalid response", 
+          error: "webhook_parse_error", 
           message: "Failed to process webhook data. Please try again later." 
         }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
@@ -182,11 +194,13 @@ const handler = async (req: Request): Promise<Response> => {
     });
 
     const webhookResponseText = await webhookResponse.text();
-    console.log("Webhook API response status:", webhookResponse.status);
-    console.log("Webhook API response:", webhookResponseText);
+    console.log(`Webhook API response status: ${webhookResponse.status}`);
+    console.log(`Webhook API response: ${webhookResponseText}`);
     
     if (!webhookResponse.ok) {
       let errorMessage = "Failed to create webhook subscription";
+      let errorCode = "webhook_creation_failed";
+      
       try {
         const webhookData = JSON.parse(webhookResponseText);
         console.error("Webhook creation failed:", webhookData);
@@ -195,6 +209,11 @@ const handler = async (req: Request): Promise<Response> => {
           errorMessage = `Calendly webhook error: ${webhookData.message}`;
         } else if (webhookData.errors && webhookData.errors.length > 0) {
           errorMessage = `Calendly webhook error: ${webhookData.errors.map((e: any) => e.message).join(", ")}`;
+          
+          // Set specific error codes for common issues
+          if (webhookData.errors.some((e: any) => e.message.includes("URL"))) {
+            errorCode = "invalid_webhook_url";
+          }
         }
       } catch (e) {
         errorMessage = `Failed to create webhook: ${webhookResponse.status} - ${webhookResponseText}`;
@@ -203,8 +222,10 @@ const handler = async (req: Request): Promise<Response> => {
       return new Response(
         JSON.stringify({ 
           success: false, 
-          error: "Webhook creation failed", 
-          message: errorMessage
+          error: errorCode, 
+          message: errorMessage,
+          status: webhookResponse.status,
+          raw_response: webhookResponseText.substring(0, 200) // Include truncated raw response for debugging
         }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
       );
@@ -213,13 +234,13 @@ const handler = async (req: Request): Promise<Response> => {
     let webhookData;
     try {
       webhookData = JSON.parse(webhookResponseText);
-      console.log("Webhook created successfully:", JSON.stringify(webhookData));
+      console.log(`Webhook created successfully: ${JSON.stringify(webhookData)}`);
     } catch (error) {
       console.error("Failed to parse webhook creation response:", error);
       return new Response(
         JSON.stringify({ 
           success: false, 
-          error: "Invalid response", 
+          error: "webhook_response_parse_error", 
           message: "Webhook was created but response couldn't be processed." 
         }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
@@ -235,11 +256,11 @@ const handler = async (req: Request): Promise<Response> => {
       status: 200,
     });
   } catch (error) {
-    console.error("Error setting up Calendly webhook:", error.message, error.stack);
+    console.error(`Error setting up Calendly webhook: ${error.message}`, error.stack);
     return new Response(
       JSON.stringify({ 
         success: false, 
-        error: "Unexpected error", 
+        error: "unexpected_error", 
         message: error.message || "An unexpected error occurred while setting up the webhook."
       }),
       {

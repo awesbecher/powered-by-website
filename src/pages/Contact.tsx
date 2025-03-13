@@ -11,6 +11,7 @@ const Contact = () => {
   const [webhookSetup, setWebhookSetup] = useState(false);
   const [setupAttempted, setSetupAttempted] = useState(false);
   const [isSettingUpWebhook, setIsSettingUpWebhook] = useState(false);
+  const [webhookError, setWebhookError] = useState<string | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -28,6 +29,7 @@ const Contact = () => {
       try {
         if (!webhookSetup && !setupAttempted && !isSettingUpWebhook) {
           setIsSettingUpWebhook(true);
+          setWebhookError(null);
           console.log("Attempting to set up Calendly webhook");
           
           const { data, error } = await supabase.functions.invoke('calendly-manage-webhook', {
@@ -37,14 +39,16 @@ const Contact = () => {
           console.log("Webhook setup response:", data);
           
           if (error) {
-            console.error("Error setting up webhook:", error);
+            console.error("Error setting up webhook (invoke error):", error);
+            setWebhookError(`API error: ${error.message}`);
             toast({
               title: "Webhook Setup Error",
-              description: "Failed to set up meeting notifications. Please try again later.",
+              description: `Failed to set up meeting notifications: ${error.message}`,
               variant: "destructive"
             });
           } else if (data?.error) {
             console.error("Error in webhook response:", data.error);
+            setWebhookError(data.message || "Unknown error in response");
             toast({
               title: "Webhook Setup Error",
               description: data.message || "Failed to set up meeting notifications. Please try again later.",
@@ -53,6 +57,7 @@ const Contact = () => {
           } else {
             console.log("Webhook setup successful:", data);
             setWebhookSetup(true);
+            setWebhookError(null);
             toast({
               title: "Notifications Enabled",
               description: "Meeting notifications have been successfully set up.",
@@ -62,13 +67,14 @@ const Contact = () => {
           setSetupAttempted(true);
           setIsSettingUpWebhook(false);
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("Webhook setup error:", err);
         setIsSettingUpWebhook(false);
         setSetupAttempted(true);
+        setWebhookError(err.message || "Unexpected error");
         toast({
           title: "Webhook Setup Error",
-          description: "Unexpected error setting up notifications. Please try again later.",
+          description: `Unexpected error: ${err.message || "Please check console logs for details"}`,
           variant: "destructive"
         });
       }
@@ -89,6 +95,12 @@ const Contact = () => {
     };
   }, [webhookSetup, setupAttempted, toast, isSettingUpWebhook]);
 
+  // Function to retry webhook setup
+  const retryWebhookSetup = () => {
+    setSetupAttempted(false);
+    setWebhookError(null);
+  };
+
   return (
     <div className="flex flex-col min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <Navbar />
@@ -100,6 +112,22 @@ const Contact = () => {
           <div className="mb-6">
             <ContactHeader initialLoad={initialLoad} />
           </div>
+          
+          {/* Show error message with retry button if webhook setup failed */}
+          {webhookError && (
+            <div className="bg-red-900/70 text-white p-4 rounded-lg mb-6 backdrop-blur">
+              <h3 className="font-medium text-lg mb-2">Webhook Setup Error</h3>
+              <p className="mb-3">Failed to set up meeting notifications: {webhookError}</p>
+              <p className="text-sm mb-3">This may be due to a missing API key or configuration issue.</p>
+              <button 
+                onClick={retryWebhookSetup} 
+                className="px-4 py-2 bg-red-700 hover:bg-red-600 rounded-md text-white transition-colors"
+                disabled={isSettingUpWebhook}
+              >
+                {isSettingUpWebhook ? "Trying again..." : "Retry Setup"}
+              </button>
+            </div>
+          )}
           
           {/* Reduced padding for Calendly widget */}
           <div className="bg-neutral-900/50 p-0 rounded-xl backdrop-blur mb-6">

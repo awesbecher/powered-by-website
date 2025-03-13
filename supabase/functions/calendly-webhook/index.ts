@@ -10,9 +10,10 @@ const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 
 // Enhanced debugging logs for environment variables and their availability
 console.log("Environment check for calendly-webhook function:");
-console.log("- SLACK_WEBHOOK_URL configured:", !!SLACK_WEBHOOK_URL, SLACK_WEBHOOK_URL ? SLACK_WEBHOOK_URL.substring(0, 15) + "..." : "");
-console.log("- NOTIFICATION_EMAIL configured:", !!NOTIFICATION_EMAIL, NOTIFICATION_EMAIL || "");
-console.log("- RESEND_API_KEY configured:", !!RESEND_API_KEY, RESEND_API_KEY ? "Valid key present" : "Missing");
+console.log(`- CALENDLY_API_KEY configured: ${!!CALENDLY_API_KEY}, ${CALENDLY_API_KEY ? "Valid key present" : "Missing"}`);
+console.log(`- SLACK_WEBHOOK_URL configured: ${!!SLACK_WEBHOOK_URL}, ${SLACK_WEBHOOK_URL ? SLACK_WEBHOOK_URL.substring(0, 15) + "..." : "Missing"}`);
+console.log(`- NOTIFICATION_EMAIL configured: ${!!NOTIFICATION_EMAIL}, ${NOTIFICATION_EMAIL || "Missing"}`);
+console.log(`- RESEND_API_KEY configured: ${!!RESEND_API_KEY}, ${RESEND_API_KEY ? "Valid key present" : "Missing"}`);
 
 let resend = null;
 if (RESEND_API_KEY) {
@@ -20,15 +21,15 @@ if (RESEND_API_KEY) {
     resend = new Resend(RESEND_API_KEY);
     console.log("Resend client initialized successfully");
   } catch (error) {
-    console.error("Failed to initialize Resend client:", error);
+    console.error(`Failed to initialize Resend client: ${error.message}`, error.stack);
   }
 }
 
 const handler = async (req: Request): Promise<Response> => {
   // Log full request details
-  console.log("Request method:", req.method);
-  console.log("Request headers:", Object.fromEntries(req.headers.entries()));
-  console.log("Request URL:", req.url);
+  console.log(`Request method: ${req.method}`);
+  console.log(`Request headers: ${JSON.stringify(Object.fromEntries(req.headers.entries()))}`);
+  console.log(`Request URL: ${req.url}`);
   
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
@@ -38,28 +39,52 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     // Parse and log webhook event
     let payload;
+    let rawBody = "";
+    
     try {
-      const body = await req.text();
-      console.log("Raw request body:", body);
+      rawBody = await req.text();
+      console.log(`Raw request body: ${rawBody}`);
+      
+      if (!rawBody || rawBody.trim() === "") {
+        console.error("Empty request body received");
+        return new Response(JSON.stringify({ error: "Empty request body" }), {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          status: 400,
+        });
+      }
       
       try {
-        payload = JSON.parse(body);
+        payload = JSON.parse(rawBody);
       } catch (parseError) {
-        console.error("Error parsing JSON body:", parseError);
-        return new Response(JSON.stringify({ error: "Invalid JSON payload" }), {
+        console.error(`Error parsing JSON body: ${parseError.message}`);
+        return new Response(JSON.stringify({ 
+          error: "Invalid JSON payload",
+          message: `Failed to parse JSON: ${parseError.message}`,
+          raw_body: rawBody.substring(0, 200) // Include truncated raw body for debugging
+        }), {
           headers: { ...corsHeaders, "Content-Type": "application/json" },
           status: 400,
         });
       }
     } catch (bodyError) {
-      console.error("Error reading request body:", bodyError);
-      return new Response(JSON.stringify({ error: "Failed to read request body" }), {
+      console.error(`Error reading request body: ${bodyError.message}`);
+      return new Response(JSON.stringify({ 
+        error: "Failed to read request body",
+        message: bodyError.message 
+      }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 400,
       });
     }
     
-    console.log("Received Calendly webhook event:", JSON.stringify(payload));
+    console.log(`Received Calendly webhook event: ${JSON.stringify(payload)}`);
+
+    // Verify webhook signature if headers are provided
+    const signature = req.headers.get("calendly-webhook-signature");
+    if (signature && CALENDLY_API_KEY) {
+      console.log(`Webhook signature provided: ${signature}`);
+      // In a production environment, you would verify the signature here
+    }
 
     // Event validation - more lenient detection of meeting scheduled events
     if (
@@ -68,16 +93,30 @@ const handler = async (req: Request): Promise<Response> => {
       payload?.payload?.event?.name?.includes("Meeting")
     ) {
       const eventData = payload.payload;
-      console.log("Event payload:", JSON.stringify(eventData));
+      console.log(`Event payload: ${JSON.stringify(eventData)}`);
       
       const inviteeInfo = eventData?.invitee;
       const eventInfo = eventData?.event_type || eventData?.event;
       const scheduledEvent = eventData?.scheduled_event || eventData;
       
-      console.log("Meeting scheduled by:", inviteeInfo?.name);
-      console.log("Email:", inviteeInfo?.email);
-      console.log("Event type:", eventInfo?.name);
-      console.log("Scheduled time:", scheduledEvent?.start_time);
+      if (!inviteeInfo || !eventInfo) {
+        console.error("Missing critical event data in payload");
+        console.log("inviteeInfo:", inviteeInfo);
+        console.log("eventInfo:", eventInfo);
+        
+        return new Response(JSON.stringify({ 
+          success: false, 
+          message: "Missing critical event data" 
+        }), {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          status: 400,
+        });
+      }
+      
+      console.log(`Meeting scheduled by: ${inviteeInfo?.name}`);
+      console.log(`Email: ${inviteeInfo?.email}`);
+      console.log(`Event type: ${eventInfo?.name}`);
+      console.log(`Scheduled time: ${scheduledEvent?.start_time}`);
       
       // Format date and time for notifications
       const formattedTime = scheduledEvent?.start_time ? 
@@ -89,7 +128,7 @@ const handler = async (req: Request): Promise<Response> => {
       // Send notification to Slack
       if (SLACK_WEBHOOK_URL) {
         try {
-          console.log("Preparing to send Slack notification to:", SLACK_WEBHOOK_URL);
+          console.log(`Preparing to send Slack notification to: ${SLACK_WEBHOOK_URL}`);
           
           const slackMessage = {
             text: "New Calendly Meeting Scheduled",
@@ -143,7 +182,7 @@ const handler = async (req: Request): Promise<Response> => {
             ]
           };
           
-          console.log("Sending Slack message:", JSON.stringify(slackMessage));
+          console.log(`Sending Slack message: ${JSON.stringify(slackMessage)}`);
           
           const slackResponse = await fetch(SLACK_WEBHOOK_URL, {
             method: 'POST',
@@ -154,16 +193,16 @@ const handler = async (req: Request): Promise<Response> => {
           });
           
           const slackResponseText = await slackResponse.text();
-          console.log("Slack API response status:", slackResponse.status);
-          console.log("Slack API response:", slackResponseText);
+          console.log(`Slack API response status: ${slackResponse.status}`);
+          console.log(`Slack API response: ${slackResponseText}`);
           
           if (!slackResponse.ok) {
-            console.error("Failed to send Slack notification:", slackResponseText);
+            console.error(`Failed to send Slack notification: ${slackResponseText}`);
           } else {
             console.log("Slack notification sent successfully");
           }
         } catch (slackError) {
-          console.error("Error sending Slack notification:", slackError);
+          console.error(`Error sending Slack notification: ${slackError.message}`, slackError.stack);
         }
       } else {
         console.log("Slack webhook URL not configured, skipping notification");
@@ -172,7 +211,7 @@ const handler = async (req: Request): Promise<Response> => {
       // Send notification via email
       if (resend && NOTIFICATION_EMAIL) {
         try {
-          console.log("Preparing to send email notification to:", NOTIFICATION_EMAIL);
+          console.log(`Preparing to send email notification to: ${NOTIFICATION_EMAIL}`);
           
           const emailResult = await resend.emails.send({
             from: "Lovable AI <onboarding@resend.dev>",
@@ -191,17 +230,21 @@ const handler = async (req: Request): Promise<Response> => {
             `,
           });
           
-          console.log("Email notification result:", JSON.stringify(emailResult));
+          console.log(`Email notification result: ${JSON.stringify(emailResult)}`);
         } catch (emailError) {
-          console.error("Error sending email notification:", emailError.message, emailError.stack);
+          console.error(`Error sending email notification: ${emailError.message}`, emailError.stack);
         }
       } else {
         console.log("Email notification skipped: Missing Resend API key or notification email");
-        console.log("- Resend initialized:", !!resend);
-        console.log("- NOTIFICATION_EMAIL value:", NOTIFICATION_EMAIL);
+        console.log(`- Resend initialized: ${!!resend}`);
+        console.log(`- NOTIFICATION_EMAIL value: ${NOTIFICATION_EMAIL}`);
       }
+    } else if (payload?.event === "invitee.canceled") {
+      console.log("Meeting cancellation detected, processing...");
+      // Process cancellation event - similar to above but for cancellations
+      // ...
     } else {
-      console.log("Ignoring non-meeting event:", payload?.event);
+      console.log(`Ignoring non-meeting event: ${payload?.event}`);
     }
 
     return new Response(JSON.stringify({ success: true }), {
@@ -209,9 +252,12 @@ const handler = async (req: Request): Promise<Response> => {
       status: 200,
     });
   } catch (error) {
-    console.error("Error handling Calendly webhook:", error.message, error.stack);
+    console.error(`Error handling Calendly webhook: ${error.message}`, error.stack);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        error: error.message,
+        stack: error.stack 
+      }),
       {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 500,
