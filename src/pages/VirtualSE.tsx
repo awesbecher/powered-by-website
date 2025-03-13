@@ -36,9 +36,6 @@ const VirtualSE = () => {
               <p className="text-lg text-gray-300 text-center">
                 In modern SaaS sales, the Sales Engineer (SE) is indispensable—bridging the gap between a product's technical capabilities and the customer's real-world needs. Unfortunately, SEs often find themselves overworked in high-pressure sales environments.
               </p>
-              <p className="text-lg text-gray-300 text-center">
-                That's why <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> has developed Virtual SE, an AI-driven voice and email agent solution designed to offload busy SE teams by supporting sales reps in pre-sales meetings, demos, and qualification calls.
-              </p>
               <div className="flex flex-col sm:flex-row items-center justify-center mt-4 gap-4">
                 <Link to="/contact">
                   <Button 
@@ -59,6 +56,15 @@ const VirtualSE = () => {
                 </Link>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Introduction Section */}
+        <section className="py-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
+          <div className="bg-gradient-to-br from-[#2f1c4a]/30 to-[#1a0b2e]/30 p-8 rounded-2xl border border-[#9b87f5]/20">
+            <p className="text-lg text-gray-300 mb-6">
+              That's why <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> has developed Virtual SE, an AI-driven voice and email agent solution designed to offload busy SE teams by supporting sales reps in pre-sales meetings, demos, and qualification calls.
+            </p>
           </div>
         </section>
 
