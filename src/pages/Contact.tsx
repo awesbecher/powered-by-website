@@ -2,18 +2,11 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ContactHeader } from "@/components/contact/ContactHeader";
-import { WebhookErrorDisplay } from "@/components/contact/WebhookErrorDisplay";
 import { CalendlyWidget } from "@/components/contact/CalendlyWidget";
 import { useWebhookSetup } from "@/hooks/useWebhookSetup";
 
 const Contact = () => {
-  const {
-    initialLoad,
-    webhookError,
-    fullErrorDetails,
-    isSettingUpWebhook,
-    retryWebhookSetup
-  } = useWebhookSetup();
+  const { initialLoad } = useWebhookSetup();
 
   return (
     <div className="flex flex-col min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
@@ -27,15 +20,7 @@ const Contact = () => {
             <ContactHeader initialLoad={initialLoad} />
           </div>
           
-          {/* Show error message with retry button if webhook setup failed */}
-          <WebhookErrorDisplay
-            webhookError={webhookError}
-            fullErrorDetails={fullErrorDetails}
-            isSettingUpWebhook={isSettingUpWebhook}
-            retryWebhookSetup={retryWebhookSetup}
-          />
-          
-          {/* Calendly widget */}
+          {/* Calendly widget - webhook error display removed */}
           <CalendlyWidget initialLoad={initialLoad} />
         </div>
       </div>

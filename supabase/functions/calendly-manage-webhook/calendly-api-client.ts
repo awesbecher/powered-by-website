@@ -1,4 +1,3 @@
-
 // Calendly API Client class that handles all interactions with the Calendly API
 export class CalendlyApiClient {
   private apiKey: string;
