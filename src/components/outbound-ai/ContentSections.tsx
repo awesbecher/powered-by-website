@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { InfoCard } from "@/components/ai-agency/InfoCard";
 import { MessageSquare, Phone, Cpu, ShieldCheck, Smartphone } from "lucide-react";
@@ -25,7 +26,7 @@ const ContentSections = ({ initialLoad }: ContentSectionsProps) => {
                 gradientTo="purple-600"
               >
                 <div className="space-y-4">
-                  <p>"Traditional outbound calling is labor-intensive, expensive, and difficult to scale. Even with power dialers, a single rep can only manage a limited number of calls daily. OutboundAI changes that. Our AI-driven voice agents call leads on your behalf, day or night, with remarkably sounding voices and conversation flow. This boosts your calling capacity and frees your human reps to focus on qualified prospects and closing deals."</p>
+                  <p>Traditional outbound calling is labor-intensive, expensive, and difficult to scale. Even with power dialers, a single rep can only manage a limited number of calls daily. OutboundAI changes that. Our AI-driven voice agents call leads on your behalf, day or night, with remarkably sounding voices and conversation flow. This boosts your calling capacity and frees your human reps to focus on qualified prospects and closing deals.</p>
                   
                   <div>
                     <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Key Advantages</h4>
