@@ -120,7 +120,8 @@ export class CalendlyApiClient {
     console.log("Checking for existing webhooks");
     
     try {
-      const response = await fetch("https://api.calendly.com/webhook_subscriptions", {
+      // Use scope=user to avoid 400 errors when lacking organization-wide permissions
+      const response = await fetch("https://api.calendly.com/webhook_subscriptions?scope=user", {
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${this.apiKey}`
@@ -184,11 +185,12 @@ export class CalendlyApiClient {
   // Create a webhook subscription in Calendly
   async createWebhookSubscription(organizationUri: string, webhookUrl: string) {
     console.log("Creating new webhook subscription");
+    // Use user scope instead of organization for better compatibility with personal accounts
     const webhookRequestBody = {
       url: webhookUrl,
       events: ["invitee.created", "invitee.canceled"],
-      organization: organizationUri,
-      scope: "organization"
+      user: organizationUri.replace("/organizations/", "/users/"),
+      scope: "user"
     };
     console.log("Webhook request body:", JSON.stringify(webhookRequestBody));
     
