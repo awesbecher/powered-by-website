@@ -7,7 +7,7 @@ const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
 
 // Enhanced debugging logs for environment variables
 console.log("Environment check for calendly-manage-webhook function:");
-console.log(`- CALENDLY_API_KEY configured: ${!!CALENDLY_API_KEY}, ${CALENDLY_API_KEY ? "First 10 chars: " + CALENDLY_API_KEY.substring(0, 10) + "..." : "MISSING - THIS IS REQUIRED"}`);
+console.log(`- CALENDLY_API_KEY configured: ${!!CALENDLY_API_KEY}, ${CALENDLY_API_KEY ? "Length: " + CALENDLY_API_KEY.length : "MISSING - THIS IS REQUIRED"}`);
 console.log(`- SUPABASE_URL configured: ${!!SUPABASE_URL}, ${SUPABASE_URL || "MISSING - THIS IS REQUIRED"}`);
 
 const handler = async (req: Request): Promise<Response> => {
@@ -16,9 +16,12 @@ const handler = async (req: Request): Promise<Response> => {
   console.log(`Request headers: ${JSON.stringify(Object.fromEntries(req.headers.entries()))}`);
   console.log(`Request URL: ${req.url}`);
   
-  // Handle CORS preflight requests
+  // Handle CORS preflight requests - CRITICAL: Always return 200 status
   if (req.method === "OPTIONS") {
-    return new Response(null, { headers: corsHeaders });
+    return new Response(null, { 
+      headers: corsHeaders,
+      status: 200
+    });
   }
 
   try {
@@ -33,6 +36,9 @@ const handler = async (req: Request): Promise<Response> => {
     
     const debugMode = requestBody?.debug === true;
     
+    // Always return a 200 status with error information in the body
+    // This avoids the non-2xx error that's causing problems
+    
     // Validate required environment variables
     if (!CALENDLY_API_KEY) {
       console.error("CALENDLY_API_KEY environment variable is not configured");
@@ -42,7 +48,7 @@ const handler = async (req: Request): Promise<Response> => {
           error: "missing_api_key", 
           message: "Calendly API key is not configured. Please check your Supabase environment variables." 
         }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 }
       );
     }
     
@@ -54,23 +60,23 @@ const handler = async (req: Request): Promise<Response> => {
           error: "missing_supabase_url", 
           message: "Supabase URL is not configured. Please check your Supabase environment variables." 
         }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 }
       );
     }
     
     // Check API key format - Calendly PAT tokens now start with "eyJr" (JWT format)
     if (!CALENDLY_API_KEY.startsWith("eyJr")) {
       console.error("CALENDLY_API_KEY does not appear to be in the expected JWT format for Personal Access Tokens");
-      console.error("API key starts with:", CALENDLY_API_KEY.substring(0, 10));
+      console.error("API key starts with:", CALENDLY_API_KEY.substring(0, 4));
       
       return new Response(
         JSON.stringify({ 
           success: false, 
           error: "invalid_api_key_format", 
           message: "The Calendly API key does not appear to be in the expected format for a Personal Access Token.",
-          details: debugMode ? `API key starts with: ${CALENDLY_API_KEY.substring(0, 10)}...` : undefined
+          details: debugMode ? `API key starts with: ${CALENDLY_API_KEY.substring(0, 4)}...` : undefined
         }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 }
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 }
       );
     }
     
@@ -125,7 +131,7 @@ const handler = async (req: Request): Promise<Response> => {
           status: orgResponseStatus,
           raw_response: debugMode ? orgResponseText.substring(0, 500) : undefined 
         }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 401 }
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 }
       );
     }
 
@@ -142,7 +148,7 @@ const handler = async (req: Request): Promise<Response> => {
           message: "Failed to parse Calendly user data response. Please try again later.",
           raw_response: debugMode ? orgResponseText.substring(0, 200) : undefined
         }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 }
       );
     }
     
@@ -155,7 +161,7 @@ const handler = async (req: Request): Promise<Response> => {
           message: "Calendly API returned an unexpected response format. Missing user resource data.",
           raw_response: debugMode ? JSON.stringify(userData).substring(0, 200) : undefined
         }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 }
       );
     }
     
@@ -171,7 +177,7 @@ const handler = async (req: Request): Promise<Response> => {
           message: "Could not find organization information in your Calendly account. Please ensure your account is properly set up.",
           user_data: debugMode ? currentUser : undefined
         }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 }
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 }
       );
     }
     
@@ -204,7 +210,7 @@ const handler = async (req: Request): Promise<Response> => {
           message: `Failed to fetch existing webhooks. Status: ${existingWebhooksStatus}`,
           raw_response: debugMode ? existingWebhooksText.substring(0, 200) : undefined
         }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 }
       );
     }
     
@@ -238,7 +244,7 @@ const handler = async (req: Request): Promise<Response> => {
           message: "Failed to process webhook data. Please try again later.",
           raw_response: debugMode ? existingWebhooksText.substring(0, 200) : undefined
         }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 }
       );
     }
     
@@ -297,7 +303,7 @@ const handler = async (req: Request): Promise<Response> => {
           status: webhookResponseStatus,
           raw_response: debugMode ? webhookResponseText.substring(0, 300) : undefined
         }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 }
       );
     }
 
@@ -314,7 +320,7 @@ const handler = async (req: Request): Promise<Response> => {
           message: "Webhook was created but response couldn't be processed.", 
           raw_response: debugMode ? webhookResponseText.substring(0, 200) : undefined
         }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 }
       );
     }
 
@@ -328,6 +334,7 @@ const handler = async (req: Request): Promise<Response> => {
     });
   } catch (error: any) {
     console.error(`Error setting up Calendly webhook: ${error.message}`, error.stack);
+    // Always return 200 status with error in body to prevent the non-2xx error
     return new Response(
       JSON.stringify({ 
         success: false, 
@@ -337,7 +344,7 @@ const handler = async (req: Request): Promise<Response> => {
       }),
       {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
-        status: 500,
+        status: 200,
       }
     );
   }

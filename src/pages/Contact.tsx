@@ -26,11 +26,12 @@ const Contact = () => {
     try {
       console.log("Manually triggering webhook setup");
       const { data, error } = await supabase.functions.invoke('calendly-manage-webhook', {
-        body: { action: 'setup' }
+        body: { action: 'setup', debug: true }
       });
       
       console.log("Manual webhook setup response:", data);
       
+      // Handle any kind of error - both from the invoke function or from the response body
       if (error) {
         console.error("Manual webhook setup error (invoke error):", error);
         setWebhookError(`Edge Function error: ${error.message}`);
@@ -40,7 +41,8 @@ const Contact = () => {
           description: `Failed to invoke Edge Function: ${error.message}`,
           variant: "destructive"
         });
-      } else if (data?.error) {
+      } else if (data?.error || data?.success === false) {
+        // Capture errors that come back with a 200 status code
         console.error("Error in manual webhook response:", data);
         
         let errorMessage = data.message || "Unknown error in response";
@@ -109,6 +111,7 @@ const Contact = () => {
           console.log("Webhook setup full response:", data);
           
           if (error) {
+            // This handles errors from the invoke function itself
             console.error("Error setting up webhook (invoke error):", error);
             let errorMsg = `Edge Function returned a non-2xx status code`;
             setWebhookError(errorMsg);
@@ -118,7 +121,8 @@ const Contact = () => {
               description: errorMsg,
               variant: "destructive"
             });
-          } else if (data?.error) {
+          } else if (data?.error || data?.success === false) {
+            // This handles errors returned in the response body with a 200 status code
             console.error("Error in webhook response:", data);
             
             let errorMessage = data.message || "Unknown error in response";
