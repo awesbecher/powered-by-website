@@ -30,7 +30,7 @@ const VirtualSE = () => {
           <div className="flex flex-col items-center gap-10">
             <div className={`w-full lg:w-2/3 space-y-6 transition-all duration-1000 ease-out transform
               ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight text-center">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight text-center">
                 <span className="text-[#9b87f5] block">Virtual SE</span>
                 Force-Multiply Your Sales Engineering Team
               </h1>
