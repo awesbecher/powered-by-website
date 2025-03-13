@@ -16,9 +16,13 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
         <div className="mx-auto max-w-4xl">
           <div className={`w-full lg:w-2/3 space-y-6 transition-all duration-1000 ease-out transform mx-auto
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight text-center">
-              <span className="text-[#9b87f5] block">Virtual SE</span>
-              Force-Multiply Your Sales Engineering Team
+            <h1 className="text-center">
+              <span className="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#9b87f5] block">
+                Virtual SE
+              </span>
+              <span className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+                Force-Multiply Your Sales Engineering Team
+              </span>
             </h1>
             <p className="text-xl text-gray-300 text-center">
               Meet <strong>Virtual SE</strong>. An AI-driven voice and email agent solution designed to offload busy SE teams by supporting sales reps in pre-sales meetings, demos, and qualification calls. Deploy into Zoom, Google Meet, Slack, & more.
