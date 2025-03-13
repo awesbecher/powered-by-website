@@ -7,7 +7,7 @@ const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
 
 // Enhanced debugging logs for environment variables
 console.log("Environment check for calendly-manage-webhook function:");
-console.log(`- CALENDLY_API_KEY configured: ${!!CALENDLY_API_KEY}, ${CALENDLY_API_KEY ? "Valid key present" : "MISSING - THIS IS REQUIRED"}`);
+console.log(`- CALENDLY_API_KEY configured: ${!!CALENDLY_API_KEY}, ${CALENDLY_API_KEY ? "Valid key format: " + (CALENDLY_API_KEY.startsWith("eyJ") ? "Yes" : "No") : "MISSING - THIS IS REQUIRED"}`);
 console.log(`- SUPABASE_URL configured: ${!!SUPABASE_URL}, ${SUPABASE_URL || "MISSING - THIS IS REQUIRED"}`);
 
 const handler = async (req: Request): Promise<Response> => {
@@ -47,6 +47,19 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
     
+    // Check API key format - this is a basic validation to help catch obvious issues
+    if (!CALENDLY_API_KEY.startsWith("eyJ")) {
+      console.error("CALENDLY_API_KEY does not appear to be in the expected JWT format");
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: "invalid_api_key_format", 
+          message: "The Calendly API key does not appear to be in the expected format. Please verify you're using a Personal Access Token." 
+        }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 }
+      );
+    }
+    
     console.log("Attempting to fetch user organization with API key");
     
     // Get user organization
@@ -57,6 +70,7 @@ const handler = async (req: Request): Promise<Response> => {
       }
     });
 
+    // Save the full response text for debugging
     const orgResponseText = await orgResponse.text();
     console.log(`Organization API response status: ${orgResponse.status}`);
     console.log(`Organization API response: ${orgResponseText}`);
@@ -73,8 +87,9 @@ const handler = async (req: Request): Promise<Response> => {
           errorMessage = `Calendly API error: ${errorData.message}`;
           
           // Set specific error codes for common issues
-          if (errorData.message.includes("authentication")) {
+          if (errorData.message.includes("authentication") || errorData.message.includes("Authorization")) {
             errorCode = "invalid_api_key";
+            errorMessage = "Invalid Calendly API key. Please check that you're using a valid Personal Access Token.";
           } else if (errorData.message.includes("permission")) {
             errorCode = "insufficient_permissions";
           }
@@ -91,7 +106,7 @@ const handler = async (req: Request): Promise<Response> => {
           error: errorCode, 
           message: errorMessage,
           status: orgResponse.status,
-          raw_response: orgResponseText.substring(0, 200) // Include truncated raw response for debugging
+          raw_response: orgResponseText.substring(0, 500) // Include more of the raw response for better debugging
         }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 401 }
       );
@@ -106,7 +121,21 @@ const handler = async (req: Request): Promise<Response> => {
         JSON.stringify({ 
           success: false, 
           error: "invalid_response", 
-          message: "Failed to parse Calendly user data. Please try again later." 
+          message: "Failed to parse Calendly user data response. Please try again later.",
+          raw_response: orgResponseText.substring(0, 200)
+        }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
+      );
+    }
+    
+    if (!userData.resource) {
+      console.error("Missing resource in Calendly API response:", userData);
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: "missing_user_data", 
+          message: "Calendly API returned an unexpected response format. Missing user resource data.",
+          raw_response: JSON.stringify(userData).substring(0, 200)
         }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
       );
@@ -114,6 +143,19 @@ const handler = async (req: Request): Promise<Response> => {
     
     const currentUser = userData.resource;
     const organizationUri = currentUser.current_organization;
+    
+    if (!organizationUri) {
+      console.error("Missing organization URI in Calendly user data:", currentUser);
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: "missing_organization", 
+          message: "Could not find organization information in your Calendly account. Please ensure your account is properly set up.",
+          user_data: currentUser
+        }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 }
+      );
+    }
     
     console.log(`User organization: ${organizationUri}`);
 
@@ -138,7 +180,8 @@ const handler = async (req: Request): Promise<Response> => {
         JSON.stringify({ 
           success: false, 
           error: "webhook_list_failed", 
-          message: `Failed to fetch existing webhooks. Status: ${existingWebhooksResponse.status}`
+          message: `Failed to fetch existing webhooks. Status: ${existingWebhooksResponse.status}`,
+          raw_response: existingWebhooksText.substring(0, 200)
         }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
       );
@@ -150,8 +193,8 @@ const handler = async (req: Request): Promise<Response> => {
       console.log(`Existing webhooks: ${JSON.stringify(existingWebhooksData)}`);
       
       // Check if a webhook with the same URL already exists
-      const existingWebhook = existingWebhooksData.collection.find(
-        (webhook: any) => webhook.attributes.url === webhookUrl
+      const existingWebhook = existingWebhooksData.collection?.find(
+        (webhook: any) => webhook.attributes?.url === webhookUrl
       );
       
       if (existingWebhook) {
@@ -171,7 +214,8 @@ const handler = async (req: Request): Promise<Response> => {
         JSON.stringify({ 
           success: false, 
           error: "webhook_parse_error", 
-          message: "Failed to process webhook data. Please try again later." 
+          message: "Failed to process webhook data. Please try again later.",
+          raw_response: existingWebhooksText.substring(0, 200)
         }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
       );
@@ -225,7 +269,7 @@ const handler = async (req: Request): Promise<Response> => {
           error: errorCode, 
           message: errorMessage,
           status: webhookResponse.status,
-          raw_response: webhookResponseText.substring(0, 200) // Include truncated raw response for debugging
+          raw_response: webhookResponseText.substring(0, 300) // Include more of the raw response for debugging
         }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
       );
@@ -241,7 +285,8 @@ const handler = async (req: Request): Promise<Response> => {
         JSON.stringify({ 
           success: false, 
           error: "webhook_response_parse_error", 
-          message: "Webhook was created but response couldn't be processed." 
+          message: "Webhook was created but response couldn't be processed.", 
+          raw_response: webhookResponseText.substring(0, 200) 
         }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
       );
@@ -261,7 +306,8 @@ const handler = async (req: Request): Promise<Response> => {
       JSON.stringify({ 
         success: false, 
         error: "unexpected_error", 
-        message: error.message || "An unexpected error occurred while setting up the webhook."
+        message: error.message || "An unexpected error occurred while setting up the webhook.",
+        stack: error.stack
       }),
       {
         headers: { ...corsHeaders, "Content-Type": "application/json" },

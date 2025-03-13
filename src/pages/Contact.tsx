@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { Button } from "@/components/ui/button";
 
 const Contact = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -12,6 +13,7 @@ const Contact = () => {
   const [setupAttempted, setSetupAttempted] = useState(false);
   const [isSettingUpWebhook, setIsSettingUpWebhook] = useState(false);
   const [webhookError, setWebhookError] = useState<string | null>(null);
+  const [fullErrorDetails, setFullErrorDetails] = useState<string | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -24,7 +26,11 @@ const Contact = () => {
     script.async = true;
     document.body.appendChild(script);
     
-    // Reset webhook setup state - this will trigger a fresh attempt with the new API key
+    // Clear previous error states
+    setWebhookError(null);
+    setFullErrorDetails(null);
+    
+    // Reset webhook setup state - this ensures a fresh setup attempt with the current API key
     setWebhookSetup(false);
     setSetupAttempted(false);
     
@@ -33,8 +39,7 @@ const Contact = () => {
       try {
         if (!webhookSetup && !setupAttempted && !isSettingUpWebhook) {
           setIsSettingUpWebhook(true);
-          setWebhookError(null);
-          console.log("Attempting to set up Calendly webhook with updated API key");
+          console.log("Attempting to set up Calendly webhook with new API key");
           
           const { data, error } = await supabase.functions.invoke('calendly-manage-webhook', {
             body: { action: 'setup' }
@@ -44,24 +49,30 @@ const Contact = () => {
           
           if (error) {
             console.error("Error setting up webhook (invoke error):", error);
-            setWebhookError(`API error: ${error.message}`);
+            setWebhookError(`Edge Function error: ${error.message}`);
+            setFullErrorDetails(JSON.stringify(error, null, 2));
             toast({
               title: "Webhook Setup Error",
-              description: `Failed to set up meeting notifications: ${error.message}`,
+              description: `Failed to invoke Edge Function: ${error.message}`,
               variant: "destructive"
             });
           } else if (data?.error) {
             console.error("Error in webhook response:", data.error);
-            setWebhookError(data.message || "Unknown error in response");
+            
+            let errorMessage = data.message || "Unknown error in response";
+            setWebhookError(errorMessage);
+            setFullErrorDetails(JSON.stringify(data, null, 2));
+            
             toast({
               title: "Webhook Setup Error",
-              description: data.message || "Failed to set up meeting notifications. Please try again later.",
+              description: errorMessage,
               variant: "destructive"
             });
           } else {
             console.log("Webhook setup successful:", data);
             setWebhookSetup(true);
             setWebhookError(null);
+            setFullErrorDetails(null);
             toast({
               title: "Notifications Enabled",
               description: "Meeting notifications have been successfully set up.",
@@ -76,6 +87,7 @@ const Contact = () => {
         setIsSettingUpWebhook(false);
         setSetupAttempted(true);
         setWebhookError(err.message || "Unexpected error");
+        setFullErrorDetails(JSON.stringify(err, null, 2));
         toast({
           title: "Webhook Setup Error",
           description: `Unexpected error: ${err.message || "Please check console logs for details"}`,
@@ -97,12 +109,13 @@ const Contact = () => {
         document.body.removeChild(script);
       }
     };
-  }, [toast]); // Removed webhookSetup and setupAttempted from dependency array to force re-setup
+  }, [toast]); // Removed webhookSetup and setupAttempted to force re-setup on every load
 
   // Function to retry webhook setup
   const retryWebhookSetup = () => {
     setSetupAttempted(false);
     setWebhookError(null);
+    setFullErrorDetails(null);
   };
 
   return (
@@ -122,14 +135,27 @@ const Contact = () => {
             <div className="bg-red-900/70 text-white p-4 rounded-lg mb-6 backdrop-blur">
               <h3 className="font-medium text-lg mb-2">Webhook Setup Error</h3>
               <p className="mb-3">Failed to set up meeting notifications: {webhookError}</p>
-              <p className="text-sm mb-3">This may be due to a missing API key or configuration issue.</p>
-              <button 
+              <p className="text-sm mb-3">This may be due to a permissions issue or configuration problem with the Calendly API key.</p>
+              
+              {fullErrorDetails && (
+                <div className="mb-4">
+                  <details className="text-xs">
+                    <summary className="cursor-pointer hover:underline mb-2">Show technical details</summary>
+                    <div className="bg-red-950/70 p-3 rounded overflow-auto max-h-40">
+                      <pre>{fullErrorDetails}</pre>
+                    </div>
+                  </details>
+                </div>
+              )}
+              
+              <Button 
                 onClick={retryWebhookSetup} 
-                className="px-4 py-2 bg-red-700 hover:bg-red-600 rounded-md text-white transition-colors"
+                variant="destructive"
                 disabled={isSettingUpWebhook}
+                className="bg-red-700 hover:bg-red-600"
               >
                 {isSettingUpWebhook ? "Trying again..." : "Retry Setup"}
-              </button>
+              </Button>
             </div>
           )}
           

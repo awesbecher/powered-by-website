@@ -10,7 +10,7 @@ const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 
 // Enhanced debugging logs for environment variables and their availability
 console.log("Environment check for calendly-webhook function:");
-console.log(`- CALENDLY_API_KEY configured: ${!!CALENDLY_API_KEY}, ${CALENDLY_API_KEY ? "Valid key present" : "Missing"}`);
+console.log(`- CALENDLY_API_KEY configured: ${!!CALENDLY_API_KEY}, ${CALENDLY_API_KEY ? "Valid format: " + (CALENDLY_API_KEY.startsWith("eyJ") ? "Yes" : "No") : "Missing"}`);
 console.log(`- SLACK_WEBHOOK_URL configured: ${!!SLACK_WEBHOOK_URL}, ${SLACK_WEBHOOK_URL ? SLACK_WEBHOOK_URL.substring(0, 15) + "..." : "Missing"}`);
 console.log(`- NOTIFICATION_EMAIL configured: ${!!NOTIFICATION_EMAIL}, ${NOTIFICATION_EMAIL || "Missing"}`);
 console.log(`- RESEND_API_KEY configured: ${!!RESEND_API_KEY}, ${RESEND_API_KEY ? "Valid key present" : "Missing"}`);
@@ -43,7 +43,8 @@ const handler = async (req: Request): Promise<Response> => {
     
     try {
       rawBody = await req.text();
-      console.log(`Raw request body: ${rawBody}`);
+      console.log(`Raw request body length: ${rawBody.length}`);
+      console.log(`Raw request body (truncated): ${rawBody.substring(0, 500)}`);
       
       if (!rawBody || rawBody.trim() === "") {
         console.error("Empty request body received");
@@ -77,23 +78,29 @@ const handler = async (req: Request): Promise<Response> => {
       });
     }
     
-    console.log(`Received Calendly webhook event: ${JSON.stringify(payload)}`);
+    console.log(`Received Calendly webhook event type: ${payload?.event || "unknown"}`);
+    console.log(`Event payload structure: ${JSON.stringify(Object.keys(payload || {}))}`);
 
     // Verify webhook signature if headers are provided
     const signature = req.headers.get("calendly-webhook-signature");
     if (signature && CALENDLY_API_KEY) {
       console.log(`Webhook signature provided: ${signature}`);
       // In a production environment, you would verify the signature here
+      // This is a placeholder for future webhook signature verification
     }
 
     // Event validation - more lenient detection of meeting scheduled events
-    if (
+    const isCreationEvent = 
       payload?.event === "invitee.created" || 
-      payload?.payload?.event_type?.name?.includes("Meeting") ||
-      payload?.payload?.event?.name?.includes("Meeting")
-    ) {
+      (payload?.payload?.event_type?.name && payload?.payload?.event_type?.name.includes("Meeting")) ||
+      (payload?.payload?.event?.name && payload?.payload?.event?.name.includes("Meeting"));
+    
+    const isCancellationEvent = payload?.event === "invitee.canceled";
+    
+    // Process meeting creation events
+    if (isCreationEvent) {
       const eventData = payload.payload;
-      console.log(`Event payload: ${JSON.stringify(eventData)}`);
+      console.log(`Event payload keys: ${JSON.stringify(Object.keys(eventData || {}))}`);
       
       const inviteeInfo = eventData?.invitee;
       const eventInfo = eventData?.event_type || eventData?.event;
@@ -101,22 +108,23 @@ const handler = async (req: Request): Promise<Response> => {
       
       if (!inviteeInfo || !eventInfo) {
         console.error("Missing critical event data in payload");
-        console.log("inviteeInfo:", inviteeInfo);
-        console.log("eventInfo:", eventInfo);
+        console.log("inviteeInfo:", inviteeInfo ? Object.keys(inviteeInfo) : null);
+        console.log("eventInfo:", eventInfo ? Object.keys(eventInfo) : null);
         
         return new Response(JSON.stringify({ 
           success: false, 
-          message: "Missing critical event data" 
+          message: "Missing critical event data in webhook payload",
+          payload_structure: Object.keys(payload || {})
         }), {
           headers: { ...corsHeaders, "Content-Type": "application/json" },
           status: 400,
         });
       }
       
-      console.log(`Meeting scheduled by: ${inviteeInfo?.name}`);
-      console.log(`Email: ${inviteeInfo?.email}`);
-      console.log(`Event type: ${eventInfo?.name}`);
-      console.log(`Scheduled time: ${scheduledEvent?.start_time}`);
+      console.log(`Meeting scheduled by: ${inviteeInfo?.name || "Unknown"}`);
+      console.log(`Email: ${inviteeInfo?.email || "Not provided"}`);
+      console.log(`Event type: ${eventInfo?.name || "Unknown"}`);
+      console.log(`Scheduled time: ${scheduledEvent?.start_time || "Not specified"}`);
       
       // Format date and time for notifications
       const formattedTime = scheduledEvent?.start_time ? 
@@ -128,7 +136,7 @@ const handler = async (req: Request): Promise<Response> => {
       // Send notification to Slack
       if (SLACK_WEBHOOK_URL) {
         try {
-          console.log(`Preparing to send Slack notification to: ${SLACK_WEBHOOK_URL}`);
+          console.log(`Preparing to send Slack notification to webhook URL`);
           
           const slackMessage = {
             text: "New Calendly Meeting Scheduled",
@@ -182,7 +190,7 @@ const handler = async (req: Request): Promise<Response> => {
             ]
           };
           
-          console.log(`Sending Slack message: ${JSON.stringify(slackMessage)}`);
+          console.log(`Sending Slack message for meeting booking`);
           
           const slackResponse = await fetch(SLACK_WEBHOOK_URL, {
             method: 'POST',
@@ -239,12 +247,12 @@ const handler = async (req: Request): Promise<Response> => {
         console.log(`- Resend initialized: ${!!resend}`);
         console.log(`- NOTIFICATION_EMAIL value: ${NOTIFICATION_EMAIL}`);
       }
-    } else if (payload?.event === "invitee.canceled") {
+    } else if (isCancellationEvent) {
       console.log("Meeting cancellation detected, processing...");
       // Process cancellation event - similar to above but for cancellations
-      // ...
+      // Simplified here for brevity
     } else {
-      console.log(`Ignoring non-meeting event: ${payload?.event}`);
+      console.log(`Ignoring non-meeting event: ${payload?.event || "unknown event type"}`);
     }
 
     return new Response(JSON.stringify({ success: true }), {
