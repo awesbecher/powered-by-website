@@ -24,13 +24,17 @@ const Contact = () => {
     script.async = true;
     document.body.appendChild(script);
     
+    // Reset webhook setup state - this will trigger a fresh attempt with the new API key
+    setWebhookSetup(false);
+    setSetupAttempted(false);
+    
     // Setup Calendly webhook if not already done
     const setupWebhook = async () => {
       try {
         if (!webhookSetup && !setupAttempted && !isSettingUpWebhook) {
           setIsSettingUpWebhook(true);
           setWebhookError(null);
-          console.log("Attempting to set up Calendly webhook");
+          console.log("Attempting to set up Calendly webhook with updated API key");
           
           const { data, error } = await supabase.functions.invoke('calendly-manage-webhook', {
             body: { action: 'setup' }
@@ -93,7 +97,7 @@ const Contact = () => {
         document.body.removeChild(script);
       }
     };
-  }, [webhookSetup, setupAttempted, toast, isSettingUpWebhook]);
+  }, [toast]); // Removed webhookSetup and setupAttempted from dependency array to force re-setup
 
   // Function to retry webhook setup
   const retryWebhookSetup = () => {
