@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -74,7 +75,7 @@ const VirtualSE = () => {
                     gradientTo="purple-600"
                   >
                     <div className="space-y-4">
-                      <p>Our Virtual Sales Engineers integrate seamlessly with your existing sales ecosystem, providing real-time technical expertise during customer interactions. Unlike generic AI solutions, Virtual SE comes pre-trained on your specific products, technical documentation, and best practices.</p>
+                      <p>Virtual SE connects seamlessly to common meeting platforms such as Zoom, Google Meet, and Microsoft Teams in the manner of other meeting services you are likely already using like Gong or Otter.ai. Once invited to a call, it listens in real time and responds to technical questions with a remarkably human-like voice. Virtual SE draws from your company's existing product documentation, training materials, and messaging to provide on-the-spot technical explanations. It can also automatically log meeting notes and key takeaways to CRM systems like HubSpot or Salesforce.</p>
                       
                       <div>
                         <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Deployment Options</h4>
