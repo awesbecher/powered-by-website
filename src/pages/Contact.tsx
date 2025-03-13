@@ -10,6 +10,7 @@ const Contact = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   const [webhookSetup, setWebhookSetup] = useState(false);
   const [setupAttempted, setSetupAttempted] = useState(false);
+  const [isSettingUpWebhook, setIsSettingUpWebhook] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -25,14 +26,15 @@ const Contact = () => {
     // Setup Calendly webhook if not already done
     const setupWebhook = async () => {
       try {
-        if (!webhookSetup && !setupAttempted) {
-          setSetupAttempted(true);
+        if (!webhookSetup && !setupAttempted && !isSettingUpWebhook) {
+          setIsSettingUpWebhook(true);
           console.log("Attempting to set up Calendly webhook");
           
-          const { data, error } = await supabase.functions.invoke('calendly-manage-webhook');
+          const { data, error } = await supabase.functions.invoke('calendly-manage-webhook', {
+            body: { action: 'setup' }
+          });
           
           console.log("Webhook setup response:", data);
-          console.log("Webhook setup error:", error);
           
           if (error) {
             console.error("Error setting up webhook:", error);
@@ -41,17 +43,34 @@ const Contact = () => {
               description: "Failed to set up meeting notifications. Please try again later.",
               variant: "destructive"
             });
+          } else if (data?.error) {
+            console.error("Error in webhook response:", data.error);
+            toast({
+              title: "Webhook Setup Error",
+              description: data.message || "Failed to set up meeting notifications. Please try again later.",
+              variant: "destructive"
+            });
           } else {
-            console.log("Webhook setup response:", data);
+            console.log("Webhook setup successful:", data);
             setWebhookSetup(true);
             toast({
               title: "Notifications Enabled",
               description: "Meeting notifications have been successfully set up.",
             });
           }
+          
+          setSetupAttempted(true);
+          setIsSettingUpWebhook(false);
         }
       } catch (err) {
         console.error("Webhook setup error:", err);
+        setIsSettingUpWebhook(false);
+        setSetupAttempted(true);
+        toast({
+          title: "Webhook Setup Error",
+          description: "Unexpected error setting up notifications. Please try again later.",
+          variant: "destructive"
+        });
       }
     };
     
@@ -68,7 +87,7 @@ const Contact = () => {
         document.body.removeChild(script);
       }
     };
-  }, [webhookSetup, setupAttempted, toast]);
+  }, [webhookSetup, setupAttempted, toast, isSettingUpWebhook]);
 
   return (
     <div className="flex flex-col min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">

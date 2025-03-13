@@ -22,12 +22,29 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
+    // Validate required environment variables
     if (!CALENDLY_API_KEY) {
-      throw new Error("CALENDLY_API_KEY environment variable is not configured");
+      console.error("CALENDLY_API_KEY environment variable is not configured");
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: "Missing configuration", 
+          message: "Calendly API key is not configured. Please check your environment variables." 
+        }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
+      );
     }
     
     if (!SUPABASE_URL) {
-      throw new Error("SUPABASE_URL environment variable is not configured");
+      console.error("SUPABASE_URL environment variable is not configured");
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: "Missing configuration", 
+          message: "Supabase URL is not configured. Please check your environment variables." 
+        }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
+      );
     }
     
     console.log("Attempting to fetch user organization with API key");
@@ -45,10 +62,44 @@ const handler = async (req: Request): Promise<Response> => {
     console.log("Organization API response:", orgResponseText);
 
     if (!orgResponse.ok) {
-      throw new Error(`Failed to fetch user information: ${orgResponse.status} - ${orgResponseText}`);
+      let errorMessage = `Failed to fetch user information: ${orgResponse.status}`;
+      try {
+        const errorData = JSON.parse(orgResponseText);
+        console.error("Detailed error from Calendly API:", errorData);
+        
+        if (errorData.message) {
+          errorMessage = `Calendly API error: ${errorData.message}`;
+        }
+      } catch (e) {
+        // If we can't parse the JSON, use the raw text
+        errorMessage = `Calendly API error: ${orgResponseText}`;
+      }
+      
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: "API authorization failed", 
+          message: errorMessage
+        }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 401 }
+      );
     }
 
-    const userData = JSON.parse(orgResponseText);
+    let userData;
+    try {
+      userData = JSON.parse(orgResponseText);
+    } catch (error) {
+      console.error("Failed to parse Calendly API response:", error);
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: "Invalid response", 
+          message: "Failed to parse Calendly user data. Please try again later." 
+        }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
+      );
+    }
+    
     const currentUser = userData.resource;
     const organizationUri = currentUser.current_organization;
     
@@ -71,8 +122,19 @@ const handler = async (req: Request): Promise<Response> => {
     
     if (!existingWebhooksResponse.ok) {
       console.error("Failed to fetch existing webhooks:", existingWebhooksText);
-    } else {
-      const existingWebhooksData = JSON.parse(existingWebhooksText);
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: "API request failed", 
+          message: "Failed to fetch existing webhooks. Please try again later." 
+        }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
+      );
+    }
+    
+    let existingWebhooksData;
+    try {
+      existingWebhooksData = JSON.parse(existingWebhooksText);
       console.log("Existing webhooks:", JSON.stringify(existingWebhooksData));
       
       // Check if a webhook with the same URL already exists
@@ -91,9 +153,20 @@ const handler = async (req: Request): Promise<Response> => {
           status: 200,
         });
       }
+    } catch (error) {
+      console.error("Failed to parse existing webhooks response:", error);
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: "Invalid response", 
+          message: "Failed to process webhook data. Please try again later." 
+        }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
+      );
     }
     
     // Create webhook subscription
+    console.log("Creating new webhook subscription");
     const webhookResponse = await fetch("https://api.calendly.com/webhook_subscriptions", {
       method: "POST",
       headers: {
@@ -113,17 +186,45 @@ const handler = async (req: Request): Promise<Response> => {
     console.log("Webhook API response:", webhookResponseText);
     
     if (!webhookResponse.ok) {
+      let errorMessage = "Failed to create webhook subscription";
       try {
         const webhookData = JSON.parse(webhookResponseText);
         console.error("Webhook creation failed:", webhookData);
-        throw new Error(`Failed to create webhook: ${webhookResponse.status} - ${JSON.stringify(webhookData)}`);
+        
+        if (webhookData.message) {
+          errorMessage = `Calendly webhook error: ${webhookData.message}`;
+        } else if (webhookData.errors && webhookData.errors.length > 0) {
+          errorMessage = `Calendly webhook error: ${webhookData.errors.map((e: any) => e.message).join(", ")}`;
+        }
       } catch (e) {
-        throw new Error(`Failed to create webhook: ${webhookResponse.status} - ${webhookResponseText}`);
+        errorMessage = `Failed to create webhook: ${webhookResponse.status} - ${webhookResponseText}`;
       }
+      
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: "Webhook creation failed", 
+          message: errorMessage
+        }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
+      );
     }
 
-    const webhookData = JSON.parse(webhookResponseText);
-    console.log("Webhook created successfully:", JSON.stringify(webhookData));
+    let webhookData;
+    try {
+      webhookData = JSON.parse(webhookResponseText);
+      console.log("Webhook created successfully:", JSON.stringify(webhookData));
+    } catch (error) {
+      console.error("Failed to parse webhook creation response:", error);
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: "Invalid response", 
+          message: "Webhook was created but response couldn't be processed." 
+        }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
+      );
+    }
 
     return new Response(JSON.stringify({ 
       success: true, 
@@ -136,7 +237,11 @@ const handler = async (req: Request): Promise<Response> => {
   } catch (error) {
     console.error("Error setting up Calendly webhook:", error.message, error.stack);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        success: false, 
+        error: "Unexpected error", 
+        message: error.message || "An unexpected error occurred while setting up the webhook."
+      }),
       {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 500,
