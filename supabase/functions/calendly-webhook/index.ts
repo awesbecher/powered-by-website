@@ -1,9 +1,14 @@
 
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { corsHeaders } from "../_shared/cors.ts";
+import { Resend } from "npm:resend@2.0.0";
 
 const CALENDLY_API_KEY = Deno.env.get("CALENDLY_API_KEY");
 const SLACK_WEBHOOK_URL = Deno.env.get("SLACK_WEBHOOK_URL");
+const NOTIFICATION_EMAIL = Deno.env.get("NOTIFICATION_EMAIL");
+const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+
+const resend = RESEND_API_KEY ? new Resend(RESEND_API_KEY) : null;
 
 const handler = async (req: Request): Promise<Response> => {
   // Handle CORS preflight requests
@@ -31,15 +36,16 @@ const handler = async (req: Request): Promise<Response> => {
       console.log("Event type:", eventInfo?.name);
       console.log("Scheduled time:", scheduledEvent?.start_time);
       
+      // Format date and time for notifications
+      const formattedTime = scheduledEvent?.start_time ? 
+        new Date(scheduledEvent.start_time).toLocaleString('en-US', {
+          dateStyle: 'full',
+          timeStyle: 'long',
+        }) : 'Time not specified';
+      
       // Send notification to Slack
       if (SLACK_WEBHOOK_URL) {
         try {
-          const formattedTime = scheduledEvent?.start_time ? 
-            new Date(scheduledEvent.start_time).toLocaleString('en-US', {
-              dateStyle: 'full',
-              timeStyle: 'long',
-            }) : 'Time not specified';
-            
           const slackMessage = {
             text: "New Calendly Meeting Scheduled",
             blocks: [
@@ -111,6 +117,34 @@ const handler = async (req: Request): Promise<Response> => {
         }
       } else {
         console.log("Slack webhook URL not configured, skipping notification");
+      }
+      
+      // Send notification via email
+      if (resend && NOTIFICATION_EMAIL) {
+        try {
+          const emailResult = await resend.emails.send({
+            from: "Lovable AI <onboarding@resend.dev>",
+            to: NOTIFICATION_EMAIL,
+            subject: "New Calendly Meeting Scheduled",
+            html: `
+              <h1>🗓️ New Meeting Scheduled</h1>
+              <div style="padding: 20px; border-radius: 5px; border: 1px solid #e0e0e0; margin: 20px 0;">
+                <h2>Meeting Details</h2>
+                <p><strong>Name:</strong> ${inviteeInfo?.name || 'Not provided'}</p>
+                <p><strong>Email:</strong> ${inviteeInfo?.email || 'Not provided'}</p>
+                <p><strong>Event Type:</strong> ${eventInfo?.name || 'Not specified'}</p>
+                <p><strong>Time:</strong> ${formattedTime}</p>
+                <p><strong>Calendly Link:</strong> <a href="${scheduledEvent?.uri || '#'}">View in Calendly</a></p>
+              </div>
+            `,
+          });
+          
+          console.log("Email notification sent successfully:", emailResult);
+        } catch (emailError) {
+          console.error("Error sending email notification:", emailError);
+        }
+      } else {
+        console.log("Email notification skipped: Missing Resend API key or notification email");
       }
     }
 
