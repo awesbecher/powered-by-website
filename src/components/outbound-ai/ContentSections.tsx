@@ -26,7 +26,7 @@ const ContentSections = ({ initialLoad }: ContentSectionsProps) => {
                 gradientTo="purple-600"
               >
                 <div className="space-y-4">
-                  <p>OutboundAI addresses the fundamental challenges of outbound calling - volume, consistency, and conversion. Our AI agents can make hundreds of calls simultaneously, following your exact script and sales methodology, while adapting to each conversation naturally. This leads to more meetings booked, more demos scheduled, and ultimately more sales - all while reducing the cost and stress of traditional outbound calling.</p>
+                  <p>"Traditional outbound calling is labor-intensive, expensive, and difficult to scale. Even with power dialers, a single rep can only manage a limited number of calls daily. OutboundAI changes that. Our AI-driven voice agents call leads on your behalf, day or night, with remarkably sounding voices and conversation flow. This boosts your calling capacity and frees your human reps to focus on qualified prospects and closing deals."</p>
                   
                   <div>
                     <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Key Advantages</h4>
