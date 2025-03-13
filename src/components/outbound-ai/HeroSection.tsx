@@ -29,13 +29,15 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 mt-4">
               <a 
-                href="#learn-more"
+                href="https://poweredbyagency.ghost.io/introducing-outboundai-voice-agents-for-outbound-sales-marketing/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="order-2 sm:order-1"
               >
                 <Button 
                   className="bg-white hover:bg-gray-100 text-[#6342ff] w-full sm:w-auto flex items-center"
                 >
-                  <FileText className="mr-2 h-5 w-5" /> Learn More
+                  <FileText className="mr-2 h-5 w-5" /> Read Product Announcement
                 </Button>
               </a>
               <Link to="/contact" className="order-1 sm:order-2">
