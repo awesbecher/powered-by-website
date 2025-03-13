@@ -26,7 +26,7 @@ const VirtualSE = () => {
       <Navbar />
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
+        <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
           <div className="relative overflow-hidden px-6 lg:px-8 pt-12 pb-8">
             <div className="mx-auto max-w-4xl">
               <div className={`w-full lg:w-2/3 space-y-6 transition-all duration-1000 ease-out transform mx-auto
