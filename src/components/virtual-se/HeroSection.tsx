@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, FileText } from "lucide-react";
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -27,10 +27,22 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
             <p className="text-xl text-gray-300 text-center">
               Meet <strong>Virtual SE</strong>. An AI-driven voice and email agent solution designed to offload busy SE teams by supporting sales reps in pre-sales meetings, demos, and qualification calls. Deploy into Zoom, Google Meet, Slack, & more.
             </p>
-            <div className="flex justify-center mt-4">
-              <Link to="/contact">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 mt-4">
+              <a 
+                href="https://poweredbyagency.ghost.io/meet-virtual-se-force-multiply-your-technical-pre-sales/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="order-2 sm:order-1"
+              >
                 <Button 
-                  className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
+                  className="bg-white hover:bg-gray-100 text-[#6342ff] w-full sm:w-auto flex items-center"
+                >
+                  <FileText className="mr-2 h-5 w-5" /> Read Product Announcement
+                </Button>
+              </a>
+              <Link to="/contact" className="order-1 sm:order-2">
+                <Button 
+                  className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center w-full sm:w-auto"
                   onClick={handleContact}
                 >
                   Schedule a Demo <ArrowRight className="ml-2 h-5 w-5" />
