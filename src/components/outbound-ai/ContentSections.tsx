@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { InfoCard } from "@/components/ai-agency/InfoCard";
 import { MessageSquare, Phone, Cpu, ShieldCheck, Smartphone } from "lucide-react";
@@ -51,13 +50,12 @@ const ContentSections = ({ initialLoad }: ContentSectionsProps) => {
                   <p>OutboundAI turns your best sales scripts, talk tracks, and methodologies into an army of natural-sounding AI agents that can scale your outbound operation exponentially. The system integrates with your existing CRM and sales tools, connects to your prospect lists, and begins making calls immediately. Each conversation is unique, personalized, and responsive to the specific prospect and situation.</p>
                   
                   <div>
-                    <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Deployment Steps</h4>
+                    <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">How It Works</h4>
                     <ul className="list-disc pl-5 space-y-2">
-                      <li>Configure your AI agents with your specific scripts, objection handlers, and call flow</li>
-                      <li>Connect to your CRM and prospect data sources</li>
-                      <li>Define call scheduling, volume limits, and targeting criteria</li>
-                      <li>Monitor performance in real-time through our intuitive dashboard</li>
-                      <li>Continuous optimization based on call outcomes and conversion metrics</li>
+                      <li>Connect to Your CRM: OutboundAI syncs directly with your CRM or lead database.</li>
+                      <li>AI-Powered Calls: Our voice agent calls leads, introduces itself, and converses just like a trained sales rep—scheduling demos, handling FAQs, or transferring hot leads to human reps.</li>
+                      <li>Real-Time Updates: All outcomes and notes sync automatically back to your CRM. No more manual logging.</li>
+                      <li>24/7 Scalability: AI agents can run campaigns day or night, making as many calls as needed simultaneously.</li>
                     </ul>
                   </div>
                 </div>
