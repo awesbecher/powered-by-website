@@ -96,7 +96,7 @@ const VirtualSE = () => {
                     gradientTo="pink-600"
                   >
                     <div className="space-y-4">
-                      <p>SE teams are chronically overloaded, often becoming bottlenecks in the sales process. Virtual SE addresses this challenge by ensuring consistent technical support is available for every sales conversation.</p>
+                      <p>SE teams are chronically overloaded, often becoming bottlenecks in the sales process. Virtual SE addresses this challenge by ensuring consistent technical support is available for every sales conversation. Force-multiply your SE team coverage and re-allocate your precious human SE resources to the most high value sales activities.</p>
                       
                       <div>
                         <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Key Benefits</h4>
