@@ -1,8 +1,4 @@
 
-import { Button } from "@/components/ui/button";
-import { CalendarIcon } from "lucide-react";
-import { WebhookErrorDisplay } from "./WebhookErrorDisplay";
-
 interface ContactHeaderProps {
   initialLoad: boolean;
 }
