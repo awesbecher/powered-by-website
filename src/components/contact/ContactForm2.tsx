@@ -61,10 +61,11 @@ export const ContactForm2 = ({ initialLoad }: ContactForm2Props) => {
       // Log the form data (you can implement actual submission logic later)
       console.log("Form submitted:", formData);
       
-      // Show success toast
+      // Show success toast with extended message
       toast({
-        title: "Information received!",
-        description: "Thanks for providing your details.",
+        title: "Thank you for your interest in Powered_by!",
+        description: "We're excited to meet and help you learn more about AI agents and Powered_by Agency potential. Our Solutions Design Experts team will get back to you in less than 24 hours. If your request is urgent, you can email us directly: team@poweredby.agency",
+        duration: 8000, // Longer duration to allow user to read the message
       });
       
       // Reset form
