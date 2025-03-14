@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { ContactForm2 } from "@/components/contact/ContactForm2";
 
 const Contact2 = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -21,12 +22,21 @@ const Contact2 = () => {
       
       <div className="flex-grow flex flex-col relative z-10 pt-6 px-4">
         <div className="max-w-2xl mx-auto w-full">
-          {/* Content will be added based on future requests */}
+          {/* Header with animated fade in */}
           <div className={`transition-all duration-1000 ease-out
             ${initialLoad ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
-            <h1 className="text-6xl font-bold text-white text-center mb-10">
-              Contact Us
+            <h1 className="text-3xl md:text-5xl font-bold text-white text-center mb-4">
+              Thanks for your interest!
             </h1>
+            <p className="text-xl text-white text-center mb-10">
+              Please provide a bit more information to schedule your Free Consultation.
+            </p>
+          </div>
+          
+          {/* Contact Form */}
+          <div className={`transition-all duration-1000 delay-200 ease-out
+            ${initialLoad ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
+            <ContactForm2 initialLoad={initialLoad} />
           </div>
         </div>
       </div>
