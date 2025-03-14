@@ -4,7 +4,7 @@ import { Resend } from "npm:resend@2.0.0";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 // Update to include both email addresses
-const TEAM_EMAILS = ["andrew@madrone.capital", "team@poweredby.agency"];
+const TEAM_EMAILS = ["andrew@madrone.capital", "andrew@poweredby.agency"];
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
