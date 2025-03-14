@@ -3,8 +3,20 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ContactHeader } from "@/components/contact/ContactHeader";
 import { CalendlyWidget } from "@/components/contact/CalendlyWidget";
+import { useEffect, useState } from "react";
 
 const Contact = () => {
+  const [initialLoad, setInitialLoad] = useState(true);
+
+  useEffect(() => {
+    // Set initialLoad to false after a short delay to trigger animations
+    const timer = setTimeout(() => {
+      setInitialLoad(false);
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <Navbar />
@@ -14,11 +26,11 @@ const Contact = () => {
         <div className="max-w-2xl mx-auto w-full">
           {/* Minimized margin for header */}
           <div className="mb-6">
-            <ContactHeader initialLoad={false} />
+            <ContactHeader initialLoad={initialLoad} />
           </div>
           
           {/* Calendly widget */}
-          <CalendlyWidget initialLoad={false} />
+          <CalendlyWidget initialLoad={initialLoad} />
         </div>
       </div>
 
