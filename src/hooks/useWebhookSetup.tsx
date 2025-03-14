@@ -11,12 +11,22 @@ export function useWebhookSetup() {
   const [initialLoad, setInitialLoad] = useState(true);
   const { toast } = useToast();
 
-  // Initialize webhook setup - can be called once on page load
+  // Check webhook status on initial load
   const initializeWebhookSetup = async () => {
-    // Just finish the initial loading state after a short delay
-    setTimeout(() => {
-      setInitialLoad(false);
-    }, 500);
+    try {
+      // Check if webhook is already set up (in local storage for persistence)
+      const storedStatus = localStorage.getItem('calendlyWebhookStatus');
+      if (storedStatus === 'complete') {
+        setWebhookSetupComplete(true);
+      }
+      
+      // Finish initial loading state after a short delay
+      setTimeout(() => {
+        setInitialLoad(false);
+      }, 500);
+    } catch (error) {
+      console.error('Error initializing webhook setup:', error);
+    }
   };
 
   // Function to set up webhook manually if needed
@@ -26,22 +36,26 @@ export function useWebhookSetup() {
     setFullErrorDetails(null);
 
     try {
-      const { data, error } = await supabase.functions.invoke('register-calendly-webhook');
+      // Call the updated Supabase function that manages the Calendly webhook
+      const { data, error } = await supabase.functions.invoke('calendly-manage-webhook');
       
       if (error) {
         throw new Error(`Function error: ${error.message}`);
       }
 
       if (!data.success) {
-        throw new Error(data.error || 'Unknown error occurred while setting up webhook');
+        throw new Error(data.error || data.message || 'Unknown error occurred while setting up webhook');
       }
 
+      // Store webhook setup status in localStorage for persistence
+      localStorage.setItem('calendlyWebhookStatus', 'complete');
       setWebhookSetupComplete(true);
+      
       toast({
         title: "Webhook setup successful",
         description: "Calendly webhook has been configured successfully."
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Webhook setup error:', error);
       setWebhookError(error.message);
       setFullErrorDetails(JSON.stringify(error, null, 2));

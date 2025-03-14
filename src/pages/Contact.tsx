@@ -3,10 +3,21 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ContactHeader } from "@/components/contact/ContactHeader";
 import { CalendlyWidget } from "@/components/contact/CalendlyWidget";
+import { WebhookErrorDisplay } from "@/components/contact/WebhookErrorDisplay";
 import { useWebhookSetup } from "@/hooks/useWebhookSetup";
+import { Button } from "@/components/ui/button";
+import { CalendarIcon } from "lucide-react";
 
 const Contact = () => {
-  const { initialLoad } = useWebhookSetup();
+  const { 
+    initialLoad, 
+    webhookError, 
+    fullErrorDetails, 
+    isSettingUpWebhook, 
+    webhookSetupComplete, 
+    retryWebhookSetup,
+    setupWebhook 
+  } = useWebhookSetup();
 
   return (
     <div className="flex flex-col min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
@@ -20,7 +31,31 @@ const Contact = () => {
             <ContactHeader initialLoad={initialLoad} />
           </div>
           
-          {/* Calendly widget - webhook error display removed */}
+          {/* Show webhook error if there is one */}
+          {webhookError && (
+            <WebhookErrorDisplay 
+              webhookError={webhookError}
+              fullErrorDetails={fullErrorDetails}
+              isSettingUpWebhook={isSettingUpWebhook}
+              retryWebhookSetup={retryWebhookSetup}
+            />
+          )}
+          
+          {/* Show webhook setup button if not complete and no error */}
+          {!webhookSetupComplete && !webhookError && (
+            <div className="mb-4 flex justify-center">
+              <Button 
+                onClick={setupWebhook}
+                disabled={isSettingUpWebhook}
+                className="bg-[#9b87f5] hover:bg-[#8a74e8] flex items-center"
+              >
+                <CalendarIcon className="mr-2 h-4 w-4" />
+                {isSettingUpWebhook ? "Setting up Calendly..." : "Enable Calendly Notifications"}
+              </Button>
+            </div>
+          )}
+          
+          {/* Calendly widget */}
           <CalendlyWidget initialLoad={initialLoad} />
         </div>
       </div>
