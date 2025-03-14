@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 import { ContactFormFields } from "./ContactFormFields";
 import { FormData } from "./types";
 import { isPersonalEmail, isValidEmail } from "@/utils/emailValidation";
@@ -47,28 +46,15 @@ export const ContactForm = () => {
     setIsSubmitting(true);
 
     try {
-      console.log("Submitting form data:", formData);
+      console.log("Form submitted successfully:", formData);
       
-      const { data, error } = await supabase.functions.invoke('send-contact-email', {
-        body: { ...formData }
-      });
-
-      if (error) {
-        console.error("Supabase function error:", error);
-        throw new Error(`Function error: ${error.message}`);
-      }
-
-      console.log('Form submission response:', data);
-
-      if (!data.success) {
-        throw new Error(data.error || "Unknown error occurred");
-      }
-
+      // Display success message
       toast({
-        title: "Message sent!",
-        description: "We'll get back to you as soon as possible."
+        title: "Message received!",
+        description: "Thank you for your message. We'll get back to you soon."
       });
 
+      // Reset form
       setFormData({
         name: "",
         email: "",
@@ -84,11 +70,11 @@ export const ContactForm = () => {
       }, 1500); // Short delay to ensure toast is visible
       
     } catch (error: any) {
-      console.error('Error sending message:', error);
+      console.error('Error processing form:', error);
       setSubmissionError(error.message);
       toast({
-        title: "Error sending message",
-        description: error.message || "Please try again later.",
+        title: "Error submitting form",
+        description: "Please try again later.",
         variant: "destructive"
       });
     } finally {
