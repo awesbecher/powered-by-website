@@ -110,11 +110,6 @@ serve(async (req) => {
   }
 
   try {
-    if (!ADMIN_EMAIL || !SALES_EMAIL) {
-      console.error("Email configuration error:", { ADMIN_EMAIL, SALES_EMAIL });
-      throw new Error("Recipient emails not configured");
-    }
-
     // Log Resend API key status (partially masked for security)
     const apiKey = Deno.env.get("RESEND_API_KEY");
     console.log("Resend API key status:", apiKey ? `Configured (starts with ${apiKey.substring(0, 3)}...)` : "Missing");
@@ -127,27 +122,17 @@ serve(async (req) => {
       throw new Error("Missing required fields");
     }
 
-    // Send email using Resend
-    try {
-      const emailResponse = await resend.emails.send({
-        from: "Lovable AI <onboarding@resend.dev>",
-        to: [ADMIN_EMAIL, SALES_EMAIL],
-        subject: "New Contact Form Submission",
-        html: `
-          <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${formData.name}</p>
-          <p><strong>Email:</strong> ${formData.email}</p>
-          <p><strong>Title:</strong> ${formData.title || 'N/A'}</p>
-          <p><strong>Company:</strong> ${formData.company}</p>
-          <p><strong>Reason:</strong> ${formData.reason || 'N/A'}</p>
-          <h3>Message:</h3>
-          <p>${formData.message}</p>
-        `,
-      });
+    // Create contact in Hubspot
+    let hubspotResponse = null;
+    if (HUBSPOT_API_KEY) {
+      hubspotResponse = await createHubspotContact(formData);
+      console.log("Hubspot integration result:", hubspotResponse);
+    } else {
+      console.warn("Hubspot integration skipped: No API key provided");
+    }
 
-      console.log("Email sent successfully:", emailResponse);
-      
-      // Send a confirmation email to the submitter
+    // Send a confirmation email to the submitter
+    try {
       const confirmationResponse = await resend.emails.send({
         from: "Lovable AI <onboarding@resend.dev>",
         to: [formData.email],
@@ -165,16 +150,7 @@ serve(async (req) => {
       console.log("Confirmation email sent:", confirmationResponse);
     } catch (emailError) {
       console.error("Resend email error:", emailError);
-      throw new Error(`Email sending failed: ${emailError.message}`);
-    }
-
-    // Create contact in Hubspot
-    let hubspotResponse = null;
-    if (HUBSPOT_API_KEY) {
-      hubspotResponse = await createHubspotContact(formData);
-      console.log("Hubspot integration result:", hubspotResponse);
-    } else {
-      console.warn("Hubspot integration skipped: No API key provided");
+      // Don't throw here, just log the error
     }
 
     return new Response(
