@@ -4,7 +4,7 @@ import Logo from "./Logo";
 import NavLinks from "./NavLinks";
 import ConsultButton from "./ConsultButton";
 import MobileMenu from "./MobileMenu";
-import { navItems, consultationPaths } from "./navConfig";
+import { navItems } from "./navConfig";
 
 const Navbar = () => {
   const location = useLocation();
@@ -16,7 +16,7 @@ const Navbar = () => {
   console.log("Show consult button:", showConsultButton);
 
   return (
-    <nav className="bg-[#222222]/80 backdrop-blur-lg border-b border-gray-800/50">
+    <nav className="bg-[#222222]/80 backdrop-blur-lg border-b border-gray-800/50 relative z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
