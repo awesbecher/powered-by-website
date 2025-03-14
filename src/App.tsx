@@ -1,10 +1,10 @@
-
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Index from "./pages/Index";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
+import Contact2 from "./pages/Contact2";
 import Products from "./pages/Products";
 import Demo from "./pages/Demo";
 import RealEstate from "./pages/RealEstate";
@@ -39,6 +39,7 @@ function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/contact-2" element={<Contact2 />} />
             <Route path="/products" element={<Products />} />
             <Route path="/demo" element={<Demo />} />
             <Route path="/real-estate" element={<RealEstate />} />
