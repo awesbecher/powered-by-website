@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { ContactFormFields } from "./ContactFormFields";
@@ -20,9 +20,11 @@ export const ContactForm = () => {
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionError, setSubmissionError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmissionError(null);
 
     if (!isValidEmail(formData.email)) {
       toast({
@@ -45,13 +47,22 @@ export const ContactForm = () => {
     setIsSubmitting(true);
 
     try {
+      console.log("Submitting form data:", formData);
+      
       const { data, error } = await supabase.functions.invoke('send-contact-email', {
         body: { ...formData }
       });
 
-      if (error) throw error;
+      if (error) {
+        console.error("Supabase function error:", error);
+        throw new Error(`Function error: ${error.message}`);
+      }
 
       console.log('Form submission response:', data);
+
+      if (!data.success) {
+        throw new Error(data.error || "Unknown error occurred");
+      }
 
       toast({
         title: "Message sent!",
@@ -72,11 +83,12 @@ export const ContactForm = () => {
         navigate('/');
       }, 1500); // Short delay to ensure toast is visible
       
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error sending message:', error);
+      setSubmissionError(error.message);
       toast({
         title: "Error sending message",
-        description: "Please try again later.",
+        description: error.message || "Please try again later.",
         variant: "destructive"
       });
     } finally {
@@ -88,6 +100,14 @@ export const ContactForm = () => {
     <div className="mt-8 bg-neutral-900/50 p-8 rounded-xl backdrop-blur">
       <form onSubmit={handleSubmit} className="space-y-6">
         <ContactFormFields formData={formData} setFormData={setFormData} />
+        
+        {submissionError && (
+          <div className="p-3 bg-red-900/50 border border-red-700 rounded-md text-white text-sm">
+            <p className="font-semibold">Error sending message:</p>
+            <p>{submissionError}</p>
+          </div>
+        )}
+        
         <Button 
           type="submit" 
           className="w-full bg-accent hover:bg-accent-dark text-white py-6"
