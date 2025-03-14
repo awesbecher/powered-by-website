@@ -7,6 +7,7 @@ import { useToast } from "@/hooks/use-toast";
 import { isValidEmail } from "@/utils/emailValidation";
 import { Send } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 
 interface ContactForm2Props {
   initialLoad: boolean;
@@ -60,8 +61,20 @@ export const ContactForm2 = ({ initialLoad }: ContactForm2Props) => {
     setIsSubmitting(true);
 
     try {
-      // Log the form data (you can implement actual submission logic later)
+      // Log the form data
       console.log("Form submitted:", formData);
+      
+      // Send notification to team via Edge Function
+      const { data, error } = await supabase.functions.invoke("send-team-notification", {
+        body: formData
+      });
+
+      if (error) {
+        console.error("Error sending team notification:", error);
+        throw new Error("Failed to send team notification");
+      }
+      
+      console.log("Team notification response:", data);
       
       // Show success toast with extended message
       toast({
