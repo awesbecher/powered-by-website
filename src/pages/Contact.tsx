@@ -3,7 +3,6 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ContactHeader } from "@/components/contact/ContactHeader";
 import { CalendlyWidget } from "@/components/contact/CalendlyWidget";
-import { ContactInfoForm } from "@/components/contact/ContactInfoForm";
 import { useEffect, useState } from "react";
 
 const Contact = () => {
@@ -28,11 +27,6 @@ const Contact = () => {
           {/* Minimized margin for header */}
           <div className="mb-6">
             <ContactHeader initialLoad={initialLoad} />
-          </div>
-          
-          {/* Contact Info Form */}
-          <div className="mb-6">
-            <ContactInfoForm initialLoad={initialLoad} />
           </div>
           
           {/* Calendly widget */}
