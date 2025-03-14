@@ -3,7 +3,8 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
-const ADMIN_EMAIL = Deno.env.get("ADMIN_EMAIL") || "team@poweredby.agency";
+// Update to include both email addresses
+const TEAM_EMAILS = ["andrew@madrone.capital", "team@poweredby.agency"];
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -37,7 +38,7 @@ serve(async (req) => {
     // Send email notification to team
     const emailResponse = await resend.emails.send({
       from: "Contact Form <onboarding@resend.dev>",
-      to: [ADMIN_EMAIL],
+      to: TEAM_EMAILS,
       subject: "New Contact Form Submission",
       html: `
         <h2>New Contact Form Submission</h2>
