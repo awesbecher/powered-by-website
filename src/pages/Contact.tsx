@@ -2,7 +2,7 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ContactHeader } from "@/components/contact/ContactHeader";
-import { ContactForm } from "@/components/contact/ContactForm";
+import { CalendlyWidget } from "@/components/contact/CalendlyWidget";
 import { useEffect, useState } from "react";
 
 const Contact = () => {
@@ -29,8 +29,8 @@ const Contact = () => {
             <ContactHeader initialLoad={initialLoad} />
           </div>
           
-          {/* Contact Form */}
-          <ContactForm />
+          {/* Calendly widget */}
+          <CalendlyWidget initialLoad={initialLoad} />
         </div>
       </div>
 
