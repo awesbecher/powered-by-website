@@ -100,12 +100,12 @@ export const ContactForm2 = ({ initialLoad }: ContactForm2Props) => {
             <SelectTrigger className="bg-neutral-800 border-neutral-700 text-white">
               <SelectValue placeholder="Select an option" />
             </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="Google">Google</SelectItem>
-              <SelectItem value="ChatGPT">ChatGPT</SelectItem>
-              <SelectItem value="LinkedIn or X">LinkedIn or X</SelectItem>
-              <SelectItem value="Referral">Referral</SelectItem>
-              <SelectItem value="Other">Other</SelectItem>
+            <SelectContent className="bg-neutral-800 border-neutral-700 text-white">
+              <SelectItem value="Google" className="focus:bg-purple-800 focus:text-white">Google</SelectItem>
+              <SelectItem value="ChatGPT" className="focus:bg-purple-800 focus:text-white">ChatGPT</SelectItem>
+              <SelectItem value="LinkedIn or X" className="focus:bg-purple-800 focus:text-white">LinkedIn or X</SelectItem>
+              <SelectItem value="Referral" className="focus:bg-purple-800 focus:text-white">Referral</SelectItem>
+              <SelectItem value="Other" className="focus:bg-purple-800 focus:text-white">Other</SelectItem>
             </SelectContent>
           </Select>
         </div>
