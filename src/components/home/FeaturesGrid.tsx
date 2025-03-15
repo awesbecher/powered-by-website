@@ -21,7 +21,7 @@ export const FeaturesGrid = () => {
   ];
 
   return (
-    <div className="-mt-24 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+    <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
       {features.map((feature, index) => (
         <div 
           key={index}
