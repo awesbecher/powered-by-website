@@ -14,7 +14,8 @@ export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
         <div className="text-center">
           <h1 className={`text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6 transition-all duration-1000 ease-out transform
               ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
-            Just Like a Web Design Firm. But with <span className="text-[#9b87f5]">much cooler tech</span>.
+            Just Like a Web Design Firm.<br />
+            But with <span className="text-[#9b87f5]">much cooler tech</span>.
           </h1>
           
           <div className={`mt-4 flex flex-col space-y-1 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-bold transition-all duration-1000 delay-300 ease-out transform
