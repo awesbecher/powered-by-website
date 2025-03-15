@@ -1,6 +1,4 @@
 
-
-import { NavigationButtons } from "@/components/home/NavigationButtons";
 import { WordAnimation } from "./WordAnimation";
 
 interface HeroSectionProps {
@@ -18,11 +16,6 @@ export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
           >
             AI <WordAnimation /> Agents for SMBs
           </h1>
-
-          <div className={`mt-12 transition-all duration-1000 delay-500 ease-out transform
-            ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-            <NavigationButtons />
-          </div>
         </div>
       </div>
     </div>
