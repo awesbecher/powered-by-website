@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ArrowRight, Users, Building } from "lucide-react";
@@ -9,10 +9,19 @@ import { ClosingCTA } from "@/components/home/ClosingCTA";
 
 const About = () => {
   const [initialLoad, setInitialLoad] = useState(true);
+  const [scrollPosition, setScrollPosition] = useState(0);
   const navigate = useNavigate();
+  const collaborationRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setInitialLoad(false);
+
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -57,17 +66,35 @@ const About = () => {
         </div>
       </section>
 
-      {/* Image Frame */}
-      <div className={`max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 transition-all duration-1000 ease-out transform
-        ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-        <div className="relative w-full h-[350px] overflow-hidden rounded-md border border-[#9b87f5]/30">
-          <img 
-            src="/lovable-uploads/79330a0b-f47e-4785-b5be-d22a6127fe74.png" 
-            alt="Developer workspace with code on screen" 
-            className="w-full h-full object-cover object-center"
-            style={{ objectPosition: "0 -200px" }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1a0b2e]/80 to-transparent opacity-50"></div>
+      {/* Collaboration Section - New replacement for image */}
+      <div 
+        ref={collaborationRef}
+        className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 transition-all duration-1000 ease-out transform
+          bg-[#121212] rounded-xl overflow-hidden py-16"
+      >
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8">
+            <span className="text-[#ff6b6b]">Collaboration</span>
+            <span className="text-white"> = </span>
+            <span className="text-[#e469e9]">You</span>
+            <span className="text-[#b27af8]"> & Trae</span>
+          </h2>
+          
+          <div className="space-y-6">
+            <p className="text-3xl md:text-4xl font-semibold leading-tight text-white">
+              Trae is your ideal development partner, seamlessly balancing human & AI capabilities.
+            </p>
+            
+            <p className={`text-3xl md:text-4xl font-semibold leading-tight transition-all duration-500
+              ${scrollPosition > 150 ? 'text-white' : 'text-gray-600'}`}>
+              This dynamic collaboration ensures each task is handled by the most suitable agent,
+            </p>
+            
+            <p className={`text-3xl md:text-4xl font-semibold leading-tight transition-all duration-500
+              ${scrollPosition > 250 ? 'text-white' : 'text-gray-600'}`}>
+              maximizing your productivity.
+            </p>
+          </div>
         </div>
       </div>
 
