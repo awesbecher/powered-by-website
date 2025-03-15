@@ -20,7 +20,7 @@ export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
           
           <div className={`mt-4 flex flex-col space-y-1 text-2xl md:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-bold transition-all duration-1000 delay-300 ease-out transform
               ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
-            <p>Why should those Silicon Valley nerds have all the fancy AI toys?</p>
+            <p>Why should those Silicon Valley <span className="font-bold text-[#9b87f5] border-b-4 border-[#9b87f5]">nerds</span> have all the fancy AI toys?</p>
           </div>
         </div>
       </div>
