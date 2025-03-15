@@ -66,11 +66,11 @@ const About = () => {
         </div>
       </section>
 
-      {/* Collaboration Section - New replacement for image */}
+      {/* Collaboration Section - Removed black background */}
       <div 
         ref={collaborationRef}
         className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 transition-all duration-1000 ease-out transform
-          bg-[#121212] rounded-xl overflow-hidden py-16"
+          border border-[#9b87f5]/20 rounded-xl overflow-hidden py-16"
       >
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold mb-8">
