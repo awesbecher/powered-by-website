@@ -105,6 +105,22 @@ const About = () => {
 
       {/* Main Content */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Workflow Strategy Image */}
+        <div className="max-w-4xl mx-auto mb-12">
+          <div className={`transition-all duration-1000 ease-out transform rounded-xl overflow-hidden shadow-xl
+            ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
+            <img 
+              src="/lovable-uploads/03b82838-fbc0-4056-8cec-062f897f47dd.png" 
+              alt="AI workflow strategy planning" 
+              className="w-full object-cover rounded-xl"
+              loading="lazy"
+            />
+            <div className="p-4 bg-[#2a1a47]/70 text-center">
+              <p className="text-white text-lg font-medium">Our strategic approach to AI agent workflow development</p>
+            </div>
+          </div>
+        </div>
+
         <div className="max-w-4xl mx-auto">
           {/* Who We Are */}
           <div className={`transition-all duration-1000 delay-200 ease-out transform
