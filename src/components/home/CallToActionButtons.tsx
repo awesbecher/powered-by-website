@@ -23,7 +23,7 @@ export const CallToActionButtons = ({ handleNavigation, setShowDialog }: CallToA
           onClick={() => handleNavigation('/contact')}
           className="relative z-20 bg-accent hover:bg-accent-dark text-white px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
         >
-          Book a Free Consultation
+          Get Started
           <ArrowRight className="ml-2 h-5 w-5" />
         </Button>
       </Link>
