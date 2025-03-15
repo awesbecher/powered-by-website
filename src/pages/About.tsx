@@ -35,22 +35,22 @@ const About = () => {
       <section className="pt-12 pb-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
         <div className={`text-center transition-all duration-1000 ease-out transform
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-8">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-8">
             <span className="text-white">
               Powered
             </span>
-            <span className="text-[#9b87f5] text-4xl md:text-5xl">_</span> 
+            <span className="text-[#9b87f5] text-5xl md:text-6xl">_</span> 
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] to-[#d4d4d4]">
               by
             </span>
             <span className="ml-2 bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] to-[#d4d4d4]">
               AI
             </span>
-            <span className="text-[#9b87f5] text-4xl md:text-5xl ml-2">/</span> 
+            <span className="text-[#9b87f5] text-5xl md:text-6xl ml-2">/</span> 
             <span className="ml-2 bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] to-[#d4d4d4]">
               Run
             </span>
-            <span className="text-[#9b87f5] text-4xl md:text-5xl">_</span>
+            <span className="text-[#9b87f5] text-5xl md:text-6xl">_</span>
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] to-[#d4d4d4]">
               by
             </span>
