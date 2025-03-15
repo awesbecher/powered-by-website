@@ -6,7 +6,7 @@ import ConnectingLines from "./ConnectingLines";
 
 const AIAgentIllustration = () => {
   return (
-    <div className="relative w-full max-w-4xl mx-auto h-[500px] flex items-center justify-center">
+    <div className="relative w-full max-w-4xl mx-auto h-[400px] flex items-center justify-center">
       {/* Robot and laptop container */}
       <div className="relative">
         {/* Laptop */}

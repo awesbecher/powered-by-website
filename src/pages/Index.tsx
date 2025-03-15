@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
@@ -107,12 +108,12 @@ const Index = () => {
         </h2>
       </div>
 
-      <div className="relative z-10 mb-24">
+      <div className="relative z-10 mb-16">
         <FeaturesGrid />
       </div>
 
-      {/* Call to Action Buttons - Moved Above the Illustration */}
-      <div className="relative z-20 flex flex-col items-center justify-center px-6 mb-12">
+      {/* Call to Action Buttons */}
+      <div className="relative z-20 flex flex-col items-center justify-center px-6 mb-6">
         <CallToActionButtons 
           handleNavigation={handleNavigation}
           setShowDialog={setShowDialog}
@@ -129,8 +130,8 @@ const Index = () => {
         source="home"
       />
       
-      {/* AIAgentIllustration - Moved Below the CTA Buttons */}
-      <div className="relative z-10 mb-16">
+      {/* AIAgentIllustration with reduced height */}
+      <div className="relative z-10 mb-8">
         <div className="w-full max-w-xl mx-auto">
           <AIAgentIllustration />
         </div>
