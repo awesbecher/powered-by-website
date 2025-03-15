@@ -7,23 +7,38 @@ const VoiceAgentForm = () => {
   const [initialLoad, setInitialLoad] = useState(true);
 
   useEffect(() => {
-    setInitialLoad(false);
+    // Load Tally embed script
+    const script = document.createElement('script');
+    script.src = 'https://tally.so/widgets/embed.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    // Cleanup function
+    return () => {
+      document.body.removeChild(script);
+    };
   }, []);
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <Navbar />
       
-      <div className="container mx-auto px-4 py-16">
-        {/* Tally.so form will be embedded here */}
-        <div className="glass-card rounded-xl p-8 max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center text-white">
+      <div className="container mx-auto px-4 py-8">
+        <div className="glass-card rounded-xl p-4 md:p-8 max-w-5xl mx-auto">
+          <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center text-white">
             Voice Agent Setup Form
           </h1>
           
-          {/* Placeholder for the Tally.so form */}
-          <div className="min-h-[400px] flex items-center justify-center">
-            <p className="text-gray-300">Tally.so form will be embedded here</p>
+          {/* Tally.so form embed */}
+          <div className="w-full h-[800px] md:h-[700px] relative">
+            <iframe 
+              data-tally-src="https://poweredby.agency/?transparentBackground=1"
+              width="100%" 
+              height="100%" 
+              frameBorder="0"
+              title="AI Voice Agent Configurator"
+              className="rounded-lg"
+            ></iframe>
           </div>
         </div>
       </div>
