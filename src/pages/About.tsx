@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -95,16 +94,6 @@ const About = () => {
               <p className={`text-3xl md:text-4xl font-semibold leading-tight transition-all duration-500
                 ${scrollPosition > 230 ? 'text-white' : 'text-gray-600'}`}>
                 By combining deep human expertise with state-of-the-art AI agent technology, we ensure that your AI agent vision can be realized on-time and at budget.
-              </p>
-              
-              <p className={`text-3xl md:text-4xl font-semibold leading-tight transition-all duration-500
-                ${scrollPosition > 260 ? 'text-white' : 'text-gray-600'}`}>
-                We guarantee your productivity and efficiency.
-              </p>
-              
-              <p className={`text-3xl md:text-4xl font-semibold leading-tight transition-all duration-500
-                ${scrollPosition > 290 ? 'text-white' : 'text-gray-600'}`}>
-                Most importantly, we ensure your readiness for the future.
               </p>
             </div>
           </div>
