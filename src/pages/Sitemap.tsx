@@ -44,6 +44,12 @@ const Sitemap = () => {
       <div className="container mx-auto px-4 py-12">
         <h1 className="text-4xl font-bold text-white mb-8">Sitemap</h1>
         
+        <div className="bg-gradient-to-r from-[#2a1a47]/50 to-[#1a0b2e]/50 rounded-xl border border-[#9b87f5]/20 p-8 mb-8">
+          <p className="text-white mb-4">
+            An XML sitemap is also available at <a href="/sitemap.xml" className="text-[#9b87f5] hover:underline" target="_blank" rel="noopener noreferrer">sitemap.xml</a> for search engines.
+          </p>
+        </div>
+        
         <div className="bg-gradient-to-r from-[#2a1a47]/50 to-[#1a0b2e]/50 rounded-xl border border-[#9b87f5]/20 p-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {routes.map((route) => (
