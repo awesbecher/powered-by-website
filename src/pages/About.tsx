@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -81,12 +82,12 @@ const About = () => {
           
           <div className="space-y-6">
             <p className="text-3xl md:text-4xl font-semibold leading-tight text-white">
-              Trae is your ideal development partner, seamlessly balancing human & AI capabilities.
+              Powered_by is the perfect AI agent development partner forward-thinking SMBs.
             </p>
             
             <p className={`text-3xl md:text-4xl font-semibold leading-tight transition-all duration-500
               ${scrollPosition > 150 ? 'text-white' : 'text-gray-600'}`}>
-              This dynamic collaboration ensures each task is handled by the most suitable agent, maximizing your productivity.
+              We believe the latest AI innovation should be available to any organization, no matter its size, industry, or budget. By combining deep human expertise with cutting-edge AI agent technology, we ensure that your AI agent vision can be realized on-time and at budget, guaranteeing your productivity, efficiency, and readiness for the future.
             </p>
           </div>
         </div>
