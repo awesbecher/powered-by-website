@@ -112,7 +112,8 @@ const Index = () => {
         <FeaturesGrid />
       </div>
 
-      <div className="relative z-20 flex flex-col items-center justify-center px-6 mb-12">
+      {/* Call to Action Buttons - Moved Above the Illustration */}
+      <div className="relative z-20 flex flex-col items-center justify-center px-6 mb-24">
         <CallToActionButtons 
           handleNavigation={handleNavigation}
           setShowDialog={setShowDialog}
@@ -129,7 +130,8 @@ const Index = () => {
         source="home"
       />
       
-      <div className="relative z-10 -mt-40 mb-8">
+      {/* AIAgentIllustration - Moved Below the CTA Buttons */}
+      <div className="relative z-10 mb-8">
         <div className="w-full max-w-xl mx-auto">
           <AIAgentIllustration />
         </div>
