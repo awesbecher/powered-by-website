@@ -98,8 +98,8 @@ const About = () => {
 
       {/* Main Content */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Workflow Strategy Image */}
-        <div className="max-w-4xl mx-auto mb-12">
+        {/* Workflow Strategy Image - Reduced size by half while maintaining aspect ratio */}
+        <div className="max-w-2xl mx-auto mb-12">
           <div className={`transition-all duration-1000 ease-out transform rounded-xl overflow-hidden shadow-xl
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <img 
