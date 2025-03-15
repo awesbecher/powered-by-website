@@ -1,5 +1,4 @@
 
-import { Link } from "react-router-dom";
 import { NavigationButtons } from "@/components/home/NavigationButtons";
 import { WordAnimation } from "./WordAnimation";
 
