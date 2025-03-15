@@ -97,7 +97,7 @@ const Index = () => {
       </div>
       
       {/* Content below fixed header */}
-      <div className="pt-20">
+      <div className="pt-12">
         <HeroSection initialLoad={initialLoad} />
       </div>
 
