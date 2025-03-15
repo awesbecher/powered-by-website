@@ -40,6 +40,13 @@ const Footer = () => {
             >
               Privacy Statement
             </Link>
+            <Link 
+              to="/sitemap" 
+              onClick={() => window.scrollTo(0, 0)}
+              className="hover:text-white transition-colors"
+            >
+              Sitemap
+            </Link>
           </div>
           
           <div className="flex items-center space-x-3">

@@ -28,6 +28,7 @@ import PrivacyStatement from "./pages/PrivacyStatement";
 import VirtualSE from "./pages/VirtualSE";
 import OutboundAI from "./pages/OutboundAI";
 import VoiceAgentForm from "./pages/VoiceAgentForm";
+import Sitemap from "./pages/Sitemap";
 import NotFound from "./pages/NotFound";
 import { Toaster } from "@/components/ui/toaster"
 import { GlobalVoiceChatDialog } from './components/shared/GlobalVoiceChatDialog';
@@ -55,6 +56,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/privacy-statement" element={<PrivacyStatement />} />
+            <Route path="/sitemap" element={<Sitemap />} />
             <Route path="/virtual-se" element={<VirtualSE />} />
             <Route path="/outbound-ai" element={<OutboundAI />} />
             <Route path="/voiceagent-form" element={<VoiceAgentForm />} />

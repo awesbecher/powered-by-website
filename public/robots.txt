@@ -9,9 +9,11 @@ Allow: /index.html
 Allow: /blog
 Allow: /products
 Allow: /contact
+Allow: /sitemap
 
 # Disallow admin or private areas if any are added in the future
 # Disallow: /admin/
 
 # Sitemap
 Sitemap: https://lovable.ai/sitemap.xml
+
