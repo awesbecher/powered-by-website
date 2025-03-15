@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -87,12 +86,7 @@ const About = () => {
             
             <p className={`text-3xl md:text-4xl font-semibold leading-tight transition-all duration-500
               ${scrollPosition > 150 ? 'text-white' : 'text-gray-600'}`}>
-              This dynamic collaboration ensures each task is handled by the most suitable agent,
-            </p>
-            
-            <p className={`text-3xl md:text-4xl font-semibold leading-tight transition-all duration-500
-              ${scrollPosition > 250 ? 'text-white' : 'text-gray-600'}`}>
-              maximizing your productivity.
+              This dynamic collaboration ensures each task is handled by the most suitable agent, maximizing your productivity.
             </p>
           </div>
         </div>
