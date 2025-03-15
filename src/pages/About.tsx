@@ -73,13 +73,6 @@ const About = () => {
           border border-[#9b87f5]/20 rounded-xl overflow-hidden py-16"
       >
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8">
-            <span className="text-[#ff6b6b]">Collaboration</span>
-            <span className="text-white"> = </span>
-            <span className="text-[#e469e9]">You</span>
-            <span className="text-[#b27af8]"> & Trae</span>
-          </h2>
-          
           <div className="space-y-6">
             <p className="text-3xl md:text-4xl font-semibold leading-tight text-white">
               Powered_by is the perfect AI agent development partner forward-thinking SMBs.
