@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -75,7 +74,7 @@ const About = () => {
         <div className="max-w-4xl mx-auto">
           <div className="space-y-6">
             <p className="text-3xl md:text-4xl font-semibold leading-tight text-white">
-              Powered_by is the perfect AI agent development partner forward-thinking SMBs.
+              <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> is the perfect AI agent development partner forward-thinking SMBs.
             </p>
             
             <p className={`text-3xl md:text-4xl font-semibold leading-tight transition-all duration-500
@@ -181,3 +180,4 @@ const About = () => {
 };
 
 export default About;
+
