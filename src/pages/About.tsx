@@ -66,7 +66,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Collaboration Section - Removed black background */}
+      {/* Collaboration Section - Separated into individual sentences */}
       <div 
         ref={collaborationRef}
         className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 transition-all duration-1000 ease-out transform
@@ -78,20 +78,41 @@ const About = () => {
               <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> is the perfect AI agent development partner forward-thinking SMBs.
             </p>
             
-            <p className={`text-3xl md:text-4xl font-semibold leading-tight transition-all duration-500
-              ${scrollPosition > 150 ? 'text-white' : 'text-gray-600'}`}>
+            {/* First sentence - Always visible */}
+            <p className="text-3xl md:text-4xl font-semibold leading-tight text-white">
               We believe the latest AI innovation should be available to any organization, no matter its size, industry, or budget.
             </p>
             
-            <p className={`text-3xl md:text-4xl font-semibold leading-tight transition-all duration-500
-              ${scrollPosition > 200 ? 'text-white' : 'text-gray-600'}`}>
-              Our team of experts brings years of experience in AI implementation across industries, ensuring solutions that are both cutting-edge and practical for real-world business challenges.
-            </p>
+            {/* Split the second paragraph into two sentences with individual thresholds */}
+            <div className="space-y-6">
+              <p className={`text-3xl md:text-4xl font-semibold leading-tight transition-all duration-500
+                ${scrollPosition > 170 ? 'text-white' : 'text-gray-600'}`}>
+                Our team of experts brings years of experience in AI implementation across industries.
+              </p>
+              
+              <p className={`text-3xl md:text-4xl font-semibold leading-tight transition-all duration-500
+                ${scrollPosition > 200 ? 'text-white' : 'text-gray-600'}`}>
+                We ensure solutions that are both state-of-the-art and practical for real-world business challenges.
+              </p>
+            </div>
             
-            <p className={`text-3xl md:text-4xl font-semibold leading-tight transition-all duration-500
-              ${scrollPosition > 250 ? 'text-white' : 'text-gray-600'}`}>
-              By combining deep human expertise with state-of-the-art AI agent technology, we ensure that your AI agent vision can be realized on-time and at budget, guaranteeing your productivity, efficiency, and readiness for the future.
-            </p>
+            {/* Split the last paragraph into three sentences with individual thresholds */}
+            <div className="space-y-6">
+              <p className={`text-3xl md:text-4xl font-semibold leading-tight transition-all duration-500
+                ${scrollPosition > 230 ? 'text-white' : 'text-gray-600'}`}>
+                By combining deep human expertise with state-of-the-art AI agent technology, we ensure that your AI agent vision can be realized on-time and at budget.
+              </p>
+              
+              <p className={`text-3xl md:text-4xl font-semibold leading-tight transition-all duration-500
+                ${scrollPosition > 260 ? 'text-white' : 'text-gray-600'}`}>
+                We guarantee your productivity and efficiency.
+              </p>
+              
+              <p className={`text-3xl md:text-4xl font-semibold leading-tight transition-all duration-500
+                ${scrollPosition > 290 ? 'text-white' : 'text-gray-600'}`}>
+                Most importantly, we ensure your readiness for the future.
+              </p>
+            </div>
           </div>
         </div>
       </div>
