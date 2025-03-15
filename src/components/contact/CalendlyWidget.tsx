@@ -25,7 +25,7 @@ export const CalendlyWidget = ({ initialLoad }: CalendlyWidgetProps) => {
     <div className="bg-neutral-900/50 p-0 rounded-xl backdrop-blur mb-6">
       <div 
         className="calendly-inline-widget" 
-        data-url="https://calendly.com/teampoweredby/powered_by-free-consultation?background_color=1a1a1a&text_color=ffffff" 
+        data-url="https://calendly.com/d/crrs-fbd-3hf?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=a800ff" 
         style={{ minWidth: "320px", height: "700px" }}
       ></div>
     </div>
