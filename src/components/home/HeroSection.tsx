@@ -1,4 +1,5 @@
 
+
 import { NavigationButtons } from "@/components/home/NavigationButtons";
 import { WordAnimation } from "./WordAnimation";
 
