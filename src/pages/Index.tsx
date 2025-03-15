@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
@@ -27,10 +26,13 @@ const Index = () => {
 
   useEffect(() => {
     setInitialLoad(false);
-  }, []);
-
-  useEffect(() => {
+    
+    // Listen for custom event from navbar button
+    const handleOpenDialog = () => setShowDialog(true);
+    document.addEventListener('open-voice-dialog', handleOpenDialog);
+    
     return () => {
+      document.removeEventListener('open-voice-dialog', handleOpenDialog);
       if (isCallActive) {
         handleEndCall();
       }

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import NavLink from "./NavLink";
 import { NavItem } from "./NavLinks";
+import { Headset } from "lucide-react";
 
 interface MobileMenuProps {
   navItems: NavItem[];
@@ -12,6 +13,11 @@ interface MobileMenuProps {
 
 const MobileMenu = ({ navItems, showConsultButton }: MobileMenuProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const handleTalkToAgent = () => {
+    document.dispatchEvent(new CustomEvent('open-voice-dialog'));
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <div className="md:hidden">
@@ -65,13 +71,22 @@ const MobileMenu = ({ navItems, showConsultButton }: MobileMenuProps) => {
               ))}
               
               {showConsultButton && (
-                <Link
-                  to="/contact"
-                  className="mx-4 mt-2 inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#9b87f5]"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Get Started
-                </Link>
+                <>
+                  <button
+                    className="mx-4 mt-2 inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#6342ff]"
+                    onClick={handleTalkToAgent}
+                  >
+                    <Headset className="w-4 h-4 mr-1.5" />
+                    Talk to an AI Agent
+                  </button>
+                  <Link
+                    to="/contact"
+                    className="mx-4 mt-2 inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#9b87f5]"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Get Started
+                  </Link>
+                </>
               )}
             </div>
           </motion.div>
