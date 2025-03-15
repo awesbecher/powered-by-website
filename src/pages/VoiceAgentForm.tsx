@@ -32,7 +32,7 @@ const VoiceAgentForm = () => {
           {/* Tally.so form embed */}
           <div className="w-full h-[800px] md:h-[700px] relative">
             <iframe 
-              data-tally-src="https://poweredby.agency/?transparentBackground=1"
+              data-tally-src="https://tally.so/r/nG5kAZ?transparentBackground=1"
               width="100%" 
               height="100%" 
               frameBorder="0"
