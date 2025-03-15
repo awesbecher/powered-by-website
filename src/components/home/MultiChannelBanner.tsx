@@ -5,8 +5,8 @@ export const MultiChannelBanner = () => {
   return (
     <div className="w-full py-4">
       <img 
-        src="/lovable-uploads/ebfd9c49-37b7-4994-bf74-4024da27924c.png" 
-        alt="Multi-channel agent capabilities showing Inbound & Outbound Calls, Bi-Directional Text & Email, Internal Workflows, Team Collaboration, and Website Chatbots"
+        src="/lovable-uploads/c723d0eb-94dc-4038-ac6a-e64bf394a2ad.png" 
+        alt="Agent Communication Channels - Inbound & Outbound Calls, Bi-Directional Text & Email, Internal Workflows, Team Collaboration, and Website Chatbots"
         className="w-full max-w-5xl mx-auto rounded-lg shadow-lg"
       />
     </div>
