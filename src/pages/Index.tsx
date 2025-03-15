@@ -16,6 +16,7 @@ import AIAgentIllustration from "@/components/home/AIAgentIllustration";
 import { initiateVapiCall, stopVapiCall, getVapiInstance } from "@/services/vapiService";
 import { useToast } from "@/hooks/use-toast";
 import Footer from "@/components/layout/Footer";
+import { MultiChannelBanner } from "@/components/home/MultiChannelBanner";
 
 const Index = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -128,7 +129,12 @@ const Index = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 -mt-10 mb-8">
+      {/* Multi-Channel Banner - Just above the Agent Types section */}
+      <div className="container mx-auto px-4 mb-8">
+        <MultiChannelBanner />
+      </div>
+
+      <div className="container mx-auto px-4 mb-8">
         <SectionTitle title="Deploy Multi-Channel Agents:" linked={false} />
         <AgentTypes />
       </div>
