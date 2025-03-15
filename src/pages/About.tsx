@@ -87,7 +87,17 @@ const About = () => {
             
             <p className={`text-3xl md:text-4xl font-semibold leading-tight transition-all duration-500
               ${scrollPosition > 150 ? 'text-white' : 'text-gray-600'}`}>
-              We believe the latest AI innovation should be available to any organization, no matter its size, industry, or budget. By combining deep human expertise with cutting-edge AI agent technology, we ensure that your AI agent vision can be realized on-time and at budget, guaranteeing your productivity, efficiency, and readiness for the future.
+              We believe the latest AI innovation should be available to any organization, no matter its size, industry, or budget.
+            </p>
+            
+            <p className={`text-3xl md:text-4xl font-semibold leading-tight transition-all duration-500
+              ${scrollPosition > 200 ? 'text-white' : 'text-gray-600'}`}>
+              Our team of experts brings years of experience in AI implementation across industries, ensuring solutions that are both cutting-edge and practical for real-world business challenges.
+            </p>
+            
+            <p className={`text-3xl md:text-4xl font-semibold leading-tight transition-all duration-500
+              ${scrollPosition > 250 ? 'text-white' : 'text-gray-600'}`}>
+              By combining deep human expertise with cutting-edge AI agent technology, we ensure that your AI agent vision can be realized on-time and at budget, guaranteeing your productivity, efficiency, and readiness for the future.
             </p>
           </div>
         </div>
