@@ -25,10 +25,6 @@ const VoiceAgentForm = () => {
       
       <div className="container mx-auto px-4 py-8">
         <div className="glass-card rounded-xl p-4 md:p-8 max-w-5xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center text-white">
-            Voice Agent Setup Form
-          </h1>
-          
           {/* Tally.so form embed */}
           <div className="w-full h-[800px] md:h-[700px] relative">
             <iframe 
