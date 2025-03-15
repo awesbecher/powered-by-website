@@ -30,7 +30,7 @@ const About = () => {
         <Navbar />
       </div>
 
-      <section className="pt-12 pb-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
+      <section className="pt-8 pb-6 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
         <div className={`text-center transition-all duration-1000 ease-out transform
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-8">
@@ -68,8 +68,8 @@ const About = () => {
 
       <div 
         ref={collaborationRef}
-        className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 transition-all duration-1000 ease-out transform
-          border border-[#9b87f5]/20 rounded-xl overflow-hidden py-16"
+        className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 transition-all duration-1000 ease-out transform
+          border border-[#9b87f5]/20 rounded-xl overflow-hidden py-10"
       >
         <div className="max-w-4xl mx-auto">
           <div className="space-y-6">
@@ -103,8 +103,8 @@ const About = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="max-w-2xl mx-auto mb-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="max-w-2xl mx-auto mb-10">
           <div className={`transition-all duration-1000 ease-out transform rounded-xl overflow-hidden shadow-xl
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <img 
