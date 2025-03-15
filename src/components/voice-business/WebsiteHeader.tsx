@@ -24,7 +24,7 @@ export const WebsiteHeader = () => {
           rel="noopener noreferrer"
           className="text-sm font-medium text-white bg-[#8871e6] hover:bg-[#7860d5] px-5 py-2.5 rounded-md transition-colors shadow-md" // Enhanced button style
         >
-          Book a Free Consultation
+          Get Started
         </a>
       </div>
     </div>
