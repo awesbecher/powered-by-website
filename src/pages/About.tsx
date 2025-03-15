@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -95,7 +96,7 @@ const About = () => {
             <div className="space-y-6">
               <p className={`text-3xl md:text-4xl font-semibold leading-tight transition-all duration-500
                 ${scrollPosition > 230 ? 'text-white' : 'text-gray-600'}`}>
-                By combining deep human expertise with state-of-the-art AI agent technology, we ensure that your AI agent vision can be realized on-time and at budget.
+                By combining deep human expertise with cutting-edge AI agent technology, we ensure that your AI agent vision can be realized on-time and at budget.
               </p>
             </div>
           </div>
