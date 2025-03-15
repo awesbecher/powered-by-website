@@ -108,9 +108,6 @@ const About = () => {
               className="w-full object-cover rounded-xl"
               loading="lazy"
             />
-            <div className="p-4 bg-[#2a1a47]/70 text-center">
-              <p className="text-white text-lg font-medium">Our strategic approach to AI agent workflow development</p>
-            </div>
           </div>
         </div>
 
