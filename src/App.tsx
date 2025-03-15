@@ -30,6 +30,7 @@ import OutboundAI from "./pages/OutboundAI";
 import VoiceAgentForm from "./pages/VoiceAgentForm";
 import NotFound from "./pages/NotFound";
 import { Toaster } from "@/components/ui/toaster"
+import { GlobalVoiceChatDialog } from './components/shared/GlobalVoiceChatDialog';
 
 function App() {
   return (
@@ -74,6 +75,7 @@ function App() {
           </Routes>
         </main>
         <Toaster />
+        <GlobalVoiceChatDialog />
       </div>
     </BrowserRouter>
   );
