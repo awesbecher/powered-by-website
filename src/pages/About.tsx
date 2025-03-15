@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -26,12 +25,10 @@ const About = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
-      {/* Navigation - Fixed to top (without banner) */}
       <div className="sticky top-0 z-50 w-full">
         <Navbar />
       </div>
 
-      {/* Header Section - Reduced padding from pt-24 to pt-12 */}
       <section className="pt-12 pb-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
         <div className={`text-center transition-all duration-1000 ease-out transform
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
@@ -60,13 +57,12 @@ const About = () => {
           </h1>
           <div className="mt-8 flex justify-center">
             <p className="text-xl bg-white text-[#6342ff] font-bold px-4 py-2 rounded-md inline-block">
-              Our mission is to democratize access to AI agents for SMBs.
+              Our mission: to democratize access to AI agents for SMBs.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Collaboration Section - Separated into individual sentences */}
       <div 
         ref={collaborationRef}
         className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 transition-all duration-1000 ease-out transform
@@ -78,12 +74,10 @@ const About = () => {
               <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> is the perfect AI agent development partner forward-thinking SMBs.
             </p>
             
-            {/* First sentence - Always visible */}
             <p className="text-3xl md:text-4xl font-semibold leading-tight text-white">
               We believe the latest AI innovation should be available to any organization, no matter its size, industry, or budget.
             </p>
             
-            {/* Split the second paragraph into two sentences with individual thresholds */}
             <div className="space-y-6">
               <p className={`text-3xl md:text-4xl font-semibold leading-tight transition-all duration-500
                 ${scrollPosition > 170 ? 'text-white' : 'text-gray-600'}`}>
@@ -96,7 +90,6 @@ const About = () => {
               </p>
             </div>
             
-            {/* Split the last paragraph into three sentences with individual thresholds */}
             <div className="space-y-6">
               <p className={`text-3xl md:text-4xl font-semibold leading-tight transition-all duration-500
                 ${scrollPosition > 230 ? 'text-white' : 'text-gray-600'}`}>
@@ -117,9 +110,7 @@ const About = () => {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Workflow Strategy Image - Reduced size by half while maintaining aspect ratio */}
         <div className="max-w-2xl mx-auto mb-12">
           <div className={`transition-all duration-1000 ease-out transform rounded-xl overflow-hidden shadow-xl
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
@@ -133,7 +124,6 @@ const About = () => {
         </div>
 
         <div className="max-w-4xl mx-auto">
-          {/* Who We Are */}
           <div className={`transition-all duration-1000 delay-200 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <div className="flex items-center mb-6">
@@ -155,7 +145,6 @@ const About = () => {
           </div>
         </div>
 
-        {/* Customer Centricity Section */}
         <div className={`mt-16 p-8 bg-gradient-to-r from-[#2a1a47]/50 to-[#1a0b2e]/50 rounded-xl border border-[#9b87f5]/20 text-left
           transition-all duration-1000 delay-400 ease-out transform max-w-4xl mx-auto
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
@@ -170,7 +159,6 @@ const About = () => {
           </p>
         </div>
 
-        {/* Multi-Channel Agent Expertise Section */}
         <div className={`mt-16 p-8 bg-gradient-to-r from-[#2a1a47]/50 to-[#1a0b2e]/50 rounded-xl border border-[#9b87f5]/20 text-left
           transition-all duration-1000 delay-500 ease-out transform max-w-4xl mx-auto
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
@@ -182,7 +170,6 @@ const About = () => {
           </div>
         </div>
 
-        {/* Closing Section */}
         <div className={`mt-16 p-8 bg-gradient-to-r from-[#2a1a47]/50 to-[#1a0b2e]/50 rounded-xl border border-[#9b87f5]/20 text-left
           transition-all duration-1000 delay-600 ease-out transform max-w-4xl mx-auto
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
@@ -193,7 +180,6 @@ const About = () => {
         </div>
       </div>
 
-      {/* Adding the CTA from ClosingCTA component */}
       <ClosingCTA />
 
       <Footer />
