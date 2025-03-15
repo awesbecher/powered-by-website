@@ -129,7 +129,7 @@ const Index = () => {
         source="home"
       />
       
-      <div className="relative z-10 -mt-48 mb-8">
+      <div className="relative z-10 -mt-40 mb-8">
         <div className="w-full max-w-xl mx-auto">
           <AIAgentIllustration />
         </div>
