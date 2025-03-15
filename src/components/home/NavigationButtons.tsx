@@ -49,7 +49,7 @@ export const NavigationButtons = () => {
   return (
     <div className="w-full px-4">
       <div className="max-w-7xl mx-auto">
-        <div className={`flex flex-wrap gap-4 justify-center ${isAboutPage ? 'mb-6' : 'mb-16'}`}>
+        <div className={`flex flex-wrap gap-4 justify-center`}>
           {buttons.map((button, index) => (
             <button
               key={index}
@@ -68,14 +68,6 @@ export const NavigationButtons = () => {
             </button>
           ))}
         </div>
-        {!isAboutPage && (
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-16 max-w-4xl mx-auto leading-[1.1] text-center">
-            Custom AI Agent Solutions Built for you.{" "}
-            <span className="text-[#9b87f5] block mt-4 bg-gradient-to-r from-[#9b87f5] to-[#7a6cc5] bg-clip-text text-transparent">
-              Quick. Easy. Powerful.
-            </span>
-          </h2>
-        )}
       </div>
     </div>
   );
