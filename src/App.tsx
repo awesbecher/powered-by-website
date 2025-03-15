@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Index from "./pages/Index";
@@ -26,6 +27,7 @@ import TermsOfService from "./pages/TermsOfService";
 import PrivacyStatement from "./pages/PrivacyStatement";
 import VirtualSE from "./pages/VirtualSE";
 import OutboundAI from "./pages/OutboundAI";
+import VoiceAgentForm from "./pages/VoiceAgentForm";
 import NotFound from "./pages/NotFound";
 import { Toaster } from "@/components/ui/toaster"
 
@@ -54,6 +56,7 @@ function App() {
             <Route path="/privacy-statement" element={<PrivacyStatement />} />
             <Route path="/virtual-se" element={<VirtualSE />} />
             <Route path="/outbound-ai" element={<OutboundAI />} />
+            <Route path="/voiceagent-form" element={<VoiceAgentForm />} />
             <Route path="/ai-assistant" element={<Navigate to="/ai-receptionist" replace />} />
             <Route path="/voice-business-lines" element={<Navigate to="/ai-receptionist" replace />} />
             <Route path="/mercedes-dealer" element={<MercedesDealer />} />
