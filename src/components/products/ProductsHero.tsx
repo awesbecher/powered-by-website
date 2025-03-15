@@ -21,7 +21,7 @@ export const ProductsHero = ({ initialLoad, className }: ProductsHeroProps) => {
             className={`mt-4 text-base md:text-lg lg:text-xl text-gray-300 max-w-5xl mx-auto leading-snug font-bold transition-all duration-1000 delay-300 ease-out transform
               ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
           >
-            <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> has a portfolio of pre-built AI agent solutions to address vertical-industry and horizontal use cases.
+            <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> has a portfolio of pre-built AI agents to address vertical-industry & horizontal use cases.
           </p>
         </div>
       </div>
