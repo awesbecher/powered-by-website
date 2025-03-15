@@ -30,7 +30,7 @@ const Demo = () => {
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <Navbar />
       {/* Hero Section */}
-      <div className="relative overflow-hidden px-6 lg:px-8 pb-8 pt-28">
+      <div className="relative overflow-hidden px-6 lg:px-8 pb-8 pt-16">
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
             <h1 className={`text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6 transition-all duration-1000 ease-out transform
