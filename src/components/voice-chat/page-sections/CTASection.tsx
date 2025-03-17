@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 
 interface CTASectionProps {
   handleContact: () => void;
@@ -23,7 +24,7 @@ export const CTASection = ({ handleContact }: CTASectionProps) => {
               className="bg-white hover:bg-gray-100 text-[#6342ff] font-bold px-8 py-6 text-lg rounded-md"
               onClick={handleContact}
             >
-              Schedule Your Free Consultation
+              Get Started Today <ArrowRight className="ml-1 h-5 w-5" />
             </Button>
           </Link>
         </div>
