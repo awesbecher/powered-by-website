@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
@@ -56,7 +55,7 @@ export const useContactForm = () => {
     { name: "AI Voice Assistant", selected: false },
     { name: "Custom AI Agent", selected: false },
     { name: "OutboundAI", selected: false },
-    { name: "Other", selected: false }
+    { name: "Virtual SE", selected: false }
   ]);
 
   const [errors, setErrors] = useState<FormErrors>({
@@ -71,7 +70,6 @@ export const useContactForm = () => {
     message: false
   });
 
-  // Validate the form data
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {
       personalInfo: {},
@@ -79,7 +77,6 @@ export const useContactForm = () => {
       message: undefined
     };
     
-    // Validate personal info fields
     if (!formData.firstName) {
       newErrors.personalInfo.firstName = "First name is required";
     }
@@ -108,12 +105,10 @@ export const useContactForm = () => {
       newErrors.personalInfo.companyName = "Company name is required";
     }
     
-    // Validate product interests
     if (!productInterests.some(item => item.selected)) {
       newErrors.productInterests = "Please select at least one product interest";
     }
     
-    // Validate message
     if (!formData.message || formData.message.trim().length < 10) {
       newErrors.message = "Please enter a detailed message (at least 10 characters)";
     }
@@ -125,12 +120,10 @@ export const useContactForm = () => {
       message: true
     });
     
-    // Check if there are any errors
     const hasPersonalInfoErrors = Object.keys(newErrors.personalInfo).length > 0;
     return !(hasPersonalInfoErrors || newErrors.productInterests || newErrors.message);
   };
 
-  // Validate specific fields when they change
   useEffect(() => {
     if (fieldTouched.personalInfo) {
       const personalInfoErrors: PersonalInfoErrors = {};
@@ -198,7 +191,6 @@ export const useContactForm = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     
-    // Mark the appropriate field as touched
     if (name === "message") {
       setFieldTouched(prev => ({ ...prev, message: true }));
     } else {
@@ -211,7 +203,6 @@ export const useContactForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate the form before submission
     if (!validateForm()) {
       toast({
         title: "Please fix the errors",
@@ -258,7 +249,6 @@ export const useContactForm = () => {
       
       setProductInterests(productInterests.map(p => ({ ...p, selected: false })));
       
-      // Reset field touched state
       setFieldTouched({
         personalInfo: false,
         productInterests: false,
