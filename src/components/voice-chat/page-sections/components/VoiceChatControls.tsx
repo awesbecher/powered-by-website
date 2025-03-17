@@ -1,25 +1,18 @@
 
-import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { WebsiteSimulation } from "@/components/voice-chat/WebsiteSimulation";
-import { VoiceAgentContactForm } from "@/components/voice-chat/VoiceAgentContactForm";
+import { VoiceChatDialog } from "@/components/voice-chat/VoiceChatDialog";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
-import { HeroContent } from "./components/HeroContent";
-import { FeaturesList } from "./components/FeaturesList";
 
-interface HeroSectionProps {
-  initialLoad: boolean;
-  handleContact: () => void;
+interface VoiceChatControlsProps {
+  source?: string;
 }
 
-export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
-  const navigate = useNavigate();
+export const VoiceChatControls: React.FC<VoiceChatControlsProps> = ({ source = "voice-chat" }) => {
   const { toast } = useToast();
   const [showVoiceChatDialog, setShowVoiceChatDialog] = useState(false);
   const [isCallActive, setIsCallActive] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const firstNameInputRef = useRef<HTMLInputElement>(null);
 
   const ASSISTANT_ID = "c7acc482-bee2-40a3-85d1-a192ce2a6685";
 
@@ -72,38 +65,8 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
     }
   };
 
-  const handleGetStarted = () => {
-    if (firstNameInputRef.current) {
-      firstNameInputRef.current.focus();
-      firstNameInputRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  };
-
   return (
-    <section className="pt-16 pb-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-20">
-        <HeroContent 
-          initialLoad={initialLoad}
-          handleVoiceChatClick={handleVoiceChatClick}
-          handleGetStarted={handleGetStarted}
-        />
-        
-        <div className={`transition-all duration-1000 delay-300 ease-out transform
-          ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-          <VoiceAgentContactForm firstNameInputRef={firstNameInputRef} />
-        </div>
-      </div>
-
-      <div className="mb-20">
-        <div className="flex flex-col lg:flex-row items-start gap-12 justify-between">
-          <FeaturesList initialLoad={initialLoad} />
-          <div className={`w-full lg:w-[50%] lg:ml-auto transition-all duration-1000 delay-300 ease-out transform
-            ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-            <WebsiteSimulation />
-          </div>
-        </div>
-      </div>
-
+    <>
       <VoiceChatDialog
         showDialog={showVoiceChatDialog}
         isCallActive={isCallActive}
@@ -111,8 +74,9 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
         handleCloseDialog={handleCloseDialog}
         handleStartCall={handleStartCall}
         handleEndCall={handleEndCall}
-        source="voice-chat"
+        source={source}
       />
-    </section>
+      {handleVoiceChatClick}
+    </>
   );
 };
