@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { BookOpen, Users, Rocket, Handshake } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
@@ -6,7 +5,6 @@ import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { HeroSection } from "@/components/free-voiceagent/HeroSection";
 import { IntroSection } from "@/components/free-voiceagent/IntroSection";
 import { InfoCard } from "@/components/ai-agency/InfoCard";
-import AgencyIllustration from "@/components/ai-agency/AgencyIllustration";
 
 const FreeVoiceAgent = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -25,7 +23,6 @@ const FreeVoiceAgent = () => {
           
           <div className="relative mt-8 px-6 lg:px-8">
             <div className="mx-auto max-w-4xl">
-              <AgencyIllustration />
               <IntroSection initialLoad={initialLoad} />
 
               <div className="space-y-6">
