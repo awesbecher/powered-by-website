@@ -12,6 +12,8 @@ export const VoiceAgentContactForm: React.FC = () => {
     formData,
     productInterests,
     isSubmitting,
+    errors,
+    fieldTouched,
     handleInputChange,
     handleProductInterestToggle,
     handleSubmit
@@ -24,14 +26,23 @@ export const VoiceAgentContactForm: React.FC = () => {
       </CardHeader>
       <CardContent className="p-6">
         <form onSubmit={handleSubmit} className="space-y-6">
-          <PersonalInfoSection formData={formData} onChange={handleInputChange} />
+          <PersonalInfoSection 
+            formData={formData} 
+            onChange={handleInputChange} 
+            errors={fieldTouched.personalInfo ? errors.personalInfo : {}}
+          />
           
           <ProductInterestsSection 
             productInterests={productInterests} 
             onProductInterestToggle={handleProductInterestToggle} 
+            error={fieldTouched.productInterests ? errors.productInterests : undefined}
           />
           
-          <MessageSection message={formData.message} onChange={handleInputChange} />
+          <MessageSection 
+            message={formData.message} 
+            onChange={handleInputChange} 
+            error={fieldTouched.message ? errors.message : undefined}
+          />
           
           <FormSubmitSection isSubmitting={isSubmitting} />
         </form>

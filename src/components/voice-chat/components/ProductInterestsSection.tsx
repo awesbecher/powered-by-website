@@ -1,6 +1,7 @@
 
 import React from "react";
 import { Label } from "@/components/ui/label";
+import { AlertCircle, CheckCircle2 } from "lucide-react";
 
 export interface ProductInterest {
   name: string;
@@ -10,17 +11,32 @@ export interface ProductInterest {
 interface ProductInterestsSectionProps {
   productInterests: ProductInterest[];
   onProductInterestToggle: (index: number) => void;
+  error?: string;
 }
 
 export const ProductInterestsSection: React.FC<ProductInterestsSectionProps> = ({
   productInterests,
-  onProductInterestToggle
+  onProductInterestToggle,
+  error
 }) => {
+  const hasSelection = productInterests.some(product => product.selected);
+  
   return (
     <div className="space-y-3">
-      <Label htmlFor="product-interests" className="text-sm font-medium text-gray-300">
-        Which Powered_by solution(s) are you interested in?*
-      </Label>
+      <div className="flex justify-between items-center">
+        <Label htmlFor="product-interests" className="text-sm font-medium text-gray-300">
+          Which Powered_by solution(s) are you interested in?*
+        </Label>
+        {productInterests.some(p => p.selected) ? (
+          <span className="text-green-500 flex items-center gap-1 text-xs">
+            <CheckCircle2 className="h-3 w-3" /> Valid
+          </span>
+        ) : error ? (
+          <span className="text-red-500 flex items-center gap-1 text-xs">
+            <AlertCircle className="h-3 w-3" /> Required
+          </span>
+        ) : null}
+      </div>
       <div className="flex flex-wrap gap-2" id="product-interests">
         {productInterests.map((product, index) => (
           <button
@@ -31,7 +47,7 @@ export const ProductInterestsSection: React.FC<ProductInterestsSectionProps> = (
               product.selected 
                 ? "bg-purple-600 border-purple-500 text-white shadow-inner shadow-purple-700" 
                 : "bg-[#1a1a1a] border-gray-700 text-gray-300 hover:border-gray-500 hover:bg-[#222]"
-            }`}
+            } ${error && !hasSelection ? "border-red-500" : ""}`}
           >
             {product.selected && (
               <span className="mr-1">✓</span>
@@ -40,6 +56,7 @@ export const ProductInterestsSection: React.FC<ProductInterestsSectionProps> = (
           </button>
         ))}
       </div>
+      {error && <p className="text-xs text-red-500 mt-1">{error}</p>}
     </div>
   );
 };
