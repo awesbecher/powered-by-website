@@ -47,7 +47,6 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
             </div>
             <div className="p-0">
               <TallyFormEmbed 
-                formId="nG5kAZ" 
                 className="min-h-[500px] w-full"
               />
             </div>

@@ -2,11 +2,14 @@
 import { useEffect, useRef } from "react";
 
 interface TallyFormEmbedProps {
-  formId: string;
+  formId?: string;
   className?: string;
 }
 
-export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({ formId, className = "" }) => {
+export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({ 
+  formId = "3qvqKg", 
+  className = "" 
+}) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   
   useEffect(() => {
@@ -28,7 +31,7 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({ formId, classNam
     <div className={`tally-form-container ${className}`}>
       <iframe
         ref={iframeRef}
-        data-tally-src={`https://tally.so/embed/${formId}?alignLeft=1&hideTitle=1&transparentBackground=1`}
+        data-tally-src={`https://tally.so/embed/${formId}?alignLeft=1&hideTitle=1&dynamicHeight=1&transparentBackground=1`}
         width="100%"
         height="100%"
         frameBorder="0"
