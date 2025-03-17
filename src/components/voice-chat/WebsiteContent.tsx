@@ -24,7 +24,7 @@ export const WebsiteContent = ({ onStartCall, autoSimulate = false }: WebsiteCon
           className="h-8 mb-1" // Further reduced from h-12 to h-8
         />
         <h2 className="text-lg font-bold text-gray-800">Find Your Dream Home</h2>
-        <p className="text-sm text-gray-600">Discover beautiful properties that match your lifestyle</p>
+        <p className="text-xs text-gray-600">Discover beautiful properties that match your lifestyle</p>
       </div>
       
       {/* Property cards with real images */}
