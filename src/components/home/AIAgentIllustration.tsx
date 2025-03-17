@@ -14,48 +14,62 @@ const AIAgentIllustration = () => {
           <NeuralNetwork />
         </div>
 
-        {/* Agent Bubbles */}
+        {/* Agent Bubbles - Updated for better visibility */}
         <AgentBubble 
           title="CHAT AGENT" 
           icon={MessageCircle} 
           position="top-12 right-0 transform translate-x-3/4" 
           dotPosition="top-left"
+          iconClassName="text-white"
+          bubbleClassName="from-[#9b87f5]/30 to-[#9b87f5]/40 border-white/20"
         />
         <AgentBubble 
           title="VOICE AGENT" 
           icon={Phone} 
           position="-top-8 left-0 transform -translate-x-[75%]" 
           dotPosition="bottom-right"
+          iconClassName="text-white"
+          bubbleClassName="from-[#9b87f5]/30 to-[#9b87f5]/40 border-white/20"
         />
         <AgentBubble 
           title="SMS AGENT" 
           icon={Smartphone} 
           position="top-12 left-0 transform -translate-x-3/4" 
           dotPosition="top-right"
+          iconClassName="text-white"
+          bubbleClassName="from-[#9b87f5]/30 to-[#9b87f5]/40 border-white/20"
         />
         <AgentBubble 
           title="EMAIL AGENT" 
           icon={Mail} 
           position="top-28 right-0 transform translate-x-3/4" 
           dotPosition="top-left"
+          iconClassName="text-white"
+          bubbleClassName="from-[#9b87f5]/30 to-[#9b87f5]/40 border-white/20"
         />
         <AgentBubble 
           title="TASK AGENT" 
           icon={Settings} 
           position="top-28 left-0 transform -translate-x-3/4" 
           dotPosition="top-right"
+          iconClassName="text-white"
+          bubbleClassName="from-[#9b87f5]/30 to-[#9b87f5]/40 border-white/20"
         />
         <AgentBubble 
           title="API AGENT" 
           icon={Plug} 
           position="top-44 right-0 transform translate-x-1/2" 
           dotPosition="top-left"
+          iconClassName="text-white"
+          bubbleClassName="from-[#9b87f5]/30 to-[#9b87f5]/40 border-white/20"
         />
         <AgentBubble 
           title="SLACK AGENT" 
           icon={MessageSquare} 
           position="top-44 left-0 transform -translate-x-[50%]" 
           dotPosition="top-right"
+          iconClassName="text-white"
+          bubbleClassName="from-[#9b87f5]/30 to-[#9b87f5]/40 border-white/20"
         />
 
         <ConnectingLines />
