@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mic } from "lucide-react";
@@ -22,7 +21,6 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
   const [isSubmitting, setIsSubmitting] = useState(false);
   const firstNameInputRef = useRef<HTMLInputElement>(null);
 
-  // Assistant ID for Vapi - updated with the new ID
   const ASSISTANT_ID = "c7acc482-bee2-40a3-85d1-a192ce2a6685";
 
   const handleVoiceChatClick = () => {
@@ -75,7 +73,6 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
   };
 
   const handleGetStarted = () => {
-    // Focus on the first name input in the contact form
     if (firstNameInputRef.current) {
       firstNameInputRef.current.focus();
       firstNameInputRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -84,9 +81,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
 
   return (
     <section className="pt-16 pb-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
-      {/* Hero section with form */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-20">
-        {/* Left side: Main content */}
         <div className={`transition-all duration-1000 ease-out transform
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
           <div className="space-y-6">
@@ -124,14 +119,12 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
           </div>
         </div>
         
-        {/* Right side: Contact form */}
         <div className={`transition-all duration-1000 delay-300 ease-out transform
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
           <VoiceAgentContactForm firstNameInputRef={firstNameInputRef} />
         </div>
       </div>
 
-      {/* Website Widget Section with New Layout */}
       <div className="mb-20">
         <div className="flex flex-col lg:flex-row items-start gap-12 justify-between">
           <div className={`w-full lg:w-[45%] transition-all duration-1000 ease-out transform pt-0
@@ -140,7 +133,6 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
               Remarkably Human-like<br />Voice AI For Your Website
             </h2>
             
-            {/* New key features section from the image */}
             <div className="space-y-8 mt-8">
               <div className="flex items-start gap-4">
                 <div className="text-[#9b87f5] mt-1">
@@ -212,7 +204,6 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
         </div>
       </div>
 
-      {/* Voice Chat Dialog Component */}
       <VoiceChatDialog
         showDialog={showVoiceChatDialog}
         isCallActive={isCallActive}
