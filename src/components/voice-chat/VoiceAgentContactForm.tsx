@@ -233,7 +233,7 @@ export const VoiceAgentContactForm = () => {
         </div>
         
         <div className="text-sm text-gray-400">
-          By continuing, you agree to Deepgram's{" "}
+          By continuing, you agree to Powered_by's{" "}
           <a href="/privacy-statement" className="text-blue-400 hover:underline">
             Privacy Policy
           </a>{" "}
