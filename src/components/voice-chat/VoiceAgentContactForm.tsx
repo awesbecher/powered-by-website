@@ -6,6 +6,7 @@ import { ProductInterestsSection } from "./components/ProductInterestsSection";
 import { MessageSection } from "./components/MessageSection";
 import { FormSubmitSection } from "./components/FormSubmitSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { POWERED_BY_STYLE } from "./hooks/types/contactFormTypes";
 
 export const VoiceAgentContactForm: React.FC = () => {
   const {
@@ -26,6 +27,10 @@ export const VoiceAgentContactForm: React.FC = () => {
       </CardHeader>
       <CardContent className="p-6">
         <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="text-white text-sm mb-4">
+            Fill out this form to learn how <span className={POWERED_BY_STYLE}>Powered_by</span> can help your business leverage AI voice solutions.
+          </div>
+          
           <PersonalInfoSection 
             formData={formData} 
             onChange={handleInputChange} 

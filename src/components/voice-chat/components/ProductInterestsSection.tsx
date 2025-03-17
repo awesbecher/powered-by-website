@@ -2,6 +2,7 @@
 import React from "react";
 import { Label } from "@/components/ui/label";
 import { AlertCircle, CheckCircle2 } from "lucide-react";
+import { POWERED_BY_STYLE } from "../hooks/types/contactFormTypes";
 
 export interface ProductInterest {
   name: string;
@@ -25,7 +26,7 @@ export const ProductInterestsSection: React.FC<ProductInterestsSectionProps> = (
     <div className="space-y-3">
       <div className="flex justify-between items-center">
         <Label htmlFor="product-interests" className="text-sm font-medium text-gray-300">
-          Which Powered_by solution(s) are you interested in?*
+          Which <span className={POWERED_BY_STYLE}>Powered_by</span> solution(s) are you interested in?*
         </Label>
         {productInterests.some(p => p.selected) ? (
           <span className="text-green-500 flex items-center gap-1 text-xs">

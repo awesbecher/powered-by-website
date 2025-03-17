@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { POWERED_BY_STYLE } from "../hooks/types/contactFormTypes";
 
 interface FormSubmitSectionProps {
   isSubmitting: boolean;
@@ -13,7 +14,7 @@ export const FormSubmitSection: React.FC<FormSubmitSectionProps> = ({
   return (
     <div className="space-y-4">
       <div className="text-xs text-gray-400">
-        By continuing, you agree to Powered_by's{" "}
+        By continuing, you agree to <span className={POWERED_BY_STYLE}>Powered_by</span>'s{" "}
         <Link to="/privacy-statement" className="text-purple-400 hover:text-purple-300 transition-colors">
           Privacy Policy
         </Link>{" "}

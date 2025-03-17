@@ -6,7 +6,8 @@ import { supabase } from "@/integrations/supabase/client";
 export const submitContactForm = async (formData: FormData, productInterests: ProductInterest[]) => {
   const submissionData = {
     ...formData,
-    productInterests: productInterests.filter(p => p.selected).map(p => p.name)
+    productInterests: productInterests.filter(p => p.selected).map(p => p.name),
+    source: "voice-chat"
   };
   
   console.log("Form submission data:", submissionData);
