@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
@@ -28,7 +29,7 @@ export const VoiceAgentContactForm = () => {
   const [productInterests, setProductInterests] = useState<ProductInterest[]>([
     { name: "AI Voicebot", selected: false },
     { name: "AI Voice Assistant", selected: false },
-    { name: "Voice Agent API", selected: false },
+    { name: "Custom AI Agent", selected: false },
     { name: "Speech Analytics", selected: false },
     { name: "Other", selected: false }
   ]);
@@ -245,3 +246,4 @@ export const VoiceAgentContactForm = () => {
     </div>
   );
 };
+
