@@ -55,7 +55,7 @@ export const useContactForm = () => {
     { name: "AI Voicebot", selected: false },
     { name: "AI Voice Assistant", selected: false },
     { name: "Custom AI Agent", selected: false },
-    { name: "Speech Analytics", selected: false },
+    { name: "OutboundAI", selected: false },
     { name: "Other", selected: false }
   ]);
 
