@@ -1,43 +1,12 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+
+import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { isValidEmail } from "@/utils/emailValidation";
-import { supabase } from "@/integrations/supabase/client";
+import { FormData, FormErrors, FieldTouched } from "./types/contactFormTypes";
 import { ProductInterest } from "../components/ProductInterestsSection";
-
-interface FormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phoneNumber: string;
-  jobTitle: string;
-  companyName: string;
-  message: string;
-}
-
-interface PersonalInfoErrors {
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-  phoneNumber?: string;
-  jobTitle?: string;
-  companyName?: string;
-}
-
-interface FormErrors {
-  personalInfo: PersonalInfoErrors;
-  productInterests?: string;
-  message?: string;
-}
-
-interface FieldTouched {
-  personalInfo: boolean;
-  productInterests: boolean;
-  message: boolean;
-}
+import { validateForm, validatePersonalInfo, validateProductInterests, validateMessage, hasErrors } from "./utils/formValidation";
+import { submitContactForm } from "./utils/formSubmission";
 
 export const useContactForm = () => {
-  const navigate = useNavigate();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState<FormData>({
@@ -70,48 +39,8 @@ export const useContactForm = () => {
     message: false
   });
 
-  const validateForm = (): boolean => {
-    const newErrors: FormErrors = {
-      personalInfo: {},
-      productInterests: undefined,
-      message: undefined
-    };
-    
-    if (!formData.firstName) {
-      newErrors.personalInfo.firstName = "First name is required";
-    }
-    
-    if (!formData.lastName) {
-      newErrors.personalInfo.lastName = "Last name is required";
-    }
-    
-    if (!formData.email) {
-      newErrors.personalInfo.email = "Email is required";
-    } else if (!isValidEmail(formData.email)) {
-      newErrors.personalInfo.email = "Invalid email format";
-    }
-    
-    if (!formData.phoneNumber) {
-      newErrors.personalInfo.phoneNumber = "Phone number is required";
-    } else if (!/^[\d\(\)\-\+\s]{10,15}$/.test(formData.phoneNumber)) {
-      newErrors.personalInfo.phoneNumber = "Invalid phone number";
-    }
-    
-    if (!formData.jobTitle) {
-      newErrors.personalInfo.jobTitle = "Job title is required";
-    }
-    
-    if (!formData.companyName) {
-      newErrors.personalInfo.companyName = "Company name is required";
-    }
-    
-    if (!productInterests.some(item => item.selected)) {
-      newErrors.productInterests = "Please select at least one product interest";
-    }
-    
-    if (!formData.message || formData.message.trim().length < 10) {
-      newErrors.message = "Please enter a detailed message (at least 10 characters)";
-    }
+  const validateFullForm = (): boolean => {
+    const newErrors = validateForm(formData, productInterests);
     
     setErrors(newErrors);
     setFieldTouched({
@@ -120,72 +49,22 @@ export const useContactForm = () => {
       message: true
     });
     
-    const hasPersonalInfoErrors = Object.keys(newErrors.personalInfo).length > 0;
-    return !(hasPersonalInfoErrors || newErrors.productInterests || newErrors.message);
+    return !hasErrors(newErrors);
   };
-
-  useEffect(() => {
-    if (fieldTouched.personalInfo) {
-      const personalInfoErrors: PersonalInfoErrors = {};
-      
-      if (!formData.firstName) {
-        personalInfoErrors.firstName = "First name is required";
-      }
-      
-      if (!formData.lastName) {
-        personalInfoErrors.lastName = "Last name is required";
-      }
-      
-      if (!formData.email) {
-        personalInfoErrors.email = "Email is required";
-      } else if (!isValidEmail(formData.email)) {
-        personalInfoErrors.email = "Invalid email format";
-      }
-      
-      if (!formData.phoneNumber) {
-        personalInfoErrors.phoneNumber = "Phone number is required";
-      } else if (!/^[\d\(\)\-\+\s]{10,15}$/.test(formData.phoneNumber)) {
-        personalInfoErrors.phoneNumber = "Invalid phone number";
-      }
-      
-      if (!formData.jobTitle) {
-        personalInfoErrors.jobTitle = "Job title is required";
-      }
-      
-      if (!formData.companyName) {
-        personalInfoErrors.companyName = "Company name is required";
-      }
-      
-      setErrors(prev => ({
-        ...prev,
-        personalInfo: personalInfoErrors
-      }));
-    }
-    
-    if (fieldTouched.productInterests) {
-      setErrors(prev => ({
-        ...prev,
-        productInterests: productInterests.some(item => item.selected) 
-          ? undefined 
-          : "Please select at least one product interest"
-      }));
-    }
-    
-    if (fieldTouched.message) {
-      setErrors(prev => ({
-        ...prev,
-        message: (!formData.message || formData.message.trim().length < 10)
-          ? "Please enter a detailed message (at least 10 characters)"
-          : undefined
-      }));
-    }
-  }, [formData, productInterests, fieldTouched]);
 
   const handleProductInterestToggle = (index: number) => {
     setFieldTouched(prev => ({ ...prev, productInterests: true }));
     const updatedInterests = [...productInterests];
     updatedInterests[index].selected = !updatedInterests[index].selected;
     setProductInterests(updatedInterests);
+    
+    // Validate product interests
+    if (fieldTouched.productInterests) {
+      setErrors(prev => ({
+        ...prev,
+        productInterests: validateProductInterests(updatedInterests)
+      }));
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -193,17 +72,35 @@ export const useContactForm = () => {
     
     if (name === "message") {
       setFieldTouched(prev => ({ ...prev, message: true }));
+      setFormData(prev => ({ ...prev, [name]: value }));
+      
+      // Validate message if touched
+      if (fieldTouched.message) {
+        setErrors(prev => ({
+          ...prev,
+          message: validateMessage(value)
+        }));
+      }
     } else {
       setFieldTouched(prev => ({ ...prev, personalInfo: true }));
+      setFormData(prev => ({ ...prev, [name]: value }));
+      
+      // Validate personal info if touched
+      if (fieldTouched.personalInfo) {
+        const updatedFormData = { ...formData, [name]: value };
+        const personalInfoErrors = validatePersonalInfo(updatedFormData);
+        setErrors(prev => ({
+          ...prev,
+          personalInfo: personalInfoErrors
+        }));
+      }
     }
-    
-    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!validateForm()) {
+    if (!validateFullForm()) {
       toast({
         title: "Please fix the errors",
         description: "There are validation errors in the form.",
@@ -215,21 +112,7 @@ export const useContactForm = () => {
     setIsSubmitting(true);
     
     try {
-      const submissionData = {
-        ...formData,
-        productInterests: productInterests.filter(p => p.selected).map(p => p.name)
-      };
-      
-      console.log("Form submission data:", submissionData);
-      
-      const { data, error } = await supabase.functions.invoke("send-team-notification", {
-        body: submissionData
-      });
-      
-      if (error) {
-        console.error("Error sending notification:", error);
-        throw new Error("Failed to send team notification");
-      }
+      await submitContactForm(formData, productInterests);
       
       toast({
         title: "Thank you for your interest!",
@@ -237,6 +120,7 @@ export const useContactForm = () => {
         duration: 5000,
       });
       
+      // Reset form
       setFormData({
         firstName: "",
         lastName: "",
