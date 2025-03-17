@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Mic, Settings, Clock, ShieldCheck, Share2 } from "lucide-react";
+import { Mic, Settings, Clock, ShieldCheck } from "lucide-react";
 import { FeatureIcon } from "./FeatureIcon";
 
 interface FeaturesListProps {
@@ -45,14 +45,6 @@ export const FeaturesList: React.FC<FeaturesListProps> = ({ initialLoad }) => {
           <div>
             <h3 className="text-2xl font-bold text-white">Built-in Compliance & Security</h3>
             <p className="text-gray-300 mt-2">Developed from the ground up with TCPA & SOC 2 compliance in mind.</p>
-          </div>
-        </div>
-        
-        <div className="flex items-start gap-4">
-          <FeatureIcon icon={Share2} />
-          <div>
-            <h3 className="text-2xl font-bold text-white">Omni-channel Follow-up</h3>
-            <p className="text-gray-300 mt-2">Trigger automated follow-up actions across email, SMS, and internal workflows.</p>
           </div>
         </div>
       </div>
