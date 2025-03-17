@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mic } from "lucide-react";
@@ -144,8 +145,8 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white">All-in-one voice AI platform.</h3>
-                  <p className="text-gray-300 mt-2">Easy-to-use APIs for speech-to-text, text-to-speech, AI voice agents, and language understanding.</p>
+                  <h3 className="text-2xl font-bold text-white">State-of-the-art AI Voices</h3>
+                  <p className="text-gray-300 mt-2">Deploy AI voice agents with astoundingly human speech & cadence.</p>
                 </div>
               </div>
               
@@ -159,8 +160,8 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white">Complete control.</h3>
-                  <p className="text-gray-300 mt-2">Custom model training and flexible deployment—public cloud, private cloud, or self-hosted.</p>
+                  <h3 className="text-2xl font-bold text-white">Fully Customizable</h3>
+                  <p className="text-gray-300 mt-2">Voice agents that trained on your business & customer needs and learn & adapt.</p>
                 </div>
               </div>
               
@@ -175,8 +176,8 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white">Future-proofed.</h3>
-                  <p className="text-gray-300 mt-2">Our research team delivers the latest AI breakthroughs.</p>
+                  <h3 className="text-2xl font-bold text-white">24/7 Scalability</h3>
+                  <p className="text-gray-300 mt-2">Run voice agents day or night, making as many calls as needed simultaneously.</p>
                 </div>
               </div>
               
@@ -191,8 +192,23 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white">Enterprise-ready.</h3>
-                  <p className="text-gray-300 mt-2">Scalable, secure, and reliable for critical workloads.</p>
+                  <h3 className="text-2xl font-bold text-white">Built-in Compliance & Security</h3>
+                  <p className="text-gray-300 mt-2">Developed from the ground up with TCPA & SOC 2 compliance in mind.</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="text-[#9b87f5] mt-1">
+                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 5L15 15H25L20 5Z" fill="#9b87f5"/>
+                    <path d="M5 20L15 15V25L5 20Z" fill="#9b87f5"/>
+                    <path d="M20 35L25 25H15L20 35Z" fill="#9b87f5"/>
+                    <path d="M35 20L25 25V15L35 20Z" fill="#9b87f5"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-white">Omni-channel Follow-up</h3>
+                  <p className="text-gray-300 mt-2">Trigger automated follow-up actions across email, SMS, and internal workflows.</p>
                 </div>
               </div>
             </div>
