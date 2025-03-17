@@ -19,6 +19,7 @@ serve(async (req) => {
   console.log(`======= NEW REQUEST =======`);
   console.log(`Request method: ${req.method}`);
   console.log(`Request URL: ${req.url}`);
+  console.log(`Request timestamp: ${new Date().toISOString()}`);
   console.log(`Request headers:`, Object.fromEntries([...req.headers.entries()]));
   
   // Handle CORS preflight requests
@@ -33,11 +34,13 @@ serve(async (req) => {
       throw new Error("Email service configuration error: Missing API key");
     }
     
-    console.log("Resend API key status:", `Configured (starts with ${RESEND_API_KEY.substring(0, 3)}...)`);
+    console.log("Resend API key status:", RESEND_API_KEY ? "Configured" : "Missing");
+    console.log("Resend API key prefix:", RESEND_API_KEY?.substring(0, 5));
 
     // Parse and validate form data
     const requestBody = await req.text();
-    console.log("Raw request body:", requestBody);
+    console.log("Raw request body length:", requestBody.length);
+    console.log("Raw request body preview:", requestBody.substring(0, 100) + "...");
     
     let formData;
     try {
@@ -74,7 +77,7 @@ serve(async (req) => {
 
     // Log destination emails
     console.log("Attempting to send email to:", TEAM_EMAILS);
-    console.log("Email HTML content:", emailHtml);
+    console.log("Email HTML content preview:", emailHtml.substring(0, 200) + "...");
     
     // Send email with detailed error handling
     let emailResponse;
@@ -84,7 +87,10 @@ serve(async (req) => {
         to: TEAM_EMAILS,
         subject: "New Voice AI Contact Form Submission",
         html: emailHtml,
+        text: `New Contact Form Submission from ${formData.firstName} ${formData.lastName} (${formData.email})`,
       });
+      
+      console.log("Resend API response:", emailResponse);
     } catch (sendError) {
       console.error("Resend API error:", sendError);
       if (sendError instanceof Error) {
@@ -97,7 +103,8 @@ serve(async (req) => {
       throw new Error(`Email sending failed: ${sendError instanceof Error ? sendError.message : "Unknown error"}`);
     }
     
-    console.log("Team notification email response:", emailResponse);
+    console.log("Team notification email sent successfully");
+    console.log("Response details:", emailResponse);
 
     return new Response(
       JSON.stringify({ 

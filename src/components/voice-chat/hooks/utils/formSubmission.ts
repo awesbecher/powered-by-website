@@ -14,6 +14,8 @@ export const submitContactForm = async (formData: FormData, productInterests: Pr
   
   try {
     console.log("Calling Supabase function: send-team-notification");
+    console.log("Submission timestamp:", new Date().toISOString());
+    
     const { data, error } = await supabase.functions.invoke("send-team-notification", {
       body: submissionData
     });
