@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Phone, Mail, Smartphone, Settings, MessageSquare, Slack } from "lucide-react";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
@@ -39,7 +39,7 @@ const AgentType = ({ title, description, icon, index }: AgentTypeProps) => {
       <div className="flex-1 md:pl-16 relative overflow-hidden">
         <p 
           className={`text-gray-300 text-base leading-relaxed transition-all duration-500 ease-out
-            ${isHovered ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-80'}`}
+            ${isHovered ? 'translate-y-0 opacity-100' : 'translate-y-0 opacity-80'}`}
         >
           {description}
         </p>
