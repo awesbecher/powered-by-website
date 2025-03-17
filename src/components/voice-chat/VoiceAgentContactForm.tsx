@@ -1,5 +1,6 @@
 
-import React, { ForwardedRef, useState } from "react";
+import React, { ForwardedRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useContactForm } from "./hooks/useContactForm";
 import { PersonalInfoSection } from "./components/PersonalInfoSection";
 import { ProductInterestsSection } from "./components/ProductInterestsSection";
@@ -13,6 +14,7 @@ interface VoiceAgentContactFormProps {
 }
 
 export const VoiceAgentContactForm: React.FC<VoiceAgentContactFormProps> = ({ firstNameInputRef }) => {
+  const navigate = useNavigate();
   const {
     formData,
     productInterests,
@@ -24,6 +26,24 @@ export const VoiceAgentContactForm: React.FC<VoiceAgentContactFormProps> = ({ fi
     handleSubmit,
     isSubmitted
   } = useContactForm();
+
+  useEffect(() => {
+    let redirectTimer: NodeJS.Timeout;
+    
+    if (isSubmitted) {
+      // Set a timer to redirect after 5 seconds
+      redirectTimer = setTimeout(() => {
+        navigate("/");
+      }, 5000);
+    }
+    
+    // Clean up the timer if component unmounts
+    return () => {
+      if (redirectTimer) {
+        clearTimeout(redirectTimer);
+      }
+    };
+  }, [isSubmitted, navigate]);
 
   return (
     <Card className="bg-[#121212] border-gray-800 shadow-xl overflow-hidden">
@@ -38,6 +58,9 @@ export const VoiceAgentContactForm: React.FC<VoiceAgentContactFormProps> = ({ fi
             </h3>
             <p className="text-gray-300">
               Our team will be back in touch shortly to help you get started.
+            </p>
+            <p className="text-gray-400 text-sm mt-4">
+              Redirecting you to the home page in a few seconds...
             </p>
           </div>
         ) : (
