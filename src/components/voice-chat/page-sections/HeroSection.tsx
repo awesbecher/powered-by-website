@@ -74,8 +74,9 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
 
   return (
     <section className="pt-16 pb-36 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
-      <div className="flex flex-col lg:flex-row items-center gap-8">
-        <div className={`w-full lg:w-1/2 space-y-6 transition-all duration-1000 ease-out transform
+      {/* Main content section */}
+      <div className="mb-16">
+        <div className={`w-full space-y-6 transition-all duration-1000 ease-out transform
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
             Transform Your Website With <span className="text-[#9b87f5]">AI Voice Chat</span>
@@ -108,6 +109,16 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
               </Button>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Website Widget Section with New Layout */}
+      <div className="flex flex-col lg:flex-row items-center gap-10">
+        <div className={`w-full lg:w-1/2 transition-all duration-1000 ease-out transform
+          ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+            Remarkably Human-like<br />Voice AI For<br />Your Website
+          </h2>
         </div>
         <div className={`w-full lg:w-1/2 transition-all duration-1000 delay-300 ease-out transform
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
