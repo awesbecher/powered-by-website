@@ -12,14 +12,20 @@ export const submitContactForm = async (formData: FormData, productInterests: Pr
   
   console.log("Form submission data:", submissionData);
   
-  const { data, error } = await supabase.functions.invoke("send-team-notification", {
-    body: submissionData
-  });
-  
-  if (error) {
-    console.error("Error sending notification:", error);
-    throw new Error("Failed to send team notification");
+  try {
+    const { data, error } = await supabase.functions.invoke("send-team-notification", {
+      body: submissionData
+    });
+    
+    if (error) {
+      console.error("Error sending notification:", error);
+      throw new Error(`Failed to send team notification: ${error.message}`);
+    }
+    
+    console.log("Form submission response:", data);
+    return data;
+  } catch (error) {
+    console.error("Form submission error:", error instanceof Error ? error.message : error);
+    throw error;
   }
-  
-  return data;
 };

@@ -11,15 +11,10 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-interface ContactFormData {
-  referralSource: string;
-  email: string;
-  phone: string;
-}
-
 serve(async (req) => {
   // Log request details
   console.log(`Request method: ${req.method}`);
+  console.log(`Request URL: ${req.url}`);
   
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
@@ -27,7 +22,11 @@ serve(async (req) => {
   }
 
   try {
-    const formData: ContactFormData = await req.json();
+    // Log Resend API key status (partially masked for security)
+    const apiKey = Deno.env.get("RESEND_API_KEY");
+    console.log("Resend API key status:", apiKey ? `Configured (starts with ${apiKey.substring(0, 3)}...)` : "Missing");
+
+    const formData = await req.json();
     console.log("Received contact form data:", formData);
 
     // Validate form data
@@ -35,24 +34,33 @@ serve(async (req) => {
       throw new Error("Missing required fields");
     }
 
+    // Build a more comprehensive email body with all form data
+    const emailHtml = `
+      <h2>New Contact Form Submission</h2>
+      <p>You have received a new contact form submission from the Voice AI page:</p>
+      <ul>
+        <li><strong>Name:</strong> ${formData.firstName} ${formData.lastName}</li>
+        <li><strong>Email:</strong> ${formData.email}</li>
+        <li><strong>Phone:</strong> ${formData.phoneNumber || "Not provided"}</li>
+        <li><strong>Company:</strong> ${formData.companyName || "Not provided"}</li>
+        <li><strong>Job Title:</strong> ${formData.jobTitle || "Not provided"}</li>
+        <li><strong>Product Interests:</strong> ${formData.productInterests ? formData.productInterests.join(", ") : "None specified"}</li>
+        <li><strong>Message:</strong> ${formData.message || "No message provided"}</li>
+        <li><strong>Source:</strong> ${formData.source || "Not specified"}</li>
+      </ul>
+      <p>Please respond to this inquiry within 24 hours.</p>
+    `;
+
     // Send email notification to team
+    console.log("Attempting to send email to:", TEAM_EMAILS);
     const emailResponse = await resend.emails.send({
-      from: "Contact Form <onboarding@resend.dev>",
+      from: "Voice AI Contact Form <onboarding@resend.dev>",
       to: TEAM_EMAILS,
-      subject: "New Contact Form Submission",
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p>You have received a new contact form submission:</p>
-        <ul>
-          <li><strong>Email:</strong> ${formData.email}</li>
-          <li><strong>Referral Source:</strong> ${formData.referralSource}</li>
-          <li><strong>Phone:</strong> ${formData.phone || "Not provided"}</li>
-        </ul>
-        <p>Please respond to this inquiry within 24 hours.</p>
-      `,
+      subject: "New Voice AI Contact Form Submission",
+      html: emailHtml,
     });
     
-    console.log("Team notification email sent:", emailResponse);
+    console.log("Team notification email response:", emailResponse);
 
     return new Response(
       JSON.stringify({ 
@@ -66,10 +74,19 @@ serve(async (req) => {
     );
   } catch (error) {
     console.error("Error sending team notification:", error);
+    
+    // Log full error details
+    if (error instanceof Error) {
+      console.error("Error name:", error.name);
+      console.error("Error message:", error.message);
+      console.error("Error stack:", error.stack);
+    }
+    
     return new Response(
       JSON.stringify({ 
         success: false, 
-        error: error.message 
+        error: error instanceof Error ? error.message : "Unknown error",
+        details: "Error processing contact form submission"
       }),
       {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
