@@ -13,6 +13,7 @@ import { SectionTitle } from "@/components/home/SectionTitle";
 import { AgentTypes } from "@/components/home/AgentTypes";
 import AIAgentIllustration from "@/components/home/AIAgentIllustration";
 import Footer from "@/components/layout/Footer";
+import OfferButton from "@/components/home/OfferButton";
 
 const Index = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -34,7 +35,13 @@ const Index = () => {
         <Navbar />
       </div>
       
-      <div className="pt-12">
+      {/* New Offer Button */}
+      <div className="w-full pt-6">
+        <OfferButton className={`transition-all duration-1000 ease-out transform
+          ${initialLoad ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`} />
+      </div>
+      
+      <div className="pt-6">
         <HeroSection initialLoad={initialLoad} />
       </div>
 
