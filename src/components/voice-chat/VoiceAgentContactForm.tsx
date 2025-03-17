@@ -161,7 +161,7 @@ export const VoiceAgentContactForm = () => {
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              placeholder="Email*"
+              placeholder="Company Email*"
               type="email"
               className="bg-[#1a1a1a] border-gray-800 text-white h-12"
               required
