@@ -1,7 +1,6 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { useToast } from "@/hooks/use-toast";
 import { WebsiteSimulation } from "@/components/voice-chat/WebsiteSimulation";
 import { TallyFormEmbed } from "@/components/voice-chat/TallyFormEmbed";
 import { HeroContent } from "./components/HeroContent";

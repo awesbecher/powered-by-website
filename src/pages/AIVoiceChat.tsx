@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
@@ -42,10 +41,7 @@ const AIVoiceChat = () => {
 
   const handleContact = () => {
     navigate("/contact");
-    toast({
-      title: "Good choice!",
-      description: "You're one step closer to implementing AI voice chat."
-    });
+    // Remove the toast notification here
   };
 
   return (
