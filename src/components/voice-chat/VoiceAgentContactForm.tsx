@@ -26,11 +26,11 @@ export const VoiceAgentContactForm: React.FC<VoiceAgentContactFormProps> = ({ fi
 
   return (
     <Card className="bg-[#121212] border-gray-800 shadow-xl overflow-hidden">
-      <CardHeader className="bg-gradient-to-r from-[#1a1a1a] to-[#222] border-b border-gray-800 pb-4">
-        <CardTitle className="text-xl font-semibold text-white">Get Started Today</CardTitle>
+      <CardHeader className="bg-gradient-to-r from-[#1a1a1a] to-[#222] border-b border-gray-800 py-3">
+        <CardTitle className="text-lg font-semibold text-white">Get Started Today</CardTitle>
       </CardHeader>
-      <CardContent className="p-6">
-        <form onSubmit={handleSubmit} className="space-y-6">
+      <CardContent className="p-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           
           <PersonalInfoSection 
             formData={formData} 
