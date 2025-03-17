@@ -36,12 +36,17 @@ export const submitContactForm = async (formData: FormData, productInterests: Pr
     // All validation passed, calling the edge function
     console.log("Calling Supabase function with data:", JSON.stringify(submissionData));
     
-    const { data, error } = await supabase.functions.invoke("send-team-notification", {
+    const response = await supabase.functions.invoke("send-team-notification", {
       body: submissionData,
       headers: {
         "Content-Type": "application/json"
       }
     });
+    
+    const { data, error } = response;
+    
+    // Log the full response for debugging
+    console.log("Full Supabase function response:", response);
     
     if (error) {
       console.error("Error invoking Supabase function:", error);
@@ -64,9 +69,14 @@ export const submitContactForm = async (formData: FormData, productInterests: Pr
     
     console.log("Form submission response:", data);
     
-    if (!data || data.success === false) {
-      console.error("Function returned error in data:", data?.error || "Unknown error");
-      throw new Error(`Server processed request but reported an error: ${data?.error || "Unknown error"}`);
+    if (!data) {
+      console.error("No data returned from function");
+      throw new Error("No response data received from server");
+    }
+    
+    if (data.success === false) {
+      console.error("Function returned error in data:", data.error || "Unknown error");
+      throw new Error(`Server processed request but reported an error: ${data.error || "Unknown error"}`);
     }
     
     return data;
@@ -82,6 +92,20 @@ export const submitContactForm = async (formData: FormData, productInterests: Pr
     console.error("Browser information:", navigator.userAgent);
     console.error("Current page:", window.location.href);
     
-    throw error;
+    // Improve error message for user display
+    let userMessage = "Something went wrong while submitting the form.";
+    
+    if (error instanceof Error) {
+      // Check for specific error types and provide better messages
+      if (error.message.includes("non-2xx status code")) {
+        userMessage = "Edge Function returned a non-2xx status code. Please try again or contact us directly at team@poweredby.agency.";
+      } else if (error.message.includes("network") || error.message.includes("fetch")) {
+        userMessage = "Network error occurred. Please check your internet connection and try again.";
+      } else {
+        userMessage = `${error.message}. Please try again or contact us directly at team@poweredby.agency.`;
+      }
+    }
+    
+    throw new Error(userMessage);
   }
 };

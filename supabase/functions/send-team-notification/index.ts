@@ -33,7 +33,16 @@ serve(async (req) => {
     // API key validation with detailed logging
     if (!RESEND_API_KEY) {
       console.error("CRITICAL ERROR: Resend API key is not configured in environment variables");
-      throw new Error("Email service configuration error: Missing API key");
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: "Email service configuration error: Missing API key"
+        }),
+        {
+          status: 500,
+          headers: { ...corsHeaders, "Content-Type": "application/json" }
+        }
+      );
     }
     
     console.log("Resend API key status:", RESEND_API_KEY ? "Configured" : "Missing");
@@ -50,7 +59,16 @@ serve(async (req) => {
       formData = JSON.parse(requestBody);
     } catch (parseError) {
       console.error("Failed to parse request body as JSON:", parseError);
-      throw new Error("Invalid request format: Unable to parse JSON");
+      return new Response(
+        JSON.stringify({ 
+          success: false,
+          error: "Invalid request format: Unable to parse JSON" 
+        }),
+        {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" }
+        }
+      );
     }
     
     console.log("Parsed form data:", formData);
@@ -58,7 +76,16 @@ serve(async (req) => {
     // Validate required fields
     if (!formData.email) {
       console.error("Missing required field: email");
-      throw new Error("Missing required fields: email is required");
+      return new Response(
+        JSON.stringify({ 
+          success: false,
+          error: "Missing required fields: email is required" 
+        }),
+        {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" }
+        }
+      );
     }
 
     // Build comprehensive email body with all form data
@@ -82,12 +109,13 @@ serve(async (req) => {
     console.log("Attempting to send email to:", TEAM_EMAILS);
     console.log("Email subject: New Voice AI Contact Form Submission");
     
-    const resend = new Resend(RESEND_API_KEY);
-    
-    // Send email with detailed error handling and response tracking
     try {
+      // Create a new Resend instance with each request
+      const resend = new Resend(RESEND_API_KEY);
+      
+      // Send email with detailed error handling and response tracking
       const emailResponse = await resend.emails.send({
-        from: "Voice AI Form <no-reply@poweredby.agency>",
+        from: "PoweredBy Agency <onboarding@resend.dev>", // Using Resend's default verified domain
         to: TEAM_EMAILS,
         subject: "New Voice AI Contact Form Submission",
         html: emailHtml,
@@ -123,7 +151,18 @@ serve(async (req) => {
           stack: sendError.stack
         });
       }
-      throw new Error(`Email sending failed: ${sendError instanceof Error ? sendError.message : "Unknown error"}`);
+      
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: `Email sending failed: ${sendError instanceof Error ? sendError.message : "Unknown error"}`,
+          errorDetails: sendError instanceof Error ? sendError.stack : null
+        }),
+        {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          status: 500,
+        }
+      );
     }
   } catch (error) {
     console.error("========= ERROR SENDING TEAM NOTIFICATION =========");
