@@ -27,9 +27,6 @@ export const VoiceAgentContactForm: React.FC = () => {
       </CardHeader>
       <CardContent className="p-6">
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="text-white text-sm mb-4">
-            Fill out this form to learn how <span className={POWERED_BY_STYLE}>Powered_by</span> can help your business leverage AI voice solutions.
-          </div>
           
           <PersonalInfoSection 
             formData={formData} 
