@@ -26,7 +26,7 @@ export const VoiceAgentContactForm = () => {
   });
   
   const [productInterests, setProductInterests] = useState<ProductInterest[]>([
-    { name: "Speech-to-text", selected: false },
+    { name: "AI Voicebot", selected: false },
     { name: "Text-to-speech", selected: false },
     { name: "Voice Agent API", selected: false },
     { name: "Speech Analytics", selected: false },
@@ -47,7 +47,6 @@ export const VoiceAgentContactForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate form
     if (!formData.firstName || !formData.lastName || !formData.email || 
         !formData.phoneNumber || !formData.jobTitle || !formData.companyName) {
       toast({
@@ -66,7 +65,6 @@ export const VoiceAgentContactForm = () => {
       return;
     }
     
-    // Check if at least one product interest is selected
     if (!productInterests.some(item => item.selected)) {
       toast({
         title: "Please select at least one product interest",
@@ -78,7 +76,6 @@ export const VoiceAgentContactForm = () => {
     setIsSubmitting(true);
     
     try {
-      // Prepare data for submission
       const submissionData = {
         ...formData,
         productInterests: productInterests.filter(p => p.selected).map(p => p.name)
@@ -86,7 +83,6 @@ export const VoiceAgentContactForm = () => {
       
       console.log("Form submission data:", submissionData);
       
-      // Send notification to team via Edge Function
       const { data, error } = await supabase.functions.invoke("send-team-notification", {
         body: submissionData
       });
@@ -96,14 +92,12 @@ export const VoiceAgentContactForm = () => {
         throw new Error("Failed to send team notification");
       }
       
-      // Show success message
       toast({
         title: "Thank you for your interest!",
         description: "Our team will contact you shortly to discuss how we can help your business.",
         duration: 5000,
       });
       
-      // Reset form
       setFormData({
         firstName: "",
         lastName: "",
