@@ -27,7 +27,7 @@ export const VoiceAgentContactForm = () => {
   
   const [productInterests, setProductInterests] = useState<ProductInterest[]>([
     { name: "AI Voicebot", selected: false },
-    { name: "Text-to-speech", selected: false },
+    { name: "AI Voice Assistant", selected: false },
     { name: "Voice Agent API", selected: false },
     { name: "Speech Analytics", selected: false },
     { name: "Other", selected: false }
