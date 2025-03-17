@@ -133,8 +133,8 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
 
       {/* Website Widget Section with New Layout */}
       <div className="mb-20">
-        <div className="flex flex-col lg:flex-row items-center gap-10">
-          <div className={`w-full lg:w-1/2 transition-all duration-1000 ease-out transform
+        <div className="flex flex-col lg:flex-row items-start gap-10">
+          <div className={`w-full lg:w-1/2 transition-all duration-1000 ease-out transform pt-0
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
               Remarkably Human-like<br />Voice AI For Your Website
