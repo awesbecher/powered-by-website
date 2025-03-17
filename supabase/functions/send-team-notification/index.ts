@@ -22,13 +22,12 @@ serve(async (req) => {
   console.log(`Request received: ${req.method} ${new Date().toISOString()}`);
   
   try {
-    // Parse request body
+    // Parse request body and log it
     const formData = await req.json();
-    console.log("Received form data:", JSON.stringify(formData));
+    console.log("Form data received:", JSON.stringify(formData));
     
     // Basic validation
     if (!formData.email) {
-      console.error("Missing required field: email");
       return new Response(
         JSON.stringify({ success: false, error: "Email is required" }),
         {
@@ -38,8 +37,8 @@ serve(async (req) => {
       );
     }
 
-    // Instead of sending an email, just log the submission and return success
-    console.log("Form submission received with data:", JSON.stringify({
+    // Log the submission data
+    console.log("Form submission data:", JSON.stringify({
       name: `${formData.firstName || ""} ${formData.lastName || ""}`,
       email: formData.email,
       phoneNumber: formData.phoneNumber || "Not provided",
@@ -50,15 +49,15 @@ serve(async (req) => {
       source: formData.source || "Not specified"
     }));
 
-    // Log where this would be sent in a production environment
-    console.log(`In production, this would send an email to: ${TEAM_EMAILS.join(", ")}`);
+    // In production, this would send an email
+    console.log(`In production, this would send to: ${TEAM_EMAILS.join(", ")}`);
     
-    // Return a success response
+    // Return success response
     return new Response(
       JSON.stringify({ 
         success: true, 
-        message: "Form submission received successfully. Our team will contact you soon.",
-        id: `demo-${Date.now()}` // Simulated response ID
+        message: "Form submission received successfully",
+        id: `demo-${Date.now()}`
       }),
       {
         status: 200,
@@ -67,12 +66,13 @@ serve(async (req) => {
     );
     
   } catch (error) {
+    // Log any errors
     console.error("Error processing request:", error);
     
     return new Response(
       JSON.stringify({ 
         success: false, 
-        error: "An error occurred while processing your request. Please try again later."
+        error: "An error occurred processing your request"
       }),
       {
         status: 500,

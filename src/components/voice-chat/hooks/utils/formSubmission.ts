@@ -1,7 +1,6 @@
 
 import { FormData } from "../types/contactFormTypes";
 import { ProductInterest } from "../../components/ProductInterestsSection";
-import { supabase } from "@/integrations/supabase/client";
 
 export const submitContactForm = async (formData: FormData, productInterests: ProductInterest[]) => {
   const submissionData = {
@@ -32,7 +31,7 @@ export const submitContactForm = async (formData: FormData, productInterests: Pr
       throw new Error("Please select at least one product interest");
     }
     
-    // Directly call the function using fetch instead of supabase.functions.invoke
+    // Direct fetch to edge function
     const edgeFunctionUrl = "https://cinohyzbtfzfcdtkgvij.supabase.co/functions/v1/send-team-notification";
     
     console.log("Submitting form data to:", edgeFunctionUrl);
@@ -40,19 +39,21 @@ export const submitContactForm = async (formData: FormData, productInterests: Pr
     const response = await fetch(edgeFunctionUrl, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${supabase.auth.getSession()}`
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(submissionData)
     });
     
     console.log("Response status:", response.status);
     
+    // Handle non-200 responses
     if (!response.ok) {
-      console.error("Server returned error status:", response.status);
-      throw new Error("Server error. Please try again or contact us directly at team@poweredby.agency.");
+      const errorText = await response.text();
+      console.error("Server returned error:", response.status, errorText);
+      throw new Error(`Server error (${response.status}). Please try again or contact us directly at team@poweredby.agency.`);
     }
     
+    // Parse the response
     const responseData = await response.json();
     console.log("Response data:", responseData);
     
@@ -71,7 +72,7 @@ export const submitContactForm = async (formData: FormData, productInterests: Pr
     let userMessage = "Something went wrong while submitting the form.";
     
     if (error instanceof Error) {
-      userMessage = `${error.message}. Please try again or contact us directly at team@poweredby.agency.`;
+      userMessage = error.message;
     }
     
     throw new Error(userMessage);
