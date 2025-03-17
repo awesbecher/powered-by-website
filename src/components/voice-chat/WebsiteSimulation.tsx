@@ -82,18 +82,6 @@ export const WebsiteSimulation = () => {
         )}
       </div>
       
-      {/* Responsive design indicator - only shown in development */}
-      {process.env.NODE_ENV === 'development' && (
-        <div className="fixed bottom-0 left-0 bg-black text-white text-xs p-1 z-50">
-          <span className="sm:hidden">XS</span>
-          <span className="hidden sm:inline md:hidden">SM</span>
-          <span className="hidden md:inline lg:hidden">MD</span>
-          <span className="hidden lg:inline xl:hidden">LG</span>
-          <span className="hidden xl:inline 2xl:hidden">XL</span>
-          <span className="hidden 2xl:inline">2XL</span>
-        </div>
-      )}
-
       {/* Responsive instructions for small devices */}
       {isMobile && (
         <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-md text-sm text-yellow-800">
