@@ -36,38 +36,17 @@ export const submitContactForm = async (formData: FormData, productInterests: Pr
     // All validation passed, calling the edge function
     console.log("Calling Supabase function with data:", JSON.stringify(submissionData));
     
-    const response = await supabase.functions.invoke("send-team-notification", {
+    const { data, error } = await supabase.functions.invoke("send-team-notification", {
       body: submissionData,
-      headers: {
-        "Content-Type": "application/json"
-      }
     });
     
-    const { data, error } = response;
-    
     // Log the full response for debugging
-    console.log("Full Supabase function response:", response);
+    console.log("Full Supabase function response:", { data, error });
     
     if (error) {
       console.error("Error invoking Supabase function:", error);
-      console.error("Error details:", {
-        message: error.message,
-        name: error.name,
-        code: error.code,
-        details: error.details,
-      });
-      
-      // Additional diagnostic information
-      console.error("Request context:", {
-        timestamp: new Date().toISOString(),
-        formDataKeys: Object.keys(submissionData),
-        formDataSize: JSON.stringify(submissionData).length
-      });
-      
-      throw new Error(`Failed to send team notification: ${error.message}`);
+      throw new Error(`Edge Function returned a non-2xx status code. Please try again or contact us directly at team@poweredby.agency.`);
     }
-    
-    console.log("Form submission response:", data);
     
     if (!data) {
       console.error("No data returned from function");
@@ -75,30 +54,21 @@ export const submitContactForm = async (formData: FormData, productInterests: Pr
     }
     
     if (data.success === false) {
-      console.error("Function returned error in data:", data.error || "Unknown error");
+      console.error("Function returned error in data:", data.error);
       throw new Error(`Server processed request but reported an error: ${data.error || "Unknown error"}`);
     }
     
+    console.log("Form submission successful:", data);
     return data;
   } catch (error) {
     console.error("Form submission error:", error instanceof Error ? error.message : error);
     
-    if (error instanceof Error) {
-      console.error("Error stack:", error.stack);
-      console.error("Is network error:", error.message.includes("network") || error.message.includes("fetch"));
-    }
-    
-    // Additional diagnostic logging
-    console.error("Browser information:", navigator.userAgent);
-    console.error("Current page:", window.location.href);
-    
-    // Improve error message for user display
+    // Determine if this is a network error or a server response error
     let userMessage = "Something went wrong while submitting the form.";
     
     if (error instanceof Error) {
-      // Check for specific error types and provide better messages
       if (error.message.includes("non-2xx status code")) {
-        userMessage = "Edge Function returned a non-2xx status code. Please try again or contact us directly at team@poweredby.agency.";
+        userMessage = "Please try again or contact us directly at team@poweredby.agency.";
       } else if (error.message.includes("network") || error.message.includes("fetch")) {
         userMessage = "Network error occurred. Please check your internet connection and try again.";
       } else {

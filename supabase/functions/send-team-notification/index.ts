@@ -5,7 +5,7 @@ import { Resend } from "npm:resend@2.0.0";
 // Initialize Resend with API key from environment variables
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 
-// Update to include three email addresses
+// Team email recipients
 const TEAM_EMAILS = [
   "andrew@poweredby.agency", 
   "team@poweredby.agency",
@@ -46,7 +46,6 @@ serve(async (req) => {
     }
     
     console.log("Resend API key status:", RESEND_API_KEY ? "Configured" : "Missing");
-    console.log("Resend API key prefix:", RESEND_API_KEY?.substring(0, 5) + "...");
     console.log("Team email recipients:", TEAM_EMAILS);
 
     // Parse and validate form data
@@ -110,32 +109,48 @@ serve(async (req) => {
     console.log("Email subject: New Voice AI Contact Form Submission");
     
     try {
-      // Create a new Resend instance with each request
+      // Create a new Resend instance with each request to avoid stale connections
       const resend = new Resend(RESEND_API_KEY);
       
-      // Send email with detailed error handling and response tracking
+      // Send email with improved error handling
+      console.log("Sending email via Resend API...");
       const emailResponse = await resend.emails.send({
-        from: "PoweredBy Agency <onboarding@resend.dev>", // Using Resend's default verified domain
+        from: "PoweredBy Agency <no-reply@poweredby.ai>", // Use a verified domain
         to: TEAM_EMAILS,
         subject: "New Voice AI Contact Form Submission",
         html: emailHtml,
         text: `New Contact Form Submission from ${formData.firstName} ${formData.lastName} (${formData.email})`,
       });
       
-      console.log("Full Resend API response:", JSON.stringify(emailResponse, null, 2));
+      // Log the complete response for debugging
+      console.log("Resend API complete response:", JSON.stringify(emailResponse));
       
+      // Check if the response contains an error object from Resend
       if (emailResponse.error) {
         console.error("Resend API returned error:", emailResponse.error);
-        throw new Error(`Resend API error: ${JSON.stringify(emailResponse.error)}`);
+        
+        // Return a user-friendly error
+        return new Response(
+          JSON.stringify({ 
+            success: false, 
+            error: "Failed to send email notification",
+            details: emailResponse.error
+          }),
+          {
+            status: 400, // Use 400 instead of 500 as it may be due to invalid input
+            headers: { ...corsHeaders, "Content-Type": "application/json" }
+          }
+        );
       }
       
-      console.log("Email sent successfully!");
+      console.log("Email sent successfully with ID:", emailResponse.id);
       
+      // Return success response
       return new Response(
         JSON.stringify({ 
           success: true, 
           message: "Team notification sent successfully",
-          details: emailResponse
+          id: emailResponse.id
         }), 
         {
           headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -143,20 +158,21 @@ serve(async (req) => {
         }
       );
     } catch (sendError) {
-      console.error("Resend API error:", sendError);
+      console.error("Exception while sending email:", sendError);
+      
+      // Detailed error logging
       if (sendError instanceof Error) {
-        console.error("Resend error details:", { 
-          name: sendError.name, 
-          message: sendError.message,
-          stack: sendError.stack
-        });
+        console.error("Error name:", sendError.name);
+        console.error("Error message:", sendError.message);
+        console.error("Error stack:", sendError.stack);
       }
       
+      // Return a consistent error response
       return new Response(
         JSON.stringify({ 
           success: false, 
-          error: `Email sending failed: ${sendError instanceof Error ? sendError.message : "Unknown error"}`,
-          errorDetails: sendError instanceof Error ? sendError.stack : null
+          error: "Email sending failed",
+          message: sendError instanceof Error ? sendError.message : "Unknown error"
         }),
         {
           headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -165,7 +181,7 @@ serve(async (req) => {
       );
     }
   } catch (error) {
-    console.error("========= ERROR SENDING TEAM NOTIFICATION =========");
+    console.error("========= UNHANDLED ERROR =========");
     console.error("Error:", error);
     
     // Log full error details
@@ -175,11 +191,12 @@ serve(async (req) => {
       console.error("Error stack:", error.stack);
     }
     
+    // Return a generic error response
     return new Response(
       JSON.stringify({ 
         success: false, 
-        error: error instanceof Error ? error.message : "Unknown error",
-        errorDetails: error instanceof Error ? error.stack : "No stack trace available",
+        error: "An unexpected error occurred",
+        message: error instanceof Error ? error.message : "Unknown server error",
         timestamp: new Date().toISOString()
       }),
       {
