@@ -1,25 +1,60 @@
 
+import { useState, useEffect } from "react";
 import { Phone, Mail, Smartphone, Settings, MessageSquare, Slack } from "lucide-react";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 
 interface AgentTypeProps {
   title: string;
   description: string;
   icon: React.ReactNode;
+  index: number;
 }
 
-const AgentType = ({ title, description, icon }: AgentTypeProps) => (
-  <div className="flex flex-col md:flex-row gap-4 py-4 border-t border-white/10">
-    <div className="md:w-[240px] flex-shrink-0 flex items-start gap-3">
-      <div className="text-accent">{icon}</div>
-      <h3 className="text-lg font-bold text-white whitespace-nowrap">{title}</h3>
+const AgentType = ({ title, description, icon, index }: AgentTypeProps) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.4 });
+
+  return (
+    <div 
+      ref={ref}
+      className="flex flex-col md:flex-row gap-4 py-6 border-t border-white/10 transition-all duration-500 ease-out"
+      style={{
+        opacity: isInView ? 1 : 0,
+        transform: isInView ? `translateY(0)` : `translateY(20px)`,
+        transitionDelay: `${index * 150}ms`
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="md:w-[240px] flex-shrink-0 flex items-start gap-3 transition-all duration-300 ease-out">
+        <div className={`text-accent transition-all duration-300 ${isHovered ? 'scale-110 text-[#9b87f5]' : ''}`}>
+          {icon}
+        </div>
+        <h3 className={`text-lg font-bold text-white whitespace-nowrap transition-all duration-300 ${isHovered ? 'text-[#9b87f5]' : ''}`}>
+          {title}
+        </h3>
+      </div>
+      <div className="flex-1 md:pl-16 relative overflow-hidden">
+        <p 
+          className={`text-gray-300 text-base leading-relaxed transition-all duration-500 ease-out
+            ${isHovered ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-80'}`}
+        >
+          {description}
+        </p>
+        {isHovered && (
+          <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#9b87f5] to-transparent transform animate-pulse" />
+        )}
+      </div>
     </div>
-    <div className="flex-1 md:pl-16">
-      <p className="text-gray-300 text-base leading-relaxed">{description}</p>
-    </div>
-  </div>
-);
+  );
+};
 
 export const AgentTypes = () => {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
+  
   const agentTypes = [
     {
       title: "Voice Agents",
@@ -49,7 +84,15 @@ export const AgentTypes = () => {
   ];
 
   return (
-    <div id="agent-types-section" className="container mx-auto px-4">
+    <div 
+      id="agent-types-section" 
+      className="container mx-auto px-4 transition-all duration-700 ease-out"
+      style={{
+        opacity: isInView ? 1 : 0,
+        transform: isInView ? 'translateY(0)' : 'translateY(40px)'
+      }}
+      ref={sectionRef}
+    >
       <div className="max-w-5xl mx-auto">
         {agentTypes.map((agent, index) => (
           <AgentType
@@ -57,6 +100,7 @@ export const AgentTypes = () => {
             title={agent.title}
             description={agent.description}
             icon={agent.icon}
+            index={index}
           />
         ))}
       </div>
