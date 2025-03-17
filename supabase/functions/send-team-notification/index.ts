@@ -4,7 +4,6 @@ import { Resend } from "npm:resend@2.0.0";
 
 // Initialize Resend with API key from environment variables
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
-const resend = new Resend(RESEND_API_KEY);
 
 // Update to include three email addresses
 const TEAM_EMAILS = [
@@ -83,10 +82,12 @@ serve(async (req) => {
     console.log("Attempting to send email to:", TEAM_EMAILS);
     console.log("Email subject: New Voice AI Contact Form Submission");
     
+    const resend = new Resend(RESEND_API_KEY);
+    
     // Send email with detailed error handling and response tracking
     try {
       const emailResponse = await resend.emails.send({
-        from: "Voice AI Contact Form <no-reply@poweredby.agency>", // Changed from onboarding@resend.dev
+        from: "Voice AI Form <no-reply@poweredby.agency>",
         to: TEAM_EMAILS,
         subject: "New Voice AI Contact Form Submission",
         html: emailHtml,

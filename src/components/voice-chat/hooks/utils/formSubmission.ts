@@ -14,7 +14,7 @@ export const submitContactForm = async (formData: FormData, productInterests: Pr
   console.log("Submission timestamp:", new Date().toISOString());
   
   try {
-    console.log("Calling Supabase function: send-team-notification");
+    console.log("Preparing to call Supabase function: send-team-notification");
     
     // First validate the data on the client side before sending
     if (!submissionData.email) {
@@ -34,6 +34,8 @@ export const submitContactForm = async (formData: FormData, productInterests: Pr
     }
     
     // All validation passed, calling the edge function
+    console.log("Calling Supabase function with data:", JSON.stringify(submissionData));
+    
     const { data, error } = await supabase.functions.invoke("send-team-notification", {
       body: submissionData,
       headers: {
@@ -60,7 +62,7 @@ export const submitContactForm = async (formData: FormData, productInterests: Pr
       throw new Error(`Failed to send team notification: ${error.message}`);
     }
     
-    console.log("Form submission successful response:", data);
+    console.log("Form submission response:", data);
     
     if (!data || data.success === false) {
       console.error("Function returned error in data:", data?.error || "Unknown error");
