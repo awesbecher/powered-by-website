@@ -2,24 +2,33 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { UploadCloud } from "lucide-react";
+import { toast } from "sonner";
 
 const Sitemap = () => {
   const [xmlContent, setXmlContent] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
+  const [customSitemap, setCustomSitemap] = useState<boolean>(false);
 
   useEffect(() => {
-    // Fetch the XML sitemap
+    // Fetch the default XML sitemap
+    fetchDefaultSitemap();
+  }, []);
+
+  const fetchDefaultSitemap = () => {
+    setLoading(true);
     fetch("/sitemap.xml")
       .then(response => response.text())
       .then(data => {
         setXmlContent(data);
         setLoading(false);
+        setCustomSitemap(false);
       })
       .catch(error => {
         console.error("Error fetching sitemap.xml:", error);
         setLoading(false);
       });
-  }, []);
+  };
 
   // Format the XML for display
   const formatXml = (xml: string) => {
@@ -33,6 +42,35 @@ const Sitemap = () => {
       .replace(/&lt;\/(loc|lastmod|changefreq|priority)&gt;/g, "&lt;/$1&gt;</div>");
   };
 
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Check if it's an XML file
+    if (file.type !== "text/xml" && !file.name.endsWith('.xml')) {
+      toast.error("Please upload an XML file");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const content = event.target?.result as string;
+      // Basic validation that it's a sitemap XML
+      if (!content.includes('<urlset') || !content.includes('</urlset>')) {
+        toast.error("Invalid sitemap.xml format");
+        return;
+      }
+
+      setXmlContent(content);
+      setCustomSitemap(true);
+      toast.success("Custom sitemap loaded successfully");
+    };
+    reader.onerror = () => {
+      toast.error("Error reading file");
+    };
+    reader.readAsText(file);
+  };
+
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <div className="sticky top-0 z-50 w-full">
@@ -43,9 +81,48 @@ const Sitemap = () => {
         <h1 className="text-4xl font-bold text-white mb-8">XML Sitemap</h1>
         
         <div className="bg-gradient-to-r from-[#2a1a47]/50 to-[#1a0b2e]/50 rounded-xl border border-[#9b87f5]/20 p-8 mb-8">
-          <p className="text-white mb-4">
-            This XML sitemap is available for search engines at <a href="/sitemap.xml" className="text-[#9b87f5] hover:underline" target="_blank" rel="noopener noreferrer">sitemap.xml</a>
-          </p>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <p className="text-white mb-2">
+                {customSitemap 
+                  ? "Viewing your custom sitemap" 
+                  : "This XML sitemap is available for search engines at "}
+                {!customSitemap && (
+                  <a href="/sitemap.xml" className="text-[#9b87f5] hover:underline" target="_blank" rel="noopener noreferrer">
+                    sitemap.xml
+                  </a>
+                )}
+              </p>
+              {customSitemap && (
+                <button 
+                  onClick={fetchDefaultSitemap}
+                  className="text-[#9b87f5] hover:underline text-sm"
+                >
+                  Return to default sitemap
+                </button>
+              )}
+            </div>
+            
+            <div className="relative group">
+              <label 
+                htmlFor="sitemap-upload" 
+                className="flex items-center gap-2 px-4 py-2 rounded-md bg-[#3a2a5e] hover:bg-[#4a3a6e] text-white cursor-pointer transition-all duration-300"
+              >
+                <UploadCloud size={18} />
+                <span>Upload Sitemap</span>
+              </label>
+              <input 
+                id="sitemap-upload" 
+                type="file" 
+                accept=".xml,text/xml" 
+                className="hidden" 
+                onChange={handleFileUpload}
+              />
+              <div className="absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-opacity duration-300 bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-[#1a0b2e] text-white text-xs p-2 rounded whitespace-nowrap">
+                Upload your sitemap.xml file
+              </div>
+            </div>
+          </div>
         </div>
         
         <div className="bg-gradient-to-r from-[#2a1a47]/50 to-[#1a0b2e]/50 rounded-xl border border-[#9b87f5]/20 p-8 overflow-auto">
