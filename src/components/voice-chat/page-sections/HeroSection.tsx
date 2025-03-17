@@ -5,6 +5,7 @@ import { ArrowRight, Mic } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
 import { WebsiteSimulation } from "@/components/voice-chat/WebsiteSimulation";
 import { VoiceChatDialog } from "@/components/voice-chat/VoiceChatDialog";
+import { VoiceAgentContactForm } from "@/components/voice-chat/VoiceAgentContactForm";
 import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 
@@ -73,56 +74,67 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
   };
 
   return (
-    <section className="pt-16 pb-36 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
-      {/* Main content section */}
-      <div className="mb-16">
-        <div className={`w-full space-y-6 transition-all duration-1000 ease-out transform
+    <section className="pt-16 pb-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
+      {/* Hero section with form */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-20">
+        {/* Left side: Main content */}
+        <div className={`transition-all duration-1000 ease-out transform
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-            Transform Your Website With <span className="text-[#9b87f5]">AI Voice Chat</span>
-          </h1>
-          <p className="text-xl text-gray-300">
-            <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md mr-1">Powered_by</span>: AI Voice Chat. Engage website visitors in natural conversations that convert. Unlock new opportunities to upsell and cross-sell. Delight your customers with state-of-the-art in voice AI.
-          </p>
-          <div className="space-y-4 text-gray-300">
-            <p className="text-xl">Deploy Human-like AI Voice Chat Directly on Your Website to:</p>
-            <ul className="list-disc list-inside space-y-2 pl-2 text-sm">
-              <li>Boost Conversions: Turn visitors into customers with engaging conversations</li>
-              <li>Automate Customer Support: Provide immediate answers & reduce response times</li>
-              <li>Offer 24/7 Availability: Ensure reliable, personalized support day or night</li>
-            </ul>
-          </div>
-          <div className="flex flex-col items-start">
-            <p className="text-gray-300 font-bold mb-3 text-left">See for yourself:</p>
-            <div className="flex flex-wrap gap-3 self-start">
-              <Button 
-                className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
-                onClick={handleVoiceChatClick}
-              >
-                <Mic className="mr-2 h-5 w-5" /> Speak to our Voice Agent Now
-              </Button>
-              <Button 
-                className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
-                onClick={handleContact}
-              >
-                Get Started <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+          <div className="space-y-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+              Transform Your Website With <span className="text-[#9b87f5]">AI Voice Chat</span>
+            </h1>
+            <p className="text-xl text-gray-300">
+              <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md mr-1">Powered_by</span>: AI Voice Chat. Engage website visitors in natural conversations that convert. Unlock new opportunities to upsell and cross-sell. Delight your customers with state-of-the-art in voice AI.
+            </p>
+            <div className="space-y-4 text-gray-300">
+              <p className="text-xl">Deploy Human-like AI Voice Chat Directly on Your Website to:</p>
+              <ul className="list-disc list-inside space-y-2 pl-2 text-sm">
+                <li>Boost Conversions: Turn visitors into customers with engaging conversations</li>
+                <li>Automate Customer Support: Provide immediate answers & reduce response times</li>
+                <li>Offer 24/7 Availability: Ensure reliable, personalized support day or night</li>
+              </ul>
+            </div>
+            <div className="flex flex-col items-start">
+              <p className="text-gray-300 font-bold mb-3 text-left">See for yourself:</p>
+              <div className="flex flex-wrap gap-3 self-start">
+                <Button 
+                  className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
+                  onClick={handleVoiceChatClick}
+                >
+                  <Mic className="mr-2 h-5 w-5" /> Speak to our Voice Agent Now
+                </Button>
+                <Button 
+                  className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
+                  onClick={handleContact}
+                >
+                  Get Started <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </div>
             </div>
           </div>
+        </div>
+        
+        {/* Right side: Contact form */}
+        <div className={`transition-all duration-1000 delay-300 ease-out transform
+          ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
+          <VoiceAgentContactForm />
         </div>
       </div>
 
       {/* Website Widget Section with New Layout */}
-      <div className="flex flex-col lg:flex-row items-center gap-10">
-        <div className={`w-full lg:w-1/2 transition-all duration-1000 ease-out transform
-          ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-            Remarkably Human-like Voice AI<br />For Your Website
-          </h2>
-        </div>
-        <div className={`w-full lg:w-1/2 transition-all duration-1000 delay-300 ease-out transform
-          ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-          <WebsiteSimulation />
+      <div className="mb-20">
+        <div className="flex flex-col lg:flex-row items-center gap-10">
+          <div className={`w-full lg:w-1/2 transition-all duration-1000 ease-out transform
+            ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+              Remarkably Human-like Voice AI<br />For Your Website
+            </h2>
+          </div>
+          <div className={`w-full lg:w-1/2 transition-all duration-1000 delay-300 ease-out transform
+            ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
+            <WebsiteSimulation />
+          </div>
         </div>
       </div>
 
