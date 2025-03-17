@@ -1,5 +1,5 @@
 
-import React, { ForwardedRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useContactForm } from "./hooks/useContactForm";
 import { PersonalInfoSection } from "./components/PersonalInfoSection";
@@ -8,8 +8,8 @@ import { MessageSection } from "./components/MessageSection";
 import { FormSubmitSection } from "./components/FormSubmitSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { POWERED_BY_STYLE } from "./hooks/types/contactFormTypes";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Info } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Info, AlertTriangle } from "lucide-react";
 
 interface VoiceAgentContactFormProps {
   firstNameInputRef?: React.RefObject<HTMLInputElement>;
@@ -70,10 +70,13 @@ export const VoiceAgentContactForm: React.FC<VoiceAgentContactFormProps> = ({ fi
           <form onSubmit={handleSubmit} className="space-y-4">
             {submitError && (
               <Alert variant="destructive" className="bg-red-900/30 border-red-800 text-white">
-                <Info className="h-4 w-4" />
-                <AlertDescription>
-                  {submitError}. Please try again or contact us directly at team@poweredby.agency.
-                </AlertDescription>
+                <AlertTriangle className="h-4 w-4" />
+                <div>
+                  <AlertTitle>Error Submitting Form</AlertTitle>
+                  <AlertDescription>
+                    {submitError}. Please try again or contact us directly at team@poweredby.agency.
+                  </AlertDescription>
+                </div>
               </Alert>
             )}
             

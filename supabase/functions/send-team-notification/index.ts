@@ -24,7 +24,6 @@ serve(async (req) => {
   console.log(`Request method: ${req.method}`);
   console.log(`Request URL: ${req.url}`);
   console.log(`Request timestamp: ${new Date().toISOString()}`);
-  console.log(`Request headers:`, Object.fromEntries([...req.headers.entries()]));
   
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
@@ -83,13 +82,11 @@ serve(async (req) => {
     // Detailed email operation logging
     console.log("Attempting to send email to:", TEAM_EMAILS);
     console.log("Email subject: New Voice AI Contact Form Submission");
-    console.log("Email HTML content preview:", emailHtml.substring(0, 200) + "...");
     
     // Send email with detailed error handling and response tracking
-    let emailResponse;
     try {
-      emailResponse = await resend.emails.send({
-        from: "Voice AI Contact Form <onboarding@resend.dev>",
+      const emailResponse = await resend.emails.send({
+        from: "Voice AI Contact Form <no-reply@poweredby.agency>", // Changed from onboarding@resend.dev
         to: TEAM_EMAILS,
         subject: "New Voice AI Contact Form Submission",
         html: emailHtml,
@@ -99,8 +96,23 @@ serve(async (req) => {
       console.log("Full Resend API response:", JSON.stringify(emailResponse, null, 2));
       
       if (emailResponse.error) {
-        throw new Error(`Resend API returned error: ${JSON.stringify(emailResponse.error)}`);
+        console.error("Resend API returned error:", emailResponse.error);
+        throw new Error(`Resend API error: ${JSON.stringify(emailResponse.error)}`);
       }
+      
+      console.log("Email sent successfully!");
+      
+      return new Response(
+        JSON.stringify({ 
+          success: true, 
+          message: "Team notification sent successfully",
+          details: emailResponse
+        }), 
+        {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          status: 200,
+        }
+      );
     } catch (sendError) {
       console.error("Resend API error:", sendError);
       if (sendError instanceof Error) {
@@ -112,21 +124,6 @@ serve(async (req) => {
       }
       throw new Error(`Email sending failed: ${sendError instanceof Error ? sendError.message : "Unknown error"}`);
     }
-    
-    console.log("Team notification email sent successfully");
-    console.log("Response details:", emailResponse);
-
-    return new Response(
-      JSON.stringify({ 
-        success: true, 
-        message: "Team notification sent successfully",
-        details: emailResponse
-      }), 
-      {
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-        status: 200,
-      }
-    );
   } catch (error) {
     console.error("========= ERROR SENDING TEAM NOTIFICATION =========");
     console.error("Error:", error);
@@ -142,7 +139,8 @@ serve(async (req) => {
       JSON.stringify({ 
         success: false, 
         error: error instanceof Error ? error.message : "Unknown error",
-        details: "Error processing contact form submission"
+        errorDetails: error instanceof Error ? error.stack : "No stack trace available",
+        timestamp: new Date().toISOString()
       }),
       {
         headers: { ...corsHeaders, "Content-Type": "application/json" },

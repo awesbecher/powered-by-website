@@ -16,6 +16,24 @@ export const submitContactForm = async (formData: FormData, productInterests: Pr
   try {
     console.log("Calling Supabase function: send-team-notification");
     
+    // First validate the data on the client side before sending
+    if (!submissionData.email) {
+      throw new Error("Email is required");
+    }
+    
+    if (!submissionData.firstName || !submissionData.lastName) {
+      throw new Error("First and last name are required");
+    }
+    
+    if (!submissionData.phoneNumber) {
+      throw new Error("Phone number is required");
+    }
+    
+    if (submissionData.productInterests.length === 0) {
+      throw new Error("Please select at least one product interest");
+    }
+    
+    // All validation passed, calling the edge function
     const { data, error } = await supabase.functions.invoke("send-team-notification", {
       body: submissionData,
       headers: {
