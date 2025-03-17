@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { FormData, FormErrors, FieldTouched } from "./types/contactFormTypes";
@@ -9,6 +10,7 @@ export const useContactForm = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
@@ -96,6 +98,7 @@ export const useContactForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitError(null);
     
     if (!validateFullForm()) {
       toast({
@@ -109,9 +112,16 @@ export const useContactForm = () => {
     setIsSubmitting(true);
     
     try {
-      await submitContactForm(formData, productInterests);
+      console.log("Starting form submission process...");
+      const response = await submitContactForm(formData, productInterests);
+      console.log("Form submission completed successfully:", response);
       
       setIsSubmitted(true);
+      
+      toast({
+        title: "Form submitted successfully",
+        description: "Thank you for your interest. We'll be in touch soon.",
+      });
       
       setFormData({
         firstName: "",
@@ -133,6 +143,12 @@ export const useContactForm = () => {
       
     } catch (error) {
       console.error("Form submission error:", error);
+      
+      // Set detailed error message
+      setSubmitError(error instanceof Error 
+        ? `Error: ${error.message}` 
+        : "An unexpected error occurred while submitting your form");
+      
       toast({
         title: "Something went wrong",
         description: "Please try again later or contact us directly.",
@@ -148,6 +164,7 @@ export const useContactForm = () => {
     productInterests,
     isSubmitting,
     isSubmitted,
+    submitError,
     errors,
     fieldTouched,
     handleInputChange,

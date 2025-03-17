@@ -32,14 +32,15 @@ serve(async (req) => {
   }
 
   try {
-    // Verbose API key validation
+    // API key validation with detailed logging
     if (!RESEND_API_KEY) {
       console.error("CRITICAL ERROR: Resend API key is not configured in environment variables");
       throw new Error("Email service configuration error: Missing API key");
     }
     
     console.log("Resend API key status:", RESEND_API_KEY ? "Configured" : "Missing");
-    console.log("Resend API key prefix:", RESEND_API_KEY?.substring(0, 5));
+    console.log("Resend API key prefix:", RESEND_API_KEY?.substring(0, 5) + "...");
+    console.log("Team email recipients:", TEAM_EMAILS);
 
     // Parse and validate form data
     const requestBody = await req.text();
@@ -79,11 +80,12 @@ serve(async (req) => {
       <p>Please respond to this inquiry within 24 hours.</p>
     `;
 
-    // Log destination emails
+    // Detailed email operation logging
     console.log("Attempting to send email to:", TEAM_EMAILS);
+    console.log("Email subject: New Voice AI Contact Form Submission");
     console.log("Email HTML content preview:", emailHtml.substring(0, 200) + "...");
     
-    // Send email with detailed error handling
+    // Send email with detailed error handling and response tracking
     let emailResponse;
     try {
       emailResponse = await resend.emails.send({
@@ -94,7 +96,11 @@ serve(async (req) => {
         text: `New Contact Form Submission from ${formData.firstName} ${formData.lastName} (${formData.email})`,
       });
       
-      console.log("Resend API response:", emailResponse);
+      console.log("Full Resend API response:", JSON.stringify(emailResponse, null, 2));
+      
+      if (emailResponse.error) {
+        throw new Error(`Resend API returned error: ${JSON.stringify(emailResponse.error)}`);
+      }
     } catch (sendError) {
       console.error("Resend API error:", sendError);
       if (sendError instanceof Error) {

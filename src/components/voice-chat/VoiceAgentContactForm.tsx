@@ -8,6 +8,8 @@ import { MessageSection } from "./components/MessageSection";
 import { FormSubmitSection } from "./components/FormSubmitSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { POWERED_BY_STYLE } from "./hooks/types/contactFormTypes";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Info } from "lucide-react";
 
 interface VoiceAgentContactFormProps {
   firstNameInputRef?: React.RefObject<HTMLInputElement>;
@@ -24,7 +26,8 @@ export const VoiceAgentContactForm: React.FC<VoiceAgentContactFormProps> = ({ fi
     handleInputChange,
     handleProductInterestToggle,
     handleSubmit,
-    isSubmitted
+    isSubmitted,
+    submitError
   } = useContactForm();
 
   useEffect(() => {
@@ -65,6 +68,15 @@ export const VoiceAgentContactForm: React.FC<VoiceAgentContactFormProps> = ({ fi
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
+            {submitError && (
+              <Alert variant="destructive" className="bg-red-900/30 border-red-800 text-white">
+                <Info className="h-4 w-4" />
+                <AlertDescription>
+                  {submitError}. Please try again or contact us directly at team@poweredby.agency.
+                </AlertDescription>
+              </Alert>
+            )}
+            
             <PersonalInfoSection 
               formData={formData} 
               onChange={handleInputChange} 
