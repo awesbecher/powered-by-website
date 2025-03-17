@@ -7,6 +7,7 @@ import { VoiceAgentContactForm } from "@/components/voice-chat/VoiceAgentContact
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 import { HeroContent } from "./components/HeroContent";
 import { FeaturesList } from "./components/FeaturesList";
+import { VoiceChatDialog } from "@/components/voice-chat/VoiceChatDialog";
 
 interface HeroSectionProps {
   initialLoad: boolean;
