@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { FormData, FormErrors, FieldTouched } from "./types/contactFormTypes";
@@ -9,6 +8,7 @@ import { submitContactForm } from "./utils/formSubmission";
 export const useContactForm = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
@@ -58,7 +58,6 @@ export const useContactForm = () => {
     updatedInterests[index].selected = !updatedInterests[index].selected;
     setProductInterests(updatedInterests);
     
-    // Validate product interests
     if (fieldTouched.productInterests) {
       setErrors(prev => ({
         ...prev,
@@ -74,7 +73,6 @@ export const useContactForm = () => {
       setFieldTouched(prev => ({ ...prev, message: true }));
       setFormData(prev => ({ ...prev, [name]: value }));
       
-      // Validate message if touched
       if (fieldTouched.message) {
         setErrors(prev => ({
           ...prev,
@@ -85,7 +83,6 @@ export const useContactForm = () => {
       setFieldTouched(prev => ({ ...prev, personalInfo: true }));
       setFormData(prev => ({ ...prev, [name]: value }));
       
-      // Validate personal info if touched
       if (fieldTouched.personalInfo) {
         const updatedFormData = { ...formData, [name]: value };
         const personalInfoErrors = validatePersonalInfo(updatedFormData);
@@ -114,13 +111,8 @@ export const useContactForm = () => {
     try {
       await submitContactForm(formData, productInterests);
       
-      toast({
-        title: "Thank you for your interest!",
-        description: "Our team will contact you shortly to discuss how we can help your business.",
-        duration: 5000,
-      });
+      setIsSubmitted(true);
       
-      // Reset form
       setFormData({
         firstName: "",
         lastName: "",
@@ -155,6 +147,7 @@ export const useContactForm = () => {
     formData,
     productInterests,
     isSubmitting,
+    isSubmitted,
     errors,
     fieldTouched,
     handleInputChange,

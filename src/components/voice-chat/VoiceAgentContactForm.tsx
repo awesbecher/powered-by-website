@@ -1,5 +1,5 @@
 
-import React, { ForwardedRef } from "react";
+import React, { ForwardedRef, useState } from "react";
 import { useContactForm } from "./hooks/useContactForm";
 import { PersonalInfoSection } from "./components/PersonalInfoSection";
 import { ProductInterestsSection } from "./components/ProductInterestsSection";
@@ -21,7 +21,8 @@ export const VoiceAgentContactForm: React.FC<VoiceAgentContactFormProps> = ({ fi
     fieldTouched,
     handleInputChange,
     handleProductInterestToggle,
-    handleSubmit
+    handleSubmit,
+    isSubmitted
   } = useContactForm();
 
   return (
@@ -30,29 +31,39 @@ export const VoiceAgentContactForm: React.FC<VoiceAgentContactFormProps> = ({ fi
         <CardTitle className="text-lg font-semibold text-white">Get Started Today</CardTitle>
       </CardHeader>
       <CardContent className="p-4">
-        <form onSubmit={handleSubmit} className="space-y-4">
-          
-          <PersonalInfoSection 
-            formData={formData} 
-            onChange={handleInputChange} 
-            errors={fieldTouched.personalInfo ? errors.personalInfo : {}}
-            firstNameInputRef={firstNameInputRef}
-          />
-          
-          <ProductInterestsSection 
-            productInterests={productInterests} 
-            onProductInterestToggle={handleProductInterestToggle} 
-            error={fieldTouched.productInterests ? errors.productInterests : undefined}
-          />
-          
-          <MessageSection 
-            message={formData.message} 
-            onChange={handleInputChange} 
-            error={fieldTouched.message ? errors.message : undefined}
-          />
-          
-          <FormSubmitSection isSubmitting={isSubmitting} />
-        </form>
+        {isSubmitted ? (
+          <div className="py-16 px-4 text-center">
+            <h3 className="text-xl font-semibold text-white mb-4">
+              Thanks for your interest in <span className={POWERED_BY_STYLE}>Powered_by</span> Voice AI.
+            </h3>
+            <p className="text-gray-300">
+              Our team will be back in touch shortly to help you get started.
+            </p>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <PersonalInfoSection 
+              formData={formData} 
+              onChange={handleInputChange} 
+              errors={fieldTouched.personalInfo ? errors.personalInfo : {}}
+              firstNameInputRef={firstNameInputRef}
+            />
+            
+            <ProductInterestsSection 
+              productInterests={productInterests} 
+              onProductInterestToggle={handleProductInterestToggle} 
+              error={fieldTouched.productInterests ? errors.productInterests : undefined}
+            />
+            
+            <MessageSection 
+              message={formData.message} 
+              onChange={handleInputChange} 
+              error={fieldTouched.message ? errors.message : undefined}
+            />
+            
+            <FormSubmitSection isSubmitting={isSubmitting} />
+          </form>
+        )}
       </CardContent>
     </Card>
   );
