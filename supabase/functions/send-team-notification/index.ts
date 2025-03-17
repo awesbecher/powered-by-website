@@ -2,7 +2,10 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
 
-const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+// Initialize Resend with API key from environment variables
+const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+const resend = new Resend(RESEND_API_KEY);
+
 // Update to include both email addresses
 const TEAM_EMAILS = ["andrew@poweredby.agency", "team@poweredby.agency"];
 
@@ -12,9 +15,11 @@ const corsHeaders = {
 };
 
 serve(async (req) => {
-  // Log request details
+  // Enhanced request logging
+  console.log(`======= NEW REQUEST =======`);
   console.log(`Request method: ${req.method}`);
   console.log(`Request URL: ${req.url}`);
+  console.log(`Request headers:`, Object.fromEntries([...req.headers.entries()]));
   
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
@@ -22,24 +27,40 @@ serve(async (req) => {
   }
 
   try {
-    // Log Resend API key status (partially masked for security)
-    const apiKey = Deno.env.get("RESEND_API_KEY");
-    console.log("Resend API key status:", apiKey ? `Configured (starts with ${apiKey.substring(0, 3)}...)` : "Missing");
+    // Verbose API key validation
+    if (!RESEND_API_KEY) {
+      console.error("CRITICAL ERROR: Resend API key is not configured in environment variables");
+      throw new Error("Email service configuration error: Missing API key");
+    }
+    
+    console.log("Resend API key status:", `Configured (starts with ${RESEND_API_KEY.substring(0, 3)}...)`);
 
-    const formData = await req.json();
-    console.log("Received contact form data:", formData);
+    // Parse and validate form data
+    const requestBody = await req.text();
+    console.log("Raw request body:", requestBody);
+    
+    let formData;
+    try {
+      formData = JSON.parse(requestBody);
+    } catch (parseError) {
+      console.error("Failed to parse request body as JSON:", parseError);
+      throw new Error("Invalid request format: Unable to parse JSON");
+    }
+    
+    console.log("Parsed form data:", formData);
 
-    // Validate form data
+    // Validate required fields
     if (!formData.email) {
-      throw new Error("Missing required fields");
+      console.error("Missing required field: email");
+      throw new Error("Missing required fields: email is required");
     }
 
-    // Build a more comprehensive email body with all form data
+    // Build comprehensive email body with all form data
     const emailHtml = `
       <h2>New Contact Form Submission</h2>
       <p>You have received a new contact form submission from the Voice AI page:</p>
       <ul>
-        <li><strong>Name:</strong> ${formData.firstName} ${formData.lastName}</li>
+        <li><strong>Name:</strong> ${formData.firstName || ""} ${formData.lastName || ""}</li>
         <li><strong>Email:</strong> ${formData.email}</li>
         <li><strong>Phone:</strong> ${formData.phoneNumber || "Not provided"}</li>
         <li><strong>Company:</strong> ${formData.companyName || "Not provided"}</li>
@@ -51,21 +72,38 @@ serve(async (req) => {
       <p>Please respond to this inquiry within 24 hours.</p>
     `;
 
-    // Send email notification to team
+    // Log destination emails
     console.log("Attempting to send email to:", TEAM_EMAILS);
-    const emailResponse = await resend.emails.send({
-      from: "Voice AI Contact Form <onboarding@resend.dev>",
-      to: TEAM_EMAILS,
-      subject: "New Voice AI Contact Form Submission",
-      html: emailHtml,
-    });
+    console.log("Email HTML content:", emailHtml);
+    
+    // Send email with detailed error handling
+    let emailResponse;
+    try {
+      emailResponse = await resend.emails.send({
+        from: "Voice AI Contact Form <onboarding@resend.dev>",
+        to: TEAM_EMAILS,
+        subject: "New Voice AI Contact Form Submission",
+        html: emailHtml,
+      });
+    } catch (sendError) {
+      console.error("Resend API error:", sendError);
+      if (sendError instanceof Error) {
+        console.error("Resend error details:", { 
+          name: sendError.name, 
+          message: sendError.message,
+          stack: sendError.stack
+        });
+      }
+      throw new Error(`Email sending failed: ${sendError instanceof Error ? sendError.message : "Unknown error"}`);
+    }
     
     console.log("Team notification email response:", emailResponse);
 
     return new Response(
       JSON.stringify({ 
         success: true, 
-        message: "Team notification sent successfully" 
+        message: "Team notification sent successfully",
+        details: emailResponse
       }), 
       {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -73,7 +111,8 @@ serve(async (req) => {
       }
     );
   } catch (error) {
-    console.error("Error sending team notification:", error);
+    console.error("========= ERROR SENDING TEAM NOTIFICATION =========");
+    console.error("Error:", error);
     
     // Log full error details
     if (error instanceof Error) {
