@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
@@ -203,7 +202,7 @@ export const VoiceAgentContactForm = () => {
         </div>
         
         <div>
-          <p className="text-gray-300 mb-3">Which Deepgram product(s) are you interested in?*</p>
+          <p className="text-gray-300 mb-3">Which Powered_by solution(s) are you interested in?*</p>
           <div className="flex flex-wrap gap-3">
             {productInterests.map((product, index) => (
               <button
