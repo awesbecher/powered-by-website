@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mic } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
@@ -20,6 +20,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
   const [showVoiceChatDialog, setShowVoiceChatDialog] = useState(false);
   const [isCallActive, setIsCallActive] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const firstNameInputRef = useRef<HTMLInputElement>(null);
 
   // Assistant ID for Vapi - updated with the new ID
   const ASSISTANT_ID = "c7acc482-bee2-40a3-85d1-a192ce2a6685";
@@ -73,6 +74,14 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
     }
   };
 
+  const handleGetStarted = () => {
+    // Focus on the first name input in the contact form
+    if (firstNameInputRef.current) {
+      firstNameInputRef.current.focus();
+      firstNameInputRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+
   return (
     <section className="pt-16 pb-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
       {/* Hero section with form */}
@@ -106,7 +115,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
                 </Button>
                 <Button 
                   className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
-                  onClick={handleContact}
+                  onClick={handleGetStarted}
                 >
                   Get Started <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
@@ -118,7 +127,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
         {/* Right side: Contact form */}
         <div className={`transition-all duration-1000 delay-300 ease-out transform
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-          <VoiceAgentContactForm />
+          <VoiceAgentContactForm firstNameInputRef={firstNameInputRef} />
         </div>
       </div>
 

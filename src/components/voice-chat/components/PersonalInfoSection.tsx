@@ -26,18 +26,21 @@ interface PersonalInfoSectionProps {
   formData: PersonalInfoData;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   errors?: Errors;
+  firstNameInputRef?: React.RefObject<HTMLInputElement>;
 }
 
 export const PersonalInfoSection: React.FC<PersonalInfoSectionProps> = ({
   formData,
   onChange,
-  errors = {}
+  errors = {},
+  firstNameInputRef
 }) => {
   const renderFieldWithValidation = (
     id: keyof PersonalInfoData,
     label: string,
     placeholder: string,
-    type: string = "text"
+    type: string = "text",
+    ref?: React.RefObject<HTMLInputElement>
   ) => {
     const value = formData[id];
     const error = errors[id];
@@ -68,6 +71,7 @@ export const PersonalInfoSection: React.FC<PersonalInfoSectionProps> = ({
           type={type}
           className={`bg-[#1a1a1a] border-gray-700 hover:border-gray-600 ${error ? 'border-red-500 focus:border-red-500' : isValid ? 'border-green-500 focus:border-green-500' : 'focus:border-purple-500'} text-white h-10 rounded-md transition-colors`}
           required
+          ref={ref}
         />
         {error && <p className="text-xs text-red-500 mt-1">{error}</p>}
       </div>
@@ -77,7 +81,7 @@ export const PersonalInfoSection: React.FC<PersonalInfoSectionProps> = ({
   return (
     <div className="space-y-5">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {renderFieldWithValidation("firstName", "First Name", "John")}
+        {renderFieldWithValidation("firstName", "First Name", "John", "text", firstNameInputRef)}
         {renderFieldWithValidation("lastName", "Last Name", "Doe")}
       </div>
       

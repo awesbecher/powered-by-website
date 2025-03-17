@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { ForwardedRef } from "react";
 import { useContactForm } from "./hooks/useContactForm";
 import { PersonalInfoSection } from "./components/PersonalInfoSection";
 import { ProductInterestsSection } from "./components/ProductInterestsSection";
@@ -8,7 +8,11 @@ import { FormSubmitSection } from "./components/FormSubmitSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { POWERED_BY_STYLE } from "./hooks/types/contactFormTypes";
 
-export const VoiceAgentContactForm: React.FC = () => {
+interface VoiceAgentContactFormProps {
+  firstNameInputRef?: React.RefObject<HTMLInputElement>;
+}
+
+export const VoiceAgentContactForm: React.FC<VoiceAgentContactFormProps> = ({ firstNameInputRef }) => {
   const {
     formData,
     productInterests,
@@ -32,6 +36,7 @@ export const VoiceAgentContactForm: React.FC = () => {
             formData={formData} 
             onChange={handleInputChange} 
             errors={fieldTouched.personalInfo ? errors.personalInfo : {}}
+            firstNameInputRef={firstNameInputRef}
           />
           
           <ProductInterestsSection 
