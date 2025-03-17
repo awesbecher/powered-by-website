@@ -1,14 +1,14 @@
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { VoiceChatDialog } from "@/components/voice-chat/VoiceChatDialog";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 
 interface VoiceChatControlsProps {
-  source?: string;
+  source?: "home" | "voice-chat" | "voice-business";
 }
 
-export const VoiceChatControls: React.FC<VoiceChatControlsProps> = ({ source = "voice-chat" }) => {
+export const VoiceChatControls = ({ source = "voice-chat" }: VoiceChatControlsProps) => {
   const { toast } = useToast();
   const [showVoiceChatDialog, setShowVoiceChatDialog] = useState(false);
   const [isCallActive, setIsCallActive] = useState(false);
@@ -76,7 +76,8 @@ export const VoiceChatControls: React.FC<VoiceChatControlsProps> = ({ source = "
         handleEndCall={handleEndCall}
         source={source}
       />
-      {handleVoiceChatClick}
+      {/* Export the click handler so parent components can trigger the dialog */}
+      <button className="hidden" onClick={handleVoiceChatClick} id="voice-chat-trigger" />
     </>
   );
 };
