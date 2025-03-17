@@ -137,7 +137,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
           <div className={`w-full lg:w-1/2 transition-all duration-1000 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-              Remarkably Human-like Voice AI<br />For Your Website
+              Remarkably Human-like<br />Voice AI For Your Website
             </h2>
           </div>
           <div className={`w-full lg:w-1/2 transition-all duration-1000 delay-300 ease-out transform
