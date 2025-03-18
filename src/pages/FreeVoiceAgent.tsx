@@ -23,16 +23,16 @@ const FreeVoiceAgent = () => {
         <div className="max-w-7xl mx-auto">
           <HeroSection initialLoad={initialLoad} />
           
-          <div className="relative mt-8 px-6 lg:px-8">
+          <div className="relative mt-8 px-2 lg:px-4">
             <div className="mx-auto max-w-6xl">
               {/* Two-column layout for intro text and form */}
-              <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-10">
-                <div className="lg:col-span-3">
+              <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 lg:gap-6">
+                <div className="lg:col-span-2">
                   <IntroSection initialLoad={initialLoad} />
                 </div>
 
-                <div className="lg:col-span-2 flex justify-start">
-                  <div className="p-2 bg-[#1a0b2e]/50 rounded-xl border border-purple-800/30 shadow-lg w-full max-w-md">
+                <div className="lg:col-span-3 flex justify-start lg:justify-center">
+                  <div className="p-2 bg-[#1a0b2e]/50 rounded-xl border border-purple-800/30 shadow-lg w-full max-w-md lg:ml-0">
                     <h2 className="text-xl font-bold text-[#9b87f5] mb-0.5">Get started now! Please give us your information:</h2>
                     <TallyFormEmbed 
                       formId="wMM2yY" 
