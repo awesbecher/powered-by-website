@@ -50,12 +50,12 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({
   };
 
   return (
-    <div className={`tally-form-container w-full ${className}`} style={{ height: "230px", overflow: "hidden" }}>
+    <div className={`tally-form-container w-full ${className}`} style={{ height: "210px", overflow: "hidden" }}>
       <iframe
         ref={iframeRef}
         data-tally-src={getSrcUrl()}
         width="100%"
-        height="210px"
+        height="200px"
         frameBorder="0"
         marginHeight={0}
         marginWidth={0}
