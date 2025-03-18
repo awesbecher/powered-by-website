@@ -26,6 +26,7 @@ const About = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] relative">
+      {/* Background image - positioned at the very top */}
       <div className="absolute inset-0 z-0 opacity-20">
         <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/90 via-[#1a0b2e]/60 to-[#1a0b2e]/90 z-10"></div>
         <img 
@@ -35,11 +36,12 @@ const About = () => {
         />
       </div>
 
-      <div className="sticky top-0 z-50 w-full">
-        <Navbar />
-      </div>
-
+      {/* Navbar - moved inside the content section so it appears above the background */}
       <div className="relative z-10">
+        <div className="sticky top-0 z-50 w-full">
+          <Navbar />
+        </div>
+
         <section className="pt-8 pb-6 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
           <div className={`text-center transition-all duration-1000 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
