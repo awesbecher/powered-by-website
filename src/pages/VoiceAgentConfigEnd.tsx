@@ -23,7 +23,9 @@ const VoiceAgentConfigEnd = () => {
           <NextStepsSection initialLoad={initialLoad} />
         </div>
       </div>
-      <ClosingCTA />
+      <ClosingCTA 
+        customHeading="Want to Meet with Us for a Deeper Review of Your Voice AI Needs?" 
+      />
       <Footer />
     </div>
   );
