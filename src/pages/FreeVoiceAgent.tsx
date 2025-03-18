@@ -24,18 +24,21 @@ const FreeVoiceAgent = () => {
           <HeroSection initialLoad={initialLoad} />
           
           <div className="relative mt-8 px-6 lg:px-8">
-            <div className="mx-auto max-w-4xl">
-              <IntroSection initialLoad={initialLoad} />
+            <div className="mx-auto max-w-6xl">
+              {/* Two-column layout for intro text and form */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
+                <IntroSection initialLoad={initialLoad} />
 
-              <div className="my-6 p-3 bg-[#1a0b2e]/50 rounded-xl border border-purple-800/30 shadow-lg">
-                <h2 className="text-2xl font-bold text-[#9b87f5] mb-1">Get started now! Please give us your information:</h2>
-                <TallyFormEmbed 
-                  formId="wMM2yY" 
-                  className="mt-1 rounded-lg overflow-hidden" 
-                />
+                <div className="p-3 bg-[#1a0b2e]/50 rounded-xl border border-purple-800/30 shadow-lg">
+                  <h2 className="text-2xl font-bold text-[#9b87f5] mb-1">Get started now! Please give us your information:</h2>
+                  <TallyFormEmbed 
+                    formId="wMM2yY" 
+                    className="mt-1 rounded-lg overflow-hidden" 
+                  />
+                </div>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-6 mt-12">
                 <InfoCard 
                   title="How Does It Work?" 
                   icon={Users}
