@@ -1,12 +1,10 @@
 
 import { useState, useEffect } from "react";
-import { CheckCircle } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { HeroSection } from "@/components/voiceagent-start/HeroSection";
 import { IntroSection } from "@/components/voiceagent-start/IntroSection";
 import { SetupSteps } from "@/components/voiceagent-start/SetupSteps";
-import { InfoCard } from "@/components/ai-agency/InfoCard";
 import Footer from "@/components/layout/Footer";
 
 const VoiceAgentStart = () => {
@@ -35,46 +33,6 @@ const VoiceAgentStart = () => {
                 <div className="lg:col-span-7">
                   <SetupSteps />
                 </div>
-              </div>
-
-              <div className="space-y-6 mt-16">
-                <InfoCard 
-                  title="What to Prepare" 
-                  icon={CheckCircle}
-                  gradientFrom="blue-600"
-                  gradientTo="purple-600"
-                >
-                  <div className="space-y-6">
-                    <div>
-                      <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Business Information</h4>
-                      <ul className="list-disc pl-5 space-y-2">
-                        <li>Company overview, mission statement, and core values</li>
-                        <li>Products and services descriptions with key features and benefits</li>
-                        <li>Pricing information and special offers (if applicable)</li>
-                        <li>Business hours, location, and contact information</li>
-                      </ul>
-                    </div>
-
-                    <div>
-                      <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Customer Interactions</h4>
-                      <ul className="list-disc pl-5 space-y-2">
-                        <li>Common customer inquiries and appropriate responses</li>
-                        <li>Frequently asked questions (FAQs) and their answers</li>
-                        <li>Typical customer journey and touchpoints</li>
-                        <li>Scripts or guidelines used by current customer service representatives</li>
-                      </ul>
-                    </div>
-
-                    <div>
-                      <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Brand Voice</h4>
-                      <ul className="list-disc pl-5 space-y-2">
-                        <li>Preferred tone of communication (professional, friendly, casual, etc.)</li>
-                        <li>Key phrases or terminology unique to your business</li>
-                        <li>Brand personality traits you want reflected in conversations</li>
-                      </ul>
-                    </div>
-                  </div>
-                </InfoCard>
               </div>
             </div>
           </div>
