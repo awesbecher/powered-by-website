@@ -1,5 +1,6 @@
 
 import { useEffect, useRef } from "react";
+import { POWERED_BY_STYLE } from "./hooks/types/contactFormTypes";
 
 interface TallyFormEmbedProps {
   formId?: string;
@@ -61,6 +62,9 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({
         title="Voice AI Contact Form"
         style={{ minHeight: "380px", maxHeight: "400px" }}
       ></iframe>
+      <div className="text-[10px] text-gray-400 mt-2 text-left">
+        By using <span className={POWERED_BY_STYLE}>Powered_by</span> you agree to our Terms of Service, Privacy, and Security policies and practices.
+      </div>
     </div>
   );
 };
