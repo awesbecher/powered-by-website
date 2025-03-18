@@ -5,6 +5,7 @@ import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { HeroSection } from "@/components/free-voiceagent/HeroSection";
 import { IntroSection } from "@/components/free-voiceagent/IntroSection";
 import { InfoCard } from "@/components/ai-agency/InfoCard";
+import { TallyFormEmbed } from "@/components/voice-chat/TallyFormEmbed";
 
 const FreeVoiceAgent = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -24,6 +25,14 @@ const FreeVoiceAgent = () => {
           <div className="relative mt-8 px-6 lg:px-8">
             <div className="mx-auto max-w-4xl">
               <IntroSection initialLoad={initialLoad} />
+
+              <div className="my-12 p-6 bg-[#1a0b2e]/50 rounded-xl border border-purple-800/30 shadow-lg">
+                <h2 className="text-2xl font-bold text-[#9b87f5] mb-4">Contact Us About Your Free Voice AI Agent</h2>
+                <TallyFormEmbed 
+                  formId="wMM2yY" 
+                  className="mt-4 rounded-lg overflow-hidden" 
+                />
+              </div>
 
               <div className="space-y-6">
                 <InfoCard 
