@@ -25,19 +25,19 @@ const About = () => {
   }, []);
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] relative">
-      {/* Background image - positioned at the very top */}
-      <div className="absolute inset-0 z-0 opacity-20">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/90 via-[#1a0b2e]/60 to-[#1a0b2e]/90 z-10"></div>
+    <div className="min-h-screen w-full relative">
+      {/* Background image - positioned at the very top with higher opacity */}
+      <div className="fixed inset-0 z-0 opacity-30">
         <img 
           src="/lovable-uploads/182eda36-d0bd-4c57-88b7-2f0dd4938f61.png" 
           alt="Team collaboration" 
           className="w-full h-full object-cover object-top"
         />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/95 via-[#2f1c4a]/80 to-[#1a0b2e]/95"></div>
       </div>
 
-      {/* Navbar - moved inside the content section so it appears above the background */}
-      <div className="relative z-10">
+      {/* Main content container with higher z-index */}
+      <div className="relative z-10 min-h-screen bg-transparent">
         <div className="sticky top-0 z-50 w-full">
           <Navbar />
         </div>
