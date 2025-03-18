@@ -65,65 +65,78 @@ const Products = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
-      <Navbar />
-      
-      {/* New Offer Button */}
-      <div className="w-full pt-6">
-        <OfferButton className={`transition-all duration-1000 ease-out transform
-          ${initialLoad ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`} />
-      </div>
-      
-      <ProductsHero initialLoad={initialLoad} className="hero-section" />
-      
-      <ProductIndex />
-      
-      {/* Featured Agent Solutions Section - Reduced padding */}
-      <div className="container mx-auto px-4 py-6">
-        <SectionTitle title="Featured Agent Solutions:" linked={false} />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
-          {featuredSolutions.map((solution, index) => (
-            <FeaturedSolutionCard
-              key={index}
-              title={solution.title}
-              description={solution.description}
-              icon={solution.icon}
-              link={solution.link}
-            />
-          ))}
-        </div>
+    <div className="min-h-screen w-full relative">
+      {/* Background image at the top */}
+      <div className="fixed inset-0 z-0">
+        <img 
+          src="/lovable-uploads/1318bebd-9e04-4b11-9a98-a8c9b0843824.png" 
+          alt="Tech workspace" 
+          className="w-full h-[60vh] object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/80 via-[#2f1c4a] to-[#1a0b2e]"></div>
       </div>
 
-      {/* Detailed Solutions */}
-      <div className="max-w-full pt-8">
-        <div className="space-y-0 divide-y divide-white/10">
-          {serviceCardsData.map((card, index) => (
-            <div 
-              key={index}
-              id={`section-${index}`}
-              className="scroll-mt-24"
-            >
-              <ServiceCard
-                title={
-                  <>
-                    <span className="font-bold text-white">{card.title.main}</span>{' '}
-                    <span className="font-normal text-[#9b87f5]">{card.title.sub}</span>
-                  </>
-                }
-                icon={card.icon}
-                description={card.description}
-                features={card.features}
+      {/* Content container with higher z-index */}
+      <div className="relative z-10 min-h-screen">
+        <Navbar />
+        
+        {/* New Offer Button */}
+        <div className="w-full pt-6">
+          <OfferButton className={`transition-all duration-1000 ease-out transform
+            ${initialLoad ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`} />
+        </div>
+        
+        <ProductsHero initialLoad={initialLoad} className="hero-section" />
+        
+        <ProductIndex />
+        
+        {/* Featured Agent Solutions Section - Reduced padding */}
+        <div className="container mx-auto px-4 py-6">
+          <SectionTitle title="Featured Agent Solutions:" linked={false} />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
+            {featuredSolutions.map((solution, index) => (
+              <FeaturedSolutionCard
+                key={index}
+                title={solution.title}
+                description={solution.description}
+                icon={solution.icon}
+                link={solution.link}
               />
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+
+        {/* Detailed Solutions */}
+        <div className="max-w-full pt-8">
+          <div className="space-y-0 divide-y divide-white/10">
+            {serviceCardsData.map((card, index) => (
+              <div 
+                key={index}
+                id={`section-${index}`}
+                className="scroll-mt-24"
+              >
+                <ServiceCard
+                  title={
+                    <>
+                      <span className="font-bold text-white">{card.title.main}</span>{' '}
+                      <span className="font-normal text-[#9b87f5]">{card.title.sub}</span>
+                    </>
+                  }
+                  icon={card.icon}
+                  description={card.description}
+                  features={card.features}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <ClosingCTA onContactClick={handleContact} />
+
+        {/* Gradient orbs for visual interest */}
+        <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
       </div>
-
-      <ClosingCTA onContactClick={handleContact} />
-
-      {/* Gradient orbs for visual interest */}
-      <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
-      <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
     </div>
   );
 };
