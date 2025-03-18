@@ -50,7 +50,7 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({
   };
 
   return (
-    <div className={`tally-form-container ${className}`}>
+    <div className={`tally-form-container ${className} border border-white rounded-3xl p-6`}>
       <h2 className="text-2xl font-bold text-white mb-4 text-left">Get Started With Voice AI Today</h2>
       <iframe
         ref={iframeRef}
