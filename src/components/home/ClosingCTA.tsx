@@ -7,11 +7,14 @@ interface ClosingCTAProps {
   onContactClick?: () => void;
   externalLink?: string;
   customHeading?: string;
+  customButtonText?: string;
 }
 
-export const ClosingCTA = ({ onContactClick, externalLink, customHeading }: ClosingCTAProps) => {
+export const ClosingCTA = ({ onContactClick, externalLink, customHeading, customButtonText }: ClosingCTAProps) => {
   // Default heading text
   const headingText = customHeading || "Ready to Put Voice AI Agents to Work?";
+  // Default button text
+  const buttonText = customButtonText || "Get Started";
   
   // If an external link is provided, use it instead of the internal route
   if (externalLink) {
@@ -26,7 +29,7 @@ export const ClosingCTA = ({ onContactClick, externalLink, customHeading }: Clos
               className="bg-white hover:bg-gray-100 text-[#6342ff] font-bold px-8 py-6 text-lg rounded-md"
               onClick={onContactClick}
             >
-              Get Started
+              {buttonText}
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </a>
@@ -47,7 +50,7 @@ export const ClosingCTA = ({ onContactClick, externalLink, customHeading }: Clos
             className="bg-white hover:bg-gray-100 text-[#6342ff] font-bold px-8 py-6 text-lg rounded-md"
             onClick={onContactClick}
           >
-            Get Started
+            {buttonText}
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         </Link>

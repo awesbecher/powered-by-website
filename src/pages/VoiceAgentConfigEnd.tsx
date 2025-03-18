@@ -25,6 +25,7 @@ const VoiceAgentConfigEnd = () => {
       </div>
       <ClosingCTA 
         customHeading="Want to Meet with Us for a Deeper Review of Your Voice AI Needs?" 
+        customButtonText="Book a Free 30min Consultation →"
       />
       <Footer />
     </div>
