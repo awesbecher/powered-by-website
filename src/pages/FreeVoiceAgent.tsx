@@ -7,6 +7,7 @@ import { HeroSection } from "@/components/free-voiceagent/HeroSection";
 import { IntroSection } from "@/components/free-voiceagent/IntroSection";
 import { InfoCard } from "@/components/ai-agency/InfoCard";
 import { TallyFormEmbed } from "@/components/voice-chat/TallyFormEmbed";
+import Footer from "@/components/layout/Footer";
 
 const FreeVoiceAgent = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -125,6 +126,7 @@ const FreeVoiceAgent = () => {
         </div>
       </div>
       <ClosingCTA />
+      <Footer />
     </div>
   );
 };
