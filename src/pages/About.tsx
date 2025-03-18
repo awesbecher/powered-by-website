@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -74,7 +73,7 @@ const About = () => {
                 </span>
               </div>
             </h1>
-            <div className="mt-8 flex justify-center">
+            <div className="mt-8 mb-16 flex justify-center">
               <p className="text-xl bg-white text-[#6342ff] font-bold px-4 py-2 rounded-md inline-block backdrop-blur-sm shadow-lg">
                 Our mission: to democratize access to AI agents for SMBs.
               </p>
