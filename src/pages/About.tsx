@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -26,13 +27,13 @@ const About = () => {
   return (
     <div className="min-h-screen w-full relative">
       {/* Background image - positioned at the very top with higher opacity */}
-      <div className="fixed inset-0 z-0 opacity-30">
+      <div className="fixed inset-0 z-0 opacity-50">
         <img 
           src="/lovable-uploads/182eda36-d0bd-4c57-88b7-2f0dd4938f61.png" 
           alt="Team collaboration" 
           className="w-full h-full object-cover object-top"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/95 via-[#2f1c4a]/80 to-[#1a0b2e]/95"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/75 via-[#2f1c4a]/60 to-[#1a0b2e]/75"></div>
       </div>
 
       {/* Main content container with higher z-index */}
@@ -81,7 +82,7 @@ const About = () => {
         <div 
           ref={collaborationRef}
           className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 transition-all duration-1000 ease-out transform
-            border border-[#9b87f5]/30 rounded-xl overflow-hidden py-10 backdrop-blur-md bg-[#2a1a47]/70 shadow-xl"
+            border border-[#9b87f5]/30 rounded-xl overflow-hidden py-10 backdrop-blur-md bg-[#2a1a47]/50 shadow-xl"
         >
           <div className="max-w-4xl mx-auto">
             <div className="space-y-6">
@@ -136,7 +137,7 @@ const About = () => {
                 <h2 className="text-3xl font-bold text-white">Who We Are</h2>
               </div>
               
-              <div className="space-y-6 text-gray-300 backdrop-blur-sm bg-[#2a1a47]/40 p-6 rounded-xl border border-[#9b87f5]/20">
+              <div className="space-y-6 text-gray-300 backdrop-blur-sm bg-[#2a1a47]/30 p-6 rounded-xl border border-[#9b87f5]/20">
                 <p className="text-lg">
                   <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> is an agency that designs and builds bespoke AI agent solutions for diverse industries. From auto dealerships to real estate agencies, retail stores to hospitality providers, our team has a proven track record of delivering AI agent solutions that empower our clients to thrive and compete.
                 </p>
@@ -150,7 +151,7 @@ const About = () => {
             </div>
           </div>
 
-          <div className={`mt-16 p-8 bg-gradient-to-r from-[#2a1a47]/70 to-[#1a0b2e]/70 rounded-xl border border-[#9b87f5]/30 text-left
+          <div className={`mt-16 p-8 bg-gradient-to-r from-[#2a1a47]/40 to-[#1a0b2e]/40 rounded-xl border border-[#9b87f5]/30 text-left
             transition-all duration-1000 delay-400 ease-out transform max-w-4xl mx-auto backdrop-blur-md shadow-lg
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <div className="mb-4">
@@ -164,7 +165,7 @@ const About = () => {
             </p>
           </div>
 
-          <div className={`mt-16 p-8 bg-gradient-to-r from-[#2a1a47]/70 to-[#1a0b2e]/70 rounded-xl border border-[#9b87f5]/30 text-left
+          <div className={`mt-16 p-8 bg-gradient-to-r from-[#2a1a47]/40 to-[#1a0b2e]/40 rounded-xl border border-[#9b87f5]/30 text-left
             transition-all duration-1000 delay-500 ease-out transform max-w-4xl mx-auto backdrop-blur-md shadow-lg
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <div className="mb-6">
@@ -175,7 +176,7 @@ const About = () => {
             </div>
           </div>
 
-          <div className={`mt-16 p-8 bg-gradient-to-r from-[#2a1a47]/70 to-[#1a0b2e]/70 rounded-xl border border-[#9b87f5]/30 text-left
+          <div className={`mt-16 p-8 bg-gradient-to-r from-[#2a1a47]/40 to-[#1a0b2e]/40 rounded-xl border border-[#9b87f5]/30 text-left
             transition-all duration-1000 delay-600 ease-out transform max-w-4xl mx-auto backdrop-blur-md shadow-lg
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <h2 className="text-3xl font-bold text-white mb-4">Our Promise</h2>
