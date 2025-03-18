@@ -29,11 +29,11 @@ const FreeVoiceAgent = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
                 <IntroSection initialLoad={initialLoad} />
 
-                <div className="p-3 bg-[#1a0b2e]/50 rounded-xl border border-purple-800/30 shadow-lg">
-                  <h2 className="text-2xl font-bold text-[#9b87f5] mb-1">Get started now! Please give us your information:</h2>
+                <div className="p-2 bg-[#1a0b2e]/50 rounded-xl border border-purple-800/30 shadow-lg">
+                  <h2 className="text-xl font-bold text-[#9b87f5] mb-0.5">Get started now! Please give us your information:</h2>
                   <TallyFormEmbed 
                     formId="wMM2yY" 
-                    className="mt-1 rounded-lg overflow-hidden" 
+                    className="mt-0.5 rounded-lg overflow-hidden" 
                   />
                 </div>
               </div>
