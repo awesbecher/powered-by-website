@@ -62,15 +62,10 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
         
         <div className={`transition-all duration-1000 delay-300 ease-out transform
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-          <div className="bg-[#121212] border border-gray-800 shadow-xl overflow-hidden rounded-lg">
-            <div className="bg-gradient-to-r from-[#1a1a1a] to-[#222] border-b border-gray-800 py-3 px-4">
-              <h3 className="text-lg font-semibold text-white">Get Started Today</h3>
-            </div>
-            <div className="p-0">
-              <TallyFormEmbed 
-                className="min-h-[500px] w-full"
-              />
-            </div>
+          <div className="p-0">
+            <TallyFormEmbed 
+              className="w-full"
+            />
           </div>
         </div>
       </div>
