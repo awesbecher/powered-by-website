@@ -11,7 +11,8 @@ const AnnouncementBanner = ({
   onClose,
   showCloseButton = false 
 }: AnnouncementBannerProps) => {
-  const OUTBOUND_AI_URL = "https://poweredbyagency.ghost.io/introducing-outboundai-voice-agents-for-outbound-sales-marketing/";
+  // Change the URL to the internal route
+  const OUTBOUND_AI_ROUTE = "/outbound-ai";
   
   return (
     <div className="w-full bg-gradient-to-r from-[#a0b4ff] to-[#c9ccff] py-1.5">
@@ -19,18 +20,14 @@ const AnnouncementBanner = ({
         <div className="text-sm sm:text-base text-center text-black">
           <span>Powered_by releases </span>
           <Link 
-            to={OUTBOUND_AI_URL} 
-            target="_blank" 
-            rel="noopener noreferrer"
+            to={OUTBOUND_AI_ROUTE}
             className="font-semibold hover:underline"
           >
             OutboundAI
           </Link>
           <span>: Automation Agents for Outbound Sales & Marketing Calls. </span>
           <Link 
-            to={OUTBOUND_AI_URL} 
-            target="_blank" 
-            rel="noopener noreferrer"
+            to={OUTBOUND_AI_ROUTE}
             className="font-semibold inline-flex items-center hover:underline"
           >
             Learn more 
