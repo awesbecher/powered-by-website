@@ -38,7 +38,7 @@ const VoiceAgentStart = () => {
           </div>
         </div>
       </div>
-      <ClosingCTA />
+      <ClosingCTA externalLink="https://poweredby.agency/voiceagent-form" />
       <Footer />
     </div>
   );
