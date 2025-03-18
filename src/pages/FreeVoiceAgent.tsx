@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Users, Rocket, Handshake } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
@@ -27,7 +28,7 @@ const FreeVoiceAgent = () => {
               <IntroSection initialLoad={initialLoad} />
 
               <div className="my-12 p-6 bg-[#1a0b2e]/50 rounded-xl border border-purple-800/30 shadow-lg">
-                <h2 className="text-2xl font-bold text-[#9b87f5] mb-4">Contact Us About Your Free Voice AI Agent</h2>
+                <h2 className="text-2xl font-bold text-[#9b87f5] mb-4">Get started now! Please give us your information:</h2>
                 <TallyFormEmbed 
                   formId="wMM2yY" 
                   className="mt-4 rounded-lg overflow-hidden" 
