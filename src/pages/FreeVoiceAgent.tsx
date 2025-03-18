@@ -27,7 +27,7 @@ const FreeVoiceAgent = () => {
             <div className="mx-auto max-w-6xl">
               {/* Two-column layout for intro text and form */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-2">
-                <div className="lg:col-span-7 pr-8">
+                <div className="lg:col-span-7 pr-10">
                   <IntroSection initialLoad={initialLoad} />
                 </div>
 
@@ -36,7 +36,8 @@ const FreeVoiceAgent = () => {
                     <h2 className="text-xl font-bold text-[#9b87f5] mb-0.5">Get started now! Please give us your information:</h2>
                     <TallyFormEmbed 
                       formId="wMM2yY" 
-                      className="mt-0.5 rounded-lg overflow-hidden" 
+                      className="mt-0.5 rounded-lg overflow-hidden"
+                      referral="downloads" 
                     />
                   </div>
                 </div>
