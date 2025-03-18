@@ -60,9 +60,9 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({
         marginHeight={0}
         marginWidth={0}
         title="Voice AI Contact Form"
-        style={{ minHeight: "490px", height: "calc(100% - 20px)" }}
+        style={{ minHeight: "450px", height: "calc(100% - 10px)" }}
       ></iframe>
-      <div className="text-[10px] text-gray-400 mt-0 text-left">
+      <div className="text-[10px] text-gray-400 mt-[-10px] text-left">
         By using <span className={POWERED_BY_STYLE}>Powered_by</span> you agree to our <a href="https://poweredby.agency/terms-of-service" className="underline hover:text-gray-300 transition-colors">Terms of Service</a>, <a href="https://poweredby.agency/privacy-statement" className="underline hover:text-gray-300 transition-colors">Privacy</a>, and <a href="https://poweredby.agency/privacy-statement" className="underline hover:text-gray-300 transition-colors">Security</a> policies and practices.
       </div>
     </div>
