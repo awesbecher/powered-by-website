@@ -18,9 +18,9 @@ export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
             <span className="text-[#9b87f5]">No Cost. No Commitment.</span>
           </h1>
           
-          <div className={`mt-4 flex flex-col space-y-1 text-2xl md:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-bold transition-all duration-1000 delay-300 ease-out transform
+          <div className={`mt-4 flex flex-col space-y-1 text-2xl md:text-3xl text-white max-w-4xl mx-auto leading-relaxed font-bold transition-all duration-1000 delay-300 ease-out transform
               ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
-            <p>Experience the power of conversational AI <span className="text-white">completely tailored to your business</span></p>
+            <p>Experience the power of conversational AI completely tailored to your business</p>
           </div>
         </div>
       </div>
