@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BookOpen, Users, Rocket, Handshake } from "lucide-react";
+import { Users, Rocket, Handshake } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { HeroSection } from "@/components/free-voiceagent/HeroSection";
@@ -26,15 +26,6 @@ const FreeVoiceAgent = () => {
               <IntroSection initialLoad={initialLoad} />
 
               <div className="space-y-6">
-                <InfoCard 
-                  title="Free Voice AI Agent" 
-                  icon={BookOpen}
-                  gradientFrom="purple-600"
-                  gradientTo="pink-600"
-                >
-                  <p>Our free voice AI agent solution allows small and medium-sized businesses to experience the power of AI voice technology without any upfront costs. Get started with a customized voice agent that delivers human-like interactions for your specific business use case today.</p>
-                </InfoCard>
-
                 <InfoCard 
                   title="How Does It Work?" 
                   icon={Users}
