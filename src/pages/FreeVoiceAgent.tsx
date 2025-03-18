@@ -26,10 +26,12 @@ const FreeVoiceAgent = () => {
           <div className="relative mt-8 px-6 lg:px-8">
             <div className="mx-auto max-w-6xl">
               {/* Two-column layout for intro text and form */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
-                <IntroSection initialLoad={initialLoad} />
+              <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-10">
+                <div className="lg:col-span-3">
+                  <IntroSection initialLoad={initialLoad} />
+                </div>
 
-                <div className="flex justify-center lg:justify-start">
+                <div className="lg:col-span-2 flex justify-start">
                   <div className="p-2 bg-[#1a0b2e]/50 rounded-xl border border-purple-800/30 shadow-lg w-full max-w-md">
                     <h2 className="text-xl font-bold text-[#9b87f5] mb-0.5">Get started now! Please give us your information:</h2>
                     <TallyFormEmbed 
