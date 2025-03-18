@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -26,11 +27,11 @@ const About = () => {
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] relative">
       <div className="absolute inset-0 z-0 opacity-20">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/80 via-[#1a0b2e]/60 to-[#1a0b2e]/90 z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/90 via-[#1a0b2e]/60 to-[#1a0b2e]/90 z-10"></div>
         <img 
           src="/lovable-uploads/182eda36-d0bd-4c57-88b7-2f0dd4938f61.png" 
           alt="Team collaboration" 
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-top"
         />
       </div>
 
