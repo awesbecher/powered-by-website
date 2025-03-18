@@ -33,7 +33,7 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({
 
   // Construct the src URL with query parameters
   const getSrcUrl = () => {
-    let baseUrl = `https://tally.so/embed/${formId}?alignLeft=1&transparentBackground=1&dynamicHeight=1`;
+    let baseUrl = `https://tally.so/embed/${formId}?alignLeft=1&hideTitle=1&dynamicHeight=1`;
     
     // Add email if provided
     if (email) {
