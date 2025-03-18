@@ -30,6 +30,7 @@ import OutboundAI from "./pages/OutboundAI";
 import VoiceAgentForm from "./pages/VoiceAgentForm";
 import FreeVoiceAgent from "./pages/FreeVoiceAgent";
 import VoiceAgentStart from "./pages/VoiceAgentStart";
+import VoiceAgentConfigEnd from "./pages/VoiceAgentConfigEnd";
 import Sitemap from "./pages/Sitemap";
 import NotFound from "./pages/NotFound";
 import { Toaster } from "@/components/ui/toaster"
@@ -62,6 +63,7 @@ function App() {
             <Route path="/virtual-se" element={<VirtualSE />} />
             <Route path="/outbound-ai" element={<OutboundAI />} />
             <Route path="/voiceagent-form" element={<VoiceAgentForm />} />
+            <Route path="/voice-agent-config-end" element={<VoiceAgentConfigEnd />} />
             <Route path="/free-voiceagent" element={<FreeVoiceAgent />} />
             <Route path="/voiceagent-start" element={<VoiceAgentStart />} />
             <Route path="/ai-assistant" element={<Navigate to="/ai-receptionist" replace />} />
