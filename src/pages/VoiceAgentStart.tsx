@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { Users, CheckCircle } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { HeroSection } from "@/components/voiceagent-start/HeroSection";
@@ -74,30 +74,6 @@ const VoiceAgentStart = () => {
                         <li>Key phrases or terminology unique to your business</li>
                         <li>Brand personality traits you want reflected in conversations</li>
                       </ul>
-                    </div>
-                  </div>
-                </InfoCard>
-
-                <InfoCard 
-                  title="Support During Setup" 
-                  icon={Users}
-                  gradientFrom="yellow-600"
-                  gradientTo="green-600"
-                >
-                  <div className="space-y-6">
-                    <div>
-                      <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Dedicated Configuration Specialist</h4>
-                      <p>You'll be assigned a dedicated specialist who will guide you through the entire setup process and address any questions or concerns you may have.</p>
-                    </div>
-
-                    <div>
-                      <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Ongoing Technical Support</h4>
-                      <p>Our technical team will be available to handle any technical aspects of the setup and ensure smooth integration with your existing systems.</p>
-                    </div>
-
-                    <div>
-                      <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Educational Resources</h4>
-                      <p>Access to documentation, video tutorials, and best practices to help you make the most of your voice AI agent once it's set up.</p>
                     </div>
                   </div>
                 </InfoCard>
