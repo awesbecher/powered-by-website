@@ -29,7 +29,7 @@ export const IntroSection = ({ initialLoad }: IntroSectionProps) => {
       <div className="space-y-4 text-lg text-gray-300">
         <p className="text-left leading-relaxed"><span className={POWERED_BY_STYLE}>Powered_by</span> is excited to help you configure your free voice AI agent. This page will guide you through the setup process, giving you an overview of the 11-step process required to provide the appropriate workflow and objective design for your Voice AI Agent to meet your business needs.</p>
         
-        <p className="text-left leading-relaxed">After completing your registration, our team will reach out to you with the necessary information to begin the configuration process. Follow the instructions on this page to ensure your voice AI agent is set up perfectly for your requirements.</p>
+        <p className="text-left leading-relaxed">After these steps and collecting the required information, click on "Launch Voice AI Agent Configurator" to start the process.</p>
         
         <p className="text-left leading-relaxed">The setup process is designed to be straightforward while allowing for detailed customization to match your brand voice and business processes.</p>
       </div>
