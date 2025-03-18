@@ -54,12 +54,12 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({
         ref={iframeRef}
         data-tally-src={getSrcUrl()}
         width="100%"
-        height="400px"
+        height="380px"
         frameBorder="0"
         marginHeight={0}
         marginWidth={0}
         title="Voice AI Contact Form"
-        style={{ minHeight: "400px", maxHeight: "480px" }}
+        style={{ minHeight: "380px", maxHeight: "400px" }}
       ></iframe>
     </div>
   );
