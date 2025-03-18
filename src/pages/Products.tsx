@@ -10,6 +10,7 @@ import { SectionTitle } from "@/components/home/SectionTitle";
 import { FeaturedSolutionCard } from "@/components/products/FeaturedSolutionCard";
 import { MessageSquare, Phone, Mail, Smartphone, Cpu } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import OfferButton from "@/components/home/OfferButton";
 
 const Products = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -66,6 +67,13 @@ const Products = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <Navbar />
+      
+      {/* New Offer Button */}
+      <div className="w-full pt-6">
+        <OfferButton className={`transition-all duration-1000 ease-out transform
+          ${initialLoad ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`} />
+      </div>
+      
       <ProductsHero initialLoad={initialLoad} className="hero-section" />
       
       <ProductIndex />
