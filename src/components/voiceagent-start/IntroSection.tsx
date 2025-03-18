@@ -33,6 +33,17 @@ export const IntroSection = ({ initialLoad }: IntroSectionProps) => {
         
         <p className="text-left leading-relaxed">The setup process is designed to be straightforward while allowing for detailed customization to match your brand voice and business processes.</p>
       </div>
+      
+      <div className="mt-8 flex justify-center lg:justify-start">
+        <Link to="/voiceagent-form">
+          <Button 
+            variant="outline" 
+            className="bg-white text-purple-700 hover:bg-gray-100 border-0 rounded-full px-6 py-2 font-semibold text-lg"
+          >
+            Launch Voice AI Agent Configurator <ArrowRight className="ml-1" />
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 };
