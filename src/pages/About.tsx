@@ -56,9 +56,6 @@ const About = () => {
                 <span className="ml-2 bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] to-[#d4d4d4]">
                   AI
                 </span>
-                <span className="text-[#9b87f5] text-5xl md:text-6xl ml-2 inline-block transform scale-y-125">
-                  /
-                </span> 
               </div>
               <div className="flex items-center">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] to-[#d4d4d4]">
