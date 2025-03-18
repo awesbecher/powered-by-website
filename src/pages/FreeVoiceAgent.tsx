@@ -32,8 +32,8 @@ const FreeVoiceAgent = () => {
                 </div>
 
                 <div className="lg:col-span-5 flex justify-start">
-                  <div className="p-2 bg-[#1a0b2e]/50 rounded-xl border border-purple-800/30 shadow-lg w-full max-w-md">
-                    <h2 className="text-xl font-bold text-[#9b87f5] mb-0.5">Get started now! Please give us your information:</h2>
+                  <div className="p-2 bg-black rounded-xl border border-purple-800/30 shadow-lg w-full max-w-md">
+                    <h2 className="text-xl font-bold text-white mb-0.5">Get started now! Please give us your information:</h2>
                     <TallyFormEmbed 
                       formId="wMM2yY" 
                       className="mt-0.5 rounded-lg overflow-hidden"
