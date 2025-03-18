@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -187,7 +186,10 @@ const About = () => {
         </div>
       </div>
 
-      <ClosingCTA />
+      <ClosingCTA 
+        customHeading="Ready to Put AI Agents to Work?" 
+        customButtonText="Get Started"
+      />
 
       <Footer />
     </div>
