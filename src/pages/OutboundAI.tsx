@@ -17,12 +17,16 @@ const OutboundAI = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handleContact = () => {
     window.scrollTo(0, 0);
   };
 
   return (
-    <div className="min-h-screen flex flex-col relative">
+    <div className="min-h-screen w-full relative">
       {/* Background image at the top */}
       <div className="fixed inset-0 z-0">
         <img 
@@ -34,13 +38,15 @@ const OutboundAI = () => {
       </div>
 
       {/* Content container with higher z-index */}
-      <div className="relative z-10 min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
+      <div className="relative z-10 min-h-screen">
         <Navbar />
-        <main className="flex-grow">
-          <HeroSection initialLoad={initialLoad} handleContact={handleContact} />
-          <ContentSections initialLoad={initialLoad} />
-          <CTASection handleContact={handleContact} />
-        </main>
+        <div className="pt-12 pb-12">
+          <div className="max-w-7xl mx-auto">
+            <HeroSection initialLoad={initialLoad} handleContact={handleContact} />
+            <ContentSections initialLoad={initialLoad} />
+            <CTASection handleContact={handleContact} />
+          </div>
+        </div>
         <Footer />
       </div>
     </div>
