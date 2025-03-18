@@ -50,21 +50,23 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({
   };
 
   return (
-    <div className={`tally-form-container w-full flex flex-col ${className}`}>
-      <div className="iframe-container" style={{ height: "180px", overflow: "hidden" }}>
-        <iframe
-          ref={iframeRef}
-          data-tally-src={getSrcUrl()}
-          width="100%"
-          height="180px"
-          frameBorder="0"
-          marginHeight={0}
-          marginWidth={0}
-          title="Voice AI Contact Form"
-        ></iframe>
-      </div>
-      <div className="text-[10px] text-gray-400 mt-2 text-left">
-        By using <span className={POWERED_BY_STYLE}>Powered_by</span> you agree to our <a href="https://poweredby.agency/terms-of-service" className="underline hover:text-gray-300 transition-colors">Terms of Service</a>, <a href="https://poweredby.agency/privacy-statement" className="underline hover:text-gray-300 transition-colors">Privacy</a>, and <a href="https://poweredby.agency/privacy-statement" className="underline hover:text-gray-300 transition-colors">Security</a> policies and practices.
+    <div className={`tally-form-container w-full ${className}`}>
+      <div className="flex flex-col">
+        <div className="iframe-container">
+          <iframe
+            ref={iframeRef}
+            data-tally-src={getSrcUrl()}
+            width="100%"
+            height="180px"
+            frameBorder="0"
+            marginHeight={0}
+            marginWidth={0}
+            title="Voice AI Contact Form"
+          ></iframe>
+        </div>
+        <div className="text-[10px] text-gray-400 mt-2 text-left">
+          By using <span className={POWERED_BY_STYLE}>Powered_by</span> you agree to our <a href="https://poweredby.agency/terms-of-service" className="underline hover:text-gray-300 transition-colors">Terms of Service</a>, <a href="https://poweredby.agency/privacy-statement" className="underline hover:text-gray-300 transition-colors">Privacy</a>, and <a href="https://poweredby.agency/privacy-statement" className="underline hover:text-gray-300 transition-colors">Security</a> policies and practices.
+        </div>
       </div>
     </div>
   );
