@@ -12,7 +12,7 @@ interface ClosingCTAProps {
 
 export const ClosingCTA = ({ onContactClick, externalLink, customHeading, customButtonText }: ClosingCTAProps) => {
   // Default heading text
-  const headingText = customHeading || "Ready to Put Voice AI Agents to Work?";
+  const headingText = customHeading || "Ready to Put AI Agents to Work?";
   // Default button text
   const buttonText = customButtonText || "Get Started";
   
