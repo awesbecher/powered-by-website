@@ -14,7 +14,7 @@ export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
         <div className="text-center">
           <h1 className={`text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6 transition-all duration-1000 ease-out transform
               ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
-            Configure Your <span className="text-white">Free</span> Voice AI Agent<br />
+            Build A <span className="text-white">Free</span> Voice AI Agent<br />
             <span className="text-[#9b87f5]">Setup & Customization</span>
           </h1>
           
