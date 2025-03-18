@@ -17,6 +17,9 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
           <div className={`w-full lg:w-2/3 space-y-6 transition-all duration-1000 ease-out transform mx-auto
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <h1 className="text-center">
+              <span className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white block mb-2">
+                Introducing
+              </span>
               <span className="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#9b87f5] block">
                 OutboundAI
               </span>
