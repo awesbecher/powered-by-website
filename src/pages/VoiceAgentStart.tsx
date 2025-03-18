@@ -33,9 +33,7 @@ const VoiceAgentStart = () => {
                 </div>
 
                 <div className="lg:col-span-7">
-                  <div className="p-6 bg-black/30 rounded-xl border border-purple-800/30 shadow-lg">
-                    <SetupSteps />
-                  </div>
+                  <SetupSteps />
                 </div>
               </div>
 
