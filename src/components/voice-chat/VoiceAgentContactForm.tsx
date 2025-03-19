@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useContactForm } from "./hooks/useContactForm";
@@ -34,10 +33,10 @@ export const VoiceAgentContactForm: React.FC<VoiceAgentContactFormProps> = ({ fi
     let redirectTimer: NodeJS.Timeout;
     
     if (isSubmitted) {
-      // Set a timer to redirect after 5 seconds
+      // Set a timer to redirect to the thank-you page after 1 second
       redirectTimer = setTimeout(() => {
-        navigate("/");
-      }, 5000);
+        navigate("/thank-you");
+      }, 1000);
     }
     
     // Clean up the timer if component unmounts
@@ -63,11 +62,12 @@ export const VoiceAgentContactForm: React.FC<VoiceAgentContactFormProps> = ({ fi
               Our team will be back in touch shortly to help you get started.
             </p>
             <p className="text-gray-400 text-sm mt-4">
-              Redirecting you to the home page in a few seconds...
+              Redirecting you to our resources page...
             </p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
+            
             {submitError && (
               <Alert variant="destructive" className="bg-red-900/30 border-red-800 text-white">
                 <AlertTriangle className="h-4 w-4" />

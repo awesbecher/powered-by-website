@@ -31,6 +31,7 @@ import VoiceAgentForm from "./pages/VoiceAgentForm";
 import FreeVoiceAgent from "./pages/FreeVoiceAgent";
 import VoiceAgentStart from "./pages/VoiceAgentStart";
 import VoiceAgentConfigEnd from "./pages/VoiceAgentConfigEnd";
+import ThankYou from "./pages/ThankYou";
 import Sitemap from "./pages/Sitemap";
 import NotFound from "./pages/NotFound";
 import { Toaster } from "@/components/ui/toaster"
@@ -66,6 +67,7 @@ function App() {
             <Route path="/voice-agent-config-end" element={<VoiceAgentConfigEnd />} />
             <Route path="/free-voiceagent" element={<FreeVoiceAgent />} />
             <Route path="/voiceagent-start" element={<VoiceAgentStart />} />
+            <Route path="/thank-you" element={<ThankYou />} />
             <Route path="/ai-assistant" element={<Navigate to="/ai-receptionist" replace />} />
             <Route path="/voice-business-lines" element={<Navigate to="/ai-receptionist" replace />} />
             <Route path="/mercedes-dealer" element={<MercedesDealer />} />

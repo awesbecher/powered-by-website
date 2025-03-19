@@ -1,5 +1,6 @@
 
 import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface ServiceBoxesProps {
   initialLoad: boolean;
@@ -8,6 +9,7 @@ interface ServiceBoxesProps {
 
 export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const navigate = useNavigate();
   
   useEffect(() => {
     // Load Tally embed script
@@ -26,13 +28,27 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
     
     document.body.appendChild(script);
     
+    // Set up message listener for form submission
+    const handleMessage = (event: MessageEvent) => {
+      // Check if the message is from Tally and contains form submission data
+      if (event.data?.type === 'tally:form:submitted') {
+        // Redirect to thank you page on form submission
+        setTimeout(() => {
+          navigate('/thank-you');
+        }, 1000);
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    
     // Clean up
     return () => {
       if (document.body.contains(script)) {
         document.body.removeChild(script);
       }
+      window.removeEventListener('message', handleMessage);
     };
-  }, []);
+  }, [navigate]);
 
   return (
     <div className={`w-full lg:w-1/2 transition-all duration-1000 delay-300 ease-out transform flex flex-col items-start justify-start

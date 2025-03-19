@@ -1,5 +1,6 @@
 
 import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { POWERED_BY_STYLE } from "./hooks/types/contactFormTypes";
 
 interface TallyFormEmbedProps {
@@ -7,15 +8,18 @@ interface TallyFormEmbedProps {
   className?: string;
   email?: string;
   referral?: string;
+  redirectToThankYou?: boolean;
 }
 
 export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({ 
   formId = "wMM2yY", 
   className = "",
   email = "",
-  referral = ""
+  referral = "",
+  redirectToThankYou = true
 }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const navigate = useNavigate();
   
   useEffect(() => {
     // Load Tally embed script
@@ -24,13 +28,27 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({
     script.async = true;
     document.body.appendChild(script);
 
+    // Set up message listener for form submission
+    const handleMessage = (event: MessageEvent) => {
+      // Check if the message is from Tally and contains form submission data
+      if (event.data?.type === 'tally:form:submitted' && redirectToThankYou) {
+        // Redirect to thank you page on form submission
+        setTimeout(() => {
+          navigate('/thank-you');
+        }, 1000);
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+
     // Clean up
     return () => {
       if (document.body.contains(script)) {
         document.body.removeChild(script);
       }
+      window.removeEventListener('message', handleMessage);
     };
-  }, []);
+  }, [navigate, redirectToThankYou]);
 
   // Construct the src URL with query parameters
   const getSrcUrl = () => {

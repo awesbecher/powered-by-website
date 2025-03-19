@@ -78,9 +78,9 @@ export const ContactForm = () => {
         message: ""
       });
       
-      // Redirect to home page after showing the success toast
+      // Redirect to thank-you page after showing the success toast
       setTimeout(() => {
-        navigate('/');
+        navigate('/thank-you');
       }, 1500); // Short delay to ensure toast is visible
       
     } catch (error: any) {
