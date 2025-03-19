@@ -30,8 +30,8 @@ export const FeaturesSection = () => {
         </h3>
       </div>
       
-      {/* Business card grid with center aligned content */}
-      <div className="mb-12 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-[75%] mx-auto sm:max-w-[65%]">
+      {/* Business card grid with center aligned content and reduced width */}
+      <div className="mb-12 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-[60%] mx-auto sm:max-w-[50%]">
         <div className="relative group">
           <div className="absolute -inset-1 bg-gradient-to-r from-[#6342ff] to-[#9b87f5] rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
           <div className="relative bg-[#2a1d45] p-1.5 rounded-lg border border-purple-500/20 shadow-xl text-center">
@@ -107,4 +107,3 @@ export const FeaturesSection = () => {
     </section>
   );
 };
-
