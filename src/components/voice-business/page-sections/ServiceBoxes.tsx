@@ -45,16 +45,7 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
         <p className="text-gray-400 text-sm italic">Don't worry, they're not actually real businesses.</p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-        {services.map((service, index) => (
-          <ServiceBox
-            key={index}
-            icon={service.icon}
-            category={service.category}
-            businessName={service.businessName}
-            phoneNumber={service.phoneNumber}
-            onTryNow={onTryNow}
-          />
-        ))}
+        
       </div>
     </div>
   );
