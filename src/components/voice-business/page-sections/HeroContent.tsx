@@ -26,38 +26,6 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
           <li>Retail: Answer product questions and handle order inquiries</li>
           <li>Small Business: Capture every lead, 24/7/365</li>
         </ul>
-        
-        <div className="mt-4 p-3 bg-[#2a1a4a] rounded-lg border border-[#9b87f5]/30 max-w-xl">
-          <h3 className="text-base font-semibold text-white mb-1">Talk to an AI Receptionist Now!</h3>
-          <p className="text-sm text-gray-300 mb-1">Call any one of the businesses below.</p>
-          <p className="text-xs text-gray-300 italic mb-2">(Don't worry, they're not real businesses)</p>
-          
-          <div className="grid grid-cols-2 gap-2 text-xs">
-            <div className="bg-[#3a2a5a] p-2 rounded-md">
-              <p className="font-medium text-white">Auto Dealership</p>
-              <p className="text-gray-300">Mercedes of Tacoma</p>
-              <p className="text-[#9b87f5]">Call: (732) 638 0513</p>
-            </div>
-            
-            <div className="bg-[#3a2a5a] p-2 rounded-md">
-              <p className="font-medium text-white">Real Estate Agency</p>
-              <p className="text-gray-300">Township Real Estate</p>
-              <p className="text-[#9b87f5]">Call: (732) 702 8348</p>
-            </div>
-            
-            <div className="bg-[#3a2a5a] p-2 rounded-md">
-              <p className="font-medium text-white">Restaurant</p>
-              <p className="text-gray-300">The Slice House</p>
-              <p className="text-[#9b87f5]">Call: (657) 464 2712</p>
-            </div>
-            
-            <div className="bg-[#3a2a5a] p-2 rounded-md">
-              <p className="font-medium text-white">Retail Services</p>
-              <p className="text-gray-300">Flagship Barbers</p>
-              <p className="text-[#9b87f5]">Call: (978) 818 8357</p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
