@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from "react";
-import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -30,7 +29,6 @@ addCSSImagePreloading(allImages);
 
 const AIVoiceBusinessLines = () => {
   const [initialLoad, setInitialLoad] = useState(false); // Start as false to skip animation
-  const { toast } = useToast();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,12 +36,9 @@ const AIVoiceBusinessLines = () => {
     setInitialLoad(false);
   }, []);
 
+  // Simple navigation function without toast
   const handleContact = () => {
     navigate("/contact");
-    toast({
-      title: "Good choice!",
-      description: "You're one step closer to implementing AI voice chat for your business lines."
-    });
   };
 
   return (
