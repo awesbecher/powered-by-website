@@ -12,7 +12,7 @@ export const properties: Property[] = [
   {
     title: "Elegant Colonial",
     price: "$1,199,000",
-    location: "Scottsdale",
+    location: "Princeton",
     specs: "17 Dale Dr • Landscaped Grounds",
     type: "Single Family",
     image: "/lovable-uploads/55af1e29-b9b8-4ff9-97be-370778010c17.png"
@@ -20,15 +20,15 @@ export const properties: Property[] = [
   {
     title: "Historic Colonial",
     price: "$1,185,000",
-    location: "Mesa",
-    specs: "321 Main St-Mountainville • Classic Details",
+    location: "Montclair",
+    specs: "321 Main St • Classic Details",
     type: "Single Family",
     image: "/lovable-uploads/113ea6ec-ce48-47fa-991d-93aa8edc5da7.png"
   },
   {
     title: "Luxury Estate",
     price: "$1,200,000",
-    location: "Gilbert",
+    location: "Summit",
     specs: "9 Maria Dr • Pool & Landscaped Grounds",
     type: "Single Family",
     image: "/lovable-uploads/ae57b26e-163f-4cf7-bc1a-eab353cf3fae.png"
@@ -36,7 +36,7 @@ export const properties: Property[] = [
   {
     title: "Victorian Estate",
     price: "$1,175,000",
-    location: "Glendale",
+    location: "Westfield",
     specs: "530 Houses Corner Rd • Wraparound Porch",
     type: "Single Family",
     image: "/lovable-uploads/c5847a3c-a4e9-4810-b57c-14d61f3a271c.png"
