@@ -47,7 +47,7 @@ const Index = () => {
 
       <div className="text-center px-6 mb-12 mt-2">
         <h2 className="text-3xl md:text-5xl font-bold text-white mb-12 max-w-4xl mx-auto leading-[1.1]">
-          Custom AI Agent Solutions Built for you.{" "}
+          Custom AI Agent Solutions.{" "}
           <span className="text-[#9b87f5] block mt-4 bg-gradient-to-r from-[#9b87f5] to-[#7a6cc5] bg-clip-text text-transparent">
             Quick. Easy. Powerful.
           </span>
