@@ -15,7 +15,7 @@ export const properties: Property[] = [
     location: "Princeton",
     specs: "17 Dale Dr • Landscaped Grounds",
     type: "Single Family",
-    image: "/lovable-uploads/55af1e29-b9b8-4ff9-97be-370778010c17.png"
+    image: "/lovable-uploads/56608f55-255c-4123-83c5-1099d1c40bcb.png"
   },
   {
     title: "Historic Colonial",
@@ -23,7 +23,7 @@ export const properties: Property[] = [
     location: "Montclair",
     specs: "321 Main St • Classic Details",
     type: "Single Family",
-    image: "/lovable-uploads/113ea6ec-ce48-47fa-991d-93aa8edc5da7.png"
+    image: "/lovable-uploads/592edff7-dc58-4dc2-9cd2-40f24190b926.png"
   },
   {
     title: "Luxury Estate",
@@ -31,7 +31,7 @@ export const properties: Property[] = [
     location: "Summit",
     specs: "9 Maria Dr • Pool & Landscaped Grounds",
     type: "Single Family",
-    image: "/lovable-uploads/ae57b26e-163f-4cf7-bc1a-eab353cf3fae.png"
+    image: "/lovable-uploads/47ee7c49-37c1-4b60-8ebd-298341c7e02b.png"
   },
   {
     title: "Victorian Estate",
@@ -39,7 +39,7 @@ export const properties: Property[] = [
     location: "Westfield",
     specs: "530 Houses Corner Rd • Wraparound Porch",
     type: "Single Family",
-    image: "/lovable-uploads/c5847a3c-a4e9-4810-b57c-14d61f3a271c.png"
+    image: "/lovable-uploads/314b49c0-2b4b-4b21-9970-508975960489.png"
   },
   {
     title: "Luxury Pool Estate",
