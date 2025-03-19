@@ -44,7 +44,7 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
             ref={iframeRef}
             data-tally-src="https://tally.so/embed/nW1VqP?alignLeft=1"
             width="100%"
-            height="255"
+            height="600"
             frameBorder="0"
             marginHeight={0}
             marginWidth={0}
