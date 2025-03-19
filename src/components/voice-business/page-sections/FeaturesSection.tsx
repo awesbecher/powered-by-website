@@ -69,7 +69,7 @@ export const FeaturesSection = () => {
         </div>
       </div>
 
-      <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-16">
+      <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-16 pt-16">
         Remarkably Human-like AI Receptionists for SMBs
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
