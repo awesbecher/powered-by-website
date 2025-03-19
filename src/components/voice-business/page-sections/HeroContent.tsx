@@ -9,6 +9,37 @@ interface HeroContentProps {
 }
 
 export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) => {
+  const scrollToForm = () => {
+    // First find the Tally form container
+    const formContainer = document.querySelector('.border.border-white.rounded-3xl');
+    if (formContainer) {
+      // Scroll to the form
+      formContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      
+      // After scrolling, find and focus on the first input field in the Tally form
+      setTimeout(() => {
+        const tallyIframe = document.querySelector('iframe[data-tally-src]');
+        if (tallyIframe) {
+          // Try to access iframe content and focus the first input
+          try {
+            const iframeDoc = (tallyIframe as HTMLIFrameElement).contentDocument || 
+                             (tallyIframe as HTMLIFrameElement).contentWindow?.document;
+            if (iframeDoc) {
+              const firstInput = iframeDoc.querySelector('input, textarea, select');
+              if (firstInput) {
+                (firstInput as HTMLElement).focus();
+              }
+            }
+          } catch (error) {
+            console.log("Could not focus on form input due to cross-origin restrictions");
+            // If we can't access the iframe content due to cross-origin restrictions,
+            // at least we've scrolled to the form
+          }
+        }
+      }, 1000); // Wait for the scroll to complete and iframe to fully load
+    }
+  };
+
   return (
     <div className={`w-full lg:w-1/2 space-y-4 transition-all duration-1000 ease-out transform
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
@@ -30,7 +61,7 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
       
       <div className="pt-4">
         <Button 
-          onClick={handleContact}
+          onClick={scrollToForm}
           className="bg-[#6342ff] hover:bg-[#5335d8] text-white px-6 py-6 h-auto rounded-md text-lg font-medium"
         >
           Get Started <ArrowRight className="ml-2 h-5 w-5" />
