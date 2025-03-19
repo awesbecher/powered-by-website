@@ -29,6 +29,7 @@ const ThankYou = () => {
               
               <p className="text-gray-300 text-center mb-6">
                 We've received your information and our team will be in touch shortly. 
+                Typically, we will be back in touch within 24-48 hours, or even sooner!
                 In the meantime, check out these resources below to learn more about our AI solutions.
               </p>
             </CardContent>
