@@ -104,12 +104,12 @@ const Products = () => {
           </div>
         </div>
         
-        <ProductIndex />
-        
-        {/* New Section Title for Industry Solutions */}
+        {/* Section Title for Industry Solutions - MOVED above ProductIndex */}
         <div className="container mx-auto px-4 py-6">
           <SectionTitle title="Horizontal & Vertical-Industry Solutions:" linked={false} />
         </div>
+        
+        <ProductIndex />
         
         {/* Detailed Solutions */}
         <div className="max-w-full pt-2">
