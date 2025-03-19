@@ -1,4 +1,3 @@
-
 import { Car, Building, Coffee, Briefcase } from "lucide-react";
 import { ServiceBox } from "./ServiceBox";
 
