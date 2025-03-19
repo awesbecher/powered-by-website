@@ -20,8 +20,8 @@ const FeatureCard = ({ icon, title, description }: FeatureCardProps) => {
 export const FeaturesSection = () => {
   return (
     <section className="py-2 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
-      {/* Business card grid with reduced height */}
-      <div className="mb-12 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-[85%] mx-auto sm:max-w-[80%]">
+      {/* Business card grid with reduced horizontal width */}
+      <div className="mb-12 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-[75%] mx-auto sm:max-w-[65%]">
         <div className="relative group">
           <div className="absolute -inset-1 bg-gradient-to-r from-[#6342ff] to-[#9b87f5] rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
           <div className="relative bg-[#2a1d45] p-1.5 rounded-lg border border-purple-500/20 shadow-xl">
