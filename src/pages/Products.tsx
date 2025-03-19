@@ -88,7 +88,7 @@ const Products = () => {
         
         <ProductsHero initialLoad={initialLoad} className="hero-section" />
         
-        {/* MOVED: Featured Agent Solutions Section - now directly after hero */}
+        {/* Featured Agent Solutions Section - now directly after hero */}
         <div className="container mx-auto px-4 py-12">
           <SectionTitle title="Featured Agent Solutions:" linked={false} />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
@@ -106,8 +106,13 @@ const Products = () => {
         
         <ProductIndex />
         
+        {/* New Section Title for Industry Solutions */}
+        <div className="container mx-auto px-4 py-6">
+          <SectionTitle title="Horizontal & Vertical-Industry Solutions:" linked={false} />
+        </div>
+        
         {/* Detailed Solutions */}
-        <div className="max-w-full pt-8">
+        <div className="max-w-full pt-2">
           <div className="space-y-0 divide-y divide-white/10">
             {serviceCardsData.map((card, index) => (
               <div 
