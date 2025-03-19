@@ -88,10 +88,8 @@ const Products = () => {
         
         <ProductsHero initialLoad={initialLoad} className="hero-section" />
         
-        <ProductIndex />
-        
-        {/* Featured Agent Solutions Section - Reduced padding */}
-        <div className="container mx-auto px-4 py-6">
+        {/* MOVED: Featured Agent Solutions Section - now directly after hero */}
+        <div className="container mx-auto px-4 py-12">
           <SectionTitle title="Featured Agent Solutions:" linked={false} />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
             {featuredSolutions.map((solution, index) => (
@@ -105,7 +103,9 @@ const Products = () => {
             ))}
           </div>
         </div>
-
+        
+        <ProductIndex />
+        
         {/* Detailed Solutions */}
         <div className="max-w-full pt-8">
           <div className="space-y-0 divide-y divide-white/10">
