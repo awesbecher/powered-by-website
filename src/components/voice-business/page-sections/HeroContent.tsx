@@ -27,8 +27,8 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
           <li>Small Business: Capture every lead, 24/7/365</li>
         </ul>
         
-        {/* Increased vertical spacing by changing mt-8 to mt-16 to move boxes further down */}
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-[90%] mx-auto sm:max-w-[85%]">
+        {/* Increased vertical spacing by changing mt-16 to mt-24 to provide more space between list and cards */}
+        <div className="mt-24 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-[90%] mx-auto sm:max-w-[85%]">
           <div className="relative group">
             <div className="absolute -inset-1 bg-gradient-to-r from-[#6342ff] to-[#9b87f5] rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
             <div className="relative bg-[#2a1d45] p-3 rounded-lg border border-purple-500/20 shadow-xl">
