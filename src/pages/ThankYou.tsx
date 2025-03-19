@@ -59,10 +59,10 @@ const ThankYou = () => {
             
             <ResourceCard 
               icon={<Phone className="h-5 w-5" />}
-              title="Call a Business"
-              description="Experience our voice AI by calling one of our demo businesses."
-              linkText="Make a Call"
-              linkUrl="/ai-receptionist"
+              title="Book a Consultation"
+              description="Schedule a free 30-minute consultation with our AI voice experts."
+              linkText="Book a Free Consultation"
+              linkUrl="/contact"
             />
             
             <ResourceCard 
