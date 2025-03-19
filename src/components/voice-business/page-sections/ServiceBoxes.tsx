@@ -14,6 +14,8 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
         <TallyFormEmbed 
           formId="nW1VqP" 
           className="w-full" 
+          referral="downloads"
+          email="alice@example.com"
         />
       </div>
     </div>
