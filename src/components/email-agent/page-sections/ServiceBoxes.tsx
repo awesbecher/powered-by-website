@@ -13,6 +13,15 @@ export const ServiceBoxes = ({ initialLoad }: ServiceBoxesProps) => {
         <div className="max-w-lg mx-auto">
           <h4 className="text-white text-2xl font-bold mb-8">Don't believe us? Try it yourself:</h4>
           
+          {/* Nick's Image */}
+          <div className="mb-4 flex justify-center">
+            <img 
+              src="/lovable-uploads/aacd8d9f-424d-4420-be70-8362bbbea179.png" 
+              alt="Nick - AI Email Agent" 
+              className="w-24 h-24 rounded-full object-cover border-2 border-[#9b87f5]"
+            />
+          </div>
+          
           <p className="text-xl text-white font-medium mb-6">Email Nick! He's our favorite AI agent here at <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span>:</p>
           
           <div className="flex items-center justify-center mb-6">
