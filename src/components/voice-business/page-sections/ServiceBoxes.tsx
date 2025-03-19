@@ -38,13 +38,13 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
     <div className={`w-full lg:w-1/2 transition-all duration-1000 delay-300 ease-out transform flex flex-col items-start justify-start
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
       <div className="grid grid-cols-1 gap-4 w-full">
-        <div className="border border-white rounded-3xl p-6">
-          <h2 className="text-2xl font-bold text-white mb-4 text-left">Get Started With Voice AI Today</h2>
+        <div className="border border-white rounded-3xl p-4 pb-2">
+          <h2 className="text-2xl font-bold text-white mb-3 text-left">Get Started With Voice AI Today</h2>
           <iframe
             ref={iframeRef}
             data-tally-src="https://tally.so/embed/nW1VqP?alignLeft=1"
             width="100%"
-            height="600"
+            height="480"
             frameBorder="0"
             marginHeight={0}
             marginWidth={0}
