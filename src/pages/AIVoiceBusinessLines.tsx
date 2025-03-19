@@ -22,6 +22,7 @@ const otherImages = [
   "/lovable-uploads/f8dcc881-9e41-4bee-b8e5-78e0fdbccabb.png", // Agent image
   "/lovable-uploads/cb89434a-efcd-49fb-a3fa-ffb81f5f723c.png", // Telephone image
   "/lovable-uploads/65c7ad96-17cd-4bc0-8a6d-0148a49f3402.png", // Powered By Agency logo
+  "/lovable-uploads/ab33d6f5-9129-4319-b602-91cb3582c95f.png", // Vintage telephone background
 ];
 const allImages = [...propertyImages, ...otherImages];
 forcePrefetchImages(allImages);
@@ -46,16 +47,28 @@ const AIVoiceBusinessLines = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0f0f0f] via-[#121212] to-[#0f0f0f]">
-      <Navbar />
-      {/* Remove the WebsiteHeader component which may be causing the double header */}
-      <HeroSection initialLoad={initialLoad} handleContact={handleContact} />
-      <FeaturesSection />
-      <BenefitsSection />
-      <CTASection handleContact={handleContact} />
-      <FAQSection />
-      <FinalCTASection handleContact={handleContact} />
-      <Footer />
+    <div className="min-h-screen relative">
+      {/* Background image at the top */}
+      <div className="fixed inset-0 z-0">
+        <img 
+          src="/lovable-uploads/ab33d6f5-9129-4319-b602-91cb3582c95f.png" 
+          alt="Vintage rotary telephone" 
+          className="w-full h-[60vh] object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/80 via-[#2f1c4a] to-[#1a0b2e]"></div>
+      </div>
+
+      {/* Content container with higher z-index */}
+      <div className="relative z-10 bg-gradient-to-b from-transparent via-[#121212] to-[#0f0f0f] min-h-screen">
+        <Navbar />
+        <HeroSection initialLoad={initialLoad} handleContact={handleContact} />
+        <FeaturesSection />
+        <BenefitsSection />
+        <CTASection handleContact={handleContact} />
+        <FAQSection />
+        <FinalCTASection handleContact={handleContact} />
+        <Footer />
+      </div>
     </div>
   );
 };
