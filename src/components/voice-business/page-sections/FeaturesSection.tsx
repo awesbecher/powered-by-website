@@ -20,10 +20,15 @@ const FeatureCard = ({ icon, title, description }: FeatureCardProps) => {
 export const FeaturesSection = () => {
   return (
     <section className="py-2 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
-      {/* New title above business cards */}
-      <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-8">
-        Try an AI Receptionist yourself. Make a call to anyone of the businesses below.
-      </h2>
+      {/* Updated title split into two lines */}
+      <div className="text-center mb-8">
+        <h2 className="text-3xl sm:text-4xl font-bold text-white">
+          Try an AI Receptionist yourself!
+        </h2>
+        <h3 className="text-2xl sm:text-3xl font-bold text-white mt-2">
+          Make a call to anyone of the businesses below.
+        </h3>
+      </div>
       
       {/* Business card grid with reduced horizontal width */}
       <div className="mb-12 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-[75%] mx-auto sm:max-w-[65%]">
