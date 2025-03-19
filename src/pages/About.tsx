@@ -2,7 +2,7 @@
 import { useEffect, useState, useRef } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { ArrowRight, Users, Building, Bot } from "lucide-react";
+import { ArrowRight, Users, Building } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { NavigationButtons } from "@/components/home/NavigationButtons";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
@@ -155,8 +155,7 @@ const About = () => {
           <div className={`mt-16 p-8 bg-gradient-to-r from-[#2a1a47]/40 to-[#1a0b2e]/40 rounded-xl border border-[#9b87f5]/30 text-left
             transition-all duration-1000 delay-400 ease-out transform max-w-4xl mx-auto backdrop-blur-md shadow-lg
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-            <div className="mb-4 flex items-center">
-              <Bot className="h-8 w-8 text-[#9b87f5] mr-3" />
+            <div className="mb-4">
               <h2 className="text-3xl font-bold text-white">Custom Approach to AI Agents</h2>
             </div>
             <p className="text-xl text-gray-300 mb-6">
