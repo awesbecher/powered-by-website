@@ -20,11 +20,11 @@ const FeatureCard = ({ icon, title, description }: FeatureCardProps) => {
 export const FeaturesSection = () => {
   return (
     <section className="py-2 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
-      {/* Business card grid moved from HeroContent */}
-      <div className="mb-16 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-[85%] mx-auto sm:max-w-[80%]">
+      {/* Business card grid with reduced height */}
+      <div className="mb-12 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-[85%] mx-auto sm:max-w-[80%]">
         <div className="relative group">
           <div className="absolute -inset-1 bg-gradient-to-r from-[#6342ff] to-[#9b87f5] rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
-          <div className="relative bg-[#2a1d45] p-2 rounded-lg border border-purple-500/20 shadow-xl">
+          <div className="relative bg-[#2a1d45] p-1.5 rounded-lg border border-purple-500/20 shadow-xl">
             <p className="font-semibold text-white text-sm">Auto Dealership</p>
             <p className="text-gray-300 text-xs">Mercedes of Tacoma</p>
             <p className="text-[#9b87f5] text-xs">Call: (732) 638 0513</p>
@@ -33,7 +33,7 @@ export const FeaturesSection = () => {
         
         <div className="relative group">
           <div className="absolute -inset-1 bg-gradient-to-r from-[#6342ff] to-[#9b87f5] rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
-          <div className="relative bg-[#2a1d45] p-2 rounded-lg border border-purple-500/20 shadow-xl">
+          <div className="relative bg-[#2a1d45] p-1.5 rounded-lg border border-purple-500/20 shadow-xl">
             <p className="font-semibold text-white text-sm">Real Estate Agency</p>
             <p className="text-gray-300 text-xs">Township Real Estate</p>
             <p className="text-[#9b87f5] text-xs">Call: (732) 702 8348</p>
@@ -42,7 +42,7 @@ export const FeaturesSection = () => {
         
         <div className="relative group">
           <div className="absolute -inset-1 bg-gradient-to-r from-[#6342ff] to-[#9b87f5] rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
-          <div className="relative bg-[#2a1d45] p-2 rounded-lg border border-purple-500/20 shadow-xl">
+          <div className="relative bg-[#2a1d45] p-1.5 rounded-lg border border-purple-500/20 shadow-xl">
             <p className="font-semibold text-white text-sm">Restaurant</p>
             <p className="text-gray-300 text-xs">The Slice House</p>
             <p className="text-[#9b87f5] text-xs">Call: (657) 464 2712</p>
@@ -51,7 +51,7 @@ export const FeaturesSection = () => {
         
         <div className="relative group">
           <div className="absolute -inset-1 bg-gradient-to-r from-[#6342ff] to-[#9b87f5] rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
-          <div className="relative bg-[#2a1d45] p-2 rounded-lg border border-purple-500/20 shadow-xl">
+          <div className="relative bg-[#2a1d45] p-1.5 rounded-lg border border-purple-500/20 shadow-xl">
             <p className="font-semibold text-white text-sm">Retail Services</p>
             <p className="text-gray-300 text-xs">Flagship Barbers</p>
             <p className="text-[#9b87f5] text-xs">Call: (978) 818 8357</p>
