@@ -27,10 +27,10 @@ export const ServiceBoxes = ({ initialLoad }: ServiceBoxesProps) => {
           <div className="flex items-center justify-center mb-6">
             <MessageCircle className="text-[#9b87f5] w-10 h-10 mr-3" />
             <a 
-              href="sms:+16503741437" 
+              href="sms:+14083849098" 
               className="inline-block text-xl font-bold text-[#9b87f5] hover:text-[#8a75e3] transition-colors underline underline-offset-4"
             >
-              (650) 374-1437
+              (408) 384-9098
             </a>
           </div>
           
