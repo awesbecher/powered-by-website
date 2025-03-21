@@ -20,8 +20,9 @@ const SimpleGuide = () => {
           
           <div className="bg-[#2a1a47]/40 border border-[#9b87f5]/30 rounded-xl p-8 backdrop-blur-md">
             <iframe 
-              src="https://gamma.app/embed/w4kxpq0y38i7xqu" 
-              className="w-full h-[450px] md:h-[500px] lg:h-[550px]"
+              src="https://docs.google.com/viewer?url=https://poweredbyai.agency/wp-content/uploads/2023/12/Simple-Guide-to-AI-Agents.pdf&embedded=true" 
+              className="w-full h-[450px] md:h-[550px] lg:h-[700px]"
+              frameBorder="0"
               allow="fullscreen" 
               title="Simple Guide to AI Agents">
             </iframe>
