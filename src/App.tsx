@@ -23,6 +23,7 @@ import CallConfirmation from "./pages/CallConfirmation";
 import FoodMenu from "./pages/FoodMenu";
 import RoomService from "./pages/room-service";
 import About from "./pages/About";
+import SimpleGuide from "./pages/SimpleGuide";
 import TermsOfService from "./pages/TermsOfService";
 import PrivacyStatement from "./pages/PrivacyStatement";
 import VirtualSE from "./pages/VirtualSE";
@@ -58,6 +59,7 @@ function App() {
             <Route path="/email-agent" element={<EmailAgent />} />
             <Route path="/text-agent" element={<TextAgent />} />
             <Route path="/about" element={<About />} />
+            <Route path="/simple-guide" element={<SimpleGuide />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/privacy-statement" element={<PrivacyStatement />} />
             <Route path="/sitemap" element={<Sitemap />} />
