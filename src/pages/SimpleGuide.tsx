@@ -18,9 +18,13 @@ const SimpleGuide = () => {
             Simple Guide
           </h1>
           
-          {/* Content placeholder for Gamma app presentation */}
-          <div className="bg-[#2a1a47]/40 border border-[#9b87f5]/30 rounded-xl p-8 h-[600px] flex items-center justify-center backdrop-blur-md">
-            <p className="text-xl text-gray-300">Gamma app presentation will be embedded here.</p>
+          <div className="bg-[#2a1a47]/40 border border-[#9b87f5]/30 rounded-xl p-8 backdrop-blur-md">
+            <iframe 
+              src="https://gamma.app/embed/w4kxpq0y38i7xqu" 
+              className="w-full h-[450px] md:h-[500px] lg:h-[550px]"
+              allow="fullscreen" 
+              title="Simple Guide to AI Agents">
+            </iframe>
           </div>
         </div>
       </div>
