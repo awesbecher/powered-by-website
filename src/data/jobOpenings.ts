@@ -29,10 +29,10 @@ export const jobOpenings: JobOpening[] = [
   },
   {
     id: "2",
-    title: "Full Stack Developer",
+    title: "Forward Deployed Engineer (FDE)",
     location: "Remote",
     type: "Full-time",
-    postedDate: "July 12, 2023",
+    postedDate: "March 28, 2025",
     requirements: [
       "3+ years of experience with React and TypeScript",
       "Experience with backend technologies (Node.js, Python)",
