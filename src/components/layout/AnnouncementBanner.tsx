@@ -18,8 +18,8 @@ const AnnouncementBanner = ({
     <div className="w-full bg-gradient-to-r from-[#a0b4ff] to-[#c9ccff] py-1.5">
       <div className="container mx-auto px-4 flex items-center justify-center">
         <div className="text-sm sm:text-base text-center text-black flex items-center">
-          <span className="bg-[#1A1F2C] text-white rounded-full py-1 px-3 flex items-center mr-2">
-            <Bot className="mr-1 h-4 w-4" />
+          <span className="bg-[#1A1F2C] text-white rounded-full py-0.5 px-2 flex items-center mr-2 text-xs">
+            <Bot className="mr-0.5 h-3 w-3" />
             <span className="font-semibold">New Offer</span>
           </span>
           <span> Build a </span>
