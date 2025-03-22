@@ -100,10 +100,12 @@ const About = () => {
         </div>
       </div>
 
-      <ClosingCTA 
-        customHeading="Ready to Put AI Agents to Work?" 
-        customButtonText="Get Started"
-      />
+      <div className="relative z-20">
+        <ClosingCTA 
+          customHeading="Ready to Put AI Agents to Work?" 
+          customButtonText="Get Started"
+        />
+      </div>
 
       <Footer />
     </div>

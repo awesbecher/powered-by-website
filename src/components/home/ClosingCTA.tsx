@@ -19,7 +19,7 @@ export const ClosingCTA = ({ onContactClick, externalLink, customHeading, custom
   // If an external link is provided, use it instead of the internal route
   if (externalLink) {
     return (
-      <div className="bg-gradient-to-r from-[#6342ff] to-[#a87cff] py-20 px-4 sm:px-6 lg:px-8 mt-10">
+      <div className="bg-gradient-to-r from-[#6342ff] to-[#a87cff] py-20 px-4 sm:px-6 lg:px-8 mt-10 relative z-20">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
             {headingText}
@@ -40,7 +40,7 @@ export const ClosingCTA = ({ onContactClick, externalLink, customHeading, custom
 
   // Default behavior with internal routing using a direct Link component
   return (
-    <div className="bg-gradient-to-r from-[#6342ff] to-[#a87cff] py-20 px-4 sm:px-6 lg:px-8 mt-10">
+    <div className="bg-gradient-to-r from-[#6342ff] to-[#a87cff] py-20 px-4 sm:px-6 lg:px-8 mt-10 relative z-20">
       <div className="max-w-5xl mx-auto text-center">
         <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
           {headingText}
