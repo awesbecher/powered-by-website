@@ -40,7 +40,7 @@ export const jobOpenings: JobOpening[] = [
       "Understanding of cloud infrastructure (AWS, Azure, GCP)",
       "Experience with CI/CD pipelines"
     ],
-    description: "We're seeking a talented Full Stack Developer to join our growing team. You'll be responsible for building and maintaining the web applications and APIs that power our AI agent platform.",
+    description: "The Forward Deployed Engineer (FDE) role is a critical part of ensuring our customers' success. You will collaborate directly with customers, swiftly identifying their most pressing challenges and crafting AI agent solutions based on their specific vision and business workflows. In this role, you'll utilize your creativity, problem-solving skills, and technical expertise to empower organizations to harness AI agents to improve customer experiences and increase operational efficiencies. From initial problem identification to solution deployment, you'll play a key role in shaping the AI agent outcomes for our customers.",
     applyUrl: "https://www.linkedin.com/jobs/view/4187385080/"
   }
 ];
