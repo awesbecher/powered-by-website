@@ -38,7 +38,7 @@ export const ClosingCTA = ({ onContactClick, externalLink, customHeading, custom
     );
   }
 
-  // Default behavior with internal routing
+  // Default behavior with internal routing - using Link to navigate to /contact
   return (
     <div className="bg-gradient-to-r from-[#6342ff] to-[#a87cff] py-20 px-4 sm:px-6 lg:px-8 mt-10">
       <div className="max-w-5xl mx-auto text-center">
