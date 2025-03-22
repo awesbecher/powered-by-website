@@ -103,7 +103,6 @@ const About = () => {
       <ClosingCTA 
         customHeading="Ready to Put AI Agents to Work?" 
         customButtonText="Get Started"
-        onContactClick={() => {}} // Remove this empty handler to use the default link behavior
       />
 
       <Footer />
