@@ -13,10 +13,10 @@ export interface JobOpening {
 export const jobOpenings: JobOpening[] = [
   {
     id: "1",
-    title: "Senior AI Engineer",
+    title: "Founding Account Executive (AE)",
     location: "Remote",
     type: "Full-time",
-    postedDate: "July 10, 2023",
+    postedDate: "March 22, 2025",
     requirements: [
       "5+ years of experience in machine learning and AI",
       "Expertise in large language models (LLMs)",
