@@ -25,7 +25,7 @@ export const jobOpenings: JobOpening[] = [
       "Background in NLP and speech recognition"
     ],
     description: "We're looking for a Senior AI Engineer to help us build and improve our AI agent technology. You'll be working on cutting-edge language models and voice technology to create natural, intelligent interactions for our customers.",
-    applyUrl: "https://www.linkedin.com/jobs/view/senior-ai-engineer-at-poweredby-agency"
+    applyUrl: "https://www.linkedin.com/jobs/view/4187385123/"
   },
   {
     id: "2",
@@ -41,6 +41,6 @@ export const jobOpenings: JobOpening[] = [
       "Experience with CI/CD pipelines"
     ],
     description: "We're seeking a talented Full Stack Developer to join our growing team. You'll be responsible for building and maintaining the web applications and APIs that power our AI agent platform.",
-    applyUrl: "https://www.linkedin.com/jobs/view/full-stack-developer-at-poweredby-agency"
+    applyUrl: "https://www.linkedin.com/jobs/view/4187385080/"
   }
 ];
