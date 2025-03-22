@@ -1,5 +1,5 @@
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Bot } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface AnnouncementBannerProps {
@@ -17,7 +17,8 @@ const AnnouncementBanner = ({
   return (
     <div className="w-full bg-gradient-to-r from-[#a0b4ff] to-[#c9ccff] py-1.5">
       <div className="container mx-auto px-4 flex items-center justify-center">
-        <div className="text-sm sm:text-base text-center text-black">
+        <div className="text-sm sm:text-base text-center text-black flex items-center">
+          <Bot className="mr-1 h-4 w-4" />
           <span className="font-semibold">New Offer</span>
           <span> Build a </span>
           <span className="text-[#9b87f5] font-semibold">Free</span>
