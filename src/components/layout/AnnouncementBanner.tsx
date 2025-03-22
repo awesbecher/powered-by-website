@@ -23,7 +23,7 @@ const AnnouncementBanner = ({
             <span className="font-semibold">New Offer</span>
           </span>
           <span> Build a </span>
-          <span className="text-[#9b87f5] font-semibold">Free</span>
+          <span className="text-[#9b87f5] font-semibold"> Free </span>
           <span> Voice AI Agent Today for any Business Use Case </span>
           <Link 
             to={FREE_VOICEAGENT_ROUTE}
