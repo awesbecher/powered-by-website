@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -6,12 +5,14 @@ import { ArrowRight, Users, Building } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { NavigationButtons } from "@/components/home/NavigationButtons";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
+import { AboutPageButtons } from "@/components/home/AboutPageButtons";
 
 const About = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   const [scrollPosition, setScrollPosition] = useState(0);
   const navigate = useNavigate();
   const collaborationRef = useRef<HTMLDivElement>(null);
+  const whoWeAreRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setInitialLoad(false);
@@ -23,6 +24,20 @@ const About = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const scrollToSection = (ref: React.RefObject<HTMLElement>) => {
+    if (ref.current) {
+      // Adding offset to account for the fixed navbar
+      const yOffset = -100;
+      const elementPosition = ref.current.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY + yOffset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
 
   return (
     <div className="min-h-screen w-full relative">
@@ -71,11 +86,13 @@ const About = () => {
                 </span>
               </div>
             </h1>
-            <div className="mt-8 mb-16 flex justify-center">
+            <div className="mt-8 mb-6 flex justify-center">
               <p className="text-xl bg-white text-[#6342ff] font-bold px-4 py-2 rounded-md inline-block backdrop-blur-sm shadow-lg">
                 Our mission: to democratize access to AI agents for SMBs.
               </p>
             </div>
+            
+            <AboutPageButtons onScrollToSection={scrollToSection} sectionRef={whoWeAreRef} />
           </div>
         </section>
 
@@ -130,7 +147,7 @@ const About = () => {
           </div>
 
           <div className="max-w-4xl mx-auto">
-            <div className={`transition-all duration-1000 delay-200 ease-out transform
+            <div ref={whoWeAreRef} className={`transition-all duration-1000 delay-200 ease-out transform
               ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
               <div className="flex items-center mb-6">
                 <Users className="h-8 w-8 text-[#9b87f5] mr-3" />
@@ -151,7 +168,6 @@ const About = () => {
             </div>
           </div>
 
-          {/* New Section: Custom Approach to AI Agents */}
           <div className={`mt-16 p-8 bg-gradient-to-r from-[#2a1a47]/40 to-[#1a0b2e]/40 rounded-xl border border-[#9b87f5]/30 text-left
             transition-all duration-1000 delay-400 ease-out transform max-w-4xl mx-auto backdrop-blur-md shadow-lg
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
