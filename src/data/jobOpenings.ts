@@ -24,7 +24,7 @@ export const jobOpenings: JobOpening[] = [
       "Experience with conversational AI systems",
       "Background in NLP and speech recognition"
     ],
-    description: "We're looking for a Senior AI Engineer to help us build and improve our AI agent technology. You'll be working on cutting-edge language models and voice technology to create natural, intelligent interactions for our customers.",
+    description: "The Founding Account Executive role will be a vital part of Powered_by's mission to democratize access to AI agent technology to SMBs. As the first Account Executive on our team, you will work closely with our founders and solutions design team to help qualify, evangelize, and close new SMB customers. You will need to have a killer instinct for finding new sales opportunities and a genuine intellectual interest in all things AI agents.",
     applyUrl: "https://www.linkedin.com/jobs/view/4187385123/"
   },
   {

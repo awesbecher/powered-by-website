@@ -1,6 +1,6 @@
 
 import React from "react";
-import { ArrowUpRight, MapPin, Calendar, Briefcase, GraduationCap } from "lucide-react";
+import { ArrowUpRight, MapPin, Calendar, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { JobOpening } from "@/data/jobOpenings";
@@ -32,15 +32,8 @@ export const JobCard = ({ job }: JobCardProps) => {
           </div>
           
           <div className="mt-2">
-            <h4 className="text-sm font-semibold text-white mb-2">Requirements:</h4>
-            <ul className="list-disc pl-5 text-sm text-white/90 space-y-1">
-              {job.requirements.slice(0, 3).map((req, index) => (
-                <li key={index}>{req}</li>
-              ))}
-              {job.requirements.length > 3 && (
-                <li>... and more</li>
-              )}
-            </ul>
+            <h4 className="text-sm font-semibold text-white mb-2">Role Summary:</h4>
+            <p className="text-sm text-white/90 leading-relaxed">{job.description}</p>
           </div>
         </div>
       </CardContent>
