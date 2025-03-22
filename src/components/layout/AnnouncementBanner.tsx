@@ -12,22 +12,18 @@ const AnnouncementBanner = ({
   showCloseButton = false 
 }: AnnouncementBannerProps) => {
   // Change the URL to the internal route
-  const OUTBOUND_AI_ROUTE = "/outbound-ai";
+  const FREE_VOICEAGENT_ROUTE = "/free-voiceagent";
   
   return (
     <div className="w-full bg-gradient-to-r from-[#a0b4ff] to-[#c9ccff] py-1.5">
       <div className="container mx-auto px-4 flex items-center justify-center">
         <div className="text-sm sm:text-base text-center text-black">
-          <span>Powered_by releases </span>
+          <span className="font-semibold">New Offer</span>
+          <span> Build a </span>
+          <span className="text-[#9b87f5] font-semibold">Free</span>
+          <span> Voice AI Agent Today for any Business Use Case </span>
           <Link 
-            to={OUTBOUND_AI_ROUTE}
-            className="font-semibold hover:underline"
-          >
-            OutboundAI
-          </Link>
-          <span>: Automation Agents for Outbound Sales & Marketing Calls. </span>
-          <Link 
-            to={OUTBOUND_AI_ROUTE}
+            to={FREE_VOICEAGENT_ROUTE}
             className="font-semibold inline-flex items-center hover:underline"
           >
             Learn more 
