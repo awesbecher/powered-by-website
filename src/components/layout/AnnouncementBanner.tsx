@@ -22,12 +22,10 @@ const AnnouncementBanner = ({
             <Bot className="mr-0.5 h-3 w-3" />
             <span className="font-semibold">New Offer</span>
           </span>
-          <span> Build a </span>
-          <span className="text-[#9b87f5] font-bold"> Free </span>
-          <span> Voice AI Agent Today for any Business Use Case </span>
+          <span>Build a <span className="font-bold">Free</span> Voice AI Agent Today for any Business Use Case </span>
           <Link 
             to={FREE_VOICEAGENT_ROUTE}
-            className="font-semibold inline-flex items-center hover:underline"
+            className="font-semibold inline-flex items-center hover:underline ml-1"
           >
             Learn more 
             <ArrowRight className="ml-1 h-4 w-4" />
