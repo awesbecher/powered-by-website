@@ -1,4 +1,3 @@
-
 export interface JobOpening {
   id: string;
   title: string;
@@ -32,7 +31,7 @@ export const jobOpenings: JobOpening[] = [
     title: "Forward Deployed Engineer (FDE)",
     location: "Remote",
     type: "Full-time",
-    postedDate: "March 28, 2025",
+    postedDate: "March 18, 2025",
     requirements: [
       "3+ years of experience with React and TypeScript",
       "Experience with backend technologies (Node.js, Python)",
