@@ -16,7 +16,7 @@ export const CareersHero = () => {
               Join Our Team
             </h1>
             <p className="text-white/80 text-lg max-w-2xl">
-              We're building the future of AI agents for businesses. Join us on our mission to revolutionize how businesses engage with their customers through intelligent, conversational AI.
+              Our mission is to democratize access to AI agent technology for SMBs. Join us on this mission. See our open roles below.
             </p>
           </div>
         </div>
