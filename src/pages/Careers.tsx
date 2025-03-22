@@ -19,8 +19,6 @@ const Careers = () => {
         <CareersHero />
         
         <div className="mt-16">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">Open Positions</h2>
-          
           <div className="grid grid-cols-1 gap-6 max-w-3xl mx-auto">
             {jobOpenings.map((job) => (
               <JobCard key={job.id} job={job} />
