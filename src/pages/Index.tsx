@@ -41,9 +41,9 @@ const Index = () => {
             <img 
               src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=942846&theme=dark&t=1742671943126" 
               alt="Powered&#0095;by - Custom&#0032;AI&#0032;Agents&#0032;for&#0032;SMBs&#0046;&#0032;Agentic&#0032;voice&#0044;&#0032;email&#0044;&#0032;SMS&#0044;&#0032;&#0038;&#0032;more | Product Hunt" 
-              style={{ width: "250px", height: "54px" }} 
-              width="250" 
-              height="54" 
+              style={{ width: "180px", height: "39px" }} 
+              width="180" 
+              height="39" 
             />
           </a>
         </div>
