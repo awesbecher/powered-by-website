@@ -25,9 +25,8 @@ export const AboutPageButtons = ({ onScrollToSection, sectionRef }: AboutPageBut
   return (
     <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
       <Button 
-        variant="outline" 
+        variant="gradient" 
         size="lg"
-        className="border-[#9b87f5] bg-[#2a1a47]/70 text-white hover:bg-[#3a2a57] hover:text-white hover:border-[#b097ff]"
         onClick={handleWhoWeAreClick}
       >
         <Users className="mr-2 h-5 w-5" />
