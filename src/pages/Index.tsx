@@ -49,7 +49,7 @@ const Index = () => {
         </div>
       </div>
       
-      <div className="pt-6">
+      <div className="pt-2">
         <HeroSection initialLoad={initialLoad} />
       </div>
 
