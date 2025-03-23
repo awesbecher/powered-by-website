@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -20,16 +19,7 @@ const ProductHunt = () => {
       <div className="container mx-auto px-4 py-5">
         <div className="flex justify-between items-center">
           <Logo />
-          <div className="flex items-center gap-3">
-            <a href="https://www.producthunt.com/posts/powered_by?utm_source=badge-featured&utm_medium=badge" target="_blank" rel="noreferrer">
-              <img 
-                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=942846&theme=dark" 
-                alt="Powered_by - AI Agents for SMBs | Product Hunt" 
-                width="180" 
-                height="39" 
-              />
-            </a>
-          </div>
+          {/* ProductHunt button removed from here */}
         </div>
       </div>
 
@@ -557,49 +547,4 @@ const ProductHunt = () => {
               Ready to Transform Your Business with AI?
             </h2>
             <p className="text-xl text-white/90 mb-10 max-w-3xl mx-auto">
-              Join the SMBs already using <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> AI agents to reduce costs, improve customer satisfaction, and scale operations.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link to="/contact">
-                <Button className="bg-white hover:bg-gray-100 text-[#6342ff] font-bold px-8 py-6 text-lg rounded-md w-full sm:w-auto">
-                  Book a Demo <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-              <Button 
-                className="bg-transparent hover:bg-white/10 text-white border border-white px-8 py-6 text-lg rounded-md w-full sm:w-auto"
-                onClick={() => document.dispatchEvent(new CustomEvent('open-voice-dialog'))}
-              >
-                Talk to an AI Agent Now
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Award Section */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl border-t border-white/5">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8">
-          <div className="flex items-center">
-            <Award className="text-[#9b87f5] w-8 h-8 mr-3" />
-            <div>
-              <p className="text-white font-bold">Best AI Solution for SMBs</p>
-              <p className="text-gray-400 text-sm">2023 Innovation Awards</p>
-            </div>
-          </div>
-          <Separator orientation="vertical" className="h-12 hidden md:block bg-white/10" />
-          <div className="flex items-center">
-            <Users className="text-[#9b87f5] w-8 h-8 mr-3" />
-            <div>
-              <p className="text-white font-bold">Top 10 AI Startups to Watch</p>
-              <p className="text-gray-400 text-sm">Tech Innovators 2023</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
-    </div>
-  );
-};
-
-export default ProductHunt;
+              Join the SMBs already using <span className="bg-white text-[#6
