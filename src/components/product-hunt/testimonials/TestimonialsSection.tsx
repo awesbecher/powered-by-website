@@ -15,9 +15,9 @@ export const TestimonialsSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <TestimonialCard 
             quote="Our AI receptionist handles over 200 calls daily, scheduling appointments and answering questions. This has freed up our staff to focus on more complex customer needs."
-            name="John Doe"
+            name="Dr. Helen Tong"
             role="Dental Practice Owner"
-            initials="JD"
+            initials="HT"
           />
 
           <TestimonialCard 
