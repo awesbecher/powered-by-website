@@ -28,6 +28,13 @@ export const TestimonialsSection = () => {
           />
 
           <TestimonialCard 
+            quote="Using Voice AI Agents to automate our phone follow-up to the marketing leads in our CRM has increased our dealership customer return rate five-fold."
+            name="Jeremy Tompkins"
+            role="Auto Dealership"
+            initials="JT"
+          />
+
+          <TestimonialCard 
             quote="We implemented the text-based AI for customer service, and it now handles 75% of our inquiries without human intervention. Our customer satisfaction has never been higher."
             name="Stephanie Turner"
             role="Retail Business Owner"
