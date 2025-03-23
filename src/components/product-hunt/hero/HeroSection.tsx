@@ -39,21 +39,6 @@ export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
           </div>
         </div>
       </div>
-
-      {/* Product Screenshot */}
-      <div className={`transition-all duration-1000 delay-500 ease-out transform ${initialLoad ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
-        <div className="relative mx-auto max-w-5xl mt-12">
-          <div className="bg-gradient-to-r from-[#6342ff]/20 to-[#a87cff]/20 rounded-2xl p-2">
-            <img 
-              src="/lovable-uploads/aa693bec-b111-4ff5-82d5-78ad46643ea3.png" 
-              alt="AI Agents for Customer Service" 
-              className="w-full h-auto rounded-xl shadow-2xl"
-            />
-          </div>
-          <div className="absolute -top-8 -right-8 -z-10 w-72 h-72 rounded-full bg-[#9b87f5]/20 blur-3xl"></div>
-          <div className="absolute -bottom-8 -left-8 -z-10 w-72 h-72 rounded-full bg-[#6342ff]/20 blur-3xl"></div>
-        </div>
-      </div>
     </section>
   );
 };
