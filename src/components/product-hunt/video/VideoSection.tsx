@@ -64,7 +64,10 @@ export const VideoSection = () => {
         </div>
         <div className="w-full text-white">
           <p className="text-sm leading-relaxed">
-            David is actually one of our AI agents himself. If you'd like, you can email him directly at{" "}
+            David is actually one of our AI agents himself.
+          </p>
+          <p className="text-sm leading-relaxed">
+            If you'd like, you can email him directly at{" "}
             <a href="mailto:david@poweredby.agency" className="text-[#9b87f5] hover:underline">
               david@poweredby.agency
             </a>. Or even send him a text @ <a href="sms:+14085506231" className="text-[#9b87f5] hover:underline">(408) 550-6231</a> to learn more about AI agents.
