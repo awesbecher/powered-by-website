@@ -14,10 +14,8 @@ export const VideoSection = () => {
       <div className="max-w-4xl mx-auto relative overflow-hidden rounded-2xl shadow-xl bg-gradient-to-r from-[#1a0b2e] to-[#2f1c4a] border border-white/10">
         {!isPlaying ? (
           <div className="aspect-video relative flex items-center justify-center cursor-pointer group" onClick={handlePlayClick}>
-            {/* Thumbnail image - replace the src with your actual thumbnail */}
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-all duration-300"></div>
             
-            {/* Play button */}
             <button 
               className="relative z-10 w-20 h-20 flex items-center justify-center rounded-full bg-[#9b87f5]/90 group-hover:bg-[#9b87f5] transition-all duration-300 transform group-hover:scale-110"
             >
@@ -34,7 +32,7 @@ export const VideoSection = () => {
               className="w-full h-full" 
               controls 
               autoPlay
-              src="/your-video-file.mp4" // Replace with your actual video path
+              src="/lovable-uploads/your-uploaded-video.mp4" // Replace with the actual uploaded video path
             >
               Your browser does not support the video tag.
             </video>
