@@ -13,11 +13,16 @@ export const TestimonialCard = ({ quote, name, role, initials }: TestimonialCard
   return (
     <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
       <div className="flex items-center mb-4">
-        <Star className="text-yellow-400 w-4 h-4" />
-        <Star className="text-yellow-400 w-4 h-4" />
-        <Star className="text-yellow-400 w-4 h-4" />
-        <Star className="text-yellow-400 w-4 h-4" />
-        <Star className="text-yellow-400 w-4 h-4" />
+        <Star className="text-yellow-400 w-4 h-4" fill="#facc15" />
+        <Star className="text-yellow-400 w-4 h-4" fill="#facc15" />
+        <Star className="text-yellow-400 w-4 h-4" fill="#facc15" />
+        <Star className="text-yellow-400 w-4 h-4" fill="#facc15" />
+        <div className="relative w-4 h-4">
+          <Star className="text-yellow-400 w-4 h-4 absolute top-0 left-0" />
+          <div className="absolute top-0 left-0 w-3/4 h-4 overflow-hidden">
+            <Star className="text-yellow-400 w-4 h-4" fill="#facc15" />
+          </div>
+        </div>
       </div>
       <p className="text-gray-300 mb-6 italic">
         {quote}

@@ -9,13 +9,18 @@ export const SocialProofSection = () => {
         <div className="grid grid-cols-2 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
           <div className="flex flex-col items-center justify-center py-2">
             <div className="flex items-center mb-1">
-              <Star className="text-yellow-400 w-5 h-5 mr-1" />
-              <Star className="text-yellow-400 w-5 h-5 mr-1" />
-              <Star className="text-yellow-400 w-5 h-5 mr-1" />
-              <Star className="text-yellow-400 w-5 h-5 mr-1" />
-              <Star className="text-yellow-400 w-5 h-5 mr-1" />
+              <Star className="text-yellow-400 w-5 h-5 mr-1" fill="#facc15" />
+              <Star className="text-yellow-400 w-5 h-5 mr-1" fill="#facc15" />
+              <Star className="text-yellow-400 w-5 h-5 mr-1" fill="#facc15" />
+              <Star className="text-yellow-400 w-5 h-5 mr-1" fill="#facc15" />
+              <div className="relative w-5 h-5 mr-1">
+                <Star className="text-yellow-400 w-5 h-5 absolute top-0 left-0" />
+                <div className="absolute top-0 left-0 w-3/4 h-5 overflow-hidden">
+                  <Star className="text-yellow-400 w-5 h-5" fill="#facc15" />
+                </div>
+              </div>
             </div>
-            <span className="text-white text-lg font-medium">4.9/5 Rating</span>
+            <span className="text-white text-lg font-medium">4.75/5 Rating</span>
           </div>
           
           <div className="flex flex-col items-center justify-center py-2">
