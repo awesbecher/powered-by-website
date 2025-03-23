@@ -10,7 +10,7 @@ export const VideoSection = () => {
   };
 
   return (
-    <section className="pt-4 pb-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
+    <section className="pt-0 pb-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
       <div className="max-w-4xl mx-auto relative overflow-hidden rounded-2xl shadow-xl bg-gradient-to-r from-[#1a0b2e] to-[#2f1c4a] border border-white/10">
         {!isPlaying ? (
           <div className="aspect-video relative flex items-center justify-center cursor-pointer group" onClick={handlePlayClick}>
