@@ -29,9 +29,9 @@ export const TestimonialsSection = () => {
 
           <TestimonialCard 
             quote="We implemented the text-based AI for customer service, and it now handles 75% of our inquiries without human intervention. Our customer satisfaction has never been higher."
-            name="Robert Brown"
+            name="Stephanie Turner"
             role="Retail Business Owner"
-            initials="RB"
+            initials="ST"
           />
         </div>
       </div>
