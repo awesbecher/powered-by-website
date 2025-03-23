@@ -36,7 +36,7 @@ export const PricingSection = () => {
           description="For businesses ready to expand their AI agent capabilities."
           features={[
             "2 AI Agent Types",
-            "Up to 5,000 interactions/month",
+            "Up to 2,500 interactions/month",
             "Priority support",
             "Advanced customization",
             {text: "Deployment & integration services for additional fee", hasAsterisk: true}
