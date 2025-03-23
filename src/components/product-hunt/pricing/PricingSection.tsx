@@ -18,7 +18,7 @@ export const PricingSection = () => {
         <PricingCard 
           title="Starter"
           price="$299"
-          description="Perfect for small businesses just getting started with AI."
+          description="Perfect for small businesses just getting started with AI agents."
           features={[
             "1 AI Agent Type",
             "Up to 1,000 interactions/month",
