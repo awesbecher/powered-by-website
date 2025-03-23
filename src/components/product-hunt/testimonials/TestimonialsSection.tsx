@@ -35,6 +35,13 @@ export const TestimonialsSection = () => {
           />
 
           <TestimonialCard 
+            quote="I am truly impressed with the quality of the AI voice agents we have implemented to handle incoming customer calls. The tech is getting better every day."
+            name="Ahmet Demir"
+            role="IT Consultancy"
+            initials="AD"
+          />
+
+          <TestimonialCard 
             quote="We implemented the text-based AI for customer service, and it now handles 75% of our inquiries without human intervention. Our customer satisfaction has never been higher."
             name="Stephanie Turner"
             role="Retail Business Owner"
