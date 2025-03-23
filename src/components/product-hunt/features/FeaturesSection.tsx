@@ -1,7 +1,7 @@
 
 import React from "react";
 import { FeatureCard } from "./FeatureCard";
-import { MessageSquare, Shield, Zap, User, Megaphone } from "lucide-react";
+import { MessageSquare, Shield, Zap, User, Megaphone, Mic } from "lucide-react";
 
 export const FeaturesSection = () => {
   return (
@@ -15,7 +15,14 @@ export const FeaturesSection = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
+        <FeatureCard 
+          icon={<Mic className="w-6 h-6 text-white" />}
+          title="AI Voice Chat"
+          description="Interactive voice AI that engages in natural conversations, answers questions, and provides assistance in real-time."
+          linkTo="/voice-chat"
+        />
+
         <FeatureCard 
           icon={<MessageSquare className="w-6 h-6 text-white" />}
           title="Voice AI"
