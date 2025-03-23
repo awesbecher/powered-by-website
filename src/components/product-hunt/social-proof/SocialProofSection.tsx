@@ -25,7 +25,7 @@ export const SocialProofSection = () => {
           
           <div className="flex flex-col items-center justify-center py-2">
             <span className="font-bold text-white text-2xl mb-1">50+</span>
-            <span className="text-gray-300">SMBs Powered</span>
+            <span className="text-gray-300">SMBs Powered_by</span>
           </div>
           
           <div className="flex flex-col items-center justify-center py-2">
