@@ -22,9 +22,9 @@ export const TestimonialsSection = () => {
 
           <TestimonialCard 
             quote="The email AI agent has transformed our lead response time from days to minutes. We've seen a 40% increase in conversion rates since implementation."
-            name="Jane Smith"
+            name="Greg Gilpatrick"
             role="Real Estate Agency"
-            initials="JS"
+            initials="GG"
           />
 
           <TestimonialCard 
