@@ -21,14 +21,6 @@ export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
             Built for SMBs who need enterprise-grade AI solutions at affordable prices.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
-            <a href="https://www.producthunt.com/posts/powered_by" target="_blank" rel="noreferrer">
-              <Button
-                className="bg-[#4A2A82] hover:bg-[#3D2269] text-white px-6 py-6 text-lg rounded-md w-full sm:w-auto flex items-center"
-              >
-                <img src="/lovable-uploads/a5f716f2-7362-4352-8931-2d27b2892c7e.png" alt="Product Hunt" className="w-6 h-6 mr-2" />
-                View on Product Hunt
-              </Button>
-            </a>
             <Link to="/contact">
               <Button
                 className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-6 text-lg rounded-md w-full sm:w-auto"
