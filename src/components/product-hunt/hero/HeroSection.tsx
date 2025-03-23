@@ -14,7 +14,7 @@ export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
       <div className={`transition-all duration-1000 ease-out transform ${initialLoad ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
         <div className="text-center">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-            Custom AI Agents for <span className="text-[#9b87f5]">Small Businesses</span>
+            Custom AI Agents for <span className="text-[#9b87f5]">SMB</span>
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
             Deploy agentic AI solutions for voice, email, SMS, and more. No coding required.
