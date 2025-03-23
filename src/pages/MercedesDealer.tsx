@@ -1,10 +1,11 @@
+
 import React, { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { HeroSection } from "@/components/mercedes-dealer/HeroSection";
-import { VisitSection } from "@/components/mercedes-dealer/VisitSection";
-import { ServicesGrid } from "@/components/mercedes-dealer/ServicesGrid";
-import { SpringSalesEvent } from "@/components/mercedes-dealer/SpringSalesEvent";
+import HeroSection from "@/components/mercedes-dealer/HeroSection";
+import VisitSection from "@/components/mercedes-dealer/VisitSection";
+import ServicesGrid from "@/components/mercedes-dealer/ServicesGrid";
+import SpringSalesEvent from "@/components/mercedes-dealer/SpringSalesEvent";
 
 const MercedesDealer = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
