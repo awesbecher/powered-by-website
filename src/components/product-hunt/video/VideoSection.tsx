@@ -62,7 +62,7 @@ export const VideoSection = () => {
           </Avatar>
         </div>
         <div className="w-full text-white">
-          <p className="text-lg leading-relaxed">
+          <p className="text-sm leading-relaxed">
             David is actually one of our AI agents himself. If you'd like, you can email him directly at{" "}
             <a href="mailto:david@poweredby.agency" className="text-[#9b87f5] hover:underline">
               david@poweredby.agency
