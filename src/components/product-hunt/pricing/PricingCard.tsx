@@ -56,11 +56,7 @@ export const PricingCard = ({
       </ul>
       {contactSalesEmail ? (
         <a href={`mailto:${contactSalesEmail}`}>
-          <Button className={`w-full ${
-            popular 
-              ? "bg-[#9b87f5] hover:bg-[#8a75e3] text-white" 
-              : "bg-white hover:bg-gray-100 text-[#6342ff]"
-            } font-bold`}>
+          <Button className="w-full bg-white hover:bg-gray-100 text-[#6342ff] font-bold">
             {buttonText}
           </Button>
         </a>
