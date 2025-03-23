@@ -34,6 +34,7 @@ import VoiceAgentConfigEnd from "./pages/VoiceAgentConfigEnd";
 import ThankYou from "./pages/ThankYou";
 import Sitemap from "./pages/Sitemap";
 import Careers from "./pages/Careers";
+import ProductHunt from "./pages/ProductHunt";
 import NotFound from "./pages/NotFound";
 import { Toaster } from "@/components/ui/toaster"
 import { GlobalVoiceChatDialog } from './components/shared/GlobalVoiceChatDialog';
@@ -70,6 +71,7 @@ function App() {
             <Route path="/voiceagent-start" element={<VoiceAgentStart />} />
             <Route path="/thank-you" element={<ThankYou />} />
             <Route path="/careers" element={<Careers />} />
+            <Route path="/product-hunt" element={<ProductHunt />} />
             <Route path="/ai-assistant" element={<Navigate to="/ai-receptionist" replace />} />
             <Route path="/voice-business-lines" element={<Navigate to="/ai-receptionist" replace />} />
             <Route path="/mercedes-dealer" element={<MercedesDealer />} />
