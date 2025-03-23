@@ -46,7 +46,7 @@ export const PricingSection = () => {
 
         <PricingCard 
           title="Enterprise"
-          description="For businesses with complex AI needs and higher volume."
+          description="For businesses with complex AI agent needs and higher volume."
           features={[
             "All AI Agent Types",
             "Unlimited interactions",
