@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { HeroSection } from "@/components/product-hunt/hero/HeroSection";
+import { VideoSection } from "@/components/product-hunt/video/VideoSection";
 import { SocialProofSection } from "@/components/product-hunt/social-proof/SocialProofSection";
 import { FeaturesSection } from "@/components/product-hunt/features/FeaturesSection";
 import { BenefitsSection } from "@/components/product-hunt/benefits/BenefitsSection";
@@ -28,6 +29,9 @@ const ProductHunt = () => {
 
       {/* Hero Section */}
       <HeroSection initialLoad={initialLoad} />
+      
+      {/* Video Section */}
+      <VideoSection />
 
       {/* Social Proof */}
       <SocialProofSection />
