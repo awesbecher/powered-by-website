@@ -40,9 +40,6 @@ export const VideoSection = () => {
           </div>
         )}
       </div>
-      <div className="max-w-2xl mx-auto text-center mt-6 text-gray-300 text-sm">
-        <p>See how our AI agents can transform your business operations and customer interactions.</p>
-      </div>
     </section>
   );
 };
