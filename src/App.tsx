@@ -71,7 +71,8 @@ function App() {
             <Route path="/voiceagent-start" element={<VoiceAgentStart />} />
             <Route path="/thank-you" element={<ThankYou />} />
             <Route path="/careers" element={<Careers />} />
-            <Route path="/product-hunt" element={<ProductHunt />} />
+            <Route path="/launch" element={<ProductHunt />} />
+            <Route path="/product-hunt" element={<Navigate to="/launch" replace />} />
             <Route path="/ai-assistant" element={<Navigate to="/ai-receptionist" replace />} />
             <Route path="/voice-business-lines" element={<Navigate to="/ai-receptionist" replace />} />
             <Route path="/mercedes-dealer" element={<MercedesDealer />} />

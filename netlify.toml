@@ -13,3 +13,8 @@
   to = "/ai-receptionist"
   status = 301
 
+[[redirects]]
+  from = "/product-hunt"
+  to = "/launch"
+  status = 301
+
