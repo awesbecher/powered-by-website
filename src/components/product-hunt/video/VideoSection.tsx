@@ -28,14 +28,14 @@ export const VideoSection = () => {
           </div>
         ) : (
           <div className="aspect-video">
-            <video 
-              className="w-full h-full" 
-              controls 
-              autoPlay
-              src="/lovable-uploads/your-uploaded-video.mp4" // Replace with the actual uploaded video path
-            >
-              Your browser does not support the video tag.
-            </video>
+            <iframe 
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" 
+              title="Product Demo Video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
           </div>
         )}
       </div>
