@@ -55,7 +55,7 @@ export const VideoSection = () => {
         <div className="shrink-0">
           <Avatar className="h-16 w-16 border-2 border-[#9b87f5]/50">
             <AvatarImage 
-              src="/lovable-uploads/0c6ded7f-bc58-4f18-b24a-94aced20ae67.png"
+              src="/lovable-uploads/7b166531-de46-44f6-9ce0-e480e95c055b.png"
               alt="David, an AI agent" 
             />
             <AvatarFallback>DA</AvatarFallback>
