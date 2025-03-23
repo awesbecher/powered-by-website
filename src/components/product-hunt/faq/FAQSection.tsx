@@ -29,7 +29,7 @@ export const FAQSection = () => {
 
         <FAQItem 
           question="How long does implementation take?"
-          answer="Typically, we can have your AI agents up and running within 1-2 weeks, depending on the complexity of your requirements and the number of agents you need."
+          answer="Typically, we can have your AI agents up and running within 1-2 weeks (sometime even in a day or two), depending on the complexity of your requirements and the number of agents you need."
         />
       </div>
     </section>
