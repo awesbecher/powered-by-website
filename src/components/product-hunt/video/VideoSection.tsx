@@ -14,7 +14,14 @@ export const VideoSection = () => {
       <div className="max-w-4xl mx-auto relative overflow-hidden rounded-2xl shadow-xl bg-gradient-to-r from-[#1a0b2e] to-[#2f1c4a] border border-white/10">
         {!isPlaying ? (
           <div className="aspect-video relative flex items-center justify-center cursor-pointer group" onClick={handlePlayClick}>
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-all duration-300"></div>
+            {/* Custom thumbnail image */}
+            <img 
+              src="/lovable-uploads/21245db4-d879-4add-9238-10f627230a98.png"
+              alt="Introducing: POWERED_BY AGENCY - Custom AI Agents for SMBs" 
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300"></div>
             
             <button 
               className="relative z-10 w-20 h-20 flex items-center justify-center rounded-full bg-[#9b87f5]/90 group-hover:bg-[#9b87f5] transition-all duration-300 transform group-hover:scale-110"
