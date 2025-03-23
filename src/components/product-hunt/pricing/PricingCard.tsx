@@ -42,7 +42,7 @@ export const PricingCard = ({
             <span className="text-gray-400 ml-1 mb-1">/month</span>
           </>
         ) : (
-          <span className="text-2xl font-bold text-white">Custom Pricing</span>
+          <div className="h-10"></div> // Empty space instead of "Custom Pricing"
         )}
       </div>
       <p className="text-gray-300 mb-8">{description}</p>
