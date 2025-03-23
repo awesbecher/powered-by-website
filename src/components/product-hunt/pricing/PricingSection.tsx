@@ -10,7 +10,7 @@ export const PricingSection = () => {
           Simple, Transparent Pricing
         </h2>
         <p className="text-xl text-gray-300">
-          No hidden fees. No long-term contracts. Just powerful AI that grows with your business.
+          Get started quickly & affordable. Just powerful AI agents that grow with your business.
         </p>
       </div>
 
