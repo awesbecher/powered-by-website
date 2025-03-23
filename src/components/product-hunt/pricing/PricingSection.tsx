@@ -32,7 +32,7 @@ export const PricingSection = () => {
         <PricingCard 
           title="Growth"
           price="$599"
-          description="For businesses ready to expand their AI capabilities."
+          description="For businesses ready to expand their AI agent capabilities."
           features={[
             "2 AI Agent Types",
             "Up to 5,000 interactions/month",
