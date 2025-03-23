@@ -35,16 +35,25 @@ export const PricingCard = ({
         </div>
       )}
       <h3 className="text-2xl font-bold text-white mb-4">{title}</h3>
+      
+      {/* Pricing or Contact Button Section */}
       <div className="flex items-end mb-6">
         {price ? (
           <>
             <span className="text-4xl font-bold text-white">{price}</span>
             <span className="text-gray-400 ml-1 mb-1">/month</span>
           </>
+        ) : contactSalesEmail ? (
+          <a href={`mailto:${contactSalesEmail}`} className="w-full">
+            <Button className="w-full bg-white hover:bg-gray-100 text-[#6342ff] font-bold">
+              {buttonText}
+            </Button>
+          </a>
         ) : (
-          <div className="h-10"></div> // Empty space instead of "Custom Pricing"
+          <div className="h-10"></div> // Empty space fallback
         )}
       </div>
+      
       <p className="text-gray-300 mb-8">{description}</p>
       <ul className="space-y-4 mb-10">
         {features.map((feature, index) => (
@@ -54,13 +63,9 @@ export const PricingCard = ({
           </li>
         ))}
       </ul>
-      {contactSalesEmail ? (
-        <a href={`mailto:${contactSalesEmail}`}>
-          <Button className="w-full bg-white hover:bg-gray-100 text-[#6342ff] font-bold">
-            {buttonText}
-          </Button>
-        </a>
-      ) : (
+      
+      {/* Only show button at bottom if not already shown at top */}
+      {!contactSalesEmail && (
         <Link to="/contact">
           <Button className={`w-full ${
             popular 
