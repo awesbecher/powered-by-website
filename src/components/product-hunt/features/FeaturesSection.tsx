@@ -5,7 +5,7 @@ import { MessageSquare, Shield, Zap, User, Megaphone, Mic } from "lucide-react";
 
 export const FeaturesSection = () => {
   return (
-    <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
+    <section id="features" className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
       <div className="max-w-3xl mx-auto text-center mb-16">
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
           Multi-Channel AI Agents
