@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Play } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 export const VideoSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -51,16 +52,16 @@ export const VideoSection = () => {
 
       {/* David's section */}
       <div className="max-w-4xl mx-auto mt-8 flex flex-col md:flex-row items-center gap-6 bg-gradient-to-r from-[#1a0b2e]/80 to-[#2f1c4a]/80 p-6 rounded-xl border border-white/10">
-        <div className="w-full md:w-1/3 shrink-0">
-          <AspectRatio ratio={1} className="bg-muted rounded-lg overflow-hidden">
-            <img 
+        <div className="shrink-0">
+          <Avatar className="h-20 w-20 border-2 border-[#9b87f5]/50">
+            <AvatarImage 
               src="/lovable-uploads/0c6ded7f-bc58-4f18-b24a-94aced20ae67.png"
               alt="David, an AI agent" 
-              className="object-cover w-full h-full rounded-lg"
             />
-          </AspectRatio>
+            <AvatarFallback>DA</AvatarFallback>
+          </Avatar>
         </div>
-        <div className="w-full md:w-2/3 text-white">
+        <div className="w-full text-white">
           <p className="text-lg leading-relaxed">
             David is actually one of our AI agents himself. If you'd like, you can email him directly at{" "}
             <a href="mailto:david@poweredby.agency" className="text-[#9b87f5] hover:underline">
