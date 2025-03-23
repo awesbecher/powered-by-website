@@ -13,6 +13,7 @@ export const VideoSection = () => {
 
   return (
     <section className="pt-0 pb-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl -mt-8">
+      {/* Video section with thumbnail */}
       <div className="max-w-4xl mx-auto relative overflow-hidden rounded-2xl shadow-xl bg-gradient-to-r from-[#1a0b2e] to-[#2f1c4a] border border-white/10">
         {!isPlaying ? (
           <div className="aspect-video relative flex items-center justify-center cursor-pointer group" onClick={handlePlayClick}>
@@ -53,13 +54,13 @@ export const VideoSection = () => {
       {/* David's section */}
       <div className="max-w-4xl mx-auto mt-8 flex flex-col md:flex-row items-center gap-6 bg-gradient-to-r from-[#1a0b2e]/80 to-[#2f1c4a]/80 p-6 rounded-xl border border-white/10">
         <div className="shrink-0">
-          <Avatar className="h-16 w-16 border-2 border-[#9b87f5]/50">
-            <AvatarImage 
-              src="/lovable-uploads/7b166531-de46-44f6-9ce0-e480e95c055b.png"
-              alt="David, an AI agent" 
+          <div className="h-16 w-16 rounded-full border-2 border-[#9b87f5]/50 overflow-hidden">
+            <img 
+              src="/lovable-uploads/860dea46-183e-4c13-89a8-cb80e1039a5d.png" 
+              alt="David, an AI agent"
+              className="h-full w-full object-cover"
             />
-            <AvatarFallback>DA</AvatarFallback>
-          </Avatar>
+          </div>
         </div>
         <div className="w-full text-white">
           <p className="text-sm leading-relaxed">
