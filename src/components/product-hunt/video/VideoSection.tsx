@@ -30,10 +30,11 @@ export const VideoSection = () => {
           <div className="aspect-video">
             <iframe 
               className="w-full h-full"
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" 
-              title="Product Demo Video"
+              src="https://www.youtube.com/embed/OtNDJ9_nv7E?si=hY-guS-6qI14qlO9&autoplay=1" 
+              title="YouTube video player"
               frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
             ></iframe>
           </div>
