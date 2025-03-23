@@ -1,7 +1,7 @@
 
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { POWERED_BY_STYLE } from "./hooks/types/contactFormTypes";
+import { PoweredByText } from "@/components/shared/PoweredByText";
 
 interface TallyFormEmbedProps {
   formId?: string;
@@ -81,7 +81,7 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({
         title="Voice AI Contact Form"
       ></iframe>
       <div className="text-[10px] text-gray-400 mt-1 text-left">
-        By using <span className={POWERED_BY_STYLE}>Powered_by</span> you agree to our <a href="https://poweredby.agency/terms-of-service" className="underline hover:text-gray-300 transition-colors">Terms of Service</a>, <a href="https://poweredby.agency/privacy-statement" className="underline hover:text-gray-300 transition-colors">Privacy</a>, and <a href="https://poweredby.agency/privacy-statement" className="underline hover:text-gray-300 transition-colors">Security</a> policies and practices.
+        By using <PoweredByText className="text-[10px] px-1 py-0" /> you agree to our <a href="https://poweredby.agency/terms-of-service" className="underline hover:text-gray-300 transition-colors">Terms of Service</a>, <a href="https://poweredby.agency/privacy-statement" className="underline hover:text-gray-300 transition-colors">Privacy</a>, and <a href="https://poweredby.agency/privacy-statement" className="underline hover:text-gray-300 transition-colors">Security</a> policies and practices.
       </div>
     </div>
   );

@@ -1,0 +1,14 @@
+
+import React from "react";
+
+interface PoweredByTextProps {
+  className?: string;
+}
+
+export const PoweredByText: React.FC<PoweredByTextProps> = ({ className = "" }) => {
+  return (
+    <span className={`bg-[#5f3bff] text-white font-bold px-2 py-0.5 rounded-md ${className}`}>
+      Powered_by
+    </span>
+  );
+};

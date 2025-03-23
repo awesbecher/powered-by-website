@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { PoweredByText } from "@/components/shared/PoweredByText";
 
 export const FinalCTASection = () => {
   return (
@@ -18,7 +19,7 @@ export const FinalCTASection = () => {
             Ready to Transform Your Business with AI?
           </h2>
           <p className="text-xl text-white/90 mb-10 max-w-3xl mx-auto">
-            Join the SMBs already using <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> AI agents to reduce costs, improve customer satisfaction, and scale operations.
+            Join the SMBs already using <PoweredByText /> AI agents to reduce costs, improve customer satisfaction, and scale operations.
           </p>
           <Link to="/contact">
             <Button className="bg-white hover:bg-gray-100 text-[#6342ff] font-bold px-8 py-6 text-lg rounded-md">

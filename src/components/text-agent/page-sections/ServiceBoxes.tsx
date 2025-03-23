@@ -1,5 +1,6 @@
 
 import { MessageCircle } from "lucide-react";
+import { PoweredByText } from "@/components/shared/PoweredByText";
 
 interface ServiceBoxesProps {
   initialLoad: boolean;
@@ -22,7 +23,7 @@ export const ServiceBoxes = ({ initialLoad }: ServiceBoxesProps) => {
             />
           </div>
           
-          <p className="text-xl text-white font-medium mb-6">Text Sarah. She's our SMS-text AI agent here at <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span>:</p>
+          <p className="text-xl text-white font-medium mb-6">Text Sarah. She's our SMS-text AI agent here at <PoweredByText />:</p>
           
           <div className="flex items-center justify-center mb-6">
             <MessageCircle className="text-[#9b87f5] w-10 h-10 mr-3" />

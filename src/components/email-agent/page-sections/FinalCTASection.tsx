@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { PoweredByText } from "@/components/shared/PoweredByText";
 
 interface FinalCTASectionProps {
   handleContact: () => void;
@@ -16,7 +17,7 @@ export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
         Start impressing customers with <span className="italic text-[#9b87f5]">intelligent</span> communications.
       </h2>
       <p className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto">
-        Boost efficiency, improve follow-up rates, and enhance customer satisfaction—all with the power of a <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> AI Email Agent.
+        Boost efficiency, improve follow-up rates, and enhance customer satisfaction—all with the power of a <PoweredByText /> AI Email Agent.
       </p>
       <Link to="/contact">
         <Button 

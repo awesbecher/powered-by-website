@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { PoweredByText } from "@/components/shared/PoweredByText";
 
 interface HeroContentProps {
   initialLoad: boolean;
@@ -19,7 +20,7 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
         Automate your SMS text messages, turning every text into an opportunity to connect, convert, and delight. Whether you're chasing leads, supporting customers, or boosting sales, our AI Text Agent works tirelessly to make your messaging effortless and effective.
       </p>
       <p className="text-lg text-gray-300">
-        With an AI Text Agent by <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span>, you get intelligent SMS communication that handles follow-ups, inquiries, and customer interactions—all autonomously while meeting your company policies and privacy requirements.
+        With an AI Text Agent by <PoweredByText />, you get intelligent SMS communication that handles follow-ups, inquiries, and customer interactions—all autonomously while meeting your company policies and privacy requirements.
       </p>
       <div className="space-y-3 text-gray-300">
         <p className="text-lg">Our AI Text Agent adapts to your business needs:</p>

@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { PoweredByText } from "@/components/shared/PoweredByText";
 
 interface FinalCTASectionProps {
   handleContact: () => void;

@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { PoweredByText } from "@/components/shared/PoweredByText";
 
 interface CTASectionProps {
   handleContact: () => void;
@@ -16,7 +17,7 @@ export const CTASection = ({ handleContact }: CTASectionProps) => {
             Ready to Put AI Agents to Work?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
-            Book a free consultation with the <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> solutions team to learn how we could quickly implement an AI Text Agent that handles follow-ups, inquiries, and customer communication with remarkable efficiency.
+            Book a free consultation with the <PoweredByText /> solutions team to learn how we could quickly implement an AI Text Agent that handles follow-ups, inquiries, and customer communication with remarkable efficiency.
           </p>
           <Link to="/contact">
             <Button 

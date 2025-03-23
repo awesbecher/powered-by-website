@@ -1,5 +1,6 @@
 
 import { Mail, Clock, MessageSquare, DollarSign } from "lucide-react";
+import { PoweredByText } from "@/components/shared/PoweredByText";
 
 export const BenefitsSection = () => {
   return (
@@ -7,7 +8,7 @@ export const BenefitsSection = () => {
       <div className="text-center max-w-3xl mx-auto mb-16">
         <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">The Business Benefits of AI Email Agents</h2>
         <p className="text-xl text-gray-300">
-          Transform your customer communications, streamline workflows, and increase conversion rates with a <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> AI Email Agent.
+          Transform your customer communications, streamline workflows, and increase conversion rates with a <PoweredByText /> AI Email Agent.
         </p>
       </div>
 

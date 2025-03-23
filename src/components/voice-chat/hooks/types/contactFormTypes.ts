@@ -33,4 +33,4 @@ export interface FieldTouched {
 }
 
 // Style constant for Powered_by branding
-export const POWERED_BY_STYLE = "bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md";
+export const POWERED_BY_STYLE = "bg-[#5f3bff] text-white font-bold px-2 py-0.5 rounded-md";

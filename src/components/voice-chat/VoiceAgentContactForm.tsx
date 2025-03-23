@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useContactForm } from "./hooks/useContactForm";
@@ -6,9 +7,9 @@ import { ProductInterestsSection } from "./components/ProductInterestsSection";
 import { MessageSection } from "./components/MessageSection";
 import { FormSubmitSection } from "./components/FormSubmitSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { POWERED_BY_STYLE } from "./hooks/types/contactFormTypes";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Info, AlertTriangle } from "lucide-react";
+import { PoweredByText } from "@/components/shared/PoweredByText";
 
 interface VoiceAgentContactFormProps {
   firstNameInputRef?: React.RefObject<HTMLInputElement>;
@@ -56,7 +57,7 @@ export const VoiceAgentContactForm: React.FC<VoiceAgentContactFormProps> = ({ fi
         {isSubmitted ? (
           <div className="py-16 px-4 text-center">
             <h3 className="text-xl font-semibold text-white mb-4">
-              Thanks for your interest in <span className={POWERED_BY_STYLE}>Powered_by</span> Voice AI.
+              Thanks for your interest in <PoweredByText /> Voice AI.
             </h3>
             <p className="text-gray-300">
               Our team will be back in touch shortly to help you get started.

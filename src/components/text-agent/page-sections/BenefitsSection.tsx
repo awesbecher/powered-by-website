@@ -1,5 +1,6 @@
 
 import { MessageCircle, Clock, Users, DollarSign } from "lucide-react";
+import { PoweredByText } from "@/components/shared/PoweredByText";
 
 export const BenefitsSection = () => {
   return (
@@ -7,7 +8,7 @@ export const BenefitsSection = () => {
       <div className="text-center max-w-3xl mx-auto mb-16">
         <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">The Business Benefits of AI Text Agents</h2>
         <p className="text-xl text-gray-300">
-          Transform your customer communications, streamline workflows, and increase engagement rates with a <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> AI Text Agent.
+          Transform your customer communications, streamline workflows, and increase engagement rates with a <PoweredByText /> AI Text Agent.
         </p>
       </div>
 

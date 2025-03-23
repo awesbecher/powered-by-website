@@ -1,6 +1,7 @@
 
 import { ArrowRight, Bot } from "lucide-react";
 import { Link } from "react-router-dom";
+import { PoweredByText } from "@/components/shared/PoweredByText";
 
 interface AnnouncementBannerProps {
   onClose?: () => void;
