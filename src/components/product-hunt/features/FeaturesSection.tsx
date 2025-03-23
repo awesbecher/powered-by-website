@@ -1,7 +1,7 @@
 
 import React from "react";
 import { FeatureCard } from "./FeatureCard";
-import { MessageSquare, Shield, Zap } from "lucide-react";
+import { MessageSquare, Shield, Zap, User } from "lucide-react";
 
 export const FeaturesSection = () => {
   return (
@@ -15,7 +15,7 @@ export const FeaturesSection = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <FeatureCard 
           icon={<MessageSquare className="w-6 h-6 text-white" />}
           title="Voice AI"
@@ -35,6 +35,13 @@ export const FeaturesSection = () => {
           title="Text Agent"
           description="SMS-based AI that engages customers with intelligent conversations and provides instant responses."
           linkTo="/text-agent"
+        />
+
+        <FeatureCard 
+          icon={<User className="w-6 h-6 text-white" />}
+          title="Virtual SE"
+          description="AI-powered sales engineers that qualify leads, provide demos, and answer technical questions for your software product."
+          linkTo="/virtual-se"
         />
       </div>
     </section>
