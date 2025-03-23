@@ -61,7 +61,7 @@ export const PricingCard = ({
           ) : (
             <Check className="text-[#9b87f5] w-5 h-5 mr-2 mt-0.5" />
           )}
-          <span className={`text-gray-300 ${feature.hasAsterisk ? 'text-sm' : ''}`}>{feature.text}</span>
+          <span className={`text-gray-300 ${feature.hasAsterisk ? 'text-xs' : ''}`}>{feature.text}</span>
         </li>
       );
     }
