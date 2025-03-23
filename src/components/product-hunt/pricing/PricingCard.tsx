@@ -19,6 +19,7 @@ interface PricingCardProps {
   popular?: boolean;
   buttonText: string;
   contactSalesEmail?: string;
+  usePopularButtonStyle?: boolean;
 }
 
 export const PricingCard = ({ 
@@ -28,7 +29,8 @@ export const PricingCard = ({
   features, 
   popular = false,
   buttonText,
-  contactSalesEmail
+  contactSalesEmail,
+  usePopularButtonStyle = false
 }: PricingCardProps) => {
   // Function to determine which icon to show based on the title
   const getTitleIcon = () => {
@@ -66,6 +68,9 @@ export const PricingCard = ({
       );
     }
   };
+
+  // Determine if button should use the popular style
+  const shouldUsePopularStyle = popular || usePopularButtonStyle;
 
   return (
     <div className={`${
@@ -110,7 +115,7 @@ export const PricingCard = ({
       {!contactSalesEmail && (
         <Link to="/contact">
           <Button className={`w-full ${
-            popular 
+            shouldUsePopularStyle 
               ? "bg-[#9b87f5] hover:bg-[#8a75e3] text-white" 
               : "bg-white hover:bg-gray-100 text-[#6342ff]"
             } font-bold`}>

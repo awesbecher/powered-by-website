@@ -27,6 +27,7 @@ export const PricingSection = () => {
             {text: "Deployment & integration services for additional fee", hasAsterisk: true}
           ]}
           buttonText="Get Started"
+          usePopularButtonStyle={true}
         />
 
         <PricingCard 
