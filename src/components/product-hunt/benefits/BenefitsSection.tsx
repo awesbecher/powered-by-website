@@ -4,8 +4,8 @@ import { BenefitItem } from "./BenefitItem";
 
 export const BenefitsSection = () => {
   return (
-    <section id="benefits" className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
-      <div className="max-w-3xl mx-auto text-center mb-16">
+    <section id="benefits" className="py-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
+      <div className="max-w-3xl mx-auto text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
           Why Small Businesses Choose Us
         </h2>
