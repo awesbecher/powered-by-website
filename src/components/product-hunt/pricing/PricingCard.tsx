@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Check } from "lucide-react";
+import { Check, Star, Rocket, Award } from "lucide-react";
 
 interface PricingCardProps {
   title: string;
@@ -23,6 +23,20 @@ export const PricingCard = ({
   buttonText,
   contactSalesEmail
 }: PricingCardProps) => {
+  // Function to determine which icon to show based on the title
+  const getTitleIcon = () => {
+    switch (title) {
+      case "Starter":
+        return <Star className="inline-block mr-2 text-[#9b87f5]" size={22} />;
+      case "Growth":
+        return <Rocket className="inline-block mr-2 text-[#9b87f5]" size={22} />;
+      case "Enterprise":
+        return <Award className="inline-block mr-2 text-[#9b87f5]" size={22} />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className={`${
       popular 
@@ -34,7 +48,10 @@ export const PricingCard = ({
           MOST POPULAR
         </div>
       )}
-      <h3 className="text-2xl font-bold text-white mb-4">{title}</h3>
+      <h3 className="text-2xl font-bold text-white mb-4 flex items-center">
+        {getTitleIcon()}
+        {title}
+      </h3>
       
       {/* Pricing or Contact Button Section */}
       <div className="flex items-end mb-6">
