@@ -9,6 +9,10 @@ import SpringSalesEvent from "@/components/mercedes-dealer/SpringSalesEvent";
 
 const MercedesDealer = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [showCallDialog, setShowCallDialog] = useState(false);
+  const [isCallActive, setIsCallActive] = useState(false);
+  const [showOffers, setShowOffers] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -23,8 +27,18 @@ const MercedesDealer = () => {
       <Navbar />
       <HeroSection />
       <ServicesGrid />
-      <SpringSalesEvent />
-      <VisitSection />
+      <SpringSalesEvent 
+        isProcessing={isProcessing} 
+        isCallActive={isCallActive}
+        setShowOffers={setShowOffers}
+        setShowCallDialog={setShowCallDialog}
+      />
+      <VisitSection 
+        isProcessing={isProcessing}
+        isCallActive={isCallActive}
+        showCallDialog={showCallDialog}
+        setShowCallDialog={setShowCallDialog}
+      />
       <Footer />
     </div>
   );
