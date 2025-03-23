@@ -23,7 +23,7 @@ export const VideoSection = () => {
             </button>
             
             <div className="absolute bottom-6 left-6 text-white text-xl font-medium z-10 bg-black/60 px-4 py-2 rounded-lg">
-              Watch Demo
+              Watch our Launch Video
             </div>
           </div>
         ) : (
