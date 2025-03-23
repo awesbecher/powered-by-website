@@ -24,6 +24,7 @@ export const PricingSection = () => {
             "Up to 1,000 interactions/month",
             "Business hours support",
             "Basic customization",
+            {text: "Deployment & integration services for additional fee", hasAsterisk: true}
           ]}
           buttonText="Get Started"
         />

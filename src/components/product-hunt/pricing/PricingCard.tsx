@@ -2,13 +2,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Check, Star, Rocket, Award } from "lucide-react";
+import { Check, Star, Rocket, Award, Asterisk } from "lucide-react";
+
+interface FeatureItem {
+  text: string;
+  hasAsterisk?: boolean;
+}
+
+type Feature = string | FeatureItem;
 
 interface PricingCardProps {
   title: string;
   price?: string;
   description: string;
-  features: string[];
+  features: Feature[];
   popular?: boolean;
   buttonText: string;
   contactSalesEmail?: string;
@@ -34,6 +41,29 @@ export const PricingCard = ({
         return <Award className="inline-block mr-2 text-[#9b87f5]" size={22} />;
       default:
         return null;
+    }
+  };
+
+  // Helper function to render feature item with appropriate icon
+  const renderFeatureItem = (feature: Feature, index: number) => {
+    if (typeof feature === 'string') {
+      return (
+        <li key={index} className="flex items-start">
+          <Check className="text-[#9b87f5] w-5 h-5 mr-2 mt-0.5" />
+          <span className="text-gray-300">{feature}</span>
+        </li>
+      );
+    } else {
+      return (
+        <li key={index} className="flex items-start">
+          {feature.hasAsterisk ? (
+            <Asterisk className="text-[#9b87f5] w-5 h-5 mr-2 mt-0.5" />
+          ) : (
+            <Check className="text-[#9b87f5] w-5 h-5 mr-2 mt-0.5" />
+          )}
+          <span className="text-gray-300">{feature.text}</span>
+        </li>
+      );
     }
   };
 
@@ -73,12 +103,7 @@ export const PricingCard = ({
       
       <p className="text-gray-300 mb-8">{description}</p>
       <ul className="space-y-4 mb-10">
-        {features.map((feature, index) => (
-          <li key={index} className="flex items-start">
-            <Check className="text-[#9b87f5] w-5 h-5 mr-2 mt-0.5" />
-            <span className="text-gray-300">{feature}</span>
-          </li>
-        ))}
+        {features.map((feature, index) => renderFeatureItem(feature, index))}
       </ul>
       
       {/* Only show button at bottom if not already shown at top */}
