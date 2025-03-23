@@ -16,7 +16,7 @@ export const FinalCTASection = () => {
         </div>
         <div className="relative px-8 py-20 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-            Ready to Transform Your Business with AI?
+            Ready to Transform Your Business with AI Agents?
           </h2>
           <p className="text-xl text-white/90 mb-10 max-w-3xl mx-auto">
             Join the SMBs already using <PoweredByText /> AI agents to reduce costs, improve customer satisfaction, and scale operations.
