@@ -25,9 +25,9 @@ export const FeaturesSection = () => {
 
         <FeatureCard 
           icon={<MessageSquare className="w-6 h-6 text-white" />}
-          title="Voice AI"
+          title="AI Receptionist"
           description="Human-like voice agents that answer calls, schedule appointments, and handle customer inquiries 24/7."
-          linkTo="/voice-chat"
+          linkTo="/ai-receptionist"
         />
 
         <FeatureCard 
