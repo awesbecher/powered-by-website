@@ -4,7 +4,6 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { HeroSection } from "@/components/product-hunt/hero/HeroSection";
 import { VideoSection } from "@/components/product-hunt/video/VideoSection";
-import { SocialProofSection } from "@/components/product-hunt/social-proof/SocialProofSection";
 import { FeaturesSection } from "@/components/product-hunt/features/FeaturesSection";
 import { BenefitsSection } from "@/components/product-hunt/benefits/BenefitsSection";
 import { TestimonialsSection } from "@/components/product-hunt/testimonials/TestimonialsSection";
@@ -39,10 +38,7 @@ const ProductHunt = () => {
       {/* Why Choose Us */}
       <BenefitsSection />
 
-      {/* Social Proof - Moved to appear before Testimonials */}
-      <SocialProofSection />
-
-      {/* Testimonials */}
+      {/* Testimonials - Social proof now integrated within this section */}
       <TestimonialsSection />
 
       {/* Pricing Section */}
