@@ -45,7 +45,6 @@ export const PricingSection = () => {
 
         <PricingCard 
           title="Enterprise"
-          price="$1,499"
           description="For businesses with complex AI needs and higher volume."
           features={[
             "All AI Agent Types",
@@ -56,6 +55,7 @@ export const PricingSection = () => {
             "API access",
           ]}
           buttonText="Contact Sales"
+          contactSalesEmail="sales@poweredby.agency"
         />
       </div>
     </section>

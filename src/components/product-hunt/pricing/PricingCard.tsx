@@ -6,11 +6,12 @@ import { Check } from "lucide-react";
 
 interface PricingCardProps {
   title: string;
-  price: string;
+  price?: string;
   description: string;
   features: string[];
   popular?: boolean;
   buttonText: string;
+  contactSalesEmail?: string;
 }
 
 export const PricingCard = ({ 
@@ -19,7 +20,8 @@ export const PricingCard = ({
   description, 
   features, 
   popular = false,
-  buttonText 
+  buttonText,
+  contactSalesEmail
 }: PricingCardProps) => {
   return (
     <div className={`${
@@ -34,8 +36,14 @@ export const PricingCard = ({
       )}
       <h3 className="text-2xl font-bold text-white mb-4">{title}</h3>
       <div className="flex items-end mb-6">
-        <span className="text-4xl font-bold text-white">{price}</span>
-        <span className="text-gray-400 ml-1 mb-1">/month</span>
+        {price ? (
+          <>
+            <span className="text-4xl font-bold text-white">{price}</span>
+            <span className="text-gray-400 ml-1 mb-1">/month</span>
+          </>
+        ) : (
+          <span className="text-2xl font-bold text-white">Custom Pricing</span>
+        )}
       </div>
       <p className="text-gray-300 mb-8">{description}</p>
       <ul className="space-y-4 mb-10">
@@ -46,15 +54,27 @@ export const PricingCard = ({
           </li>
         ))}
       </ul>
-      <Link to="/contact">
-        <Button className={`w-full ${
-          popular 
-            ? "bg-[#9b87f5] hover:bg-[#8a75e3] text-white" 
-            : "bg-white hover:bg-gray-100 text-[#6342ff]"
-          } font-bold`}>
-          {buttonText}
-        </Button>
-      </Link>
+      {contactSalesEmail ? (
+        <a href={`mailto:${contactSalesEmail}`}>
+          <Button className={`w-full ${
+            popular 
+              ? "bg-[#9b87f5] hover:bg-[#8a75e3] text-white" 
+              : "bg-white hover:bg-gray-100 text-[#6342ff]"
+            } font-bold`}>
+            {buttonText}
+          </Button>
+        </a>
+      ) : (
+        <Link to="/contact">
+          <Button className={`w-full ${
+            popular 
+              ? "bg-[#9b87f5] hover:bg-[#8a75e3] text-white" 
+              : "bg-white hover:bg-gray-100 text-[#6342ff]"
+            } font-bold`}>
+            {buttonText}
+          </Button>
+        </Link>
+      )}
     </div>
   );
 };
