@@ -53,7 +53,7 @@ export const VideoSection = () => {
       {/* David's section */}
       <div className="max-w-4xl mx-auto mt-8 flex flex-col md:flex-row items-center gap-6 bg-gradient-to-r from-[#1a0b2e]/80 to-[#2f1c4a]/80 p-6 rounded-xl border border-white/10">
         <div className="shrink-0">
-          <Avatar className="h-20 w-20 border-2 border-[#9b87f5]/50">
+          <Avatar className="h-16 w-16 border-2 border-[#9b87f5]/50">
             <AvatarImage 
               src="/lovable-uploads/0c6ded7f-bc58-4f18-b24a-94aced20ae67.png"
               alt="David, an AI agent" 
