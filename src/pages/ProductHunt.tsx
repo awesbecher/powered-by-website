@@ -1,7 +1,8 @@
 
 import React, { useState, useEffect } from "react";
+import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { Header } from "@/components/product-hunt/navigation/Header";
+import AnnouncementBanner from "@/components/layout/AnnouncementBanner";
 import { HeroSection } from "@/components/product-hunt/hero/HeroSection";
 import { SocialProofSection } from "@/components/product-hunt/social-proof/SocialProofSection";
 import { FeaturesSection } from "@/components/product-hunt/features/FeaturesSection";
@@ -21,8 +22,11 @@ const ProductHunt = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
-      {/* Header with logo and mobile menu */}
-      <Header />
+      {/* Sticky header with announcement banner and navbar */}
+      <div className="sticky top-0 z-50 w-full">
+        <AnnouncementBanner />
+        <Navbar />
+      </div>
 
       {/* Hero Section */}
       <HeroSection initialLoad={initialLoad} />
