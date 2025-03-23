@@ -576,20 +576,6 @@ const ProductHunt = () => {
         </div>
       </section>
 
-      {/* "As Seen On" Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl border-t border-white/5">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold text-white">As Seen On</h2>
-        </div>
-        <div className="flex flex-wrap justify-center items-center gap-8 opacity-70">
-          <img src="/lovable-uploads/0d1c3dc0-7aad-4ddd-8b25-1edf45232f70.png" alt="Product Hunt" className="h-8 grayscale hover:grayscale-0 transition-all duration-300" />
-          <img src="/lovable-uploads/fd8a631b-2f6e-4f85-a4e8-aa0f775cd50f.png" alt="TechCrunch" className="h-6 grayscale hover:grayscale-0 transition-all duration-300" />
-          <img src="/lovable-uploads/79330a0b-f47e-4785-b5be-d22a6127fe74.png" alt="Fast Company" className="h-6 grayscale hover:grayscale-0 transition-all duration-300" />
-          <img src="/lovable-uploads/55af1e29-b9b8-4ff9-97be-370778010c17.png" alt="Forbes" className="h-6 grayscale hover:grayscale-0 transition-all duration-300" />
-          <img src="/lovable-uploads/dfa6c12a-d0aa-4b21-bca9-73cf4b428400.png" alt="Entrepreneur" className="h-6 grayscale hover:grayscale-0 transition-all duration-300" />
-        </div>
-      </section>
-
       {/* Award Section */}
       <section className="py-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl border-t border-white/5">
         <div className="flex flex-col md:flex-row items-center justify-center gap-8">
