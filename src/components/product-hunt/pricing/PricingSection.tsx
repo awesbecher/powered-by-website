@@ -38,7 +38,7 @@ export const PricingSection = () => {
             "Up to 5,000 interactions/month",
             "Priority support",
             "Advanced customization",
-            "Analytics dashboard",
+            {text: "Deployment & integration services for additional fee", hasAsterisk: true}
           ]}
           popular={true}
           buttonText="Get Started"
