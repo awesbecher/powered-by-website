@@ -33,14 +33,14 @@ const ProductHunt = () => {
       {/* Video Section */}
       <VideoSection />
 
-      {/* Social Proof */}
-      <SocialProofSection />
-
       {/* Features Section */}
       <FeaturesSection />
 
       {/* Why Choose Us */}
       <BenefitsSection />
+
+      {/* Social Proof - Moved to appear before Testimonials */}
+      <SocialProofSection />
 
       {/* Testimonials */}
       <TestimonialsSection />
