@@ -1,16 +1,16 @@
 
 import React, { useState, useEffect } from "react";
 import Footer from "@/components/layout/Footer";
-import { Header } from "@/components/product-hunt/Header";
-import { HeroSection } from "@/components/product-hunt/HeroSection";
-import { SocialProofSection } from "@/components/product-hunt/SocialProofSection";
-import { FeaturesSection } from "@/components/product-hunt/FeaturesSection";
-import { BenefitsSection } from "@/components/product-hunt/BenefitsSection";
-import { TestimonialsSection } from "@/components/product-hunt/TestimonialsSection";
-import { PricingSection } from "@/components/product-hunt/PricingSection";
-import { HowItWorksSection } from "@/components/product-hunt/HowItWorksSection";
-import { FAQSection } from "@/components/product-hunt/FAQSection";
-import { FinalCTASection } from "@/components/product-hunt/FinalCTASection";
+import { Header } from "@/components/product-hunt/navigation/Header";
+import { HeroSection } from "@/components/product-hunt/hero/HeroSection";
+import { SocialProofSection } from "@/components/product-hunt/social-proof/SocialProofSection";
+import { FeaturesSection } from "@/components/product-hunt/features/FeaturesSection";
+import { BenefitsSection } from "@/components/product-hunt/benefits/BenefitsSection";
+import { TestimonialsSection } from "@/components/product-hunt/testimonials/TestimonialsSection";
+import { PricingSection } from "@/components/product-hunt/pricing/PricingSection";
+import { HowItWorksSection } from "@/components/product-hunt/how-it-works/HowItWorksSection";
+import { FAQSection } from "@/components/product-hunt/faq/FAQSection";
+import { FinalCTASection } from "@/components/product-hunt/cta/FinalCTASection";
 
 const ProductHunt = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -21,7 +21,7 @@ const ProductHunt = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
-      {/* Simple header with logo only - no navbar */}
+      {/* Header with logo and mobile menu */}
       <Header />
 
       {/* Hero Section */}
