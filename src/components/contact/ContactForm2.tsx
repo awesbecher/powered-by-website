@@ -126,6 +126,7 @@ export const ContactForm2 = ({ initialLoad }: ContactForm2Props) => {
               <SelectItem value="ChatGPT" className="focus:bg-purple-800 focus:text-white">ChatGPT</SelectItem>
               <SelectItem value="LinkedIn or X" className="focus:bg-purple-800 focus:text-white">LinkedIn or X</SelectItem>
               <SelectItem value="Referral" className="focus:bg-purple-800 focus:text-white">Referral</SelectItem>
+              <SelectItem value="Product Hunt" className="focus:bg-purple-800 focus:text-white">Product Hunt</SelectItem>
               <SelectItem value="Other" className="focus:bg-purple-800 focus:text-white">Other</SelectItem>
             </SelectContent>
           </Select>
