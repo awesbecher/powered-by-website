@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Users, Briefcase, Play } from "lucide-react";
+import { Users, Briefcase, Play, PresentationIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { VideoSection } from "@/components/product-hunt/video/VideoSection";
@@ -14,6 +14,7 @@ interface AboutPageButtonsProps {
 export const AboutPageButtons = ({ onScrollToSection, sectionRef }: AboutPageButtonsProps) => {
   const navigate = useNavigate();
   const [showVideoDialog, setShowVideoDialog] = useState(false);
+  const [showPresentationDialog, setShowPresentationDialog] = useState(false);
 
   const handleWhoWeAreClick = () => {
     if (onScrollToSection && sectionRef) {
@@ -29,6 +30,10 @@ export const AboutPageButtons = ({ onScrollToSection, sectionRef }: AboutPageBut
     setShowVideoDialog(true);
   };
 
+  const handlePresentationClick = () => {
+    setShowPresentationDialog(true);
+  };
+
   return (
     <>
       <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
@@ -39,6 +44,15 @@ export const AboutPageButtons = ({ onScrollToSection, sectionRef }: AboutPageBut
         >
           <Play className="mr-2 h-5 w-5" />
           Watch Launch Video
+        </Button>
+        
+        <Button 
+          variant="gradient" 
+          size="lg"
+          onClick={handlePresentationClick}
+        >
+          <PresentationIcon className="mr-2 h-5 w-5" />
+          Read our Overview Presentation
         </Button>
         
         <Button 
@@ -63,6 +77,17 @@ export const AboutPageButtons = ({ onScrollToSection, sectionRef }: AboutPageBut
       <Dialog open={showVideoDialog} onOpenChange={setShowVideoDialog}>
         <DialogContent className="sm:max-w-4xl p-0 bg-transparent border-none">
           <VideoSection />
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={showPresentationDialog} onOpenChange={setShowPresentationDialog}>
+        <DialogContent className="sm:max-w-5xl bg-white p-0 overflow-hidden">
+          <iframe 
+            src="https://custom-ai-agent-solution-nq1xz3i.gamma.site/" 
+            className="w-full h-[80vh]" 
+            title="Overview Presentation"
+            allow="fullscreen"
+          ></iframe>
         </DialogContent>
       </Dialog>
     </>
