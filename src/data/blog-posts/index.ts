@@ -1,41 +1,53 @@
 
 import { BlogPost } from "@/types/blog";
 import { NewsArticle } from "@/types/news";
-import { voiceAiCustomerService } from "./voice-ai-customer-service";
-import { futureOfAiInteractions } from "./future-of-ai-interactions";
-import { aiDrivenPersonalization } from "./ai-driven-personalization";
-import { voiceAiRetail } from "./voice-ai-retail";
+
+// Blog Posts
+import { understandingAIAgents } from "./understanding-ai-agents";
+import { aiTrillion } from "./ai-trillion-market";
+import { voiceAIRetail } from "./voice-ai-retail";
+import { openaiAnthropic } from "./openai-anthropic-smb";
+import { buildOrBuyAI } from "./ai-agents-evaluation";
 import { saasCustomerEngagement } from "./saas-customer-engagement";
-import { humanLikeAiSecrets } from "./human-like-ai-secrets";
-import { understandingAiAgents } from "./understanding-ai-agents";
-import { aiTrillionMarket } from "./ai-trillion-market";
-import { aiAgentsVsRpa } from "./ai-agents-vs-rpa";
-import { aiAgentsEvaluation } from "./ai-agents-evaluation";
+import { humanLikeAI } from "./human-like-ai";
 import { smbConversationalAgents } from "./smb-conversational-agents";
+import { customerServiceEvolution } from "./customer-service-evolution";
+import { aiFearsSMB } from "./ai-fears-smb";
+import { aiVoiceCustomerService } from "./ai-voice-customer-service";
+import { futureOfAIInteractions } from "./future-of-ai-interactions";
+import { aiDrivenPersonalization } from "./ai-driven-personalization";
+
+// News Articles & PR Releases
 import { officialLaunchAnnouncement } from "./official-launch-announcement";
 
-// Export all blog posts in an array
+// Combined list of blog posts
 export const blogPosts: BlogPost[] = [
-  voiceAiCustomerService,
-  futureOfAiInteractions,
-  aiDrivenPersonalization,
-  voiceAiRetail,
+  understandingAIAgents,
+  aiTrillion,
+  voiceAIRetail,
+  openaiAnthropic,
+  buildOrBuyAI,
   saasCustomerEngagement,
-  humanLikeAiSecrets,
-  understandingAiAgents,
-  aiTrillionMarket,
-  aiAgentsVsRpa,
-  aiAgentsEvaluation,
-  smbConversationalAgents
+  humanLikeAI,
+  smbConversationalAgents,
+  customerServiceEvolution,
+  aiFearsSMB,
 ];
 
-// News and PR release articles
+// Sample posts for testing (subset of all posts)
+export const samplePosts: BlogPost[] = [
+  understandingAIAgents,
+  aiTrillion,
+  voiceAIRetail,
+];
+
+// News articles and PR releases
 export const newsArticles: NewsArticle[] = [
-  officialLaunchAnnouncement
+  officialLaunchAnnouncement,
+  aiVoiceCustomerService,
+  futureOfAIInteractions,
+  aiDrivenPersonalization
 ];
 
-// Combined array of all content (blog posts and news articles)
+// Combined content for all posts (blog posts and news articles)
 export const allContent = [...blogPosts, ...newsArticles];
-
-// Also export the array as samplePosts to maintain compatibility
-export const samplePosts = blogPosts;

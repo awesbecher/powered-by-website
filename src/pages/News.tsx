@@ -3,14 +3,10 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { ChevronRight, Newspaper } from "lucide-react";
+import { ChevronRight, Newspaper, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { allContent } from "@/data/blog-posts";
-
-// Combine news posts with PR releases
-const newsPosts = allContent.filter(post => 
-  post.category === "News" || post.category === "PR Release"
-);
+import { newsArticles } from "@/data/blog-posts";
+import { Card, CardContent } from "@/components/ui/card";
 
 const News = () => {
   useEffect(() => {
@@ -31,28 +27,30 @@ const News = () => {
       
       {/* News Posts Section */}
       <section className="container mx-auto px-4">
-        {newsPosts.length > 0 ? (
+        {newsArticles.length > 0 ? (
           <>
             <h2 className="text-3xl font-bold mb-8 text-center">Latest News</h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {newsPosts.map((post) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {newsArticles.map((post) => (
                 <Link 
                   key={post.id} 
                   to={`/blog/${post.slug}`}
-                  className="bg-white/5 rounded-lg overflow-hidden hover:bg-white/10 transition-colors"
+                  className="block"
                 >
-                  <div className="p-6 h-full flex flex-col">
-                    <div className="text-xs text-purple-400 mb-2">
-                      {post.category} • {post.date}
-                    </div>
-                    <h3 className="text-xl font-semibold mb-3">{post.title}</h3>
-                    <p className="text-gray-300 mb-4 line-clamp-3 flex-grow">{post.excerpt}</p>
-                    <div className="flex items-center text-purple-400 hover:text-purple-300 mt-auto">
-                      Read more
-                      <ChevronRight className="h-4 w-4 ml-1" />
-                    </div>
-                  </div>
+                  <Card className="bg-[#1f0d35]/50 border-none hover:bg-[#2a1347]/80 transition-colors h-full">
+                    <CardContent className="p-8">
+                      <div className="text-sm text-purple-400 mb-3">
+                        {post.category} • {post.date}
+                      </div>
+                      <h3 className="text-2xl font-bold mb-4">{post.title}</h3>
+                      <p className="text-gray-300 mb-6 line-clamp-3">{post.excerpt}</p>
+                      <div className="flex items-center text-purple-400 hover:text-purple-300 mt-auto">
+                        Read more
+                        <ArrowRight className="h-4 w-4 ml-2" />
+                      </div>
+                    </CardContent>
+                  </Card>
                 </Link>
               ))}
             </div>
