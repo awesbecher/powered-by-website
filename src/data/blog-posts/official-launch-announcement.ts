@@ -41,6 +41,8 @@ export const officialLaunchAnnouncement: NewsArticle = {
       vision can be realized on-time and at budget."
     </blockquote>
     
+    <p></p>
+    
     <h2>What Makes an AI Agency Unique?</h2>
     
     <p>
