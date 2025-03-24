@@ -5,6 +5,7 @@ import AnnouncementBanner from "@/components/layout/AnnouncementBanner";
 import Footer from "@/components/layout/Footer";
 import PricingHeader from "@/components/pricing/PricingHeader";
 import PricingGrid from "@/components/pricing/PricingGrid";
+import MultiChannelSection from "@/components/pricing/MultiChannelSection";
 import FAQSection from "@/components/pricing/FAQSection";
 import CTASection from "@/components/pricing/CTASection";
 
@@ -19,6 +20,7 @@ const Pricing = () => {
       <div className="container mx-auto px-4 py-20">
         <PricingHeader />
         <PricingGrid />
+        <MultiChannelSection />
         <FAQSection />
         <CTASection />
       </div>
