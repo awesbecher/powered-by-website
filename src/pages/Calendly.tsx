@@ -30,7 +30,7 @@ const Calendly = () => {
           
           <div className="mb-6 text-center">
             <p className="text-gray-300 max-w-2xl mx-auto">
-              Use the calendar below to schedule a consultation with our team. We'll discuss how Powered_by can help your business implement effective AI solutions.
+              Please use the calendar below to schedule a Free 30-min Consultation Meeting with Powered_by Design Team. We'll help you learn more about AI agents and pinpoint specific areas within your business they could be deployed.
             </p>
           </div>
           
