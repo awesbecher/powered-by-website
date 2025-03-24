@@ -1,7 +1,6 @@
-
 import React from "react";
 import { Mic, MessageSquare, Mail, Zap, User, Megaphone } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface ChannelCardProps {
   icon: React.ReactNode;
@@ -11,14 +10,25 @@ interface ChannelCardProps {
 }
 
 const ChannelCard = ({ icon, title, description, link }: ChannelCardProps) => {
+  const navigate = useNavigate();
+  
+  const handleCardClick = () => {
+    // Ensure smooth navigation and scroll to top
+    window.scrollTo(0, 0);
+    navigate(link);
+  };
+
   return (
-    <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+    <div 
+      className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10 hover:transform hover:-translate-y-2 cursor-pointer"
+      onClick={handleCardClick}
+    >
       <div className="bg-[#9b87f5]/30 w-12 h-12 rounded-full flex items-center justify-center mb-4">
         {icon}
       </div>
       <h3 className="text-xl font-semibold text-white mb-3">{title}</h3>
       <p className="text-gray-300 mb-4">{description}</p>
-      <Link to={link} className="text-[#9b87f5] flex items-center gap-2 hover:underline">
+      <Link to={link} className="text-[#9b87f5] flex items-center gap-2 hover:underline" onClick={(e) => e.stopPropagation()}>
         Learn more <span className="text-lg">→</span>
       </Link>
     </div>
