@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { newsArticles } from "@/data/blog-posts";
 import { Card, CardContent } from "@/components/ui/card";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
+import { PoweredByText } from "@/components/shared/PoweredByText";
 
 const News = () => {
   useEffect(() => {
@@ -17,13 +18,19 @@ const News = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] text-white pb-20">
       <Navbar />
-      <header className="py-16 pt-36 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-300">
-          News & Press Releases
-        </h1>
-        <p className="mt-4 text-xl text-gray-300 max-w-2xl mx-auto px-4">
-          Stay up-to-date with our latest announcements, PR releases, and company news
-        </p>
+      
+      {/* Updated Header Section with new styling to match the image */}
+      <header className="py-16 pt-36 pb-20 bg-[#2D1044] text-center">
+        <div className="container mx-auto px-4">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
+            <span className="text-white">News &</span> <span className="text-[#9b87f5]">Press Releases</span>
+          </h1>
+          
+          <p className="mt-6 text-xl text-gray-300 max-w-3xl mx-auto px-4 leading-relaxed">
+            While <PoweredByText /> offers fully custom & multi-channel AI agent solutions, you can 
+            explore our latest announcements and company updates below.
+          </p>
+        </div>
       </header>
       
       {/* News Posts Section */}
