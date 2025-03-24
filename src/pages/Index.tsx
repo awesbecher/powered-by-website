@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
@@ -13,6 +12,7 @@ import { SectionTitle } from "@/components/home/SectionTitle";
 import { AgentTypes } from "@/components/home/AgentTypes";
 import AIAgentIllustration from "@/components/home/AIAgentIllustration";
 import Footer from "@/components/layout/Footer";
+import { BackgroundImage } from "@/components/home/BackgroundImage";
 
 const Index = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -34,24 +34,25 @@ const Index = () => {
         <Navbar />
       </div>
       
-      {/* ProductHunt Badge - Placed above hero section */}
-      <div className="w-full flex justify-center mt-4 mb-2">
-        <div className={`transition-all duration-1000 ease-out transform ${initialLoad ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
-          <a href="https://www.producthunt.com/posts/powered_by?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-powered&#0095;by" target="_blank" rel="noreferrer">
-            <img 
-              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=942846&theme=light&t=1742774856872" 
-              alt="Powered&#0095;by - Custom&#0032;AI&#0032;Agents&#0032;for&#0032;SMBs&#0046;&#0032;Agentic&#0032;voice&#0044;&#0032;email&#0044;&#0032;SMS&#0044;&#0032;&#0038;&#0032;more | Product Hunt" 
-              style={{ width: "180px", height: "39px" }} 
-              width="180" 
-              height="39" 
-            />
-          </a>
+      <BackgroundImage>
+        <div className="w-full flex justify-center mt-4 mb-2">
+          <div className={`transition-all duration-1000 ease-out transform ${initialLoad ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
+            <a href="https://www.producthunt.com/posts/powered_by?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-powered&#0095;by" target="_blank" rel="noreferrer">
+              <img 
+                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=942846&theme=light&t=1742774856872" 
+                alt="Powered&#0095;by - Custom&#0032;AI&#0032;Agents&#0032;for&#0032;SMBs&#0046;&#0032;Agentic&#0032;voice&#0044;&#0032;email&#0044;&#0032;SMS&#0044;&#0032;&#0038;&#0032;more | Product Hunt" 
+                style={{ width: "180px", height: "39px" }} 
+                width="180" 
+                height="39" 
+              />
+            </a>
+          </div>
         </div>
-      </div>
-      
-      <div className="pt-0">
-        <HeroSection initialLoad={initialLoad} />
-      </div>
+        
+        <div className="pt-0">
+          <HeroSection initialLoad={initialLoad} />
+        </div>
+      </BackgroundImage>
 
       <div className="text-center px-6 mb-12 mt-2">
         <h2 className="text-3xl md:text-5xl font-bold text-white mb-12 max-w-4xl mx-auto leading-[1.1]">
@@ -66,7 +67,6 @@ const Index = () => {
         <FeaturesGrid />
       </div>
 
-      {/* Call to Action Buttons */}
       <div className="relative z-20 flex flex-col items-center justify-center px-6 mb-6">
         <CallToActionButtons 
           handleNavigation={handleNavigation}
@@ -74,7 +74,6 @@ const Index = () => {
         />
       </div>
       
-      {/* AIAgentIllustration with reduced height */}
       <div className="relative z-10 mb-8">
         <div className="w-full max-w-xl mx-auto">
           <AIAgentIllustration />
