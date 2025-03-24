@@ -1,10 +1,23 @@
 
 import { NavItem } from "./NavLinks";
 
-export const navItems: NavItem[] = [
+export interface NavItemWithChildren extends NavItem {
+  children?: NavItem[];
+}
+
+export const navItems: NavItemWithChildren[] = [
   { name: "Solutions", path: "/products" },
   { name: "Demos", path: "/demo" },
-  { name: "Resources", path: "https://poweredbyagency.ghost.io", isExternal: true },
+  { 
+    name: "Resources", 
+    path: "#",
+    children: [
+      { name: "AI Research", path: "https://poweredbyagency.ghost.io/tag/ai-research/", isExternal: true },
+      { name: "News", path: "https://poweredbyagency.ghost.io/tag/news/", isExternal: true },
+      { name: "Careers", path: "/careers" },
+      { name: "Pricing", path: "/pricing" }
+    ]
+  },
   { name: "About", path: "/about" }
 ];
 

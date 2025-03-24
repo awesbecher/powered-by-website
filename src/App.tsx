@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Index from "./pages/Index";
@@ -36,6 +35,7 @@ import Sitemap from "./pages/Sitemap";
 import Careers from "./pages/Careers";
 import ProductHunt from "./pages/ProductHunt";
 import NotFound from "./pages/NotFound";
+import Pricing from "./pages/Pricing";
 import { Toaster } from "@/components/ui/toaster"
 import { GlobalVoiceChatDialog } from './components/shared/GlobalVoiceChatDialog';
 
@@ -86,6 +86,7 @@ function App() {
             <Route path="/call-confirmation" element={<CallConfirmation />} />
             <Route path="/food-menu" element={<FoodMenu />} />
             <Route path="/room-service" element={<RoomService />} />
+            <Route path="/pricing" element={<Pricing />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

@@ -3,20 +3,25 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import NavLink from "./NavLink";
-import { NavItem } from "./NavLinks";
-import { Headset } from "lucide-react";
+import { NavItemWithChildren } from "./navConfig";
+import { ChevronDown, ChevronRight, Headset } from "lucide-react";
 
 interface MobileMenuProps {
-  navItems: NavItem[];
+  navItems: NavItemWithChildren[];
   showConsultButton: boolean;
 }
 
 const MobileMenu = ({ navItems, showConsultButton }: MobileMenuProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [expandedItem, setExpandedItem] = useState<string | null>(null);
 
   const handleTalkToAgent = () => {
     document.dispatchEvent(new CustomEvent('open-voice-dialog'));
     setIsMobileMenuOpen(false);
+  };
+
+  const toggleExpandItem = (itemName: string) => {
+    setExpandedItem(expandedItem === itemName ? null : itemName);
   };
 
   return (
@@ -59,15 +64,48 @@ const MobileMenu = ({ navItems, showConsultButton }: MobileMenuProps) => {
               </NavLink>
               
               {navItems.map((item) => (
-                <NavLink
-                  key={item.name}
-                  to={item.path}
-                  isExternal={item.isExternal}
-                  isMobile
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </NavLink>
+                <div key={item.name} className="flex flex-col">
+                  {item.children ? (
+                    <>
+                      <div 
+                        className="mx-4 py-2 flex items-center justify-between text-sm cursor-pointer"
+                        onClick={() => toggleExpandItem(item.name)}
+                      >
+                        <span className="text-gray-300 font-medium">{item.name}</span>
+                        <ChevronDown 
+                          className="h-4 w-4 text-gray-500 transition-transform duration-200"
+                          style={{ transform: expandedItem === item.name ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                        />
+                      </div>
+                      
+                      {expandedItem === item.name && (
+                        <div className="ml-8 flex flex-col space-y-2 mt-2 mb-2">
+                          {item.children.map((child) => (
+                            <NavLink
+                              key={child.name}
+                              to={child.path}
+                              isExternal={child.isExternal}
+                              isMobile
+                              onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                              <ChevronRight className="h-3 w-3 mr-1 inline" />
+                              {child.name}
+                            </NavLink>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <NavLink
+                      to={item.path}
+                      isExternal={item.isExternal}
+                      isMobile
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </NavLink>
+                  )}
+                </div>
               ))}
               
               {showConsultButton && (
