@@ -11,7 +11,7 @@ import { TestimonialsSection } from "@/components/product-hunt/testimonials/Test
 import { PricingSection } from "@/components/product-hunt/pricing/PricingSection";
 import { FAQSection } from "@/components/product-hunt/faq/FAQSection";
 import { FinalCTASection } from "@/components/product-hunt/cta/FinalCTASection";
-import { SocialProofSection } from "@/components/product-hunt/social-proof/SocialProofSection";
+// Removed SocialProofSection import
 // Announcement banner is still imported but not used on this page
 
 const ProductHunt = () => {
@@ -40,7 +40,7 @@ const ProductHunt = () => {
       {/* Main Content */}
       <main>
         <VideoSection initialLoad={initialLoad} />
-        <SocialProofSection initialLoad={initialLoad} />
+        {/* Removed SocialProofSection */}
         <HowItWorksSection initialLoad={initialLoad} />
         <FeaturesSection initialLoad={initialLoad} />
         <BenefitsSection initialLoad={initialLoad} />
