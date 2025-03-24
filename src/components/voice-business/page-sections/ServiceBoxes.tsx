@@ -69,6 +69,11 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
             title="Get Started with AI Receptionist Today!"
           ></iframe>
           
+          {/* Disclaimer about business email */}
+          <div className="mt-3 mb-1 text-center">
+            <p className="text-sm text-white italic">*Only business or company email addresses are accepted by this form.</p>
+          </div>
+          
           {/* Terms disclosure with much higher visibility */}
           <div className="mt-4 mb-2 bg-white/20 backdrop-blur-md p-3 rounded-lg border border-white/30 shadow-lg relative z-10">
             <p className="text-sm text-white font-medium">
