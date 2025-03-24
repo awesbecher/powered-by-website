@@ -27,8 +27,8 @@ const VoiceAgentForm = () => {
       
       <div className="container mx-auto px-4 py-8">
         <div className="glass-card rounded-xl p-4 md:p-8 max-w-5xl mx-auto">
-          {/* Tally.so form embed */}
-          <div className="w-full h-[1200px] md:h-[1500px] lg:h-[1800px] relative">
+          {/* Tally.so form embed - reduced height */}
+          <div className="w-full h-[1100px] md:h-[1400px] lg:h-[1700px] relative">
             <iframe 
               data-tally-src="https://tally.so/r/nG5kAZ"
               width="100%" 
@@ -39,9 +39,9 @@ const VoiceAgentForm = () => {
             ></iframe>
           </div>
           
-          {/* Terms disclosure - reduced vertical spacing */}
-          <div className="text-center mt-1 mb-1 bg-white/10 backdrop-blur-sm p-2 rounded-lg border border-white/20">
-            <p className="text-xs text-white">
+          {/* Terms disclosure - eliminated spacing */}
+          <div className="text-center mt-0 mb-0 bg-white/10 backdrop-blur-sm p-1 rounded-lg border border-white/20">
+            <p className="text-[9px] text-white my-0">
               By using <span className={POWERED_BY_STYLE}>Powered_by</span> you agree to our{" "}
               <Link to="/terms-of-service" className="text-purple-400 hover:text-purple-300 transition-colors">
                 Terms of Service

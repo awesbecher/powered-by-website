@@ -57,26 +57,26 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
       <div className="grid grid-cols-1 gap-4 w-full">
         <div className="border border-white rounded-3xl p-4 pb-0">
-          <h2 className="text-2xl font-bold text-white mb-3 text-left">Get Started With Voice AI Today</h2>
+          <h2 className="text-2xl font-bold text-white mb-2 text-left">Get Started With Voice AI Today</h2>
           <iframe
             ref={iframeRef}
             data-tally-src="https://tally.so/embed/nW1VqP?alignLeft=1"
             width="100%"
-            height="480"
+            height="450"
             frameBorder="0"
             marginHeight={0}
             marginWidth={0}
             title="Get Started with AI Receptionist Today!"
           ></iframe>
           
-          {/* Disclaimer with zero vertical spacing */}
-          <div className="m-0 p-0 text-left border-t border-white/10">
-            <p className="text-xs text-white italic font-bold py-1 px-2">*Only business or company email addresses are accepted by this form.</p>
+          {/* Disclaimer with negative margins to reduce space */}
+          <div className="m-0 p-0 text-left border-t border-white/10 -mt-2">
+            <p className="text-[9px] text-white italic font-bold py-0.5 px-2 my-0">*Only business or company email addresses are accepted by this form.</p>
           </div>
           
-          {/* Terms with zero vertical spacing */}
-          <div className="m-0 p-0 bg-white/20 backdrop-blur-md py-1 px-3 rounded-b border-t border-white/30 shadow-lg relative z-10">
-            <p className="text-xs text-white font-medium">
+          {/* Terms with negative margins to reduce space */}
+          <div className="m-0 p-0 bg-white/20 backdrop-blur-md py-0.5 px-3 rounded-b border-t border-white/30 shadow-lg relative z-10">
+            <p className="text-[8px] text-white font-medium my-0">
               By using <span className={POWERED_BY_STYLE}>Powered_by</span> you agree to our{" "}
               <Link to="/terms-of-service" className="text-purple-400 hover:text-purple-300 transition-colors underline">
                 Terms of Service
