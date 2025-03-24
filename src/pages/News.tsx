@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
@@ -27,8 +26,7 @@ const News = () => {
           </h1>
           
           <p className="mt-6 text-xl text-gray-300 max-w-3xl mx-auto px-4 leading-relaxed">
-            While <PoweredByText /> offers fully custom & multi-channel AI agent solutions, you can 
-            explore our latest announcements and company updates below.
+            Stay in the loop with all <PoweredByText /> product launches, new articles, and AI research insights here.
           </p>
         </div>
       </header>
