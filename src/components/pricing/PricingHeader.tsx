@@ -8,7 +8,7 @@ const PricingHeader = () => {
         Simple, Transparent Pricing
       </h1>
       <p className="text-xl text-gray-300 mb-12">
-        Get started quickly & affordable. Just powerful AI agents that grow with your business.
+        Get started quickly & affordably. Just powerful AI agents that grow with your business.
       </p>
     </div>
   );
