@@ -14,7 +14,7 @@ export const StepItem = ({ number, title, description }: StepItemProps) => {
         {number}
       </div>
       <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-      <p className="text-gray-300">
+      <p className="text-gray-300 text-sm">
         {description}
       </p>
     </div>
