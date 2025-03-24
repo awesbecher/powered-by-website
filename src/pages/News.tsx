@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
@@ -18,21 +19,34 @@ const News = () => {
     <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] text-white pb-20">
       <Navbar />
       
-      {/* Updated Header Section with reduced vertical padding */}
-      <header className="py-12 pt-20 pb-16 bg-[#2D1044] text-center">
-        <div className="container mx-auto px-4">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
-            <span className="text-white">News &</span> <span className="text-[#9b87f5]">Press Releases</span>
-          </h1>
-          
-          <p className="mt-6 text-xl text-gray-300 max-w-3xl mx-auto px-4 leading-relaxed">
-            Stay in the loop with all <PoweredByText /> product launches, new articles, and AI research insights here.
-          </p>
+      {/* Hero Section with Background Image */}
+      <div className="relative">
+        {/* Background image */}
+        <div className="absolute inset-0 z-0 h-[500px] overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/80 via-[#1a0b2e]/90 to-[#1a0b2e] z-10"></div>
+          <img 
+            src="/lovable-uploads/a53ff8c8-9033-4442-8c48-6cde96e79af7.png"
+            alt="Printing press in motion" 
+            className="w-full h-full object-cover object-center opacity-40"
+          />
         </div>
-      </header>
+        
+        {/* Header content */}
+        <header className="relative z-10 py-12 pt-20 pb-16 text-center">
+          <div className="container mx-auto px-4">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
+              <span className="text-white">News &</span> <span className="text-[#9b87f5]">Press Releases</span>
+            </h1>
+            
+            <p className="mt-6 text-xl text-gray-300 max-w-3xl mx-auto px-4 leading-relaxed">
+              Stay in the loop with all <PoweredByText /> product launches, new articles, and AI research insights here.
+            </p>
+          </div>
+        </header>
+      </div>
       
       {/* News Posts Section */}
-      <section className="container mx-auto px-4 mb-20">
+      <section className="container mx-auto px-4 mb-20 relative z-10">
         {newsArticles.length > 0 ? (
           <>
             <h2 className="text-3xl font-bold mb-8 text-center">Latest News</h2>
