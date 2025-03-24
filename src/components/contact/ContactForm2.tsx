@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -148,7 +147,7 @@ export const ContactForm2 = ({ initialLoad }: ContactForm2Props) => {
 
         <div>
           <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
-            Please enter your phone # (optional)
+            Please enter your phone #
           </label>
           <Input 
             id="phone" 
