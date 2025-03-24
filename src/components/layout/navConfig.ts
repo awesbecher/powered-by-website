@@ -15,7 +15,8 @@ export const navItems: NavItemWithChildren[] = [
       { name: "AI Research", path: "https://poweredbyagency.ghost.io", isExternal: true },
       { name: "News", path: "/news" },
       { name: "Careers", path: "/careers" },
-      { name: "Pricing", path: "/pricing" }
+      { name: "Pricing", path: "/pricing" },
+      { name: "Videos", path: "https://www.youtube.com/@DavidThomas-n8e", isExternal: true }
     ]
   },
   { name: "About", path: "/about" }
