@@ -34,23 +34,23 @@ const Index = () => {
         <Navbar />
       </div>
       
-      {/* ProductHunt Badge */}
-      <div className="w-full flex justify-center pt-6">
+      <div className="pt-2">
+        <HeroSection initialLoad={initialLoad} />
+      </div>
+      
+      {/* ProductHunt Badge - Moved below hero section */}
+      <div className="w-full flex justify-center -mt-4 mb-6">
         <div className={`transition-all duration-1000 ease-out transform ${initialLoad ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
           <a href="https://www.producthunt.com/posts/powered_by?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-powered&#0095;by" target="_blank" rel="noreferrer">
             <img 
               src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=942846&theme=light&t=1742774856872" 
               alt="Powered&#0095;by - Custom&#0032;AI&#0032;Agents&#0032;for&#0032;SMBs&#0046;&#0032;Agentic&#0032;voice&#0044;&#0032;email&#0044;&#0032;SMS&#0044;&#0032;&#0038;&#0032;more | Product Hunt" 
-              style={{ width: "250px", height: "54px" }} 
-              width="250" 
-              height="54" 
+              style={{ width: "180px", height: "39px" }} 
+              width="180" 
+              height="39" 
             />
           </a>
         </div>
-      </div>
-      
-      <div className="pt-2">
-        <HeroSection initialLoad={initialLoad} />
       </div>
 
       <div className="text-center px-6 mb-12 mt-2">
