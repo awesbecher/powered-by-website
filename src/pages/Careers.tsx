@@ -1,7 +1,6 @@
 
 import React from "react";
 import Navbar from "@/components/layout/Navbar";
-import AnnouncementBanner from "@/components/layout/AnnouncementBanner";
 import Footer from "@/components/layout/Footer";
 import { JobCard } from "@/components/careers/JobCard";
 import { CareersHero } from "@/components/careers/CareersHero";
@@ -11,7 +10,6 @@ const Careers = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <div className="sticky top-0 z-50 w-full">
-        <AnnouncementBanner />
         <Navbar />
       </div>
 
