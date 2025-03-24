@@ -23,7 +23,7 @@ const AnnouncementBanner = ({
             <Bot className="mr-0.5 h-3 w-3" />
             <span className="font-semibold">Launch</span>
           </Link>
-          <span><PoweredByText /> Officially Launches! Watch our Launch Video & learn more </span>
+          <span><PoweredByText /> <span className="font-bold">Officially Launches!</span> Watch our Launch Video & learn more </span>
           <Link 
             to={LAUNCH_ROUTE}
             className="font-semibold inline-flex items-center hover:underline ml-1"
