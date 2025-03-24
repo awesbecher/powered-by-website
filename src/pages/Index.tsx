@@ -34,12 +34,8 @@ const Index = () => {
         <Navbar />
       </div>
       
-      <div className="pt-2">
-        <HeroSection initialLoad={initialLoad} />
-      </div>
-      
-      {/* ProductHunt Badge - Moved below hero section */}
-      <div className="w-full flex justify-center -mt-4 mb-6">
+      {/* ProductHunt Badge - Placed above hero section */}
+      <div className="w-full flex justify-center mt-4 mb-2">
         <div className={`transition-all duration-1000 ease-out transform ${initialLoad ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
           <a href="https://www.producthunt.com/posts/powered_by?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-powered&#0095;by" target="_blank" rel="noreferrer">
             <img 
@@ -51,6 +47,10 @@ const Index = () => {
             />
           </a>
         </div>
+      </div>
+      
+      <div className="pt-0">
+        <HeroSection initialLoad={initialLoad} />
       </div>
 
       <div className="text-center px-6 mb-12 mt-2">
