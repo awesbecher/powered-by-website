@@ -15,11 +15,11 @@ const Careers = () => {
         <Navbar />
       </div>
 
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-8">
         <CareersHero />
         
-        <div className="mt-16">
-          <div className="grid grid-cols-1 gap-6 max-w-3xl mx-auto">
+        <div className="mt-12">
+          <div className="grid grid-cols-1 gap-5 max-w-3xl mx-auto">
             {jobOpenings.map((job) => (
               <JobCard key={job.id} job={job} />
             ))}
