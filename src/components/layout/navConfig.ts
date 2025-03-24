@@ -12,7 +12,7 @@ export const navItems: NavItemWithChildren[] = [
     name: "Resources", 
     path: "#",
     children: [
-      { name: "AI Research", path: "https://poweredbyagency.ghost.io/tag/ai-research/", isExternal: true },
+      { name: "AI Research", path: "https://poweredbyagency.ghost.io", isExternal: true },
       { name: "News", path: "https://poweredbyagency.ghost.io/tag/news/", isExternal: true },
       { name: "Careers", path: "/careers" },
       { name: "Pricing", path: "/pricing" }
