@@ -5,7 +5,7 @@ export const officialLaunchAnnouncement: NewsArticle = {
   id: "official-launch-announcement",
   title: "Powered_by Officially Launches The World's First AI Agency for SMBs",
   slug: "official-launch-announcement",
-  date: "May 21, 2024",
+  date: "March 27, 2025",
   category: "PR Release",
   excerpt: "Today marks the official launch of Powered_by, an agency business building custom AI agents for SMBs. Powered_by designs and builds bespoke AI agent solutions for diverse industries.",
   content: `
