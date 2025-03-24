@@ -8,6 +8,7 @@ import { IntroSection } from "@/components/free-voiceagent/IntroSection";
 import { InfoCard } from "@/components/ai-agency/InfoCard";
 import { TallyFormEmbed } from "@/components/voice-chat/TallyFormEmbed";
 import Footer from "@/components/layout/Footer";
+import { BackgroundImage } from "@/components/free-voiceagent/BackgroundImage";
 
 const FreeVoiceAgent = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -20,7 +21,11 @@ const FreeVoiceAgent = () => {
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <Navbar />
-      <div className="pt-12 pb-12 px-4">
+      
+      {/* Background image overlay */}
+      <BackgroundImage />
+      
+      <div className="pt-12 pb-12 px-4 relative z-10">
         <div className="max-w-7xl mx-auto">
           <HeroSection initialLoad={initialLoad} />
           
