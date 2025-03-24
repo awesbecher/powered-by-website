@@ -12,12 +12,11 @@ import { PricingSection } from "@/components/product-hunt/pricing/PricingSection
 import { FAQSection } from "@/components/product-hunt/faq/FAQSection";
 import { FinalCTASection } from "@/components/product-hunt/cta/FinalCTASection";
 import { SocialProofSection } from "@/components/product-hunt/social-proof/SocialProofSection";
-import AnnouncementBanner from "@/components/layout/AnnouncementBanner";
+// Announcement banner is still imported but not used on this page
 
 const ProductHunt = () => {
   const [initialLoad, setInitialLoad] = useState(true);
-  const [showAnnouncement, setShowAnnouncement] = useState(true);
-
+  
   useEffect(() => {
     // Set initialLoad to false after a short delay to trigger animations
     const timer = setTimeout(() => {
@@ -32,12 +31,7 @@ const ProductHunt = () => {
 
   return (
     <div className="flex flex-col min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
-      {showAnnouncement && (
-        <AnnouncementBanner 
-          onClose={() => setShowAnnouncement(false)} 
-          showCloseButton={true}
-        />
-      )}
+      {/* Announcement banner removed for launch page */}
       <Navbar />
       
       {/* Hero Section with background image */}
