@@ -29,8 +29,8 @@ const Contact = () => {
             <ContactHeader initialLoad={initialLoad} />
           </div>
           
-          {/* Ready for Tally.so form (using the existing TallyFormEmbed component) */}
-          <TallyFormEmbed initialLoad={initialLoad} className="mb-6" formId="wMM2yY" />
+          {/* Updated Tally.so form with new form ID */}
+          <TallyFormEmbed initialLoad={initialLoad} className="mb-6" formId="3jvjPa" />
         </div>
       </div>
 
