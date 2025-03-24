@@ -47,7 +47,7 @@ export const AboutPageButtons = ({ onScrollToSection, sectionRef }: AboutPageBut
           onClick={handleWhoWeAreClick}
         >
           <Users className="mr-2 h-5 w-5" />
-          Who We Are
+          Our Team
         </Button>
         
         <Button 
