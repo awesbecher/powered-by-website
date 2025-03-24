@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -52,6 +53,14 @@ export const ContactForm2 = ({ initialLoad }: ContactForm2Props) => {
       toast({
         title: "Invalid email format",
         description: "Please enter a valid email address.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    if (!formData.phone) {
+      toast({
+        title: "Phone number is required",
         variant: "destructive"
       });
       return;
@@ -156,6 +165,7 @@ export const ContactForm2 = ({ initialLoad }: ContactForm2Props) => {
             onChange={e => setFormData({...formData, phone: e.target.value})} 
             className="bg-neutral-800 border-neutral-700 text-white" 
             placeholder="(123) 456-7890"
+            required
           />
         </div>
         
