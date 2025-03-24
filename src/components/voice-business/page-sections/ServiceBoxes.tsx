@@ -56,7 +56,7 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
     <div className={`w-full lg:w-1/2 transition-all duration-1000 delay-300 ease-out transform flex flex-col items-start justify-start
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
       <div className="grid grid-cols-1 gap-4 w-full">
-        <div className="border border-white rounded-3xl p-4 pb-2">
+        <div className="border border-white rounded-3xl p-4 pb-0">
           <h2 className="text-2xl font-bold text-white mb-3 text-left">Get Started With Voice AI Today</h2>
           <iframe
             ref={iframeRef}
@@ -69,13 +69,13 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
             title="Get Started with AI Receptionist Today!"
           ></iframe>
           
-          {/* Disclaimer about business email - reduced vertical spacing */}
-          <div className="mt-1 mb-1 text-left">
-            <p className="text-sm text-white italic font-bold">*Only business or company email addresses are accepted by this form.</p>
+          {/* Disclaimer about business email - minimal vertical spacing */}
+          <div className="mt-0 mb-0 text-left border-t border-white/10">
+            <p className="text-sm text-white italic font-bold py-1.5 px-2">*Only business or company email addresses are accepted by this form.</p>
           </div>
           
-          {/* Terms disclosure with much higher visibility - reduced vertical spacing */}
-          <div className="mt-1 mb-2 bg-white/20 backdrop-blur-md p-3 rounded-lg border border-white/30 shadow-lg relative z-10">
+          {/* Terms disclosure - minimal vertical spacing */}
+          <div className="mt-0 mb-0 bg-white/20 backdrop-blur-md py-1.5 px-3 rounded-b border-t border-white/30 shadow-lg relative z-10">
             <p className="text-sm text-white font-medium">
               By using <span className={POWERED_BY_STYLE}>Powered_by</span> you agree to our{" "}
               <Link to="/terms-of-service" className="text-purple-400 hover:text-purple-300 transition-colors underline">

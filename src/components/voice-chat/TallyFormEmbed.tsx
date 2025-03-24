@@ -60,13 +60,13 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({
           title="Get Started with AI Receptionist Today!"
         ></iframe>
         
-        {/* Email disclaimer matching the provided image - reduced margin-top */}
-        <div className="w-full bg-[#1a0b2e] py-3 px-4 text-white font-semibold text-left mt-0">
+        {/* Email disclaimer - completely eliminated margin-top */}
+        <div className="w-full bg-[#1a0b2e] py-2 px-4 text-white font-semibold text-left mt-0 border-t border-gray-800/50">
           <p>*Only business or company email addresses are accepted by this form.</p>
         </div>
         
-        {/* Terms disclosure with improved visibility - also reduced margin-top */}
-        <div className="text-[10px] text-gray-200 text-center mt-1 bg-gray-800/60 p-2 rounded border border-gray-700">
+        {/* Terms disclosure - minimal margin-top */}
+        <div className="text-[10px] text-gray-200 text-center mt-0 py-1.5 px-2 bg-gray-800/60 rounded-b border-t border-gray-700">
           By using <span className={POWERED_BY_STYLE}>Powered_by</span> you agree to our{" "}
           <Link to="/terms-of-service" className="text-purple-400 hover:text-purple-300 transition-colors">
             Terms of Service
