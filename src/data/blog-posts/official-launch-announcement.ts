@@ -43,7 +43,7 @@ export const officialLaunchAnnouncement: NewsArticle = {
     
     <p></p>
     
-    <h2>What Makes an AI Agency Unique?</h2>
+    <h2 style="font-size: 1.5em;"><strong>What Makes an AI Agency Unique?</strong></h2>
     
     <p>
       When most small and mid-sized businesses consider AI, they either see costly in-house builds or deeply expensive 
@@ -54,7 +54,7 @@ export const officialLaunchAnnouncement: NewsArticle = {
       realize the benefits of the most advanced AI agent technology.
     </p>
     
-    <h2>Personalized Implementation</h2>
+    <h2 style="font-size: 1.5em;"><strong>Personalized Implementation</strong></h2>
     
     <p>
       The big AI providers like OpenAI, Anthropic, and Google excel at building robust AI engines—but they rarely deliver 
@@ -66,7 +66,7 @@ export const officialLaunchAnnouncement: NewsArticle = {
       but remains the client's single point of contact in any AI agent journey.
     </p>
     
-    <h2>Serving a Diverse Clientele</h2>
+    <h2 style="font-size: 1.5em;"><strong>Serving a Diverse Clientele</strong></h2>
     
     <p>
       Powered_by partners with a broad range of clients—small businesses, tech startups, and established mid-market 
@@ -79,7 +79,7 @@ export const officialLaunchAnnouncement: NewsArticle = {
       has unique needs and goals, and we tailor our AI agent solutions to maximize impact without losing sight of a brand's heritage."
     </blockquote>
     
-    <h2>A Commitment to Customer Centricity</h2>
+    <h2 style="font-size: 1.5em;"><strong>A Commitment to Customer Centricity</strong></h2>
     
     <p>
       Customer centricity is the foundation to our work at Powered_by. It places the needs, preferences, and success of clients 
@@ -93,7 +93,7 @@ export const officialLaunchAnnouncement: NewsArticle = {
       long-term partner dedicated to ensuring you stay ahead of the AI curve.
     </p>
     
-    <h3>About Powered_by</h3>
+    <h3 style="font-size: 1.4em;"><strong>About Powered_by</strong></h3>
     
     <p>
       Powered_by is the world's first AI agency for SMBs. It designs and deploys intelligent agents tailored from the ground up 
