@@ -1,4 +1,3 @@
-
 import { NewsArticle } from "@/types/news";
 
 export const officialLaunchAnnouncement: NewsArticle = {
@@ -74,9 +73,7 @@ export const officialLaunchAnnouncement: NewsArticle = {
     </p>
     
     <blockquote>
-      "Our clients can expect an approachable, forward-thinking team that respects where they've been and envisions where 
-      they're headed in this new AI era," added Andrew Wesbecher, Founder at Powered_by. "We understand that each organization 
-      has unique needs and goals, and we tailor our AI agent solutions to maximize impact without losing sight of a brand's heritage."
+      "<strong>Our clients can expect an approachable, forward-thinking team that respects where they've been and envisions where they're headed in this new AI era</strong>," added Andrew Wesbecher, Founder at Powered_by. "We understand that each organization has unique needs and goals, and we tailor our AI agent solutions to maximize impact without losing sight of a brand's heritage."
     </blockquote>
     
     <p></p>
