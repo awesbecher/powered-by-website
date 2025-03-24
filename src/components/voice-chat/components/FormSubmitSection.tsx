@@ -38,6 +38,18 @@ export const FormSubmitSection: React.FC<FormSubmitSectionProps> = ({
           "Submit"
         )}
       </Button>
+      
+      <div className="text-[10px] text-gray-400 text-center mt-1">
+        By using <span className={POWERED_BY_STYLE}>Powered_by</span> you agree to our{" "}
+        <Link to="/terms-of-service" className="text-purple-400 hover:text-purple-300 transition-colors">
+          Terms of Service
+        </Link>
+        ,{" "}
+        <Link to="/privacy-statement" className="text-purple-400 hover:text-purple-300 transition-colors">
+          Privacy
+        </Link>
+        , and Security policies and practices.
+      </div>
     </div>
   );
 };
