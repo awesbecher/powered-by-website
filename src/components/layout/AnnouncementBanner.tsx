@@ -12,23 +12,23 @@ const AnnouncementBanner = ({
   onClose,
   showCloseButton = false 
 }: AnnouncementBannerProps) => {
-  // Change the URL to the internal route
-  const FREE_VOICEAGENT_ROUTE = "/free-voiceagent";
+  // Change the URL to the launch page or video
+  const LAUNCH_ROUTE = "/launch";
   
   return (
     <div className="w-full bg-gradient-to-r from-[#a0b4ff] to-[#c9ccff] py-1.5">
       <div className="container mx-auto px-4 flex items-center justify-center">
         <div className="text-sm sm:text-base text-center text-black flex items-center">
-          <Link to={FREE_VOICEAGENT_ROUTE} className="bg-[#1A1F2C] text-white rounded-full py-0.5 px-2 flex items-center mr-2 text-xs hover:bg-opacity-80 transition-all">
+          <Link to={LAUNCH_ROUTE} className="bg-[#1A1F2C] text-white rounded-full py-0.5 px-2 flex items-center mr-2 text-xs hover:bg-opacity-80 transition-all">
             <Bot className="mr-0.5 h-3 w-3" />
-            <span className="font-semibold">New Offer</span>
+            <span className="font-semibold">Launch</span>
           </Link>
-          <span>Build a <Link to={FREE_VOICEAGENT_ROUTE} className="font-bold hover:text-[#9b87f5] transition-colors">Free</Link> Voice AI Agent Today for any Business Use Case </span>
+          <span><PoweredByText /> Officially Launches! Watch our Launch Video & learn more </span>
           <Link 
-            to={FREE_VOICEAGENT_ROUTE}
+            to={LAUNCH_ROUTE}
             className="font-semibold inline-flex items-center hover:underline ml-1"
           >
-            Learn more 
+            here 
             <ArrowRight className="ml-1 h-4 w-4" />
           </Link>
         </div>
