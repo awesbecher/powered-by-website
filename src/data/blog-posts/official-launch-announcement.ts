@@ -79,6 +79,8 @@ export const officialLaunchAnnouncement: NewsArticle = {
       has unique needs and goals, and we tailor our AI agent solutions to maximize impact without losing sight of a brand's heritage."
     </blockquote>
     
+    <p></p>
+    
     <h2 style="font-size: 1.5em;"><strong>A Commitment to Customer Centricity</strong></h2>
     
     <p>
