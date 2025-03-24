@@ -1,6 +1,8 @@
 
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { POWERED_BY_STYLE } from "@/components/voice-chat/hooks/types/contactFormTypes";
 
 interface ServiceBoxesProps {
   initialLoad: boolean;
@@ -66,6 +68,21 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
             marginWidth={0}
             title="Get Started with AI Receptionist Today!"
           ></iframe>
+          
+          {/* Terms disclosure with much higher visibility */}
+          <div className="mt-4 mb-2 bg-white/20 backdrop-blur-md p-3 rounded-lg border border-white/30 shadow-lg relative z-10">
+            <p className="text-sm text-white font-medium">
+              By using <span className={POWERED_BY_STYLE}>Powered_by</span> you agree to our{" "}
+              <Link to="/terms-of-service" className="text-purple-400 hover:text-purple-300 transition-colors underline">
+                Terms of Service
+              </Link>
+              ,{" "}
+              <Link to="/privacy-statement" className="text-purple-400 hover:text-purple-300 transition-colors underline">
+                Privacy
+              </Link>
+              , and Security policies and practices.
+            </p>
+          </div>
         </div>
       </div>
     </div>
