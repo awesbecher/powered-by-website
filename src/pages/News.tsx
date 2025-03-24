@@ -44,7 +44,7 @@ const News = () => {
                       <div className="text-sm text-purple-400 mb-3">
                         {post.category} • {post.date}
                       </div>
-                      <h3 className="text-2xl font-bold mb-4">{post.title}</h3>
+                      <h3 className="text-2xl font-bold mb-4 text-white">{post.title}</h3>
                       <p className="text-gray-300 mb-6 line-clamp-3">{post.excerpt}</p>
                       <div className="flex items-center text-purple-400 hover:text-purple-300 mt-auto">
                         Read more
