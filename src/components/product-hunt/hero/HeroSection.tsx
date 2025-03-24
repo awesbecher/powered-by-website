@@ -2,13 +2,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowDown } from "lucide-react";
 
 interface HeroSectionProps {
   initialLoad: boolean;
 }
 
 export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
+  const scrollToPricing = () => {
+    const pricingSection = document.getElementById('pricing');
+    if (pricingSection) {
+      pricingSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
       <div className={`transition-all duration-1000 ease-out transform ${initialLoad ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
@@ -30,6 +37,12 @@ export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
                 View on Product Hunt
               </Button>
             </a>
+            <Button
+              onClick={scrollToPricing}
+              className="bg-white hover:bg-gray-100 text-[#4A2A82] px-6 py-6 text-lg rounded-md w-full sm:w-auto flex items-center"
+            >
+              See Pricing <ArrowDown className="ml-2 h-5 w-5" />
+            </Button>
             <Link to="/contact">
               <Button
                 className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-6 text-lg rounded-md w-full sm:w-auto"
