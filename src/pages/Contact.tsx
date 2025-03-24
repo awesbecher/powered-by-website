@@ -22,15 +22,15 @@ const Contact = () => {
       <Navbar />
       
       {/* Content section with even less padding to maximize space */}
-      <div className="flex-grow flex flex-col relative z-10 pt-6 px-4">
+      <div className="flex-grow flex flex-col relative z-10 pt-6 px-4 pb-8">
         <div className="max-w-2xl mx-auto w-full">
           {/* Minimized margin for header */}
-          <div className="mb-6">
+          <div className="mb-2">
             <ContactHeader initialLoad={initialLoad} />
           </div>
           
-          {/* Updated Tally.so form with new form ID */}
-          <TallyFormEmbed initialLoad={initialLoad} className="mb-6" formId="3jvjPa" />
+          {/* Updated Tally.so form with new form ID and increased vertical space */}
+          <TallyFormEmbed initialLoad={initialLoad} className="mb-8" formId="3jvjPa" />
         </div>
       </div>
 
