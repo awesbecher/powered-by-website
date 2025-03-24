@@ -19,8 +19,8 @@ const News = () => {
     <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] text-white pb-20">
       <Navbar />
       
-      {/* Updated Header Section with new styling to match the image */}
-      <header className="py-16 pt-36 pb-20 bg-[#2D1044] text-center">
+      {/* Updated Header Section with reduced vertical padding */}
+      <header className="py-12 pt-20 pb-16 bg-[#2D1044] text-center">
         <div className="container mx-auto px-4">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
             <span className="text-white">News &</span> <span className="text-[#9b87f5]">Press Releases</span>
