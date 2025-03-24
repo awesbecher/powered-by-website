@@ -62,7 +62,7 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
             ref={iframeRef}
             data-tally-src="https://tally.so/embed/nW1VqP?alignLeft=1"
             width="100%"
-            height="450"
+            height="445"
             frameBorder="0"
             marginHeight={0}
             marginWidth={0}
@@ -71,12 +71,12 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
           
           {/* Disclaimer with negative margins to reduce space */}
           <div className="m-0 p-0 text-left border-t border-white/10 -mt-2">
-            <p className="text-[9px] text-white italic font-bold py-0.5 px-2 my-0">*Only business or company email addresses are accepted by this form.</p>
+            <p className="text-[7px] text-white italic font-bold py-px px-2 my-0 leading-tight">*Only business or company email addresses are accepted by this form.</p>
           </div>
           
-          {/* Terms with negative margins to reduce space */}
-          <div className="m-0 p-0 bg-white/20 backdrop-blur-md py-0.5 px-3 rounded-b border-t border-white/30 shadow-lg relative z-10">
-            <p className="text-[8px] text-white font-medium my-0">
+          {/* Terms with ultra-minimal styling */}
+          <div className="m-0 p-0 bg-white/20 backdrop-blur-md py-px px-2 rounded-b border-t border-white/30 shadow-lg relative z-10">
+            <p className="text-[7px] text-white font-medium my-0 leading-none">
               By using <span className={POWERED_BY_STYLE}>Powered_by</span> you agree to our{" "}
               <Link to="/terms-of-service" className="text-purple-400 hover:text-purple-300 transition-colors underline">
                 Terms of Service
