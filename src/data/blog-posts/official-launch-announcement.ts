@@ -11,7 +11,7 @@ export const officialLaunchAnnouncement: NewsArticle = {
   content: `
     <p>
       <strong>San Francisco, CA</strong> – Today marks the official launch of 
-      <a href="https://poweredby.agency/" target="_blank" rel="noopener noreferrer">Powered_by</a>, 
+      <a href="https://poweredby.agency/" target="_blank" rel="noopener noreferrer" style="color: #9b87f5; font-weight: bold;">https://poweredby.agency/</a>, 
       an agency business building custom AI agents for SMBs. Powered_by designs and builds bespoke AI agent solutions 
       for diverse industries. From auto dealerships to real estate agencies, retail stores to hospitality providers, 
       its team has a proven track record of delivering AI agent solutions that empower our clients to thrive and compete.
