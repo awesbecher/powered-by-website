@@ -5,7 +5,7 @@ import AnnouncementBanner from "@/components/layout/AnnouncementBanner";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Check, HelpCircle } from "lucide-react";
+import { Check, HelpCircle, Star, Rocket, Award, Asterisk } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -27,103 +27,127 @@ const Pricing = () => {
             Simple, Transparent Pricing
           </h1>
           <p className="text-xl text-gray-300 mb-12">
-            Choose the plan that best fits your business needs
+            Get started quickly & affordable. Just powerful AI agents that grow with your business.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Basic Plan */}
-            <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700 rounded-xl p-8 hover:border-purple-500 transition-all">
-              <h2 className="text-2xl font-bold text-white mb-2">Starter</h2>
-              <p className="text-purple-400 text-lg mb-4">For small businesses</p>
-              <p className="text-4xl font-bold text-white mb-6">$99<span className="text-lg text-gray-400">/mo</span></p>
-              <ul className="text-left text-gray-300 space-y-3 mb-8">
+            {/* Starter Plan */}
+            <div className="bg-[#2a1f47] rounded-xl p-8 hover:bg-[#32245e] transition-all">
+              <div className="flex items-center mb-4">
+                <Star className="text-[#9b87f5] mr-2" size={24} />
+                <h2 className="text-2xl font-bold text-white">Starter</h2>
+              </div>
+              <p className="text-4xl font-bold text-white mb-2">$299<span className="text-lg text-gray-400">/month</span></p>
+              <p className="text-gray-300 mb-8">
+                Perfect for small businesses just getting started with AI agents.
+              </p>
+              <ul className="text-left text-gray-300 space-y-4 mb-10">
                 <li className="flex items-start">
-                  <Check className="h-6 w-6 text-green-500 mr-2 shrink-0" />
-                  <span>1 AI Agent</span>
+                  <Check className="h-5 w-5 text-[#9b87f5] mr-2 mt-0.5 shrink-0" />
+                  <span>1 AI Agent Type</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="h-6 w-6 text-green-500 mr-2 shrink-0" />
+                  <Check className="h-5 w-5 text-[#9b87f5] mr-2 mt-0.5 shrink-0" />
+                  <span>Up to 1,000 interactions/month</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-5 w-5 text-[#9b87f5] mr-2 mt-0.5 shrink-0" />
+                  <span>Business hours support</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-5 w-5 text-[#9b87f5] mr-2 mt-0.5 shrink-0" />
                   <span>Basic customization</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="h-6 w-6 text-green-500 mr-2 shrink-0" />
-                  <span>Email support</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-6 w-6 text-green-500 mr-2 shrink-0" />
-                  <span>1,000 interactions/month</span>
+                  <Asterisk className="h-5 w-5 text-[#9b87f5] mr-2 mt-0.5 shrink-0" />
+                  <span className="text-xs">Deployment & integration services for additional fee</span>
                 </li>
               </ul>
-              <Button asChild className="w-full bg-purple-600 hover:bg-purple-700">
+              <Button asChild className="w-full bg-[#9b87f5] hover:bg-[#8a75e3] text-white">
                 <Link to="/contact">Get Started</Link>
               </Button>
             </div>
             
-            {/* Professional Plan */}
-            <div className="bg-gray-900/50 backdrop-blur-sm border border-purple-500 rounded-xl p-8 shadow-lg shadow-purple-500/20 transform scale-105 z-10">
-              <div className="bg-gradient-to-r from-purple-600 to-blue-500 text-white text-sm font-medium py-1 px-3 rounded-full mb-4 inline-block">
-                Most Popular
+            {/* Growth Plan */}
+            <div className="bg-[#2a1f47] rounded-xl p-8 hover:bg-[#32245e] transition-all relative">
+              <div className="absolute -top-3 right-8 bg-[#9b87f5] text-white text-xs font-bold px-4 py-1 rounded">
+                MOST POPULAR
               </div>
-              <h2 className="text-2xl font-bold text-white mb-2">Professional</h2>
-              <p className="text-purple-400 text-lg mb-4">For growing teams</p>
-              <p className="text-4xl font-bold text-white mb-6">$299<span className="text-lg text-gray-400">/mo</span></p>
-              <ul className="text-left text-gray-300 space-y-3 mb-8">
+              <div className="flex items-center mb-4">
+                <Rocket className="text-[#9b87f5] mr-2" size={24} />
+                <h2 className="text-2xl font-bold text-white">Growth</h2>
+              </div>
+              <p className="text-4xl font-bold text-white mb-2">$599<span className="text-lg text-gray-400">/month</span></p>
+              <p className="text-gray-300 mb-8">
+                For businesses ready to expand their AI agent capabilities.
+              </p>
+              <ul className="text-left text-gray-300 space-y-4 mb-10">
                 <li className="flex items-start">
-                  <Check className="h-6 w-6 text-green-500 mr-2 shrink-0" />
-                  <span>3 AI Agents</span>
+                  <Check className="h-5 w-5 text-[#9b87f5] mr-2 mt-0.5 shrink-0" />
+                  <span>2 AI Agent Types</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="h-6 w-6 text-green-500 mr-2 shrink-0" />
-                  <span>Advanced customization</span>
+                  <Check className="h-5 w-5 text-[#9b87f5] mr-2 mt-0.5 shrink-0" />
+                  <span>Up to 2,500 interactions/month</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="h-6 w-6 text-green-500 mr-2 shrink-0" />
+                  <Check className="h-5 w-5 text-[#9b87f5] mr-2 mt-0.5 shrink-0" />
                   <span>Priority support</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="h-6 w-6 text-green-500 mr-2 shrink-0" />
-                  <span>2,500 interactions/month</span>
+                  <Check className="h-5 w-5 text-[#9b87f5] mr-2 mt-0.5 shrink-0" />
+                  <span>Advanced customization</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="h-6 w-6 text-green-500 mr-2 shrink-0" />
-                  <span>Analytics dashboard</span>
+                  <Asterisk className="h-5 w-5 text-[#9b87f5] mr-2 mt-0.5 shrink-0" />
+                  <span className="text-xs">Deployment & integration services for additional fee</span>
                 </li>
               </ul>
-              <Button asChild className="w-full bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600">
+              <Button asChild className="w-full bg-[#9b87f5] hover:bg-[#8a75e3] text-white">
                 <Link to="/contact">Get Started</Link>
               </Button>
             </div>
             
             {/* Enterprise Plan */}
-            <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700 rounded-xl p-8 hover:border-purple-500 transition-all">
-              <h2 className="text-2xl font-bold text-white mb-2">Enterprise</h2>
-              <p className="text-purple-400 text-lg mb-4">For large organizations</p>
-              <p className="text-4xl font-bold text-white mb-6">Custom</p>
-              <ul className="text-left text-gray-300 space-y-3 mb-8">
+            <div className="bg-[#2a1f47] rounded-xl p-8 hover:bg-[#32245e] transition-all">
+              <div className="flex items-center mb-4">
+                <Award className="text-[#9b87f5] mr-2" size={24} />
+                <h2 className="text-2xl font-bold text-white">Enterprise</h2>
+              </div>
+              <div className="mb-8">
+                <Button asChild className="w-full bg-white hover:bg-gray-100 text-[#6342ff] mt-4">
+                  <Link to="/contact">Contact Sales</Link>
+                </Button>
+              </div>
+              <p className="text-gray-300 mb-8">
+                For businesses with complex AI agent needs and higher volume.
+              </p>
+              <ul className="text-left text-gray-300 space-y-4 mb-10">
                 <li className="flex items-start">
-                  <Check className="h-6 w-6 text-green-500 mr-2 shrink-0" />
-                  <span>Unlimited AI Agents</span>
+                  <Check className="h-5 w-5 text-[#9b87f5] mr-2 mt-0.5 shrink-0" />
+                  <span>All AI Agent Types</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="h-6 w-6 text-green-500 mr-2 shrink-0" />
-                  <span>Full customization</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-6 w-6 text-green-500 mr-2 shrink-0" />
-                  <span>24/7 dedicated support</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-6 w-6 text-green-500 mr-2 shrink-0" />
+                  <Check className="h-5 w-5 text-[#9b87f5] mr-2 mt-0.5 shrink-0" />
                   <span>Unlimited interactions</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="h-6 w-6 text-green-500 mr-2 shrink-0" />
-                  <span>Custom integrations</span>
+                  <Check className="h-5 w-5 text-[#9b87f5] mr-2 mt-0.5 shrink-0" />
+                  <span>24/7 dedicated support</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-5 w-5 text-[#9b87f5] mr-2 mt-0.5 shrink-0" />
+                  <span>Full customization</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-5 w-5 text-[#9b87f5] mr-2 mt-0.5 shrink-0" />
+                  <span>Advanced analytics & reporting</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-5 w-5 text-[#9b87f5] mr-2 mt-0.5 shrink-0" />
+                  <span>API access</span>
                 </li>
               </ul>
-              <Button asChild className="w-full bg-gray-700 hover:bg-gray-600">
-                <Link to="/contact">Contact Sales</Link>
-              </Button>
             </div>
           </div>
           
