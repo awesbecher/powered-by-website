@@ -3,7 +3,11 @@ import React from "react";
 import { FeatureCard } from "./FeatureCard";
 import { MessageSquare, Shield, Zap, User, Megaphone, Mic } from "lucide-react";
 
-export const FeaturesSection = () => {
+interface FeaturesSectionProps {
+  initialLoad?: boolean;
+}
+
+export const FeaturesSection: React.FC<FeaturesSectionProps> = () => {
   return (
     <section id="features" className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
       <div className="max-w-3xl mx-auto text-center mb-16">

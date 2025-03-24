@@ -2,7 +2,11 @@
 import React from "react";
 import { BenefitItem } from "./BenefitItem";
 
-export const BenefitsSection = () => {
+interface BenefitsSectionProps {
+  initialLoad?: boolean;
+}
+
+export const BenefitsSection: React.FC<BenefitsSectionProps> = () => {
   return (
     <section id="benefits" className="py-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
       <div className="max-w-3xl mx-auto text-center mb-12">

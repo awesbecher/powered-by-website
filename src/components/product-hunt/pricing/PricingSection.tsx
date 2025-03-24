@@ -2,7 +2,11 @@
 import React from "react";
 import { PricingCard } from "./PricingCard";
 
-export const PricingSection = () => {
+interface PricingSectionProps {
+  initialLoad?: boolean;
+}
+
+export const PricingSection: React.FC<PricingSectionProps> = () => {
   return (
     <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
       <div className="max-w-3xl mx-auto text-center mb-16">

@@ -2,7 +2,11 @@
 import React from "react";
 import { StepItem } from "./StepItem";
 
-export const HowItWorksSection = () => {
+interface HowItWorksSectionProps {
+  initialLoad?: boolean;
+}
+
+export const HowItWorksSection: React.FC<HowItWorksSectionProps> = () => {
   return (
     <section id="how-it-works" className="pt-2 pb-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
       <div className="max-w-3xl mx-auto text-center mb-16">

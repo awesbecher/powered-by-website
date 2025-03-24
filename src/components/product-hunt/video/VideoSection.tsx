@@ -4,7 +4,11 @@ import { Play } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
-export const VideoSection = () => {
+interface VideoSectionProps {
+  initialLoad?: boolean;
+}
+
+export const VideoSection: React.FC<VideoSectionProps> = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   
   const handlePlayClick = () => {

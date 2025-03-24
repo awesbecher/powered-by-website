@@ -2,7 +2,11 @@
 import React from "react";
 import { FAQItem } from "./FAQItem";
 
-export const FAQSection = () => {
+interface FAQSectionProps {
+  initialLoad?: boolean;
+}
+
+export const FAQSection: React.FC<FAQSectionProps> = () => {
   return (
     <section id="faq" className="py-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
       <div className="max-w-3xl mx-auto text-center mb-16">

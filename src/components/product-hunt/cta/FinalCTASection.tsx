@@ -5,7 +5,11 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { PoweredByText } from "@/components/shared/PoweredByText";
 
-export const FinalCTASection = () => {
+interface FinalCTASectionProps {
+  initialLoad?: boolean;
+}
+
+export const FinalCTASection: React.FC<FinalCTASectionProps> = () => {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#6342ff] to-[#a87cff]">

@@ -2,11 +2,15 @@
 import React from "react";
 import { Star } from "lucide-react";
 
-export const SocialProofSection = () => {
+interface SocialProofSectionProps {
+  initialLoad?: boolean;
+}
+
+export const SocialProofSection: React.FC<SocialProofSectionProps> = () => {
   return (
-    <section className="py-6 bg-gradient-to-r from-[#1a0b2e] via-[#2f1c4a]/80 to-[#1a0b2e] border-y border-white/5">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
+    <section className="py-8 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
+      <div className="max-w-4xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div className="flex flex-col items-center justify-center py-2">
             <div className="flex items-center mb-1">
               <Star className="text-yellow-400 w-5 h-5 mr-1" fill="#facc15" />

@@ -3,7 +3,11 @@ import React from "react";
 import { TestimonialCard } from "./TestimonialCard";
 import { Star } from "lucide-react";
 
-export const TestimonialsSection = () => {
+interface TestimonialsSectionProps {
+  initialLoad?: boolean;
+}
+
+export const TestimonialsSection: React.FC<TestimonialsSectionProps> = () => {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-[#1a0b2e] via-[#2f1c4a]/80 to-[#1a0b2e] border-y border-white/5">
       <div className="max-w-7xl mx-auto">
