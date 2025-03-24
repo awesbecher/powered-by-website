@@ -5,9 +5,17 @@ import { POWERED_BY_STYLE } from "./hooks/types/contactFormTypes";
 
 interface TallyFormEmbedProps {
   className?: string;
+  initialLoad?: boolean;
+  formId?: string;
+  referral?: string;
 }
 
-export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({ className = "" }) => {
+export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({ 
+  className = "",
+  initialLoad,
+  formId = "nW1VqP", // Default form ID
+  referral
+}) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   
   useEffect(() => {
@@ -35,12 +43,15 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({ className = "" }
     };
   }, []);
 
+  // Build the tally src URL with form ID and referral if provided
+  const tallySrc = `https://tally.so/embed/${formId}?alignLeft=1&hideTitle=1&transparentBackground=1${referral ? `&referral=${referral}` : ''}`;
+
   return (
     <div className={`tally-form-container ${className}`}>
       <div className="border border-white/10 rounded-lg overflow-hidden glass-card">
         <iframe
           ref={iframeRef}
-          data-tally-src="https://tally.so/embed/nW1VqP?alignLeft=1&hideTitle=1&transparentBackground=1"
+          data-tally-src={tallySrc}
           width="100%"
           height="600"
           frameBorder="0"
