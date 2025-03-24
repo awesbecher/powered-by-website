@@ -6,7 +6,7 @@ export const aiDrivenPersonalization: NewsArticle = {
   title: "AI-Driven Personalization: Creating Tailored Customer Experiences",
   slug: "ai-driven-personalization",
   date: "January 20, 2024",
-  category: "Personalization",
+  category: "News",
   excerpt: "Learn how AI algorithms are used to personalize customer experiences, enhancing engagement and loyalty across digital touchpoints.",
   content: `
     <p>

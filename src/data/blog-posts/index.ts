@@ -3,13 +3,13 @@ import { BlogPost } from "@/types/blog";
 import { NewsArticle } from "@/types/news";
 
 // Blog Posts
-import { understandingAIAgents } from "./understanding-ai-agents";
-import { aiTrillion } from "./ai-trillion-market";
-import { voiceAIRetail } from "./voice-ai-retail";
-import { openaiAnthropic } from "./openai-anthropic-smb";
-import { buildOrBuyAI } from "./ai-agents-evaluation";
+import { understandingAiAgents } from "./understanding-ai-agents";
+import { aiTrillionMarket } from "./ai-trillion-market";
+import { voiceAiRetail } from "./voice-ai-retail";
+import { openaiAnthropicSmb } from "./openai-anthropic-smb";
+import { buildOrBuyAIAgents } from "./ai-agents-evaluation";
 import { saasCustomerEngagement } from "./saas-customer-engagement";
-import { humanLikeAI } from "./human-like-ai";
+import { humanLikeAi } from "./human-like-ai";
 import { smbConversationalAgents } from "./smb-conversational-agents";
 import { customerServiceEvolution } from "./customer-service-evolution";
 import { aiFearsSMB } from "./ai-fears-smb";
@@ -22,13 +22,13 @@ import { officialLaunchAnnouncement } from "./official-launch-announcement";
 
 // Combined list of blog posts
 export const blogPosts: BlogPost[] = [
-  understandingAIAgents,
-  aiTrillion,
-  voiceAIRetail,
-  openaiAnthropic,
-  buildOrBuyAI,
+  understandingAiAgents,
+  aiTrillionMarket,
+  voiceAiRetail,
+  openaiAnthropicSmb,
+  buildOrBuyAIAgents,
   saasCustomerEngagement,
-  humanLikeAI,
+  humanLikeAi,
   smbConversationalAgents,
   customerServiceEvolution,
   aiFearsSMB,
@@ -36,9 +36,9 @@ export const blogPosts: BlogPost[] = [
 
 // Sample posts for testing (subset of all posts)
 export const samplePosts: BlogPost[] = [
-  understandingAIAgents,
-  aiTrillion,
-  voiceAIRetail,
+  understandingAiAgents,
+  aiTrillionMarket,
+  voiceAiRetail,
 ];
 
 // News articles and PR releases

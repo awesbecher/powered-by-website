@@ -6,7 +6,7 @@ export const aiVoiceCustomerService: NewsArticle = {
   title: "Revolutionizing Customer Service with AI Voice Technology",
   slug: "ai-voice-customer-service",
   date: "March 15, 2024",
-  category: "AI Voice",
+  category: "News",
   excerpt: "Explore how AI voice technology is transforming customer service, offering personalized and efficient solutions for businesses of all sizes.",
   content: `
     <p>
