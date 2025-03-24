@@ -12,7 +12,7 @@ export const FormSubmitSection: React.FC<FormSubmitSectionProps> = ({
   isSubmitting
 }) => {
   return (
-    <div className="space-y-2">
+    <div className="space-y-1">
       <div className="text-[10px] text-gray-400">
         By continuing, you agree to <span className={POWERED_BY_STYLE}>Powered_by</span>'s{" "}
         <Link to="/privacy-statement" className="text-purple-400 hover:text-purple-300 transition-colors">
@@ -39,13 +39,13 @@ export const FormSubmitSection: React.FC<FormSubmitSectionProps> = ({
         )}
       </Button>
       
-      {/* Email disclaimer matching the provided image */}
-      <div className="w-full bg-[#1a0b2e] py-3 px-4 text-white font-semibold text-left">
+      {/* Email disclaimer - reduced spacing with mt-1 */}
+      <div className="w-full bg-[#1a0b2e] py-3 px-4 text-white font-semibold text-left mt-1">
         <p>*Only business or company email addresses are accepted by this form.</p>
       </div>
       
-      {/* Make this text more visible with better styling */}
-      <div className="text-[10px] text-gray-200 text-center mt-2 bg-gray-800/60 p-2 rounded border border-gray-700">
+      {/* Make this text more visible with better styling - reduced margin-top */}
+      <div className="text-[10px] text-gray-200 text-center mt-1 bg-gray-800/60 p-2 rounded border border-gray-700">
         By using <span className={POWERED_BY_STYLE}>Powered_by</span> you agree to our{" "}
         <Link to="/terms-of-service" className="text-purple-400 hover:text-purple-300 transition-colors">
           Terms of Service
