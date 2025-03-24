@@ -12,10 +12,17 @@ const CTASection = () => {
           Choose the plan that works for you or contact us for a custom solution.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <Button asChild className="bg-[#7E69AB] text-white hover:bg-[#6E59A5]">
-            <Link to="/contact">Contact Sales</Link>
+          <Button 
+            asChild 
+            className="bg-[#7E69AB] text-white hover:bg-[#6E59A5]"
+          >
+            <a href="mailto:sales@poweredby.agency">Contact Sales</a>
           </Button>
-          <Button asChild variant="outline" className="bg-[#6342ff] text-white hover:bg-[#5838e0] border-transparent">
+          <Button 
+            asChild 
+            variant="outline" 
+            className="bg-[#6342ff] text-white hover:bg-[#5838e0] border-transparent"
+          >
             <Link to="/demo">Book a Demo</Link>
           </Button>
         </div>
