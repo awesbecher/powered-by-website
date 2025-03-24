@@ -13,7 +13,7 @@ export const navItems: NavItemWithChildren[] = [
     path: "#",
     children: [
       { name: "AI Research", path: "https://poweredbyagency.ghost.io", isExternal: true },
-      { name: "News", path: "https://poweredbyagency.ghost.io/tag/news/", isExternal: true },
+      { name: "News", path: "/news" },
       { name: "Careers", path: "/careers" },
       { name: "Pricing", path: "/pricing" }
     ]
@@ -21,4 +21,4 @@ export const navItems: NavItemWithChildren[] = [
   { name: "About", path: "/about" }
 ];
 
-export const consultationPaths = ['/', '/ai-agency', '/products', '/demo', '/blog', '/voice-chat', '/ai-receptionist', '/email-agent', '/about', '/contact', '/text-agent'];
+export const consultationPaths = ['/', '/ai-agency', '/products', '/demo', '/blog', '/news', '/voice-chat', '/ai-receptionist', '/email-agent', '/about', '/contact', '/text-agent'];

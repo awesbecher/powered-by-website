@@ -1,118 +1,50 @@
 
 import React from "react";
+import { Link } from "react-router-dom";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 
 const Sitemap = () => {
-  // The sitemap XML content as provided
-  const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    
-    <!-- Homepage -->
-    <url>
-        <loc>https://poweredby.agency/</loc>
-        <lastmod>2025-03-16</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    
-    <url>
-        <loc>https://poweredby.agency/ai-agency</loc>
-        <lastmod>2025-03-16</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://poweredby.agency/products</loc>
-        <lastmod>2025-03-16</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://poweredby.agency/demo</loc>
-        <lastmod>2025-03-16</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <!-- Note: This URL is hosted on a separate domain.
-         If you want it indexed as part of your main site's sitemap,
-         you can include it below, though it's not always common to do so. -->
-    <url>
-        <loc>https://poweredbyagency.ghost.io/</loc>
-        <lastmod>2025-03-16</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://poweredby.agency/about</loc>
-        <lastmod>2025-03-16</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://poweredby.agency/contact</loc>
-        <lastmod>2025-03-16</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://poweredby.agency/voice-chat</loc>
-        <lastmod>2025-03-16</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://poweredby.agency/ai-receptionist</loc>
-        <lastmod>2025-03-16</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://poweredby.agency/email-agent</loc>
-        <lastmod>2025-03-16</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://poweredby.agency/text-agent</loc>
-        <lastmod>2025-03-16</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://poweredby.agency/virtual-se</loc>
-        <lastmod>2025-03-16</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://poweredby.agency/outbound-ai</loc>
-        <lastmod>2025-03-16</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-</urlset>`;
+  const links = [
+    { title: "Home", path: "/" },
+    { title: "AI Agency", path: "/ai-agency" },
+    { title: "Products", path: "/products" },
+    { title: "Voice Chat", path: "/voice-chat" },
+    { title: "AI Receptionist", path: "/ai-receptionist" },
+    { title: "Email Agent", path: "/email-agent" },
+    { title: "Text Agent", path: "/text-agent" },
+    { title: "About", path: "/about" },
+    { title: "Blog", path: "/blog" },
+    { title: "News", path: "/news" },
+    { title: "Careers", path: "/careers" },
+    { title: "Pricing", path: "/pricing" },
+    { title: "Contact", path: "/contact" },
+    { title: "Privacy Statement", path: "/privacy-statement" },
+    { title: "Terms of Service", path: "/terms-of-service" },
+  ];
 
   return (
-    <div className="min-h-screen w-full bg-white text-gray-800 flex items-center justify-center p-6">
-      <div className="w-full max-w-5xl">
-        <h1 className="text-2xl font-bold mb-6">XML Sitemap</h1>
-        <div className="border border-gray-300 rounded-md p-6 overflow-auto">
-          <pre className="text-gray-600 whitespace-pre-wrap font-mono text-sm">
-            {sitemapXml}
-          </pre>
+    <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
+      <Navbar />
+      <div className="container mx-auto py-20 px-4">
+        <h1 className="text-4xl font-bold text-white mb-10 text-center">Sitemap</h1>
+        
+        <div className="max-w-2xl mx-auto bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+          <ul className="space-y-2">
+            {links.map((link) => (
+              <li key={link.path} className="border-b border-white/10 last:border-b-0">
+                <Link 
+                  to={link.path}
+                  className="block py-3 text-gray-300 hover:text-white transition-colors"
+                >
+                  {link.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

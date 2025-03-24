@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Index from "./pages/Index";
@@ -36,6 +37,7 @@ import Careers from "./pages/Careers";
 import ProductHunt from "./pages/ProductHunt";
 import NotFound from "./pages/NotFound";
 import Pricing from "./pages/Pricing";
+import News from "./pages/News";
 import { Toaster } from "@/components/ui/toaster"
 import { GlobalVoiceChatDialog } from './components/shared/GlobalVoiceChatDialog';
 
@@ -48,6 +50,7 @@ function App() {
             <Route path="/" element={<Index />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/news" element={<News />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/contact-2" element={<Contact2 />} />
             <Route path="/products" element={<Products />} />
