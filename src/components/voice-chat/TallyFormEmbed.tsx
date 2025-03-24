@@ -8,13 +8,15 @@ interface TallyFormEmbedProps {
   initialLoad?: boolean;
   formId?: string;
   referral?: string;
+  height?: string | number;
 }
 
 export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({ 
   className = "",
   initialLoad,
   formId = "nW1VqP", // Default form ID
-  referral
+  referral,
+  height = 800 // Increased default height
 }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   
@@ -53,16 +55,16 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({
           ref={iframeRef}
           data-tally-src={tallySrc}
           width="100%"
-          height="650"
+          height={height}
           frameBorder="0"
           marginHeight={0}
           marginWidth={0}
           title="Get Started with AI Receptionist Today!"
         ></iframe>
         
-        {/* Email disclaimer - increased font size from 8px to 10px */}
+        {/* Email disclaimer - increased font size from 10px to 11px for better readability */}
         <div className="w-full bg-[#1a0b2e] py-px px-4 text-white font-semibold text-left border-t border-gray-800/50 -mt-1">
-          <p className="text-[10px] my-0 leading-tight">*Only business or company email addresses are accepted by this form.</p>
+          <p className="text-[11px] my-0 leading-tight">*Only business or company email addresses are accepted by this form.</p>
         </div>
         
         {/* Terms disclosure - ultra-minimal styling with no padding */}

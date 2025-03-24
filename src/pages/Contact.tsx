@@ -4,9 +4,11 @@ import Footer from "@/components/layout/Footer";
 import { ContactHeader } from "@/components/contact/ContactHeader";
 import { TallyFormEmbed } from "@/components/voice-chat/TallyFormEmbed";
 import { useEffect, useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
   const [initialLoad, setInitialLoad] = useState(true);
+  const { toast } = useToast();
 
   useEffect(() => {
     // Set initialLoad to false after a short delay to trigger animations
@@ -15,6 +17,11 @@ const Contact = () => {
     }, 100);
     
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    // Scroll to top when component mounts to ensure form is fully visible
+    window.scrollTo(0, 0);
   }, []);
 
   return (
@@ -29,8 +36,13 @@ const Contact = () => {
             <ContactHeader initialLoad={initialLoad} />
           </div>
           
-          {/* Updated Tally.so form with new form ID and increased vertical space */}
-          <TallyFormEmbed initialLoad={initialLoad} className="mb-8" formId="3jvjPa" />
+          {/* Updated Tally.so form with increased height to show submit button without scrolling */}
+          <TallyFormEmbed 
+            initialLoad={initialLoad} 
+            className="mb-8" 
+            formId="3jvjPa" 
+            height={950} // Significantly increased height to ensure submit button visibility
+          />
         </div>
       </div>
 
