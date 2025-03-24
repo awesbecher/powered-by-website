@@ -25,7 +25,7 @@ const Calendly = () => {
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-6 transition-all duration-700 ease-out 
                          text-center
                          tracking-tight">
-            Schedule a Call
+            Meet with Us!
           </h1>
           
           <div className="mb-6 text-center">
