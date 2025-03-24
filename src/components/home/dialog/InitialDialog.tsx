@@ -52,6 +52,10 @@ export const InitialDialog = ({
         By clicking "Start Voice Chat", you consent to having a voice conversation with Powered_by's AI agent. You can end the conversation at any time.
       </p>
       
+      <p className="text-xs text-gray-400 mb-4 text-center">
+        By using Powered_by you agree to our <a href="/terms-of-service" className="text-purple-400 hover:text-purple-300 underline">Terms of Service</a>, <a href="/privacy-statement" className="text-purple-400 hover:text-purple-300 underline">Privacy</a>, and Security policies and practices.
+      </p>
+      
       <div className="flex gap-4">
         <Button 
           onClick={handleCancel}
