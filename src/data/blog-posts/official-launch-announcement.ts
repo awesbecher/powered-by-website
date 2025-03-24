@@ -1,3 +1,4 @@
+
 import { NewsArticle } from "@/types/news";
 
 export const officialLaunchAnnouncement: NewsArticle = {
@@ -73,7 +74,7 @@ export const officialLaunchAnnouncement: NewsArticle = {
     </p>
     
     <blockquote>
-      "<strong>Our clients can expect an approachable, forward-thinking team that respects where they've been and envisions where they're headed in this new AI era</strong>," added Andrew Wesbecher, Founder at Powered_by. "We understand that each organization has unique needs and goals, and we tailor our AI agent solutions to maximize impact without losing sight of a brand's heritage."
+      "<strong>Our clients can expect an approachable, forward-thinking team that respects where they've been and envisions where they're headed in this new AI era</strong>," added Andrew Wesbecher, Founder at Powered_by. "<strong>We understand that each organization has unique needs and goals, and we tailor our AI agent solutions to maximize impact without losing sight of a brand's heritage.</strong>"
     </blockquote>
     
     <p></p>
@@ -81,7 +82,7 @@ export const officialLaunchAnnouncement: NewsArticle = {
     <h2 style="font-size: 1.5em;"><strong>A Commitment to Customer Centricity</strong></h2>
     
     <p>
-      Customer centricity is the foundation to our work at Powered_by. It places the needs, preferences, and success of clients 
+      Customer centricity is the foundation to the work at Powered_by. It places the needs, preferences, and success of clients 
       at the heart of every decision and action. Powered_by builds genuine relationships with our customers, listens intently to 
       feedback, and commits to a client's success equaling its own.
     </p>
