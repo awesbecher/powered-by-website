@@ -17,8 +17,6 @@ export const officialLaunchAnnouncement: NewsArticle = {
       its team has a proven track record of delivering AI agent solutions that empower our clients to thrive and compete.
     </p>
     
-    <h1 style="font-size: 2em; text-align: center; margin: 1em 0;"><strong>Powered_by Officially Launches The World's First AI Agency for SMBs</strong></h1>
-    
     <p>
       Founded on the thesis that SMBs deserve the same access to the advanced AI systems currently deployed across the 
       Fortune 500, Powered_by takes the cutting-edge AI agent technology pioneered in Silicon Valley and makes it deadly 
