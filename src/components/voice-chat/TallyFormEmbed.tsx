@@ -1,89 +1,71 @@
 
-import { useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import { PoweredByText } from "@/components/shared/PoweredByText";
+import React, { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import { POWERED_BY_STYLE } from "./hooks/types/contactFormTypes";
 
 interface TallyFormEmbedProps {
-  formId?: string;
   className?: string;
-  email?: string;
-  referral?: string;
-  redirectToThankYou?: boolean;
-  initialLoad?: boolean;
 }
 
-export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({ 
-  formId = "wMM2yY", 
-  className = "",
-  email = "",
-  referral = "",
-  redirectToThankYou = true,
-  initialLoad
-}) => {
+export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({ className = "" }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const navigate = useNavigate();
   
   useEffect(() => {
     // Load Tally embed script
     const script = document.createElement('script');
     script.src = 'https://tally.so/widgets/embed.js';
     script.async = true;
-    document.body.appendChild(script);
-
-    // Set up message listener for form submission
-    const handleMessage = (event: MessageEvent) => {
-      // Check if the message is from Tally and contains form submission data
-      if (event.data?.type === 'tally:form:submitted' && redirectToThankYou) {
-        // Redirect to thank you page on form submission
-        setTimeout(() => {
-          navigate('/thank-you');
-        }, 1000);
+    
+    script.onload = () => {
+      // Once script is loaded, set the iframe src
+      if (iframeRef.current && window.Tally) {
+        window.Tally.loadEmbeds();
+      } else if (iframeRef.current) {
+        iframeRef.current.src = iframeRef.current.dataset.tallySrc || "";
       }
     };
-
-    window.addEventListener('message', handleMessage);
-
+    
+    document.body.appendChild(script);
+    
     // Clean up
     return () => {
       if (document.body.contains(script)) {
         document.body.removeChild(script);
       }
-      window.removeEventListener('message', handleMessage);
     };
-  }, [navigate, redirectToThankYou]);
-
-  // Construct the src URL with query parameters
-  const getSrcUrl = () => {
-    let baseUrl = `https://tally.so/embed/${formId}?alignLeft=1&hideTitle=1&dynamicHeight=1&transparentBackground=1`;
-    
-    // Add email if provided
-    if (email) {
-      baseUrl += `&email=${encodeURIComponent(email)}`;
-    }
-    
-    // Add referral if provided
-    if (referral) {
-      baseUrl += `&ref=${encodeURIComponent(referral)}`;
-    }
-    
-    return baseUrl;
-  };
+  }, []);
 
   return (
-    <div className={`tally-form-container ${className} ${initialLoad ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'} transition-all duration-1000 delay-200 ease-out border border-white rounded-3xl p-4 pb-2`}>
-      <h2 className="text-2xl font-bold text-white mb-3 text-left">Get Started With Powered_by Today</h2>
-      <iframe
-        ref={iframeRef}
-        data-tally-src={getSrcUrl()}
-        width="100%"
-        height="580px"
-        frameBorder="0"
-        marginHeight={0}
-        marginWidth={0}
-        title="Contact Form"
-      ></iframe>
-      <div className="text-[10px] text-gray-400 mt-1 text-left">
-        By using <PoweredByText className="text-[10px] px-1 py-0" /> you agree to our <a href="https://poweredby.agency/terms-of-service" className="underline hover:text-gray-300 transition-colors">Terms of Service</a>, <a href="https://poweredby.agency/privacy-statement" className="underline hover:text-gray-300 transition-colors">Privacy</a>, and <a href="https://poweredby.agency/privacy-statement" className="underline hover:text-gray-300 transition-colors">Security</a> policies and practices.
+    <div className={`tally-form-container ${className}`}>
+      <div className="border border-white/10 rounded-lg overflow-hidden glass-card">
+        <iframe
+          ref={iframeRef}
+          data-tally-src="https://tally.so/embed/nW1VqP?alignLeft=1&hideTitle=1&transparentBackground=1"
+          width="100%"
+          height="600"
+          frameBorder="0"
+          marginHeight={0}
+          marginWidth={0}
+          title="Get Started with AI Receptionist Today!"
+        ></iframe>
+        
+        {/* Email disclaimer matching the provided image */}
+        <div className="w-full bg-[#1a0b2e] py-3 px-4 text-white font-semibold text-left">
+          <p>*Only business or company email addresses are accepted by this form.</p>
+        </div>
+        
+        {/* Terms disclosure with improved visibility */}
+        <div className="text-[10px] text-gray-200 text-center mt-2 bg-gray-800/60 p-2 rounded border border-gray-700">
+          By using <span className={POWERED_BY_STYLE}>Powered_by</span> you agree to our{" "}
+          <Link to="/terms-of-service" className="text-purple-400 hover:text-purple-300 transition-colors">
+            Terms of Service
+          </Link>
+          ,{" "}
+          <Link to="/privacy-statement" className="text-purple-400 hover:text-purple-300 transition-colors">
+            Privacy
+          </Link>
+          , and Security policies and practices.
+        </div>
       </div>
     </div>
   );
