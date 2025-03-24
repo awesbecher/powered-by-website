@@ -15,7 +15,7 @@ export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
         <div className="text-center">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
             <span className="text-[#9b87f5] block mb-2 text-5xl sm:text-6xl lg:text-7xl">Now Launching:</span>
-            Custom AI Agents for <span className="text-[#9b87f5]">SMB</span>
+            Custom AI Agents for <span className="text-white">SMBs</span>
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
             Deploy agentic AI solutions for voice, email, SMS, and more. No coding required.
