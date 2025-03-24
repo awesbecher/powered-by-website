@@ -33,7 +33,7 @@ export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
               <Button
                 className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-6 text-lg rounded-md w-full sm:w-auto"
               >
-                Get Started <ArrowRight className="ml-2 h-5 w-5" />
+                Get started quickly & affordably <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
           </div>
