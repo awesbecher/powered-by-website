@@ -22,7 +22,7 @@ const Calendly = () => {
       
       <div className="flex-grow flex flex-col relative z-10 pt-6 px-4">
         <div className="max-w-4xl mx-auto w-full">
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-6 transition-all duration-700 ease-out 
+          <h1 className="text-3xl md:text-4xl font-bold text-accent mb-6 transition-all duration-700 ease-out 
                          text-center
                          tracking-tight">
             Meet with Us!
