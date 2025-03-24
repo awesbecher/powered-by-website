@@ -39,7 +39,8 @@ export const FormSubmitSection: React.FC<FormSubmitSectionProps> = ({
         )}
       </Button>
       
-      <div className="text-[10px] text-gray-400 text-center mt-1">
+      {/* Make this text more visible with better styling */}
+      <div className="text-[10px] text-gray-200 text-center mt-2 bg-gray-800/60 p-2 rounded border border-gray-700">
         By using <span className={POWERED_BY_STYLE}>Powered_by</span> you agree to our{" "}
         <Link to="/terms-of-service" className="text-purple-400 hover:text-purple-300 transition-colors">
           Terms of Service

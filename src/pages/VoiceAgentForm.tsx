@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { Link } from "react-router-dom";
+import { POWERED_BY_STYLE } from "@/components/voice-chat/hooks/types/contactFormTypes";
 
 const VoiceAgentForm = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -35,6 +37,21 @@ const VoiceAgentForm = () => {
               title="AI Voice Agent Configurator"
               className="rounded-lg"
             ></iframe>
+          </div>
+          
+          {/* Terms disclosure - added with improved visibility */}
+          <div className="text-center mt-4 mb-6 bg-white/10 backdrop-blur-sm p-3 rounded-lg border border-white/20">
+            <p className="text-xs text-white">
+              By using <span className={POWERED_BY_STYLE}>Powered_by</span> you agree to our{" "}
+              <Link to="/terms-of-service" className="text-purple-400 hover:text-purple-300 transition-colors">
+                Terms of Service
+              </Link>
+              ,{" "}
+              <Link to="/privacy-statement" className="text-purple-400 hover:text-purple-300 transition-colors">
+                Privacy
+              </Link>
+              , and Security policies and practices.
+            </p>
           </div>
         </div>
       </div>
