@@ -5,14 +5,12 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ChevronRight, Newspaper } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { blogPosts, newsArticles } from "@/data/blog-posts";
+import { allContent } from "@/data/blog-posts";
 
 // Combine news posts with PR releases
-const newsPosts = [...newsArticles, 
-  ...blogPosts.filter(post => 
-    post.category === "News" || post.category === "PR Release"
-  )
-];
+const newsPosts = allContent.filter(post => 
+  post.category === "News" || post.category === "PR Release"
+);
 
 const News = () => {
   useEffect(() => {
