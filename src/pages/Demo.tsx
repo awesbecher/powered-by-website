@@ -47,13 +47,13 @@ const Demo = () => {
         <div className="relative overflow-hidden px-6 lg:px-8 pb-8 pt-16">
           <div className="mx-auto max-w-7xl">
             <div className="text-center">
+              {/* Add the offer button above the heading */}
+              <OfferButton className="mb-8" />
+              
               <h1 className={`text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6 transition-all duration-1000 ease-out transform
                   ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
                 See our <span className="text-[#9b87f5]">AI Agents</span> in Action!
               </h1>
-              
-              {/* Add the offer button here */}
-              <OfferButton className="mb-6" />
               
               <p className={`mt-4 text-lg leading-relaxed text-gray-300 max-w-3xl mx-auto font-bold transition-all duration-1000 delay-300 ease-out transform
                   ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
