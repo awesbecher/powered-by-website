@@ -60,9 +60,9 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({
           title="Get Started with AI Receptionist Today!"
         ></iframe>
         
-        {/* Email disclaimer - ultra-minimal styling with negative margins */}
+        {/* Email disclaimer - increased font size from 8px to 10px */}
         <div className="w-full bg-[#1a0b2e] py-px px-4 text-white font-semibold text-left border-t border-gray-800/50 -mt-1">
-          <p className="text-[8px] my-0 leading-tight">*Only business or company email addresses are accepted by this form.</p>
+          <p className="text-[10px] my-0 leading-tight">*Only business or company email addresses are accepted by this form.</p>
         </div>
         
         {/* Terms disclosure - ultra-minimal styling with no padding */}
