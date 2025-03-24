@@ -39,8 +39,8 @@ const VoiceAgentForm = () => {
             ></iframe>
           </div>
           
-          {/* Terms disclosure - added with improved visibility */}
-          <div className="text-center mt-4 mb-6 bg-white/10 backdrop-blur-sm p-3 rounded-lg border border-white/20">
+          {/* Terms disclosure - reduced vertical spacing */}
+          <div className="text-center mt-1 mb-1 bg-white/10 backdrop-blur-sm p-2 rounded-lg border border-white/20">
             <p className="text-xs text-white">
               By using <span className={POWERED_BY_STYLE}>Powered_by</span> you agree to our{" "}
               <Link to="/terms-of-service" className="text-purple-400 hover:text-purple-300 transition-colors">

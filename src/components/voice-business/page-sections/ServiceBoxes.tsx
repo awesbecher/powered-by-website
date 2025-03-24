@@ -69,14 +69,14 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
             title="Get Started with AI Receptionist Today!"
           ></iframe>
           
-          {/* Disclaimer about business email - minimal vertical spacing */}
-          <div className="mt-0 mb-0 text-left border-t border-white/10">
-            <p className="text-sm text-white italic font-bold py-1.5 px-2">*Only business or company email addresses are accepted by this form.</p>
+          {/* Disclaimer with zero vertical spacing */}
+          <div className="m-0 p-0 text-left border-t border-white/10">
+            <p className="text-xs text-white italic font-bold py-1 px-2">*Only business or company email addresses are accepted by this form.</p>
           </div>
           
-          {/* Terms disclosure - minimal vertical spacing */}
-          <div className="mt-0 mb-0 bg-white/20 backdrop-blur-md py-1.5 px-3 rounded-b border-t border-white/30 shadow-lg relative z-10">
-            <p className="text-sm text-white font-medium">
+          {/* Terms with zero vertical spacing */}
+          <div className="m-0 p-0 bg-white/20 backdrop-blur-md py-1 px-3 rounded-b border-t border-white/30 shadow-lg relative z-10">
+            <p className="text-xs text-white font-medium">
               By using <span className={POWERED_BY_STYLE}>Powered_by</span> you agree to our{" "}
               <Link to="/terms-of-service" className="text-purple-400 hover:text-purple-300 transition-colors underline">
                 Terms of Service

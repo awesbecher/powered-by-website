@@ -12,8 +12,8 @@ export const FormSubmitSection: React.FC<FormSubmitSectionProps> = ({
   isSubmitting
 }) => {
   return (
-    <div className="space-y-0.5">
-      <div className="text-[10px] text-gray-400">
+    <div className="space-y-0">
+      <div className="text-[10px] text-gray-400 mb-1">
         By continuing, you agree to <span className={POWERED_BY_STYLE}>Powered_by</span>'s{" "}
         <Link to="/privacy-statement" className="text-purple-400 hover:text-purple-300 transition-colors">
           Privacy Policy
@@ -24,7 +24,7 @@ export const FormSubmitSection: React.FC<FormSubmitSectionProps> = ({
       <Button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-gradient-to-r from-[#8a75e3] to-[#9b87f5] hover:opacity-90 text-white font-medium py-4 h-auto text-sm rounded-md transition-all shadow-md"
+        className="w-full bg-gradient-to-r from-[#8a75e3] to-[#9b87f5] hover:opacity-90 text-white font-medium py-3 h-auto text-sm rounded-md transition-all shadow-md"
       >
         {isSubmitting ? (
           <div className="flex items-center justify-center">
@@ -39,13 +39,13 @@ export const FormSubmitSection: React.FC<FormSubmitSectionProps> = ({
         )}
       </Button>
       
-      {/* Email disclaimer - minimal spacing */}
-      <div className="w-full bg-[#1a0b2e] py-2 px-4 text-white font-semibold text-left mt-0 border-t border-gray-800/50">
-        <p>*Only business or company email addresses are accepted by this form.</p>
+      {/* Email disclaimer - minimal vertical spacing */}
+      <div className="w-full bg-[#1a0b2e] py-1 px-4 text-white font-semibold text-left mt-0 border-t border-gray-800/50">
+        <p className="text-xs">*Only business or company email addresses are accepted by this form.</p>
       </div>
       
-      {/* Terms disclosure - minimal margin-top */}
-      <div className="text-[10px] text-gray-200 text-center mt-0 py-1.5 px-2 bg-gray-800/60 rounded-b border-t border-gray-700">
+      {/* Terms disclosure - minimal vertical spacing */}
+      <div className="text-[10px] text-gray-200 text-center py-1 px-2 bg-gray-800/60 rounded-b border-t border-gray-700">
         By using <span className={POWERED_BY_STYLE}>Powered_by</span> you agree to our{" "}
         <Link to="/terms-of-service" className="text-purple-400 hover:text-purple-300 transition-colors">
           Terms of Service
