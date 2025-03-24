@@ -9,6 +9,7 @@ interface TallyFormEmbedProps {
   email?: string;
   referral?: string;
   redirectToThankYou?: boolean;
+  initialLoad?: boolean;
 }
 
 export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({ 
@@ -16,7 +17,8 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({
   className = "",
   email = "",
   referral = "",
-  redirectToThankYou = true
+  redirectToThankYou = true,
+  initialLoad
 }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const navigate = useNavigate();
@@ -68,17 +70,17 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({
   };
 
   return (
-    <div className={`tally-form-container ${className} border border-white rounded-3xl p-4 pb-2`}>
-      <h2 className="text-2xl font-bold text-white mb-3 text-left">Get Started With Voice AI Today</h2>
+    <div className={`tally-form-container ${className} ${initialLoad ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'} transition-all duration-1000 delay-200 ease-out border border-white rounded-3xl p-4 pb-2`}>
+      <h2 className="text-2xl font-bold text-white mb-3 text-left">Get Started With Powered_by Today</h2>
       <iframe
         ref={iframeRef}
         data-tally-src={getSrcUrl()}
         width="100%"
-        height="480px"
+        height="580px"
         frameBorder="0"
         marginHeight={0}
         marginWidth={0}
-        title="Voice AI Contact Form"
+        title="Contact Form"
       ></iframe>
       <div className="text-[10px] text-gray-400 mt-1 text-left">
         By using <PoweredByText className="text-[10px] px-1 py-0" /> you agree to our <a href="https://poweredby.agency/terms-of-service" className="underline hover:text-gray-300 transition-colors">Terms of Service</a>, <a href="https://poweredby.agency/privacy-statement" className="underline hover:text-gray-300 transition-colors">Privacy</a>, and <a href="https://poweredby.agency/privacy-statement" className="underline hover:text-gray-300 transition-colors">Security</a> policies and practices.

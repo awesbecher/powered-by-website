@@ -2,7 +2,7 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ContactHeader } from "@/components/contact/ContactHeader";
-import { CalendlyWidget } from "@/components/contact/CalendlyWidget";
+import { TallyFormEmbed } from "@/components/voice-chat/TallyFormEmbed";
 import { useEffect, useState } from "react";
 
 const Contact = () => {
@@ -29,8 +29,8 @@ const Contact = () => {
             <ContactHeader initialLoad={initialLoad} />
           </div>
           
-          {/* Calendly widget */}
-          <CalendlyWidget initialLoad={initialLoad} />
+          {/* Ready for Tally.so form (using the existing TallyFormEmbed component) */}
+          <TallyFormEmbed initialLoad={initialLoad} className="mb-6" formId="wMM2yY" />
         </div>
       </div>
 
