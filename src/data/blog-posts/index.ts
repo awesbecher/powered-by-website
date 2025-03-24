@@ -7,7 +7,7 @@ import { understandingAiAgents } from "./understanding-ai-agents";
 import { aiTrillionMarket } from "./ai-trillion-market";
 import { voiceAiRetail } from "./voice-ai-retail";
 import { openaiAnthropicSmb } from "./openai-anthropic-smb";
-import { buildOrBuyAIAgents } from "./ai-agents-evaluation";
+import { aiAgentsEvaluation } from "./ai-agents-evaluation";
 import { saasCustomerEngagement } from "./saas-customer-engagement";
 import { humanLikeAi } from "./human-like-ai";
 import { smbConversationalAgents } from "./smb-conversational-agents";
@@ -26,7 +26,7 @@ export const blogPosts: BlogPost[] = [
   aiTrillionMarket,
   voiceAiRetail,
   openaiAnthropicSmb,
-  buildOrBuyAIAgents,
+  aiAgentsEvaluation,
   saasCustomerEngagement,
   humanLikeAi,
   smbConversationalAgents,
