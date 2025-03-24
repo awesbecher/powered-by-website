@@ -34,7 +34,7 @@ export const officialLaunchAnnouncement: NewsArticle = {
     
     <blockquote>
       <strong>"In today's business climate, it's imperative for SMBs to compete their level-best with the Fortune 500 by 
-      embracing the latest in AI innovation," said Andrew Wesbecher, Founder of Powered_by. "We are a mission-driven 
+      embracing the latest in AI innovation,"</strong> said Andrew Wesbecher, Founder of Powered_by. <strong>"We are a mission-driven 
       company. That mission is to democratize access to the most advanced AI agent systems for any organization, no 
       matter its size, industry, or budget. Our team of experts brings years of experience in AI implementation across 
       industries. By combining deep human expertise with cutting-edge AI agent technology, we ensure that your AI agent 
