@@ -2,57 +2,60 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { HeroSection } from "@/components/product-hunt/hero/HeroSection";
+import { LaunchHeroSection } from "@/components/product-hunt/hero/LaunchHeroSection";
 import { VideoSection } from "@/components/product-hunt/video/VideoSection";
+import { HowItWorksSection } from "@/components/product-hunt/how-it-works/HowItWorksSection";
 import { FeaturesSection } from "@/components/product-hunt/features/FeaturesSection";
 import { BenefitsSection } from "@/components/product-hunt/benefits/BenefitsSection";
 import { TestimonialsSection } from "@/components/product-hunt/testimonials/TestimonialsSection";
 import { PricingSection } from "@/components/product-hunt/pricing/PricingSection";
-import { HowItWorksSection } from "@/components/product-hunt/how-it-works/HowItWorksSection";
 import { FAQSection } from "@/components/product-hunt/faq/FAQSection";
 import { FinalCTASection } from "@/components/product-hunt/cta/FinalCTASection";
+import { SocialProofSection } from "@/components/product-hunt/social-proof/SocialProofSection";
+import AnnouncementBanner from "@/components/layout/AnnouncementBanner";
 
 const ProductHunt = () => {
   const [initialLoad, setInitialLoad] = useState(true);
+  const [showAnnouncement, setShowAnnouncement] = useState(true);
 
   useEffect(() => {
-    setInitialLoad(false);
+    // Set initialLoad to false after a short delay to trigger animations
+    const timer = setTimeout(() => {
+      setInitialLoad(false);
+    }, 100);
+    
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
-      {/* Sticky header with navbar only */}
-      <div className="sticky top-0 z-50 w-full">
-        <Navbar />
-      </div>
-
-      {/* Hero Section */}
-      <HeroSection initialLoad={initialLoad} />
+    <div className="flex flex-col min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
+      {showAnnouncement && (
+        <AnnouncementBanner 
+          onClose={() => setShowAnnouncement(false)} 
+          showCloseButton={true}
+        />
+      )}
+      <Navbar />
       
-      {/* Video Section */}
-      <VideoSection />
-
-      {/* Features Section */}
-      <FeaturesSection />
-
-      {/* Why Choose Us */}
-      <BenefitsSection />
-
-      {/* Testimonials - Social proof now integrated within this section */}
-      <TestimonialsSection />
-
-      {/* Pricing Section */}
-      <PricingSection />
-
-      {/* How It Works */}
-      <HowItWorksSection />
-
-      {/* FAQs */}
-      <FAQSection />
-
-      {/* CTA Section */}
-      <FinalCTASection />
-
+      {/* Hero Section with background image */}
+      <LaunchHeroSection initialLoad={initialLoad} />
+      
+      {/* Main Content */}
+      <main>
+        <VideoSection initialLoad={initialLoad} />
+        <SocialProofSection initialLoad={initialLoad} />
+        <HowItWorksSection initialLoad={initialLoad} />
+        <FeaturesSection initialLoad={initialLoad} />
+        <BenefitsSection initialLoad={initialLoad} />
+        <TestimonialsSection initialLoad={initialLoad} />
+        <PricingSection initialLoad={initialLoad} />
+        <FAQSection initialLoad={initialLoad} />
+        <FinalCTASection initialLoad={initialLoad} />
+      </main>
+      
       <Footer />
     </div>
   );
