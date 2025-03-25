@@ -39,7 +39,7 @@ const Contact = () => {
           {/* Updated Tally.so form with the new form ID and parameters */}
           <TallyFormEmbed 
             className="mb-8" 
-            formId="3jvjPa" 
+            formId="3qzGDG" 
             height={950}
             transparentBackground={true}
             alignLeft={true}
