@@ -58,8 +58,8 @@ const TextAgent = () => {
         <Navbar />
         <HeroSection initialLoad={initialLoad} handleContact={handleContact} />
         
-        {/* ServiceBoxes moved here, centered above FeaturesSection */}
-        <div className="py-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-3xl flex justify-center">
+        {/* ServiceBoxes moved directly below the hero section with less padding */}
+        <div className="py-4 px-4 sm:px-6 lg:px-8 mx-auto max-w-3xl flex justify-center">
           <ServiceBoxes initialLoad={initialLoad} />
         </div>
         
