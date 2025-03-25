@@ -55,7 +55,7 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
       <div className="grid grid-cols-1 gap-4 w-full">
         <div className="p-4">
-          <h2 className="text-2xl font-bold text-white mb-2 text-left">Get Started With Voice AI Today</h2>
+          {/* Removed the heading "Get Started With Voice AI Today" */}
           <iframe
             ref={iframeRef}
             data-tally-src="https://tally.so/embed/nW1VqP?alignLeft=1"
