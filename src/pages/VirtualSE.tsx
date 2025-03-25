@@ -19,6 +19,18 @@ const VirtualSE = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Load Tally embed script
+    const script = document.createElement('script');
+    script.src = 'https://tally.so/widgets/embed.js';
+    script.async = true;
+    document.body.appendChild(script);
+    
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
   }, []);
 
   const handleContact = () => {
