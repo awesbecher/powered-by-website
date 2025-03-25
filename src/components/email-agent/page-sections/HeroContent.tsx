@@ -11,7 +11,7 @@ interface HeroContentProps {
 
 export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) => {
   return (
-    <div className={`w-full lg:w-1/2 space-y-4 transition-all duration-1000 ease-out transform
+    <div className={`w-full space-y-4 transition-all duration-1000 ease-out transform
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
       <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
         Meet Your New <span className="text-[#9b87f5]">AI Email Agent</span>: Genius unleashed!
