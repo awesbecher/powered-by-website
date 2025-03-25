@@ -2,19 +2,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ArrowDown } from "lucide-react";
+import { ArrowRight, Tv } from "lucide-react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 interface HeroSectionProps {
   initialLoad: boolean;
 }
 
 export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
-  const scrollToPricing = () => {
-    const pricingSection = document.getElementById('pricing');
-    if (pricingSection) {
-      pricingSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const [videoOpen, setVideoOpen] = React.useState(false);
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
@@ -38,10 +34,10 @@ export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
               </Button>
             </a>
             <Button
-              onClick={scrollToPricing}
+              onClick={() => setVideoOpen(true)}
               className="bg-white hover:bg-gray-100 text-[#4A2A82] px-6 py-6 text-lg rounded-md w-full sm:w-auto flex items-center"
             >
-              See Pricing <ArrowDown className="ml-2 h-5 w-5" />
+              Watch Launch! <Tv className="ml-2 h-5 w-5" />
             </Button>
             <Link to="/contact">
               <Button
@@ -53,6 +49,23 @@ export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
           </div>
         </div>
       </div>
+
+      {/* YouTube Video Dialog */}
+      <Dialog open={videoOpen} onOpenChange={setVideoOpen}>
+        <DialogContent className="max-w-3xl p-1 bg-black">
+          <div className="aspect-video">
+            <iframe 
+              width="100%" 
+              height="100%" 
+              src="https://www.youtube.com/embed/EGR10-TIQS8?si=yuQhOAFH9sqLNJRy&autoplay=1" 
+              title="Launch Video" 
+              frameBorder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowFullScreen
+            ></iframe>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
