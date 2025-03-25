@@ -39,13 +39,12 @@ export const FormSubmitSection: React.FC<FormSubmitSectionProps> = ({
         )}
       </Button>
       
-      {/* Email disclaimer - eliminated all spacing */}
-      <div className="w-full bg-[#1a0b2e] py-px px-4 text-white font-semibold text-left mt-0 border-t border-gray-800/50">
+      {/* Attach the disclaimers directly to the button with negative margin to remove any gap */}
+      <div className="w-full bg-[#1a0b2e] py-0 px-4 text-white font-semibold text-left -mt-px border-t border-gray-800/50">
         <p className="text-[7px] my-0 leading-none">*Only business or company email addresses are accepted by this form.</p>
       </div>
       
-      {/* Terms disclosure - eliminated all spacing */}
-      <div className="text-[7px] text-gray-200 text-center py-px px-2 bg-gray-800/60 rounded-b border-t border-gray-700 leading-none">
+      <div className="text-[7px] text-gray-200 text-center py-0 px-2 bg-gray-800/60 rounded-b border-t border-gray-700 leading-none -mt-px">
         By using <span className={POWERED_BY_STYLE}>Powered_by</span> you agree to our{" "}
         <Link to="/terms-of-service" className="text-purple-400 hover:text-purple-300 transition-colors">
           Terms of Service
