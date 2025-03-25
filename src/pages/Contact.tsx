@@ -38,7 +38,6 @@ const Contact = () => {
           
           {/* Updated Tally.so form with increased height to show submit button without scrolling */}
           <TallyFormEmbed 
-            initialLoad={initialLoad} 
             className="mb-8" 
             formId="3jvjPa" 
             height={950} // Significantly increased height to ensure submit button visibility
