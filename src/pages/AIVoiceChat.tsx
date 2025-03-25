@@ -23,8 +23,6 @@ const otherImages = [
   "/lovable-uploads/5f0cfdc2-dcf5-478a-9921-45b10bdd2329.png", // Newly added image
   "/lovable-uploads/b59af0c8-288a-4cbd-a048-ee0e8fedf214.png", // Added new layout image
   "/lovable-uploads/98ca8be9-0a4e-4fc3-ac34-c2614e0074ad.png", // Contact form reference image
-  "/lovable-uploads/5d398601-cdae-4348-9f12-8701216b6d1a.png", // First new CTA image
-  "/lovable-uploads/cb612a35-bf33-4b99-810a-ed910376b306.png", // Second new CTA image
 ];
 const allImages = [...propertyImages, ...otherImages];
 forcePrefetchImages(allImages);
@@ -51,7 +49,6 @@ const AIVoiceChat = () => {
       <FeaturesSection />
       <BenefitsSection />
       <FAQSection />
-      {/* Removed FinalCTASection component */}
       <Footer />
     </div>
   );

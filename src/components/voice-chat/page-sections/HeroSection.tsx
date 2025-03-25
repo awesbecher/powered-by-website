@@ -5,7 +5,6 @@ import { WebsiteSimulation } from "@/components/voice-chat/WebsiteSimulation";
 import { HeroContent } from "./components/HeroContent";
 import { FeaturesList } from "./components/FeaturesList";
 import { VoiceChatControls } from "./components/VoiceChatControls";
-import { CTACard } from "./components/CTACard";
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -30,19 +29,11 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
     <section className="pt-20 pb-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
         {/* Left side - Hero content */}
-        <div className="lg:col-span-7">
+        <div className="lg:col-span-12">
           <HeroContent 
             initialLoad={initialLoad}
             handleVoiceChatClick={handleVoiceChatClick}
             handleGetStarted={handleGetStarted}
-          />
-        </div>
-        
-        {/* Right side - CTA Card */}
-        <div className="lg:col-span-5 flex items-center">
-          <CTACard 
-            initialLoad={initialLoad} 
-            handleGetStarted={handleGetStarted} 
           />
         </div>
       </div>
