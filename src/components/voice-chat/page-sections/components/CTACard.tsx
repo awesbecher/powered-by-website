@@ -25,7 +25,7 @@ export const CTACard: React.FC<CTACardProps> = ({ initialLoad, handleGetStarted 
         </p>
         
         <Button 
-          className="bg-white hover:bg-gray-100 text-[#6342ff] font-bold px-6 py-5 h-auto text-lg rounded-md w-full sm:w-auto"
+          className="bg-white hover:bg-gray-100 text-[#6342ff] font-bold px-6 py-3 h-auto text-lg rounded-md w-full sm:w-auto"
           onClick={handleGetStarted}
         >
           Get Started Today <ArrowRight className="ml-2 h-5 w-5" />
