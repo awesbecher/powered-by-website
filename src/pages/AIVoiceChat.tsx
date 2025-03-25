@@ -8,7 +8,6 @@ import { HeroSection } from "@/components/voice-chat/page-sections/HeroSection";
 import { FeaturesSection } from "@/components/voice-chat/page-sections/FeaturesSection";
 import { BenefitsSection } from "@/components/voice-chat/page-sections/BenefitsSection";
 import { FAQSection } from "@/components/voice-chat/page-sections/FAQSection";
-import { FinalCTASection } from "@/components/voice-chat/page-sections/FinalCTASection";
 import { properties } from "@/data/properties";
 import { forcePrefetchImages, addCSSImagePreloading } from "@/components/voice-chat/utils/imageUtils";
 
@@ -51,9 +50,8 @@ const AIVoiceChat = () => {
       <HeroSection initialLoad={initialLoad} handleContact={handleContact} />
       <FeaturesSection />
       <BenefitsSection />
-      {/* Removed CTASection as it's now in the hero area */}
       <FAQSection />
-      <FinalCTASection handleContact={handleContact} />
+      {/* Removed FinalCTASection component */}
       <Footer />
     </div>
   );
