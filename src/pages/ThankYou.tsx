@@ -1,4 +1,3 @@
-
 import React from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -28,9 +27,7 @@ const ThankYou = () => {
               </h1>
               
               <p className="text-gray-300 text-center mb-6">
-                We've received your information and our team will be in touch shortly. 
-                Typically, we will be back in touch within 24-48 hours, or even sooner!
-                In the meantime, check out these resources below to learn more about our AI solutions.
+                We look forward to helping you learn more about AI agents and how they could deliver real value to your business.
               </p>
             </CardContent>
           </Card>
