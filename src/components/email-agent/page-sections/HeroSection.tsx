@@ -20,7 +20,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
           src="/lovable-uploads/f91f05ea-4227-4ab9-94c0-8588b4a3efa8.png" 
           alt="Envelope" 
           className="w-full h-full object-contain"
-          fetchpriority="high"
+          fetchPriority="high"
         />
       </div>
       
