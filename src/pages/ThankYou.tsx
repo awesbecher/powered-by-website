@@ -24,7 +24,7 @@ const ThankYou = () => {
               </div>
               
               <h1 className="text-3xl font-bold text-white text-center mb-4">
-                Thank You For Your Submission
+                Thanks for your interest in Powered_by!
               </h1>
               
               <p className="text-gray-300 text-center mb-6">
