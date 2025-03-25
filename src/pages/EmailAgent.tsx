@@ -16,7 +16,6 @@ import { forcePrefetchImages, addCSSImagePreloading } from "@/components/voice-c
 const images = [
   "/lovable-uploads/f6cd5c39-f85a-4586-9140-cd8e12d9b947.png",  // Logo
   "/lovable-uploads/65c7ad96-17cd-4bc0-8a6d-0148a49f3402.png", // Powered By Agency logo
-  "/lovable-uploads/f91f05ea-4227-4ab9-94c0-8588b4a3efa8.png", // Envelope image
 ];
 forcePrefetchImages(images);
 addCSSImagePreloading(images);
