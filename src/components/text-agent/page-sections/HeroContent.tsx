@@ -11,7 +11,7 @@ interface HeroContentProps {
 
 export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) => {
   return (
-    <div className={`w-full lg:w-1/2 space-y-4 transition-all duration-1000 ease-out transform
+    <div className={`w-full space-y-4 transition-all duration-1000 ease-out transform
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
       <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
         Meet Your New <span className="text-[#9b87f5]">AI Text Agent</span>: Texting reinvented!
@@ -30,18 +30,6 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
           <li>Schedules, sends, and follows up on texts automatically based on triggers</li>
           <li>Stays TCPA and GDPR-friendly with opt-in/out handling and secure data management</li>
         </ul>
-      </div>
-      <div className="flex flex-col items-center mt-2">
-        <div className="flex flex-wrap gap-3">
-          <Link to="/contact">
-            <Button 
-              className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-5 py-4 text-base rounded-md flex items-center"
-              onClick={handleContact}
-            >
-              Get Started <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </Link>
-        </div>
       </div>
     </div>
   );
