@@ -4,7 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Check, FileText, Phone, Play } from "lucide-react";
+import { Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PoweredByText } from "@/components/shared/PoweredByText";
 
@@ -34,46 +34,6 @@ const ThankYou = () => {
             </CardContent>
           </Card>
           
-          {/* Resources section */}
-          <h2 className="text-2xl font-bold text-white mb-6 text-center">
-            Helpful Resources
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
-            <ResourceCard 
-              icon={<FileText className="h-5 w-5" />}
-              title="Documentation"
-              description="Learn more about our AI voice agents and implementation details."
-              linkText="View Documentation"
-              linkUrl="https://poweredbyagency.ghost.io"
-              isExternal={true}
-            />
-            
-            <ResourceCard 
-              icon={<Play className="h-5 w-5" />}
-              title="Demo Experience"
-              description="See our AI voice agents in action with interactive demos."
-              linkText="Try Our Demos"
-              linkUrl="/demo"
-            />
-            
-            <ResourceCard 
-              icon={<Phone className="h-5 w-5" />}
-              title="Book a Consultation"
-              description="Schedule a free 30-minute consultation with our AI voice experts."
-              linkText="Book a Free Consultation"
-              linkUrl="/contact"
-            />
-            
-            <ResourceCard 
-              icon={<ArrowRight className="h-5 w-5" />}
-              title="Other Solutions"
-              description="Explore our complete suite of AI solutions for your business."
-              linkText="View Products"
-              linkUrl="/products"
-            />
-          </div>
-          
           {/* Return home button */}
           <div className="text-center">
             <Button
@@ -93,52 +53,6 @@ const ThankYou = () => {
       
       <Footer />
     </div>
-  );
-};
-
-// Helper component for resource cards
-interface ResourceCardProps {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  linkText: string;
-  linkUrl: string;
-  isExternal?: boolean;
-}
-
-const ResourceCard = ({ icon, title, description, linkText, linkUrl, isExternal = false }: ResourceCardProps) => {
-  return (
-    <Card className="bg-[#21162f] border-[#6342ff]/20 hover:border-[#6342ff]/40 transition-all duration-300">
-      <CardContent className="p-5">
-        <div className="flex items-start">
-          <div className="rounded-full bg-[#6342ff]/20 p-2 mr-4 mt-1">
-            {icon}
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-1">{title}</h3>
-            <p className="text-gray-400 text-sm mb-3">{description}</p>
-            
-            {isExternal ? (
-              <a 
-                href={linkUrl} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-[#9b87f5] hover:text-[#b6a7f9] text-sm font-medium flex items-center"
-              >
-                {linkText} <ArrowRight className="ml-1 h-3.5 w-3.5" />
-              </a>
-            ) : (
-              <Link 
-                to={linkUrl}
-                className="text-[#9b87f5] hover:text-[#b6a7f9] text-sm font-medium flex items-center"
-              >
-                {linkText} <ArrowRight className="ml-1 h-3.5 w-3.5" />
-              </Link>
-            )}
-          </div>
-        </div>
-      </CardContent>
-    </Card>
   );
 };
 
