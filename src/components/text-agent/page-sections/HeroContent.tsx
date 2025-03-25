@@ -1,8 +1,10 @@
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Tv } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PoweredByText } from "@/components/shared/PoweredByText";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 interface HeroContentProps {
   initialLoad: boolean;
@@ -10,6 +12,8 @@ interface HeroContentProps {
 }
 
 export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) => {
+  const [videoOpen, setVideoOpen] = useState(false);
+
   return (
     <div className={`w-full space-y-4 transition-all duration-1000 ease-out transform
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
@@ -31,6 +35,36 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
           <li>Stays TCPA and GDPR-friendly with opt-in/out handling and secure data management</li>
         </ul>
       </div>
+      
+      {/* New video button section */}
+      <div className="flex flex-col items-start mt-4">
+        <p className="text-gray-300 font-bold mb-1 text-left">See for yourself:</p>
+        <div className="flex flex-wrap gap-3 self-start">
+          <Button 
+            className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-4 text-base rounded-md flex items-center"
+            onClick={() => setVideoOpen(true)}
+          >
+            <Tv className="mr-2 h-5 w-5" /> Watch our intro to AI SMS-Text Agents
+          </Button>
+        </div>
+      </div>
+
+      {/* YouTube Video Dialog */}
+      <Dialog open={videoOpen} onOpenChange={setVideoOpen}>
+        <DialogContent className="max-w-3xl p-1 bg-black">
+          <div className="aspect-video">
+            <iframe 
+              width="100%" 
+              height="100%" 
+              src="https://www.youtube.com/embed/placeholder?autoplay=1" 
+              title="AI SMS-Text Agents Introduction" 
+              frameBorder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowFullScreen
+            ></iframe>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
