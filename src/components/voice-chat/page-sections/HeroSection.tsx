@@ -2,7 +2,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { WebsiteSimulation } from "@/components/voice-chat/WebsiteSimulation";
-import { TallyFormEmbed } from "@/components/voice-chat/TallyFormEmbed";
 import { HeroContent } from "./components/HeroContent";
 import { FeaturesList } from "./components/FeaturesList";
 import { VoiceChatControls } from "./components/VoiceChatControls";
@@ -22,33 +21,8 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
   };
 
   const handleGetStarted = () => {
-    // First scroll to the Tally form
-    const formContainer = document.querySelector('.tally-form-container');
-    if (formContainer) {
-      formContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      
-      // After scrolling, find and focus on the first input field in the Tally form
-      setTimeout(() => {
-        const tallyIframe = document.querySelector('.tally-form-container iframe');
-        if (tallyIframe) {
-          // Try to access iframe content and focus the first input
-          try {
-            const iframeDoc = (tallyIframe as HTMLIFrameElement).contentDocument || 
-                             (tallyIframe as HTMLIFrameElement).contentWindow?.document;
-            if (iframeDoc) {
-              const firstInput = iframeDoc.querySelector('input, textarea, select');
-              if (firstInput) {
-                (firstInput as HTMLElement).focus();
-              }
-            }
-          } catch (error) {
-            console.log("Could not focus on form input due to cross-origin restrictions");
-            // If we can't access the iframe content due to cross-origin restrictions,
-            // at least we've scrolled to the form
-          }
-        }
-      }, 1000); // Wait for the scroll to complete and iframe to fully load
-    }
+    // Navigate to contact page
+    handleContact();
   };
 
   return (
@@ -60,12 +34,11 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
           handleGetStarted={handleGetStarted}
         />
         
+        {/* Right side content - removing the form */}
         <div className={`transition-all duration-1000 delay-300 ease-out transform
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
           <div className="p-0">
-            <TallyFormEmbed 
-              className="w-full"
-            />
+            {/* Tally form removed */}
           </div>
         </div>
       </div>

@@ -1,11 +1,8 @@
 
 import React, { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import { POWERED_BY_STYLE } from "./hooks/types/contactFormTypes";
 
 interface TallyFormEmbedProps {
   className?: string;
-  initialLoad?: boolean;
   formId?: string;
   referral?: string;
   height?: string | number;
@@ -13,10 +10,9 @@ interface TallyFormEmbedProps {
 
 export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({ 
   className = "",
-  initialLoad,
   formId = "nW1VqP", // Default form ID
   referral,
-  height = 800 // Increased default height
+  height = 800 // Default height
 }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   
@@ -61,24 +57,6 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({
           marginWidth={0}
           title="Get Started with AI Receptionist Today!"
         ></iframe>
-        
-        {/* Email disclaimer - increased font size from 10px to 11px for better readability */}
-        <div className="w-full bg-[#1a0b2e] py-px px-4 text-white font-semibold text-left border-t border-gray-800/50 -mt-1">
-          <p className="text-[11px] my-0 leading-tight">*Only business or company email addresses are accepted by this form.</p>
-        </div>
-        
-        {/* Terms disclosure - ultra-minimal styling with no padding */}
-        <div className="text-[7px] text-gray-200 text-center py-px px-2 bg-gray-800/60 rounded-b border-t border-gray-700 leading-none">
-          By using <span className={POWERED_BY_STYLE}>Powered_by</span> you agree to our{" "}
-          <Link to="/terms-of-service" className="text-purple-400 hover:text-purple-300 transition-colors">
-            Terms of Service
-          </Link>
-          ,{" "}
-          <Link to="/privacy-statement" className="text-purple-400 hover:text-purple-300 transition-colors">
-            Privacy
-          </Link>
-          , and Security policies and practices.
-        </div>
       </div>
     </div>
   );
