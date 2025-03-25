@@ -56,7 +56,7 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
     <div className={`w-full lg:w-1/2 transition-all duration-1000 delay-300 ease-out transform flex flex-col items-start justify-start
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
       <div className="grid grid-cols-1 gap-4 w-full">
-        <div className="border border-white rounded-3xl p-4 pb-0">
+        <div className="p-4 pb-0">
           <h2 className="text-2xl font-bold text-white mb-2 text-left">Get Started With Voice AI Today</h2>
           <iframe
             ref={iframeRef}
@@ -70,12 +70,12 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
           ></iframe>
           
           {/* Disclaimer with negative margins to reduce space */}
-          <div className="m-0 p-0 text-left border-t border-white/10 -mt-2">
+          <div className="m-0 p-0 text-left -mt-2">
             <p className="text-[7px] text-white italic font-bold py-px px-2 my-0 leading-tight">*Only business or company email addresses are accepted by this form.</p>
           </div>
           
           {/* Terms with ultra-minimal styling */}
-          <div className="m-0 p-0 bg-white/20 backdrop-blur-md py-px px-2 rounded-b border-t border-white/30 shadow-lg relative z-10">
+          <div className="m-0 p-0 bg-white/20 backdrop-blur-md py-px px-2 rounded-b shadow-lg relative z-10">
             <p className="text-[7px] text-white font-medium my-0 leading-none">
               By using <span className={POWERED_BY_STYLE}>Powered_by</span> you agree to our{" "}
               <Link to="/terms-of-service" className="text-purple-400 hover:text-purple-300 transition-colors underline">
