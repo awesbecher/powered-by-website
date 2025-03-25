@@ -1,7 +1,8 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Mic } from "lucide-react";
+import { ArrowRight, Tv, Mic } from "lucide-react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 interface HeroContentProps {
   initialLoad: boolean;
@@ -14,6 +15,8 @@ export const HeroContent: React.FC<HeroContentProps> = ({
   handleVoiceChatClick,
   handleGetStarted,
 }) => {
+  const [videoOpen, setVideoOpen] = useState(false);
+
   return (
     <div className={`transition-all duration-1000 ease-out transform
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
@@ -37,9 +40,9 @@ export const HeroContent: React.FC<HeroContentProps> = ({
           <div className="flex flex-wrap gap-3 self-start">
             <Button 
               className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-4 text-base rounded-md flex items-center"
-              onClick={handleVoiceChatClick}
+              onClick={() => setVideoOpen(true)}
             >
-              <Mic className="mr-2 h-5 w-5" /> Speak to our Voice Agent Now
+              <Tv className="mr-2 h-5 w-5" /> Watch our intro to Voice AI
             </Button>
             <Button 
               className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-4 text-base rounded-md flex items-center"
@@ -52,6 +55,23 @@ export const HeroContent: React.FC<HeroContentProps> = ({
       </div>
       {/* Reduce the vertical spacing here */}
       <div className="py-10"></div>
+
+      {/* YouTube Video Dialog */}
+      <Dialog open={videoOpen} onOpenChange={setVideoOpen}>
+        <DialogContent className="max-w-3xl p-1 bg-black">
+          <div className="aspect-video">
+            <iframe 
+              width="100%" 
+              height="100%" 
+              src="https://www.youtube.com/embed/A4PPY9idmpo?si=YTt05OJgGRyKheJE&autoplay=1" 
+              title="Voice AI Introduction" 
+              frameBorder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowFullScreen
+            ></iframe>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
