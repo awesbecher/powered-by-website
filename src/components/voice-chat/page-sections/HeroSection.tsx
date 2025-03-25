@@ -5,6 +5,7 @@ import { WebsiteSimulation } from "@/components/voice-chat/WebsiteSimulation";
 import { HeroContent } from "./components/HeroContent";
 import { FeaturesList } from "./components/FeaturesList";
 import { VoiceChatControls } from "./components/VoiceChatControls";
+import { CTACard } from "./components/CTACard";
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -27,19 +28,22 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
 
   return (
     <section className="pt-16 pb-10 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12">
-        <HeroContent 
-          initialLoad={initialLoad}
-          handleVoiceChatClick={handleVoiceChatClick}
-          handleGetStarted={handleGetStarted}
-        />
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+        {/* Left side - Hero content */}
+        <div className="lg:col-span-7">
+          <HeroContent 
+            initialLoad={initialLoad}
+            handleVoiceChatClick={handleVoiceChatClick}
+            handleGetStarted={handleGetStarted}
+          />
+        </div>
         
-        {/* Right side content - removing the form */}
-        <div className={`transition-all duration-1000 delay-300 ease-out transform
-          ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-          <div className="p-0">
-            {/* Tally form removed */}
-          </div>
+        {/* Right side - CTA Card */}
+        <div className="lg:col-span-5">
+          <CTACard 
+            initialLoad={initialLoad} 
+            handleGetStarted={handleGetStarted} 
+          />
         </div>
       </div>
 
