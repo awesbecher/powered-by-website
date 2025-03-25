@@ -8,6 +8,7 @@ import { HeroSection } from "@/components/voice-chat/page-sections/HeroSection";
 import { FeaturesSection } from "@/components/voice-chat/page-sections/FeaturesSection";
 import { BenefitsSection } from "@/components/voice-chat/page-sections/BenefitsSection";
 import { FAQSection } from "@/components/voice-chat/page-sections/FAQSection";
+import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { properties } from "@/data/properties";
 import { forcePrefetchImages, addCSSImagePreloading } from "@/components/voice-chat/utils/imageUtils";
 
@@ -49,6 +50,11 @@ const AIVoiceChat = () => {
       <FeaturesSection />
       <BenefitsSection />
       <FAQSection />
+      <ClosingCTA 
+        customHeading="Ready to Transform Your Website With AI Voice Chat?"
+        customButtonText="Get Started"
+        onContactClick={handleContact}
+      />
       <Footer />
     </div>
   );
