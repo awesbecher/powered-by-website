@@ -52,7 +52,7 @@ const Footer = () => {
             >
               <div className="w-6 h-6 rounded-md bg-white flex items-center justify-center">
                 <img 
-                  src="/lovable-uploads/7685f512-38cc-4db8-81cc-72e0c80c0372.png" 
+                  src="/lovable-uploads/6de6dc99-f959-4cdd-a3be-34a95b8528bf.png" 
                   alt="YouTube Logo" 
                   className="w-6 h-6 object-cover"
                   style={{ objectPosition: "0 0", objectFit: "cover", width: "24px", height: "24px" }}
