@@ -8,7 +8,6 @@ import { HeroSection } from "@/components/email-agent/page-sections/HeroSection"
 import { ServiceBoxes } from "@/components/email-agent/page-sections/ServiceBoxes";
 import { FeaturesSection } from "@/components/email-agent/page-sections/FeaturesSection";
 import { BenefitsSection } from "@/components/email-agent/page-sections/BenefitsSection";
-import { CTASection } from "@/components/email-agent/page-sections/CTASection";
 import { FAQSection } from "@/components/email-agent/page-sections/FAQSection";
 import { FinalCTASection } from "@/components/email-agent/page-sections/FinalCTASection";
 import { forcePrefetchImages, addCSSImagePreloading } from "@/components/voice-chat/utils/imageUtils";
@@ -51,7 +50,7 @@ const EmailAgent = () => {
       
       <FeaturesSection />
       <BenefitsSection />
-      <CTASection handleContact={handleContact} />
+      {/* CTASection removed from here */}
       <FAQSection />
       <FinalCTASection handleContact={handleContact} />
       <Footer />
