@@ -55,7 +55,7 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({
           frameBorder="0"
           marginHeight={0}
           marginWidth={0}
-          title="Get Started with AI Receptionist Today!"
+          title="Contact Form"
         ></iframe>
       </div>
     </div>
