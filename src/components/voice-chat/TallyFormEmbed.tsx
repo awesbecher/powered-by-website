@@ -46,18 +46,16 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({
 
   return (
     <div className={`tally-form-container ${className}`}>
-      <div className="border border-white/10 rounded-lg overflow-hidden glass-card">
-        <iframe
-          ref={iframeRef}
-          data-tally-src={tallySrc}
-          width="100%"
-          height={height}
-          frameBorder="0"
-          marginHeight={0}
-          marginWidth={0}
-          title="Contact Form"
-        ></iframe>
-      </div>
+      <iframe
+        ref={iframeRef}
+        data-tally-src={tallySrc}
+        width="100%"
+        height={height}
+        frameBorder="0"
+        marginHeight={0}
+        marginWidth={0}
+        title="Contact Form"
+      ></iframe>
     </div>
   );
 };
