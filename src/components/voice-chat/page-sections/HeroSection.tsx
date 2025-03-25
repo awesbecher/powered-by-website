@@ -40,7 +40,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
         
         {/* Right side - Tally.so form */}
         <div className="lg:col-span-6">
-          <div className={`transition-all duration-1000 delay-300 ease-out transform
+          <div className={`mt-12 lg:mt-16 transition-all duration-1000 delay-300 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <TallyFormEmbed 
               formId="m6PKde"
