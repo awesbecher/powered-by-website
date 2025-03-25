@@ -1,6 +1,7 @@
 
-import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Mic } from "lucide-react";
 
 interface ServiceBoxesProps {
   initialLoad: boolean;
@@ -8,66 +9,32 @@ interface ServiceBoxesProps {
 }
 
 export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
-  const iframeRef = useRef<HTMLIFrameElement>(null);
   const navigate = useNavigate();
   
-  useEffect(() => {
-    // Load Tally embed script
-    const script = document.createElement('script');
-    script.src = 'https://tally.so/widgets/embed.js';
-    script.async = true;
-    
-    script.onload = () => {
-      // Once script is loaded, set the iframe src
-      if (iframeRef.current && window.Tally) {
-        window.Tally.loadEmbeds();
-      } else if (iframeRef.current) {
-        iframeRef.current.src = iframeRef.current.dataset.tallySrc || "";
-      }
-    };
-    
-    document.body.appendChild(script);
-    
-    // Set up message listener for form submission
-    const handleMessage = (event: MessageEvent) => {
-      // Check if the message is from Tally and contains form submission data
-      if (event.data?.type === 'tally:form:submitted') {
-        // Redirect to thank you page on form submission
-        setTimeout(() => {
-          navigate('/thank-you');
-        }, 1000);
-      }
-    };
-
-    window.addEventListener('message', handleMessage);
-    
-    // Clean up
-    return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-      window.removeEventListener('message', handleMessage);
-    };
-  }, [navigate]);
+  const handleGetStarted = () => {
+    navigate("/contact");
+  };
 
   return (
     <div className={`w-full lg:w-1/2 transition-all duration-1000 delay-300 ease-out transform flex flex-col items-start justify-start
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
       <div className="grid grid-cols-1 gap-4 w-full">
-        <div className="p-4">
-          {/* Removed the heading "Get Started With Voice AI Today" */}
-          <iframe
-            ref={iframeRef}
-            data-tally-src="https://tally.so/embed/nW1VqP?alignLeft=1"
-            width="100%"
-            height="445"
-            frameBorder="0"
-            marginHeight={0}
-            marginWidth={0}
-            title="Get Started with AI Receptionist Today!"
-          ></iframe>
+        <div className="p-4 flex flex-col items-start space-y-6">
+          <Button 
+            onClick={onTryNow} 
+            className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-6 text-lg rounded-md flex items-center"
+          >
+            <Mic className="mr-2 h-5 w-5" /> Try Voice AI Now
+          </Button>
+          
+          <Button 
+            onClick={handleGetStarted} 
+            className="bg-white text-[#6342ff] hover:bg-gray-100 px-6 py-6 text-lg rounded-md"
+          >
+            Get Started
+          </Button>
         </div>
       </div>
     </div>
   );
-};
+}
