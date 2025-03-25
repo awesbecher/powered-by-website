@@ -41,8 +41,8 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({
     };
   }, []);
 
-  // Build the tally src URL with form ID and referral if provided
-  const tallySrc = `https://tally.so/embed/${formId}?alignLeft=1&hideTitle=1&transparentBackground=1${referral ? `&referral=${referral}` : ''}`;
+  // Build the tally src URL with form ID and all requested parameters
+  const tallySrc = `https://tally.so/embed/${formId}?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1${referral ? `&referral=${referral}` : ''}`;
 
   return (
     <div className={`tally-form-container ${className}`}>
