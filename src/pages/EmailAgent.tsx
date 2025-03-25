@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { HeroSection } from "@/components/email-agent/page-sections/HeroSection";
+import { ServiceBoxes } from "@/components/email-agent/page-sections/ServiceBoxes";
 import { FeaturesSection } from "@/components/email-agent/page-sections/FeaturesSection";
 import { BenefitsSection } from "@/components/email-agent/page-sections/BenefitsSection";
 import { CTASection } from "@/components/email-agent/page-sections/CTASection";
@@ -42,6 +43,12 @@ const EmailAgent = () => {
     <div className="min-h-screen bg-gradient-to-b from-[#0f0f0f] via-[#121212] to-[#0f0f0f]">
       <Navbar />
       <HeroSection initialLoad={initialLoad} handleContact={handleContact} />
+      
+      {/* ServiceBoxes moved out of HeroSection and centered below it */}
+      <div className="py-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl flex justify-center">
+        <ServiceBoxes initialLoad={initialLoad} />
+      </div>
+      
       <FeaturesSection />
       <BenefitsSection />
       <CTASection handleContact={handleContact} />
