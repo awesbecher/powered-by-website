@@ -57,8 +57,8 @@ const TextAgent = () => {
         <Navbar />
         <HeroSection initialLoad={initialLoad} handleContact={handleContact} />
         
-        {/* ServiceBoxes moved directly below the hero section with less padding */}
-        <div className="py-4 px-4 sm:px-6 lg:px-8 mx-auto max-w-3xl flex justify-center">
+        {/* ServiceBoxes with reduced padding */}
+        <div className="py-0 px-4 sm:px-6 lg:px-8 mx-auto max-w-3xl flex justify-center -mt-4">
           <ServiceBoxes initialLoad={initialLoad} />
         </div>
         
