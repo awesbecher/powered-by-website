@@ -50,6 +50,8 @@ export const HeroContent: React.FC<HeroContentProps> = ({
           </div>
         </div>
       </div>
+      {/* Added extra vertical spacing here */}
+      <div className="py-16"></div>
     </div>
   );
 };
