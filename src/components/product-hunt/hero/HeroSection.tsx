@@ -35,7 +35,7 @@ export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
             </a>
             <Button
               onClick={() => setVideoOpen(true)}
-              className="bg-white hover:bg-gray-100 text-[#4A2A82] px-6 py-6 text-lg rounded-md w-full sm:w-auto flex items-center"
+              className="bg-black hover:bg-gray-900 text-white px-6 py-6 text-lg rounded-md w-full sm:w-auto flex items-center"
             >
               Watch Launch! <Tv className="ml-2 h-5 w-5" />
             </Button>
