@@ -56,7 +56,7 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
             <iframe 
               width="100%" 
               height="100%" 
-              src="https://www.youtube.com/embed/placeholder?autoplay=1" 
+              src="https://www.youtube.com/embed/sl0F_AGsCxg?autoplay=1" 
               title="AI SMS-Text Agents Introduction" 
               frameBorder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
