@@ -12,15 +12,15 @@ interface CTACardProps {
 export const CTACard: React.FC<CTACardProps> = ({ initialLoad, handleGetStarted }) => {
   return (
     <div 
-      className={`bg-gradient-to-r from-[#6342ff] to-[#a87cff] rounded-2xl p-6 h-full flex flex-col justify-center transition-all duration-1000 delay-300 ease-out transform
+      className={`bg-gradient-to-r from-[#6342ff] to-[#a87cff] rounded-2xl p-8 h-full flex flex-col justify-center transition-all duration-1000 delay-300 ease-out transform
         ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}
     >
-      <div className="text-center">
-        <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+      <div className="text-center py-4">
+        <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6">
           Ready to Put AI Agents to Work?
         </h2>
         
-        <p className="text-lg text-white/90 mb-6">
+        <p className="text-lg text-white/90 mb-8">
           Book a free consultation with the <PoweredByText /> solutions team to learn how voice AI can transform your customer interactions.
         </p>
         
