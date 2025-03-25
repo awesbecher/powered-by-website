@@ -1,6 +1,4 @@
 
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface HeroContentProps {
@@ -59,14 +57,7 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
         </ul>
       </div>
       
-      <div className="pt-4">
-        <Button 
-          onClick={scrollToForm}
-          className="bg-[#6342ff] hover:bg-[#5335d8] text-white px-6 py-6 h-auto rounded-md text-lg font-medium"
-        >
-          Get Started <ArrowRight className="ml-2 h-5 w-5" />
-        </Button>
-      </div>
+      {/* Get Started button has been removed */}
     </div>
   );
 };
