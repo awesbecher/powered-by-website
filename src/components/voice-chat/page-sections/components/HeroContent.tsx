@@ -44,12 +44,6 @@ export const HeroContent: React.FC<HeroContentProps> = ({
             >
               <Tv className="mr-2 h-5 w-5" /> Watch our intro to Voice AI
             </Button>
-            <Button 
-              className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-4 text-base rounded-md flex items-center"
-              onClick={handleGetStarted}
-            >
-              Get Started <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
           </div>
         </div>
       </div>
