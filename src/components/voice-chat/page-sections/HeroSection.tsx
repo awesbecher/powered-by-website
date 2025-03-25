@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { WebsiteSimulation } from "@/components/voice-chat/WebsiteSimulation";
@@ -5,7 +6,6 @@ import { HeroContent } from "./components/HeroContent";
 import { FeaturesList } from "./components/FeaturesList";
 import { VoiceChatControls } from "./components/VoiceChatControls";
 import { CTACard } from "./components/CTACard";
-import { TallyFormEmbed } from "@/components/voice-chat/TallyFormEmbed";
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -55,13 +55,6 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
             <WebsiteSimulation />
           </div>
         </div>
-      </div>
-
-      {/* Tally Form Section */}
-      <div className={`w-full max-w-3xl mx-auto py-8 transition-all duration-1000 delay-500 ease-out transform
-        ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-        <h2 className="text-3xl font-bold text-white text-center mb-6">Get Started Today</h2>
-        <TallyFormEmbed formId="3qvqKg" height={500} className="w-full" />
       </div>
 
       {/* Include the VoiceChatControls component */}
