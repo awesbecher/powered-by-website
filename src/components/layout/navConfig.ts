@@ -16,7 +16,7 @@ export const navItems: NavItemWithChildren[] = [
       { name: "News", path: "/news" },
       { name: "Careers", path: "/careers" },
       { name: "Pricing", path: "/pricing" },
-      { name: "Videos", path: "https://www.youtube.com/@DavidThomas-n8e", isExternal: true }
+      { name: "Videos", path: "https://www.youtube.com/@Powered_byAgency", isExternal: true }
     ]
   },
   { name: "About", path: "/about" }
