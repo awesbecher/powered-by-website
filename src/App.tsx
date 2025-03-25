@@ -32,7 +32,6 @@ import FreeVoiceAgent from "./pages/FreeVoiceAgent";
 import VoiceAgentStart from "./pages/VoiceAgentStart";
 import VoiceAgentConfigEnd from "./pages/VoiceAgentConfigEnd";
 import ThankYou from "./pages/ThankYou";
-import Sitemap from "./pages/Sitemap";
 import Careers from "./pages/Careers";
 import ProductHunt from "./pages/ProductHunt";
 import NotFound from "./pages/NotFound";
@@ -67,7 +66,6 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/privacy-statement" element={<PrivacyStatement />} />
-            <Route path="/sitemap" element={<Sitemap />} />
             <Route path="/virtual-se" element={<VirtualSE />} />
             <Route path="/outbound-ai" element={<OutboundAI />} />
             <Route path="/voiceagent-form" element={<VoiceAgentForm />} />
