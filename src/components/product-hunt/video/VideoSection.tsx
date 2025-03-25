@@ -44,7 +44,7 @@ export const VideoSection: React.FC<VideoSectionProps> = () => {
                   className="h-full w-full object-cover"
                 />
               </div>
-              Watch our Launch Video
+              Watch: Our Simple Guide to AI Agents
             </div>
           </div>
         ) : (
