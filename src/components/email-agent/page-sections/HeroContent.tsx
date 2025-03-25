@@ -31,18 +31,7 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
           <li>Fully "guardrailed" and compliant to your policy guidelines & privacy standards</li>
         </ul>
       </div>
-      <div className="flex flex-col items-center mt-2">
-        <div className="flex flex-wrap gap-3">
-          <Link to="/contact">
-            <Button 
-              className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-5 py-4 text-base rounded-md flex items-center"
-              onClick={handleContact}
-            >
-              Get Started <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </Link>
-        </div>
-      </div>
+      {/* Get Started button and its container removed */}
     </div>
   );
 };
