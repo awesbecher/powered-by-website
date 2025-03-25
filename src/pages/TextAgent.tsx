@@ -8,7 +8,6 @@ import { HeroSection } from "@/components/text-agent/page-sections/HeroSection";
 import { ServiceBoxes } from "@/components/text-agent/page-sections/ServiceBoxes";
 import { FeaturesSection } from "@/components/text-agent/page-sections/FeaturesSection";
 import { BenefitsSection } from "@/components/text-agent/page-sections/BenefitsSection";
-import { CTASection } from "@/components/text-agent/page-sections/CTASection";
 import { FAQSection } from "@/components/text-agent/page-sections/FAQSection";
 import { FinalCTASection } from "@/components/text-agent/page-sections/FinalCTASection";
 import { forcePrefetchImages, addCSSImagePreloading } from "@/components/voice-chat/utils/imageUtils";
@@ -65,7 +64,7 @@ const TextAgent = () => {
         
         <FeaturesSection />
         <BenefitsSection />
-        <CTASection handleContact={handleContact} />
+        {/* CTASection removed from here */}
         <FAQSection />
         <FinalCTASection handleContact={handleContact} />
         <Footer />
