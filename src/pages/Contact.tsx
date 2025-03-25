@@ -36,8 +36,8 @@ const Contact = () => {
             <ContactHeader initialLoad={initialLoad} />
           </div>
           
-          {/* Form container with white oval background */}
-          <div className="relative bg-white rounded-[40px] p-6 mb-8 shadow-lg transition-all duration-500 ease-out transform 
+          {/* Form container with black oval background */}
+          <div className="relative bg-black rounded-[40px] p-6 mb-8 shadow-lg transition-all duration-500 ease-out transform 
             hover:shadow-xl">
             {/* Updated Tally.so form with the new form ID and parameters */}
             <TallyFormEmbed 
