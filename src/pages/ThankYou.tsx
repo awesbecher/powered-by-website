@@ -25,7 +25,7 @@ const ThankYou = () => {
               </div>
               
               <h1 className="text-3xl font-bold text-white text-center mb-4">
-                Thanks for your interest in <PoweredByText />!
+                Thanks for your interest in <PoweredByText />
               </h1>
               
               <p className="text-gray-300 text-center mb-6">
