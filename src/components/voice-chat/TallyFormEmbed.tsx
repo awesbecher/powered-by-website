@@ -6,13 +6,17 @@ interface TallyFormEmbedProps {
   formId?: string;
   referral?: string;
   height?: string | number;
+  transparentBackground?: boolean;
+  alignLeft?: boolean;
 }
 
 export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({ 
   className = "",
   formId = "nW1VqP", // Default form ID
   referral,
-  height = 800 // Default height
+  height = 800, // Default height
+  transparentBackground = true,
+  alignLeft = true
 }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   
@@ -42,7 +46,7 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({
   }, []);
 
   // Build the tally src URL with form ID and all requested parameters
-  const tallySrc = `https://tally.so/embed/${formId}?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1${referral ? `&referral=${referral}` : ''}`;
+  const tallySrc = `https://tally.so/embed/${formId}?${alignLeft ? 'alignLeft=1&' : ''}hideTitle=1&${transparentBackground ? 'transparentBackground=1&' : ''}dynamicHeight=1${referral ? `&referral=${referral}` : ''}`;
 
   return (
     <div className={`tally-form-container ${className}`}>
