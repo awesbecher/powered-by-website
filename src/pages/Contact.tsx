@@ -36,14 +36,18 @@ const Contact = () => {
             <ContactHeader initialLoad={initialLoad} />
           </div>
           
-          {/* Updated Tally.so form with the new form ID and parameters */}
-          <TallyFormEmbed 
-            className="mb-8" 
-            formId="3qzGDG" 
-            height={950}
-            transparentBackground={true}
-            alignLeft={true}
-          />
+          {/* Form container with white oval background */}
+          <div className="relative bg-white rounded-[40px] p-6 mb-8 shadow-lg transition-all duration-500 ease-out transform 
+            hover:shadow-xl">
+            {/* Updated Tally.so form with the new form ID and parameters */}
+            <TallyFormEmbed 
+              className="" 
+              formId="3qzGDG" 
+              height={950}
+              transparentBackground={true}
+              alignLeft={true}
+            />
+          </div>
         </div>
       </div>
 
