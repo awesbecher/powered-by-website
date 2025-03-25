@@ -1,3 +1,4 @@
+
 import React from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -5,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Check, FileText, Phone, Play } from "lucide-react";
 import { Link } from "react-router-dom";
+import { PoweredByText } from "@/components/shared/PoweredByText";
 
 const ThankYou = () => {
   return (
@@ -23,7 +25,7 @@ const ThankYou = () => {
               </div>
               
               <h1 className="text-3xl font-bold text-white text-center mb-4">
-                Thanks for your interest in Powered_by!
+                Thanks for your interest in <PoweredByText />!
               </h1>
               
               <p className="text-gray-300 text-center mb-6">
