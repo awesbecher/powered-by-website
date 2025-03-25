@@ -27,8 +27,8 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
   };
 
   return (
-    <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+    <section className="pt-20 pb-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-12">
         {/* Left side - Hero content */}
         <div className="lg:col-span-7">
           <HeroContent 
@@ -47,8 +47,8 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
         </div>
       </div>
 
-      <div className="mb-20">
-        <div className="flex flex-col lg:flex-row items-start gap-16 justify-between">
+      <div className="mb-16">
+        <div className="flex flex-col lg:flex-row items-start gap-12 justify-between">
           <FeaturesList initialLoad={initialLoad} />
           <div className={`w-full lg:w-[50%] lg:ml-auto transition-all duration-1000 delay-300 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
