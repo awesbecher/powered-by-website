@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { VoiceChatDialog } from "@/components/voice-business/VoiceChatDialog";
 import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
@@ -19,6 +19,24 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
 
   // Assistant ID for Vapi - updated with the provided ID
   const ASSISTANT_ID = "07e97137-ad5c-4846-ab6f-cff48c3e2da9";
+
+  // Load Tally script when component mounts
+  useEffect(() => {
+    // Load Tally embed script
+    if (window.Tally) {
+      window.Tally.loadEmbeds();
+    } else {
+      const script = document.createElement('script');
+      script.src = 'https://tally.so/widgets/embed.js';
+      script.async = true;
+      script.onload = () => {
+        if (window.Tally) {
+          window.Tally.loadEmbeds();
+        }
+      };
+      document.body.appendChild(script);
+    }
+  }, []);
 
   const handleVoiceChatClick = () => {
     setShowVoiceChatDialog(true);
