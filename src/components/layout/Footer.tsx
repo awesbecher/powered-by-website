@@ -44,6 +44,22 @@ const Footer = () => {
           
           <div className="flex items-center space-x-3">
             <a 
+              href="https://www.youtube.com/@Powered_byAgency" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors"
+              aria-label="YouTube"
+            >
+              <div className="w-6 h-6 rounded-md bg-white flex items-center justify-center">
+                <img 
+                  src="/lovable-uploads/7685f512-38cc-4db8-81cc-72e0c80c0372.png" 
+                  alt="YouTube Logo" 
+                  className="w-6 h-6 object-cover"
+                  style={{ objectPosition: "0 0", objectFit: "cover", width: "24px", height: "24px" }}
+                />
+              </div>
+            </a>
+            <a 
               href="https://x.com/poweredbyagency" 
               target="_blank" 
               rel="noopener noreferrer"
