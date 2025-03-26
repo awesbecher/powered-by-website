@@ -1,10 +1,8 @@
+
 import { useEffect, useState, useRef } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
-import { Button } from "@/components/ui/button";
-import { PresentationIcon } from "lucide-react";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 import { AboutHero } from "@/components/about/AboutHero";
 import { CollaborationSection } from "@/components/about/CollaborationSection";
@@ -18,7 +16,6 @@ import { OurPromiseSection } from "@/components/about/OurPromiseSection";
 const About = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [showPresentationDialog, setShowPresentationDialog] = useState(false);
   const collaborationRef = useRef<HTMLDivElement>(null);
   const whoWeAreRef = useRef<HTMLDivElement>(null);
 
@@ -44,10 +41,6 @@ const About = () => {
         behavior: "smooth"
       });
     }
-  };
-
-  const handlePresentationClick = () => {
-    setShowPresentationDialog(true);
   };
 
   return (
@@ -79,18 +72,6 @@ const About = () => {
 
         <StrategyImage initialLoad={initialLoad} />
 
-        <div className="max-w-xl mx-auto my-12">
-          <Button 
-            variant="gradient" 
-            size="lg"
-            onClick={handlePresentationClick}
-            className="w-full py-8 text-xl flex items-center justify-center"
-          >
-            <PresentationIcon className="mr-3 h-6 w-6" />
-            Read our Overview Presentation
-          </Button>
-        </div>
-
         <WhoWeAreSection 
           initialLoad={initialLoad} 
           whoWeAreRef={whoWeAreRef} 
@@ -110,17 +91,6 @@ const About = () => {
           customButtonText="Get Started"
         />
       </div>
-
-      <Dialog open={showPresentationDialog} onOpenChange={setShowPresentationDialog}>
-        <DialogContent className="sm:max-w-5xl bg-white p-0 overflow-hidden">
-          <iframe 
-            src="https://custom-ai-agent-solution-nq1xz3i.gamma.site/" 
-            className="w-full h-[80vh]" 
-            title="Overview Presentation"
-            allow="fullscreen"
-          ></iframe>
-        </DialogContent>
-      </Dialog>
 
       <Footer />
     </div>
