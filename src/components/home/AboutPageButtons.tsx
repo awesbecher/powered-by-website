@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Users, Briefcase, Play } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { VideoSection } from "@/components/product-hunt/video/VideoSection";
 
 interface AboutPageButtonsProps {
   onScrollToSection?: (ref: React.RefObject<HTMLElement>) => void;
@@ -62,7 +61,17 @@ export const AboutPageButtons = ({ onScrollToSection, sectionRef }: AboutPageBut
 
       <Dialog open={showVideoDialog} onOpenChange={setShowVideoDialog}>
         <DialogContent className="sm:max-w-4xl p-0 bg-transparent border-none">
-          <VideoSection />
+          <div className="aspect-video">
+            <iframe 
+              width="100%" 
+              height="100%" 
+              src="https://www.youtube.com/embed/EGR10-TIQS8?si=GzJHlThADVQIsnl2&autoplay=1" 
+              title="Powered by AI Launch Video" 
+              frameBorder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowFullScreen
+            ></iframe>
+          </div>
         </DialogContent>
       </Dialog>
     </>
