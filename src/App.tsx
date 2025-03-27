@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Index from "./pages/Index";
@@ -40,6 +41,7 @@ import Calendly from "./pages/Calendly";
 import { Toaster } from "@/components/ui/toaster"
 import { GlobalVoiceChatDialog } from './components/shared/GlobalVoiceChatDialog';
 import OmegaPediatrics from "./pages/OmegaPediatrics";
+import OmegaVoice1 from "./pages/OmegaVoice1";
 
 function App() {
   return (
@@ -76,6 +78,7 @@ function App() {
             <Route path="/careers" element={<Careers />} />
             <Route path="/launch" element={<ProductHunt />} />
             <Route path="/omega-pediatrics" element={<OmegaPediatrics />} />
+            <Route path="/omega-voice1" element={<OmegaVoice1 />} />
             <Route path="/product-hunt" element={<Navigate to="/launch" replace />} />
             <Route path="/ai-assistant" element={<Navigate to="/ai-receptionist" replace />} />
             <Route path="/voice-business-lines" element={<Navigate to="/ai-receptionist" replace />} />

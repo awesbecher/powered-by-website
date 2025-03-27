@@ -4,12 +4,14 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 interface LoginFormProps {
   onLogin?: (email: string, password: string) => void;
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -28,13 +30,11 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
         if (onLogin) {
           onLogin(email, password);
         } else {
-          // Success toast and redirect can go here
+          // Success toast and redirect to the new page
+          toast.success("Login successful!");
           setTimeout(() => {
-            toast.success("Login successful!");
             setIsLoading(false);
-            
-            // Redirect to target site or dashboard could be added here
-            // window.location.href = "https://target-site.com";
+            navigate("/omega-voice1");
           }, 1000);
         }
       } else {
