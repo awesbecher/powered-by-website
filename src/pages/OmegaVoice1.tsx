@@ -11,6 +11,7 @@ import OmegaActiveCallDialog from "@/components/omega/OmegaActiveCallDialog";
 import OmegaVideoDialog from "@/components/omega/OmegaVideoDialog";
 import { useToast } from "@/hooks/use-toast";
 import { stopVapiCall } from "@/services/vapiService";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const OmegaVoice1 = () => {
   const { logout } = useAuth();
@@ -74,8 +75,17 @@ const OmegaVoice1 = () => {
             Omega Voice Agent: Draft 3-26-25
           </h1>
           
-          {/* First row - Info box */}
-          <div className="mt-6 w-full max-w-md px-10 py-4 bg-gradient-to-r from-purple-600/80 to-pink-500/80 rounded-full shadow-lg border border-purple-400/30 backdrop-blur-sm">
+          {/* First row - Info box with Stella's image */}
+          <div className="mt-6 w-full max-w-md px-6 py-4 bg-gradient-to-r from-purple-600/80 to-pink-500/80 rounded-full shadow-lg border border-purple-400/30 backdrop-blur-sm flex items-center">
+            <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4 border-2 border-white flex-shrink-0">
+              <AspectRatio ratio={1/1} className="bg-transparent">
+                <img 
+                  src="/lovable-uploads/d4d24e48-4703-40a7-8bdf-c5b6db42f9ea.png" 
+                  alt="Stella - Omega's AI Receptionist"
+                  className="object-cover w-full h-full rounded-full"
+                />
+              </AspectRatio>
+            </div>
             <p className="text-white text-center font-bold">
               Meet Stella, Omega's AI Receptionist<br />
               Call her @ (888) 976 7507
