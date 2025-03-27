@@ -36,22 +36,23 @@ const OmegaVoice1 = () => {
             Omega Voice Agent: Draft 3-26-25
           </h1>
           
-          <div className="mt-6 px-10 py-4 bg-gradient-to-r from-purple-600/80 to-pink-500/80 rounded-full shadow-lg border border-purple-400/30 backdrop-blur-sm">
+          {/* First row - Info box */}
+          <div className="mt-6 w-full max-w-md px-10 py-4 bg-gradient-to-r from-purple-600/80 to-pink-500/80 rounded-full shadow-lg border border-purple-400/30 backdrop-blur-sm">
             <p className="text-white text-center font-bold">
               Meet Stella, Omega's AI Receptionist<br />
               Call her @ (888) 976 7507
             </p>
           </div>
           
-          {/* First empty oval box */}
-          <div className="mt-4 px-10 py-4 bg-gradient-to-r from-purple-600/80 to-pink-500/80 rounded-full shadow-lg border border-purple-400/30 backdrop-blur-sm">
+          {/* Second row - First empty oval box */}
+          <div className="mt-6 w-full max-w-md px-10 py-4 bg-gradient-to-r from-purple-600/80 to-pink-500/80 rounded-full shadow-lg border border-purple-400/30 backdrop-blur-sm">
             <p className="text-white text-center font-bold">
               &nbsp;
             </p>
           </div>
           
-          {/* Second empty oval box */}
-          <div className="mt-4 px-10 py-4 bg-gradient-to-r from-purple-600/80 to-pink-500/80 rounded-full shadow-lg border border-purple-400/30 backdrop-blur-sm">
+          {/* Third row - Second empty oval box */}
+          <div className="mt-6 w-full max-w-md px-10 py-4 bg-gradient-to-r from-purple-600/80 to-pink-500/80 rounded-full shadow-lg border border-purple-400/30 backdrop-blur-sm">
             <p className="text-white text-center font-bold">
               &nbsp;
             </p>
