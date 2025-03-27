@@ -35,6 +35,13 @@ const OmegaVoice1 = () => {
           <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-300 to-purple-200 py-2 px-6 rounded-lg shadow-lg border border-purple-500/30 backdrop-blur-sm">
             Omega Voice Agent: Draft 3-26-25
           </h1>
+          
+          <div className="mt-6 px-10 py-4 bg-gradient-to-r from-purple-600/80 to-pink-500/80 rounded-full shadow-lg border border-purple-400/30 backdrop-blur-sm">
+            <p className="text-white text-center font-medium">
+              Meet Stella, Omega's AI Receptionist<br />
+              Call her @ (888) 976 7507
+            </p>
+          </div>
         </div>
       </div>
 
