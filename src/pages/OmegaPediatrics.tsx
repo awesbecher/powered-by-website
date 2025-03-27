@@ -12,7 +12,7 @@ const OmegaPediatrics = () => {
       </div>
 
       <div className="container mx-auto px-4 py-10">
-        <div className="flex justify-center mb-12">
+        <div className="flex justify-center mb-6">
           <img 
             src="/lovable-uploads/2855384c-487c-46d3-90a0-b663019ac215.png" 
             alt="Omega Pediatrics - Accessibility & Love" 
@@ -20,7 +20,7 @@ const OmegaPediatrics = () => {
           />
         </div>
         
-        <div className="py-10">
+        <div className="py-4">
           <LoginForm />
         </div>
       </div>
