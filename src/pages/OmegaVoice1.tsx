@@ -36,7 +36,7 @@ const OmegaVoice1 = () => {
         </div>
       </div>
 
-      <div className="fixed bottom-10 left-0 right-0 flex justify-center">
+      <div className="flex justify-center mb-16">
         <Button 
           variant="default" 
           className="bg-purple-600 hover:bg-purple-700 text-white font-bold px-6 py-3"
