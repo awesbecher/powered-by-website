@@ -15,6 +15,25 @@ const Calendly = () => {
       setInitialLoad(false);
     }, 100);
     
+    // Fire Twitter conversion tracking event
+    if (window.twq) {
+      window.twq('event', 'tw-p9cwr-p9cwt', {
+        contents: [
+          {
+            content_type: null,
+            content_id: null,
+            content_name: null,
+            content_price: null,
+            num_items: null,
+            content_group_id: null
+          }
+        ],
+        email_address: null,
+        phone_number: null
+      });
+      console.log('Twitter conversion event fired');
+    }
+    
     return () => clearTimeout(timer);
   }, []);
 
