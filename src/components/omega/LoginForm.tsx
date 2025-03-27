@@ -13,28 +13,40 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setError("");
 
     try {
-      // This is a placeholder for actual login logic
-      // You would typically call an API or authentication service here
-      console.log("Login attempt with:", { email });
-      
-      if (onLogin) {
-        onLogin(email, password);
+      // Specific credential validation
+      if (email === "info@omegapediatrics.com" && password === "Nwaneri32625") {
+        console.log("Login successful with predefined credentials");
+        
+        if (onLogin) {
+          onLogin(email, password);
+        } else {
+          // Success toast and redirect can go here
+          setTimeout(() => {
+            toast.success("Login successful!");
+            setIsLoading(false);
+            
+            // Redirect to target site or dashboard could be added here
+            // window.location.href = "https://target-site.com";
+          }, 1000);
+        }
       } else {
-        // Mock successful login for now
-        setTimeout(() => {
-          toast.success("Login successful!");
-          setIsLoading(false);
-        }, 1000);
+        // Invalid credentials
+        setError("Invalid email or password. Please try again.");
+        toast.error("Login failed. Invalid credentials.");
+        setIsLoading(false);
       }
     } catch (error) {
       console.error("Login error:", error);
-      toast.error("Login failed. Please check your credentials.");
+      setError("An unexpected error occurred. Please try again.");
+      toast.error("Login failed. Please try again.");
       setIsLoading(false);
     }
   };
@@ -69,6 +81,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
             className="bg-white/20 border-purple-300/50 text-white placeholder:text-gray-300"
           />
         </div>
+        
+        {error && (
+          <div className="text-red-300 text-sm">{error}</div>
+        )}
         
         <Button 
           type="submit" 
