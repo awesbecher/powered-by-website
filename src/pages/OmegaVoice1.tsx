@@ -1,19 +1,32 @@
 
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { useAuth } from "@/context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { LogOut, Tv, ArrowRight } from "lucide-react";
+import OmegaVoiceChatDialog from "@/components/omega/OmegaVoiceChatDialog";
+import { useToast } from "@/hooks/use-toast";
 
 const OmegaVoice1 = () => {
   const { logout } = useAuth();
   const navigate = useNavigate();
+  const { toast } = useToast();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const handleLogout = () => {
     logout();
     navigate("/omega-pediatrics");
+  };
+
+  const handleStartVoiceChat = () => {
+    // In a real implementation, this would initiate the voice chat
+    toast({
+      title: "Voice Chat Initiated",
+      description: "This is a placeholder for the actual voice chat functionality.",
+    });
+    setIsDialogOpen(false);
   };
 
   return (
@@ -53,7 +66,10 @@ const OmegaVoice1 = () => {
           </div>
           
           {/* Third row - Second empty oval box */}
-          <div className="mt-6 w-full max-w-md px-10 py-4 bg-gradient-to-r from-purple-600/80 to-pink-500/80 rounded-full shadow-lg border border-purple-400/30 backdrop-blur-sm">
+          <div 
+            className="mt-6 w-full max-w-md px-10 py-4 bg-gradient-to-r from-purple-600/80 to-pink-500/80 rounded-full shadow-lg border border-purple-400/30 backdrop-blur-sm cursor-pointer hover:opacity-90 transition-opacity"
+            onClick={() => setIsDialogOpen(true)}
+          >
             <p className="text-white text-center font-bold flex items-center justify-center">
               Click Here for Voice Chat
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -72,6 +88,13 @@ const OmegaVoice1 = () => {
           Logout
         </Button>
       </div>
+
+      {/* Voice Chat Dialog */}
+      <OmegaVoiceChatDialog
+        open={isDialogOpen}
+        onOpenChange={setIsDialogOpen}
+        onStartChat={handleStartVoiceChat}
+      />
 
       <Footer />
     </div>
