@@ -1,8 +1,10 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { initiateVapiCall } from "@/services/vapiService";
+import { useToast } from "@/hooks/use-toast";
 
 interface OmegaVoiceChatDialogProps {
   open: boolean;
@@ -16,10 +18,33 @@ const OmegaVoiceChatDialog: React.FC<OmegaVoiceChatDialogProps> = ({
   onStartChat
 }) => {
   const navigate = useNavigate();
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCancel = () => {
     onOpenChange(false);
     navigate("/omega-voice1");
+  };
+
+  const handleStartChat = async () => {
+    setIsLoading(true);
+    try {
+      // Use Stella's Assistant ID from Vapi
+      await initiateVapiCall("a212f18f-9d02-4703-914f-ac89661262c5");
+      onStartChat();
+      toast({
+        title: "Voice Chat Connected",
+        description: "You are now speaking with Stella, Omega Pediatrics' AI Assistant."
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Connection Error",
+        description: error instanceof Error ? error.message : "Failed to connect to voice service. Please try again."
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -53,9 +78,10 @@ const OmegaVoiceChatDialog: React.FC<OmegaVoiceChatDialogProps> = ({
             </Button>
             <Button 
               className="bg-purple-500 hover:bg-purple-600 text-white w-36"
-              onClick={onStartChat}
+              onClick={handleStartChat}
+              disabled={isLoading}
             >
-              Start Voice Chat
+              {isLoading ? "Connecting..." : "Start Voice Chat"}
             </Button>
           </div>
         </div>

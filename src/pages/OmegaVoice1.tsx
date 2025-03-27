@@ -8,25 +8,44 @@ import { Button } from "@/components/ui/button";
 import { LogOut, Tv, ArrowRight } from "lucide-react";
 import OmegaVoiceChatDialog from "@/components/omega/OmegaVoiceChatDialog";
 import { useToast } from "@/hooks/use-toast";
+import { stopVapiCall } from "@/services/vapiService";
 
 const OmegaVoice1 = () => {
   const { logout } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isCallActive, setIsCallActive] = useState(false);
 
   const handleLogout = () => {
+    // End call if active
+    if (isCallActive) {
+      handleEndCall();
+    }
     logout();
     navigate("/omega-pediatrics");
   };
 
   const handleStartVoiceChat = () => {
-    // In a real implementation, this would initiate the voice chat
-    toast({
-      title: "Voice Chat Initiated",
-      description: "This is a placeholder for the actual voice chat functionality.",
-    });
+    setIsCallActive(true);
     setIsDialogOpen(false);
+    toast({
+      title: "Voice Chat Active",
+      description: "You are now speaking with Stella. You can end the call by refreshing the page or logging out.",
+    });
+  };
+
+  const handleEndCall = () => {
+    try {
+      stopVapiCall();
+      setIsCallActive(false);
+      toast({
+        title: "Call Ended",
+        description: "Your conversation with Stella has ended.",
+      });
+    } catch (error) {
+      console.error("Error ending call:", error);
+    }
   };
 
   return (
@@ -65,14 +84,23 @@ const OmegaVoice1 = () => {
             </p>
           </div>
           
-          {/* Third row - Second empty oval box */}
+          {/* Third row - Voice chat button */}
           <div 
-            className="mt-6 w-full max-w-md px-10 py-4 bg-gradient-to-r from-purple-600/80 to-pink-500/80 rounded-full shadow-lg border border-purple-400/30 backdrop-blur-sm cursor-pointer hover:opacity-90 transition-opacity"
-            onClick={() => setIsDialogOpen(true)}
+            className={`mt-6 w-full max-w-md px-10 py-4 bg-gradient-to-r ${isCallActive ? 'from-green-600/80 to-green-500/80' : 'from-purple-600/80 to-pink-500/80'} rounded-full shadow-lg border border-purple-400/30 backdrop-blur-sm cursor-pointer hover:opacity-90 transition-opacity`}
+            onClick={() => {
+              if (!isCallActive) {
+                setIsDialogOpen(true);
+              } else {
+                handleEndCall();
+              }
+            }}
           >
             <p className="text-white text-center font-bold flex items-center justify-center">
-              Click Here for Voice Chat
-              <ArrowRight className="ml-2 h-5 w-5" />
+              {isCallActive ? (
+                <>Call Active with Stella - Click to End</>
+              ) : (
+                <>Click Here for Voice Chat<ArrowRight className="ml-2 h-5 w-5" /></>
+              )}
             </p>
           </div>
         </div>
