@@ -97,12 +97,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
         >
           {isLoading ? "Logging in..." : "Log in"}
         </Button>
-        
-        <div className="text-center text-xs text-amber-300 mt-4">
-          <p>Use these credentials:</p>
-          <p>Email: info@omegapediatrics.com</p>
-          <p>Password: Nwaneri32625</p>
-        </div>
       </form>
     </div>
   );
