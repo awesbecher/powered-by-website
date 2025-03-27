@@ -20,7 +20,7 @@ const OmegaVoiceChatDialog: React.FC<OmegaVoiceChatDialogProps> = ({
       <DialogContent className="bg-white text-black border-gray-200 rounded-lg p-6 max-w-md mx-auto">
         <DialogHeader className="flex items-start justify-between">
           <DialogTitle className="text-2xl font-bold text-black text-left">
-            Start Voice Chat with In-Room Dining Team
+            Start Voice Chat with Stella @ Omega Pediatrics
           </DialogTitle>
           <Button 
             variant="ghost" 
@@ -34,14 +34,14 @@ const OmegaVoiceChatDialog: React.FC<OmegaVoiceChatDialogProps> = ({
         
         <div className="flex flex-col space-y-6 mt-4">
           <p className="text-gray-700 text-left">
-            You'll be able to have a voice conversation with our staff directly 
+            You'll be able to have a voice conversation with Stella, our AI Assistant directly 
             through your browser. Please ensure your microphone is enabled 
             and your speaker volume is turned on appropriately.
           </p>
           
           <p className="text-gray-700 text-left">
             By clicking "Start Voice Chat", you consent to having a voice 
-            conversation with Grandview. You can end the conversation at any time.
+            conversation with Omega Pediatrics. You can end the conversation at any time.
           </p>
           
           <div className="flex flex-row justify-end space-x-3 mt-4">
