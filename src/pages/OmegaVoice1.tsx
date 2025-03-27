@@ -47,7 +47,7 @@ const OmegaVoice1 = () => {
           {/* Second row - First empty oval box */}
           <div className="mt-6 w-full max-w-md px-10 py-4 bg-gradient-to-r from-purple-600/80 to-pink-500/80 rounded-full shadow-lg border border-purple-400/30 backdrop-blur-sm">
             <p className="text-white text-center font-bold">
-              &nbsp;
+              Click Here for Voice Chat
             </p>
           </div>
           
