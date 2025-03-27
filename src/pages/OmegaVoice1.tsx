@@ -23,7 +23,7 @@ const OmegaVoice1 = () => {
       </div>
 
       <div className="container mx-auto px-4 py-10">
-        <div className="flex justify-center mb-12">
+        <div className="flex justify-center mb-4">
           <img 
             src="/lovable-uploads/2855384c-487c-46d3-90a0-b663019ac215.png" 
             alt="Omega Pediatrics - Accessibility & Love" 
@@ -31,7 +31,7 @@ const OmegaVoice1 = () => {
           />
         </div>
         
-        <div className="flex flex-col items-center justify-center py-12">
+        <div className="flex flex-col items-center justify-center py-4">
           <h1 className="text-3xl font-bold text-white mb-6">Omega Voice Agent: Draft 3-26-25</h1>
         </div>
       </div>
