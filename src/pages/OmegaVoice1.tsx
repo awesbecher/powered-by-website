@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { LogOut, Tv, ArrowRight } from "lucide-react";
 import OmegaVoiceChatDialog from "@/components/omega/OmegaVoiceChatDialog";
 import OmegaActiveCallDialog from "@/components/omega/OmegaActiveCallDialog";
+import OmegaVideoDialog from "@/components/omega/OmegaVideoDialog";
 import { useToast } from "@/hooks/use-toast";
 import { stopVapiCall } from "@/services/vapiService";
 
@@ -18,6 +19,7 @@ const OmegaVoice1 = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isCallActive, setIsCallActive] = useState(false);
   const [isActiveCallDialogOpen, setIsActiveCallDialogOpen] = useState(false);
+  const [isVideoDialogOpen, setIsVideoDialogOpen] = useState(false);
 
   const handleLogout = () => {
     // End call if active
@@ -80,8 +82,11 @@ const OmegaVoice1 = () => {
             </p>
           </div>
           
-          {/* Second row - First empty oval box */}
-          <div className="mt-6 w-full max-w-md px-10 py-4 bg-gradient-to-r from-purple-600/80 to-pink-500/80 rounded-full shadow-lg border border-purple-400/30 backdrop-blur-sm">
+          {/* Second row - Video button */}
+          <div 
+            className="mt-6 w-full max-w-md px-10 py-4 bg-gradient-to-r from-purple-600/80 to-pink-500/80 rounded-full shadow-lg border border-purple-400/30 backdrop-blur-sm cursor-pointer hover:opacity-90 transition-opacity"
+            onClick={() => setIsVideoDialogOpen(true)}
+          >
             <p className="text-white text-center font-bold flex items-center justify-center">
               <Tv className="mr-2 h-5 w-5" />
               Watch a Sample of Stella's Digital Avatar
@@ -133,6 +138,13 @@ const OmegaVoice1 = () => {
         open={isActiveCallDialogOpen}
         onOpenChange={setIsActiveCallDialogOpen}
         onEndCall={handleEndCall}
+      />
+
+      {/* Video Dialog */}
+      <OmegaVideoDialog
+        open={isVideoDialogOpen}
+        onOpenChange={setIsVideoDialogOpen}
+        videoUrl="https://vimeo.com/1069816785"
       />
 
       <Footer />
