@@ -10,8 +10,18 @@ const OmegaPediatrics = () => {
         <Navbar />
       </div>
 
-      <div className="container mx-auto px-4 py-20">
-        {/* Content will be added later */}
+      <div className="container mx-auto px-4 py-10">
+        <div className="flex justify-center mb-12">
+          <img 
+            src="/lovable-uploads/2855384c-487c-46d3-90a0-b663019ac215.png" 
+            alt="Omega Pediatrics - Accessibility & Love" 
+            className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg"
+          />
+        </div>
+        
+        <div className="py-10">
+          {/* Content will be added later */}
+        </div>
       </div>
 
       <Footer />
