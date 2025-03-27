@@ -32,7 +32,7 @@ const OmegaVoice1 = () => {
         </div>
         
         <div className="flex flex-col items-center justify-center py-12">
-          <h1 className="text-3xl font-bold text-white mb-6">Welcome to Omega Voice</h1>
+          <h1 className="text-3xl font-bold text-white mb-6">Omega Voice Agent: Draft 3-26-25</h1>
         </div>
       </div>
 
