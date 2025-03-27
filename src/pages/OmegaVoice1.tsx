@@ -37,7 +37,7 @@ const OmegaVoice1 = () => {
           </h1>
           
           <div className="mt-6 px-10 py-4 bg-gradient-to-r from-purple-600/80 to-pink-500/80 rounded-full shadow-lg border border-purple-400/30 backdrop-blur-sm">
-            <p className="text-white text-center font-medium">
+            <p className="text-white text-center font-bold">
               Meet Stella, Omega's AI Receptionist<br />
               Call her @ (888) 976 7507
             </p>
