@@ -77,12 +77,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
         >
           {isLoading ? "Logging in..." : "Log in"}
         </Button>
-        
-        <div className="text-center mt-4">
-          <a href="#" className="text-sm text-purple-300 hover:text-white">
-            Forgot your password?
-          </a>
-        </div>
       </form>
     </div>
   );
