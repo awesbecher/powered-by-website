@@ -2,7 +2,7 @@
 import React from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { X } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface OmegaVoiceChatDialogProps {
   open: boolean;
@@ -15,21 +15,20 @@ const OmegaVoiceChatDialog: React.FC<OmegaVoiceChatDialogProps> = ({
   onOpenChange,
   onStartChat
 }) => {
+  const navigate = useNavigate();
+
+  const handleCancel = () => {
+    onOpenChange(false);
+    navigate("/omega-voice1");
+  };
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="bg-white text-black border-gray-200 rounded-lg p-6 max-w-md mx-auto">
-        <DialogHeader className="flex items-start justify-between">
+      <DialogContent className="bg-white text-black border-gray-200 rounded-lg p-6 max-w-md mx-auto" closeButton={false}>
+        <DialogHeader className="flex items-start">
           <DialogTitle className="text-2xl font-bold text-black text-left">
             Start Voice Chat with Stella @ Omega Pediatrics
           </DialogTitle>
-          <Button 
-            variant="ghost" 
-            className="h-8 w-8 p-0" 
-            onClick={() => onOpenChange(false)}
-          >
-            <X className="h-5 w-5" />
-            <span className="sr-only">Close</span>
-          </Button>
         </DialogHeader>
         
         <div className="flex flex-col space-y-6 mt-4">
@@ -47,7 +46,7 @@ const OmegaVoiceChatDialog: React.FC<OmegaVoiceChatDialogProps> = ({
           <div className="flex flex-row justify-end space-x-3 mt-4">
             <Button 
               variant="outline"
-              onClick={() => onOpenChange(false)}
+              onClick={handleCancel}
               className="w-24"
             >
               Cancel
