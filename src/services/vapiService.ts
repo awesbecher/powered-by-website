@@ -37,7 +37,7 @@ const checkBrowserCompatibility = () => {
 
 export const getVapiInstance = () => {
   if (!vapiInstance) {
-    vapiInstance = new Vapi("a212f18f-9d02-4703-914f-ac89661262c5"); // Updated with the provided API key
+    vapiInstance = new Vapi("f9a2d216-0bd8-4893-9091-54e167c62f4a"); // Updated with the provided Assistant ID
     
     vapiInstance.on("call-start", () => {
       console.log("Call has started");

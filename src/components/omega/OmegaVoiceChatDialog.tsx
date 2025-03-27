@@ -29,8 +29,8 @@ const OmegaVoiceChatDialog: React.FC<OmegaVoiceChatDialogProps> = ({
   const handleStartChat = async () => {
     setIsLoading(true);
     try {
-      // Use Stella's Assistant ID from Vapi
-      await initiateVapiCall("a212f18f-9d02-4703-914f-ac89661262c5");
+      // Use the provided Stella's Assistant ID from Vapi
+      await initiateVapiCall("f9a2d216-0bd8-4893-9091-54e167c62f4a");
       onStartChat();
     } catch (error) {
       toast({
