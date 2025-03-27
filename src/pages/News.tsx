@@ -9,7 +9,6 @@ import { newsArticles } from "@/data/blog-posts";
 import { Card, CardContent } from "@/components/ui/card";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { PoweredByText } from "@/components/shared/PoweredByText";
-import MediaCoverageSection from "@/components/news/MediaCoverageSection";
 
 const News = () => {
   useEffect(() => {
@@ -49,9 +48,6 @@ const News = () => {
       
       {/* News Posts Section */}
       <section className="container mx-auto px-4 mb-20 relative z-10">
-        {/* Media Coverage Section */}
-        <MediaCoverageSection />
-        
         {newsArticles.length > 0 ? (
           <>
             <h2 className="text-3xl font-bold mb-8 text-center">Latest News</h2>
