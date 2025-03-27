@@ -41,7 +41,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
 
   return (
     <div className="w-full max-w-md mx-auto bg-white/10 backdrop-blur-md rounded-lg shadow-lg p-8 border border-purple-500/20">
-      <h2 className="text-2xl font-bold text-center text-white mb-6">Patient Portal Login</h2>
+      <h2 className="text-2xl font-bold text-center text-white mb-6">Voice Agent Login</h2>
       
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-2">
