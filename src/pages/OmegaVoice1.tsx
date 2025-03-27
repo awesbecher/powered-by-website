@@ -5,7 +5,7 @@ import Footer from "@/components/layout/Footer";
 import { useAuth } from "@/context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { LogOut, Tv } from "lucide-react";
+import { LogOut, Tv, ArrowRight } from "lucide-react";
 
 const OmegaVoice1 = () => {
   const { logout } = useAuth();
@@ -54,8 +54,9 @@ const OmegaVoice1 = () => {
           
           {/* Third row - Second empty oval box */}
           <div className="mt-6 w-full max-w-md px-10 py-4 bg-gradient-to-r from-purple-600/80 to-pink-500/80 rounded-full shadow-lg border border-purple-400/30 backdrop-blur-sm">
-            <p className="text-white text-center font-bold">
+            <p className="text-white text-center font-bold flex items-center justify-center">
               Click Here for Voice Chat
+              <ArrowRight className="ml-2 h-5 w-5" />
             </p>
           </div>
         </div>
