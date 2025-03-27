@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Activity, Mic, MicOff, X } from "lucide-react";
 import { stopVapiCall } from "@/services/vapiService";
 import { useToast } from "@/hooks/use-toast";
@@ -50,15 +51,14 @@ const OmegaActiveCallDialog: React.FC<OmegaActiveCallDialogProps> = ({
           <h2 className="text-4xl font-bold text-white mb-2">You are now Connected</h2>
           
           <div className="flex items-center">
-            <div className="relative">
-              <Avatar className="h-20 w-20 rounded-full">
-                <AvatarImage 
-                  src="/lovable-uploads/75c71530-5de7-494f-b86a-5033f9e79188.png" 
+            <div className="relative w-20 h-20 rounded-full overflow-hidden">
+              <AspectRatio ratio={1/1} className="bg-gray-800">
+                <img 
+                  src="/lovable-uploads/730d1ffb-26f6-49bf-b7b9-ea7f9dba24d0.png" 
                   alt="Stella from Omega Pediatrics" 
-                  className="object-cover"
+                  className="object-cover w-full h-full rounded-full"
                 />
-                <AvatarFallback>SP</AvatarFallback>
-              </Avatar>
+              </AspectRatio>
               <div className="absolute bottom-1 left-1">
                 <div className="h-3 w-3 bg-green-500 rounded-full"></div>
               </div>
