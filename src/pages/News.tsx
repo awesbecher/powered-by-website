@@ -49,7 +49,7 @@ const News = () => {
       
       {/* News Posts Section */}
       <section className="container mx-auto px-4 mb-20 relative z-10">
-        {/* Media Coverage Section - Added */}
+        {/* Media Coverage Section */}
         <MediaCoverageSection />
         
         {newsArticles.length > 0 ? (

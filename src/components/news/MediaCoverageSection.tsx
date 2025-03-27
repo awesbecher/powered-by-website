@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,9 +15,27 @@ interface MediaArticle {
 }
 
 const MediaCoverageSection = () => {
+  // Load saved articles from localStorage on component mount
   const [articles, setArticles] = useState<MediaArticle[]>([]);
   const [newUrl, setNewUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  // Load articles from localStorage on initial render
+  useEffect(() => {
+    const savedArticles = localStorage.getItem("mediaArticles");
+    if (savedArticles) {
+      try {
+        setArticles(JSON.parse(savedArticles));
+      } catch (error) {
+        console.error("Error parsing saved articles:", error);
+      }
+    }
+  }, []);
+
+  // Save articles to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem("mediaArticles", JSON.stringify(articles));
+  }, [articles]);
 
   const fetchMetadata = async (url: string) => {
     setIsLoading(true);
