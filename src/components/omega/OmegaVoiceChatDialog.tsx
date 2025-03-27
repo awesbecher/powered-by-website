@@ -32,10 +32,6 @@ const OmegaVoiceChatDialog: React.FC<OmegaVoiceChatDialogProps> = ({
       // Use Stella's Assistant ID from Vapi
       await initiateVapiCall("a212f18f-9d02-4703-914f-ac89661262c5");
       onStartChat();
-      toast({
-        title: "Voice Chat Connected",
-        description: "You are now speaking with Stella, Omega Pediatrics' AI Assistant."
-      });
     } catch (error) {
       toast({
         variant: "destructive",

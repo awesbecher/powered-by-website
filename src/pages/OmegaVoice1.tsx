@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { LogOut, Tv, ArrowRight } from "lucide-react";
 import OmegaVoiceChatDialog from "@/components/omega/OmegaVoiceChatDialog";
+import OmegaActiveCallDialog from "@/components/omega/OmegaActiveCallDialog";
 import { useToast } from "@/hooks/use-toast";
 import { stopVapiCall } from "@/services/vapiService";
 
@@ -16,6 +17,7 @@ const OmegaVoice1 = () => {
   const { toast } = useToast();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isCallActive, setIsCallActive] = useState(false);
+  const [isActiveCallDialogOpen, setIsActiveCallDialogOpen] = useState(false);
 
   const handleLogout = () => {
     // End call if active
@@ -29,9 +31,10 @@ const OmegaVoice1 = () => {
   const handleStartVoiceChat = () => {
     setIsCallActive(true);
     setIsDialogOpen(false);
+    setIsActiveCallDialogOpen(true);
     toast({
-      title: "Voice Chat Active",
-      description: "You are now speaking with Stella. You can end the call by refreshing the page or logging out.",
+      title: "Voice Chat Connected",
+      description: "You are now speaking with Stella, Omega Pediatrics' AI Assistant."
     });
   };
 
@@ -39,6 +42,7 @@ const OmegaVoice1 = () => {
     try {
       stopVapiCall();
       setIsCallActive(false);
+      setIsActiveCallDialogOpen(false);
       toast({
         title: "Call Ended",
         description: "Your conversation with Stella has ended.",
@@ -91,13 +95,13 @@ const OmegaVoice1 = () => {
               if (!isCallActive) {
                 setIsDialogOpen(true);
               } else {
-                handleEndCall();
+                setIsActiveCallDialogOpen(true);
               }
             }}
           >
             <p className="text-white text-center font-bold flex items-center justify-center">
               {isCallActive ? (
-                <>Call Active with Stella - Click to End</>
+                <>Call Active with Stella - Click to Resume</>
               ) : (
                 <>Click Here for Voice Chat<ArrowRight className="ml-2 h-5 w-5" /></>
               )}
@@ -122,6 +126,13 @@ const OmegaVoice1 = () => {
         open={isDialogOpen}
         onOpenChange={setIsDialogOpen}
         onStartChat={handleStartVoiceChat}
+      />
+
+      {/* Active Call Dialog */}
+      <OmegaActiveCallDialog
+        open={isActiveCallDialogOpen}
+        onOpenChange={setIsActiveCallDialogOpen}
+        onEndCall={handleEndCall}
       />
 
       <Footer />
