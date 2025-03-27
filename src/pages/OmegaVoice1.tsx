@@ -32,18 +32,19 @@ const OmegaVoice1 = () => {
         </div>
         
         <div className="flex flex-col items-center justify-center py-12">
-          <div className="flex justify-end w-full max-w-2xl mb-6">
-            <Button 
-              variant="outline" 
-              className="text-white border-white/30 hover:bg-white/10"
-              onClick={handleLogout}
-            >
-              <LogOut className="mr-2 h-4 w-4" />
-              Logout
-            </Button>
-          </div>
           <h1 className="text-3xl font-bold text-white mb-6">Welcome to Omega Voice</h1>
         </div>
+      </div>
+
+      <div className="fixed bottom-10 left-0 right-0 flex justify-center">
+        <Button 
+          variant="default" 
+          className="bg-purple-600 hover:bg-purple-700 text-white font-bold px-6 py-3"
+          onClick={handleLogout}
+        >
+          <LogOut className="mr-2 h-4 w-4" />
+          Logout
+        </Button>
       </div>
 
       <Footer />
