@@ -25,6 +25,16 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
     setError("");
 
     try {
+      // For development: Allow direct navigation without authentication
+      toast.success("Login successful! (Dev mode - no auth check)");
+      setTimeout(() => {
+        setIsLoading(false);
+        navigate("/omega-voice1");
+      }, 1000);
+      
+      // The following code is commented out for development
+      // Uncomment for production
+      /*
       // Use the login function from auth context
       const success = login(email, password);
       
@@ -47,12 +57,18 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
         toast.error("Login failed. Invalid credentials.");
         setIsLoading(false);
       }
+      */
     } catch (error) {
       console.error("Login error:", error);
       setError("An unexpected error occurred. Please try again.");
       toast.error("Login failed. Please try again.");
       setIsLoading(false);
     }
+  };
+
+  // Development shortcut button to navigate directly
+  const handleDevAccess = () => {
+    navigate("/omega-voice1");
   };
 
   return (
@@ -98,6 +114,18 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
           {isLoading ? "Logging in..." : "Log in"}
         </Button>
       </form>
+
+      {/* Development access button */}
+      <div className="mt-4 pt-4 border-t border-purple-500/20">
+        <p className="text-amber-300 text-xs mb-2 text-center">Development Mode</p>
+        <Button 
+          onClick={handleDevAccess}
+          variant="outline"
+          className="w-full border-amber-500/50 text-amber-300 hover:bg-amber-500/10"
+        >
+          Direct Access (Dev Only)
+        </Button>
+      </div>
     </div>
   );
 };
