@@ -43,9 +43,6 @@ const OmegaVoice1 = () => {
             </Button>
           </div>
           <h1 className="text-3xl font-bold text-white mb-6">Welcome to Omega Voice</h1>
-          <p className="text-gray-300 text-center max-w-2xl">
-            Content will be added soon. This page is under construction.
-          </p>
         </div>
       </div>
 
