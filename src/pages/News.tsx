@@ -9,6 +9,7 @@ import { newsArticles } from "@/data/blog-posts";
 import { Card, CardContent } from "@/components/ui/card";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { PoweredByText } from "@/components/shared/PoweredByText";
+import PRNewswireWidget from "@/components/news/PRNewswireWidget";
 
 const News = () => {
   useEffect(() => {
@@ -51,6 +52,9 @@ const News = () => {
         {newsArticles.length > 0 ? (
           <>
             <h2 className="text-3xl font-bold mb-8 text-center">Latest News</h2>
+            
+            {/* PRNewswire Widget */}
+            <PRNewswireWidget />
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {newsArticles.map((post) => (
