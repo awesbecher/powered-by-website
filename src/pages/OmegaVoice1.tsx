@@ -2,8 +2,20 @@
 import React from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { useAuth } from "@/context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { LogOut } from "lucide-react";
 
 const OmegaVoice1 = () => {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/omega-pediatrics");
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <div className="sticky top-0 z-50 w-full">
@@ -20,6 +32,16 @@ const OmegaVoice1 = () => {
         </div>
         
         <div className="flex flex-col items-center justify-center py-12">
+          <div className="flex justify-end w-full max-w-2xl mb-6">
+            <Button 
+              variant="outline" 
+              className="text-white border-white/30 hover:bg-white/10"
+              onClick={handleLogout}
+            >
+              <LogOut className="mr-2 h-4 w-4" />
+              Logout
+            </Button>
+          </div>
           <h1 className="text-3xl font-bold text-white mb-6">Welcome to Omega Voice</h1>
           <p className="text-gray-300 text-center max-w-2xl">
             Content will be added soon. This page is under construction.

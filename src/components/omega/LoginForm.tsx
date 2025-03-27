@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/context/AuthContext";
 
 interface LoginFormProps {
   onLogin?: (email: string, password: string) => void;
@@ -12,6 +13,7 @@ interface LoginFormProps {
 
 const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -23,8 +25,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
     setError("");
 
     try {
-      // Specific credential validation
-      if (email === "info@omegapediatrics.com" && password === "Nwaneri32625") {
+      // Use the login function from auth context
+      const success = login(email, password);
+      
+      if (success) {
         console.log("Login successful with predefined credentials");
         
         if (onLogin) {
