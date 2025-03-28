@@ -9,10 +9,11 @@ const VirtualSeWhitepaper = () => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(true);
   
-  // Use direct Google Drive export URL for better compatibility
-  // This format works better with embedding than the uc?export=download format
+  // Store Google Drive ID separately for direct embedding
   const googleDriveId = "1VTsvGv8Id7iP3c-XtG3nXAyficFAkLCA";
-  const pdfUrl = `https://drive.google.com/file/d/${googleDriveId}/preview`;
+  
+  // Provide both URLs for maximum compatibility
+  const pdfUrl = `https://drive.google.com/uc?export=download&id=${googleDriveId}`;
   
   useEffect(() => {
     // Show loading toast
@@ -58,12 +59,25 @@ const VirtualSeWhitepaper = () => {
             
             <PdfViewer 
               pdfUrl={pdfUrl}
+              googleDriveId={googleDriveId}
               viewerConfig={{
                 showDownloadPDF: true,
                 showPrintPDF: true,
                 showAnnotationTools: false
               }}
             />
+          </div>
+          
+          {/* Download link as fallback */}
+          <div className="p-4 text-center border-t border-purple-300/20">
+            <a 
+              href={`https://drive.google.com/uc?export=download&id=${googleDriveId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#9b87f5] hover:text-white transition-colors"
+            >
+              Download the whitepaper directly
+            </a>
           </div>
         </div>
       </div>
