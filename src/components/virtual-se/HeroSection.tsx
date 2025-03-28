@@ -61,7 +61,7 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
             <div className="rounded-[2rem] border border-white/50 p-5 overflow-hidden">
               {/* Added e-book text above the form */}
               <div className="mb-5 text-white">
-                <h3 className="font-semibold text-xl mb-2">Read our comprehensive e-book "A Virtual SE in the Modern SaaS Sales Organization"</h3>
+                <h3 className="font-semibold text-xl mb-2">Read our comprehensive e-book A Virtual SE in the Modern SaaS Sales Organization</h3>
                 <p className="text-gray-300 mb-2">Learn how to guarantee SE coverage in every sales meeting using an AI-enabled pre-sales engineer.</p>
                 <p className="text-gray-200 italic">Enter your details below to access the report:</p>
               </div>
