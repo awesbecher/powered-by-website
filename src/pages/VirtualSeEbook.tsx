@@ -11,10 +11,21 @@ const VirtualSeEbook = () => {
       {/* E-book display section */}
       <div className="flex-grow flex justify-center items-center p-4 sm:p-6 md:p-8 lg:p-12">
         <div className="w-full max-w-7xl bg-white/5 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border border-purple-300/20">
-          <div className="p-4 bg-gradient-to-r from-[#9b87f5]/20 to-[#6342ff]/20 border-b border-purple-300/20">
-            <h1 className="text-2xl md:text-3xl font-bold text-white text-center">
-              A Virtual SE in the Modern SaaS Sales Organization
-            </h1>
+          <div className="p-6 bg-gradient-to-r from-[#9b87f5]/30 to-[#6342ff]/30 border-b border-purple-300/20 relative overflow-hidden">
+            {/* Decorative elements */}
+            <div className="absolute top-0 left-0 w-full h-full bg-[url('/lovable-uploads/43118402-618c-4dd2-acf5-d749e3bf029d.png')] bg-cover opacity-20"></div>
+            <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-[#9b87f5]/30 blur-3xl"></div>
+            <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-[#6342ff]/30 blur-3xl"></div>
+            
+            {/* Title with enhanced styling */}
+            <div className="relative z-10 text-center">
+              <h1 className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-[#e9e1ff] leading-tight">
+                <span className="block text-3xl md:text-4xl lg:text-5xl tracking-tight mb-1">A Virtual SE</span>
+                <span className="block text-xl md:text-2xl lg:text-3xl text-[#9b87f5] font-light tracking-wide">in the</span>
+                <span className="block text-2xl md:text-3xl lg:text-4xl mt-1">Modern SaaS Sales Organization</span>
+              </h1>
+              <div className="w-24 h-1 bg-gradient-to-r from-[#9b87f5] to-[#6342ff] mx-auto mt-4 rounded-full"></div>
+            </div>
           </div>
           
           <div className="relative w-full aspect-video md:aspect-auto md:h-[70vh]">
