@@ -59,6 +59,12 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
           <div className={`mt-8 lg:mt-0 transition-all duration-1000 delay-300 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <div className="rounded-[2rem] border border-white/50 p-5 overflow-hidden">
+              {/* Added e-book text above the form */}
+              <div className="mb-5 text-white">
+                <h3 className="font-semibold text-xl mb-2">Read our comprehensive e-book "A Virtual SE in the Modern SaaS Sales Organization"</h3>
+                <p className="text-gray-300 mb-2">and learn how to guarantee SE coverage in every sales meeting using an AI-enabled pre-sales engineer.</p>
+                <p className="text-gray-200 italic">Enter your details below to access the report:</p>
+              </div>
               <TallyFormEmbed 
                 formId="wdz0QD"
                 height={420}
