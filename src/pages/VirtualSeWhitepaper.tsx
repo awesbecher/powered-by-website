@@ -5,8 +5,8 @@ import Footer from '@/components/layout/Footer';
 import PdfViewer from '@/components/pdf/PdfViewer';
 
 const VirtualSeWhitepaper = () => {
-  // This is a placeholder URL - you'll need to replace it with your actual PDF URL
-  const pdfUrl = "https://documentcloud.adobe.com/view-sdk-demo/PDFs/Bodea Brochure.pdf";
+  // Replace this URL with your externally hosted PDF URL if needed
+  const pdfUrl = "https://your-hosting-service.com/path-to-your-pdf.pdf";
   
   return (
     <div className="min-h-screen flex flex-col bg-[#1a0b2e]">
