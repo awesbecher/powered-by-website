@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
-import { ArrowRight, FileText } from "lucide-react";
+import { ArrowRight, FileText, Download } from "lucide-react";
 import { TallyFormEmbed } from "@/components/voice-chat/TallyFormEmbed";
 
 interface HeroSectionProps {
@@ -11,6 +11,23 @@ interface HeroSectionProps {
 }
 
 const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
+  // Adding Tally script when component mounts
+  React.useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://tally.so/widgets/embed.js';
+    script.async = true;
+    
+    // Append the script to the document
+    document.body.appendChild(script);
+    
+    // Clean up
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
+  }, []);
+
   return (
     <section className="pt-8 pb-8 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
@@ -30,18 +47,14 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
               <strong>Virtual SE</strong> gives SaaS sales organizations the ability to deploy AI pre-sales engineers to unlimited meetings with minimal incremental expense. Free up your scarce human SE resources for the highest value customer activities by utilizing super-intelligent, tireless SE agents.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 mt-4">
-              <a 
-                href="https://poweredbyagency.ghost.io/meet-virtual-se-force-multiply-your-technical-pre-sales/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="order-2 sm:order-1"
+              <button 
+                data-tally-open="3y1q74" 
+                data-tally-layout="modal" 
+                data-tally-hide-title="1"
+                className="order-2 sm:order-1 bg-white hover:bg-gray-100 text-[#6342ff] px-4 py-2 rounded flex items-center justify-center gap-2 w-full sm:w-auto"
               >
-                <Button 
-                  className="bg-white hover:bg-gray-100 text-[#6342ff] w-full sm:w-auto flex items-center"
-                >
-                  <FileText className="mr-2 h-5 w-5" /> Read Product Announcement
-                </Button>
-              </a>
+                <Download className="h-5 w-5" /> Download Virtual SE Whitepaper
+              </button>
               <Link to="/contact" className="order-1 sm:order-2">
                 <Button 
                   className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center w-full sm:w-auto"
