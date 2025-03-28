@@ -1,12 +1,35 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import PdfViewer from '@/components/pdf/PdfViewer';
+import { useToast } from '@/hooks/use-toast';
 
 const VirtualSeWhitepaper = () => {
-  // Replace this URL with your externally hosted PDF URL if needed
-  const pdfUrl = "https://your-hosting-service.com/path-to-your-pdf.pdf";
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(true);
+  
+  // Convert Google Drive link to direct download link
+  const googleDriveId = "1VTsvGv8Id7iP3c-XtG3nXAyficFAkLCA";
+  const pdfUrl = `https://drive.google.com/uc?export=download&id=${googleDriveId}`;
+  
+  useEffect(() => {
+    // Show loading toast
+    if (isLoading) {
+      toast({
+        title: "Loading PDF",
+        description: "The whitepaper is being loaded...",
+        duration: 3000,
+      });
+    }
+    
+    // Set loading to false after a delay
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
+    
+    return () => clearTimeout(timer);
+  }, [toast, isLoading]);
   
   return (
     <div className="min-h-screen flex flex-col bg-[#1a0b2e]">
@@ -23,6 +46,15 @@ const VirtualSeWhitepaper = () => {
           
           {/* PDF Viewer Container */}
           <div className="relative w-full aspect-video md:aspect-auto md:h-[75vh]">
+            {isLoading ? (
+              <div className="absolute inset-0 flex items-center justify-center bg-[#1a0b2e]/50 backdrop-blur-sm">
+                <div className="flex flex-col items-center">
+                  <div className="w-12 h-12 border-4 border-t-[#9b87f5] border-r-transparent border-b-transparent border-l-transparent rounded-full animate-spin mb-4"></div>
+                  <p className="text-white text-lg">Loading whitepaper...</p>
+                </div>
+              </div>
+            ) : null}
+            
             <PdfViewer 
               pdfUrl={pdfUrl}
               viewerConfig={{
