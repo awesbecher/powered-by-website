@@ -52,7 +52,7 @@ const PdfViewer = ({ pdfUrl, viewerConfig = {} }: PdfViewerProps) => {
     
     try {
       const adobeDCView = new (window as any).AdobeDC.View({
-        clientId: 'YOUR_CLIENT_ID', // Replace with your Adobe PDF Embed API client ID
+        clientId: 'd6ec47c58f1846068c194fbb84f3cb5d', // Adobe PDF Embed API client ID
         divId: containerRef.current.id,
       });
       
