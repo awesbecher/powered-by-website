@@ -27,6 +27,7 @@ import TermsOfService from "./pages/TermsOfService";
 import PrivacyStatement from "./pages/PrivacyStatement";
 import VirtualSE from "./pages/VirtualSE";
 import VirtualSeEbook from "./pages/VirtualSeEbook";
+import VirtualSeWhitepaper from "./pages/VirtualSeWhitepaper";
 import OutboundAI from "./pages/OutboundAI";
 import VoiceAgentForm from "./pages/VoiceAgentForm";
 import FreeVoiceAgent from "./pages/FreeVoiceAgent";
@@ -74,6 +75,7 @@ function App() {
               <Route path="/privacy-statement" element={<PrivacyStatement />} />
               <Route path="/virtual-se" element={<VirtualSE />} />
               <Route path="/virtual-se-ebook" element={<VirtualSeEbook />} />
+              <Route path="/virtual-se-whitepaper" element={<VirtualSeWhitepaper />} />
               <Route path="/outbound-ai" element={<OutboundAI />} />
               <Route path="/voiceagent-form" element={<VoiceAgentForm />} />
               <Route path="/voice-agent-config-end" element={<VoiceAgentConfigEnd />} />
