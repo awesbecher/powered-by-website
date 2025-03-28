@@ -9,9 +9,10 @@ const VirtualSeWhitepaper = () => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(true);
   
-  // Convert Google Drive link to direct download link
+  // Use direct Google Drive export URL for better compatibility
+  // This format works better with embedding than the uc?export=download format
   const googleDriveId = "1VTsvGv8Id7iP3c-XtG3nXAyficFAkLCA";
-  const pdfUrl = `https://drive.google.com/uc?export=download&id=${googleDriveId}`;
+  const pdfUrl = `https://drive.google.com/file/d/${googleDriveId}/preview`;
   
   useEffect(() => {
     // Show loading toast
@@ -26,7 +27,7 @@ const VirtualSeWhitepaper = () => {
     // Set loading to false after a delay
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2500);
+    }, 3500); // Extended timeout to ensure document loads
     
     return () => clearTimeout(timer);
   }, [toast, isLoading]);
