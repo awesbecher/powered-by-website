@@ -1,11 +1,11 @@
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface PdfViewerProps {
   pdfUrl: string;
   googleDriveId?: string;
   viewerConfig?: {
-    embedMode?: 'SIZED_CONTAINER' | 'FULL_WINDOW' | 'IN_LINE' | 'LIGHT_BOX';
     showDownloadPDF?: boolean;
     showPrintPDF?: boolean;
     showAnnotationTools?: boolean;
@@ -13,118 +13,65 @@ interface PdfViewerProps {
 }
 
 const PdfViewer = ({ pdfUrl, googleDriveId, viewerConfig = {} }: PdfViewerProps) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [viewerMode, setViewerMode] = useState<'adobe' | 'google' | 'iframe'>('adobe');
+  const [isIframeLoading, setIsIframeLoading] = useState(true);
+  const [iframeError, setIframeError] = useState(false);
   
-  // Default configuration
-  const defaultConfig = {
-    embedMode: 'SIZED_CONTAINER',
-    showDownloadPDF: true,
-    showPrintPDF: true,
-    showAnnotationTools: false,
-    ...viewerConfig
-  };
-
-  useEffect(() => {
-    let initTimeout: NodeJS.Timeout;
-    let adobeFailTimeout: NodeJS.Timeout;
-    
-    const initAdobeViewer = () => {
-      // Check if the Adobe DC View SDK is loaded
-      if ((window as any).AdobeDC) {
-        try {
-          if (!containerRef.current) return;
-          
-          const adobeDCView = new (window as any).AdobeDC.View({
-            clientId: 'd6ec47c58f1846068c194fbb84f3cb5d', // Adobe PDF Embed API client ID
-            divId: containerRef.current.id,
-          });
-          
-          adobeDCView.previewFile({
-            content: { location: { url: pdfUrl } },
-            metaData: { fileName: 'Virtual SE Whitepaper.pdf' }
-          }, defaultConfig);
-          
-          // Set a timeout to check if Adobe viewer fails
-          adobeFailTimeout = setTimeout(() => {
-            // If container is empty, Adobe viewer likely failed
-            if (containerRef.current && !containerRef.current.hasChildNodes()) {
-              console.warn('Adobe viewer appears to be empty, switching to fallback');
-              setViewerMode('google');
-            }
-          }, 5000);
-          
-        } catch (error) {
-          console.error('Error initializing Adobe PDF viewer:', error);
-          setViewerMode('google');
-        }
-      } else {
-        // If Adobe SDK fails to load after 5 seconds, switch to fallback mode
-        initTimeout = setTimeout(() => {
-          console.warn('Adobe PDF viewer failed to initialize, switching to fallback mode');
-          setViewerMode('google');
-        }, 5000);
-      }
-    };
-    
-    // Add event listener for when the SDK is ready
-    document.addEventListener('adobe_dc_view_sdk.ready', initAdobeViewer);
-    
-    // Load the Adobe DC View SDK
-    const script = document.createElement('script');
-    script.src = 'https://documentservices.adobe.com/view-sdk/viewer.js';
-    script.async = true;
-    document.head.appendChild(script);
-    
-    // Initialize viewer after a short delay
-    const timer = setTimeout(initAdobeViewer, 1500);
-    
-    return () => {
-      clearTimeout(timer);
-      clearTimeout(initTimeout);
-      clearTimeout(adobeFailTimeout);
-      document.removeEventListener('adobe_dc_view_sdk.ready', initAdobeViewer);
-      if (document.head.contains(script)) {
-        document.head.removeChild(script);
-      }
-    };
-  }, [pdfUrl]);
-  
-  // If we have a Google Drive ID, use it for direct iframe embedding
-  const renderGoogleDriveEmbed = () => {
+  // If we have a Google Drive ID, create a direct embed URL
+  const getEmbedUrl = () => {
     if (googleDriveId) {
-      return (
-        <iframe 
-          src={`https://drive.google.com/file/d/${googleDriveId}/preview`}
-          className="w-full h-full border-0"
-          title="PDF Viewer"
-          allow="autoplay"
-        />
-      );
+      return `https://drive.google.com/file/d/${googleDriveId}/preview`;
     }
     
     // Fallback to Google Docs viewer if no Drive ID
-    return (
-      <iframe 
-        src={`https://docs.google.com/viewer?url=${encodeURIComponent(pdfUrl)}&embedded=true`}
-        className="w-full h-full border-0"
-        title="PDF Viewer"
-      />
-    );
+    return `https://docs.google.com/viewer?url=${encodeURIComponent(pdfUrl)}&embedded=true`;
   };
-  
-  // If in Google mode, use Google's PDF viewer
-  if (viewerMode === 'google') {
-    return renderGoogleDriveEmbed();
-  }
-  
-  // Default Adobe viewer container
+
+  // Handle iframe load events
+  const handleIframeLoad = () => {
+    setIsIframeLoading(false);
+  };
+
+  // Handle iframe error
+  const handleIframeError = () => {
+    setIframeError(true);
+    setIsIframeLoading(false);
+    console.error("Failed to load PDF in iframe");
+  };
+
   return (
-    <div 
-      ref={containerRef} 
-      id="adobe-dc-view" 
-      className="w-full h-full"
-    />
+    <div className="relative w-full h-full">
+      {isIframeLoading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-[#1a0b2e]/50 backdrop-blur-sm z-10">
+          <Skeleton className="w-full h-full bg-white/5" />
+        </div>
+      )}
+      
+      {iframeError ? (
+        <div className="w-full h-full flex items-center justify-center bg-[#1a0b2e]/50">
+          <div className="text-center p-6">
+            <p className="text-white text-lg mb-4">Failed to load the PDF viewer.</p>
+            <a 
+              href={pdfUrl}
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-[#9b87f5] hover:text-white underline"
+            >
+              Download the PDF directly
+            </a>
+          </div>
+        </div>
+      ) : (
+        <iframe 
+          src={getEmbedUrl()}
+          className="w-full h-full border-0"
+          title="PDF Viewer"
+          onLoad={handleIframeLoad}
+          onError={handleIframeError}
+          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+          allow="autoplay"
+        />
+      )}
+    </div>
   );
 };
 
