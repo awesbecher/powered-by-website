@@ -22,19 +22,41 @@ interface SpeechGeneration {
   audioUrl: string;
 }
 
+// Language codes for Whisper API
+export const supportedLanguages = {
+  english: 'en',
+  german: 'de',
+  portuguese: 'pt',
+  chinese: 'zh',
+  japanese: 'ja',
+  french: 'fr',
+  spanish: 'es',
+  hindi: 'hi',
+  italian: 'it',
+  korean: 'ko',
+  dutch: 'nl',
+  polish: 'pl',
+  russian: 'ru',
+  swedish: 'sv',
+  turkish: 'tr'
+};
+
 // This service handles the integration with external APIs
 export const voiceAgentService = {
   // Convert speech to text using Whisper API via Supabase Edge Function
-  transcribeSpeech: async (audioBlob: Blob): Promise<TranscriptionResult> => {
+  transcribeSpeech: async (audioBlob: Blob, language?: string): Promise<TranscriptionResult> => {
     try {
-      console.log("Transcribing speech using Whisper API");
+      console.log("Transcribing speech using Whisper API", language ? `with language: ${language}` : "with auto language detection");
       
       // Convert the Blob to base64 string
       const base64Audio = await blobToBase64(audioBlob);
       
       // Call the Supabase Edge Function for transcription
       const { data, error } = await supabase.functions.invoke('transcribe-audio', {
-        body: { audio: base64Audio }
+        body: { 
+          audio: base64Audio,
+          language: language // Pass the language parameter if provided
+        }
       });
       
       if (error) {

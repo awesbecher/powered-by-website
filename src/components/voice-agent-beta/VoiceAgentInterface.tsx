@@ -1,9 +1,11 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import { Mic, MicOff, Volume2, Loader2, AlertCircle } from "lucide-react";
+import { Mic, MicOff, Volume2, Loader2, AlertCircle, Globe } from "lucide-react";
 import { useToast } from '@/hooks/use-toast';
 import { useAudioRecorder } from '@/hooks/use-audio-recorder';
-import { voiceAgentService } from '@/services/voiceAgentService';
+import { voiceAgentService, supportedLanguages } from '@/services/voiceAgentService';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface VoiceAgentInterfaceProps {
   // Props would be expanded as we integrate with external services
@@ -17,6 +19,7 @@ const VoiceAgentInterface: React.FC<VoiceAgentInterfaceProps> = () => {
   const [response, setResponse] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [processingStage, setProcessingStage] = useState<'idle' | 'recording' | 'transcribing' | 'searching' | 'generating' | 'speaking'>('idle');
+  const [selectedLanguage, setSelectedLanguage] = useState<string>("");
   
   // Using our custom audio recorder hook
   const { 
@@ -50,7 +53,7 @@ const VoiceAgentInterface: React.FC<VoiceAgentInterfaceProps> = () => {
       setIsProcessing(true);
       
       // Step 1: Convert speech to text using Whisper API
-      const transcriptionResult = await voiceAgentService.transcribeSpeech(audioBlob);
+      const transcriptionResult = await voiceAgentService.transcribeSpeech(audioBlob, selectedLanguage || undefined);
       setTranscript(transcriptionResult.text);
       console.log("Transcript:", transcriptionResult);
       
@@ -156,7 +159,7 @@ const VoiceAgentInterface: React.FC<VoiceAgentInterfaceProps> = () => {
   return (
     <div className="bg-gray-800/50 backdrop-blur-md rounded-xl p-6 shadow-xl border border-purple-500/30">
       {/* Status Indicator */}
-      <div className="flex items-center justify-center mb-6">
+      <div className="flex items-center justify-between mb-6">
         <div className="px-4 py-2 rounded-full bg-gray-700 text-white flex items-center">
           <span className="mr-2">Status:</span>
           <span className={`
@@ -168,6 +171,34 @@ const VoiceAgentInterface: React.FC<VoiceAgentInterfaceProps> = () => {
           `}>
             {getStatusText()} {getStatusIcon()}
           </span>
+        </div>
+        
+        {/* Language selector */}
+        <div className="flex items-center space-x-2">
+          <Globe className="h-4 w-4 text-purple-300" />
+          <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
+            <SelectTrigger className="w-[180px] bg-gray-700 border-gray-600 text-white">
+              <SelectValue placeholder="Auto-detect language" />
+            </SelectTrigger>
+            <SelectContent className="bg-gray-800 border-gray-700 text-white">
+              <SelectItem value="">Auto-detect</SelectItem>
+              <SelectItem value={supportedLanguages.english}>English</SelectItem>
+              <SelectItem value={supportedLanguages.german}>German</SelectItem>
+              <SelectItem value={supportedLanguages.portuguese}>Portuguese</SelectItem>
+              <SelectItem value={supportedLanguages.chinese}>Chinese</SelectItem>
+              <SelectItem value={supportedLanguages.japanese}>Japanese</SelectItem>
+              <SelectItem value={supportedLanguages.french}>French</SelectItem>
+              <SelectItem value={supportedLanguages.spanish}>Spanish</SelectItem>
+              <SelectItem value={supportedLanguages.hindi}>Hindi</SelectItem>
+              <SelectItem value={supportedLanguages.italian}>Italian</SelectItem>
+              <SelectItem value={supportedLanguages.korean}>Korean</SelectItem>
+              <SelectItem value={supportedLanguages.dutch}>Dutch</SelectItem>
+              <SelectItem value={supportedLanguages.polish}>Polish</SelectItem>
+              <SelectItem value={supportedLanguages.russian}>Russian</SelectItem>
+              <SelectItem value={supportedLanguages.swedish}>Swedish</SelectItem>
+              <SelectItem value={supportedLanguages.turkish}>Turkish</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
       </div>
       
@@ -233,6 +264,7 @@ const VoiceAgentInterface: React.FC<VoiceAgentInterfaceProps> = () => {
       <div className="text-center text-gray-400 text-sm">
         <p>Click the microphone to ask a question. The AI will respond based on our knowledge base.</p>
         <p className="mt-1">For best results, speak clearly and ask specific questions.</p>
+        <p className="mt-1">You can select your preferred language from the dropdown menu or leave it on auto-detect.</p>
       </div>
       
       {/* Hidden audio element for TTS playback */}
