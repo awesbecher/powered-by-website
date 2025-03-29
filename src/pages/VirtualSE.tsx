@@ -34,7 +34,12 @@ const VirtualSE = () => {
   }, []);
 
   const handleContact = () => {
-    window.scrollTo(0, 0);
+    // Use Calendly popup instead
+    if (window.Calendly) {
+      window.Calendly.initPopupWidget({
+        url: 'https://calendly.com/teampoweredby/powered_by-demo-virtual-se?hide_gdpr_banner=1'
+      });
+    }
   };
 
   return (

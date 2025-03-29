@@ -1,8 +1,8 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
-import { ArrowRight, FileText, Download } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import { TallyFormEmbed } from "@/components/voice-chat/TallyFormEmbed";
 
 interface HeroSectionProps {
@@ -11,19 +11,44 @@ interface HeroSectionProps {
 }
 
 const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
-  // Adding Tally script when component mounts
-  React.useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://tally.so/widgets/embed.js';
-    script.async = true;
+  // Adding Calendly script when component mounts
+  useEffect(() => {
+    // Load Calendly CSS
+    const linkElem = document.createElement('link');
+    linkElem.href = "https://assets.calendly.com/assets/external/widget.css";
+    linkElem.rel = "stylesheet";
+    document.head.appendChild(linkElem);
     
-    // Append the script to the document
+    // Load Calendly Script
+    const script = document.createElement('script');
+    script.src = "https://assets.calendly.com/assets/external/widget.js";
+    script.async = true;
     document.body.appendChild(script);
+    
+    // Initialize Calendly widget after script loads
+    script.onload = () => {
+      if (window.Calendly) {
+        window.Calendly.initBadgeWidget({
+          url: 'https://calendly.com/teampoweredby/powered_by-demo-virtual-se?hide_gdpr_banner=1',
+          text: 'Schedule Demo',
+          color: '#9b87f5',
+          textColor: '#ffffff'
+        });
+      }
+    };
     
     // Clean up
     return () => {
+      if (document.head.contains(linkElem)) {
+        document.head.removeChild(linkElem);
+      }
       if (document.body.contains(script)) {
         document.body.removeChild(script);
+      }
+      // Remove the Calendly widget if it exists
+      const calendlyWidget = document.querySelector('.calendly-badge-widget');
+      if (calendlyWidget && calendlyWidget.parentNode) {
+        calendlyWidget.parentNode.removeChild(calendlyWidget);
       }
     };
   }, []);
@@ -55,14 +80,19 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
               >
                 <Download className="h-5 w-5" /> Download Virtual SE Whitepaper
               </button>
-              <Link to="/contact" className="order-1 sm:order-2">
-                <Button 
-                  className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center w-full sm:w-auto"
-                  onClick={handleContact}
-                >
-                  Schedule a Demo <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
+              <Button 
+                className="order-1 sm:order-2 bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center w-full sm:w-auto"
+                onClick={() => {
+                  // Open Calendly popup instead of redirecting
+                  if (window.Calendly) {
+                    window.Calendly.initPopupWidget({
+                      url: 'https://calendly.com/teampoweredby/powered_by-demo-virtual-se?hide_gdpr_banner=1'
+                    });
+                  }
+                }}
+              >
+                Schedule a Demo <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
             </div>
           </div>
         </div>
