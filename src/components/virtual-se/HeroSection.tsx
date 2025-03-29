@@ -75,26 +75,17 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
               <strong>Virtual SE</strong> gives SaaS sales organizations the ability to deploy AI pre-sales engineers to unlimited meetings with minimal incremental expense. Free up your scarce human SE resources for the highest value customer activities by utilizing super-intelligent, tireless SE agents.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 mt-4">
-              {/* Updated button styles with smaller font size */}
+              {/* Watch overview button */}
               <Button 
                 className="order-3 sm:order-1 h-12 bg-black hover:bg-gray-900 text-white px-4 py-0 rounded-md text-sm font-medium flex items-center justify-center gap-2 w-full sm:w-auto"
                 onClick={() => setVideoOpen(true)}
               >
                 <Play className="h-4 w-4" /> Watch overview
               </Button>
-              <button 
-                data-tally-open="3y1q74" 
-                data-tally-layout="modal" 
-                data-tally-hide-title="1"
-                className="order-2 sm:order-2 h-12 bg-white hover:bg-gray-100 text-[#6342ff] px-4 py-0 rounded-md text-sm font-medium flex items-center justify-center gap-2 w-full sm:w-auto whitespace-nowrap leading-none"
-              >
-                <Download className="h-4 w-4" /> 
-                <span className="inline-flex flex-col leading-none">Download whitepaper</span>
-              </button>
+              {/* Schedule Demo button - removed download whitepaper from here */}
               <Button 
-                className="order-1 sm:order-3 h-12 bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-4 py-0 rounded-md text-sm font-medium flex items-center w-full sm:w-auto"
+                className="order-1 sm:order-2 h-12 bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-4 py-0 rounded-md text-sm font-medium flex items-center w-full sm:w-auto"
                 onClick={() => {
-                  // Open Calendly popup instead of redirecting
                   if (window.Calendly) {
                     window.Calendly.initPopupWidget({
                       url: 'https://calendly.com/teampoweredby/powered_by-demo-virtual-se?hide_gdpr_banner=1'
@@ -108,10 +99,39 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
           </div>
         </div>
         
-        {/* Right side - Tally.so form */}
+        {/* Right side - Video thumbnail and form */}
         <div className="lg:col-span-6">
           <div className={`mt-8 lg:mt-0 transition-all duration-1000 delay-300 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
+            
+            {/* Video thumbnail */}
+            <div className="mb-2 relative cursor-pointer rounded-xl overflow-hidden" onClick={() => setVideoOpen(true)}>
+              <img 
+                src="/lovable-uploads/af385cca-993d-4bd3-9376-89f61ac2b284.png" 
+                alt="Video call with multiple participants" 
+                className="w-full rounded-xl"
+              />
+              <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                <div className="h-20 w-20 bg-[#9b87f5] rounded-full flex items-center justify-center">
+                  <Play className="h-10 w-10 text-white" />
+                </div>
+              </div>
+            </div>
+            
+            {/* Download whitepaper button - moved here */}
+            <div className="flex justify-center mb-4">
+              <button 
+                data-tally-open="3y1q74" 
+                data-tally-layout="modal" 
+                data-tally-hide-title="1"
+                className="h-12 bg-white hover:bg-gray-100 text-[#6342ff] px-6 py-0 rounded-md text-sm font-medium flex items-center justify-center gap-2 whitespace-nowrap leading-none w-auto"
+              >
+                <Download className="h-4 w-4" /> 
+                <span className="inline-flex flex-col leading-none">Download whitepaper</span>
+              </button>
+            </div>
+            
+            {/* Form */}
             <div className="rounded-[2rem] border border-white/50 p-5 overflow-hidden">
               {/* Added e-book text above the form */}
               <div className="mb-3 text-white">
