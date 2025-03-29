@@ -47,8 +47,11 @@ serve(async (req) => {
     const OPENAI_API_KEY = Deno.env.get('OPENAI_API_KEY');
     
     if (!OPENAI_API_KEY) {
+      console.error('OpenAI API key not found');
       throw new Error('OpenAI API key not found in environment variables');
     }
+    
+    console.log('OpenAI API key is configured correctly');
 
     const { audio, language } = await req.json();
     
