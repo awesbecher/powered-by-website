@@ -54,8 +54,8 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
   }, []);
 
   return (
-    <section className="pt-8 pb-8 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
+    <section className="pt-8 pb-0 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-0">
         {/* Left side - Hero content */}
         <div className="lg:col-span-6">
           <div className={`space-y-6 transition-all duration-1000 ease-out transform
@@ -103,14 +103,14 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <div className="rounded-[2rem] border border-white/50 p-5 overflow-hidden">
               {/* Added e-book text above the form */}
-              <div className="mb-5 text-white">
+              <div className="mb-3 text-white">
                 <h3 className="font-semibold text-xl mb-2">Read our comprehensive e-book <span className="border-b-2 border-[#9b87f5]">A Virtual SE in the Modern SaaS Sales Organization</span></h3>
-                <p className="text-gray-300 mb-2">Learn how to guarantee SE coverage in every sales meeting using an AI-enabled pre-sales engineer.</p>
-                <p className="text-gray-200 italic">Enter your details below to access the report:</p>
+                <p className="text-gray-300 mb-1">Learn how to guarantee SE coverage in every sales meeting using an AI-enabled pre-sales engineer.</p>
+                <p className="text-gray-200 italic text-sm">Enter your details below to access the report:</p>
               </div>
               <TallyFormEmbed 
                 formId="wdz0QD"
-                height={420}
+                height={380}
                 transparentBackground={true}
                 alignLeft={true}
               />
