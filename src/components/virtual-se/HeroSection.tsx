@@ -86,9 +86,10 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
                 data-tally-open="3y1q74" 
                 data-tally-layout="modal" 
                 data-tally-hide-title="1"
-                className="order-2 sm:order-2 h-14 bg-white hover:bg-gray-100 text-[#6342ff] px-6 py-0 rounded-md text-base font-medium flex items-center justify-center gap-2 w-full sm:w-auto"
+                className="order-2 sm:order-2 h-14 bg-white hover:bg-gray-100 text-[#6342ff] px-6 py-0 rounded-md text-base font-medium flex items-center justify-center gap-2 w-full sm:w-auto whitespace-nowrap leading-none"
               >
-                <Download className="h-5 w-5" /> Download whitepaper
+                <Download className="h-5 w-5" /> 
+                <span className="inline-flex flex-col leading-none">Download whitepaper</span>
               </button>
               <Button 
                 className="order-1 sm:order-3 h-14 bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-0 rounded-md text-base font-medium flex items-center w-full sm:w-auto"
