@@ -1,45 +1,124 @@
-import React from 'react'
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
+
+import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Index from "./pages/Index";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
-import VoiceChat from "./pages/VoiceChat";
-import VoiceBusiness from "./pages/VoiceBusiness";
-import VoiceAgent from "./pages/VoiceAgent";
-import VoiceAgentStart from "./pages/VoiceAgentStart";
-import VoiceAgentForm from "./pages/VoiceAgentForm";
-import AIVoiceChat from "./pages/AIVoiceChat";
+import Contact2 from "./pages/Contact2";
+import Products from "./pages/Products";
+import Demo from "./pages/Demo";
+import RealEstate from "./pages/RealEstate";
 import AssetTest from "./pages/AssetTest";
-import OmegaVoice1 from "./pages/OmegaVoice1";
-import VoiceAgentBeta from "./pages/VoiceAgentBeta";
-import VoiceAgentUpload from "./pages/VoiceAgentUpload";
+import AIAgency from "./pages/AIAgency";
+import AIVoiceChat from "./pages/AIVoiceChat";
+import AIVoiceBusinessLines from "./pages/AIVoiceBusinessLines";
+import EmailAgent from "./pages/EmailAgent";
+import TextAgent from "./pages/TextAgent";
+import MercedesDealer from "./pages/MercedesDealer";
+import RetailServices from "./pages/RetailServices";
+import Insurance from "./pages/Insurance";
+import License from "./pages/License";
+import CallConfirmation from "./pages/CallConfirmation";
+import FoodMenu from "./pages/FoodMenu";
+import RoomService from "./pages/room-service";
+import About from "./pages/About";
+import TermsOfService from "./pages/TermsOfService";
+import PrivacyStatement from "./pages/PrivacyStatement";
+import VirtualSE from "./pages/VirtualSE";
+import VirtualSeEbook from "./pages/VirtualSeEbook";
+import VirtualSeWhitepaper from "./pages/VirtualSeWhitepaper";
+import OutboundAI from "./pages/OutboundAI";
+import VoiceAgentForm from "./pages/VoiceAgentForm";
+import FreeVoiceAgent from "./pages/FreeVoiceAgent";
+import VoiceAgentStart from "./pages/VoiceAgentStart";
+import VoiceAgentConfigEnd from "./pages/VoiceAgentConfigEnd";
+import VoiceAgentBeta from "./pages/VoiceAgentBeta"; // Import the new page
+import ThankYou from "./pages/ThankYou";
+import Careers from "./pages/Careers";
+import ProductHunt from "./pages/ProductHunt";
+import NotFound from "./pages/NotFound";
+import Pricing from "./pages/Pricing";
+import News from "./pages/News";
+import Calendly from "./pages/Calendly";
 import { Toaster } from "@/components/ui/toaster"
+import { GlobalVoiceChatDialog } from './components/shared/GlobalVoiceChatDialog';
+import OmegaPediatrics from "./pages/OmegaPediatrics";
+import OmegaVoice1 from "./pages/OmegaVoice1";
+import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/voice-chat" element={<VoiceChat />} />
-        <Route path="/voice-business" element={<VoiceBusiness />} />
-        <Route path="/voiceagent" element={<VoiceAgent />} />
-        <Route path="/voiceagent-start" element={<VoiceAgentStart />} />
-        <Route path="/voiceagent-form" element={<VoiceAgentForm />} />
-        <Route path="/ai-voice-chat" element={<AIVoiceChat />} />
-        <Route path="/asset-test" element={<AssetTest />} />
-        <Route path="/omega-voice1" element={<OmegaVoice1 />} />
-        <Route path="/voice-agent-beta" element={<VoiceAgentBeta />} />
-        <Route path="/voice-agent-upload" element={<VoiceAgentUpload />} />
-      </Routes>
+        <div className="flex flex-col min-h-screen">
+          <main className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
+              <Route path="/news" element={<News />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/contact-2" element={<Contact2 />} />
+              <Route path="/calendly" element={<Calendly />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/demo" element={<Demo />} />
+              <Route path="/real-estate" element={<RealEstate />} />
+              <Route path="/asset-test" element={<AssetTest />} />
+              <Route path="/ai-agency" element={<AIAgency />} />
+              <Route path="/ai-receptionist" element={<AIVoiceBusinessLines />} />
+              <Route path="/voice-chat" element={<AIVoiceChat />} />
+              <Route path="/email-agent" element={<EmailAgent />} />
+              <Route path="/text-agent" element={<TextAgent />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/terms-of-service" element={<TermsOfService />} />
+              <Route path="/privacy-statement" element={<PrivacyStatement />} />
+              <Route path="/virtual-se" element={<VirtualSE />} />
+              <Route path="/virtual-se-ebook" element={<VirtualSeEbook />} />
+              <Route path="/virtual-se-whitepaper" element={<VirtualSeWhitepaper />} />
+              <Route path="/outbound-ai" element={<OutboundAI />} />
+              <Route path="/voiceagent-form" element={<VoiceAgentForm />} />
+              <Route path="/voice-agent-config-end" element={<VoiceAgentConfigEnd />} />
+              <Route path="/free-voiceagent" element={<FreeVoiceAgent />} />
+              <Route path="/voiceagent-start" element={<VoiceAgentStart />} />
+              <Route path="/voiceagent-beta" element={<VoiceAgentBeta />} /> {/* Add the new route */}
+              <Route path="/thank-you" element={<ThankYou />} />
+              <Route path="/careers" element={<Careers />} />
+              <Route path="/launch" element={<ProductHunt />} />
+              <Route path="/omega-pediatrics" element={<OmegaPediatrics />} />
+              <Route 
+                path="/omega-voice1" 
+                element={
+                  <ProtectedRoute>
+                    <OmegaVoice1 />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route path="/product-hunt" element={<Navigate to="/launch" replace />} />
+              <Route path="/ai-assistant" element={<Navigate to="/ai-receptionist" replace />} />
+              <Route path="/voice-business-lines" element={<Navigate to="/ai-receptionist" replace />} />
+              <Route path="/mercedes-dealer" element={<MercedesDealer />} />
+              <Route path="/Mercedes" element={<Navigate to="/mercedes-dealer" replace />} />
+              <Route path="/retail-services" element={<RetailServices />} />
+              <Route path="/Retail-Services" element={<Navigate to="/retail-services" replace />} />
+              <Route path="/retail" element={<Navigate to="/retail-services" replace />} />
+              <Route path="/Retail" element={<Navigate to="/retail-services" replace />} />
+              <Route path="/insurance" element={<Insurance />} />
+              <Route path="/license" element={<License />} />
+              <Route path="/call-confirmation" element={<CallConfirmation />} />
+              <Route path="/food-menu" element={<FoodMenu />} />
+              <Route path="/room-service" element={<RoomService />} />
+              <Route path="/pricing" element={<Pricing />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+          <Toaster />
+          <GlobalVoiceChatDialog />
+        </div>
       </BrowserRouter>
-      <Toaster />
-    </>
-  )
+    </AuthProvider>
+  );
 }
 
-export default App
+export default App;
