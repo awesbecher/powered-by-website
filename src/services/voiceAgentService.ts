@@ -1,5 +1,6 @@
 
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 // Types for our voice agent service
 interface TranscriptionResult {
@@ -21,20 +22,35 @@ interface SpeechGeneration {
   audioUrl: string;
 }
 
-// This service will handle the integration with external APIs
-// In the next iterations, we'll implement the actual API calls
+// This service handles the integration with external APIs
 export const voiceAgentService = {
-  // Convert speech to text using Whisper API
+  // Convert speech to text using Whisper API via Supabase Edge Function
   transcribeSpeech: async (audioBlob: Blob): Promise<TranscriptionResult> => {
     try {
-      console.log("Would transcribe speech using Whisper API");
+      console.log("Transcribing speech using Whisper API");
       
-      // This will be replaced with an actual API call
-      // For now, just simulate a delay and return mock data
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Convert the Blob to base64 string
+      const base64Audio = await blobToBase64(audioBlob);
+      
+      // Call the Supabase Edge Function for transcription
+      const { data, error } = await supabase.functions.invoke('transcribe-audio', {
+        body: { audio: base64Audio }
+      });
+      
+      if (error) {
+        console.error("Error calling transcribe-audio function:", error);
+        throw new Error("Failed to transcribe speech: " + error.message);
+      }
+      
+      if (!data || !data.text) {
+        throw new Error("No transcription result returned");
+      }
+      
+      console.log("Transcription successful:", data);
       
       return {
-        text: "This is a simulated transcript that would come from the Whisper API. In production, this would be the actual transcription of the user's speech."
+        text: data.text,
+        language: data.language
       };
     } catch (error) {
       console.error("Error in transcribeSpeech:", error);
@@ -128,4 +144,16 @@ export const voiceAgentService = {
       // Non-critical, so we don't throw
     }
   }
+};
+
+// Helper function to convert Blob to base64
+const blobToBase64 = (blob: Blob): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      resolve(reader.result as string);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
 };
