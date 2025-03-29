@@ -45,8 +45,8 @@ const VirtualSeWhitepaper = () => {
       <div className="flex-grow flex justify-center items-center p-4 sm:p-6 md:p-8 lg:p-10">
         <div className="w-full max-w-7xl bg-white/5 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border border-purple-300/20">
           <div className="p-6 bg-gradient-to-r from-[#9b87f5]/20 to-[#6342ff]/20 border-b border-purple-300/20">
-            <h1 className="text-2xl md:text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-white to-[#e9e1ff]">
-              Virtual SE Whitepaper
+            <h1 className="text-2xl md:text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-white to-[#e9e1ff] whitespace-nowrap overflow-hidden text-ellipsis px-2">
+              Whitepaper: A Virtual SE in the Modern SaaS Sales Organization
             </h1>
           </div>
           
