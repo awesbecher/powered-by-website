@@ -12,6 +12,18 @@ const ContentSections = ({ initialLoad }: ContentSectionsProps) => {
     <section className="py-6 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
       <div className="relative mt-0 px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
+          {/* Zoom Meeting Image */}
+          <div className={`mb-10 transition-all duration-1000 delay-400 ease-out transform ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
+            <div className="max-w-4xl mx-auto overflow-hidden rounded-xl shadow-2xl border-4 border-gray-800">
+              <img 
+                src="/lovable-uploads/a4604ec9-99e3-4930-918e-ee95e7e58d81.png" 
+                alt="Zoom meeting with multiple participants" 
+                className="w-full h-auto object-cover"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          
           <div className={`text-left transition-all duration-1000 delay-500 ease-out transform
               ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <h2 className="relative text-4xl font-bold text-white mb-12 transition-colors duration-300 hover:bg-gradient-to-r hover:from-purple-400 hover:to-indigo-400 hover:bg-clip-text hover:text-transparent pt-0 px-4 pb-4 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-purple-500 after:to-indigo-500">
