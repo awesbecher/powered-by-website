@@ -1,271 +1,77 @@
 
-import React, { useState, useRef, useEffect } from 'react';
-import { Button } from "@/components/ui/button";
-import { Mic, MicOff, Volume2, Loader2, AlertCircle, Globe } from "lucide-react";
-import { useToast } from '@/hooks/use-toast';
-import { useAudioRecorder } from '@/hooks/use-audio-recorder';
-import { voiceAgentService, supportedLanguages } from '@/services/voiceAgentService';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import React, { useEffect } from 'react';
+import { StatusIndicator } from './status/StatusIndicator';
+import { LanguageSelector } from './language/LanguageSelector';
+import { MicrophoneButton } from './microphone/MicrophoneButton';
+import { ConversationDisplay } from './conversation/ConversationDisplay';
+import { InstructionsText } from './instructions/InstructionsText';
+import { useVoiceAgent } from './hooks/useVoiceAgent';
 
 interface VoiceAgentInterfaceProps {
   // Props would be expanded as we integrate with external services
 }
 
 const VoiceAgentInterface: React.FC<VoiceAgentInterfaceProps> = () => {
-  // States for managing the voice agent process
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [isSpeaking, setIsSpeaking] = useState(false);
-  const [transcript, setTranscript] = useState("");
-  const [response, setResponse] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [processingStage, setProcessingStage] = useState<'idle' | 'recording' | 'transcribing' | 'searching' | 'generating' | 'speaking'>('idle');
-  const [selectedLanguage, setSelectedLanguage] = useState<string>("");
-  
-  // Using our custom audio recorder hook
-  const { 
-    isRecording, 
-    startRecording, 
-    stopRecording, 
-    recordingTime, 
-    audioURL, 
-    error: recordingError 
-  } = useAudioRecorder();
-  
-  const { toast } = useToast();
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const {
+    isProcessing,
+    isSpeaking,
+    transcript,
+    response,
+    error,
+    processingStage,
+    selectedLanguage,
+    setSelectedLanguage,
+    isRecording,
+    recordingTime,
+    recordingError,
+    audioRef,
+    toggleRecording,
+    handleError
+  } = useVoiceAgent();
   
   // Handle any recording errors
   useEffect(() => {
     if (recordingError) {
       handleError(`Microphone error: ${recordingError}`);
     }
-  }, [recordingError]);
-  
-  // Process the voice agent workflow
-  const processVoiceQuery = async (audioBlob: Blob | null) => {
-    if (!audioBlob) {
-      handleError("No audio recorded");
-      return;
-    }
-    
-    try {
-      setProcessingStage('transcribing');
-      setIsProcessing(true);
-      
-      // Step 1: Convert speech to text using Whisper API
-      const transcriptionResult = await voiceAgentService.transcribeSpeech(audioBlob, selectedLanguage || undefined);
-      setTranscript(transcriptionResult.text);
-      console.log("Transcript:", transcriptionResult);
-      
-      // Step 2: Query knowledge base using Pinecone through Make.com
-      setProcessingStage('searching');
-      const knowledgeChunks = await voiceAgentService.queryKnowledgeBase(transcriptionResult.text);
-      console.log("Retrieved knowledge chunks:", knowledgeChunks);
-      
-      // Step 3: Generate response using GPT
-      setProcessingStage('generating');
-      const responseResult = await voiceAgentService.generateResponse(transcriptionResult.text, knowledgeChunks);
-      setResponse(responseResult.text);
-      console.log("Generated response:", responseResult);
-      
-      // Step 4: Convert text to speech using Cartesia.ai
-      setProcessingStage('speaking');
-      const speechResult = await voiceAgentService.generateSpeech(responseResult.text);
-      console.log("Generated speech:", speechResult);
-      
-      // Log the conversation
-      voiceAgentService.logConversation(transcriptionResult.text, responseResult.text, speechResult.audioUrl);
-      
-      // In a production system, we would play the audio from the URL
-      setIsProcessing(false);
-      setIsSpeaking(true);
-      
-      // Simulate speech playback for now
-      setTimeout(() => {
-        setIsSpeaking(false);
-        setProcessingStage('idle');
-      }, 4000);
-      
-    } catch (err) {
-      handleError(`Error processing voice query: ${err instanceof Error ? err.message : String(err)}`);
-    }
-  };
-  
-  // Function to toggle recording state
-  const toggleRecording = async () => {
-    if (isRecording) {
-      setProcessingStage('idle');
-      const audioBlob = await stopRecording();
-      processVoiceQuery(audioBlob);
-    } else {
-      setError(null);
-      setTranscript("");
-      setResponse("");
-      setProcessingStage('recording');
-      startRecording();
-      
-      toast({
-        title: "Listening",
-        description: "I'm listening to your question. Speak clearly.",
-      });
-    }
-  };
-  
-  // Function to handle errors
-  const handleError = (errorMessage: string) => {
-    setError(errorMessage);
-    setIsProcessing(false);
-    setIsSpeaking(false);
-    setProcessingStage('idle');
-    
-    toast({
-      variant: "destructive",
-      title: "Error",
-      description: "We are experiencing a technical fault with this service. Please attempt your conversation again.",
-    });
-    
-    console.error(errorMessage);
-  };
-  
-  // Get status text based on current processing stage
-  const getStatusText = () => {
-    switch (processingStage) {
-      case 'recording': return "Listening";
-      case 'transcribing': return "Transcribing audio";
-      case 'searching': return "Searching knowledge base";
-      case 'generating': return "Generating response";
-      case 'speaking': return "Speaking";
-      default: return "Ready";
-    }
-  };
-  
-  // Get status icon based on current processing stage
-  const getStatusIcon = () => {
-    if (isRecording) {
-      return <span className="ml-2 h-2 w-2 bg-green-400 rounded-full animate-pulse"></span>;
-    }
-    
-    if (isProcessing) {
-      return <Loader2 className="ml-2 h-4 w-4 animate-spin" />;
-    }
-    
-    if (isSpeaking) {
-      return <Volume2 className="ml-2 h-4 w-4 animate-pulse" />;
-    }
-    
-    return null;
-  };
+  }, [recordingError, handleError]);
   
   return (
     <div className="bg-gray-800/50 backdrop-blur-md rounded-xl p-6 shadow-xl border border-purple-500/30">
-      {/* Status Indicator */}
+      {/* Status and Language Selection */}
       <div className="flex items-center justify-between mb-6">
-        <div className="px-4 py-2 rounded-full bg-gray-700 text-white flex items-center">
-          <span className="mr-2">Status:</span>
-          <span className={`
-            ${processingStage === 'recording' ? 'text-green-400' : ''}
-            ${processingStage === 'transcribing' || processingStage === 'searching' || processingStage === 'generating' ? 'text-yellow-400' : ''}
-            ${processingStage === 'speaking' ? 'text-blue-400' : ''}
-            ${processingStage === 'idle' ? 'text-gray-400' : ''}
-            flex items-center
-          `}>
-            {getStatusText()} {getStatusIcon()}
-          </span>
-        </div>
+        <StatusIndicator 
+          processingStage={processingStage} 
+          isRecording={isRecording} 
+          isProcessing={isProcessing} 
+          isSpeaking={isSpeaking} 
+        />
         
-        {/* Language selector */}
-        <div className="flex items-center space-x-2">
-          <Globe className="h-4 w-4 text-purple-300" />
-          <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
-            <SelectTrigger className="w-[180px] bg-gray-700 border-gray-600 text-white">
-              <SelectValue placeholder="Auto-detect language" />
-            </SelectTrigger>
-            <SelectContent className="bg-gray-800 border-gray-700 text-white">
-              <SelectItem value="">Auto-detect</SelectItem>
-              <SelectItem value={supportedLanguages.english}>English</SelectItem>
-              <SelectItem value={supportedLanguages.german}>German</SelectItem>
-              <SelectItem value={supportedLanguages.portuguese}>Portuguese</SelectItem>
-              <SelectItem value={supportedLanguages.chinese}>Chinese</SelectItem>
-              <SelectItem value={supportedLanguages.japanese}>Japanese</SelectItem>
-              <SelectItem value={supportedLanguages.french}>French</SelectItem>
-              <SelectItem value={supportedLanguages.spanish}>Spanish</SelectItem>
-              <SelectItem value={supportedLanguages.hindi}>Hindi</SelectItem>
-              <SelectItem value={supportedLanguages.italian}>Italian</SelectItem>
-              <SelectItem value={supportedLanguages.korean}>Korean</SelectItem>
-              <SelectItem value={supportedLanguages.dutch}>Dutch</SelectItem>
-              <SelectItem value={supportedLanguages.polish}>Polish</SelectItem>
-              <SelectItem value={supportedLanguages.russian}>Russian</SelectItem>
-              <SelectItem value={supportedLanguages.swedish}>Swedish</SelectItem>
-              <SelectItem value={supportedLanguages.turkish}>Turkish</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
+        <LanguageSelector 
+          selectedLanguage={selectedLanguage} 
+          setSelectedLanguage={setSelectedLanguage} 
+        />
       </div>
       
       {/* Main Interaction Area */}
       <div className="flex flex-col md:flex-row gap-6 mb-6">
-        {/* Voice Recording Section */}
-        <div className="flex-1 flex flex-col items-center justify-center">
-          <Button
-            onClick={toggleRecording}
-            disabled={isProcessing || isSpeaking}
-            className={`w-20 h-20 rounded-full ${
-              isRecording
-                ? 'bg-red-500 hover:bg-red-600'
-                : 'bg-[#9b87f5] hover:bg-[#8a75e3]'
-            } flex items-center justify-center transition-all duration-300`}
-          >
-            {isRecording ? (
-              <MicOff className="h-8 w-8 text-white" />
-            ) : (
-              <Mic className="h-8 w-8 text-white" />
-            )}
-          </Button>
-          <p className="mt-4 text-white text-center">
-            {isRecording 
-              ? `Recording... ${recordingTime}s` 
-              : isProcessing
-                ? "Processing your request"
-                : isSpeaking
-                  ? "AI is speaking"
-                  : "Tap to start speaking"}
-          </p>
-        </div>
+        <MicrophoneButton 
+          isRecording={isRecording} 
+          isProcessing={isProcessing} 
+          isSpeaking={isSpeaking} 
+          recordingTime={recordingTime} 
+          toggleRecording={toggleRecording} 
+        />
         
-        {/* Conversation Display */}
-        <div className="flex-1">
-          {transcript && (
-            <div className="mb-4">
-              <h3 className="text-sm font-semibold uppercase text-gray-400 mb-2">You said:</h3>
-              <div className="bg-gray-700/50 p-3 rounded text-white">{transcript}</div>
-            </div>
-          )}
-          
-          {response && (
-            <div>
-              <h3 className="text-sm font-semibold uppercase text-gray-400 mb-2">AI Response:</h3>
-              <div className="bg-purple-900/30 p-3 rounded text-white">{response}</div>
-            </div>
-          )}
-          
-          {error && (
-            <div className="mt-4 p-3 bg-red-500/20 border border-red-500/50 rounded text-white flex items-start gap-2">
-              <AlertCircle className="h-5 w-5 text-red-400 mt-0.5 flex-shrink-0" />
-              <div>
-                <p className="font-medium">We are experiencing a technical fault with this service.</p>
-                <p className="text-sm opacity-80">Please attempt your conversation again.</p>
-              </div>
-            </div>
-          )}
-        </div>
+        <ConversationDisplay 
+          transcript={transcript} 
+          response={response} 
+          error={error} 
+        />
       </div>
       
       {/* Instructions */}
-      <div className="text-center text-gray-400 text-sm">
-        <p>Click the microphone to ask a question. The AI will respond based on our knowledge base.</p>
-        <p className="mt-1">For best results, speak clearly and ask specific questions.</p>
-        <p className="mt-1">You can select your preferred language from the dropdown menu or leave it on auto-detect.</p>
-      </div>
+      <InstructionsText />
       
       {/* Hidden audio element for TTS playback */}
       <audio ref={audioRef} className="hidden" />
