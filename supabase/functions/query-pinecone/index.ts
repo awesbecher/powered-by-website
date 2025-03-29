@@ -25,12 +25,49 @@ serve(async (req) => {
       throw new Error('Pinecone API key not configured')
     }
 
-    // In a real implementation, we would:
-    // 1. Convert the query to an embedding using OpenAI or similar
-    // 2. Query the Pinecone index with the embedding
-    // 3. Return the results
+    console.log(`Querying Pinecone with: "${query}"`)
     
-    console.log(`Would query Pinecone with: "${query}"`)
+    // In production, you'll need to:
+    // 1. Generate an embedding for the query
+    // 2. Send that embedding to your Pinecone index
+    
+    // You will replace this placeholder with actual Pinecone implementation
+    // For now, we're using a placeholder to ensure the interface works
+    
+    // Here's where you'd call the OpenAI API to get embeddings for your query
+    // const embeddingResponse = await fetch('https://api.openai.com/v1/embeddings', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Authorization': `Bearer ${Deno.env.get('OPENAI_API_KEY')}`,
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     input: query,
+    //     model: "text-embedding-ada-002"
+    //   })
+    // });
+    // const embeddingData = await embeddingResponse.json();
+    // const queryEmbedding = embeddingData.data[0].embedding;
+    
+    // And then query your Pinecone index
+    // const pineconeResponse = await fetch(`https://your-index.pinecone.io/query`, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Api-Key': pineconeApiKey,
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     vector: queryEmbedding,
+    //     topK: 3,
+    //     includeMetadata: true
+    //   })
+    // });
+    // const pineconeData = await pineconeResponse.json();
+    // const results = pineconeData.matches.map(match => ({
+    //   text: match.metadata.text,
+    //   source: match.metadata.source,
+    //   relevance: match.score
+    // }));
     
     // Simulate a response for now
     const simulatedResults = [
