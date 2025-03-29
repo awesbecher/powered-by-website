@@ -63,10 +63,8 @@ serve(async (req) => {
     console.log(`Successfully generated embedding with dimension: ${queryEmbedding.length}`);
     
     // Query your Pinecone index
-    // Note: Replace 'your-index-name' with your actual Pinecone index name
-    // and 'your-project-id' with your Pinecone project ID
-    const pineconeIndexName = "voice-agent-knowledge"; // Replace with your index name
-    const pineconeProjectId = "your-project-id"; // Replace with your project ID
+    const pineconeIndexName = "voice-agent-knowledge"; // Replace with your index name if different
+    const pineconeProjectId = "cinohyzbtfzfcdtkgvij"; // Using your actual project ID
     const pineconeEndpoint = `https://${pineconeIndexName}-${pineconeProjectId}.svc.${pineconeProjectId}.pinecone.io`;
     
     console.log(`Querying Pinecone index at: ${pineconeEndpoint}`);
