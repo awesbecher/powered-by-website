@@ -1,9 +1,10 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, Download, Play } from "lucide-react";
 import { TallyFormEmbed } from "@/components/voice-chat/TallyFormEmbed";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -11,6 +12,8 @@ interface HeroSectionProps {
 }
 
 const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
+  const [videoOpen, setVideoOpen] = useState(false);
+
   // Adding Calendly script when component mounts
   useEffect(() => {
     // Load Calendly CSS
@@ -72,16 +75,22 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
               <strong>Virtual SE</strong> gives SaaS sales organizations the ability to deploy AI pre-sales engineers to unlimited meetings with minimal incremental expense. Free up your scarce human SE resources for the highest value customer activities by utilizing super-intelligent, tireless SE agents.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 mt-4">
+              <Button 
+                className="order-3 sm:order-1 bg-black hover:bg-gray-900 text-white px-4 py-2 rounded flex items-center justify-center gap-2 w-full sm:w-auto"
+                onClick={() => setVideoOpen(true)}
+              >
+                <Play className="h-5 w-5" /> Watch overview
+              </Button>
               <button 
                 data-tally-open="3y1q74" 
                 data-tally-layout="modal" 
                 data-tally-hide-title="1"
-                className="order-2 sm:order-1 bg-white hover:bg-gray-100 text-[#6342ff] px-4 py-2 rounded flex items-center justify-center gap-2 w-full sm:w-auto"
+                className="order-2 sm:order-2 bg-white hover:bg-gray-100 text-[#6342ff] px-4 py-2 rounded flex items-center justify-center gap-2 w-full sm:w-auto"
               >
                 <Download className="h-5 w-5" /> Download whitepaper
               </button>
               <Button 
-                className="order-1 sm:order-2 bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center w-full sm:w-auto"
+                className="order-1 sm:order-3 bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center w-full sm:w-auto"
                 onClick={() => {
                   // Open Calendly popup instead of redirecting
                   if (window.Calendly) {
@@ -118,6 +127,22 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
           </div>
         </div>
       </div>
+      
+      {/* Video Dialog */}
+      <Dialog open={videoOpen} onOpenChange={setVideoOpen}>
+        <DialogContent className="max-w-4xl p-0 border-none bg-transparent" closeButton={false}>
+          <div className="aspect-video w-full">
+            <iframe 
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/MgEj8njkT74?si=OE0h0TqU76nwmSD8&autoplay=1" 
+              title="Virtual SE Overview Video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </DialogContent>
+      </Dialog>
       
       <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
       <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
