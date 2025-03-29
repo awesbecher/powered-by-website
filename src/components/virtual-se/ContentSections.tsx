@@ -1,26 +1,58 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { InfoCard } from "@/components/ai-agency/InfoCard";
-import { Cpu, FileText, Users, ShieldCheck } from "lucide-react";
+import { Cpu, FileText, Users, ShieldCheck, Play } from "lucide-react";
 
 interface ContentSectionsProps {
   initialLoad: boolean;
 }
 
 const ContentSections = ({ initialLoad }: ContentSectionsProps) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  
+  const handlePlayClick = () => {
+    setIsPlaying(true);
+  };
+  
   return (
     <section className="py-6 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
       <div className="relative mt-0 px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
-          {/* Zoom Meeting Image */}
+          {/* Zoom Meeting Image with Play Button */}
           <div className={`mb-10 transition-all duration-1000 delay-400 ease-out transform ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-            <div className="max-w-4xl mx-auto overflow-hidden rounded-xl shadow-2xl border-4 border-gray-800">
-              <img 
-                src="/lovable-uploads/a4604ec9-99e3-4930-918e-ee95e7e58d81.png" 
-                alt="Zoom meeting with multiple participants" 
-                className="w-full h-auto object-cover"
-                loading="lazy"
-              />
+            <div className="max-w-4xl mx-auto overflow-hidden rounded-xl shadow-2xl border-4 border-gray-800 relative">
+              {!isPlaying ? (
+                <>
+                  <img 
+                    src="/lovable-uploads/a4604ec9-99e3-4930-918e-ee95e7e58d81.png" 
+                    alt="Zoom meeting with multiple participants" 
+                    className="w-full h-auto object-cover"
+                    loading="lazy"
+                  />
+                  <button 
+                    onClick={handlePlayClick}
+                    className="absolute inset-0 w-full h-full flex items-center justify-center group"
+                    aria-label="Play video"
+                  >
+                    <div className="w-20 h-20 flex items-center justify-center rounded-full bg-[#9b87f5]/90 group-hover:bg-[#9b87f5] transition-all duration-300 transform group-hover:scale-110">
+                      <Play className="w-10 h-10 text-white fill-white ml-1" />
+                    </div>
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300"></div>
+                  </button>
+                </>
+              ) : (
+                <div className="aspect-video">
+                  <iframe 
+                    className="w-full h-full"
+                    src="https://www.youtube.com/embed/MgEj8njkT74?si=OE0h0TqU76nwmSD8&autoplay=1" 
+                    title="Virtual SE Demo Video"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              )}
             </div>
           </div>
           
