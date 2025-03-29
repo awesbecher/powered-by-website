@@ -37,14 +37,23 @@ export const useAudioRecorder = (): AudioRecorderResult => {
       setError(null);
       audioChunksRef.current = [];
       
-      // Mock implementation - in real code this would request microphone access
-      // const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const stream = await navigator.mediaDevices.getUserMedia({ 
+        audio: {
+          echoCancellation: true,
+          noiseSuppression: true,
+          autoGainControl: true
+        } 
+      });
       
-      // Mock the MediaRecorder for now
-      // In a real implementation we would use:
-      // mediaRecorderRef.current = new MediaRecorder(stream);
+      mediaRecorderRef.current = new MediaRecorder(stream);
       
-      // Instead of actual recording, we'll simulate the state changes
+      mediaRecorderRef.current.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          audioChunksRef.current.push(event.data);
+        }
+      };
+      
+      mediaRecorderRef.current.start();
       setIsRecording(true);
       setRecordingTime(0);
       
@@ -66,16 +75,34 @@ export const useAudioRecorder = (): AudioRecorderResult => {
       timerRef.current = null;
     }
     
-    // In a real implementation, this would stop the MediaRecorder
-    // and process the audio chunks
+    // If there's no MediaRecorder or it's not recording, return null
+    if (!mediaRecorderRef.current || mediaRecorderRef.current.state !== 'recording') {
+      setIsRecording(false);
+      return null;
+    }
     
-    setIsRecording(false);
-    
-    // Create a dummy audio blob for simulation
-    const dummyBlob = new Blob([], { type: 'audio/webm' });
-    setAudioURL(URL.createObjectURL(dummyBlob));
-    
-    return dummyBlob;
+    return new Promise<Blob | null>((resolve) => {
+      mediaRecorderRef.current!.onstop = () => {
+        if (audioChunksRef.current.length === 0) {
+          setIsRecording(false);
+          resolve(null);
+          return;
+        }
+        
+        const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
+        const url = URL.createObjectURL(audioBlob);
+        setAudioURL(url);
+        setIsRecording(false);
+        resolve(audioBlob);
+      };
+      
+      // Request data and stop recording
+      mediaRecorderRef.current!.requestData();
+      mediaRecorderRef.current!.stop();
+      
+      // Stop all audio tracks
+      mediaRecorderRef.current!.stream.getTracks().forEach(track => track.stop());
+    });
   };
   
   return {
