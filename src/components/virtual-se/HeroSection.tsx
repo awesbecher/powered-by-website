@@ -75,9 +75,9 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
               <strong>Virtual SE</strong> gives SaaS sales organizations the ability to deploy AI pre-sales engineers to unlimited meetings with minimal incremental expense. Free up your scarce human SE resources for the highest value customer activities by utilizing super-intelligent, tireless SE agents.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 mt-4">
-              {/* Watch overview button */}
+              {/* Watch overview button - Added white border */}
               <Button 
-                className="order-3 sm:order-1 h-12 bg-black hover:bg-gray-900 text-white px-4 py-0 rounded-md text-sm font-medium flex items-center justify-center gap-2 w-full sm:w-auto"
+                className="order-3 sm:order-1 h-12 bg-black hover:bg-gray-900 text-white px-4 py-0 rounded-md text-sm font-medium flex items-center justify-center gap-2 w-full sm:w-auto border-2 border-white"
                 onClick={() => setVideoOpen(true)}
               >
                 <Play className="h-4 w-4" /> Watch overview
