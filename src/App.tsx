@@ -26,6 +26,7 @@ import About from "./pages/About";
 import TermsOfService from "./pages/TermsOfService";
 import PrivacyStatement from "./pages/PrivacyStatement";
 import VirtualSE from "./pages/VirtualSE";
+import GetVirtualSE from "./pages/GetVirtualSE";
 import VirtualSeEbook from "./pages/VirtualSeEbook";
 import VirtualSeWhitepaper from "./pages/VirtualSeWhitepaper";
 import OutboundAI from "./pages/OutboundAI";
@@ -75,6 +76,7 @@ function App() {
               <Route path="/terms-of-service" element={<TermsOfService />} />
               <Route path="/privacy-statement" element={<PrivacyStatement />} />
               <Route path="/virtual-se" element={<VirtualSE />} />
+              <Route path="/getvirtual-se" element={<GetVirtualSE />} />
               <Route path="/virtual-se-ebook" element={<VirtualSeEbook />} />
               <Route path="/virtual-se-whitepaper" element={<VirtualSeWhitepaper />} />
               <Route path="/outbound-ai" element={<OutboundAI />} />
