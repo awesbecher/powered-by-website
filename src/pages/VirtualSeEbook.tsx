@@ -17,7 +17,7 @@ const VirtualSeEbook = () => {
             <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-[#9b87f5]/30 blur-3xl"></div>
             <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-[#6342ff]/30 blur-3xl"></div>
             
-            {/* Title with enhanced styling */}
+            {/* Title with enhanced styling - changed from purple to red border */}
             <div className="relative z-10 text-center">
               <h1 className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-[#e9e1ff] leading-tight">
                 <span className="block text-3xl md:text-4xl lg:text-5xl tracking-tight mb-1">A Virtual SE</span>
