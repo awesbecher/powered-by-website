@@ -29,7 +29,7 @@ export const InfoCard = ({ title, icon: Icon, gradientFrom, gradientTo, children
   return (
     <div className="relative group" onMouseEnter={handleMouseEnter}>
       <div className={`absolute -inset-1 bg-gradient-to-r from-${gradientFrom} to-${gradientTo} rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200`} />
-      <div className="relative p-6 bg-[#1a0b2e] ring-1 ring-gray-900/5 rounded-lg leading-none">
+      <div className="relative p-6 bg-[#1e1e2e] ring-1 ring-gray-900/5 rounded-lg leading-none">
         <div className="flex items-top justify-start space-x-6">
           <Icon className="w-8 h-8 text-[#ea384c]" />
           <div className="space-y-4 w-full">

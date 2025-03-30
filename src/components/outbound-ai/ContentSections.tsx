@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { InfoCard } from "@/components/ai-agency/InfoCard";
 import { MessageSquare, Phone, Cpu, ShieldCheck, Smartphone } from "lucide-react";
@@ -13,7 +14,7 @@ const ContentSections = ({ initialLoad }: ContentSectionsProps) => {
         <div className="mx-auto max-w-4xl">
           <div className={`text-left transition-all duration-1000 delay-500 ease-out transform
               ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-            <h2 className="relative text-4xl font-bold text-white mb-12 transition-colors duration-300 hover:bg-gradient-to-r hover:from-purple-400 hover:to-indigo-400 hover:bg-clip-text hover:text-transparent pt-0 px-4 pb-4 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-purple-500 after:to-indigo-500">
+            <h2 className="relative text-4xl font-bold text-white mb-12 transition-colors duration-300 hover:bg-gradient-to-r hover:from-purple-400 hover:to-indigo-400 hover:bg-clip-text hover:text-transparent pt-0 px-4 pb-4 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-[#9b87f5] after:to-indigo-500">
               Super-charge your outbound calls with AI agents
             </h2>
             
@@ -22,7 +23,7 @@ const ContentSections = ({ initialLoad }: ContentSectionsProps) => {
                 title="Why OutboundAI?" 
                 icon={Phone}
                 gradientFrom="blue-600"
-                gradientTo="purple-600"
+                gradientTo="cyan-600"
               >
                 <div className="space-y-4">
                   <p>Traditional outbound calling is labor-intensive, expensive, and difficult to scale. Even with power dialers, a single rep can only manage a limited number of calls daily. OutboundAI changes that. Our AI-driven voice agents call leads on your behalf, day or night, with remarkably sounding voices and conversation flow. This boosts your calling capacity and frees your human reps to focus on qualified prospects and closing deals.</p>
@@ -43,8 +44,8 @@ const ContentSections = ({ initialLoad }: ContentSectionsProps) => {
               <InfoCard 
                 title="How It Works" 
                 icon={Cpu}
-                gradientFrom="purple-600"
-                gradientTo="pink-600"
+                gradientFrom="green-600"
+                gradientTo="teal-600"
               >
                 <div className="space-y-4">
                   <p>OutboundAI turns your best sales scripts, talk tracks, and methodologies into an army of natural-sounding AI agents that can scale your outbound operation exponentially. The system integrates with your existing CRM and sales tools, connects to your prospect lists, and begins making calls immediately. Each conversation is unique, personalized, and responsive to the specific prospect and situation.</p>
@@ -64,8 +65,8 @@ const ContentSections = ({ initialLoad }: ContentSectionsProps) => {
               <InfoCard 
                 title="Industry Use Cases" 
                 icon={MessageSquare}
-                gradientFrom="green-600"
-                gradientTo="blue-600"
+                gradientFrom="amber-600"
+                gradientTo="orange-600"
               >
                 <div className="space-y-6">
                   <div>
@@ -98,8 +99,8 @@ const ContentSections = ({ initialLoad }: ContentSectionsProps) => {
               <InfoCard 
                 title="Compliance Built In" 
                 icon={ShieldCheck}
-                gradientFrom="yellow-600"
-                gradientTo="green-600"
+                gradientFrom="slate-600"
+                gradientTo="gray-600"
               >
                 <div className="space-y-6">
                   <div>
