@@ -33,7 +33,7 @@ import VoiceAgentForm from "./pages/VoiceAgentForm";
 import FreeVoiceAgent from "./pages/FreeVoiceAgent";
 import VoiceAgentStart from "./pages/VoiceAgentStart";
 import VoiceAgentConfigEnd from "./pages/VoiceAgentConfigEnd";
-import VoiceAgentBeta from "./pages/VoiceAgentBeta"; // Import the new page
+// Removed import VoiceAgentBeta from "./pages/VoiceAgentBeta";
 import ThankYou from "./pages/ThankYou";
 import Careers from "./pages/Careers";
 import ProductHunt from "./pages/ProductHunt";
@@ -82,7 +82,7 @@ function App() {
               <Route path="/voice-agent-config-end" element={<VoiceAgentConfigEnd />} />
               <Route path="/free-voiceagent" element={<FreeVoiceAgent />} />
               <Route path="/voiceagent-start" element={<VoiceAgentStart />} />
-              <Route path="/voiceagent-beta" element={<VoiceAgentBeta />} /> {/* Add the new route */}
+              {/* Removed Route path="/voiceagent-beta" element={<VoiceAgentBeta />} */}
               <Route path="/thank-you" element={<ThankYou />} />
               <Route path="/careers" element={<Careers />} />
               <Route path="/launch" element={<ProductHunt />} />
