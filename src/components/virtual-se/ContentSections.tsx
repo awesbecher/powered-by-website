@@ -87,7 +87,7 @@ const ContentSections = ({ initialLoad }: ContentSectionsProps) => {
                   <p>Virtual SE connects seamlessly to common meeting platforms such as Zoom, Google Meet, and Microsoft Teams in the same way that Gong or Otter.ai plug into your meetings. Once invited to a call, it listens in real time and responds to technical questions with a remarkably human-like voice. Virtual SE draws from your company's existing product documentation, training materials, and messaging to provide on-the-spot technical explanations. It can also automatically log meeting notes and key takeaways to CRM systems like HubSpot or Salesforce.</p>
                   
                   <div>
-                    <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Deployment Options</h4>
+                    <h4 className="text-xl font-semibold text-[#ea384c] mb-2">Deployment Options</h4>
                     <ul className="list-disc pl-5 space-y-2">
                       <li>Meeting Assistant: Joins Zoom/Google Meet calls alongside your sales reps to provide real-time technical answers</li>
                       <li>Email Copilot: Drafts technical responses to customer emails, ensuring accuracy and consistency</li>
@@ -108,7 +108,7 @@ const ContentSections = ({ initialLoad }: ContentSectionsProps) => {
                   <p>SE teams are chronically overloaded, often becoming bottlenecks in the sales process. Virtual SE addresses this challenge by ensuring consistent technical support is available for every sales conversation. Force-multiply your SE team coverage and re-allocate your precious human SE resources to the most high value sales activities.</p>
                   
                   <div>
-                    <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Key Benefits</h4>
+                    <h4 className="text-xl font-semibold text-[#ea384c] mb-2">Key Benefits</h4>
                     <ul className="list-disc pl-5 space-y-2">
                       <li>Scale Your SE Team: Support 10x more sales conversations without expanding headcount</li>
                       <li>Eliminate Scheduling Conflicts: Never miss a sales opportunity due to SE unavailability</li>
@@ -128,22 +128,22 @@ const ContentSections = ({ initialLoad }: ContentSectionsProps) => {
               >
                 <div className="space-y-6">
                   <div>
-                    <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Pre-Sales Support</h4>
+                    <h4 className="text-xl font-semibold text-[#ea384c] mb-2">Pre-Sales Support</h4>
                     <p>The Virtual SE joins discovery calls alongside sales reps, automatically addressing technical questions while capturing key requirements and pain points. This allows sales reps to focus on relationship-building while ensuring technical accuracy.</p>
                   </div>
                   
                   <div>
-                    <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Product Demos</h4>
+                    <h4 className="text-xl font-semibold text-[#ea384c] mb-2">Product Demos</h4>
                     <p>For standard demos, the Virtual SE can lead personalized product tours, highlighting features relevant to each prospect's specific needs. Your human SEs can then focus on complex, high-value opportunities that require their specialized expertise.</p>
                   </div>
                   
                   <div>
-                    <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Technical Qualification</h4>
+                    <h4 className="text-xl font-semibold text-[#ea384c] mb-2">Technical Qualification</h4>
                     <p>The Virtual SE can join BANT or technical qualification calls to assess fit and potential implementation challenges. It identifies technical requirements, potential integrations, and deployment considerations, providing valuable insights to both sales and SE teams.</p>
                   </div>
                   
                   <div>
-                    <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">After-Hours Support</h4>
+                    <h4 className="text-xl font-semibold text-[#ea384c] mb-2">After-Hours Support</h4>
                     <p>The Virtual SE remains available 24/7, allowing global sales teams to receive immediate technical support regardless of time zone differences. This ensures your sales process never stalls due to SE unavailability.</p>
                   </div>
                 </div>
@@ -157,17 +157,17 @@ const ContentSections = ({ initialLoad }: ContentSectionsProps) => {
               >
                 <div className="space-y-6">
                   <div>
-                    <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Data Security</h4>
+                    <h4 className="text-xl font-semibold text-[#ea384c] mb-2">Data Security</h4>
                     <p>We understand the sensitive nature of sales conversations. All Virtual SE interactions are processed with enterprise-grade security standards, including SOC 2 Type II compliance and end-to-end encryption. Your data remains yours, and we maintain strict access controls.</p>
                   </div>
                   
                   <div>
-                    <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Transparency</h4>
+                    <h4 className="text-xl font-semibold text-[#ea384c] mb-2">Transparency</h4>
                     <p>The Virtual SE is always introduced as an AI assistant during customer interactions, ensuring full transparency. Customers and prospects are made aware they're interacting with an AI-powered system that complements your human team.</p>
                   </div>
                   
                   <div>
-                    <h4 className="text-xl font-semibold text-[#9b87f5] mb-2">Ethical AI Use</h4>
+                    <h4 className="text-xl font-semibold text-[#ea384c] mb-2">Ethical AI Use</h4>
                     <p>Our platform is designed to augment human SEs, not replace them. The Virtual SE handles routine technical discussions, freeing your human experts to focus on complex problem-solving, relationship building, and high-value activities that require human judgment and creativity.</p>
                   </div>
                 </div>
