@@ -29,7 +29,7 @@ const VirtualSENavbar = () => {
               <img 
                 src="/lovable-uploads/29391c50-2dfd-4879-9bd5-70914db50c97.png" 
                 alt="Virtual SE Logo" 
-                className="h-18 w-auto object-contain" // Increased from h-16 to h-18
+                className="h-16 w-auto object-contain" // Increased from h-15 to h-16
               />
             </Link>
           </div>
