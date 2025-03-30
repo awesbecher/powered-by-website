@@ -31,9 +31,9 @@ export const InfoCard = ({ title, icon: Icon, gradientFrom, gradientTo, children
       <div className={`absolute -inset-1 bg-gradient-to-r from-${gradientFrom} to-${gradientTo} rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200`} />
       <div className="relative p-6 bg-[#1a0b2e] ring-1 ring-gray-900/5 rounded-lg leading-none">
         <div className="flex items-top justify-start space-x-6">
-          <Icon className="w-8 h-8 text-purple-400" />
+          <Icon className="w-8 h-8 text-[#ea384c]" />
           <div className="space-y-4 w-full">
-            <h3 className="text-3xl font-bold text-[#9b87f5] cursor-pointer hover:opacity-80 transition-opacity">
+            <h3 className="text-3xl font-bold text-[#ea384c] cursor-pointer hover:opacity-80 transition-opacity">
               {title}
             </h3>
             <div className={`text-gray-300 text-left transition-all duration-300 overflow-hidden leading-relaxed
