@@ -82,9 +82,9 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
               >
                 <Play className="h-4 w-4" /> Watch overview
               </Button>
-              {/* Schedule Demo button */}
+              {/* Schedule Demo button - Updated to use red color */}
               <Button 
-                className="order-1 sm:order-2 h-12 bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-4 py-0 rounded-md text-sm font-medium flex items-center w-full sm:w-auto"
+                className="order-1 sm:order-2 h-12 bg-[#ea384c] hover:bg-[#d42e40] text-white px-4 py-0 rounded-md text-sm font-medium flex items-center w-full sm:w-auto"
                 onClick={() => {
                   if (window.Calendly) {
                     window.Calendly.initPopupWidget({
