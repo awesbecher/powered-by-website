@@ -51,7 +51,8 @@ const GetVirtualSE = () => {
           alt="Team planning at whiteboard" 
           className="w-full h-[60vh] object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/80 via-[#2f1c4a] to-[#1a0b2e]"></div>
+        {/* Changed the background gradient from purple to black */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black to-black"></div>
       </div>
 
       {/* Content container with higher z-index */}
