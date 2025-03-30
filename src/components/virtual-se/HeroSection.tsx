@@ -64,7 +64,7 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
           <div className={`space-y-6 transition-all duration-1000 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <h1>
-              <span className="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#9b87f5] block">
+              <span className="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#ea384c] block">
                 Virtual SE
               </span>
               <span className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">

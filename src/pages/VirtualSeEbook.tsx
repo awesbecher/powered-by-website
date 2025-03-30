@@ -21,10 +21,10 @@ const VirtualSeEbook = () => {
             <div className="relative z-10 text-center">
               <h1 className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-[#e9e1ff] leading-tight">
                 <span className="block text-3xl md:text-4xl lg:text-5xl tracking-tight mb-1">A Virtual SE</span>
-                <span className="block text-xl md:text-2xl lg:text-3xl text-[#9b87f5] font-light tracking-wide">in the</span>
+                <span className="block text-xl md:text-2xl lg:text-3xl text-[#ea384c] font-light tracking-wide">in the</span>
                 <span className="block text-2xl md:text-3xl lg:text-4xl mt-1">Modern SaaS Sales Organization</span>
               </h1>
-              <div className="w-24 h-1 bg-gradient-to-r from-[#9b87f5] to-[#6342ff] mx-auto mt-4 rounded-full"></div>
+              <div className="w-24 h-1 bg-gradient-to-r from-[#ea384c] to-[#d42e40] mx-auto mt-4 rounded-full"></div>
             </div>
           </div>
           
