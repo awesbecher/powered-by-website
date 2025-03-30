@@ -99,7 +99,7 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
           </div>
         </div>
         
-        {/* Right side - Form and video */}
+        {/* Right side - Form */}
         <div className="lg:col-span-6">
           <div className={`mt-8 lg:mt-0 transition-all duration-1000 delay-300 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
@@ -123,7 +123,7 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
         </div>
       </div>
       
-      {/* Moved video thumbnail and whitepaper button outside the grid */}
+      {/* Video thumbnail and whitepaper button */}
       <div className="max-w-3xl mx-auto mt-8">
         {/* Video thumbnail */}
         <div className="mb-4 relative cursor-pointer rounded-xl overflow-hidden" onClick={() => setVideoOpen(true)}>
@@ -139,7 +139,7 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
           </div>
         </div>
         
-        {/* Download whitepaper button below the video */}
+        {/* Download whitepaper button moved above the ContentSections component */}
         <div className="flex justify-center mb-8">
           <button 
             data-tally-open="3y1q74" 
