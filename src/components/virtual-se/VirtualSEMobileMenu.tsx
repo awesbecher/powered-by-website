@@ -96,14 +96,6 @@ const VirtualSEMobileMenu = () => {
                       <ChevronRight className="h-3 w-3 mr-1 inline" />
                       Careers
                     </Link>
-                    <Link
-                      to="/pricing"
-                      className="py-2 text-sm text-gray-300 hover:text-white"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      <ChevronRight className="h-3 w-3 mr-1 inline" />
-                      Pricing
-                    </Link>
                     <a
                       href="https://www.youtube.com/@Powered_byAgency"
                       target="_blank"
@@ -117,14 +109,6 @@ const VirtualSEMobileMenu = () => {
                   </div>
                 )}
               </div>
-              
-              <Link 
-                to="/about"
-                className="mx-4 py-2 text-sm text-gray-300 hover:text-white font-medium"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                About
-              </Link>
               
               <Link
                 to="/contact"
