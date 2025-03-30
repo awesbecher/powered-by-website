@@ -18,7 +18,7 @@ const CTASection: React.FC<CTASectionProps> = ({ handleContact }) => {
           Free up your human SE resources for the highest value engagements while Virtual SE handles routine demos, product walkthroughs, and technical Q&A.
         </p>
         <Button 
-          className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-8 py-6 text-lg rounded-md"
+          className="bg-[#ea384c] hover:bg-[#d42e40] text-white px-8 py-6 text-lg rounded-md"
           onClick={() => {
             // Open Calendly popup instead of redirecting
             if (window.Calendly) {
