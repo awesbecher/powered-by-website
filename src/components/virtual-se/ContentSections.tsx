@@ -15,11 +15,11 @@ const ContentSections = ({ initialLoad }: ContentSectionsProps) => {
   };
   
   return (
-    <section className="py-6 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
+    <section className="py-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
       <div className="relative mt-0 px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
           {/* Zoom Meeting Image with Play Button - Added more top margin (mt-16) */}
-          <div className={`mb-10 mt-16 transition-all duration-1000 delay-400 ease-out transform ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
+          <div className={`mb-16 mt-16 transition-all duration-1000 delay-400 ease-out transform ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <div className="max-w-4xl mx-auto overflow-hidden rounded-xl shadow-2xl border-4 border-gray-800 relative">
               {!isPlaying ? (
                 <>
