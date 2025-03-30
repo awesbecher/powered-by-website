@@ -1,10 +1,10 @@
 
 import React, { useState, useEffect } from 'react';
 import Footer from '@/components/layout/Footer';
-import Navbar from '@/components/layout/Navbar';
 import HeroSection from '@/components/virtual-se/HeroSection';
 import ContentSections from '@/components/virtual-se/ContentSections';
 import CTASection from '@/components/virtual-se/CTASection';
+import VirtualSENavbar from '@/components/virtual-se/VirtualSENavbar';
 
 const GetVirtualSE = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -57,7 +57,7 @@ const GetVirtualSE = () => {
 
       {/* Content container with higher z-index */}
       <div className="relative z-10 min-h-screen">
-        <Navbar />
+        <VirtualSENavbar />
         <div className="pt-12 pb-12">
           <div className="max-w-7xl mx-auto">
             <HeroSection initialLoad={initialLoad} handleContact={handleContact} />
