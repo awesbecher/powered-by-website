@@ -27,7 +27,7 @@ const VirtualSENavbar = () => {
           <div className="flex-shrink-0">
             <Link to="/getvirtual-se" onClick={handleClick}>
               <img 
-                src="/lovable-uploads/a895d546-c44f-4953-843b-945b3573a24d.png" 
+                src="/lovable-uploads/29391c50-2dfd-4879-9bd5-70914db50c97.png" 
                 alt="Virtual SE Logo" 
                 className="h-8 w-auto object-contain"
               />
