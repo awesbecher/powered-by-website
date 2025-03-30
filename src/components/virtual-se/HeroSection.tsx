@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download, Play } from "lucide-react";
-import { TallyFormEmbed } from "@/components/voice-chat/TallyFormEmbed";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 interface HeroSectionProps {
@@ -40,6 +39,12 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
       }
     };
     
+    // Load Tally script
+    const tallyScript = document.createElement('script');
+    tallyScript.src = 'https://tally.so/widgets/embed.js';
+    tallyScript.async = true;
+    document.body.appendChild(tallyScript);
+    
     // Clean up
     return () => {
       if (document.head.contains(linkElem)) {
@@ -47,6 +52,9 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
       }
       if (document.body.contains(script)) {
         document.body.removeChild(script);
+      }
+      if (document.body.contains(tallyScript)) {
+        document.body.removeChild(tallyScript);
       }
       // Remove the Calendly widget if it exists
       const calendlyWidget = document.querySelector('.calendly-badge-widget');
@@ -112,12 +120,18 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
                 <p className="text-gray-300 mb-1">Learn how to guarantee SE coverage in every sales meeting using an AI-enabled pre-sales engineer.</p>
                 <p className="text-gray-200 italic text-sm">Enter your details below to access the report:</p>
               </div>
-              <TallyFormEmbed 
-                formId="wdz0QD"
-                height={380}
-                transparentBackground={true}
-                alignLeft={true}
-              />
+              
+              {/* Updated Tally form with new data attributes approach */}
+              <div className="mt-4">
+                <button 
+                  data-tally-open="mOE8RK" 
+                  data-tally-hide-title="1" 
+                  data-tally-auto-close="0"
+                  className="bg-[#ea384c] hover:bg-[#d42e40] text-white px-4 py-2 rounded-md text-sm font-medium w-full"
+                >
+                  Access the e-book
+                </button>
+              </div>
             </div>
           </div>
         </div>
