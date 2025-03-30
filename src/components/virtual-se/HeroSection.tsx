@@ -123,34 +123,17 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
         </div>
       </div>
       
-      {/* Video thumbnail and whitepaper button */}
-      <div className="max-w-3xl mx-auto mt-8">
-        {/* Video thumbnail */}
-        <div className="mb-4 relative cursor-pointer rounded-xl overflow-hidden" onClick={() => setVideoOpen(true)}>
-          <img 
-            src="/lovable-uploads/af385cca-993d-4bd3-9376-89f61ac2b284.png" 
-            alt="Video call with multiple participants" 
-            className="w-full rounded-xl"
-          />
-          <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-            <div className="h-20 w-20 bg-[#9b87f5] rounded-full flex items-center justify-center">
-              <Play className="h-10 w-10 text-white" />
-            </div>
-          </div>
-        </div>
-        
-        {/* Download whitepaper button moved above the ContentSections component */}
-        <div className="flex justify-center mb-8">
-          <button 
-            data-tally-open="3y1q74" 
-            data-tally-layout="modal" 
-            data-tally-hide-title="1"
-            className="h-12 bg-white hover:bg-gray-100 text-[#6342ff] px-6 py-0 rounded-md text-sm font-medium flex items-center justify-center gap-2 whitespace-nowrap leading-none w-auto"
-          >
-            <Download className="h-4 w-4" /> 
-            <span className="inline-flex flex-col leading-none">Download whitepaper</span>
-          </button>
-        </div>
+      {/* Download whitepaper button above content sections */}
+      <div className="flex justify-center my-8">
+        <button 
+          data-tally-open="3y1q74" 
+          data-tally-layout="modal" 
+          data-tally-hide-title="1"
+          className="h-12 bg-white hover:bg-gray-100 text-[#6342ff] px-6 py-0 rounded-md text-sm font-medium flex items-center justify-center gap-2 whitespace-nowrap leading-none w-auto"
+        >
+          <Download className="h-4 w-4" /> 
+          <span className="inline-flex flex-col leading-none">Download whitepaper</span>
+        </button>
       </div>
       
       {/* Video Dialog */}
