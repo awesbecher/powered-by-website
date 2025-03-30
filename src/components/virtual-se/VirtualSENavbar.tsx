@@ -29,7 +29,7 @@ const VirtualSENavbar = () => {
               <img 
                 src="/lovable-uploads/29391c50-2dfd-4879-9bd5-70914db50c97.png" 
                 alt="Virtual SE Logo" 
-                className="h-16 w-auto object-contain" // Increased from h-15 to h-16
+                className="h-16 w-auto object-contain" 
               />
             </Link>
           </div>
@@ -139,7 +139,7 @@ const VirtualSENavbar = () => {
           <div className="hidden md:flex items-center gap-4">
             <Link
               to="/contact"
-              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#9b87f5] hover:bg-[#8b77e5] transition-colors duration-200"
+              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#ea384c] hover:bg-[#d42e40] transition-colors duration-200"
             >
               Get Started
             </Link>
