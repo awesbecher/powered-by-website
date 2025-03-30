@@ -43,7 +43,7 @@ const VirtualSENavbar = () => {
                 className="px-3 py-2 text-sm font-bold relative group text-gray-300 hover:text-white transition-colors duration-200"
               >
                 Home
-                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#9b87f5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#ea384c] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
               </Link>
 
               <span className="text-gray-600">|</span>
@@ -54,7 +54,7 @@ const VirtualSENavbar = () => {
                 className="px-3 py-2 text-sm font-bold relative group text-gray-300 hover:text-white transition-colors duration-200"
               >
                 Solution
-                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#9b87f5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#ea384c] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
               </Link>
 
               <span className="text-gray-600">|</span>
@@ -80,7 +80,7 @@ const VirtualSENavbar = () => {
                   >
                     <path d="m6 9 6 6 6-6"/>
                   </svg>
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#9b87f5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#ea384c] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
                 </Link>
                 <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-[#222222] border border-gray-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                   <div className="py-1">
@@ -130,7 +130,7 @@ const VirtualSENavbar = () => {
                 className="px-3 py-2 text-sm font-bold relative group text-gray-300 hover:text-white transition-colors duration-200"
               >
                 About
-                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#9b87f5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#ea384c] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
               </Link>
             </div>
           </div>
