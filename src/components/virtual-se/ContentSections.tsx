@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { InfoCard } from "@/components/ai-agency/InfoCard";
-import { Cpu, FileText, Users, ShieldCheck, Play } from "lucide-react";
+import { Cpu, FileText, Users, ShieldCheck, Play, Download } from "lucide-react";
 
 interface ContentSectionsProps {
   initialLoad: boolean;
@@ -58,6 +58,20 @@ const ContentSections = ({ initialLoad }: ContentSectionsProps) => {
           
           <div className={`text-left transition-all duration-1000 delay-500 ease-out transform
               ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
+            
+            {/* Download whitepaper button repositioned above the heading */}
+            <div className="flex justify-center mb-8">
+              <button 
+                data-tally-open="3y1q74" 
+                data-tally-layout="modal" 
+                data-tally-hide-title="1"
+                className="h-12 bg-white hover:bg-gray-100 text-[#6342ff] px-6 py-0 rounded-md text-sm font-medium flex items-center justify-center gap-2 whitespace-nowrap leading-none w-auto"
+              >
+                <Download className="h-4 w-4" /> 
+                <span className="inline-flex flex-col leading-none">Download whitepaper</span>
+              </button>
+            </div>
+            
             <h2 className="relative text-4xl font-bold text-white mb-12 transition-colors duration-300 hover:bg-gradient-to-r hover:from-purple-400 hover:to-indigo-400 hover:bg-clip-text hover:text-transparent pt-0 px-4 pb-4 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-purple-500 after:to-indigo-500">
               SE coverage for ALL of your customer meetings
             </h2>

@@ -123,19 +123,6 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
         </div>
       </div>
       
-      {/* Download whitepaper button above content sections */}
-      <div className="flex justify-center my-8">
-        <button 
-          data-tally-open="3y1q74" 
-          data-tally-layout="modal" 
-          data-tally-hide-title="1"
-          className="h-12 bg-white hover:bg-gray-100 text-[#6342ff] px-6 py-0 rounded-md text-sm font-medium flex items-center justify-center gap-2 whitespace-nowrap leading-none w-auto"
-        >
-          <Download className="h-4 w-4" /> 
-          <span className="inline-flex flex-col leading-none">Download whitepaper</span>
-        </button>
-      </div>
-      
       {/* Video Dialog */}
       <Dialog open={videoOpen} onOpenChange={setVideoOpen}>
         <DialogContent className="max-w-4xl p-0 border-none bg-transparent" closeButton={false}>
