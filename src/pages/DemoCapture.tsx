@@ -2,53 +2,94 @@
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { ServiceCard } from "@/components/home/ServiceCard";
 import { services, additionalServices } from "@/data/services";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import OfferButton from "@/components/home/OfferButton";
+import { useToast } from "@/hooks/use-toast";
 
 const DemoCapture = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
+  const tallyScriptLoaded = useRef(false);
+  const { toast } = useToast();
 
   useEffect(() => {
     // Check if user has already completed the form and redirect if true
     if (localStorage.getItem('demoFormCompleted') === 'true') {
+      console.log('User already completed the form, redirecting to /demo');
       navigate('/demo');
       return;
     }
     
     setInitialLoad(false);
     
-    // Load Tally embed script
-    const script = document.createElement('script');
-    script.src = 'https://tally.so/widgets/embed.js';
-    script.async = true;
-    document.body.appendChild(script);
-    
+    // Only load the script once
+    if (!tallyScriptLoaded.current) {
+      console.log('Loading Tally script');
+      
+      // Load Tally embed script
+      const script = document.createElement('script');
+      script.src = 'https://tally.so/widgets/embed.js';
+      script.async = true;
+      
+      script.onload = () => {
+        console.log('Tally script loaded');
+        tallyScriptLoaded.current = true;
+        
+        // Initialize Tally embeds after script is loaded
+        if (window.Tally) {
+          window.Tally.loadEmbeds();
+        }
+      };
+      
+      document.body.appendChild(script);
+      
+      return () => {
+        if (document.body.contains(script)) {
+          document.body.removeChild(script);
+        }
+      };
+    }
+  }, [navigate]);
+  
+  // Set up the message event listener in a separate effect
+  useEffect(() => {
     // Handle Tally form submission event
-    const handleTallyEvent = (event: any) => {
+    const handleTallyEvent = (event: MessageEvent) => {
+      console.log('Received message event:', event.data);
+      
+      // Check if this is a Tally form submission success event
       if (event.data?.type === 'tally-form-submit-success') {
+        console.log('Form submitted successfully, setting localStorage and redirecting');
+        
         // Set local storage to mark user as having completed the form
         localStorage.setItem('demoFormCompleted', 'true');
-        // Redirect to demo page
-        navigate('/demo');
+        
+        // Show success toast
+        toast({
+          title: "Form submitted successfully!",
+          description: "Redirecting you to the demos page...",
+        });
+        
+        // Redirect to demo page after a short delay to ensure the toast is seen
+        setTimeout(() => {
+          navigate('/demo');
+        }, 1000);
       }
     };
     
+    // Add event listener for Tally form submission
     window.addEventListener('message', handleTallyEvent);
     
     // Clean up
     return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
       window.removeEventListener('message', handleTallyEvent);
     };
-  }, [navigate]);
+  }, [navigate, toast]);
 
   useEffect(() => {
     // Scroll to top with a slight delay to ensure DOM is ready
@@ -93,9 +134,10 @@ const DemoCapture = () => {
                 Please fill out the form below to access our demos:
               </p>
               
-              {/* Embed Tally.so form */}
+              {/* Embed Tally.so form with unique id attribute */}
               <div className="mt-8 max-w-2xl mx-auto bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10">
                 <iframe
+                  id="tally-embed-form"
                   data-tally-src="https://tally.so/embed/mVNb9y?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
                   width="100%"
                   height="500"

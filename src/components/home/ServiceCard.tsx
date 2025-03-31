@@ -12,35 +12,6 @@ interface ServiceProps {
 }
 
 export const ServiceCard = ({ title, description, link, logo, category }: ServiceProps) => {
-  useEffect(() => {
-    // Load Tally embed script
-    const script = document.createElement('script');
-    script.src = 'https://tally.so/widgets/embed.js';
-    script.async = true;
-    
-    document.body.appendChild(script);
-    
-    // Handle Tally form submission event
-    const handleTallyEvent = (event: any) => {
-      if (event.data?.type === 'tally-form-submit-success') {
-        // Set local storage to mark user as having completed the form
-        localStorage.setItem('demoFormCompleted', 'true');
-        // Redirect to demo page
-        window.location.href = '/demo';
-      }
-    };
-    
-    window.addEventListener('message', handleTallyEvent);
-    
-    // Clean up
-    return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-      window.removeEventListener('message', handleTallyEvent);
-    };
-  }, []);
-
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault(); // Prevent navigation to the link
     

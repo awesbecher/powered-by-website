@@ -8,11 +8,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import OfferButton from "@/components/home/OfferButton";
+import { useToast } from "@/hooks/use-toast";
 
 const Demo = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   useEffect(() => {
     // Check if user has completed the lead capture form
@@ -20,12 +22,18 @@ const Demo = () => {
     
     // If not, redirect to demo-capture page
     if (!hasCompletedForm) {
+      console.log('User has not completed the form, redirecting to demo-capture');
+      toast({
+        title: "Access Required",
+        description: "Please complete the form to access the demos.",
+      });
       navigate('/demo-capture');
       return;
     }
     
+    console.log('User has completed the form, showing demos');
     setInitialLoad(false);
-  }, [navigate]);
+  }, [navigate, toast]);
 
   useEffect(() => {
     // Scroll to top with a slight delay to ensure DOM is ready
