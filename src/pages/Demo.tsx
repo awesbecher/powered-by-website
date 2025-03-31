@@ -1,4 +1,3 @@
-
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { ServiceCard } from "@/components/home/ServiceCard";
 import { services, additionalServices } from "@/data/services";
@@ -17,6 +16,27 @@ const Demo = () => {
   const { toast } = useToast();
 
   useEffect(() => {
+    // Check for admin access in URL params
+    const searchParams = new URLSearchParams(location.search);
+    const isAdmin = searchParams.get('admin') === 'true';
+    
+    if (isAdmin) {
+      // Set the form completed flag for admin access
+      localStorage.setItem('demoFormCompleted', 'true');
+      
+      // Remove the admin param from URL to keep it clean
+      searchParams.delete('admin');
+      navigate({
+        pathname: location.pathname,
+        search: searchParams.toString()
+      }, { replace: true });
+      
+      toast({
+        title: "Admin Access Granted",
+        description: "Welcome to the demo page!"
+      });
+    }
+    
     // Check if user has completed the lead capture form
     const hasCompletedForm = localStorage.getItem('demoFormCompleted') === 'true';
     
@@ -33,7 +53,7 @@ const Demo = () => {
     
     console.log('User has completed the form, showing demos');
     setInitialLoad(false);
-  }, [navigate, toast]);
+  }, [navigate, toast, location]);
 
   useEffect(() => {
     // Scroll to top with a slight delay to ensure DOM is ready
