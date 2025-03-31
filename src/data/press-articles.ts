@@ -13,10 +13,10 @@ export const pressArticles: PressArticle[] = [
   },
   {
     id: "associated-press-virtual-se",
-    title: "How Virtual Sales Engineers are Transforming SaaS Sales",
+    title: "How AI Agents are Changing the Game for SMBs",
     publication: "Associated Press",
-    date: "February 28, 2024",
-    excerpt: "Powered_by's Virtual SE is allowing SaaS companies to scale their sales engineering functions without hiring additional staff.",
+    date: "March 27, 2025",
+    excerpt: "",
     externalUrl: "https://apnews.com/press-release/pr-newswire/openai-inc-artificial-intelligence-andrew-wesbecher-generative-ai-email-and-messaging-75758d0234de9888e9361fac06108385",
     imageUrl: "/lovable-uploads/e3c48ab1-0193-4264-b8a4-53fed4118ea7.png"
   },
