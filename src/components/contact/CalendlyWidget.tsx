@@ -28,7 +28,7 @@ export const CalendlyWidget = ({
   }, []);
 
   return (
-    <div className="bg-neutral-900/50 p-0 rounded-xl backdrop-blur mb-6">
+    <div className="bg-neutral-900/50 p-0 rounded-xl backdrop-blur mb-0">
       <div 
         className="calendly-inline-widget" 
         data-url={url}
