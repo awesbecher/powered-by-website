@@ -40,6 +40,18 @@ const AIAgency = () => {
                 <AgencyIllustration />
                 <IntroSection initialLoad={initialLoad} />
 
+                {/* New AI Training Image */}
+                <div className="my-12 flex justify-center">
+                  <div className="relative w-full max-w-3xl overflow-hidden rounded-xl shadow-xl">
+                    <img 
+                      src="/lovable-uploads/eb73b819-4b47-459b-88c4-aa0a3cd864b7.png" 
+                      alt="AI Agent training session" 
+                      className="w-full h-auto object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1a0b2e]/30 to-transparent pointer-events-none"></div>
+                  </div>
+                </div>
+
                 <div className="space-y-6">
                   <InfoCard 
                     title="What Makes an AI Agency Unique?" 
