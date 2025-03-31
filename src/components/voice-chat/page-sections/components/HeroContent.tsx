@@ -54,9 +54,9 @@ export const HeroContent: React.FC<HeroContentProps> = ({
               <Tv className="mr-2 h-5 w-5" /> Watch our intro to Voice AI
             </Button>
             
-            {/* New "See Demo" button with black background and white text */}
+            {/* "See Demo" button with black background, white text, and white outline */}
             <Button 
-              className="bg-black hover:bg-gray-900 text-white px-6 py-4 text-base rounded-md flex items-center"
+              className="bg-black hover:bg-gray-900 text-white px-6 py-4 text-base rounded-md flex items-center border-2 border-white"
               onClick={openCalendly}
             >
               <Mic className="mr-2 h-5 w-5" /> See Demo
