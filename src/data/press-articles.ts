@@ -67,10 +67,10 @@ export const pressArticles: PressArticle[] = [
   },
   {
     id: "wgn9-ai-agency",
-    title: "Chicago Tech Startup Changes How Businesses Handle Customer Service",
+    title: "New Startup Brings AI Agent Technology to Small Business",
     publication: "WGN9",
-    date: "March 28, 2024",
-    excerpt: "WGN9 reports on how Powered_by is transforming customer service experiences for small and medium-sized businesses in the Chicago area and beyond.",
+    date: "March 28, 2025",
+    excerpt: "",
     externalUrl: "https://wgntv.com/business/press-releases/cision/20250324SF48855/powered-by-officially-launches-the-worlds-first-ai-agency-for-smbs/",
     imageUrl: "/lovable-uploads/b514b690-b0af-4bd4-abfc-9394f9cc6885.png"
   }
