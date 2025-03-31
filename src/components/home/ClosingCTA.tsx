@@ -8,7 +8,7 @@ interface ClosingCTAProps {
   externalLink?: string;
   customHeading?: string;
   customButtonText?: string;
-  useCalendly?: boolean; // New prop to control whether to use Calendly
+  useCalendly?: boolean; // This prop controls whether to use Calendly
 }
 
 export const ClosingCTA = ({ 

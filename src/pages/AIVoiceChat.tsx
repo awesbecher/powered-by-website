@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
@@ -12,8 +11,6 @@ import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { properties } from "@/data/properties";
 import { forcePrefetchImages, addCSSImagePreloading } from "@/components/voice-chat/utils/imageUtils";
 
-// Preload images immediately without waiting for component mounting
-// This runs at module load time, before any components are rendered
 const propertyImages = properties.map(property => property.image);
 const otherImages = [
   "/lovable-uploads/f6cd5c39-f85a-4586-9140-cd8e12d9b947.png",  // Logo
@@ -74,7 +71,6 @@ const AIVoiceChat = () => {
       <ClosingCTA 
         customHeading="Ready to Transform Your Website With AI Voice Chat?"
         customButtonText="Get Started"
-        onContactClick={handleContact}
         useCalendly={true}
       />
       <Footer />
