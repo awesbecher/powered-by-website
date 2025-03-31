@@ -6,8 +6,8 @@ export const pressArticles: PressArticle[] = [
     id: "marketwatch-feature",
     title: "Powered_by Leads the AI Agent Revolution for Customer Service",
     publication: "MarketWatch",
-    date: "March 15, 2024",
-    excerpt: "Powered_by is pioneering the use of AI-driven voice agents to revolutionize customer service across industries from real estate to insurance.",
+    date: "March 14, 2025",
+    excerpt: "",
     externalUrl: "https://www.marketwatch.com/press-release/powered-by-officially-launches-the-world-s-first-ai-agency-for-smbs-65a48801?mod=search_headline",
     imageUrl: "/lovable-uploads/cd1be8a4-ddbb-4382-99fa-12ec568b4dcb.png"
   },
