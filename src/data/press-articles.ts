@@ -1,0 +1,40 @@
+
+import { PressArticle } from "@/types/news";
+
+export const pressArticles: PressArticle[] = [
+  {
+    id: "techcrunch-feature",
+    title: "Powered_by Leads the AI Agent Revolution for Customer Service",
+    publication: "TechCrunch",
+    date: "March 15, 2024",
+    excerpt: "Powered_by is pioneering the use of AI-driven voice agents to revolutionize customer service across industries from real estate to insurance.",
+    externalUrl: "https://techcrunch.com",
+    imageUrl: "/lovable-uploads/a53ff8c8-9033-4442-8c48-6cde96e79af7.png"
+  },
+  {
+    id: "venturebeat-ai-agents",
+    title: "How Virtual Sales Engineers are Transforming SaaS Sales",
+    publication: "VentureBeat",
+    date: "February 28, 2024",
+    excerpt: "Powered_by's Virtual SE is allowing SaaS companies to scale their sales engineering functions without hiring additional staff.",
+    externalUrl: "https://venturebeat.com",
+    imageUrl: "/lovable-uploads/628d30f0-dbf5-4a0a-8ed9-2b193dee90c6.png"
+  },
+  {
+    id: "forbes-ai-transformation",
+    title: "The Business Case for AI Agents in Customer Engagement",
+    publication: "Forbes",
+    date: "January 22, 2024",
+    excerpt: "Forbes examines the ROI and business impact of implementing AI agents for customer interactions, featuring Powered_by as a case study.",
+    externalUrl: "https://forbes.com",
+    imageUrl: "/lovable-uploads/cb3348ad-fffb-48e3-ae8f-f12e86dda512.png"
+  },
+  {
+    id: "wsj-ai-innovation",
+    title: "AI Agents: The Next Frontier in Customer Experience",
+    publication: "Wall Street Journal",
+    date: "December 10, 2023",
+    excerpt: "WSJ explores how companies like Powered_by are using AI to create more personalized and efficient customer experiences.",
+    externalUrl: "https://wsj.com"
+  }
+];

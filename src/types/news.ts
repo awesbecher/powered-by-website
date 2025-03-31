@@ -8,3 +8,13 @@ export interface NewsArticle {
   slug: string;
   content: string;
 }
+
+export interface PressArticle {
+  id: string;
+  title: string;
+  publication: string;
+  date: string;
+  excerpt: string;
+  imageUrl?: string;
+  externalUrl: string;
+}

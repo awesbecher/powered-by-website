@@ -3,12 +3,14 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { ChevronRight, Newspaper, ArrowRight } from "lucide-react";
+import { ChevronRight, Newspaper, ArrowRight, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { newsArticles } from "@/data/blog-posts";
+import { pressArticles } from "@/data/press-articles";
 import { Card, CardContent } from "@/components/ui/card";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { PoweredByText } from "@/components/shared/PoweredByText";
+import { PressArticleCard } from "@/components/news/PressArticleCard";
 
 const News = () => {
   useEffect(() => {
@@ -46,11 +48,35 @@ const News = () => {
         </header>
       </div>
       
+      {/* Press Coverage Section */}
+      <section className="container mx-auto px-4 mb-20 relative z-10">
+        <h2 className="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-2">
+          <span>In The Press</span>
+          <div className="h-1 w-24 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full ml-2"></div>
+        </h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          {pressArticles.map((article) => (
+            <PressArticleCard key={article.id} article={article} />
+          ))}
+        </div>
+        
+        <div className="text-center">
+          <Button variant="outline" className="bg-white/5 hover:bg-white/10 border-purple-500 group">
+            <span>View Press Kit</span>
+            <ExternalLink className="ml-2 h-4 w-4 text-purple-400 group-hover:text-white transition-colors" />
+          </Button>
+        </div>
+      </section>
+      
       {/* News Posts Section */}
       <section className="container mx-auto px-4 mb-20 relative z-10">
         {newsArticles.length > 0 ? (
           <>
-            <h2 className="text-3xl font-bold mb-8 text-center">Latest News</h2>
+            <h2 className="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-2">
+              <span>Company News</span>
+              <div className="h-1 w-24 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full ml-2"></div>
+            </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {newsArticles.map((post) => (
