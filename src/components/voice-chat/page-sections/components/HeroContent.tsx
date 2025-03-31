@@ -17,6 +17,15 @@ export const HeroContent: React.FC<HeroContentProps> = ({
 }) => {
   const [videoOpen, setVideoOpen] = useState(false);
 
+  // Function to open Calendly popup
+  const openCalendly = () => {
+    if (window.Calendly) {
+      window.Calendly.initPopupWidget({
+        url: 'https://calendly.com/d/cq7r-5v8-qvw?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=8e00ff'
+      });
+    }
+  };
+
   return (
     <div className={`transition-all duration-1000 ease-out transform
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
@@ -43,6 +52,14 @@ export const HeroContent: React.FC<HeroContentProps> = ({
               onClick={() => setVideoOpen(true)}
             >
               <Tv className="mr-2 h-5 w-5" /> Watch our intro to Voice AI
+            </Button>
+            
+            {/* New "See Demo" button with black background and white text */}
+            <Button 
+              className="bg-black hover:bg-gray-900 text-white px-6 py-4 text-base rounded-md flex items-center"
+              onClick={openCalendly}
+            >
+              <Mic className="mr-2 h-5 w-5" /> See Demo
             </Button>
           </div>
         </div>
