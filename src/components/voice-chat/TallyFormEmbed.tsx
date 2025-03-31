@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 
 interface TallyFormEmbedProps {
   className?: string;
@@ -8,6 +8,7 @@ interface TallyFormEmbedProps {
   height?: string | number;
   transparentBackground?: boolean;
   alignLeft?: boolean;
+  onSubmit?: () => void;
 }
 
 export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({ 
@@ -16,9 +17,29 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({
   referral,
   height = 800, // Default height
   transparentBackground = true,
-  alignLeft = true
+  alignLeft = true,
+  onSubmit
 }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  
+  const handleTallyEvent = useCallback((event: MessageEvent) => {
+    console.log('TallyFormEmbed received message:', event.data);
+    
+    // Check various forms of the success message
+    const isSuccess = 
+      (event.data?.type === 'tally-form-submit-success') || 
+      (typeof event.data === 'string' && event.data.includes('tally-form-submit-success')) ||
+      (event.data?.eventName === 'tally-form-submit-success') ||
+      (typeof event.data === 'string' && event.data.includes('thanks for completing'));
+    
+    if (isSuccess) {
+      console.log('Form submission success detected in TallyFormEmbed!');
+      if (onSubmit) {
+        console.log('Calling onSubmit callback');
+        onSubmit();
+      }
+    }
+  }, [onSubmit]);
   
   useEffect(() => {
     // Load Tally embed script
@@ -37,21 +58,17 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({
     
     document.body.appendChild(script);
     
-    // Log messages for debugging
-    const handleMessage = (event: MessageEvent) => {
-      console.log('TallyFormEmbed received message:', event.data);
-    };
-    
-    window.addEventListener('message', handleMessage);
+    // Add event listener for messages
+    window.addEventListener('message', handleTallyEvent);
     
     // Clean up
     return () => {
       if (document.body.contains(script)) {
         document.body.removeChild(script);
       }
-      window.removeEventListener('message', handleMessage);
+      window.removeEventListener('message', handleTallyEvent);
     };
-  }, []);
+  }, [handleTallyEvent]);
 
   // Build the tally src URL with form ID and all requested parameters
   const tallySrc = `https://tally.so/embed/${formId}?${alignLeft ? 'alignLeft=1&' : ''}hideTitle=1&${transparentBackground ? 'transparentBackground=1&' : ''}dynamicHeight=1${referral ? `&referral=${referral}` : ''}`;

@@ -2,7 +2,7 @@
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { ServiceCard } from "@/components/home/ServiceCard";
 import { services, additionalServices } from "@/data/services";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
@@ -19,6 +19,7 @@ const Demo = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
+  // Initialize based on URL parameters and localStorage
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const isAdmin = searchParams.get('admin') === 'true';
@@ -50,58 +51,57 @@ const Demo = () => {
     setInitialLoad(false);
   }, [navigate, toast, location]);
 
+  // Form submission handler
+  const handleFormSubmitted = useCallback(() => {
+    console.log("Form submission callback triggered");
+    localStorage.setItem('demoFormCompleted', 'true');
+    
+    toast({
+      title: "Form submitted successfully!",
+      description: "Showing you our demos...",
+    });
+    
+    setShowDemos(true);
+    setShowForm(false);
+    
+    // Scroll to top with a slight delay to ensure the state updates are applied
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 300);
+  }, [toast]);
+
+  // Listen for form submission events from the window
   useEffect(() => {
-    // Enhanced event listener to better detect Tally form submission
-    const handleTallyEvent = (event: MessageEvent) => {
-      console.log('Received message event:', event);
+    const handleWindowMessage = (event: MessageEvent) => {
+      console.log('Demo.tsx received message event:', event.data);
       
-      if (
-        event.data?.type === 'tally-form-submit-success' ||
-        (typeof event.data === 'string' && event.data.includes('tally-form-submit-success'))
-      ) {
-        console.log('Form submission detected, updating state');
-        
-        // Set form as completed in localStorage
-        localStorage.setItem('demoFormCompleted', 'true');
-        
-        // Show success toast
-        toast({
-          title: "Form submitted successfully!",
-          description: "Showing you our demos...",
-        });
-        
-        // Update UI state
-        setShowDemos(true);
-        setShowForm(false);
-        
-        // Scroll to top with a slight delay to ensure the state updates are applied
-        setTimeout(() => {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 300);
+      // Check various forms of the success message
+      const isSuccess = 
+        (event.data?.type === 'tally-form-submit-success') || 
+        (typeof event.data === 'string' && event.data.includes('tally-form-submit-success')) ||
+        (event.data?.eventName === 'tally-form-submit-success') ||
+        (typeof event.data === 'string' && event.data.includes('thanks for completing'));
+      
+      if (isSuccess) {
+        console.log('Form submission detected via window event');
+        handleFormSubmitted();
       }
     };
     
-    // Add event listener
-    window.addEventListener('message', handleTallyEvent);
+    window.addEventListener('message', handleWindowMessage);
     
-    // Cleanup
     return () => {
-      window.removeEventListener('message', handleTallyEvent);
+      window.removeEventListener('message', handleWindowMessage);
     };
-  }, [toast]);
+  }, [handleFormSubmitted]);
 
-  // Add a manual form completion handler for testing
-  const handleFormCompleted = () => {
-    localStorage.setItem('demoFormCompleted', 'true');
-    setShowDemos(true);
-    setShowForm(false);
-    toast({
-      title: "Form processed",
-      description: "Showing you our demos now",
-    });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  // For testing/debugging
+  const handleManualFormCompleted = () => {
+    console.log("Manual form completion triggered");
+    handleFormSubmitted();
   };
 
+  // Scroll to top when the location changes
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo({
@@ -148,12 +148,12 @@ const Demo = () => {
                       height={500}
                       transparentBackground={true}
                       alignLeft={true}
+                      onSubmit={handleFormSubmitted}
                     />
                     
-                    {/* Hidden button for testing */}
                     <button 
-                      onClick={handleFormCompleted}
-                      className="hidden mt-4 px-4 py-2 bg-accent text-white rounded-md"
+                      onClick={handleManualFormCompleted}
+                      className="mt-4 px-4 py-2 bg-accent text-white rounded-md"
                     >
                       Manual Override (Testing)
                     </button>
@@ -191,8 +191,6 @@ const Demo = () => {
         <ClosingCTA />
         <Footer />
       </div>
-
-      {/* Add the animation keyframes in the global CSS instead of inline styles */}
     </div>
   );
 };
