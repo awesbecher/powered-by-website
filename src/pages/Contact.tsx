@@ -2,7 +2,7 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ContactHeader } from "@/components/contact/ContactHeader";
-import { TallyFormEmbed } from "@/components/voice-chat/TallyFormEmbed";
+import { CalendlyWidget } from "@/components/contact/CalendlyWidget";
 import { useEffect, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -39,14 +39,7 @@ const Contact = () => {
           {/* Form container with black oval background */}
           <div className="relative bg-black rounded-[40px] p-6 mb-8 shadow-lg transition-all duration-500 ease-out transform 
             hover:shadow-xl">
-            {/* Updated Tally.so form with the new form ID and parameters */}
-            <TallyFormEmbed 
-              className="" 
-              formId="3qzGDG" 
-              height={950}
-              transparentBackground={true}
-              alignLeft={true}
-            />
+            <CalendlyWidget initialLoad={initialLoad} />
           </div>
         </div>
       </div>
