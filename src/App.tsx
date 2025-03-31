@@ -42,7 +42,6 @@ import ProductHunt from "./pages/ProductHunt";
 import NotFound from "./pages/NotFound";
 import Pricing from "./pages/Pricing";
 import News from "./pages/News";
-import Calendly from "./pages/Calendly";
 import { Toaster } from "@/components/ui/toaster"
 import { GlobalVoiceChatDialog } from './components/shared/GlobalVoiceChatDialog';
 import OmegaPediatrics from "./pages/OmegaPediatrics";
@@ -63,7 +62,6 @@ function App() {
               <Route path="/news" element={<News />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/contact-2" element={<Contact2 />} />
-              <Route path="/calendly" element={<Calendly />} />
               <Route path="/products" element={<Products />} />
               <Route path="/demo" element={<Demo />} />
               <Route path="/demo-capture" element={<DemoCapture />} />
