@@ -21,12 +21,12 @@ export const pressArticles: PressArticle[] = [
     imageUrl: "/lovable-uploads/628d30f0-dbf5-4a0a-8ed9-2b193dee90c6.png"
   },
   {
-    id: "forbes-ai-transformation",
+    id: "yahoo-finance-ai",
     title: "The Business Case for AI Agents in Customer Engagement",
-    publication: "Forbes",
+    publication: "Yahoo! Finance",
     date: "January 22, 2024",
-    excerpt: "Forbes examines the ROI and business impact of implementing AI agents for customer interactions, featuring Powered_by as a case study.",
-    externalUrl: "https://forbes.com",
+    excerpt: "Yahoo! Finance examines the ROI and business impact of implementing AI agents for customer interactions, featuring Powered_by as a case study.",
+    externalUrl: "https://finance.yahoo.com/news/powered-officially-launches-worlds-first-001500784.html",
     imageUrl: "/lovable-uploads/cb3348ad-fffb-48e3-ae8f-f12e86dda512.png"
   },
   {
