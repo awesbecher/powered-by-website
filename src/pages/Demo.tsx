@@ -1,3 +1,4 @@
+
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { ServiceCard } from "@/components/home/ServiceCard";
 import { services, additionalServices } from "@/data/services";
@@ -8,9 +9,12 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import OfferButton from "@/components/home/OfferButton";
 import { useToast } from "@/hooks/use-toast";
+import { TallyFormEmbed } from "@/components/voice-chat/TallyFormEmbed";
 
 const Demo = () => {
   const [initialLoad, setInitialLoad] = useState(true);
+  const [showDemos, setShowDemos] = useState(false);
+  const [showForm, setShowForm] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -40,20 +44,53 @@ const Demo = () => {
     // Check if user has completed the lead capture form
     const hasCompletedForm = localStorage.getItem('demoFormCompleted') === 'true';
     
-    // If not, redirect to demo-capture page
-    if (!hasCompletedForm) {
-      console.log('User has not completed the form, redirecting to demo-capture');
-      toast({
-        title: "Access Required",
-        description: "Please complete the form to access the demos.",
-      });
-      navigate('/demo-capture');
-      return;
+    // Show appropriate content based on completion status
+    if (hasCompletedForm) {
+      console.log('User has completed the form, showing demos');
+      setShowDemos(true);
+      setShowForm(false);
+    } else {
+      console.log('User has not completed the form, showing the form');
+      setShowDemos(false);
+      setShowForm(true);
     }
     
-    console.log('User has completed the form, showing demos');
     setInitialLoad(false);
   }, [navigate, toast, location]);
+
+  // Handle form submission event from Tally
+  useEffect(() => {
+    // Handle Tally form submission event
+    const handleTallyEvent = (event: MessageEvent) => {
+      console.log('Received message event:', event.data);
+      
+      // Check if this is a Tally form submission success event
+      if (event.data?.type === 'tally-form-submit-success') {
+        console.log('Form submitted successfully, setting localStorage and showing demos');
+        
+        // Set local storage to mark user as having completed the form
+        localStorage.setItem('demoFormCompleted', 'true');
+        
+        // Show success toast
+        toast({
+          title: "Form submitted successfully!",
+          description: "Showing you our demos...",
+        });
+        
+        // Update state to show demos
+        setShowDemos(true);
+        setShowForm(false);
+      }
+    };
+    
+    // Add event listener for Tally form submission
+    window.addEventListener('message', handleTallyEvent);
+    
+    // Clean up
+    return () => {
+      window.removeEventListener('message', handleTallyEvent);
+    };
+  }, [toast]);
 
   useEffect(() => {
     // Scroll to top with a slight delay to ensure DOM is ready
@@ -93,10 +130,29 @@ const Demo = () => {
                 See our <span className="text-[#9b87f5]">AI Agents</span> in Action!
               </h1>
               
-              <p className={`mt-4 text-lg leading-relaxed text-gray-300 max-w-3xl mx-auto font-bold transition-all duration-1000 delay-300 ease-out transform
-                  ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
-                While <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> offers fully custom & multi-channel AI agent solutions, you can experience our pre-built voice agents by clicking any one of the below.
-              </p>
+              {showForm ? (
+                <>
+                  <p className={`mt-4 text-lg leading-relaxed text-gray-300 max-w-3xl mx-auto font-bold transition-all duration-1000 delay-300 ease-out transform
+                      ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
+                    Please fill out the form below to access our demos:
+                  </p>
+                  
+                  {/* Form section */}
+                  <div className="mt-8 max-w-2xl mx-auto bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10">
+                    <TallyFormEmbed 
+                      formId="mVNb9y" 
+                      height={500}
+                      transparentBackground={true}
+                      alignLeft={true}
+                    />
+                  </div>
+                </>
+              ) : (
+                <p className={`mt-4 text-lg leading-relaxed text-gray-300 max-w-3xl mx-auto font-bold transition-all duration-1000 delay-300 ease-out transform
+                    ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
+                  While <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> offers fully custom & multi-channel AI agent solutions, you can experience our pre-built voice agents by clicking any one of the below.
+                </p>
+              )}
             </div>
           </div>
           
@@ -105,21 +161,23 @@ const Demo = () => {
           <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
         </div>
 
-        {/* Services Grid */}
-        <div className="relative px-4 lg:px-6 space-y-4">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
-              {services.map(service => <ServiceCard key={service.title} {...service} />)}
+        {/* Services Grid - Only show if form is completed */}
+        {showDemos && (
+          <div className="relative px-4 lg:px-6 space-y-4">
+            <div className="mx-auto max-w-7xl">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+                {services.map(service => <ServiceCard key={service.title} {...service} />)}
+              </div>
             </div>
-          </div>
 
-          {/* Additional Services Grid */}
-          <div className="mx-auto max-w-7xl">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
-              {additionalServices.map(service => <ServiceCard key={service.title} {...service} />)}
+            {/* Additional Services Grid */}
+            <div className="mx-auto max-w-7xl">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+                {additionalServices.map(service => <ServiceCard key={service.title} {...service} />)}
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* Closing CTA */}
         <ClosingCTA />

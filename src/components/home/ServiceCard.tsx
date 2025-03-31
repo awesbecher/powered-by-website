@@ -15,25 +15,12 @@ interface ServiceProps {
 export const ServiceCard = ({ title, description, link, logo, category }: ServiceProps) => {
   const { toast } = useToast();
   
+  // When the card is clicked, direct users to the destination
   const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault(); // Prevent navigation to the link
+    e.preventDefault();
     
-    // Check if user has already completed the form
-    if (localStorage.getItem('demoFormCompleted') === 'true') {
-      // If completed before, redirect directly to demo page
-      window.location.href = '/demo';
-      return;
-    }
-    
-    // For new users, redirect to the demo-capture page instead of using Tally popup
-    // This avoids the looping issue by using a more reliable page navigation
-    window.location.href = '/demo-capture';
-    
-    // Show a toast to inform the user
-    toast({
-      title: "Complete the form",
-      description: "Please complete the form to access our demos.",
-    });
+    // Direct users to the destination link
+    window.location.href = link;
   };
   
   return (
