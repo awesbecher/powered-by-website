@@ -38,9 +38,9 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
           />
         </div>
         
-        {/* Right side - Calendly form */}
+        {/* Right side - Calendly form - removed mt-12 class to align with hero text */}
         <div className="lg:col-span-6">
-          <div className={`mt-12 lg:mt-16 transition-all duration-1000 delay-300 ease-out transform
+          <div className={`transition-all duration-1000 delay-300 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <div className="rounded-[2rem] border border-white/50 p-5 overflow-hidden">
               <CalendlyWidget 
