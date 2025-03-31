@@ -37,6 +37,27 @@ const AIVoiceChat = () => {
   useEffect(() => {
     // Set to false immediately to avoid any initial load animation
     setInitialLoad(false);
+    
+    // Load Calendly script for the CTA button
+    const scriptElement = document.createElement('script');
+    scriptElement.src = 'https://assets.calendly.com/assets/external/widget.js';
+    scriptElement.async = true;
+    document.body.appendChild(scriptElement);
+    
+    // Cleanup on component unmount
+    return () => {
+      if (document.body.contains(scriptElement)) {
+        document.body.removeChild(scriptElement);
+      }
+      
+      // Remove any Calendly badges that might have been created
+      const badges = document.querySelectorAll('.calendly-badge-widget');
+      badges.forEach(badge => {
+        if (badge.parentNode) {
+          badge.parentNode.removeChild(badge);
+        }
+      });
+    };
   }, []);
 
   const handleContact = () => {
@@ -54,6 +75,7 @@ const AIVoiceChat = () => {
         customHeading="Ready to Transform Your Website With AI Voice Chat?"
         customButtonText="Get Started"
         onContactClick={handleContact}
+        useCalendly={true}
       />
       <Footer />
     </div>
