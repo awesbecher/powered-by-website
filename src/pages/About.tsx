@@ -12,6 +12,7 @@ import { CustomApproachSection } from "@/components/about/CustomApproachSection"
 import { CustomerCentricitySection } from "@/components/about/CustomerCentricitySection";
 import { AgentExpertiseSection } from "@/components/about/AgentExpertiseSection";
 import { OurPromiseSection } from "@/components/about/OurPromiseSection";
+import { MissionImageSection } from "@/components/about/MissionImageSection";
 
 const About = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -79,6 +80,10 @@ const About = () => {
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <CustomApproachSection initialLoad={initialLoad} />
+          
+          {/* Add the Mission Image Section above the CustomerCentricitySection */}
+          <MissionImageSection initialLoad={initialLoad} />
+          
           <CustomerCentricitySection initialLoad={initialLoad} />
           <AgentExpertiseSection initialLoad={initialLoad} />
           <OurPromiseSection initialLoad={initialLoad} />
