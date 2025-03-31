@@ -9,7 +9,7 @@ export const pressArticles: PressArticle[] = [
     date: "March 15, 2024",
     excerpt: "Powered_by is pioneering the use of AI-driven voice agents to revolutionize customer service across industries from real estate to insurance.",
     externalUrl: "https://www.marketwatch.com/press-release/powered-by-officially-launches-the-world-s-first-ai-agency-for-smbs-65a48801?mod=search_headline",
-    imageUrl: "/lovable-uploads/a53ff8c8-9033-4442-8c48-6cde96e79af7.png"
+    imageUrl: "/lovable-uploads/cd1be8a4-ddbb-4382-99fa-12ec568b4dcb.png"
   },
   {
     id: "associated-press-virtual-se",

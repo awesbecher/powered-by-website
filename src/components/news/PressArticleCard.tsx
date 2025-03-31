@@ -8,8 +8,9 @@ interface PressArticleCardProps {
 }
 
 export const PressArticleCard = ({ article }: PressArticleCardProps) => {
-  // Check if this is the Yahoo Finance card to apply the purple background
+  // Check which card this is to apply the appropriate background
   const isYahooFinance = article.id === "yahoo-finance-ai";
+  const isMarketWatch = article.id === "marketwatch-feature";
   
   return (
     <a 
@@ -26,7 +27,7 @@ export const PressArticleCard = ({ article }: PressArticleCardProps) => {
           </div>
           
           {article.imageUrl && (
-            <div className={`mb-4 overflow-hidden rounded-md ${isYahooFinance ? 'bg-purple-800' : ''}`}>
+            <div className={`mb-4 overflow-hidden rounded-md ${isYahooFinance ? 'bg-purple-800' : ''} ${isMarketWatch ? 'bg-white' : ''}`}>
               <img 
                 src={article.imageUrl} 
                 alt={article.title} 
