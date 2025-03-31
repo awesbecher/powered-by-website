@@ -24,8 +24,8 @@ export const pressArticles: PressArticle[] = [
     id: "yahoo-finance-ai",
     title: "The Business Case for AI Agents in Customer Engagement",
     publication: "Yahoo! Finance",
-    date: "January 22, 2024",
-    excerpt: "Yahoo! Finance examines the ROI and business impact of implementing AI agents for customer interactions, featuring Powered_by as a case study.",
+    date: "March 20, 2025",
+    excerpt: "",
     externalUrl: "https://finance.yahoo.com/news/powered-officially-launches-worlds-first-001500784.html",
     imageUrl: "/lovable-uploads/451c231e-8fb1-4b51-9541-66c909540456.png"
   },
