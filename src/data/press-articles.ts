@@ -49,10 +49,10 @@ export const pressArticles: PressArticle[] = [
   },
   {
     id: "seeking-alpha-ai-innovation",
-    title: "AI Agents: The Next Frontier in Customer Experience",
+    title: "AI Agents: The Next Frontier for Small to Medium-Sized Businesses",
     publication: "Seeking Alpha",
-    date: "December 10, 2023",
-    excerpt: "Seeking Alpha explores how companies like Powered_by are using AI to create more personalized and efficient customer experiences.",
+    date: "March 27, 2025",
+    excerpt: "",
     externalUrl: "https://seekingalpha.com/pr/20044093-powered_by-officially-launches-the-worlds-first-ai-agency-for-smbs",
     imageUrl: "/lovable-uploads/2e4252db-e6fa-4eb7-bc56-bb6607682bd1.png"
   },
