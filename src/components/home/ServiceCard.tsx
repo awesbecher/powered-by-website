@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 import { Phone, MessageCircle } from "lucide-react";
 import { useEffect } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 interface ServiceProps {
   title: string;
@@ -12,6 +13,8 @@ interface ServiceProps {
 }
 
 export const ServiceCard = ({ title, description, link, logo, category }: ServiceProps) => {
+  const { toast } = useToast();
+  
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault(); // Prevent navigation to the link
     
@@ -22,15 +25,15 @@ export const ServiceCard = ({ title, description, link, logo, category }: Servic
       return;
     }
     
-    // Trigger Tally popup for new users
-    if (window.Tally && typeof window.Tally.openPopup === 'function') {
-      window.Tally.openPopup('mVNb9y', {
-        width: 540,
-        layout: 'modal',
-        hideTitle: true,
-        ref: category, // Use the category as a reference
-      });
-    }
+    // For new users, redirect to the demo-capture page instead of using Tally popup
+    // This avoids the looping issue by using a more reliable page navigation
+    window.location.href = '/demo-capture';
+    
+    // Show a toast to inform the user
+    toast({
+      title: "Complete the form",
+      description: "Please complete the form to access our demos.",
+    });
   };
   
   return (

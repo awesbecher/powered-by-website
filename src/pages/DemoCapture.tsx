@@ -1,7 +1,5 @@
 
 import { WordAnimation } from "@/components/home/WordAnimation";
-import { ServiceCard } from "@/components/home/ServiceCard";
-import { services, additionalServices } from "@/data/services";
 import { useState, useEffect, useRef } from "react";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -9,6 +7,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import OfferButton from "@/components/home/OfferButton";
 import { useToast } from "@/hooks/use-toast";
+import { TallyFormEmbed } from "@/components/voice-chat/TallyFormEmbed";
 
 const DemoCapture = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -26,34 +25,6 @@ const DemoCapture = () => {
     }
     
     setInitialLoad(false);
-    
-    // Only load the script once
-    if (!tallyScriptLoaded.current) {
-      console.log('Loading Tally script');
-      
-      // Load Tally embed script
-      const script = document.createElement('script');
-      script.src = 'https://tally.so/widgets/embed.js';
-      script.async = true;
-      
-      script.onload = () => {
-        console.log('Tally script loaded');
-        tallyScriptLoaded.current = true;
-        
-        // Initialize Tally embeds after script is loaded
-        if (window.Tally) {
-          window.Tally.loadEmbeds();
-        }
-      };
-      
-      document.body.appendChild(script);
-      
-      return () => {
-        if (document.body.contains(script)) {
-          document.body.removeChild(script);
-        }
-      };
-    }
   }, [navigate]);
   
   // Set up the message event listener in a separate effect
@@ -134,18 +105,14 @@ const DemoCapture = () => {
                 Please fill out the form below to access our demos:
               </p>
               
-              {/* Embed Tally.so form with unique id attribute */}
+              {/* Using the reusable TallyFormEmbed component for better consistency */}
               <div className="mt-8 max-w-2xl mx-auto bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10">
-                <iframe
-                  id="tally-embed-form"
-                  data-tally-src="https://tally.so/embed/mVNb9y?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-                  width="100%"
-                  height="500"
-                  frameBorder="0"
-                  marginHeight={0}
-                  marginWidth={0}
-                  title="Demo Access Form"
-                ></iframe>
+                <TallyFormEmbed 
+                  formId="mVNb9y" 
+                  height={500}
+                  transparentBackground={true}
+                  alignLeft={true}
+                />
               </div>
             </div>
           </div>
