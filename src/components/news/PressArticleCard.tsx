@@ -14,6 +14,7 @@ export const PressArticleCard = ({ article }: PressArticleCardProps) => {
   const isAssociatedPress = article.id === "associated-press-virtual-se";
   const isSeekingAlpha = article.id === "seeking-alpha-ai-innovation";
   const isMorningStar = article.id === "morningstar-ai-innovation";
+  const isKtla = article.id === "ktla-ai-feature";
   
   return (
     <a 
@@ -30,7 +31,7 @@ export const PressArticleCard = ({ article }: PressArticleCardProps) => {
           </div>
           
           {article.imageUrl && (
-            <div className={`mb-4 overflow-hidden rounded-md ${isYahooFinance ? 'bg-purple-800' : ''} ${isMarketWatch || isAssociatedPress || isMorningStar ? 'bg-white' : ''} ${isSeekingAlpha ? 'bg-black' : ''}`}>
+            <div className={`mb-4 overflow-hidden rounded-md ${isYahooFinance ? 'bg-purple-800' : ''} ${isMarketWatch || isAssociatedPress || isMorningStar ? 'bg-white' : ''} ${isSeekingAlpha || isKtla ? 'bg-black' : ''}`}>
               <img 
                 src={article.imageUrl} 
                 alt={article.title} 

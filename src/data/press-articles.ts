@@ -39,6 +39,15 @@ export const pressArticles: PressArticle[] = [
     imageUrl: "/lovable-uploads/acfdfc1d-9b32-4509-bfe5-01d67795da98.png"
   },
   {
+    id: "ktla-ai-feature",
+    title: "Local Tech Company Revolutionizes AI Services for Small Businesses",
+    publication: "KTLA 5",
+    date: "April 10, 2025",
+    excerpt: "KTLA 5 reports on how Powered_by is democratizing access to advanced AI technologies for small and medium-sized businesses across Southern California.",
+    externalUrl: "https://ktla.com/business/press-releases/cision/20250324SF48855/powered-by-officially-launches-the-worlds-first-ai-agency-for-smbs/",
+    imageUrl: "/lovable-uploads/0f77f2a7-a20a-492a-9fef-a1e49f8440b3.png"
+  },
+  {
     id: "seeking-alpha-ai-innovation",
     title: "AI Agents: The Next Frontier in Customer Experience",
     publication: "Seeking Alpha",
