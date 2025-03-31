@@ -1,6 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { Phone, MessageCircle } from "lucide-react";
+import { useEffect } from "react";
 
 interface ServiceProps {
   title: string;
@@ -11,12 +12,39 @@ interface ServiceProps {
 }
 
 export const ServiceCard = ({ title, description, link, logo, category }: ServiceProps) => {
-  // Ensure the link for Retail Services is always lowercase and correctly formatted
-  const formattedLink = category === "Retail Services" ? "/retail-services" : link;
+  useEffect(() => {
+    // Load Tally embed script
+    const script = document.createElement('script');
+    script.src = 'https://tally.so/widgets/embed.js';
+    script.async = true;
+    
+    document.body.appendChild(script);
+    
+    // Clean up
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
+  }, []);
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent navigation to the link
+    
+    // Trigger Tally popup
+    if (window.Tally) {
+      window.Tally.openPopup('mVNb9y', {
+        width: 540,
+        layout: 'modal',
+        hideTitle: true,
+        ref: category, // Use the category as a reference
+      });
+    }
+  };
   
   return (
-    <Link
-      to={formattedLink}
+    <div
+      onClick={handleClick}
       className="group relative overflow-hidden rounded-2xl bg-[#1a0b2e] border border-accent/20 p-6 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/5 hover:-translate-y-1 transform-gpu hover:scale-[1.02] min-h-[200px] flex flex-col cursor-pointer"
     >
       <div className="flex flex-col items-center mb-1">
@@ -56,6 +84,6 @@ export const ServiceCard = ({ title, description, link, logo, category }: Servic
       </div>
       
       <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-    </Link>
+    </div>
   );
 };
