@@ -27,7 +27,7 @@ export const pressArticles: PressArticle[] = [
     date: "January 22, 2024",
     excerpt: "Yahoo! Finance examines the ROI and business impact of implementing AI agents for customer interactions, featuring Powered_by as a case study.",
     externalUrl: "https://finance.yahoo.com/news/powered-officially-launches-worlds-first-001500784.html",
-    imageUrl: "/lovable-uploads/cb3348ad-fffb-48e3-ae8f-f12e86dda512.png"
+    imageUrl: "/lovable-uploads/451c231e-8fb1-4b51-9541-66c909540456.png"
   },
   {
     id: "seeking-alpha-ai-innovation",
