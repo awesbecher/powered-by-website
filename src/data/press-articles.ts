@@ -55,5 +55,14 @@ export const pressArticles: PressArticle[] = [
     excerpt: "Seeking Alpha explores how companies like Powered_by are using AI to create more personalized and efficient customer experiences.",
     externalUrl: "https://seekingalpha.com/pr/20044093-powered_by-officially-launches-the-worlds-first-ai-agency-for-smbs",
     imageUrl: "/lovable-uploads/2e4252db-e6fa-4eb7-bc56-bb6607682bd1.png"
+  },
+  {
+    id: "pr-newswire-ai-agency",
+    title: "Powered_by Officially Launches the World's First AI Agency for SMBs",
+    publication: "PR Newswire",
+    date: "March 24, 2024",
+    excerpt: "PR Newswire announces Powered_by's official launch of the first-ever AI agency dedicated to small and medium-sized businesses.",
+    externalUrl: "https://www.prnewswire.com/news-releases/poweredby-officially-launches-the-worlds-first-ai-agency-for-smbs-302409859.html",
+    imageUrl: "/lovable-uploads/77fcaf98-2a45-4089-bede-83cbae52cb0d.png"
   }
 ];
