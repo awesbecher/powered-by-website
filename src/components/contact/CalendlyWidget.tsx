@@ -8,8 +8,8 @@ interface CalendlyWidgetProps {
 }
 
 export const CalendlyWidget = ({ 
-  url = "https://calendly.com/d/crrs-fbd-3hf?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=a800ff", 
-  height = 1200,
+  url = "https://calendly.com/teampoweredby/powered_by-demo-virtual-se?hide_event_type_details=1&hide_gdpr_banner=1", 
+  height = 700,
   initialLoad
 }: CalendlyWidgetProps) => {
   useEffect(() => {
