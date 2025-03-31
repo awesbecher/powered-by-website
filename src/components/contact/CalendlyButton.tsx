@@ -17,25 +17,16 @@ export const CalendlyButton = () => {
     scriptElement.async = true;
     document.body.appendChild(scriptElement);
 
-    // Initialize badge widget after script loads
-    scriptElement.onload = () => {
-      if (window.Calendly) {
-        window.Calendly.initBadgeWidget({
-          url: 'https://calendly.com/d/cq7r-5v8-qvw?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=8e00ff',
-          text: 'Get Started Now!',
-          color: '#ac00ff',
-          textColor: '#ffffff'
-        });
-      }
-    };
-
     // Cleanup on component unmount
     return () => {
-      document.head.removeChild(linkElement);
+      if (document.head.contains(linkElement)) {
+        document.head.removeChild(linkElement);
+      }
       if (document.body.contains(scriptElement)) {
         document.body.removeChild(scriptElement);
       }
-      // Remove the Calendly badge if it exists
+      
+      // Remove any Calendly badge widgets that might have been created
       const badges = document.querySelectorAll('.calendly-badge-widget');
       badges.forEach(badge => {
         if (badge.parentNode) {
@@ -43,6 +34,28 @@ export const CalendlyButton = () => {
         }
       });
     };
+  }, []);
+
+  // Watch for any Calendly badge widgets and remove them immediately
+  useEffect(() => {
+    // Function to remove badge widgets
+    const removeBadges = () => {
+      const badges = document.querySelectorAll('.calendly-badge-widget');
+      badges.forEach(badge => {
+        if (badge.parentNode) {
+          badge.parentNode.removeChild(badge);
+        }
+      });
+    };
+
+    // Set up an interval to check for and remove badge widgets
+    const intervalId = setInterval(removeBadges, 500);
+    
+    // Also check immediately
+    removeBadges();
+
+    // Clean up interval on unmount
+    return () => clearInterval(intervalId);
   }, []);
 
   // Custom button that opens Calendly popup when clicked
@@ -57,9 +70,9 @@ export const CalendlyButton = () => {
   return (
     <Button 
       onClick={openCalendly}
-      className="bg-[#ac00ff] hover:bg-[#9200d6] text-white px-10 py-6 text-xl rounded-xl flex items-center shadow-lg hover:shadow-xl transition-all"
+      className="bg-[#ac00ff] hover:bg-[#9200d6] text-white px-6 py-4 text-base rounded-md flex items-center"
     >
-      <CalendarClock className="mr-2 h-6 w-6" />
+      <CalendarClock className="mr-2 h-5 w-5" />
       Get Started Now!
     </Button>
   );
