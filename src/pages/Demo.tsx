@@ -161,15 +161,7 @@ const Demo = () => {
         <Footer />
       </div>
 
-      <style jsx>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fadeIn {
-          animation: fadeIn 0.5s ease-out forwards;
-        }
-      `}</style>
+      {/* Add the animation keyframes in the global CSS instead of inline styles */}
     </div>
   );
 };

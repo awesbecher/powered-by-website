@@ -42,4 +42,14 @@
   .ebook-title-glow {
     text-shadow: 0 0 15px rgba(155, 135, 245, 0.7), 0 0 30px rgba(99, 66, 255, 0.4);
   }
+  
+  /* Animation for fade in effect */
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 }
