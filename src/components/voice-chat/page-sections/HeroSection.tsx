@@ -5,7 +5,7 @@ import { WebsiteSimulation } from "@/components/voice-chat/WebsiteSimulation";
 import { HeroContent } from "./components/HeroContent";
 import { FeaturesList } from "./components/FeaturesList";
 import { VoiceChatControls } from "./components/VoiceChatControls";
-import { TallyFormEmbed } from "@/components/voice-chat/TallyFormEmbed";
+import { CalendlyWidget } from "@/components/contact/CalendlyWidget";
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -38,16 +38,15 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
           />
         </div>
         
-        {/* Right side - Tally.so form */}
+        {/* Right side - Calendly form */}
         <div className="lg:col-span-6">
           <div className={`mt-12 lg:mt-16 transition-all duration-1000 delay-300 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <div className="rounded-[2rem] border border-white/50 p-5 overflow-hidden">
-              <TallyFormEmbed 
-                formId="m6PKde"
-                height={420}
-                transparentBackground={true}
-                alignLeft={true}
+              <CalendlyWidget 
+                url="https://calendly.com/d/cq7r-5v8-qvw?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=8e00ff"
+                height={700}
+                initialLoad={initialLoad}
               />
             </div>
           </div>
