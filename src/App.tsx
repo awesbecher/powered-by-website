@@ -8,6 +8,7 @@ import Contact from "./pages/Contact";
 import Contact2 from "./pages/Contact2";
 import Products from "./pages/Products";
 import Demo from "./pages/Demo";
+import DemoCapture from "./pages/DemoCapture";
 import RealEstate from "./pages/RealEstate";
 import AssetTest from "./pages/AssetTest";
 import AIAgency from "./pages/AIAgency";
@@ -65,6 +66,7 @@ function App() {
               <Route path="/calendly" element={<Calendly />} />
               <Route path="/products" element={<Products />} />
               <Route path="/demo" element={<Demo />} />
+              <Route path="/demo-capture" element={<DemoCapture />} />
               <Route path="/real-estate" element={<RealEstate />} />
               <Route path="/asset-test" element={<AssetTest />} />
               <Route path="/ai-agency" element={<AIAgency />} />
