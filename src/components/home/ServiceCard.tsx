@@ -32,7 +32,7 @@ export const ServiceCard = ({ title, description, link, logo, category }: Servic
     e.preventDefault(); // Prevent navigation to the link
     
     // Trigger Tally popup
-    if (window.Tally) {
+    if (window.Tally && typeof window.Tally.openPopup === 'function') {
       window.Tally.openPopup('mVNb9y', {
         width: 540,
         layout: 'modal',
