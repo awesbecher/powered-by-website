@@ -4,7 +4,7 @@ import { ServiceCard } from "@/components/home/ServiceCard";
 import { services, additionalServices } from "@/data/services";
 import { useState, useEffect } from "react";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import OfferButton from "@/components/home/OfferButton";
@@ -12,10 +12,20 @@ import OfferButton from "@/components/home/OfferButton";
 const Demo = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
+    // Check if user has completed the lead capture form
+    const hasCompletedForm = localStorage.getItem('demoFormCompleted') === 'true';
+    
+    // If not, redirect to demo-capture page
+    if (!hasCompletedForm) {
+      navigate('/demo-capture');
+      return;
+    }
+    
     setInitialLoad(false);
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     // Scroll to top with a slight delay to ensure DOM is ready

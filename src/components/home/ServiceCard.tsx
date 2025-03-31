@@ -20,18 +20,38 @@ export const ServiceCard = ({ title, description, link, logo, category }: Servic
     
     document.body.appendChild(script);
     
+    // Handle Tally form submission event
+    const handleTallyEvent = (event: any) => {
+      if (event.data?.type === 'tally-form-submit-success') {
+        // Set local storage to mark user as having completed the form
+        localStorage.setItem('demoFormCompleted', 'true');
+        // Redirect to demo page
+        window.location.href = '/demo';
+      }
+    };
+    
+    window.addEventListener('message', handleTallyEvent);
+    
     // Clean up
     return () => {
       if (document.body.contains(script)) {
         document.body.removeChild(script);
       }
+      window.removeEventListener('message', handleTallyEvent);
     };
   }, []);
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault(); // Prevent navigation to the link
     
-    // Trigger Tally popup
+    // Check if user has already completed the form
+    if (localStorage.getItem('demoFormCompleted') === 'true') {
+      // If completed before, redirect directly to demo page
+      window.location.href = '/demo';
+      return;
+    }
+    
+    // Trigger Tally popup for new users
     if (window.Tally && typeof window.Tally.openPopup === 'function') {
       window.Tally.openPopup('mVNb9y', {
         width: 540,

@@ -12,3 +12,9 @@ interface Window {
   }
   twq?: (command: string, event: string, params?: any) => void;
 }
+
+// Define TallyEvent interface for form submission events
+interface TallyEvent {
+  type: string;
+  data?: any;
+}
