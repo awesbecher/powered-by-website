@@ -1,3 +1,4 @@
+
 import { WordAnimation } from "@/components/home/WordAnimation";
 import { ServiceCard } from "@/components/home/ServiceCard";
 import { services, additionalServices } from "@/data/services";
@@ -59,8 +60,15 @@ const Demo = () => {
           title: "Form submitted successfully!",
           description: "Showing you our demos...",
         });
+        
+        // Ensure we show the demos
         setShowDemos(true);
         setShowForm(false);
+        
+        // Force a re-render with slight delay to ensure the state updates are applied
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 300);
       }
     };
     
@@ -134,7 +142,7 @@ const Demo = () => {
         </div>
 
         {showDemos && (
-          <div className="relative px-4 lg:px-6 space-y-4">
+          <div className="relative px-4 lg:px-6 space-y-4 animate-fadeIn">
             <div className="mx-auto max-w-7xl">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
                 {services.map(service => <ServiceCard key={service.title} {...service} />)}
@@ -152,6 +160,16 @@ const Demo = () => {
         <ClosingCTA />
         <Footer />
       </div>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.5s ease-out forwards;
+        }
+      `}</style>
     </div>
   );
 };
