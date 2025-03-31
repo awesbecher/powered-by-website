@@ -30,11 +30,11 @@ export const pressArticles: PressArticle[] = [
     imageUrl: "/lovable-uploads/cb3348ad-fffb-48e3-ae8f-f12e86dda512.png"
   },
   {
-    id: "wsj-ai-innovation",
+    id: "seeking-alpha-ai-innovation",
     title: "AI Agents: The Next Frontier in Customer Experience",
-    publication: "Wall Street Journal",
+    publication: "Seeking Alpha",
     date: "December 10, 2023",
-    excerpt: "WSJ explores how companies like Powered_by are using AI to create more personalized and efficient customer experiences.",
-    externalUrl: "https://wsj.com"
+    excerpt: "Seeking Alpha explores how companies like Powered_by are using AI to create more personalized and efficient customer experiences.",
+    externalUrl: "https://seekingalpha.com/pr/20044093-powered_by-officially-launches-the-worlds-first-ai-agency-for-smbs"
   }
 ];
