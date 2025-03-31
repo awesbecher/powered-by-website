@@ -64,5 +64,14 @@ export const pressArticles: PressArticle[] = [
     excerpt: "PR Newswire announces Powered_by's official launch of the first-ever AI agency dedicated to small and medium-sized businesses.",
     externalUrl: "https://www.prnewswire.com/news-releases/poweredby-officially-launches-the-worlds-first-ai-agency-for-smbs-302409859.html",
     imageUrl: "/lovable-uploads/77fcaf98-2a45-4089-bede-83cbae52cb0d.png"
+  },
+  {
+    id: "wgn9-ai-agency",
+    title: "Chicago Tech Startup Changes How Businesses Handle Customer Service",
+    publication: "WGN9",
+    date: "March 28, 2024",
+    excerpt: "WGN9 reports on how Powered_by is transforming customer service experiences for small and medium-sized businesses in the Chicago area and beyond.",
+    externalUrl: "https://wgntv.com/business/press-releases/cision/20250324SF48855/powered-by-officially-launches-the-worlds-first-ai-agency-for-smbs/",
+    imageUrl: "/lovable-uploads/b514b690-b0af-4bd4-abfc-9394f9cc6885.png"
   }
 ];
