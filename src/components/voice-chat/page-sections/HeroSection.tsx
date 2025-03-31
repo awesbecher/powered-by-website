@@ -43,19 +43,19 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
           </div>
         </div>
         
-        {/* Right side - Website Simulation with centered CalendlyButton */}
+        {/* Right side - Website Simulation with Calendly button on top */}
         <div className="lg:col-span-5 flex flex-col items-center">
           <div className="w-full relative">
+            {/* Calendly Button positioned at the top center of the simulation */}
+            <div className={`absolute left-1/2 transform -translate-x-1/2 -top-12 z-10 w-full max-w-[90%] transition-all duration-1000 delay-300 ease-out
+              ${initialLoad ? 'opacity-0' : 'opacity-100'}`}>
+              <CalendlyButton />
+            </div>
+            
             {/* Website Simulation */}
             <div className={`w-full transition-all duration-1000 delay-500 ease-out transform
               ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
               <WebsiteSimulation />
-            </div>
-            
-            {/* Calendly Button positioned to align with the middle of the simulation */}
-            <div className={`absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-1/2 z-10 w-full max-w-[90%] transition-all duration-1000 delay-300 ease-out
-              ${initialLoad ? 'opacity-0' : 'opacity-100'}`}>
-              <CalendlyButton />
             </div>
           </div>
         </div>
