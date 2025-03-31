@@ -3,12 +3,12 @@ import { PressArticle } from "@/types/news";
 
 export const pressArticles: PressArticle[] = [
   {
-    id: "techcrunch-feature",
+    id: "marketwatch-feature",
     title: "Powered_by Leads the AI Agent Revolution for Customer Service",
-    publication: "TechCrunch",
+    publication: "MarketWatch",
     date: "March 15, 2024",
     excerpt: "Powered_by is pioneering the use of AI-driven voice agents to revolutionize customer service across industries from real estate to insurance.",
-    externalUrl: "https://techcrunch.com",
+    externalUrl: "https://www.marketwatch.com/press-release/powered-by-officially-launches-the-world-s-first-ai-agency-for-smbs-65a48801?mod=search_headline",
     imageUrl: "/lovable-uploads/a53ff8c8-9033-4442-8c48-6cde96e79af7.png"
   },
   {
