@@ -60,8 +60,8 @@ export const pressArticles: PressArticle[] = [
     id: "pr-newswire-ai-agency",
     title: "Powered_by Officially Launches the World's First AI Agency for SMBs",
     publication: "PR Newswire",
-    date: "March 24, 2024",
-    excerpt: "PR Newswire announces Powered_by's official launch of the first-ever AI agency dedicated to small and medium-sized businesses.",
+    date: "March 27, 2025",
+    excerpt: "",
     externalUrl: "https://www.prnewswire.com/news-releases/poweredby-officially-launches-the-worlds-first-ai-agency-for-smbs-302409859.html",
     imageUrl: "/lovable-uploads/77fcaf98-2a45-4089-bede-83cbae52cb0d.png"
   },
