@@ -9,7 +9,7 @@ interface CalendlyWidgetProps {
 
 export const CalendlyWidget = ({ 
   url = "https://calendly.com/d/crrs-fbd-3hf?background_color=1a1a1a&text_color=ffffff&primary_color=a800ff", 
-  height = 900,
+  height = 1200,
   initialLoad
 }: CalendlyWidgetProps) => {
   useEffect(() => {

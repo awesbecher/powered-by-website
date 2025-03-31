@@ -29,15 +29,15 @@ const Contact = () => {
       <Navbar />
       
       {/* Content section with minimal padding to maximize space */}
-      <div className="flex-grow flex flex-col relative z-10 pt-4 px-4 pb-6">
+      <div className="flex-grow flex flex-col relative z-10 pt-2 px-4 pb-2">
         <div className="max-w-2xl mx-auto w-full">
           {/* Minimized margin for header */}
-          <div className="mb-1">
+          <div className="mb-0">
             <ContactHeader initialLoad={initialLoad} />
           </div>
           
           {/* Form container with adjusted padding to give more space to Calendly */}
-          <div className="relative bg-black rounded-[40px] p-4 mb-6 shadow-lg transition-all duration-500 ease-out transform 
+          <div className="relative bg-black rounded-[40px] p-2 mb-4 shadow-lg transition-all duration-500 ease-out transform 
             hover:shadow-xl">
             <CalendlyWidget initialLoad={initialLoad} />
           </div>
