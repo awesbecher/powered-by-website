@@ -28,7 +28,7 @@ const Contact = () => {
     <div className="flex flex-col min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <Navbar />
       
-      {/* Content section with minimal padding to maximize space */}
+      {/* Content section with reduced padding to maximize space for the widget */}
       <div className="flex-grow flex flex-col relative z-10 pt-2 px-4 pb-0">
         <div className="max-w-2xl mx-auto w-full">
           {/* Minimized margin for header */}
@@ -36,7 +36,7 @@ const Contact = () => {
             <ContactHeader initialLoad={initialLoad} />
           </div>
           
-          {/* Form container with adjusted padding to give more space to Calendly */}
+          {/* Form container with minimal padding to maximize space for Calendly */}
           <div className="relative bg-black rounded-[40px] p-1 mb-2 shadow-lg transition-all duration-500 ease-out transform 
             hover:shadow-xl">
             <CalendlyWidget initialLoad={initialLoad} />

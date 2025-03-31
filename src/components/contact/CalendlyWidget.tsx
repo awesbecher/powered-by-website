@@ -9,7 +9,7 @@ interface CalendlyWidgetProps {
 
 export const CalendlyWidget = ({ 
   url = "https://calendly.com/d/crrs-fbd-3hf?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=a800ff", 
-  height = 700,
+  height = 900,
   initialLoad
 }: CalendlyWidgetProps) => {
   useEffect(() => {
