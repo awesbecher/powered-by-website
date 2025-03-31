@@ -134,6 +134,10 @@ const Demo = () => {
                 <>
                   <p className={`mt-4 text-lg leading-relaxed text-gray-300 max-w-3xl mx-auto font-bold transition-all duration-1000 delay-300 ease-out transform
                       ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
+                    Experience our AI agents right now by viewing our on-demand demos. See how our agent solutions apply to a series of industry-specific use cases.
+                  </p>
+                  <p className={`mt-4 text-lg leading-relaxed text-gray-300 max-w-3xl mx-auto font-bold transition-all duration-1000 delay-300 ease-out transform
+                      ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
                     Please fill out the form below to access our demos:
                   </p>
                   
