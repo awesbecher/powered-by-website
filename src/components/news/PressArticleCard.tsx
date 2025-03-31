@@ -31,7 +31,7 @@ export const PressArticleCard = ({ article }: PressArticleCardProps) => {
           </div>
           
           {article.imageUrl && (
-            <div className={`mb-4 overflow-hidden rounded-md ${isYahooFinance ? 'bg-purple-800' : ''} ${isMarketWatch || isAssociatedPress || isMorningStar ? 'bg-white' : ''} ${isSeekingAlpha || isKtla ? 'bg-black' : ''}`}>
+            <div className={`mb-4 overflow-hidden rounded-md ${isYahooFinance ? 'bg-purple-800' : ''} ${isMarketWatch || isAssociatedPress || isMorningStar || isKtla ? 'bg-white' : ''} ${isSeekingAlpha ? 'bg-black' : ''}`}>
               <img 
                 src={article.imageUrl} 
                 alt={article.title} 
