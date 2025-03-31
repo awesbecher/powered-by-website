@@ -30,6 +30,15 @@ export const pressArticles: PressArticle[] = [
     imageUrl: "/lovable-uploads/451c231e-8fb1-4b51-9541-66c909540456.png"
   },
   {
+    id: "morningstar-ai-innovation",
+    title: "AI Agents Revolutionizing Business Operations",
+    publication: "Morningstar",
+    date: "March 24, 2025",
+    excerpt: "Morningstar discusses how Powered_by's AI agents are transforming business operations and setting new standards for customer engagement.",
+    externalUrl: "https://www.morningstar.com/news/pr-newswire/20250324sf48855/powered_by-officially-launches-the-worlds-first-ai-agency-for-smbs",
+    imageUrl: "/lovable-uploads/acfdfc1d-9b32-4509-bfe5-01d67795da98.png"
+  },
+  {
     id: "seeking-alpha-ai-innovation",
     title: "AI Agents: The Next Frontier in Customer Experience",
     publication: "Seeking Alpha",

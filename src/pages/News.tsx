@@ -55,7 +55,7 @@ const News = () => {
           <div className="h-1 w-24 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full ml-2"></div>
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-16">
           {pressArticles.map((article) => (
             <PressArticleCard key={article.id} article={article} />
           ))}
