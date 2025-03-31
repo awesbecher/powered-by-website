@@ -16,7 +16,6 @@ export const MissionImageSection = ({ initialLoad }: MissionImageSectionProps) =
           className="w-full h-auto"
         />
       </div>
-      <p className="text-center text-gray-400 mt-3 text-sm">Our founder presenting the Powered_by mission</p>
     </div>
   );
 };
