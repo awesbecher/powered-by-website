@@ -45,7 +45,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
             <div className="rounded-[2rem] border border-white/50 p-5 overflow-hidden">
               <CalendlyWidget 
                 url="https://calendly.com/d/cq7r-5v8-qvw?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=8e00ff"
-                height={700}
+                height={600}
                 initialLoad={initialLoad}
               />
             </div>
