@@ -11,6 +11,7 @@ export const PressArticleCard = ({ article }: PressArticleCardProps) => {
   // Check which card this is to apply the appropriate background
   const isYahooFinance = article.id === "yahoo-finance-ai";
   const isMarketWatch = article.id === "marketwatch-feature";
+  const isAssociatedPress = article.id === "associated-press-virtual-se";
   
   return (
     <a 
@@ -27,7 +28,7 @@ export const PressArticleCard = ({ article }: PressArticleCardProps) => {
           </div>
           
           {article.imageUrl && (
-            <div className={`mb-4 overflow-hidden rounded-md ${isYahooFinance ? 'bg-purple-800' : ''} ${isMarketWatch ? 'bg-white' : ''}`}>
+            <div className={`mb-4 overflow-hidden rounded-md ${isYahooFinance ? 'bg-purple-800' : ''} ${isMarketWatch || isAssociatedPress ? 'bg-white' : ''}`}>
               <img 
                 src={article.imageUrl} 
                 alt={article.title} 
