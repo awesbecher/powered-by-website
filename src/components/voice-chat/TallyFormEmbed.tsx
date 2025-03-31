@@ -37,11 +37,19 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({
     
     document.body.appendChild(script);
     
+    // Log messages for debugging
+    const handleMessage = (event: MessageEvent) => {
+      console.log('TallyFormEmbed received message:', event.data);
+    };
+    
+    window.addEventListener('message', handleMessage);
+    
     // Clean up
     return () => {
       if (document.body.contains(script)) {
         document.body.removeChild(script);
       }
+      window.removeEventListener('message', handleMessage);
     };
   }, []);
 
@@ -59,6 +67,7 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({
         marginHeight={0}
         marginWidth={0}
         title="Contact Form"
+        onLoad={() => console.log('Tally iframe loaded')}
       ></iframe>
     </div>
   );

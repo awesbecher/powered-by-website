@@ -51,33 +51,56 @@ const Demo = () => {
   }, [navigate, toast, location]);
 
   useEffect(() => {
+    // Enhanced event listener to better detect Tally form submission
     const handleTallyEvent = (event: MessageEvent) => {
-      console.log('Received message event:', event.data);
+      console.log('Received message event:', event);
       
-      if (event.data?.type === 'tally-form-submit-success') {
+      if (
+        event.data?.type === 'tally-form-submit-success' ||
+        (typeof event.data === 'string' && event.data.includes('tally-form-submit-success'))
+      ) {
+        console.log('Form submission detected, updating state');
+        
+        // Set form as completed in localStorage
         localStorage.setItem('demoFormCompleted', 'true');
+        
+        // Show success toast
         toast({
           title: "Form submitted successfully!",
           description: "Showing you our demos...",
         });
         
-        // Ensure we show the demos
+        // Update UI state
         setShowDemos(true);
         setShowForm(false);
         
-        // Force a re-render with slight delay to ensure the state updates are applied
+        // Scroll to top with a slight delay to ensure the state updates are applied
         setTimeout(() => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }, 300);
       }
     };
     
+    // Add event listener
     window.addEventListener('message', handleTallyEvent);
     
+    // Cleanup
     return () => {
       window.removeEventListener('message', handleTallyEvent);
     };
   }, [toast]);
+
+  // Add a manual form completion handler for testing
+  const handleFormCompleted = () => {
+    localStorage.setItem('demoFormCompleted', 'true');
+    setShowDemos(true);
+    setShowForm(false);
+    toast({
+      title: "Form processed",
+      description: "Showing you our demos now",
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -126,6 +149,14 @@ const Demo = () => {
                       transparentBackground={true}
                       alignLeft={true}
                     />
+                    
+                    {/* Hidden button for testing */}
+                    <button 
+                      onClick={handleFormCompleted}
+                      className="hidden mt-4 px-4 py-2 bg-accent text-white rounded-md"
+                    >
+                      Manual Override (Testing)
+                    </button>
                   </div>
                 </>
               ) : (
