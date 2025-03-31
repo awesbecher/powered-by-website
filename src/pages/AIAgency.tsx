@@ -40,11 +40,11 @@ const AIAgency = () => {
                 <AgencyIllustration />
                 <IntroSection initialLoad={initialLoad} />
 
-                {/* New AI Training Image */}
+                {/* New AI Training Image - Replaced with the attached image */}
                 <div className="my-12 flex justify-center">
                   <div className="relative w-full max-w-3xl overflow-hidden rounded-xl shadow-xl">
                     <img 
-                      src="/lovable-uploads/eb73b819-4b47-459b-88c4-aa0a3cd864b7.png" 
+                      src="/lovable-uploads/f61255a3-5368-4739-a068-ec3431ea636f.png" 
                       alt="AI Agent training session" 
                       className="w-full h-auto object-cover"
                     />
