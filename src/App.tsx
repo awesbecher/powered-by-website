@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Index from "./pages/Index";
@@ -35,7 +34,6 @@ import VoiceAgentForm from "./pages/VoiceAgentForm";
 import FreeVoiceAgent from "./pages/FreeVoiceAgent";
 import VoiceAgentStart from "./pages/VoiceAgentStart";
 import VoiceAgentConfigEnd from "./pages/VoiceAgentConfigEnd";
-// Removed import VoiceAgentBeta from "./pages/VoiceAgentBeta";
 import ThankYou from "./pages/ThankYou";
 import Careers from "./pages/Careers";
 import ProductHunt from "./pages/ProductHunt";
@@ -84,7 +82,6 @@ function App() {
               <Route path="/voice-agent-config-end" element={<VoiceAgentConfigEnd />} />
               <Route path="/free-voiceagent" element={<FreeVoiceAgent />} />
               <Route path="/voiceagent-start" element={<VoiceAgentStart />} />
-              {/* Removed Route path="/voiceagent-beta" element={<VoiceAgentBeta />} */}
               <Route path="/thank-you" element={<ThankYou />} />
               <Route path="/careers" element={<Careers />} />
               <Route path="/launch" element={<ProductHunt />} />
