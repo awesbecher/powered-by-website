@@ -60,13 +60,6 @@ const News = () => {
             <PressArticleCard key={article.id} article={article} />
           ))}
         </div>
-        
-        <div className="text-center">
-          <Button variant="outline" className="bg-white/5 hover:bg-white/10 border-purple-500 group">
-            <span>View Press Kit</span>
-            <ExternalLink className="ml-2 h-4 w-4 text-purple-400 group-hover:text-white transition-colors" />
-          </Button>
-        </div>
       </section>
       
       {/* News Posts Section */}
