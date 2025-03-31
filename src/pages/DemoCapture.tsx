@@ -4,7 +4,7 @@ import { ServiceCard } from "@/components/home/ServiceCard";
 import { services, additionalServices } from "@/data/services";
 import { useState, useEffect } from "react";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import OfferButton from "@/components/home/OfferButton";
@@ -12,10 +12,43 @@ import OfferButton from "@/components/home/OfferButton";
 const DemoCapture = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
+    // Check if user has already completed the form and redirect if true
+    if (localStorage.getItem('demoFormCompleted') === 'true') {
+      navigate('/demo');
+      return;
+    }
+    
     setInitialLoad(false);
-  }, []);
+    
+    // Load Tally embed script
+    const script = document.createElement('script');
+    script.src = 'https://tally.so/widgets/embed.js';
+    script.async = true;
+    document.body.appendChild(script);
+    
+    // Handle Tally form submission event
+    const handleTallyEvent = (event: any) => {
+      if (event.data?.type === 'tally-form-submit-success') {
+        // Set local storage to mark user as having completed the form
+        localStorage.setItem('demoFormCompleted', 'true');
+        // Redirect to demo page
+        navigate('/demo');
+      }
+    };
+    
+    window.addEventListener('message', handleTallyEvent);
+    
+    // Clean up
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+      window.removeEventListener('message', handleTallyEvent);
+    };
+  }, [navigate]);
 
   useEffect(() => {
     // Scroll to top with a slight delay to ensure DOM is ready
@@ -57,30 +90,27 @@ const DemoCapture = () => {
               
               <p className={`mt-4 text-lg leading-relaxed text-gray-300 max-w-3xl mx-auto font-bold transition-all duration-1000 delay-300 ease-out transform
                   ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
-                While <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> offers fully custom & multi-channel AI agent solutions, you can experience our pre-built voice agents by clicking any one of the below.
+                Please fill out the form below to access our demos:
               </p>
+              
+              {/* Embed Tally.so form */}
+              <div className="mt-8 max-w-2xl mx-auto bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10">
+                <iframe
+                  data-tally-src="https://tally.so/embed/mVNb9y?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                  width="100%"
+                  height="500"
+                  frameBorder="0"
+                  marginHeight={0}
+                  marginWidth={0}
+                  title="Demo Access Form"
+                ></iframe>
+              </div>
             </div>
           </div>
           
           {/* Gradient orbs for visual interest */}
           <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
           <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
-        </div>
-
-        {/* Services Grid */}
-        <div className="relative px-4 lg:px-6 space-y-4">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
-              {services.map(service => <ServiceCard key={service.title} {...service} />)}
-            </div>
-          </div>
-
-          {/* Additional Services Grid */}
-          <div className="mx-auto max-w-7xl">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
-              {additionalServices.map(service => <ServiceCard key={service.title} {...service} />)}
-            </div>
-          </div>
         </div>
 
         {/* Closing CTA */}
