@@ -47,8 +47,6 @@ export const HeroContent: React.FC<HeroContentProps> = ({
           </div>
         </div>
       </div>
-      {/* Reduce the vertical spacing here */}
-      <div className="py-10"></div>
 
       {/* YouTube Video Dialog */}
       <Dialog open={videoOpen} onOpenChange={setVideoOpen}>

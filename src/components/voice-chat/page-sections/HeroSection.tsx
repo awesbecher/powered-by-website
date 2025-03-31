@@ -28,29 +28,29 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
 
   return (
     <section className="pt-20 pb-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
         {/* Left side - Hero content */}
-        <div className="lg:col-span-6">
+        <div className="lg:col-span-7">
           <HeroContent 
             initialLoad={initialLoad}
             handleVoiceChatClick={handleVoiceChatClick}
             handleGetStarted={handleGetStarted}
           />
+          
+          {/* Feature list now under the hero content */}
+          <div className="mt-8">
+            <FeaturesList initialLoad={initialLoad} compact={true} />
+          </div>
         </div>
         
-        {/* Right side - CTA Button */}
-        <div className="lg:col-span-6 flex items-center justify-center">
-          <div className={`transition-all duration-1000 delay-300 ease-out transform
+        {/* Right side - CTA Button and Website Simulation */}
+        <div className="lg:col-span-5 flex flex-col items-center">
+          <div className={`w-full mb-8 transition-all duration-1000 delay-300 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <CalendlyButton />
           </div>
-        </div>
-      </div>
-
-      <div className="mb-10">
-        <div className="flex flex-col lg:flex-row items-start gap-12 justify-between">
-          <FeaturesList initialLoad={initialLoad} />
-          <div className={`w-full lg:w-[50%] lg:ml-auto transition-all duration-1000 delay-300 ease-out transform
+          
+          <div className={`w-full transition-all duration-1000 delay-500 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <WebsiteSimulation />
           </div>
