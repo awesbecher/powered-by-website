@@ -31,10 +31,10 @@ export const pressArticles: PressArticle[] = [
   },
   {
     id: "morningstar-ai-innovation",
-    title: "AI Agents Revolutionizing Business Operations",
+    title: "AI Agents Are Revolutionizing Business Operations for SMBs",
     publication: "Morningstar",
-    date: "March 24, 2025",
-    excerpt: "Morningstar discusses how Powered_by's AI agents are transforming business operations and setting new standards for customer engagement.",
+    date: "March 27, 2025",
+    excerpt: "",
     externalUrl: "https://www.morningstar.com/news/pr-newswire/20250324sf48855/powered_by-officially-launches-the-worlds-first-ai-agency-for-smbs",
     imageUrl: "/lovable-uploads/acfdfc1d-9b32-4509-bfe5-01d67795da98.png"
   },
