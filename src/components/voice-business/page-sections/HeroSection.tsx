@@ -110,13 +110,13 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
         {/* Left side: Hero content */}
-        <div className="lg:col-span-12 flex flex-col justify-center">
+        <div className="lg:col-span-8 flex flex-col justify-center">
           <HeroContent initialLoad={initialLoad} handleContact={handleContact} />
-          
-          {/* CTA card - moved from right column to bottom of left column */}
-          <div className="mt-8">
-            <ServiceBoxes initialLoad={initialLoad} onTryNow={handleVoiceChatClick} />
-          </div>
+        </div>
+        
+        {/* Right side: CTA card in a more compact size */}
+        <div className="lg:col-span-4 flex items-center justify-center">
+          <ServiceBoxes initialLoad={initialLoad} onTryNow={handleVoiceChatClick} />
         </div>
       </div>
 
