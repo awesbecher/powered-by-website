@@ -26,9 +26,12 @@ const Payment = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   
-  // Get amount from URL if provided
+  // Get amount from URL if provided, otherwise use default
   const amountFromUrl = searchParams.get('amount');
   const productFromUrl = searchParams.get('product');
+  
+  // Default amount if not provided in URL
+  const defaultAmount = 100;
   
   // Initialize form with react-hook-form
   const form = useForm<z.infer<typeof formSchema>>({
@@ -36,7 +39,7 @@ const Payment = () => {
     defaultValues: {
       name: "",
       email: "",
-      amount: amountFromUrl ? parseInt(amountFromUrl) : 100,
+      amount: amountFromUrl ? parseInt(amountFromUrl) : defaultAmount,
     },
   });
 
@@ -123,12 +126,14 @@ const Payment = () => {
                       <FormControl>
                         <Input 
                           type="number" 
-                          placeholder="100" 
+                          placeholder={defaultAmount.toString()} 
                           {...field} 
-                          {...(amountFromUrl ? { readOnly: true } : {})}
+                          readOnly={true}
+                          className="bg-gray-700 cursor-not-allowed"
                         />
                       </FormControl>
                       <FormMessage />
+                      <p className="text-xs text-gray-400 mt-1">Amount set by business</p>
                     </FormItem>
                   )}
                 />
