@@ -32,7 +32,7 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
           />
           
           {/* Headset icon with adjusted positioning - moved even further up */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-[56%] -translate-y-[65%] flex items-center justify-center">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-[56%] -translate-y-[75%] flex items-center justify-center">
             <div className="bg-[#8B5CF6] rounded-full flex items-center justify-center" style={{ width: '42px', height: '42px' }}>
               <Headset className="w-6 h-6 text-white" />
             </div>
