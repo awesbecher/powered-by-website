@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { CalendarClock, Sparkles } from "lucide-react";
+import { CalendarClock, Sparkles, Headset } from "lucide-react";
 
 interface ServiceBoxesProps {
   initialLoad: boolean;
@@ -22,14 +22,21 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
     <div className={`w-full transition-all duration-1000 delay-300 ease-out transform
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
       <div className="w-full">
-        {/* Logo image above the card - now clickable */}
-        <div className="flex justify-center mb-3">
+        {/* Logo image above the card - now with headset overlay */}
+        <div className="flex justify-center mb-3 relative">
           <img 
             src="/lovable-uploads/cf3e4a34-142d-4988-99e0-6c90f83d89e7.png" 
             alt="Voice AI Logo" 
             className="w-40 h-40 object-contain cursor-pointer hover:opacity-90 transition-opacity" 
             onClick={openCalendly} 
           />
+          
+          {/* Add headset icon overlay */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <div className="bg-gradient-to-br from-[#9b87f5] to-[#6342ff] rounded-full p-3">
+              <Headset className="w-8 h-8 text-white" />
+            </div>
+          </div>
         </div>
         
         <div className="relative rounded-3xl p-4 overflow-hidden">

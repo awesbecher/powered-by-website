@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { VoiceChatDialog } from "@/components/voice-business/VoiceChatDialog";
 import { useToast } from "@/hooks/use-toast";
@@ -18,12 +17,9 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
   const [isCallActive, setIsCallActive] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Assistant ID for Vapi - updated with the provided ID
   const ASSISTANT_ID = "07e97137-ad5c-4846-ab6f-cff48c3e2da9";
 
-  // Load Tally script when component mounts
   useEffect(() => {
-    // Load Tally embed script
     if (window.Tally) {
       window.Tally.loadEmbeds();
     } else {
@@ -90,13 +86,11 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
 
   return (
     <section className="relative pt-16 pb-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl overflow-hidden">
-      {/* Background decorative elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
         <div className="absolute -top-20 right-10 w-96 h-96 rounded-full bg-[#7100ff]/10 blur-3xl"></div>
         <div className="absolute top-40 -left-20 w-72 h-72 rounded-full bg-[#9b87f5]/10 blur-2xl"></div>
         <div className="absolute bottom-0 right-1/4 w-64 h-64 rounded-full bg-[#5c00d6]/15 blur-2xl"></div>
         
-        {/* Animated gradient particles */}
         <div className="absolute inset-0">
           <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -110,34 +104,15 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
-        {/* Left side: Hero content */}
         <div className="lg:col-span-8 flex flex-col justify-center">
           <HeroContent initialLoad={initialLoad} handleContact={handleContact} />
         </div>
         
-        {/* Right side: CTA card in a more compact size */}
         <div className="lg:col-span-4 flex items-center justify-center">
-          {/* Add the spiral logo with headset icon in the center */}
-          <div className="relative mb-6">
-            <img 
-              src="/lovable-uploads/fadf21f3-43ca-4db8-aa89-a422bb086eda.png" 
-              alt="Purple spiral logo" 
-              className="w-48 h-48 object-contain"
-            />
-            
-            {/* Headset icon with gradient overlay */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <div className="bg-gradient-to-br from-[#9b87f5] to-[#6342ff] rounded-full p-3">
-                <Headset className="w-8 h-8 text-white" />
-              </div>
-            </div>
-          </div>
-          
           <ServiceBoxes initialLoad={initialLoad} onTryNow={handleVoiceChatClick} />
         </div>
       </div>
 
-      {/* Voice Chat Dialog Component */}
       <VoiceChatDialog
         showDialog={showVoiceChatDialog}
         isCallActive={isCallActive}
