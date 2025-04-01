@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { HeroContent } from "./HeroContent";
-import { TallyFormEmbed } from "@/components/voice-chat/TallyFormEmbed";
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -19,24 +18,9 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
       <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-[#9b87f5]/30 blur-3xl opacity-20 z-0" />
       
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8 relative z-10">
-        {/* Left side - Hero content */}
-        <div className="lg:col-span-6">
+        {/* Hero content - now spans full width */}
+        <div className="lg:col-span-12">
           <HeroContent initialLoad={initialLoad} handleContact={handleContact} />
-        </div>
-        
-        {/* Right side - Tally.so form */}
-        <div className="lg:col-span-6">
-          <div className={`mt-8 lg:mt-0 transition-all duration-1000 delay-300 ease-out transform
-            ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-            <div className="rounded-[2rem] border border-white/50 p-5 overflow-hidden">
-              <TallyFormEmbed 
-                formId="mRjo4p"
-                height={420}
-                transparentBackground={true}
-                alignLeft={true}
-              />
-            </div>
-          </div>
         </div>
       </div>
     </section>
