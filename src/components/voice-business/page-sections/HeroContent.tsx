@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Tv, Mic, Phone, Calendar, HeadphonesIcon } from "lucide-react";
+import { ArrowRight, Tv, Mic, Phone, Calendar, HeadphonesIcon, UserSearch } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 interface HeroContentProps {
@@ -84,11 +84,19 @@ export const HeroContent: React.FC<HeroContentProps> = ({
             </div>
           </div>
           
-          <div className="bg-black/30 backdrop-blur-sm border border-white/10 rounded-xl p-4 flex items-start space-x-3 sm:col-span-2">
+          <div className="bg-black/30 backdrop-blur-sm border border-white/10 rounded-xl p-4 flex items-start space-x-3">
             <HeadphonesIcon className="text-[#9b87f5] h-6 w-6 mt-1 flex-shrink-0" />
             <div>
               <h3 className="text-white font-medium text-lg">24/7 Availability</h3>
               <p className="text-gray-400 text-sm">Never miss a customer call again</p>
+            </div>
+          </div>
+          
+          <div className="bg-black/30 backdrop-blur-sm border border-white/10 rounded-xl p-4 flex items-start space-x-3">
+            <UserSearch className="text-[#9b87f5] h-6 w-6 mt-1 flex-shrink-0" />
+            <div>
+              <h3 className="text-white font-medium text-lg">Pre-Screen Leads & Qualify Clients</h3>
+              <p className="text-gray-400 text-sm">Gather customer details upfront and qualify them</p>
             </div>
           </div>
         </div>
