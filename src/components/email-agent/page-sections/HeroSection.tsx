@@ -69,9 +69,9 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
                 className="w-48 h-48 object-contain mb-3"
               />
               
-              {/* Mail icon with gradient overlay - Adjusted positioning to center in spiral */}
+              {/* Mail icon with gradient overlay */}
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <div className="bg-gradient-to-br from-[#9b87f5] to-[#6342ff] rounded-full p-3" style={{ transform: 'translateX(-3px) translateY(-5px)' }}>
+                <div className="bg-gradient-to-br from-[#9b87f5] to-[#6342ff] rounded-full p-3">
                   <Mail className="w-8 h-8 text-white" />
                 </div>
               </div>

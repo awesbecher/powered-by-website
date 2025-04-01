@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { HeroSection } from "@/components/email-agent/page-sections/HeroSection";
+import { ServiceBoxes } from "@/components/email-agent/page-sections/ServiceBoxes";
 import { FeaturesSection } from "@/components/email-agent/page-sections/FeaturesSection";
 import { BenefitsSection } from "@/components/email-agent/page-sections/BenefitsSection";
 import { FAQSection } from "@/components/email-agent/page-sections/FAQSection";
@@ -56,10 +57,14 @@ const EmailAgent = () => {
         <Navbar />
         <HeroSection initialLoad={initialLoad} handleContact={handleContact} />
         
-        {/* ServiceBoxes section has been removed */}
+        {/* ServiceBoxes moved out of HeroSection and centered below it with reduced padding */}
+        <div className="py-4 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl flex justify-center">
+          <ServiceBoxes initialLoad={initialLoad} />
+        </div>
         
         <FeaturesSection />
         <BenefitsSection />
+        {/* CTASection removed from here */}
         <FAQSection />
         <FinalCTASection handleContact={handleContact} />
         <Footer />

@@ -4,6 +4,7 @@ import { VoiceChatDialog } from "@/components/voice-business/VoiceChatDialog";
 import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 import { HeroContent } from "./HeroContent";
+import { ServiceBoxes } from "./ServiceBoxes";
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -108,11 +109,18 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
-        {/* Left side: Hero content - kept intact */}
-        <div className="lg:col-span-12 flex flex-col justify-center">
+        {/* Left side: Hero content */}
+        <div className="lg:col-span-8 flex flex-col justify-center">
           <HeroContent initialLoad={initialLoad} handleContact={handleContact} />
         </div>
+        
+        {/* Right side: CTA card in a more compact size */}
+        <div className="lg:col-span-4 flex items-center justify-center">
+          <ServiceBoxes initialLoad={initialLoad} onTryNow={handleVoiceChatClick} />
+        </div>
       </div>
+
+      {/* Removing the Service Boxes Grid that was here */}
 
       {/* Voice Chat Dialog Component */}
       <VoiceChatDialog
