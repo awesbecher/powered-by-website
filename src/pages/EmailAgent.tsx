@@ -55,8 +55,8 @@ const EmailAgent = () => {
         <Navbar />
         <HeroSection initialLoad={initialLoad} handleContact={handleContact} />
         
-        {/* ServiceBoxes moved out of HeroSection and centered below it */}
-        <div className="py-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl flex justify-center">
+        {/* ServiceBoxes moved out of HeroSection and centered below it with reduced padding */}
+        <div className="py-4 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl flex justify-center">
           <ServiceBoxes initialLoad={initialLoad} />
         </div>
         
