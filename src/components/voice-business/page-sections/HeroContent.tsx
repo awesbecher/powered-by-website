@@ -102,10 +102,12 @@ export const HeroContent: React.FC<HeroContentProps> = ({
         </div>
         
         {/* Added "See for yourself:" text above the buttons */}
-        <div className="flex flex-col sm:flex-row items-center gap-4 mt-2">
-          <p className="text-gray-300 font-bold text-left self-start mb-1">See for yourself:</p>
+        {/* Reduced mb-1 from original and removed other spacing that was causing extra vertical padding */}
+        <div className="flex flex-col sm:flex-row items-center gap-4">
+          <p className="text-gray-300 font-bold text-left self-start">See for yourself:</p>
         </div>
         
+        {/* Removed mt-2 to reduce spacing between the text and buttons */}
         <div className="flex flex-col sm:flex-row items-center gap-4">
           <Button 
             className="w-full sm:w-auto bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-4 text-base rounded-md flex items-center justify-center"
