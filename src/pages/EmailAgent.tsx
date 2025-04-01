@@ -16,6 +16,7 @@ import { forcePrefetchImages, addCSSImagePreloading } from "@/components/voice-c
 const images = [
   "/lovable-uploads/f6cd5c39-f85a-4586-9140-cd8e12d9b947.png",  // Logo
   "/lovable-uploads/65c7ad96-17cd-4bc0-8a6d-0148a49f3402.png", // Powered By Agency logo
+  "/lovable-uploads/2f275ef0-54c5-456c-8acd-8ebdecf5f38c.png", // Dotted background
 ];
 forcePrefetchImages(images);
 addCSSImagePreloading(images);
@@ -43,9 +44,9 @@ const EmailAgent = () => {
       {/* Background image at the top */}
       <div className="fixed inset-0 z-0">
         <img 
-          src="/lovable-uploads/c5c962fc-964e-4139-a5fe-28f83a466b3a.png" 
-          alt="Email background" 
-          className="w-full h-full object-cover object-center opacity-60"
+          src="/lovable-uploads/2f275ef0-54c5-456c-8acd-8ebdecf5f38c.png" 
+          alt="Dotted background" 
+          className="w-full h-full object-cover object-center opacity-80"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/60 via-[#1a0b2e]/80 to-[#1a0b2e]"></div>
       </div>
