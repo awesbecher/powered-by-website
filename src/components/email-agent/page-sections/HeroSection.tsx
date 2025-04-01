@@ -53,39 +53,19 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
       
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8 relative z-10">
         {/* Left side - Hero content */}
-        <div className="lg:col-span-6">
+        <div className="lg:col-span-7">
           <HeroContent initialLoad={initialLoad} handleContact={handleContact} />
         </div>
         
-        {/* Right side - Simplified Calendly widget with just the logo and button */}
-        <div className="lg:col-span-6">
-          <div className={`mt-8 lg:mt-0 transition-all duration-1000 delay-300 ease-out transform
+        {/* Right side - Just the spiral logo without the box */}
+        <div className="lg:col-span-5 flex justify-center items-center">
+          <div className={`transition-all duration-1000 delay-300 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-            <div className="rounded-[2rem] border border-purple-800/50 p-8 bg-[#110d24]/70 backdrop-blur-sm shadow-xl shadow-purple-900/20 flex flex-col items-center">
-              {/* Purple spiral logo */}
-              <div className="flex justify-center mb-8">
-                <img 
-                  src="/lovable-uploads/fadf21f3-43ca-4db8-aa89-a422bb086eda.png" 
-                  alt="Purple spiral logo" 
-                  className="w-40 h-40 object-contain"
-                />
-              </div>
-              
-              {/* Ready to see how it works text */}
-              <div className="flex items-center justify-center gap-2 mb-8">
-                <span className="text-purple-400">✧</span>
-                <h3 className="text-2xl font-bold text-white text-center">Ready to See How It Works?</h3>
-              </div>
-              
-              {/* Get Started Button */}
-              <button 
-                onClick={openCalendly}
-                className="w-full bg-[#6342ff] hover:bg-[#7352ff] text-white font-bold py-4 px-6 rounded-xl transition-colors flex items-center justify-center gap-2"
-              >
-                <CalendarClock className="w-6 h-6" />
-                Get Started Now!
-              </button>
-            </div>
+            <img 
+              src="/lovable-uploads/fadf21f3-43ca-4db8-aa89-a422bb086eda.png" 
+              alt="Purple spiral logo" 
+              className="w-80 h-80 object-contain"
+            />
           </div>
         </div>
       </div>
