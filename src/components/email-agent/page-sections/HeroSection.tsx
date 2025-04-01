@@ -57,23 +57,23 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
           <HeroContent initialLoad={initialLoad} handleContact={handleContact} />
         </div>
         
-        {/* Right side - New Calendly widget placeholder styled like the image */}
+        {/* Right side - Simplified Calendly widget with just the logo and button */}
         <div className="lg:col-span-6">
           <div className={`mt-8 lg:mt-0 transition-all duration-1000 delay-300 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-            <div className="rounded-[2rem] border border-purple-800/50 p-8 bg-[#110d24]/70 backdrop-blur-sm shadow-xl shadow-purple-900/20">
-              {/* Purple radial pattern image (using the uploaded image) */}
-              <div className="flex justify-center mb-6">
+            <div className="rounded-[2rem] border border-purple-800/50 p-8 bg-[#110d24]/70 backdrop-blur-sm shadow-xl shadow-purple-900/20 flex flex-col items-center">
+              {/* Purple spiral logo */}
+              <div className="flex justify-center mb-8">
                 <img 
-                  src="/lovable-uploads/e98a55f9-0098-4d67-82fe-3c301de6a9cb.png" 
-                  alt="Pattern" 
-                  className="w-32 h-32 object-contain"
+                  src="/lovable-uploads/babb27f7-2a3c-4584-af4b-397cfdbe97ea.png" 
+                  alt="Purple spiral logo" 
+                  className="w-40 h-40 object-contain"
                 />
               </div>
               
-              {/* Heading with star icon */}
-              <div className="flex items-center justify-center gap-2 mb-5">
-                <span className="text-purple-400 text-2xl">✧</span>
+              {/* Ready to see how it works text */}
+              <div className="flex items-center justify-center gap-2 mb-8">
+                <span className="text-purple-400">✧</span>
                 <h3 className="text-2xl font-bold text-white text-center">Ready to See How It Works?</h3>
               </div>
               
