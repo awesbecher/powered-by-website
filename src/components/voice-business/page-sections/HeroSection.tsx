@@ -117,9 +117,8 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
         
         {/* Right side: Split into two rows */}
         <div className="lg:col-span-6 flex flex-col items-center justify-between space-y-6">
-          {/* Top: Live demo simulation */}
+          {/* Top: Live demo simulation - Removed the "See it in action:" heading */}
           <div className="w-full">
-            <h3 className="text-lg font-medium text-white text-center mb-4 opacity-80">See it in action:</h3>
             <WebsiteSimulation />
           </div>
           
