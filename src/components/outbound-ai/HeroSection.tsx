@@ -1,9 +1,10 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
-import { ArrowRight, FileText } from "lucide-react";
+import { ArrowRight, Tv } from "lucide-react";
 import { TallyFormEmbed } from "@/components/voice-chat/TallyFormEmbed";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -11,6 +12,8 @@ interface HeroSectionProps {
 }
 
 const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
+  const [videoOpen, setVideoOpen] = useState(false);
+
   return (
     <section className="pt-8 pb-8 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
@@ -33,18 +36,12 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
               Transform high-volume outbound calling with AI voice agents that scale, personalize outreach, cut costs, and sound & act astonishing human-like.
             </p>
             <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 mt-6">
-              <a 
-                href="https://poweredbyagency.ghost.io/introducing-outboundai-voice-agents-for-outbound-sales-marketing/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="order-2 sm:order-1"
+              <Button 
+                className="order-2 sm:order-1 bg-black hover:bg-gray-900 text-white w-full sm:w-auto flex items-center border-2 border-white"
+                onClick={() => setVideoOpen(true)}
               >
-                <Button 
-                  className="bg-white hover:bg-gray-100 text-[#6342ff] w-full sm:w-auto flex items-center"
-                >
-                  <FileText className="mr-2 h-5 w-5" /> Read Product Announcement
-                </Button>
-              </a>
+                <Tv className="mr-2 h-5 w-5" /> Watch video overview
+              </Button>
               <Link to="/contact" className="order-1 sm:order-2">
                 <Button 
                   className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center w-full sm:w-auto"
@@ -72,6 +69,23 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
           </div>
         </div>
       </div>
+      
+      {/* YouTube Video Dialog */}
+      <Dialog open={videoOpen} onOpenChange={setVideoOpen}>
+        <DialogContent className="max-w-3xl p-1 bg-black">
+          <div className="aspect-video">
+            <iframe 
+              width="100%" 
+              height="100%" 
+              src="https://www.youtube.com/embed/6TIztZIrq7w?si=qNacOKFbMYW1qcSg&autoplay=1" 
+              title="OutboundAI Video Overview" 
+              frameBorder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowFullScreen
+            ></iframe>
+          </div>
+        </DialogContent>
+      </Dialog>
       
       <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
       <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
