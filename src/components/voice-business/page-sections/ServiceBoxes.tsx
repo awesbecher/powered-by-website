@@ -19,7 +19,7 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
   };
 
   return (
-    <div className={`w-full lg:w-1/2 transition-all duration-1000 delay-300 ease-out transform flex flex-col items-start justify-start
+    <div className={`w-full lg:w-1/2 transition-all duration-1000 delay-300 ease-out transform flex flex-col items-start justify-center
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
       <div className="w-full">
         <div className="border border-white rounded-3xl p-4 overflow-hidden bg-black/20 backdrop-blur-sm">
