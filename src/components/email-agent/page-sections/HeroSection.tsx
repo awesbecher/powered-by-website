@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { HeroContent } from "./HeroContent";
+import { CalendarClock } from "lucide-react";
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -35,6 +36,15 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
     };
   }, []);
 
+  // Function to open Calendly popup
+  const openCalendly = () => {
+    if (window.Calendly) {
+      window.Calendly.initPopupWidget({
+        url: 'https://calendly.com/d/cm48-q4x-c3v?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=7100ff'
+      });
+    }
+  };
+
   return (
     <section className="relative pt-20 pb-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl overflow-hidden">
       {/* Background gradients similar to AI Agency page */}
@@ -47,24 +57,33 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
           <HeroContent initialLoad={initialLoad} handleContact={handleContact} />
         </div>
         
-        {/* Right side - Calendly widget placeholder */}
+        {/* Right side - New Calendly widget placeholder styled like the image */}
         <div className="lg:col-span-6">
           <div className={`mt-8 lg:mt-0 transition-all duration-1000 delay-300 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-            <div className="rounded-[2rem] border border-white/50 p-5 bg-black/30 backdrop-blur-sm h-[420px] flex flex-col items-center justify-center">
-              <h3 className="text-xl font-bold text-white mb-4">Talk to an AI Specialist</h3>
-              <p className="text-gray-300 text-center mb-6">Schedule a free consultation to learn how Email AI can transform your business</p>
+            <div className="rounded-[2rem] border border-purple-800/50 p-8 bg-[#110d24]/70 backdrop-blur-sm shadow-xl shadow-purple-900/20">
+              {/* Purple radial pattern image (using the uploaded image) */}
+              <div className="flex justify-center mb-6">
+                <img 
+                  src="/lovable-uploads/e98a55f9-0098-4d67-82fe-3c301de6a9cb.png" 
+                  alt="Pattern" 
+                  className="w-32 h-32 object-contain"
+                />
+              </div>
+              
+              {/* Heading with star icon */}
+              <div className="flex items-center justify-center gap-2 mb-5">
+                <span className="text-purple-400 text-2xl">✧</span>
+                <h3 className="text-2xl font-bold text-white text-center">Ready to See How It Works?</h3>
+              </div>
+              
+              {/* Get Started Button */}
               <button 
-                onClick={() => {
-                  if (window.Calendly) {
-                    window.Calendly.initPopupWidget({
-                      url: 'https://calendly.com/d/cm48-q4x-c3v?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=7100ff'
-                    });
-                  }
-                }}
-                className="bg-[#7100ff] hover:bg-[#8a75e3] text-white px-6 py-3 rounded-md transition-colors"
+                onClick={openCalendly}
+                className="w-full bg-[#6342ff] hover:bg-[#7352ff] text-white font-bold py-4 px-6 rounded-xl transition-colors flex items-center justify-center gap-2"
               >
-                Schedule a Free Consultation
+                <CalendarClock className="w-6 h-6" />
+                Get Started Now!
               </button>
             </div>
           </div>
