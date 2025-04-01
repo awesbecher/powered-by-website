@@ -22,12 +22,12 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
     <div className={`w-full transition-all duration-1000 delay-300 ease-out transform
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
       <div className="w-full">
-        {/* Logo image above the card */}
-        <div className="flex justify-center mb-6">
+        {/* Logo image above the card - reduced bottom margin from mb-6 to mb-3 */}
+        <div className="flex justify-center mb-3">
           <img 
             src="/lovable-uploads/cf3e4a34-142d-4988-99e0-6c90f83d89e7.png" 
             alt="Voice AI Logo" 
-            className="w-48 h-48 object-contain"
+            className="w-40 h-40 object-contain" // Reduced size from w-48 h-48 to w-40 h-40
           />
         </div>
         
@@ -54,7 +54,7 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
             ))}
           </div>
           
-          <div className="relative flex flex-col items-center space-y-3 py-2 z-10">
+          <div className="relative flex flex-col items-center space-y-2 py-1 z-10"> {/* Reduced space-y-3 to space-y-2 and py-2 to py-1 */}
             <div className="flex items-center">
               <Sparkles className="h-5 w-5 text-[#9b87f5] mr-2" />
               <h3 className="text-xl font-bold text-white text-center">
