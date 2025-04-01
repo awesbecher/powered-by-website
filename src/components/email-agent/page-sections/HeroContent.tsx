@@ -46,7 +46,7 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
       </div>
       
       {/* "See for yourself" section with video button and new See Demo button */}
-      <div className="flex flex-col items-start mb-0">
+      <div className="flex flex-col items-start mb-4">
         <p className="text-gray-300 font-bold mb-1 text-left">See for yourself:</p>
         <div className="flex flex-wrap gap-3 self-start">
           <Button 
