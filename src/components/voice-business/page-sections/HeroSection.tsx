@@ -5,6 +5,7 @@ import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 import { HeroContent } from "./HeroContent";
 import { ServiceBoxes } from "./ServiceBoxes";
+import { Headset } from "lucide-react";
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -116,11 +117,25 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
         
         {/* Right side: CTA card in a more compact size */}
         <div className="lg:col-span-4 flex items-center justify-center">
+          {/* Add the spiral logo with headset icon in the center */}
+          <div className="relative mb-6">
+            <img 
+              src="/lovable-uploads/fadf21f3-43ca-4db8-aa89-a422bb086eda.png" 
+              alt="Purple spiral logo" 
+              className="w-48 h-48 object-contain"
+            />
+            
+            {/* Headset icon with gradient overlay */}
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <div className="bg-gradient-to-br from-[#9b87f5] to-[#6342ff] rounded-full p-3">
+                <Headset className="w-8 h-8 text-white" />
+              </div>
+            </div>
+          </div>
+          
           <ServiceBoxes initialLoad={initialLoad} onTryNow={handleVoiceChatClick} />
         </div>
       </div>
-
-      {/* Removing the Service Boxes Grid that was here */}
 
       {/* Voice Chat Dialog Component */}
       <VoiceChatDialog
