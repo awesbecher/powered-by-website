@@ -57,10 +57,11 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
           <HeroContent initialLoad={initialLoad} handleContact={handleContact} />
         </div>
         
-        {/* Right side - Spiral logo with text and button but no box */}
+        {/* Right side - UPDATED: Spiral logo with headset icon, matching the voice business style */}
         <div className="lg:col-span-5 flex flex-col justify-center items-center">
           <div className={`flex flex-col items-center transition-all duration-1000 delay-300 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
+            
             {/* Purple spiral logo with headset icon overlay */}
             <div className="relative">
               <img 
@@ -69,10 +70,10 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
                 className="w-48 h-48 object-contain mb-3"
               />
               
-              {/* Headset icon with gradient overlay */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <div className="bg-gradient-to-br from-[#9b87f5] to-[#6342ff] rounded-full p-3">
-                  <Headset className="w-8 h-8 text-white" />
+              {/* Headset icon with positioning to match voice business */}
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-[66%] -translate-y-[75%] flex items-center justify-center">
+                <div className="bg-[#8B5CF6] rounded-full flex items-center justify-center" style={{ width: '42px', height: '42px' }}>
+                  <Headset className="w-6 h-6 text-white" />
                 </div>
               </div>
             </div>
@@ -83,7 +84,6 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
               <h3 className="text-xl font-bold text-white text-center">Ready to See How It Works?</h3>
             </div>
             
-            {/* Get Started Button - REDUCED SIZE */}
             <button 
               onClick={openCalendly}
               className="bg-[#6342ff] hover:bg-[#7352ff] text-white font-bold py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm"

@@ -1,5 +1,5 @@
 
-import { Mail } from "lucide-react";
+import { Mail, Headset } from "lucide-react";
 import { PoweredByText } from "@/components/shared/PoweredByText";
 
 interface ServiceBoxesProps {
@@ -12,15 +12,22 @@ export const ServiceBoxes = ({ initialLoad }: ServiceBoxesProps) => {
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
       <div className="w-full text-center border border-gray-700/30 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg bg-black/40">
         <div className="max-w-lg mx-auto">
-          <h4 className="text-white text-2xl font-bold mb-8">Don't believe us? Try it yourself:</h4>
+          <h4 className="text-white text-2xl font-bold mb-6">Don't believe us? Try it yourself:</h4>
           
-          {/* Nick's Image */}
-          <div className="mb-4 flex justify-center">
+          {/* Replace Nick's Image with Spiral Logo + Headset Icon */}
+          <div className="mb-6 flex justify-center relative">
             <img 
-              src="/lovable-uploads/aacd8d9f-424d-4420-be70-8362bbbea179.png" 
-              alt="Nick - AI Email Agent" 
-              className="w-24 h-24 rounded-full object-cover border-2 border-[#9b87f5]"
+              src="/lovable-uploads/fadf21f3-43ca-4db8-aa89-a422bb086eda.png" 
+              alt="Purple spiral logo" 
+              className="w-32 h-32 object-contain"
             />
+            
+            {/* Headset icon with adjusted positioning */}
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-[66%] -translate-y-[75%] flex items-center justify-center">
+              <div className="bg-[#8B5CF6] rounded-full flex items-center justify-center" style={{ width: '36px', height: '36px' }}>
+                <Headset className="w-5 h-5 text-white" />
+              </div>
+            </div>
           </div>
           
           <p className="text-xl text-white font-medium mb-6">Email Nick! He's our favorite AI agent here at <PoweredByText />:</p>
