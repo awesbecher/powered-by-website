@@ -31,15 +31,7 @@ const TextAgent = () => {
     // Set to false immediately to avoid any initial load animation
     setInitialLoad(false);
     
-    // Initialize Calendly badge widget
-    if (window.Calendly) {
-      window.Calendly.initBadgeWidget({ 
-        url: 'https://calendly.com/d/crr5-c3g-q3z?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=7100ff', 
-        text: 'Schedule', 
-        color: '#7100ff', 
-        textColor: '#ffffff' 
-      });
-    }
+    // Removed Calendly badge widget initialization
   }, []);
 
   const handleContact = () => {
