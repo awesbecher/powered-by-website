@@ -62,12 +62,12 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
           <div className={`flex flex-col items-center transition-all duration-1000 delay-300 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             
-            {/* New spiral logo with headset icon */}
+            {/* New spiral logo with headset icon - UPDATED: Removed black background */}
             <div className="relative mb-3">
               <img 
                 src="/lovable-uploads/ab7197b2-d92d-4668-a38c-cd650b16c3d5.png" 
                 alt="Purple spiral logo with headset icon" 
-                className="w-48 h-48 object-contain"
+                className="w-48 h-48 object-contain mix-blend-screen"
               />
             </div>
             
