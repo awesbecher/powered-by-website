@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Tv } from "lucide-react";
-import { TallyFormEmbed } from "@/components/voice-chat/TallyFormEmbed";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 interface HeroSectionProps {
@@ -59,11 +58,11 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
   return (
     <section className="pt-8 pb-8 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
-        {/* Left side - Hero content */}
-        <div className="lg:col-span-6">
+        {/* Left side - Hero content - Now takes full width */}
+        <div className="lg:col-span-12">
           <div className={`relative overflow-hidden px-0 lg:px-4 pt-8 pb-4 lg:pt-12 lg:pb-8 transition-all duration-1000 ease-out transform mx-auto
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-            <h1 className="text-center lg:text-left">
+            <h1 className="text-center">
               <span className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white block mb-2">
                 Introducing
               </span>
@@ -74,10 +73,10 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
                 AI Voice Agents for Outbound Sales & Marketing
               </span>
             </h1>
-            <p className="text-xl text-gray-300 text-center lg:text-left mt-4">
+            <p className="text-xl text-gray-300 text-center mt-4 max-w-4xl mx-auto">
               Transform high-volume outbound calling with AI voice agents that scale, personalize outreach, cut costs, and sound & act astonishing human-like.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 mt-6">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 mt-6">
               <Button 
                 className="order-2 sm:order-1 bg-black hover:bg-gray-900 text-white w-full sm:w-auto flex items-center border-2 border-white"
                 onClick={() => setVideoOpen(true)}
@@ -91,21 +90,6 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
               >
                 Schedule a Demo <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-            </div>
-          </div>
-        </div>
-        
-        {/* Right side - Tally.so form */}
-        <div className="lg:col-span-6">
-          <div className={`mt-8 lg:mt-0 transition-all duration-1000 delay-300 ease-out transform
-            ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-            <div className="rounded-[2rem] border border-white/50 p-5 overflow-hidden">
-              <TallyFormEmbed 
-                formId="mZeOv5"
-                height={420}
-                transparentBackground={true}
-                alignLeft={true}
-              />
             </div>
           </div>
         </div>
