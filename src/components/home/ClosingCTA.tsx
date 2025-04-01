@@ -26,8 +26,14 @@ export const ClosingCTA = ({
   // Function to open Calendly popup
   const openCalendly = () => {
     if (window.Calendly) {
+      // Check the current page to determine which Calendly URL to use
+      const isReceptionistPage = window.location.pathname.includes('ai-receptionist');
+      const calendlyUrl = isReceptionistPage 
+        ? 'https://calendly.com/d/cntp-tg6-f8k?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=7100ff'
+        : 'https://calendly.com/d/cq7r-5v8-qvw?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=8e00ff';
+      
       window.Calendly.initPopupWidget({
-        url: 'https://calendly.com/d/cq7r-5v8-qvw?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=8e00ff'
+        url: calendlyUrl
       });
       
       // Also call the onContactClick if provided
