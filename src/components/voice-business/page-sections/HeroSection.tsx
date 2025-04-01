@@ -5,6 +5,7 @@ import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 import { HeroContent } from "./HeroContent";
 import { ServiceBoxes } from "./ServiceBoxes";
+import { WebsiteSimulation } from "../WebsiteSimulation";
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -88,10 +89,43 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
   };
 
   return (
-    <section className="pt-20 pb-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
-      <div className="flex flex-col-reverse lg:flex-row items-center lg:items-center gap-8">
-        <HeroContent initialLoad={initialLoad} handleContact={handleContact} />
-        <ServiceBoxes initialLoad={initialLoad} onTryNow={handleVoiceChatClick} />
+    <section className="relative pt-16 pb-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+        <div className="absolute -top-20 right-10 w-96 h-96 rounded-full bg-[#7100ff]/10 blur-3xl"></div>
+        <div className="absolute top-40 -left-20 w-72 h-72 rounded-full bg-[#9b87f5]/10 blur-2xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-64 h-64 rounded-full bg-[#5c00d6]/15 blur-2xl"></div>
+        
+        {/* Animated gradient particles */}
+        <div className="absolute inset-0">
+          <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="dotPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+                <circle cx="2" cy="2" r="1" fill="#9b87f5" fillOpacity="0.3" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#dotPattern)" />
+          </svg>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
+        {/* Left side: Hero content */}
+        <div className="lg:col-span-6 flex flex-col justify-center">
+          <HeroContent initialLoad={initialLoad} handleContact={handleContact} />
+        </div>
+        
+        {/* Right side: Split into two rows */}
+        <div className="lg:col-span-6 flex flex-col items-center justify-between space-y-6">
+          {/* Top: Live demo simulation */}
+          <div className="w-full">
+            <h3 className="text-lg font-medium text-white text-center mb-4 opacity-80">See it in action:</h3>
+            <WebsiteSimulation />
+          </div>
+          
+          {/* Bottom: CTA card */}
+          <ServiceBoxes initialLoad={initialLoad} onTryNow={handleVoiceChatClick} />
+        </div>
       </div>
 
       {/* Voice Chat Dialog Component */}

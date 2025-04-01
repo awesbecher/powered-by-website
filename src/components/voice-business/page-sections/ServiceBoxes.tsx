@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { CalendarClock } from "lucide-react";
+import { CalendarClock, Sparkles } from "lucide-react";
 
 interface ServiceBoxesProps {
   initialLoad: boolean;
@@ -19,18 +19,47 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
   };
 
   return (
-    <div className={`w-full lg:w-1/2 transition-all duration-1000 delay-300 ease-out transform flex flex-col items-start justify-center
+    <div className={`w-full transition-all duration-1000 delay-300 ease-out transform
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
       <div className="w-full">
-        <div className="border border-white rounded-3xl p-4 overflow-hidden bg-black/20 backdrop-blur-sm">
-          <div className="flex flex-col items-center space-y-3 py-3">
-            <h3 className="text-2xl font-bold text-white text-center">
-              Ready to See How It Works?
-            </h3>
+        <div className="relative rounded-3xl p-5 overflow-hidden">
+          {/* Glass background with purple gradient outline */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#7100ff]/40 via-[#9b87f5]/20 to-transparent rounded-3xl"></div>
+          <div className="absolute inset-0.5 bg-black/60 backdrop-blur-md rounded-[1.4rem]"></div>
+          
+          {/* Animated particles in background */}
+          <div className="absolute inset-0 overflow-hidden rounded-3xl">
+            {[...Array(10)].map((_, i) => (
+              <div 
+                key={i}
+                className="absolute rounded-full bg-white/10"
+                style={{
+                  width: `${Math.random() * 10 + 5}px`,
+                  height: `${Math.random() * 10 + 5}px`,
+                  top: `${Math.random() * 100}%`,
+                  left: `${Math.random() * 100}%`,
+                  animation: `float ${Math.random() * 10 + 10}s linear infinite`,
+                  opacity: Math.random() * 0.5 + 0.2
+                }}
+              />
+            ))}
+          </div>
+          
+          <div className="relative flex flex-col items-center space-y-4 py-3 z-10">
+            <div className="flex items-center">
+              <Sparkles className="h-5 w-5 text-[#9b87f5] mr-2" />
+              <h3 className="text-2xl font-bold text-white text-center">
+                Ready to See How It Works?
+              </h3>
+            </div>
+            
             <Button 
               onClick={openCalendly}
-              className="bg-[#7100ff] hover:bg-[#5c00d6] text-white px-8 py-5 text-lg rounded-md flex items-center"
+              className="relative bg-[#7100ff] hover:bg-[#5c00d6] text-white px-8 py-5 text-lg rounded-md flex items-center group overflow-hidden"
             >
+              {/* Button glow effect */}
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#7100ff]/0 via-white/20 to-[#7100ff]/0 transform -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
+              
               <CalendarClock className="mr-2 h-5 w-5" />
               Get Started Now!
             </Button>
