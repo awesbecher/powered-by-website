@@ -13,7 +13,7 @@ interface HeroSectionProps {
 const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
   const [videoOpen, setVideoOpen] = useState(false);
 
-  // Adding Calendly script when component mounts
+  // Adding Calendly script when component mounts, but not initializing the badge widget
   useEffect(() => {
     // Load Calendly CSS
     const linkElem = document.createElement('link');
@@ -26,18 +26,6 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
     script.src = "https://assets.calendly.com/assets/external/widget.js";
     script.async = true;
     document.body.appendChild(script);
-    
-    // Initialize Calendly Badge Widget when script loads
-    script.onload = () => {
-      if (window.Calendly) {
-        window.Calendly.initBadgeWidget({ 
-          url: 'https://calendly.com/d/crwx-mj8-x7y?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=7800ff', 
-          text: 'Schedule', 
-          color: '#7800ff', 
-          textColor: '#ffffff' 
-        });
-      }
-    };
     
     // Clean up
     return () => {
@@ -83,10 +71,16 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
               >
                 <Tv className="mr-2 h-5 w-5" /> Watch video overview
               </Button>
-              {/* Note: This button is now just a placeholder as the Calendly widget is initialized via script */}
+              {/* Modified to use Calendly's popup widget instead of badge widget */}
               <Button 
                 className="order-1 sm:order-2 bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center w-full sm:w-auto"
-                onClick={handleContact}
+                onClick={() => {
+                  if (window.Calendly) {
+                    window.Calendly.initPopupWidget({
+                      url: 'https://calendly.com/d/crwx-mj8-x7y?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=7800ff'
+                    });
+                  }
+                }}
               >
                 Schedule a Demo <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
