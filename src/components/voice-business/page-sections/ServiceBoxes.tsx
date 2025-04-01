@@ -22,6 +22,15 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
     <div className={`w-full transition-all duration-1000 delay-300 ease-out transform
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
       <div className="w-full">
+        {/* Logo image above the card */}
+        <div className="flex justify-center mb-6">
+          <img 
+            src="/lovable-uploads/cf3e4a34-142d-4988-99e0-6c90f83d89e7.png" 
+            alt="Voice AI Logo" 
+            className="w-48 h-48 object-contain"
+          />
+        </div>
+        
         <div className="relative rounded-3xl p-4 overflow-hidden">
           {/* Glass background with purple gradient outline */}
           <div className="absolute inset-0 bg-gradient-to-br from-[#7100ff]/40 via-[#9b87f5]/20 to-transparent rounded-3xl"></div>
