@@ -40,20 +40,33 @@ const EmailAgent = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0f0f0f] via-[#121212] to-[#0f0f0f]">
-      <Navbar />
-      <HeroSection initialLoad={initialLoad} handleContact={handleContact} />
-      
-      {/* ServiceBoxes moved out of HeroSection and centered below it */}
-      <div className="py-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl flex justify-center">
-        <ServiceBoxes initialLoad={initialLoad} />
+      {/* Background image at the top */}
+      <div className="fixed inset-0 z-0">
+        <img 
+          src="/lovable-uploads/822234f6-1f9f-4e2d-aede-2ef9842c38b0.png" 
+          alt="Email background" 
+          className="w-full h-[60vh] object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/80 via-[#2f1c4a] to-[#1a0b2e]"></div>
       </div>
-      
-      <FeaturesSection />
-      <BenefitsSection />
-      {/* CTASection removed from here */}
-      <FAQSection />
-      <FinalCTASection handleContact={handleContact} />
-      <Footer />
+
+      {/* Content with higher z-index */}
+      <div className="relative z-10">
+        <Navbar />
+        <HeroSection initialLoad={initialLoad} handleContact={handleContact} />
+        
+        {/* ServiceBoxes moved out of HeroSection and centered below it */}
+        <div className="py-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl flex justify-center">
+          <ServiceBoxes initialLoad={initialLoad} />
+        </div>
+        
+        <FeaturesSection />
+        <BenefitsSection />
+        {/* CTASection removed from here */}
+        <FAQSection />
+        <FinalCTASection handleContact={handleContact} />
+        <Footer />
+      </div>
     </div>
   );
 };

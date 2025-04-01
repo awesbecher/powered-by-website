@@ -24,18 +24,6 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
     link.rel = 'stylesheet';
     document.head.appendChild(link);
     
-    // Initialize Calendly widget after script loads
-    script.onload = () => {
-      if (window.Calendly) {
-        window.Calendly.initBadgeWidget({
-          url: 'https://calendly.com/d/cm48-q4x-c3v?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=7100ff',
-          text: 'Schedule',
-          color: '#7100ff',
-          textColor: '#ffffff'
-        });
-      }
-    };
-    
     return () => {
       // Clean up on unmount
       if (document.body.contains(script)) {
