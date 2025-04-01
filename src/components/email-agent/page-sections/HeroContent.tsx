@@ -46,9 +46,9 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
       </div>
       
       {/* "See for yourself" section with video button and new See Demo button */}
-      <div className="flex flex-col items-start">
+      <div className="flex flex-col items-start mb-0">
         <p className="text-gray-300 font-bold mb-1 text-left">See for yourself:</p>
-        <div className="flex flex-wrap gap-3 self-start mb-2">
+        <div className="flex flex-wrap gap-3 self-start">
           <Button 
             className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-4 text-base rounded-md flex items-center"
             onClick={() => setVideoOpen(true)}
