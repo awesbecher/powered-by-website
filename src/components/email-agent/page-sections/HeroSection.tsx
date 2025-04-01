@@ -61,25 +61,25 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
         <div className="lg:col-span-5 flex flex-col justify-center items-center">
           <div className={`flex flex-col items-center transition-all duration-1000 delay-300 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-            {/* Purple spiral logo */}
+            {/* Purple spiral logo - REDUCED SIZE */}
             <img 
               src="/lovable-uploads/fadf21f3-43ca-4db8-aa89-a422bb086eda.png" 
               alt="Purple spiral logo" 
-              className="w-64 h-64 object-contain mb-4"
+              className="w-48 h-48 object-contain mb-3"
             />
             
-            {/* Ready to see how it works text */}
-            <div className="flex items-center justify-center gap-2 mb-6">
+            {/* Ready to see how it works text - REDUCED SIZE */}
+            <div className="flex items-center justify-center gap-1 mb-4">
               <span className="text-purple-400">✧</span>
-              <h3 className="text-2xl font-bold text-white text-center">Ready to See How It Works?</h3>
+              <h3 className="text-xl font-bold text-white text-center">Ready to See How It Works?</h3>
             </div>
             
-            {/* Get Started Button */}
+            {/* Get Started Button - REDUCED SIZE */}
             <button 
               onClick={openCalendly}
-              className="bg-[#6342ff] hover:bg-[#7352ff] text-white font-bold py-4 px-8 rounded-xl transition-colors flex items-center justify-center gap-2"
+              className="bg-[#6342ff] hover:bg-[#7352ff] text-white font-bold py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm"
             >
-              <CalendarClock className="w-6 h-6" />
+              <CalendarClock className="w-5 h-5" />
               Get Started Now!
             </button>
           </div>
