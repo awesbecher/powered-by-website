@@ -43,11 +43,11 @@ const EmailAgent = () => {
       {/* Background image at the top */}
       <div className="fixed inset-0 z-0">
         <img 
-          src="/lovable-uploads/822234f6-1f9f-4e2d-aede-2ef9842c38b0.png" 
+          src="/lovable-uploads/c5c962fc-964e-4139-a5fe-28f83a466b3a.png" 
           alt="Email background" 
-          className="w-full h-[60vh] object-cover object-center"
+          className="w-full h-full object-cover object-center opacity-60"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/80 via-[#2f1c4a] to-[#1a0b2e]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/60 via-[#1a0b2e]/80 to-[#1a0b2e]"></div>
       </div>
 
       {/* Content with higher z-index */}
