@@ -31,9 +31,9 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
     script.onload = () => {
       if (window.Calendly) {
         window.Calendly.initBadgeWidget({
-          url: 'https://calendly.com/teampoweredby/powered_by-demo-virtual-se?hide_gdpr_banner=1',
-          text: 'Schedule Demo',
-          color: '#ea384c',
+          url: 'https://calendly.com/d/cnbc-rvx-4vd?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=ff0025',
+          text: 'Schedule',
+          color: '#ff0025',
           textColor: '#ffffff'
         });
       }

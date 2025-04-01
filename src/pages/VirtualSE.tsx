@@ -37,7 +37,7 @@ const VirtualSE = () => {
     // Use Calendly popup instead
     if (window.Calendly) {
       window.Calendly.initPopupWidget({
-        url: 'https://calendly.com/teampoweredby/powered_by-demo-virtual-se?hide_gdpr_banner=1'
+        url: 'https://calendly.com/d/cnbc-rvx-4vd?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=ff0025'
       });
     }
   };

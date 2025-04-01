@@ -20,15 +20,24 @@ const GetVirtualSE = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     
-    // Load Tally embed script
+    // Load Calendly script
     const script = document.createElement('script');
-    script.src = 'https://tally.so/widgets/embed.js';
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
     script.async = true;
     document.body.appendChild(script);
+    
+    // Load Tally embed script
+    const tallyScript = document.createElement('script');
+    tallyScript.src = 'https://tally.so/widgets/embed.js';
+    tallyScript.async = true;
+    document.body.appendChild(tallyScript);
     
     return () => {
       if (document.body.contains(script)) {
         document.body.removeChild(script);
+      }
+      if (document.body.contains(tallyScript)) {
+        document.body.removeChild(tallyScript);
       }
     };
   }, []);
@@ -37,7 +46,7 @@ const GetVirtualSE = () => {
     // Use Calendly popup instead
     if (window.Calendly) {
       window.Calendly.initPopupWidget({
-        url: 'https://calendly.com/teampoweredby/powered_by-demo-virtual-se?hide_gdpr_banner=1'
+        url: 'https://calendly.com/d/cnbc-rvx-4vd?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=ff0025'
       });
     }
   };
