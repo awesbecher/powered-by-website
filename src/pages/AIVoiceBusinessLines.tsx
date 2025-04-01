@@ -42,6 +42,12 @@ const AIVoiceBusinessLines = () => {
     scriptElement.async = true;
     document.body.appendChild(scriptElement);
     
+    // Add Calendly CSS
+    const linkElement = document.createElement('link');
+    linkElement.href = 'https://assets.calendly.com/assets/external/widget.css';
+    linkElement.rel = 'stylesheet';
+    document.head.appendChild(linkElement);
+    
     // Add Calendly badge initialization
     scriptElement.onload = () => {
       if (window.Calendly) {
@@ -53,12 +59,6 @@ const AIVoiceBusinessLines = () => {
         });
       }
     };
-    
-    // Also add the CSS for Calendly
-    const linkElement = document.createElement('link');
-    linkElement.href = 'https://assets.calendly.com/assets/external/widget.css';
-    linkElement.rel = 'stylesheet';
-    document.head.appendChild(linkElement);
     
     // Cleanup on component unmount
     return () => {
