@@ -5,7 +5,6 @@ import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 import { HeroContent } from "./HeroContent";
 import { ServiceBoxes } from "./ServiceBoxes";
-import { WebsiteSimulation } from "../WebsiteSimulation";
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -111,19 +110,13 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
         {/* Left side: Hero content */}
-        <div className="lg:col-span-6 flex flex-col justify-center">
+        <div className="lg:col-span-12 flex flex-col justify-center">
           <HeroContent initialLoad={initialLoad} handleContact={handleContact} />
-        </div>
-        
-        {/* Right side: Split into two rows */}
-        <div className="lg:col-span-6 flex flex-col items-center justify-between space-y-6">
-          {/* Top: Live demo simulation - Removed the "See it in action:" heading */}
-          <div className="w-full">
-            <WebsiteSimulation />
-          </div>
           
-          {/* Bottom: CTA card */}
-          <ServiceBoxes initialLoad={initialLoad} onTryNow={handleVoiceChatClick} />
+          {/* CTA card - moved from right column to bottom of left column */}
+          <div className="mt-8">
+            <ServiceBoxes initialLoad={initialLoad} onTryNow={handleVoiceChatClick} />
+          </div>
         </div>
       </div>
 
