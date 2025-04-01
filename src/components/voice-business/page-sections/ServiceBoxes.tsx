@@ -31,10 +31,10 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
             onClick={openCalendly} 
           />
           
-          {/* Add headset icon overlay */}
+          {/* Headset icon with gradient background - adjusted size and positioning */}
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <div className="bg-gradient-to-br from-[#9b87f5] to-[#6342ff] rounded-full p-3">
-              <Headset className="w-8 h-8 text-white" />
+            <div className="bg-[#8B5CF6] rounded-full p-1.5 flex items-center justify-center" style={{ width: '32px', height: '32px' }}>
+              <Headset className="w-5 h-5 text-white" />
             </div>
           </div>
         </div>
