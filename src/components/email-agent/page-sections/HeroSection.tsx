@@ -65,7 +65,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
               {/* Purple spiral logo */}
               <div className="flex justify-center mb-8">
                 <img 
-                  src="/lovable-uploads/babb27f7-2a3c-4584-af4b-397cfdbe97ea.png" 
+                  src="/lovable-uploads/fadf21f3-43ca-4db8-aa89-a422bb086eda.png" 
                   alt="Purple spiral logo" 
                   className="w-40 h-40 object-contain"
                 />
