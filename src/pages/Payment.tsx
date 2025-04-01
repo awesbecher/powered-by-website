@@ -11,7 +11,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
 // Form schema for validation
@@ -39,12 +39,6 @@ const Payment = () => {
       amount: amountFromUrl ? parseInt(amountFromUrl) : 100,
     },
   });
-
-  // Initialize Supabase client
-  const supabase = createClient(
-    import.meta.env.VITE_SUPABASE_URL || '',
-    import.meta.env.VITE_SUPABASE_ANON_KEY || ''
-  );
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setLoading(true);
