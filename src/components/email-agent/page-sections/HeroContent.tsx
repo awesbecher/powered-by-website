@@ -1,9 +1,9 @@
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Tv } from "lucide-react";
+import { ArrowRight, Tv, Mic } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PoweredByText } from "@/components/shared/PoweredByText";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 interface HeroContentProps {
@@ -13,6 +13,15 @@ interface HeroContentProps {
 
 export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) => {
   const [videoOpen, setVideoOpen] = useState(false);
+  
+  // Function to open Calendly popup
+  const openCalendly = () => {
+    if (window.Calendly) {
+      window.Calendly.initPopupWidget({
+        url: 'https://calendly.com/d/cm48-q4x-c3v?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=7100ff'
+      });
+    }
+  };
   
   return (
     <div className={`w-full space-y-4 transition-all duration-1000 ease-out transform
@@ -36,7 +45,7 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
         </ul>
       </div>
       
-      {/* New "See for yourself" section with video button */}
+      {/* "See for yourself" section with video button and new See Demo button */}
       <div className="flex flex-col items-start">
         <p className="text-gray-300 font-bold mb-1 text-left">See for yourself:</p>
         <div className="flex flex-wrap gap-3 self-start">
@@ -45,6 +54,14 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
             onClick={() => setVideoOpen(true)}
           >
             <Tv className="mr-2 h-5 w-5" /> Watch our intro to AI Email Agents
+          </Button>
+          
+          {/* New "See Demo" button */}
+          <Button 
+            className="bg-transparent hover:bg-white/10 text-white px-6 py-4 text-base rounded-md flex items-center justify-center border-2 border-white"
+            onClick={openCalendly}
+          >
+            <Mic className="mr-2 h-5 w-5" /> See Demo
           </Button>
         </div>
       </div>
