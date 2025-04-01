@@ -83,7 +83,15 @@ const Payment = () => {
       <div className="container mx-auto px-4 py-20">
         <div className="max-w-md mx-auto">
           <Card className="p-6 bg-white/5 backdrop-blur-lg border border-white/10">
-            <h1 className="text-2xl font-bold text-white mb-6">
+            <div className="flex justify-center mb-4">
+              <img 
+                src="/lovable-uploads/6402ce08-e286-4857-864a-8d835bfaa5d3.png" 
+                alt="Payment Logo" 
+                className="h-24 w-auto"
+              />
+            </div>
+            
+            <h1 className="text-2xl font-bold text-white mb-6 text-center">
               {productFromUrl ? `Payment for ${productFromUrl}` : 'Complete Your Payment'}
             </h1>
             
