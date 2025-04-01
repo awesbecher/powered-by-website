@@ -22,12 +22,13 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
     <div className={`w-full transition-all duration-1000 delay-300 ease-out transform
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
       <div className="w-full">
-        {/* Logo image above the card - reduced bottom margin from mb-6 to mb-3 */}
+        {/* Logo image above the card - now clickable */}
         <div className="flex justify-center mb-3">
           <img 
             src="/lovable-uploads/cf3e4a34-142d-4988-99e0-6c90f83d89e7.png" 
             alt="Voice AI Logo" 
-            className="w-40 h-40 object-contain" // Reduced size from w-48 h-48 to w-40 h-40
+            className="w-40 h-40 object-contain cursor-pointer hover:opacity-90 transition-opacity" 
+            onClick={openCalendly} 
           />
         </div>
         
