@@ -20,24 +20,24 @@ const GetVirtualSE = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     
-    // Load Calendly script
+    // Load Tally embed script
     const script = document.createElement('script');
-    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    script.src = 'https://tally.so/widgets/embed.js';
     script.async = true;
     document.body.appendChild(script);
     
-    // Load Tally embed script
-    const tallyScript = document.createElement('script');
-    tallyScript.src = 'https://tally.so/widgets/embed.js';
-    tallyScript.async = true;
-    document.body.appendChild(tallyScript);
+    // Load Calendly script
+    const calendlyScript = document.createElement('script');
+    calendlyScript.src = 'https://assets.calendly.com/assets/external/widget.js';
+    calendlyScript.async = true;
+    document.body.appendChild(calendlyScript);
     
     return () => {
       if (document.body.contains(script)) {
         document.body.removeChild(script);
       }
-      if (document.body.contains(tallyScript)) {
-        document.body.removeChild(tallyScript);
+      if (document.body.contains(calendlyScript)) {
+        document.body.removeChild(calendlyScript);
       }
     };
   }, []);

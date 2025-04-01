@@ -27,18 +27,6 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
     script.async = true;
     document.body.appendChild(script);
     
-    // Initialize Calendly widget after script loads
-    script.onload = () => {
-      if (window.Calendly) {
-        window.Calendly.initBadgeWidget({
-          url: 'https://calendly.com/d/cnbc-rvx-4vd?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=ff0025',
-          text: 'Schedule',
-          color: '#ff0025',
-          textColor: '#ffffff'
-        });
-      }
-    };
-    
     // Load Tally script
     const tallyScript = document.createElement('script');
     tallyScript.src = 'https://tally.so/widgets/embed.js';
@@ -96,7 +84,7 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
                 onClick={() => {
                   if (window.Calendly) {
                     window.Calendly.initPopupWidget({
-                      url: 'https://calendly.com/teampoweredby/powered_by-demo-virtual-se?hide_gdpr_banner=1'
+                      url: 'https://calendly.com/d/cnbc-rvx-4vd?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=ff0025'
                     });
                   }
                 }}
