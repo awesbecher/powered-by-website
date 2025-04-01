@@ -106,7 +106,6 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
               <div className="mb-3 text-white">
                 <h3 className="font-semibold text-xl mb-2">Read our comprehensive e-book <span className="border-b-2 border-[#ea384c]">A Virtual SE in the Modern SaaS Sales Organization</span></h3>
                 <p className="text-gray-300 mb-1">Learn how to guarantee SE coverage in every sales meeting using an AI-enabled pre-sales engineer.</p>
-                <p className="text-gray-200 italic text-sm">Enter your details below to access the report:</p>
               </div>
               
               {/* Updated Tally form with new data attributes approach */}
