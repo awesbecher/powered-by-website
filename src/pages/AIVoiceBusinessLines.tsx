@@ -48,17 +48,7 @@ const AIVoiceBusinessLines = () => {
     linkElement.rel = 'stylesheet';
     document.head.appendChild(linkElement);
     
-    // Add Calendly badge initialization
-    scriptElement.onload = () => {
-      if (window.Calendly) {
-        window.Calendly.initBadgeWidget({
-          url: 'https://calendly.com/d/cntp-tg6-f8k?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=7100ff',
-          text: 'Schedule',
-          color: '#7100ff',
-          textColor: '#ffffff'
-        });
-      }
-    };
+    // Removed the Calendly badge widget initialization that was here
     
     // Cleanup on component unmount
     return () => {
