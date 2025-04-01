@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Index from "./pages/Index";
@@ -40,6 +41,9 @@ import ProductHunt from "./pages/ProductHunt";
 import NotFound from "./pages/NotFound";
 import Pricing from "./pages/Pricing";
 import News from "./pages/News";
+import Payment from "./pages/Payment";
+import PaymentSuccess from "./pages/PaymentSuccess";
+import PaymentCancelled from "./pages/PaymentCancelled";
 import { Toaster } from "@/components/ui/toaster"
 import { GlobalVoiceChatDialog } from './components/shared/GlobalVoiceChatDialog';
 import OmegaPediatrics from "./pages/OmegaPediatrics";
@@ -94,6 +98,10 @@ function App() {
                   </ProtectedRoute>
                 } 
               />
+              {/* Payment routes */}
+              <Route path="/payment" element={<Payment />} />
+              <Route path="/payment-success" element={<PaymentSuccess />} />
+              <Route path="/payment-cancelled" element={<PaymentCancelled />} />
               <Route path="/product-hunt" element={<Navigate to="/launch" replace />} />
               <Route path="/ai-assistant" element={<Navigate to="/ai-receptionist" replace />} />
               <Route path="/voice-business-lines" element={<Navigate to="/ai-receptionist" replace />} />
