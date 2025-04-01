@@ -56,7 +56,7 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
     <section className="pt-8 pb-0 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-0">
         {/* Left side - Hero content */}
-        <div className="lg:col-span-6">
+        <div className="lg:col-span-6 flex flex-col justify-center">
           <div className={`space-y-6 transition-all duration-1000 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <h1>
@@ -96,8 +96,8 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
         </div>
         
         {/* Right side - Form */}
-        <div className="lg:col-span-6">
-          <div className={`mt-8 lg:mt-0 transition-all duration-1000 delay-300 ease-out transform
+        <div className="lg:col-span-6 flex items-center">
+          <div className={`w-full transition-all duration-1000 delay-300 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             
             {/* Form */}
