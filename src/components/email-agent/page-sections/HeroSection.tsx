@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { HeroContent } from "./HeroContent";
-import { CalendarClock } from "lucide-react";
+import { CalendarClock, Mail } from "lucide-react";
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -61,12 +61,21 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
         <div className="lg:col-span-5 flex flex-col justify-center items-center">
           <div className={`flex flex-col items-center transition-all duration-1000 delay-300 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-            {/* Purple spiral logo - REDUCED SIZE */}
-            <img 
-              src="/lovable-uploads/fadf21f3-43ca-4db8-aa89-a422bb086eda.png" 
-              alt="Purple spiral logo" 
-              className="w-48 h-48 object-contain mb-3"
-            />
+            {/* Purple spiral logo with mail icon overlay */}
+            <div className="relative">
+              <img 
+                src="/lovable-uploads/fadf21f3-43ca-4db8-aa89-a422bb086eda.png" 
+                alt="Purple spiral logo" 
+                className="w-48 h-48 object-contain mb-3"
+              />
+              
+              {/* Mail icon with gradient overlay */}
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <div className="bg-gradient-to-br from-[#9b87f5] to-[#6342ff] rounded-full p-3">
+                  <Mail className="w-8 h-8 text-white" />
+                </div>
+              </div>
+            </div>
             
             {/* Ready to see how it works text - REDUCED SIZE */}
             <div className="flex items-center justify-center gap-1 mb-4">
