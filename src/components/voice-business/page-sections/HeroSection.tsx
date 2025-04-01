@@ -108,7 +108,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
-        {/* Full width for hero content */}
+        {/* Left side: Hero content - kept intact */}
         <div className="lg:col-span-12 flex flex-col justify-center">
           <HeroContent initialLoad={initialLoad} handleContact={handleContact} />
         </div>
