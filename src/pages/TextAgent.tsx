@@ -30,6 +30,16 @@ const TextAgent = () => {
   useEffect(() => {
     // Set to false immediately to avoid any initial load animation
     setInitialLoad(false);
+    
+    // Initialize Calendly badge widget
+    if (window.Calendly) {
+      window.Calendly.initBadgeWidget({ 
+        url: 'https://calendly.com/d/crr5-c3g-q3z?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=7100ff', 
+        text: 'Schedule', 
+        color: '#7100ff', 
+        textColor: '#ffffff' 
+      });
+    }
   }, []);
 
   const handleContact = () => {
@@ -47,9 +57,9 @@ const TextAgent = () => {
         <img 
           src="/lovable-uploads/822234f6-1f9f-4e2d-aede-2ef9842c38b0.png" 
           alt="Person texting on phone" 
-          className="w-full h-[60vh] object-cover object-center"
+          className="w-full h-full object-cover object-center opacity-80"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/80 via-[#2f1c4a] to-[#1a0b2e]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/60 via-[#1a0b2e]/80 to-[#1a0b2e]"></div>
       </div>
 
       {/* Content with higher z-index */}
@@ -57,8 +67,8 @@ const TextAgent = () => {
         <Navbar />
         <HeroSection initialLoad={initialLoad} handleContact={handleContact} />
         
-        {/* ServiceBoxes with reduced padding */}
-        <div className="py-0 px-4 sm:px-6 lg:px-8 mx-auto max-w-3xl flex justify-center -mt-4">
+        {/* ServiceBoxes moved out of HeroSection and centered below it with reduced padding */}
+        <div className="py-4 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl flex justify-center -mt-4">
           <ServiceBoxes initialLoad={initialLoad} />
         </div>
         
