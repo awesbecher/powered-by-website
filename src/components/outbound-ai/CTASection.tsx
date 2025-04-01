@@ -19,14 +19,18 @@ const CTASection = ({ handleContact }: CTASectionProps) => {
           <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
             Deploy OutboundAI today and see how our intelligent, conversational AI agents can help your team reach more prospects, book more meetings, and close more deals without increasing headcount.
           </p>
-          <Link to="/contact">
-            <Button 
-              className="bg-white hover:bg-gray-100 text-[#6342ff] font-bold px-8 py-6 text-lg rounded-md"
-              onClick={handleContact}
-            >
-              Schedule Your Demo Today
-            </Button>
-          </Link>
+          <Button 
+            className="bg-white hover:bg-gray-100 text-[#6342ff] font-bold px-8 py-6 text-lg rounded-md"
+            onClick={() => {
+              if (window.Calendly) {
+                window.Calendly.initPopupWidget({
+                  url: 'https://calendly.com/d/crwx-mj8-x7y?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=7800ff'
+                });
+              }
+            }}
+          >
+            Schedule Your Demo Today
+          </Button>
         </div>
       </div>
     </section>
