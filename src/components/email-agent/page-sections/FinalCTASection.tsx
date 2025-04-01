@@ -1,7 +1,6 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
 import { PoweredByText } from "@/components/shared/PoweredByText";
 
 interface FinalCTASectionProps {
@@ -9,6 +8,15 @@ interface FinalCTASectionProps {
 }
 
 export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
+  // Function to open Calendly popup
+  const openCalendly = () => {
+    if (window.Calendly) {
+      window.Calendly.initPopupWidget({
+        url: 'https://calendly.com/d/cm48-q4x-c3v?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=7100ff'
+      });
+    }
+  };
+
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl text-center">
       <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8">
@@ -19,14 +27,12 @@ export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
       <p className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto">
         Boost efficiency, improve follow-up rates, and enhance customer satisfaction—all with the power of a <PoweredByText /> AI Email Agent.
       </p>
-      <Link to="/contact">
-        <Button 
-          className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-8 py-6 text-lg rounded-md mx-auto"
-          onClick={handleContact}
-        >
-          Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
-        </Button>
-      </Link>
+      <Button 
+        className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-8 py-6 text-lg rounded-md mx-auto"
+        onClick={openCalendly}
+      >
+        Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
+      </Button>
     </section>
   );
 };
