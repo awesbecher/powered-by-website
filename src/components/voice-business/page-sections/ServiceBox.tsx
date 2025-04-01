@@ -1,5 +1,5 @@
 
-import { LucideIcon, Phone } from "lucide-react";
+import { LucideIcon, Phone, UserPlus } from "lucide-react";
 
 interface ServiceBoxProps {
   icon: LucideIcon;

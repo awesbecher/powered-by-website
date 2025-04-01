@@ -5,6 +5,8 @@ import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 import { HeroContent } from "./HeroContent";
 import { ServiceBoxes } from "./ServiceBoxes";
+import { ServiceBox } from "./ServiceBox";
+import { Calendar, Headphones, Phone, UserSearch } from "lucide-react";
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -117,6 +119,37 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
         {/* Right side: CTA card in a more compact size */}
         <div className="lg:col-span-4 flex items-center justify-center">
           <ServiceBoxes initialLoad={initialLoad} onTryNow={handleVoiceChatClick} />
+        </div>
+      </div>
+
+      {/* Service Boxes Grid */}
+      <div className={`mt-12 transition-all duration-1000 delay-500 ease-out transform
+        ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <ServiceBox 
+            icon={Phone} 
+            category="Handle Customer Inquiries" 
+            businessName="Answer calls, provide information, and convert leads"
+            phoneNumber="24/7/365"
+          />
+          <ServiceBox 
+            icon={Calendar} 
+            category="Automate Scheduling" 
+            businessName="Book appointments with calendar integration"
+            phoneNumber="Seamless Experience"
+          />
+          <ServiceBox 
+            icon={Headphones} 
+            category="24/7 Availability" 
+            businessName="Never miss a customer call again"
+            phoneNumber="Always On"
+          />
+          <ServiceBox 
+            icon={UserSearch} 
+            category="Pre-Screen Leads & Qualify Clients" 
+            businessName="Gather customer details upfront and qualify them"
+            phoneNumber="Smart Qualification"
+          />
         </div>
       </div>
 
