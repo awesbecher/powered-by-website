@@ -80,8 +80,8 @@ const ContentSections = ({ initialLoad }: ContentSectionsProps) => {
               <InfoCard 
                 title="How It Works" 
                 icon={Cpu}
-                gradientFrom="blue-600"
-                gradientTo="cyan-600"
+                gradientFrom="[#ea384c]"
+                gradientTo="[#ea384c]"
               >
                 <div className="space-y-4">
                   <p>Virtual SE connects seamlessly to common meeting platforms such as Zoom, Google Meet, and Microsoft Teams in the same way that Gong or Otter.ai plug into your meetings. Once invited to a call, it listens in real time and responds to technical questions with a remarkably human-like voice. Virtual SE draws from your company's existing product documentation, training materials, and messaging to provide on-the-spot technical explanations. It can also automatically log meeting notes and key takeaways to CRM systems like HubSpot or Salesforce.</p>
@@ -101,8 +101,8 @@ const ContentSections = ({ initialLoad }: ContentSectionsProps) => {
               <InfoCard 
                 title="Why It Matters" 
                 icon={FileText}
-                gradientFrom="green-600"
-                gradientTo="teal-600"
+                gradientFrom="[#ea384c]"
+                gradientTo="[#ea384c]"
               >
                 <div className="space-y-4">
                   <p>SE teams are chronically overloaded, often becoming bottlenecks in the sales process. Virtual SE addresses this challenge by ensuring consistent technical support is available for every sales conversation. Force-multiply your SE team coverage and re-allocate your precious human SE resources to the most high value sales activities.</p>
@@ -123,8 +123,8 @@ const ContentSections = ({ initialLoad }: ContentSectionsProps) => {
               <InfoCard 
                 title="Use Cases" 
                 icon={Users}
-                gradientFrom="amber-600"
-                gradientTo="orange-600"
+                gradientFrom="[#ea384c]"
+                gradientTo="[#ea384c]"
               >
                 <div className="space-y-6">
                   <div>
@@ -152,8 +152,8 @@ const ContentSections = ({ initialLoad }: ContentSectionsProps) => {
               <InfoCard 
                 title="Privacy & Compliance" 
                 icon={ShieldCheck}
-                gradientFrom="slate-600"
-                gradientTo="gray-600"
+                gradientFrom="[#ea384c]"
+                gradientTo="[#ea384c]"
               >
                 <div className="space-y-6">
                   <div>
