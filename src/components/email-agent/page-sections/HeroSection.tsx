@@ -57,26 +57,18 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
           <HeroContent initialLoad={initialLoad} handleContact={handleContact} />
         </div>
         
-        {/* Right side - UPDATED: Spiral logo with email icon */}
+        {/* Right side - New spiral logo */}
         <div className="lg:col-span-5 flex flex-col justify-center items-center">
           <div className={`flex flex-col items-center transition-all duration-1000 delay-300 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             
-            {/* Updated spiral logo with email icon and transparent background */}
+            {/* New spiral image */}
             <div className="relative mb-3">
-              {/* Spiral background */}
               <img 
-                src="/lovable-uploads/ab7197b2-d92d-4668-a38c-cd650b16c3d5.png" 
+                src="/lovable-uploads/481415ac-8aa5-41e0-8679-2701410d3c93.png" 
                 alt="Purple spiral logo" 
-                className="w-48 h-48 object-contain mix-blend-screen"
+                className="w-64 h-64 object-contain"
               />
-              
-              {/* Email icon overlay */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
-                <div className="bg-gradient-to-br from-[#9b87f5] to-[#7100ff] rounded-full flex items-center justify-center" style={{ width: '60px', height: '60px' }}>
-                  <Mail className="w-7 h-7 text-white" />
-                </div>
-              </div>
             </div>
             
             {/* Ready to see how it works text */}
