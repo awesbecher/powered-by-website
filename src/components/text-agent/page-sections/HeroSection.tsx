@@ -62,11 +62,11 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
           <div className={`flex flex-col items-center transition-all duration-1000 delay-300 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             
-            {/* New spiral image */}
+            {/* New spiral logo image */}
             <div className="relative mb-3">
               <img 
-                src="/lovable-uploads/9a61c267-112f-464b-9479-2be87bbe7d9b.png" 
-                alt="Sarah - AI Text Agent" 
+                src="/lovable-uploads/adc85c2c-7f19-4078-ab9f-a558997c4f75.png" 
+                alt="AI Text Agent - Spiral Logo" 
                 className="w-64 h-64 object-contain"
               />
             </div>
