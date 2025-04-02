@@ -2,7 +2,7 @@
 import React from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { X, Mic, MicOff, Activity } from "lucide-react";
+import { X, Activity } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface CallDialogProps {
@@ -101,18 +101,10 @@ const CallDialog: React.FC<CallDialogProps> = ({
               </div>
             </div>
             
-            <div className="flex space-x-4">
-              <button 
-                onClick={onToggleMute}
-                className="flex-1 py-3 px-4 border border-gray-300 rounded-md flex items-center justify-center space-x-2 hover:bg-gray-50 transition-colors"
-              >
-                {isMuted ? <MicOff className="w-5 h-5 mr-2" /> : <Mic className="w-5 h-5 mr-2" />}
-                <span>{isMuted ? "Unmute" : "Mute"}</span>
-              </button>
-              
+            <div className="flex justify-center">
               <button 
                 onClick={onEndCall}
-                className="flex-1 py-3 px-4 bg-red-500 text-white rounded-md flex items-center justify-center space-x-2 hover:bg-red-600 transition-colors"
+                className="w-full py-3 px-4 bg-red-500 text-white rounded-md flex items-center justify-center space-x-2 hover:bg-red-600 transition-colors"
               >
                 <X className="w-5 h-5 mr-2" />
                 <span>End Call</span>
@@ -143,15 +135,7 @@ const CallDialog: React.FC<CallDialogProps> = ({
           <p className="text-gray-300">Call in progress</p>
         </div>
         
-        <div className="flex gap-2">
-          <Button
-            variant="outline"
-            className="w-full border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white"
-            onClick={onToggleMute}
-          >
-            {isMuted ? <MicOff className="mr-2 h-4 w-4" /> : <Mic className="mr-2 h-4 w-4" />}
-            {isMuted ? "Unmute" : "Mute"}
-          </Button>
+        <div className="flex justify-center">
           <Button
             variant="destructive"
             className="w-full"

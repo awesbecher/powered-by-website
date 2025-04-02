@@ -1,7 +1,7 @@
 
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Activity, Mic, MicOff, X } from "lucide-react";
+import { Activity, X } from "lucide-react";
 
 interface ActiveCallDialogProps {
   isOpen: boolean;
@@ -79,20 +79,12 @@ export const ActiveCallDialog = ({
             </div>
           </div>
           
-          <div className="flex space-x-4">
-            <button 
-              onClick={toggleMute}
-              className="flex-1 py-3 px-4 border border-gray-300 rounded-md flex items-center justify-center space-x-2 hover:bg-gray-50 transition-colors"
-            >
-              {isMuted ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
-              <span>{isMuted ? "Unmute" : "Mute"}</span>
-            </button>
-            
+          <div className="flex justify-center">
             <button 
               onClick={handleEndCall}
-              className="flex-1 py-3 px-4 bg-red-500 text-white rounded-md flex items-center justify-center space-x-2 hover:bg-red-600 transition-colors"
+              className="w-full py-3 px-4 bg-red-500 text-white rounded-md flex items-center justify-center space-x-2 hover:bg-red-600 transition-colors"
             >
-              <X className="w-5 h-5" />
+              <X className="w-5 h-5 mr-2" />
               <span>End Call</span>
             </button>
           </div>

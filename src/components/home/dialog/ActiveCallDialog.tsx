@@ -1,7 +1,7 @@
+
 import { DialogContent } from "@/components/ui/dialog";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Activity, Mic, MicOff, X } from "lucide-react";
-import { useState } from "react";
+import { Activity, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 interface ActiveCallDialogProps {
@@ -9,12 +9,7 @@ interface ActiveCallDialogProps {
 }
 
 export const ActiveCallDialog = ({ handleEndCall }: ActiveCallDialogProps) => {
-  const [isMuted, setIsMuted] = useState(false);
   const navigate = useNavigate();
-
-  const toggleMute = () => {
-    setIsMuted(!isMuted);
-  };
 
   const handleEndCallAndNavigate = () => {
     handleEndCall();
@@ -73,18 +68,10 @@ export const ActiveCallDialog = ({ handleEndCall }: ActiveCallDialogProps) => {
           </div>
         </div>
         
-        <div className="flex space-x-4">
-          <button 
-            onClick={toggleMute}
-            className="flex-1 py-4 px-6 bg-[#1e2a3b] rounded-md flex items-center justify-center space-x-2 hover:bg-gray-900 transition-colors text-white"
-          >
-            {isMuted ? <MicOff className="w-5 h-5 mr-2" /> : <Mic className="w-5 h-5 mr-2" />}
-            <span>{isMuted ? "Unmute" : "Mute"}</span>
-          </button>
-          
+        <div className="flex justify-center">
           <button 
             onClick={handleEndCallAndNavigate}
-            className="flex-1 py-4 px-6 bg-red-600 hover:bg-red-700 text-white rounded-md flex items-center justify-center space-x-2 transition-colors"
+            className="w-full py-4 px-6 bg-red-600 hover:bg-red-700 text-white rounded-md flex items-center justify-center space-x-2 transition-colors"
           >
             <X className="w-5 h-5 mr-2" />
             <span>End Call</span>

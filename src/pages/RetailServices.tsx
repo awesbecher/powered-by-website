@@ -8,13 +8,12 @@ import BookingDialog from "@/components/retail-services/BookingDialog";
 import { useNavigate, Link } from "react-router-dom";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Activity, Mic, MicOff, X, ChevronLeft } from "lucide-react";
+import { Activity, X, ChevronLeft } from "lucide-react";
 
 const RetailServices = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isCallActive, setIsCallActive] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -53,11 +52,6 @@ const RetailServices = () => {
         description: "Please try again."
       });
     }
-  };
-
-  const toggleMute = () => {
-    // In a real implementation, this would interact with the Vapi SDK to mute/unmute
-    setIsMuted(!isMuted);
   };
 
   return (
@@ -143,20 +137,12 @@ const RetailServices = () => {
               </div>
             </div>
             
-            <div className="flex space-x-4">
-              <button 
-                onClick={toggleMute}
-                className="flex-1 py-3 px-4 border border-gray-300 rounded-md flex items-center justify-center space-x-2 hover:bg-gray-50 transition-colors"
-              >
-                {isMuted ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
-                <span>{isMuted ? "Unmute" : "Mute"}</span>
-              </button>
-              
+            <div className="flex justify-center">
               <button 
                 onClick={handleEndCall}
-                className="flex-1 py-3 px-4 bg-red-500 text-white rounded-md flex items-center justify-center space-x-2 hover:bg-red-600 transition-colors"
+                className="w-full py-3 px-4 bg-red-500 text-white rounded-md flex items-center justify-center space-x-2 hover:bg-red-600 transition-colors"
               >
-                <X className="w-5 h-5" />
+                <X className="w-5 h-5 mr-2" />
                 <span>End Call</span>
               </button>
             </div>

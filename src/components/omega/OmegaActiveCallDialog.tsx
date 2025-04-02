@@ -1,9 +1,9 @@
 
-import React, { useState } from "react";
+import React from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Activity, Mic, MicOff, X } from "lucide-react";
+import { Activity, X } from "lucide-react";
 import { stopVapiCall } from "@/services/vapiService";
 import { useToast } from "@/hooks/use-toast";
 
@@ -18,17 +18,7 @@ const OmegaActiveCallDialog: React.FC<OmegaActiveCallDialogProps> = ({
   onOpenChange,
   onEndCall
 }) => {
-  const [isMuted, setIsMuted] = useState(false);
   const { toast } = useToast();
-
-  const handleToggleMute = () => {
-    setIsMuted(!isMuted);
-    // In a real implementation, this would toggle the microphone
-    toast({
-      title: isMuted ? "Microphone Unmuted" : "Microphone Muted",
-      description: isMuted ? "You can now be heard again." : "You have been muted."
-    });
-  };
 
   const handleEndCall = () => {
     try {
@@ -96,18 +86,10 @@ const OmegaActiveCallDialog: React.FC<OmegaActiveCallDialogProps> = ({
             </div>
           </div>
           
-          <div className="flex space-x-4">
-            <button 
-              onClick={handleToggleMute}
-              className="flex-1 py-4 px-6 bg-[#1e2a3b] rounded-md flex items-center justify-center space-x-2 hover:bg-gray-900 transition-colors text-white"
-            >
-              {isMuted ? <MicOff className="w-5 h-5 mr-2" /> : <Mic className="w-5 h-5 mr-2" />}
-              <span>{isMuted ? "Unmute" : "Mute"}</span>
-            </button>
-            
+          <div className="flex justify-center">
             <button 
               onClick={handleEndCall}
-              className="flex-1 py-4 px-6 bg-red-600 hover:bg-red-700 text-white rounded-md flex items-center justify-center space-x-2 transition-colors"
+              className="w-full py-4 px-6 bg-red-600 hover:bg-red-700 text-white rounded-md flex items-center justify-center space-x-2 transition-colors"
             >
               <X className="w-5 h-5 mr-2" />
               <span>End Call</span>

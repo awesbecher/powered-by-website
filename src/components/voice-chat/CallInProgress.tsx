@@ -1,6 +1,6 @@
 
 import React from "react";
-import { X, Mic, MicOff, Activity } from "lucide-react";
+import { X, Activity } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 interface CallInProgressProps {
@@ -107,18 +107,10 @@ export const CallInProgress = ({
           </div>
         </div>
         
-        <div className="flex space-x-3">
-          <button 
-            onClick={() => setIsMuted(!isMuted)}
-            className="flex-1 py-2 px-3 border border-gray-600 rounded-md flex items-center justify-center space-x-2 hover:bg-gray-900 transition-colors text-white text-sm"
-          >
-            {isMuted ? <MicOff className="w-3 h-3 mr-1" /> : <Mic className="w-3 h-3 mr-1" />}
-            <span>{isMuted ? "Unmute" : "Mute"}</span>
-          </button>
-          
+        <div className="flex justify-center">
           <button 
             onClick={handleEndCall}
-            className="flex-1 py-2 px-3 bg-red-500 text-white rounded-md flex items-center justify-center space-x-2 hover:bg-red-600 transition-colors text-sm"
+            className="w-full py-2 px-3 bg-red-500 text-white rounded-md flex items-center justify-center space-x-2 hover:bg-red-600 transition-colors text-sm"
           >
             <X className="w-3 h-3 mr-1" />
             <span>End Call</span>
