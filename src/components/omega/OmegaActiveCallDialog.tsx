@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -19,6 +19,15 @@ const OmegaActiveCallDialog: React.FC<OmegaActiveCallDialogProps> = ({
   onEndCall
 }) => {
   const { toast } = useToast();
+
+  // Add cleanup effect that ends the call when component unmounts
+  useEffect(() => {
+    return () => {
+      if (open) {
+        handleEndCall();
+      }
+    };
+  }, [open]);
 
   const handleEndCall = () => {
     try {

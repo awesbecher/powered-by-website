@@ -3,6 +3,7 @@ import { DialogContent } from "@/components/ui/dialog";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Activity, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 interface ActiveCallDialogProps {
   handleEndCall: () => void;
@@ -15,6 +16,13 @@ export const ActiveCallDialog = ({ handleEndCall }: ActiveCallDialogProps) => {
     handleEndCall();
     navigate('/voice-chat');
   };
+
+  // Add cleanup effect that ends the call when component unmounts
+  useEffect(() => {
+    return () => {
+      handleEndCall();
+    };
+  }, [handleEndCall]);
 
   return (
     <DialogContent className="bg-black text-white border-gray-800 sm:max-w-md p-6 rounded-xl">

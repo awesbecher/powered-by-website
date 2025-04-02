@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { X, Activity } from "lucide-react";
@@ -26,6 +26,15 @@ const CallDialog: React.FC<CallDialogProps> = ({
   isRestaurantAgent,
   isRealEstateAgent = false
 }) => {
+  // Add cleanup effect that ends the call when component unmounts
+  useEffect(() => {
+    return () => {
+      if (open) {
+        onEndCall();
+      }
+    };
+  }, [open, onEndCall]);
+
   let agentName = "Alex Fisher";
   let agentRole = "Planter's Insurance";
   let avatarSrc = "/lovable-uploads/d346b971-ac00-4e01-b998-88ba7938a22f.png";

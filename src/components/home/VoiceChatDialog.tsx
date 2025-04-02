@@ -1,6 +1,6 @@
 
 import { Dialog } from "@/components/ui/dialog";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { InitialDialog } from "./dialog/InitialDialog";
 import { ActiveCallDialog } from "./dialog/ActiveCallDialog";
@@ -26,6 +26,15 @@ export const VoiceChatDialog = ({
   source = 'home',
 }: VoiceChatDialogProps) => {
   const navigate = useNavigate();
+  
+  // Add cleanup effect to ensure call is terminated on unmount
+  useEffect(() => {
+    return () => {
+      if (isCallActive) {
+        handleEndCall();
+      }
+    };
+  }, [isCallActive, handleEndCall]);
 
   const handleEndCallAndRedirect = () => {
     handleEndCall();

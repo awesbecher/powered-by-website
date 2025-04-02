@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { X, Activity } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -19,6 +19,15 @@ const ActiveCallDialog: React.FC<ActiveCallDialogProps> = ({
   isMuted,
   toggleMute,
 }) => {
+  // Add cleanup effect that ends the call when component unmounts
+  useEffect(() => {
+    return () => {
+      if (isOpen) {
+        onEndCall();
+      }
+    };
+  }, [isOpen, onEndCall]);
+
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onEndCall()}>
       <DialogContent className="bg-white text-black border-gray-200 sm:max-w-md p-6 rounded-xl">

@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { X, Activity } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -17,6 +17,13 @@ export const CallInProgress = ({
   isSimulation = false 
 }: CallInProgressProps) => {
   const navigate = useNavigate();
+  
+  // Add cleanup effect that ends the call when component unmounts
+  useEffect(() => {
+    return () => {
+      onRestart();
+    };
+  }, [onRestart]);
   
   const handleEndCall = () => {
     // First call the original restart function

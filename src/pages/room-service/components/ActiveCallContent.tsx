@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { X, Activity } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
@@ -14,6 +14,13 @@ export const ActiveCallContent: React.FC<ActiveCallContentProps> = ({
   isMuted,
   toggleMute,
 }) => {
+  // Add cleanup effect that ends the call when component unmounts
+  useEffect(() => {
+    return () => {
+      handleEndCall();
+    };
+  }, [handleEndCall]);
+
   return (
     <div className="flex flex-col space-y-6">
       <div className="flex justify-between items-center">
