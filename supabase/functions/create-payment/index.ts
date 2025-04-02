@@ -16,10 +16,21 @@ serve(async (req) => {
   try {
     const { amount, customerName, customerEmail, productName } = await req.json();
     
+    console.log("Payment request received:", { amount, customerName, customerEmail, productName });
+    
     // Initialize Stripe
-    const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY") || "", {
+    const stripeSecretKey = Deno.env.get("STRIPE_SECRET_KEY");
+    if (!stripeSecretKey) {
+      throw new Error("Stripe secret key is not configured");
+    }
+
+    const stripe = new Stripe(stripeSecretKey, {
       apiVersion: "2023-10-16",
     });
+
+    // Get origin for success/cancel URLs
+    const origin = req.headers.get("origin") || "https://yoursite.com";
+    console.log("Using origin for redirects:", origin);
 
     // Create a checkout session
     const session = await stripe.checkout.sessions.create({
@@ -39,9 +50,11 @@ serve(async (req) => {
       mode: "payment",
       customer_email: customerEmail,
       client_reference_id: customerName,
-      success_url: `${req.headers.get("origin")}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${req.headers.get("origin")}/payment-cancelled`,
+      success_url: `${origin}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${origin}/payment-cancelled`,
     });
+
+    console.log("Stripe session created, redirecting to:", session.url);
 
     return new Response(JSON.stringify({ url: session.url }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },

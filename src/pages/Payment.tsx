@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import Navbar from "@/components/layout/Navbar";
@@ -45,6 +46,8 @@ const Payment = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setLoading(true);
     try {
+      toast.info("Preparing checkout session...");
+      
       // Call the Supabase Edge Function to create a Stripe checkout session
       const { data, error } = await supabase.functions.invoke('create-payment', {
         body: { 
@@ -60,8 +63,14 @@ const Payment = () => {
       }
 
       if (data?.url) {
-        // Redirect to Stripe Checkout
-        window.location.href = data.url;
+        toast.success("Redirecting to secure payment page...");
+        console.log("Redirecting to:", data.url);
+        
+        // Add a slight delay before redirect to ensure toast is shown
+        setTimeout(() => {
+          // Redirect to Stripe Checkout
+          window.location.href = data.url;
+        }, 1000);
       } else {
         throw new Error('No checkout URL returned');
       }
