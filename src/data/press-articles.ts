@@ -73,5 +73,15 @@ export const pressArticles: PressArticle[] = [
     excerpt: "",
     externalUrl: "https://wgntv.com/business/press-releases/cision/20250324SF48855/powered-by-officially-launches-the-worlds-first-ai-agency-for-smbs/",
     imageUrl: "/lovable-uploads/b514b690-b0af-4bd4-abfc-9394f9cc6885.png"
+  },
+  {
+    id: "pix11-news-ai-agency",
+    title: "AI Agency Launches Revolutionary Service for Small Businesses",
+    publication: "PIX 11 News",
+    date: "March 28, 2025",
+    excerpt: "",
+    externalUrl: "https://pix11.com/business/press-releases/cision/20250324SF48855/powered-by-officially-launches-the-worlds-first-ai-agency-for-smbs/",
+    imageUrl: "/lovable-uploads/0970725a-79a6-4774-81fe-f8ca01fb5223.png"
   }
 ];
+
