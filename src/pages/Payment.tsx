@@ -14,7 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Checkbox } from "@/components/ui/checkbox";
-import { AlertTriangle, CreditCard, Apple, Phone } from "lucide-react";
+import { AlertTriangle } from "lucide-react";
 import { 
   Select,
   SelectContent,
@@ -179,12 +179,6 @@ const Payment = () => {
                 <p className="text-red-300 text-sm">{error}</p>
               </div>
             )}
-            
-            <div className="flex justify-center gap-3 mb-4">
-              <CreditCard className="h-6 w-6 text-white" />
-              <Apple className="h-6 w-6 text-white" />
-              <Phone className="h-6 w-6 text-white" />
-            </div>
             
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
