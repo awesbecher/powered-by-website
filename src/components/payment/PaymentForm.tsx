@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -20,6 +19,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { accessCustomerPortal } from "./utils/portalAccess";
 
 // Form schema for validation
 const formSchema = z.object({
@@ -109,43 +109,10 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ productFromUrl, amountFromUrl
     }
   };
 
-  // Helper function to access customer portal
-  const accessCustomerPortal = async () => {
+  // Helper function to access customer portal using the utility function
+  const handlePortalAccess = async () => {
     const email = form.getValues('email');
-    
-    if (!email) {
-      toast.error("Please enter your email address to access the customer portal");
-      return;
-    }
-    
-    setLoading(true);
-    
-    try {
-      toast.info("Preparing customer portal...");
-      
-      const { data, error } = await supabase.functions.invoke('customer-portal', {
-        body: { customerEmail: email }
-      });
-      
-      if (error) {
-        throw new Error(error.message);
-      }
-      
-      if (data?.url) {
-        toast.success("Redirecting to customer portal...");
-        
-        setTimeout(() => {
-          window.location.href = data.url;
-        }, 1000);
-      } else {
-        throw new Error('No portal URL returned');
-      }
-    } catch (error) {
-      console.error('Portal error:', error);
-      toast.error("Unable to access customer portal. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+    setLoading(await accessCustomerPortal(email) || false);
   };
   
   return (
@@ -281,7 +248,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ productFromUrl, amountFromUrl
           <div className="mt-4 text-center">
             <button
               type="button"
-              onClick={accessCustomerPortal}
+              onClick={handlePortalAccess}
               className="text-[#a87cff] hover:text-white text-xs underline transition-colors"
             >
               Access customer portal for existing payments
