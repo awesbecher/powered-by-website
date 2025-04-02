@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import Navbar from "@/components/layout/Navbar";
@@ -147,7 +146,7 @@ const Payment = () => {
                 
                 <Button 
                   type="submit" 
-                  className="w-full bg-[#6342ff] hover:bg-[#7e5fff]" 
+                  className="w-full bg-[#6342ff] hover:bg-[#7e5fff] font-bold text-white" 
                   disabled={loading}
                 >
                   {loading ? "Processing..." : "Proceed to Payment"}
