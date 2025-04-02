@@ -158,7 +158,7 @@ const Payment = () => {
         <Navbar />
       </div>
 
-      <div className="container mx-auto px-4 py-20">
+      <div className="container mx-auto px-4 py-10">
         <div className="max-w-md mx-auto">
           <Card className="p-6 bg-white/5 backdrop-blur-lg border border-white/10">
             <div className="flex justify-center mb-4">
