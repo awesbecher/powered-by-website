@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { VoiceChatDialog } from "@/components/home/VoiceChatDialog";
 import { initiateVapiCall, stopVapiCall, getVapiInstance } from "@/services/vapiService";
@@ -9,6 +9,7 @@ export const GlobalVoiceChatDialog = () => {
   const [showDialog, setShowDialog] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isCallActive, setIsCallActive] = useState(false);
+  const isClosingDialogRef = useRef(false);
   const { toast } = useToast();
   const navigate = useNavigate();
   const location = useLocation();
@@ -35,9 +36,13 @@ export const GlobalVoiceChatDialog = () => {
       setIsCallActive(true);
       
       vapi.on("call-end", () => {
-        setIsCallActive(false);
-        setShowDialog(false);
-        navigate('/');
+        // Only handle automatic call-end events from the service
+        // when the dialog is not being manually closed
+        if (!isClosingDialogRef.current) {
+          setIsCallActive(false);
+          setShowDialog(false);
+          navigate('/');
+        }
       });
 
       toast({
@@ -56,10 +61,18 @@ export const GlobalVoiceChatDialog = () => {
   };
 
   const handleEndCall = () => {
+    // Set flag to indicate we're manually closing the dialog
+    isClosingDialogRef.current = true;
+    
     stopVapiCall();
     setIsCallActive(false);
     setShowDialog(false);
-    navigate('/');
+    
+    // Reset the flag after a short timeout
+    setTimeout(() => {
+      isClosingDialogRef.current = false;
+    }, 100);
+    
     toast({
       title: "Call Ended",
       description: "Your conversation with the AI Agent has ended.",

@@ -1,5 +1,5 @@
 
-import React, { useEffect } from "react";
+import React, { useEffect, MutableRefObject } from "react";
 import { X, Activity } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -8,22 +8,27 @@ interface CallInProgressProps {
   setIsMuted: (isMuted: boolean) => void;
   onRestart: () => void;
   isSimulation?: boolean; // Add this prop to determine if this is in the simulation or real UI
+  isUnmountingRef?: MutableRefObject<boolean>;
 }
 
 export const CallInProgress = ({ 
   isMuted, 
   setIsMuted, 
   onRestart, 
-  isSimulation = false 
+  isSimulation = false,
+  isUnmountingRef
 }: CallInProgressProps) => {
   const navigate = useNavigate();
   
   // Add cleanup effect that ends the call when component unmounts
+  // but only if it's a real page navigation, not during dialog interactions
   useEffect(() => {
     return () => {
-      onRestart();
+      if (!isUnmountingRef || isUnmountingRef.current) {
+        onRestart();
+      }
     };
-  }, [onRestart]);
+  }, [onRestart, isUnmountingRef]);
   
   const handleEndCall = () => {
     // First call the original restart function

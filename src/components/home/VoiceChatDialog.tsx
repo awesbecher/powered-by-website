@@ -1,6 +1,6 @@
 
 import { Dialog } from "@/components/ui/dialog";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { InitialDialog } from "./dialog/InitialDialog";
 import { ActiveCallDialog } from "./dialog/ActiveCallDialog";
@@ -26,10 +26,23 @@ export const VoiceChatDialog = ({
   source = 'home',
 }: VoiceChatDialogProps) => {
   const navigate = useNavigate();
+  const isUnmountingRef = useRef(false);
   
-  // Add cleanup effect to ensure call is terminated on unmount
+  // Add cleanup effect to ensure call is terminated on page navigation or refresh
   useEffect(() => {
+    // Set up beforeunload event listener to catch page refreshes/closes
+    const handleBeforeUnload = () => {
+      if (isCallActive) {
+        handleEndCall();
+      }
+    };
+    
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    
+    // Handle component unmount due to navigation
     return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      isUnmountingRef.current = true;
       if (isCallActive) {
         handleEndCall();
       }
@@ -60,7 +73,10 @@ export const VoiceChatDialog = ({
   // Active call dialog
   return (
     <Dialog open={showDialog} onOpenChange={(open) => !open && handleEndCallAndRedirect()}>
-      <ActiveCallDialog handleEndCall={handleEndCall} />
+      <ActiveCallDialog 
+        handleEndCall={handleEndCall} 
+        isUnmountingRef={isUnmountingRef}
+      />
     </Dialog>
   );
 };

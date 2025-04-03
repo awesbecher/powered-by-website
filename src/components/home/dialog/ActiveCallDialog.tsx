@@ -3,13 +3,14 @@ import { DialogContent } from "@/components/ui/dialog";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Activity, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, MutableRefObject } from "react";
 
 interface ActiveCallDialogProps {
   handleEndCall: () => void;
+  isUnmountingRef?: MutableRefObject<boolean>;
 }
 
-export const ActiveCallDialog = ({ handleEndCall }: ActiveCallDialogProps) => {
+export const ActiveCallDialog = ({ handleEndCall, isUnmountingRef }: ActiveCallDialogProps) => {
   const navigate = useNavigate();
 
   const handleEndCallAndNavigate = () => {
@@ -17,12 +18,17 @@ export const ActiveCallDialog = ({ handleEndCall }: ActiveCallDialogProps) => {
     navigate('/voice-chat');
   };
 
-  // Add cleanup effect that ends the call when component unmounts
+  // Modified cleanup effect that only ends the call on unmount if the parent component
+  // is also unmounting (page navigation), not during normal dialog usage
   useEffect(() => {
     return () => {
-      handleEndCall();
+      // Only call handleEndCall if this unmount is not part of a dialog close
+      // but rather a page navigation or component unmount
+      if (!isUnmountingRef || isUnmountingRef.current) {
+        handleEndCall();
+      }
     };
-  }, [handleEndCall]);
+  }, [handleEndCall, isUnmountingRef]);
 
   return (
     <DialogContent className="bg-black text-white border-gray-800 sm:max-w-md p-6 rounded-xl">
