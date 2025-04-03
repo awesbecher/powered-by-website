@@ -26,6 +26,7 @@ import RoomService from "./pages/room-service";
 import About from "./pages/About";
 import TermsOfService from "./pages/TermsOfService";
 import PrivacyStatement from "./pages/PrivacyStatement";
+import SubscriptionTerms from "./pages/SubscriptionTerms";
 import VirtualSE from "./pages/VirtualSE";
 import GetVirtualSE from "./pages/GetVirtualSE";
 import VirtualSeEbook from "./pages/VirtualSeEbook";
@@ -77,6 +78,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/terms-of-service" element={<TermsOfService />} />
               <Route path="/privacy-statement" element={<PrivacyStatement />} />
+              <Route path="/subscription-terms" element={<SubscriptionTerms />} />
               <Route path="/virtual-se" element={<VirtualSE />} />
               <Route path="/getvirtual-se" element={<GetVirtualSE />} />
               <Route path="/virtual-se-ebook" element={<VirtualSeEbook />} />
