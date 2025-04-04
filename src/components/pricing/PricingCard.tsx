@@ -143,7 +143,7 @@ const PricingCard = ({ type, isPopular = false }: PricingCardProps) => {
         </div>
       ) : (
         <p className="text-4xl font-bold text-white mb-2">
-          {getPrice()}<span className="text-lg text-gray-400">{getPriceSuffix()}</span>
+          {getPrice()}<span className="text-xs text-gray-400">{getPriceSuffix()}</span>
         </p>
       )}
 
