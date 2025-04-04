@@ -20,15 +20,9 @@ export const CallInProgress = ({
 }: CallInProgressProps) => {
   const navigate = useNavigate();
   
-  // Add cleanup effect that ends the call when component unmounts
-  // but only if it's a real page navigation, not during dialog interactions
-  useEffect(() => {
-    return () => {
-      if (!isUnmountingRef || isUnmountingRef.current) {
-        onRestart();
-      }
-    };
-  }, [onRestart, isUnmountingRef]);
+  // We're removing the automatic call ending on unmount to prevent
+  // premature call termination. Instead, we'll only end calls
+  // when explicitly requested by the user.
   
   const handleEndCall = () => {
     // First call the original restart function

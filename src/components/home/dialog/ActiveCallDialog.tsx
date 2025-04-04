@@ -15,20 +15,12 @@ export const ActiveCallDialog = ({ handleEndCall, isUnmountingRef }: ActiveCallD
 
   const handleEndCallAndNavigate = () => {
     handleEndCall();
-    navigate('/voice-chat');
+    navigate('/contact');
   };
 
-  // Modified cleanup effect that only ends the call on unmount if the parent component
-  // is also unmounting (page navigation), not during normal dialog usage
-  useEffect(() => {
-    return () => {
-      // Only call handleEndCall if this unmount is not part of a dialog close
-      // but rather a page navigation or component unmount
-      if (!isUnmountingRef || isUnmountingRef.current) {
-        handleEndCall();
-      }
-    };
-  }, [handleEndCall, isUnmountingRef]);
+  // We're removing the cleanup effect that would end the call on unmounting
+  // since that was causing premature call termination. Instead, we'll let
+  // the parent components handle call termination explicitly.
 
   return (
     <DialogContent className="bg-black text-white border-gray-800 sm:max-w-md p-6 rounded-xl">
