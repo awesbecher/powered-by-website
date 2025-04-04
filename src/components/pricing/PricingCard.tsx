@@ -123,7 +123,7 @@ const PricingCard = ({ type, isPopular = false }: PricingCardProps) => {
   };
 
   return (
-    <div className="bg-black rounded-xl p-8 hover:bg-black/80 transition-all relative">
+    <div className="bg-black rounded-xl p-8 hover:bg-black/80 transition-all relative flex flex-col h-full">
       {isPopular && (
         <div className="absolute -top-3 right-8 bg-[#9b87f5] text-white text-xs font-bold px-4 py-1 rounded">
           MOST POPULAR
@@ -135,26 +135,34 @@ const PricingCard = ({ type, isPopular = false }: PricingCardProps) => {
         <h2 className="text-2xl font-bold text-white">{getTitle()}</h2>
       </div>
 
-      {type !== "enterprise" ? (
-        <>
-          <p className="text-4xl font-bold text-white mb-2">
-            {getPrice()}<span className="text-xs text-gray-400">{getPriceSuffix()}</span>
-          </p>
-          <p className="text-gray-300 mb-8">{getDescription()}</p>
-          {renderFeatures()}
+      <div className="flex-grow">
+        {type !== "enterprise" ? (
+          <>
+            <p className="text-4xl font-bold text-white mb-2">
+              {getPrice()}<span className="text-xs text-gray-400">{getPriceSuffix()}</span>
+            </p>
+            <p className="text-gray-300 mb-8">{getDescription()}</p>
+            {renderFeatures()}
+          </>
+        ) : (
+          <>
+            <p className="text-gray-300 mb-8">{getDescription()}</p>
+            {renderFeatures()}
+          </>
+        )}
+      </div>
+
+      <div className="mt-auto">
+        {type !== "enterprise" ? (
           <Button asChild className="w-full bg-[#9b87f5] hover:bg-[#8a75e3] text-white">
             <Link to="/contact">Get Started</Link>
           </Button>
-        </>
-      ) : (
-        <>
-          <p className="text-gray-300 mb-8">{getDescription()}</p>
-          {renderFeatures()}
-          <Button asChild className="w-full bg-white hover:bg-gray-100 text-[#6342ff] mt-4">
+        ) : (
+          <Button asChild className="w-full bg-white hover:bg-gray-100 text-[#6342ff]">
             <Link to="/contact">Contact Sales</Link>
           </Button>
-        </>
-      )}
+        )}
+      </div>
     </div>
   );
 };
