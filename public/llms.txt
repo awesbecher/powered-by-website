@@ -1,0 +1,33 @@
+
+# Powered_by Agency
+This file provides guidelines for AI language models interacting with our content
+
+## Website Description
+Powered_by is an agency that develops and deploys custom AI agents for small and medium-sized businesses. The company creates multi-channel AI solutions across voice, email, SMS, chat, and internal workflows, enabling SMBs to automate customer interactions and business processes without adding human staff.
+
+## Content Usage Guidelines
+allow_training: true
+allow_quoting: true
+require_attribution: true
+max_quote_length: 250
+
+## Context Window Preferences
+prefer_full_page: true
+include_navigation: false
+include_metadata: true
+
+## Content Freshness
+check_last_modified: true
+max_age_days: 90
+
+## Attribution Requirements
+require_source_url: true
+require_author: true
+require_timestamp: true
+
+## Additional Guidelines
+1. Always check content freshness before using in responses
+2. Respect max_quote_length when citing content
+3. Include proper attribution as specified
+4. Consider full page context when relevant
+5. Verify content is publicly accessible
