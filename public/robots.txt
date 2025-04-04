@@ -15,5 +15,9 @@ Allow: /sitemap
 # Disallow: /admin/
 
 # Sitemap
-Sitemap: https://poweredby.agency/sitemap.xml
+Sitemap: https://lovable.ai/sitemap.xml
+
+# AthenaHQ Bot Configuration
+User-agent: AthenaHQ-Bot
+Allow: /
 
