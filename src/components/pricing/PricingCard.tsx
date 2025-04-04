@@ -77,7 +77,6 @@ const PricingCard = ({ type, isPopular = false }: PricingCardProps) => {
         ];
       case "growth":
         return [
-          "2 AI Agent Types",
           "Up to 2,500 interactions/month",
           "Priority support",
           "Advanced customization",
