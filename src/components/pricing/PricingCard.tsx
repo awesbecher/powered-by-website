@@ -70,7 +70,6 @@ const PricingCard = ({ type, isPopular = false }: PricingCardProps) => {
     switch (type) {
       case "starter":
         return [
-          "1 AI Agent Type",
           "Up to 1,000 interactions/month",
           "Business hours support",
           "Basic customization",
