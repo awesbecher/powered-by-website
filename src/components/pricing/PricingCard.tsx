@@ -38,7 +38,7 @@ const PricingCard = ({ type, isPopular = false }: PricingCardProps) => {
       case "starter":
         return "$299";
       case "growth":
-        return "$299";
+        return "$599";
       case "enterprise":
         return null;
     }
