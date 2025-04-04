@@ -79,6 +79,7 @@ const PricingCard = ({ type, isPopular = false }: PricingCardProps) => {
       case "growth":
         return [
           "Up to 2,500 interactions/month",
+          "Ultra-low latency",
           "Priority support",
           "Advanced customization",
           { text: "Deployment & integration services for additional fee", isAsterisk: true }
