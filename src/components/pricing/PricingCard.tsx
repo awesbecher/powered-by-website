@@ -71,7 +71,7 @@ const PricingCard = ({ type, isPopular = false }: PricingCardProps) => {
       case "starter":
         return [
           "Up to 1,000 interactions/month",
-          "Business hours support",
+          "Basic support",
           "Basic customization",
           { text: "Deployment & integration services for additional fee", isAsterisk: true }
         ];
