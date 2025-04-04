@@ -15,5 +15,5 @@ Allow: /sitemap
 # Disallow: /admin/
 
 # Sitemap
-Sitemap: https://lovable.ai/sitemap.xml
+Sitemap: https://poweredby.agency/sitemap.xml
 
