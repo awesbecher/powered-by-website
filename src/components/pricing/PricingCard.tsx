@@ -135,25 +135,25 @@ const PricingCard = ({ type, isPopular = false }: PricingCardProps) => {
         <h2 className="text-2xl font-bold text-white">{getTitle()}</h2>
       </div>
 
-      {type === "enterprise" ? (
-        <div className="mb-8">
+      {type !== "enterprise" ? (
+        <>
+          <p className="text-4xl font-bold text-white mb-2">
+            {getPrice()}<span className="text-xs text-gray-400">{getPriceSuffix()}</span>
+          </p>
+          <p className="text-gray-300 mb-8">{getDescription()}</p>
+          {renderFeatures()}
+          <Button asChild className="w-full bg-[#9b87f5] hover:bg-[#8a75e3] text-white">
+            <Link to="/contact">Get Started</Link>
+          </Button>
+        </>
+      ) : (
+        <>
+          <p className="text-gray-300 mb-8">{getDescription()}</p>
+          {renderFeatures()}
           <Button asChild className="w-full bg-white hover:bg-gray-100 text-[#6342ff] mt-4">
             <Link to="/contact">Contact Sales</Link>
           </Button>
-        </div>
-      ) : (
-        <p className="text-4xl font-bold text-white mb-2">
-          {getPrice()}<span className="text-xs text-gray-400">{getPriceSuffix()}</span>
-        </p>
-      )}
-
-      <p className="text-gray-300 mb-8">{getDescription()}</p>
-      {renderFeatures()}
-
-      {type !== "enterprise" && (
-        <Button asChild className="w-full bg-[#9b87f5] hover:bg-[#8a75e3] text-white">
-          <Link to="/contact">Get Started</Link>
-        </Button>
+        </>
       )}
     </div>
   );
