@@ -11,7 +11,7 @@ export const PricingSection: React.FC<PricingSectionProps> = () => {
     <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
       <div className="max-w-3xl mx-auto text-center mb-16">
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-          Simple, Transparent Pricing
+          Simple Agent Pricing
         </h2>
         <p className="text-xl text-gray-300">
           Get started quickly & affordable. Just powerful AI agents that grow with your business.
@@ -22,25 +22,27 @@ export const PricingSection: React.FC<PricingSectionProps> = () => {
         <PricingCard 
           title="Starter"
           price="$299"
+          priceSuffix="/month/agent"
           description="Perfect for small businesses just getting started with AI agents."
           features={[
-            "1 AI Agent Type",
             "Up to 1,000 interactions/month",
-            "Business hours support",
+            "Premium latency",
+            "Basic support",
             "Basic customization",
             {text: "Deployment & integration services for additional fee", hasAsterisk: true}
           ]}
           buttonText="Get Started"
-          usePopularButtonStyle={true}
+          usePopularButtonStyle={false}
         />
 
         <PricingCard 
           title="Growth"
           price="$599"
+          priceSuffix="/month/agent"
           description="For businesses ready to expand their AI agent capabilities."
           features={[
-            "2 AI Agent Types",
             "Up to 2,500 interactions/month",
+            "Ultra-low latency",
             "Priority support",
             "Advanced customization",
             {text: "Deployment & integration services for additional fee", hasAsterisk: true}

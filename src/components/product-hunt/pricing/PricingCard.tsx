@@ -14,6 +14,7 @@ type Feature = string | FeatureItem;
 interface PricingCardProps {
   title: string;
   price?: string;
+  priceSuffix?: string;
   description: string;
   features: Feature[];
   popular?: boolean;
@@ -25,6 +26,7 @@ interface PricingCardProps {
 export const PricingCard = ({ 
   title, 
   price, 
+  priceSuffix,
   description, 
   features, 
   popular = false,
@@ -77,7 +79,7 @@ export const PricingCard = ({
       popular 
         ? "bg-gradient-to-b from-[#6342ff]/20 to-[#a87cff]/10 backdrop-blur-xl border border-[#9b87f5]/30" 
         : "bg-white/5 backdrop-blur-xl border border-white/10"
-      } rounded-2xl p-8 transition-all duration-300 hover:bg-white/10 relative`}>
+      } rounded-2xl p-8 transition-all duration-300 hover:bg-white/10 relative flex flex-col h-full`}>
       {popular && (
         <div className="absolute top-0 right-0 bg-[#9b87f5] text-white text-xs font-bold px-4 py-1 rounded-bl-lg rounded-tr-lg">
           MOST POPULAR
@@ -88,41 +90,39 @@ export const PricingCard = ({
         {title}
       </h3>
       
-      {/* Pricing or Contact Button Section */}
-      <div className="flex items-end mb-6">
-        {price ? (
-          <>
-            <span className="text-4xl font-bold text-white">{price}</span>
-            <span className="text-gray-400 ml-1 mb-1">/month</span>
-          </>
-        ) : contactSalesEmail ? (
+      {price ? (
+        <p className="text-4xl font-bold text-white mb-2">
+          {price}<span className="text-xs text-gray-400">{priceSuffix}</span>
+        </p>
+      ) : (
+        <div className="h-10"></div> // Empty space for alignment
+      )}
+      
+      <p className="text-gray-300 mb-8">{description}</p>
+      
+      <ul className="space-y-4 mb-10 flex-grow">
+        {features.map((feature, index) => renderFeatureItem(feature, index))}
+      </ul>
+      
+      <div className="mt-auto">
+        {contactSalesEmail ? (
           <a href={`mailto:${contactSalesEmail}`} className="w-full">
             <Button className="w-full bg-white hover:bg-gray-100 text-[#6342ff] font-bold">
               {buttonText}
             </Button>
           </a>
         ) : (
-          <div className="h-10"></div> // Empty space fallback
+          <Link to="/contact">
+            <Button className={`w-full ${
+              shouldUsePopularStyle 
+                ? "bg-[#9b87f5] hover:bg-[#8a75e3] text-white" 
+                : "bg-white hover:bg-gray-100 text-[#6342ff]"
+              } font-bold`}>
+              {buttonText}
+            </Button>
+          </Link>
         )}
       </div>
-      
-      <p className="text-gray-300 mb-8">{description}</p>
-      <ul className="space-y-4 mb-10">
-        {features.map((feature, index) => renderFeatureItem(feature, index))}
-      </ul>
-      
-      {/* Only show button at bottom if not already shown at top */}
-      {!contactSalesEmail && (
-        <Link to="/contact">
-          <Button className={`w-full ${
-            shouldUsePopularStyle 
-              ? "bg-[#9b87f5] hover:bg-[#8a75e3] text-white" 
-              : "bg-white hover:bg-gray-100 text-[#6342ff]"
-            } font-bold`}>
-            {buttonText}
-          </Button>
-        </Link>
-      )}
     </div>
   );
 };
