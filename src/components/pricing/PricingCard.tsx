@@ -38,7 +38,18 @@ const PricingCard = ({ type, isPopular = false }: PricingCardProps) => {
       case "starter":
         return "$299";
       case "growth":
-        return "$599";
+        return "$299";
+      case "enterprise":
+        return null;
+    }
+  };
+
+  const getPriceSuffix = () => {
+    switch (type) {
+      case "starter":
+        return "/month/agent";
+      case "growth":
+        return "/month/agent";
       case "enterprise":
         return null;
     }
@@ -132,7 +143,7 @@ const PricingCard = ({ type, isPopular = false }: PricingCardProps) => {
         </div>
       ) : (
         <p className="text-4xl font-bold text-white mb-2">
-          {getPrice()}<span className="text-lg text-gray-400">/month</span>
+          {getPrice()}<span className="text-lg text-gray-400">{getPriceSuffix()}</span>
         </p>
       )}
 
