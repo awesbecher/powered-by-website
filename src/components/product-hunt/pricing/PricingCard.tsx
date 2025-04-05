@@ -94,6 +94,7 @@ export const PricingCard = ({
     if (tallyFormId && window.Tally?.openPopup) {
       window.Tally.openPopup(tallyFormId, {
         width: 540,
+        height: 640, // Increased height to show more of the form
         hideTitle: false,
         layout: "modal"
       });

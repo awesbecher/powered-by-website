@@ -22,6 +22,7 @@ const CTASection = () => {
     if (window.Tally?.openPopup) {
       window.Tally.openPopup("w2og9b", {
         width: 540,
+        height: 640, // Increased height to show more of the form
         hideTitle: false,
         layout: "modal"
       });
