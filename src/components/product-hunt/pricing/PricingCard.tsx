@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Check, Star, Rocket, Award, Asterisk } from "lucide-react";
@@ -21,6 +21,7 @@ interface PricingCardProps {
   buttonText: string;
   contactSalesEmail?: string;
   usePopularButtonStyle?: boolean;
+  tallyFormId?: string;
 }
 
 export const PricingCard = ({ 
@@ -32,8 +33,22 @@ export const PricingCard = ({
   popular = false,
   buttonText,
   contactSalesEmail,
-  usePopularButtonStyle = false
+  usePopularButtonStyle = false,
+  tallyFormId
 }: PricingCardProps) => {
+  // Load Tally embed script if tallyFormId is provided
+  useEffect(() => {
+    if (tallyFormId && typeof window !== 'undefined') {
+      // Check if script is already loaded
+      if (!document.querySelector('script[src="https://tally.so/widgets/embed.js"]')) {
+        const script = document.createElement('script');
+        script.src = "https://tally.so/widgets/embed.js";
+        script.async = true;
+        document.body.appendChild(script);
+      }
+    }
+  }, [tallyFormId]);
+  
   // Function to determine which icon to show based on the title
   const getTitleIcon = () => {
     switch (title) {
@@ -74,6 +89,18 @@ export const PricingCard = ({
   // Determine if button should use the popular style
   const shouldUsePopularStyle = popular || usePopularButtonStyle;
 
+  // Handle button click for Tally form
+  const handleButtonClick = () => {
+    if (tallyFormId && window.Tally?.openPopup) {
+      window.Tally.openPopup(tallyFormId, {
+        width: 540,
+        hideTitle: false,
+        layout: "modal"
+      });
+      return;
+    }
+  };
+
   return (
     <div className={`${
       popular 
@@ -105,7 +132,18 @@ export const PricingCard = ({
       </ul>
       
       <div className="mt-auto">
-        {contactSalesEmail ? (
+        {tallyFormId ? (
+          <Button 
+            onClick={handleButtonClick}
+            className={`w-full ${
+              shouldUsePopularStyle 
+                ? "bg-[#9b87f5] hover:bg-[#8a75e3] text-white" 
+                : "bg-white hover:bg-gray-100 text-[#6342ff]"
+              } font-bold`}
+          >
+            {buttonText}
+          </Button>
+        ) : contactSalesEmail ? (
           <a href={`mailto:${contactSalesEmail}`} className="w-full">
             <Button className="w-full bg-white hover:bg-gray-100 text-[#6342ff] font-bold">
               {buttonText}

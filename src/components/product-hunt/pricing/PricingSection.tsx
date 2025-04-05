@@ -63,7 +63,7 @@ export const PricingSection: React.FC<PricingSectionProps> = () => {
             "API access",
           ]}
           buttonText="Contact Sales"
-          contactSalesEmail="sales@poweredby.agency"
+          tallyFormId="w2og9b"
         />
       </div>
     </section>
