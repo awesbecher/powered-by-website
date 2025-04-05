@@ -105,7 +105,7 @@ export const PricingCard = ({
   return (
     <div className={`${
       popular 
-        ? "bg-gradient-to-b from-[#6342ff]/20 to-[#a87cff]/10 backdrop-blur-xl border border-[#9b87f5]/30" 
+        ? "bg-gradient-to-b from-[#6342ff]/20 to-[#a87cff]/10 backdrop-blur-xl border-2 border-[#9b87f5] shadow-lg shadow-[#9b87f5]/20" 
         : "bg-white/5 backdrop-blur-xl border border-white/10"
       } rounded-2xl p-8 transition-all duration-300 hover:bg-white/10 relative flex flex-col h-full`}>
       {popular && (

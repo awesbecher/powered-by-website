@@ -123,7 +123,9 @@ const PricingCard = ({ type, isPopular = false }: PricingCardProps) => {
   };
 
   return (
-    <div className="bg-black rounded-xl p-8 hover:bg-black/80 transition-all relative flex flex-col h-full">
+    <div className={`bg-black rounded-xl p-8 hover:bg-black/80 transition-all relative flex flex-col h-full ${
+      isPopular ? "border-2 border-[#9b87f5] shadow-lg shadow-[#9b87f5]/20" : "border border-white/10"
+    }`}>
       {isPopular && (
         <div className="absolute -top-3 right-8 bg-[#9b87f5] text-white text-xs font-bold px-4 py-1 rounded">
           MOST POPULAR

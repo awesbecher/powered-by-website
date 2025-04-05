@@ -4,6 +4,7 @@ interface Window {
     loadEmbeds: () => void;
     openPopup: (formId: string, options?: {
       width?: number;
+      height?: number;
       hideTitle?: boolean;
       layout?: string;
       ref?: string;
