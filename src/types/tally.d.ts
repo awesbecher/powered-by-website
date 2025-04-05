@@ -2,7 +2,7 @@
 interface Window {
   Tally?: {
     loadEmbeds: () => void;
-    openPopup?: (formId: string, options?: {
+    openPopup: (formId: string, options?: {
       width?: number;
       hideTitle?: boolean;
       layout?: string;
