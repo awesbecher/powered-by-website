@@ -48,8 +48,16 @@ export const MobileMenu = () => {
           </div>
           <nav className="flex flex-col p-4">
             <div className="py-2">
-              <div className="flex justify-between items-center text-white" onClick={() => toggleItem('solutions')}>
-                <Link to="/products" className="py-2 text-lg font-medium hover:text-[#9b87f5]" onClick={() => setIsOpen(false)}>
+              <div className="flex justify-between items-center text-white">
+                {/* Make Solutions a direct link when clicked */}
+                <Link 
+                  to="/products" 
+                  className="py-2 text-lg font-medium hover:text-[#9b87f5]"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsOpen(false);
+                  }}
+                >
                   Solutions
                 </Link>
                 <button 

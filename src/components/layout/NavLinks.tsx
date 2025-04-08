@@ -66,13 +66,28 @@ const DropdownNavItem = ({ item }: { item: NavItemWithChildren }) => {
   
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
-      <DropdownMenuTrigger className="px-3 py-2 text-sm font-bold relative group text-gray-300 hover:text-white transition-colors duration-200 flex items-center focus:outline-none">
-        {item.name}
-        <ChevronDown className="ml-1 h-4 w-4 transition-transform duration-200" 
-          style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
-        />
-        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#9b87f5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
-      </DropdownMenuTrigger>
+      <div className="relative">
+        {/* This invisible link covers the trigger area for direct navigation */}
+        <NavLink
+          to={item.path}
+          className="absolute inset-0 z-10"
+          onClick={(e) => {
+            // This prevents the dropdown from opening when clicking directly on the item
+            e.stopPropagation();
+          }}
+        >
+          <span className="sr-only">{item.name}</span>
+        </NavLink>
+        
+        <DropdownMenuTrigger className="px-3 py-2 text-sm font-bold relative group text-gray-300 hover:text-white transition-colors duration-200 flex items-center focus:outline-none">
+          {item.name}
+          <ChevronDown className="ml-1 h-4 w-4 transition-transform duration-200" 
+            style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+          />
+          <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#9b87f5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
+        </DropdownMenuTrigger>
+      </div>
+      
       <DropdownMenuContent align="center" className="bg-[#222222] border border-gray-700 shadow-lg min-w-[180px] z-50">
         {item.children?.map((child) => (
           <DropdownMenuItem key={child.name} className="focus:bg-[#2f1c4a] focus:text-white hover:bg-[#2f1c4a] px-0">

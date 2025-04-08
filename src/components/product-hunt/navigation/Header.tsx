@@ -2,16 +2,15 @@
 import React from "react";
 import Logo from "@/components/layout/Logo";
 import { MobileMenu } from "./MobileMenu";
+import { Link } from "react-router-dom";
 import { 
   NavigationMenu, 
   NavigationMenuContent, 
   NavigationMenuItem, 
-  NavigationMenuLink, 
   NavigationMenuList, 
   NavigationMenuTrigger 
 } from "@/components/ui/navigation-menu";
 import { ChevronDown } from "lucide-react";
-import { Link } from "react-router-dom";
 
 export const Header = () => {
   return (
@@ -22,12 +21,22 @@ export const Header = () => {
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent hover:bg-transparent text-gray-300 hover:text-white">
-                  <span className="flex items-center">
-                    Solutions
-                    <ChevronDown className="ml-1 h-3 w-3" />
-                  </span>
-                </NavigationMenuTrigger>
+                <div className="relative">
+                  <Link 
+                    to="/products" 
+                    className="absolute inset-0 z-10"
+                    onClick={(e) => {
+                      // Allow the click to go through to the Link when clicking directly on the text
+                      e.stopPropagation();
+                    }}
+                  />
+                  <NavigationMenuTrigger className="bg-transparent hover:bg-transparent text-gray-300 hover:text-white">
+                    <span className="flex items-center">
+                      Solutions
+                      <ChevronDown className="ml-1 h-3 w-3" />
+                    </span>
+                  </NavigationMenuTrigger>
+                </div>
                 <NavigationMenuContent className="bg-[#222222] border border-gray-700 shadow-lg min-w-[180px] z-50">
                   <ul className="p-2">
                     <li>

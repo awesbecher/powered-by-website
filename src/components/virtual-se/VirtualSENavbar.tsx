@@ -51,10 +51,11 @@ const VirtualSENavbar = () => {
 
               <span className="text-gray-600">|</span>
 
-              {/* Solution Link with dropdown */}
+              {/* Solution Link with dropdown - update to allow direct click */}
               <div className="relative group"
                    onMouseEnter={() => setSolutionsDropdownOpen(true)}
                    onMouseLeave={() => setSolutionsDropdownOpen(false)}>
+                {/* Direct link for when clicking on "Solution" */}
                 <Link 
                   to="/products"
                   className="px-3 py-2 text-sm font-bold relative group text-gray-300 hover:text-white transition-colors duration-200 flex items-center"
