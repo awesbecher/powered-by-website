@@ -1,3 +1,4 @@
+
 import { useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
@@ -65,9 +66,11 @@ const DropdownNavItem = ({ item }: { item: NavItemWithChildren }) => {
   const [isOpen, setIsOpen] = useState(false);
   
   return (
-    <div className="relative flex items-center"
-         onMouseEnter={() => setIsOpen(true)}
-         onMouseLeave={() => setIsOpen(false)}>
+    <div 
+      className="relative flex items-center"
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+    >
       {/* Direct link to item path */}
       <Link
         to={item.path}

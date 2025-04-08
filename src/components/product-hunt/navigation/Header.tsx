@@ -24,27 +24,25 @@ export const Header = () => {
             <NavigationMenuList>
               <NavigationMenuItem>
                 <div 
-                  className="relative group"
+                  className="relative group flex items-center"
                   onMouseEnter={() => setIsDropdownOpen(true)}
                   onMouseLeave={() => setIsDropdownOpen(false)}
                 >
-                  <div className="flex items-center">
-                    <Link 
-                      to="/products" 
-                      className="text-gray-300 hover:text-white px-3 py-2 text-sm font-bold"
-                    >
-                      Solutions
-                    </Link>
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setIsDropdownOpen(!isDropdownOpen);
-                      }}
-                      className="ml-1 text-gray-300 hover:text-white focus:outline-none"
-                    >
-                      <ChevronDown className="h-4 w-4" />
-                    </button>
-                  </div>
+                  <Link 
+                    to="/products" 
+                    className="text-gray-300 hover:text-white px-3 py-2 text-sm font-bold"
+                  >
+                    Solutions
+                  </Link>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsDropdownOpen(!isDropdownOpen);
+                    }}
+                    className="ml-1 text-gray-300 hover:text-white focus:outline-none"
+                  >
+                    <ChevronDown className="h-4 w-4" />
+                  </button>
                   
                   {isDropdownOpen && (
                     <div className="absolute left-0 mt-2 bg-[#222222] border border-gray-700 shadow-lg min-w-[180px] z-50 rounded-md">

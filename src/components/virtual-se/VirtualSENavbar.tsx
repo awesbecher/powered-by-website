@@ -50,7 +50,7 @@ const VirtualSENavbar = () => {
 
             <span className="text-gray-600">|</span>
 
-            {/* Solution Link with dropdown - update to allow direct click */}
+            {/* Solution Link with dropdown - both text and chevron can trigger the dropdown */}
             <div 
               className="relative flex items-center"
               onMouseEnter={() => setSolutionsDropdownOpen(true)}
@@ -122,7 +122,7 @@ const VirtualSENavbar = () => {
 
             <span className="text-gray-600">|</span>
 
-            {/* Resources Link with dropdown */}
+            {/* Resources Link with dropdown - both text and chevron can trigger the dropdown */}
             <div 
               className="relative flex items-center"
               onMouseEnter={() => setResourcesDropdownOpen(true)}
@@ -131,6 +131,10 @@ const VirtualSENavbar = () => {
               <Link 
                 to="#"
                 className="px-3 py-2 text-sm font-bold text-gray-300 hover:text-white transition-colors duration-200"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setResourcesDropdownOpen(!resourcesDropdownOpen);
+                }}
               >
                 Resources
               </Link>
