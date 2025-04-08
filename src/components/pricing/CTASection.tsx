@@ -19,7 +19,7 @@ const CTASection = () => {
 
   // Handle button click for Tally form
   const handleContactSales = () => {
-    if (window.Tally?.openPopup) {
+    if (window.Tally && typeof window.Tally.openPopup === 'function') {
       window.Tally.openPopup("w2og9b", {
         width: 540,
         height: 640, // Increased height to show more of the form

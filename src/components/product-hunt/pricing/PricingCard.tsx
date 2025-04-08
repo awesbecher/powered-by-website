@@ -91,7 +91,7 @@ export const PricingCard = ({
 
   // Handle button click for Tally form
   const handleButtonClick = () => {
-    if (tallyFormId && window.Tally?.openPopup) {
+    if (tallyFormId && window.Tally && typeof window.Tally.openPopup === 'function') {
       window.Tally.openPopup(tallyFormId, {
         width: 540,
         height: 640, // Increased height to show more of the form
