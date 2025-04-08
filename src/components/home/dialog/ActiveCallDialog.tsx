@@ -18,9 +18,9 @@ export const ActiveCallDialog = ({ handleEndCall, isUnmountingRef }: ActiveCallD
     navigate('/contact');
   };
 
-  // We're removing the cleanup effect that would end the call on unmounting
-  // since that was causing premature call termination. Instead, we'll let
-  // the parent components handle call termination explicitly.
+  // We're removing the automatic call ending on unmount to prevent
+  // premature call termination. The call should only end when
+  // explicitly requested by the user or the agent.
 
   return (
     <DialogContent className="bg-black text-white border-gray-800 sm:max-w-md p-6 rounded-xl">

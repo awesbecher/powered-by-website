@@ -28,27 +28,9 @@ export const VoiceChatDialog = ({
   const navigate = useNavigate();
   const isUnmountingRef = useRef(false);
   
-  // Add cleanup effect to ensure call is terminated on page navigation or refresh
-  useEffect(() => {
-    // Set up beforeunload event listener to catch page refreshes/closes
-    const handleBeforeUnload = () => {
-      if (isCallActive) {
-        handleEndCall();
-      }
-    };
-    
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    
-    // Handle component unmount due to navigation
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-      isUnmountingRef.current = true;
-      if (isCallActive) {
-        handleEndCall();
-      }
-    };
-  }, [isCallActive, handleEndCall]);
-
+  // Remove the cleanup effect that was terminating the call on page navigation
+  // This ensures calls only end when users explicitly end them
+  
   const handleEndCallAndRedirect = () => {
     handleEndCall();
     navigate('/contact');

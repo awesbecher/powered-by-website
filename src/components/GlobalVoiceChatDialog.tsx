@@ -19,12 +19,11 @@ export const GlobalVoiceChatDialog = () => {
     const handleOpenDialog = () => setShowDialog(true);
     document.addEventListener('open-voice-dialog', handleOpenDialog);
     
-    // End call when navigating to a different route
+    // Remove the event listener when component unmounts
+    // But DON'T automatically end calls on route changes
     return () => {
       document.removeEventListener('open-voice-dialog', handleOpenDialog);
-      if (isCallActive) {
-        handleEndCall();
-      }
+      // Remove automatic call termination on route changes
     };
   }, [isCallActive, location.pathname]);
 
