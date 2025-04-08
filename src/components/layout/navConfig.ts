@@ -6,7 +6,18 @@ export interface NavItemWithChildren extends NavItem {
 }
 
 export const navItems: NavItemWithChildren[] = [
-  { name: "Solutions", path: "/products" },
+  { 
+    name: "Solutions", 
+    path: "/products",
+    children: [
+      { name: "AI Voice Chat", path: "/voice-chat" },
+      { name: "AI Receptionist", path: "/ai-receptionist" },
+      { name: "Email Agent", path: "/email-agent" },
+      { name: "Text Agent", path: "/text-agent" },
+      { name: "Virtual SE", path: "/virtual-se" },
+      { name: "OutboundAI", path: "/outbound-ai" },
+    ]
+  },
   { name: "Demos", path: "/demo" }, // Changed from /demo-capture to /demo
   { 
     name: "Resources", 

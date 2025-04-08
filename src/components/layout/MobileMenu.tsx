@@ -71,7 +71,20 @@ const MobileMenu = ({ navItems, showConsultButton }: MobileMenuProps) => {
                         className="mx-4 py-2 flex items-center justify-between text-sm cursor-pointer"
                         onClick={() => toggleExpandItem(item.name)}
                       >
-                        <span className="text-gray-300 font-medium">{item.name}</span>
+                        {item.name === "Solutions" ? (
+                          <Link 
+                            to={item.path} 
+                            className="text-gray-300 font-medium"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setIsMobileMenuOpen(false);
+                            }}
+                          >
+                            {item.name}
+                          </Link>
+                        ) : (
+                          <span className="text-gray-300 font-medium">{item.name}</span>
+                        )}
                         <ChevronDown 
                           className="h-4 w-4 text-gray-500 transition-transform duration-200"
                           style={{ transform: expandedItem === item.name ? 'rotate(180deg)' : 'rotate(0deg)' }}
