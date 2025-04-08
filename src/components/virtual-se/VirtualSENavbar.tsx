@@ -17,7 +17,7 @@ const VirtualSENavbar = () => {
     { label: "AI Receptionist", path: "/ai-receptionist" },
     { label: "Email Agent", path: "/email-agent" },
     { label: "Text Agent", path: "/text-agent" },
-    { label: "Virtual SE", path: "/virtual-se" },
+    { label: "Virtual SE", path: "https://www.getvirtual.se", isExternal: true },
     { label: "OutboundAI", path: "/outbound-ai" }
   ];
 

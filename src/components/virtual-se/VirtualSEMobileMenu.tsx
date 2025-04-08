@@ -48,14 +48,76 @@ const VirtualSEMobileMenu = () => {
                 Home
               </Link>
               
-              <Link 
-                to="/products"
-                className="mx-4 py-2 text-sm text-gray-300 hover:text-white font-medium"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Solution
-              </Link>
+              {/* Solutions Section */}
+              <div className="flex flex-col">
+                <div 
+                  className="mx-4 py-2 flex items-center justify-between text-sm cursor-pointer"
+                  onClick={() => toggleExpandItem("Solutions")}
+                >
+                  <span className="text-gray-300 font-medium">Solution</span>
+                  <ChevronDown 
+                    className="h-4 w-4 text-gray-500 transition-transform duration-200"
+                    style={{ transform: expandedItem === "Solutions" ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                  />
+                </div>
+                
+                {expandedItem === "Solutions" && (
+                  <div className="ml-8 flex flex-col space-y-2 mt-2 mb-2">
+                    <Link
+                      to="/voice-chat"
+                      className="py-2 text-sm text-gray-300 hover:text-white"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <ChevronRight className="h-3 w-3 mr-1 inline" />
+                      AI Voice Chat
+                    </Link>
+                    <Link
+                      to="/ai-receptionist"
+                      className="py-2 text-sm text-gray-300 hover:text-white"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <ChevronRight className="h-3 w-3 mr-1 inline" />
+                      AI Receptionist
+                    </Link>
+                    <Link
+                      to="/email-agent"
+                      className="py-2 text-sm text-gray-300 hover:text-white"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <ChevronRight className="h-3 w-3 mr-1 inline" />
+                      Email Agent
+                    </Link>
+                    <Link
+                      to="/text-agent"
+                      className="py-2 text-sm text-gray-300 hover:text-white"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <ChevronRight className="h-3 w-3 mr-1 inline" />
+                      Text Agent
+                    </Link>
+                    <a
+                      href="https://www.getvirtual.se"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="py-2 text-sm text-gray-300 hover:text-white"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <ChevronRight className="h-3 w-3 mr-1 inline" />
+                      Virtual SE
+                    </a>
+                    <Link
+                      to="/outbound-ai"
+                      className="py-2 text-sm text-gray-300 hover:text-white"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <ChevronRight className="h-3 w-3 mr-1 inline" />
+                      OutboundAI
+                    </Link>
+                  </div>
+                )}
+              </div>
               
+              {/* Resources Section */}
               <div className="flex flex-col">
                 <div 
                   className="mx-4 py-2 flex items-center justify-between text-sm cursor-pointer"
