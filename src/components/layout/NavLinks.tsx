@@ -66,7 +66,7 @@ const DropdownNavItem = ({ item }: { item: NavItemWithChildren }) => {
   
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
-      <div className="relative">
+      <div className="relative flex items-center">
         {/* This invisible link covers the trigger area for direct navigation */}
         <NavLink
           to={item.path}

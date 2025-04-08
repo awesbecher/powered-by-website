@@ -17,11 +17,11 @@ export const Header = () => {
     <div className="container mx-auto px-4 py-5">
       <div className="flex justify-between items-center">
         <Logo />
-        <div className="hidden md:flex space-x-6">
+        <div className="hidden md:flex items-center space-x-6">
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <div className="relative">
+                <div className="relative group">
                   <Link 
                     to="/products" 
                     className="absolute inset-0 z-10"

@@ -8,7 +8,8 @@ export interface NavLinkProps {
   isExternal?: boolean;
   isMobile?: boolean;
   isActive?: boolean;
-  onClick?: () => void;
+  className?: string;
+  onClick?: (e: React.MouseEvent) => void;
 }
 
 const NavLink = ({ 
@@ -17,6 +18,7 @@ const NavLink = ({
   isExternal = false, 
   isMobile = false,
   isActive,
+  className,
   onClick 
 }: NavLinkProps) => {
   const location = useLocation();
@@ -25,14 +27,16 @@ const NavLink = ({
   // Mobile styles are simpler
   const mobileClasses = cn(
     "px-4 py-2 text-sm font-medium",
-    active ? "text-[#9b87f5]" : "text-gray-300"
+    active ? "text-[#9b87f5]" : "text-gray-300",
+    className
   );
   
   // Desktop styles include hover effects
   const desktopClasses = cn(
     "px-3 py-2 text-sm font-bold relative group",
     active ? "text-[#9b87f5]" : "text-gray-300 hover:text-white",
-    "transition-colors duration-200"
+    "transition-colors duration-200",
+    className
   );
   
   const classes = isMobile ? mobileClasses : desktopClasses;
