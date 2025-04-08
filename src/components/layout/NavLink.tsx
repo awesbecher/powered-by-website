@@ -9,7 +9,7 @@ export interface NavLinkProps {
   isMobile?: boolean;
   isActive?: boolean;
   className?: string;
-  onClick?: (e: React.MouseEvent) => void;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
 const NavLink = ({ 

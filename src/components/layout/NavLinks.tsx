@@ -1,10 +1,10 @@
-
 import { useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
 import NavLink from "./NavLink";
 import { NavItemWithChildren } from "./navConfig";
 import { ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -65,55 +65,61 @@ const DropdownNavItem = ({ item }: { item: NavItemWithChildren }) => {
   const [isOpen, setIsOpen] = useState(false);
   
   return (
-    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
-      <div className="relative flex items-center">
-        {/* This invisible link covers the trigger area for direct navigation */}
-        <NavLink
-          to={item.path}
-          className="absolute inset-0 z-10"
-          onClick={(e) => {
-            // This prevents the dropdown from opening when clicking directly on the item
-            e.stopPropagation();
-          }}
-        >
-          <span className="sr-only">{item.name}</span>
-        </NavLink>
-        
-        <DropdownMenuTrigger className="px-3 py-2 text-sm font-bold relative group text-gray-300 hover:text-white transition-colors duration-200 flex items-center focus:outline-none">
-          {item.name}
-          <ChevronDown className="ml-1 h-4 w-4 transition-transform duration-200" 
-            style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
-          />
-          <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#9b87f5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
-        </DropdownMenuTrigger>
-      </div>
+    <div className="relative flex items-center"
+         onMouseEnter={() => setIsOpen(true)}
+         onMouseLeave={() => setIsOpen(false)}>
+      {/* Direct link to item path */}
+      <Link
+        to={item.path}
+        className="px-3 py-2 text-sm font-bold relative group text-gray-300 hover:text-white transition-colors duration-200"
+      >
+        {item.name}
+      </Link>
       
-      <DropdownMenuContent align="center" className="bg-[#222222] border border-gray-700 shadow-lg min-w-[180px] z-50">
-        {item.children?.map((child) => (
-          <DropdownMenuItem key={child.name} className="focus:bg-[#2f1c4a] focus:text-white hover:bg-[#2f1c4a] px-0">
-            {child.isExternal ? (
-              <a
-                href={child.path}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white w-full block"
-              >
-                {child.name}
-              </a>
-            ) : (
-              <NavLink
-                to={child.path}
-                isExternal={child.isExternal}
-                isMobile={true}
-                onClick={() => setIsOpen(false)}
-              >
-                {child.name}
-              </NavLink>
-            )}
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+      {/* Dropdown trigger button */}
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          setIsOpen(!isOpen);
+        }}
+        className="text-gray-300 hover:text-white focus:outline-none"
+      >
+        <ChevronDown 
+          className="ml-1 h-4 w-4 transition-transform duration-200" 
+          style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+        />
+      </button>
+      
+      {/* Dropdown content */}
+      <div className={`absolute left-0 top-full mt-2 w-48 rounded-md shadow-lg bg-[#222222] border border-gray-700 transition-all duration-200 z-50 ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+        <div className="py-1">
+          {item.children?.map((child) => (
+            <div key={child.name} className="focus:bg-[#2f1c4a] focus:text-white hover:bg-[#2f1c4a] px-0">
+              {child.isExternal ? (
+                <a
+                  href={child.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white w-full block"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {child.name}
+                </a>
+              ) : (
+                <NavLink
+                  to={child.path}
+                  isExternal={child.isExternal}
+                  isMobile={true}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {child.name}
+                </NavLink>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 };
 
