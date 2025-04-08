@@ -8,15 +8,20 @@ interface FeatureCardProps {
   title: string;
   description: string;
   linkTo: string;
+  isExternal?: boolean;
 }
 
-export const FeatureCard = ({ icon, title, description, linkTo }: FeatureCardProps) => {
+export const FeatureCard = ({ icon, title, description, linkTo, isExternal = false }: FeatureCardProps) => {
   const navigate = useNavigate();
   
   const handleCardClick = () => {
-    // Ensure smooth navigation and scroll to top
-    window.scrollTo(0, 0);
-    navigate(linkTo);
+    if (isExternal) {
+      window.open(linkTo, "_blank", "noopener,noreferrer");
+    } else {
+      // Ensure smooth navigation and scroll to top
+      window.scrollTo(0, 0);
+      navigate(linkTo);
+    }
   };
 
   return (
@@ -31,9 +36,21 @@ export const FeatureCard = ({ icon, title, description, linkTo }: FeatureCardPro
       <p className="text-gray-300 mb-4">
         {description}
       </p>
-      <Link to={linkTo} className="text-[#9b87f5] hover:text-[#a87cff] inline-flex items-center" onClick={(e) => e.stopPropagation()}>
-        Learn more <ArrowRight className="ml-1 w-4 h-4" />
-      </Link>
+      {isExternal ? (
+        <a 
+          href={linkTo} 
+          className="text-[#9b87f5] hover:text-[#a87cff] inline-flex items-center" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+        >
+          Visit site <ArrowRight className="ml-1 w-4 h-4" />
+        </a>
+      ) : (
+        <Link to={linkTo} className="text-[#9b87f5] hover:text-[#a87cff] inline-flex items-center" onClick={(e) => e.stopPropagation()}>
+          Learn more <ArrowRight className="ml-1 w-4 h-4" />
+        </Link>
+      )}
     </div>
   );
 };

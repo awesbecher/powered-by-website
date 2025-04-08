@@ -52,7 +52,8 @@ export const FeaturesSection: React.FC<FeaturesSectionProps> = () => {
           icon={<User className="w-6 h-6 text-white" />}
           title="Virtual SE"
           description="AI-powered sales engineers that qualify leads, provide demos, and answer technical questions for your software product."
-          linkTo="/virtual-se"
+          linkTo="https://www.getvirtual.se"
+          isExternal={true}
         />
 
         <FeatureCard 

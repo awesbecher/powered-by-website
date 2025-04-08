@@ -54,7 +54,8 @@ const Products = () => {
       title: "Virtual SE",
       description: "Force-multiply your sales engineering team with AI pre-sales engineers that join unlimited meetings to provide technical support with minimal incremental expense.",
       icon: Cpu,
-      link: "/virtual-se"
+      link: "https://www.getvirtual.se",
+      isExternal: true
     },
     {
       title: "OutboundAI",
@@ -99,6 +100,7 @@ const Products = () => {
                 description={solution.description}
                 icon={solution.icon}
                 link={solution.link}
+                isExternal={solution.isExternal}
               />
             ))}
           </div>

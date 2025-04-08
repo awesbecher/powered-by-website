@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Mic, MessageSquare, Mail, Zap, User, Megaphone } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,15 +8,20 @@ interface ChannelCardProps {
   title: string;
   description: string;
   link: string;
+  isExternal?: boolean;
 }
 
-const ChannelCard = ({ icon, title, description, link }: ChannelCardProps) => {
+const ChannelCard = ({ icon, title, description, link, isExternal = false }: ChannelCardProps) => {
   const navigate = useNavigate();
   
   const handleCardClick = () => {
-    // Ensure smooth navigation and scroll to top
-    window.scrollTo(0, 0);
-    navigate(link);
+    if (isExternal) {
+      window.open(link, "_blank", "noopener,noreferrer");
+    } else {
+      // Ensure smooth navigation and scroll to top
+      window.scrollTo(0, 0);
+      navigate(link);
+    }
   };
 
   return (
@@ -28,9 +34,21 @@ const ChannelCard = ({ icon, title, description, link }: ChannelCardProps) => {
       </div>
       <h3 className="text-xl font-semibold text-white mb-3">{title}</h3>
       <p className="text-gray-300 mb-4">{description}</p>
-      <Link to={link} className="text-[#9b87f5] flex items-center gap-2 hover:underline" onClick={(e) => e.stopPropagation()}>
-        Learn more <span className="text-lg">→</span>
-      </Link>
+      {isExternal ? (
+        <a 
+          href={link} 
+          className="text-[#9b87f5] flex items-center gap-2 hover:underline" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+        >
+          Visit site <span className="text-lg">→</span>
+        </a>
+      ) : (
+        <Link to={link} className="text-[#9b87f5] flex items-center gap-2 hover:underline" onClick={(e) => e.stopPropagation()}>
+          Learn more <span className="text-lg">→</span>
+        </Link>
+      )}
     </div>
   );
 };
@@ -81,7 +99,8 @@ const MultiChannelSection = () => {
           icon={<User className="h-6 w-6 text-[#9b87f5]" />}
           title="Virtual SE"
           description="AI-powered sales engineers that qualify leads, provide demos, and answer technical questions for your software product."
-          link="/virtual-se"
+          link="https://www.getvirtual.se"
+          isExternal={true}
         />
         
         <ChannelCard
