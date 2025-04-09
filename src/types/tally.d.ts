@@ -4,6 +4,14 @@ interface TallyPopupOptions {
   height?: number;
   hideTitle?: boolean;
   layout?: string;
+  alignLeft?: boolean;
+  hideCloseButton?: boolean;
+  emoji?: string;
+  customFormUrl?: string;
+  hiddenFields?: Record<string, string>;
+  shareGaInstance?: boolean;
+  onOpen?: () => void;
+  onClose?: () => void;
 }
 
 interface Tally {
@@ -14,6 +22,7 @@ interface Tally {
 declare global {
   interface Window {
     Tally: Tally;
+    Calendly?: any; // Added for Calendly integration
   }
 }
 
