@@ -14,7 +14,7 @@ export const VoiceChatControls = ({ source = "voice-chat" }: VoiceChatControlsPr
   const [isCallActive, setIsCallActive] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const ASSISTANT_ID = "c7acc482-bee2-40a3-85d1-a192ce2a6685";
+  const ASSISTANT_ID = "ebb38ba5-321a-49e4-b860-708bc864327f";
 
   const handleVoiceChatClick = () => {
     setShowVoiceChatDialog(true);

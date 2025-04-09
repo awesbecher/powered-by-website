@@ -31,7 +31,7 @@ export const GlobalVoiceChatDialog = () => {
     setIsSubmitting(true);
     try {
       const vapi = getVapiInstance();
-      await vapi.start("c7acc482-bee2-40a3-85d1-a192ce2a6685");
+      await vapi.start("ebb38ba5-321a-49e4-b860-708bc864327f");
       setIsCallActive(true);
       
       vapi.on("call-end", () => {

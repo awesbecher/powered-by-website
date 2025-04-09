@@ -17,7 +17,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
   const [isCallActive, setIsCallActive] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const ASSISTANT_ID = "07e97137-ad5c-4846-ab6f-cff48c3e2da9";
+  const ASSISTANT_ID = "ebb38ba5-321a-49e4-b860-708bc864327f";
 
   useEffect(() => {
     if (window.Tally) {
