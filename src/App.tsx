@@ -45,6 +45,7 @@ import News from "./pages/News";
 import Payment from "./pages/Payment";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import PaymentCancelled from "./pages/PaymentCancelled";
+import AgentPodcast from "./pages/AgentPodcast";
 import { Toaster } from "@/components/ui/toaster"
 import { GlobalVoiceChatDialog } from './components/shared/GlobalVoiceChatDialog';
 import OmegaPediatrics from "./pages/OmegaPediatrics";
@@ -91,6 +92,7 @@ function App() {
               <Route path="/thank-you" element={<ThankYou />} />
               <Route path="/careers" element={<Careers />} />
               <Route path="/launch" element={<ProductHunt />} />
+              <Route path="/agent-podcast" element={<AgentPodcast />} />
               <Route path="/omega-pediatrics" element={<OmegaPediatrics />} />
               <Route 
                 path="/omega-voice1" 
