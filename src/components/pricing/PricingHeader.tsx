@@ -18,7 +18,7 @@ const PricingHeader = ({ isAnnual, setIsAnnual }: PricingHeaderProps) => {
         Get started quickly & affordably. Just powerful AI agents that grow with your business.
       </p>
       
-      <div className="flex items-center justify-center gap-4 mb-12">
+      <div className="flex items-center justify-center gap-4 mb-6">
         <span className={`text-sm font-medium ${!isAnnual ? "text-white" : "text-gray-400"}`}>
           Monthly Billing
         </span>
