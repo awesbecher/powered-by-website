@@ -28,6 +28,21 @@ const AgentPodcast: React.FC = () => {
                   ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
                 <p>Join <PoweredByText /> as we explore how AI agents are transforming the way businesses work, communicate, & engage customers.</p>
               </div>
+              
+              {/* Podcast Player */}
+              <div className={`mt-10 mx-auto max-w-3xl transition-all duration-1000 delay-500 ease-out transform
+                  ${initialLoad ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
+                <iframe 
+                  width="100%" 
+                  height="194" 
+                  frameBorder="0"
+                  scrolling="no" 
+                  seamless 
+                  title="Powered by AI Agents Podcast Player"
+                  src="https://powered-by-ai-agents.jellypod.ai/embed?theme=slate&rounded=lg"
+                  className="shadow-xl rounded-lg"
+                />
+              </div>
             </div>
           </div>
           
