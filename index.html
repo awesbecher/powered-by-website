@@ -20,6 +20,30 @@
 
       ttq.load('CVM71LJC77U8PJBE5VAG');
       ttq.page();
+      
+      // Handle URL parameters for campaign tracking
+      document.addEventListener('DOMContentLoaded', function() {
+        try {
+          const urlParams = new URLSearchParams(window.location.search);
+          const campaign = urlParams.get('ttcampaign');
+          const source = urlParams.get('ttsource');
+          const medium = urlParams.get('ttmedium');
+          const content = urlParams.get('ttcontent');
+          
+          if (campaign || source || medium || content) {
+            console.log('TikTok tracking parameters detected');
+            ttq.track('ViewContent', {
+              campaign: campaign || '',
+              source: source || '',
+              medium: medium || '',
+              content: content || '',
+              url: window.location.href
+            });
+          }
+        } catch (error) {
+          console.error('Error processing TikTok tracking parameters:', error);
+        }
+      });
     }(window, document, 'ttq');
     </script>
     <!-- TikTok Pixel Code End -->
