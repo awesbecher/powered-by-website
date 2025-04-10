@@ -24,7 +24,7 @@ const AgentPodcast: React.FC = () => {
             
             <div className={`mt-4 text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed transition-all duration-1000 delay-300 ease-out transform
                 ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
-              <p>Coming soon...</p>
+              <p>Join Powered_by as we explore how AI agents are transforming the way businesses work, communicate, & engage customers.</p>
             </div>
           </div>
         </div>
