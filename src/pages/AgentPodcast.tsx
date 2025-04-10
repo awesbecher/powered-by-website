@@ -33,15 +33,15 @@ const AgentPodcast: React.FC = () => {
               <div className={`mt-10 mx-auto max-w-3xl transition-all duration-1000 delay-500 ease-out transform
                   ${initialLoad ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
                 <iframe 
+                  src="https://powered-by-ai-agents.jellypod.ai/embed?theme=slate&rounded=lg"
                   width="100%" 
                   height="194" 
-                  frameBorder="0"
+                  frameBorder="0" 
                   scrolling="no" 
-                  seamless 
+                  allow="autoplay" 
                   title="Powered by AI Agents Podcast Player"
-                  src="https://powered-by-ai-agents.jellypod.ai/embed?theme=slate&rounded=lg"
                   className="shadow-xl rounded-lg"
-                />
+                ></iframe>
               </div>
             </div>
           </div>
