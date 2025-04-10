@@ -7,9 +7,10 @@ import { Check, HelpCircle, Star, Rocket, Award, Asterisk } from "lucide-react";
 interface PricingCardProps {
   type: "starter" | "growth" | "enterprise";
   isPopular?: boolean;
+  isAnnual?: boolean;
 }
 
-const PricingCard = ({ type, isPopular = false }: PricingCardProps) => {
+const PricingCard = ({ type, isPopular = false, isAnnual = true }: PricingCardProps) => {
   // Define card content based on type
   const getIcon = () => {
     switch (type) {
@@ -34,22 +35,20 @@ const PricingCard = ({ type, isPopular = false }: PricingCardProps) => {
   };
 
   const getPrice = () => {
-    switch (type) {
-      case "starter":
-        return "$299";
-      case "growth":
-        return "$599";
-      case "enterprise":
-        return null;
+    if (type === "enterprise") return null;
+    
+    if (type === "starter") {
+      return isAnnual ? "$299" : "$359";
+    } else if (type === "growth") {
+      return isAnnual ? "$599" : "$718";
     }
   };
 
   const getPriceSuffix = () => {
     switch (type) {
       case "starter":
-        return "/month/agent";
       case "growth":
-        return "/month/agent";
+        return isAnnual ? "/month/agent" : "/month/agent";
       case "enterprise":
         return null;
     }

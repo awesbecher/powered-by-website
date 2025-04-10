@@ -2,11 +2,15 @@
 import React from "react";
 import PricingCard from "./PricingCard";
 
-const PricingGrid = () => {
+interface PricingGridProps {
+  isAnnual: boolean;
+}
+
+const PricingGrid = ({ isAnnual }: PricingGridProps) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <PricingCard type="starter" />
-      <PricingCard type="growth" isPopular={true} />
+      <PricingCard type="starter" isAnnual={isAnnual} />
+      <PricingCard type="growth" isPopular={true} isAnnual={isAnnual} />
       <PricingCard type="enterprise" />
     </div>
   );
