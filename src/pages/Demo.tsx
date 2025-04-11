@@ -1,98 +1,16 @@
 
 import { WordAnimation } from "@/components/home/WordAnimation";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import OfferButton from "@/components/home/OfferButton";
-import { useToast } from "@/hooks/use-toast";
-import { DemoForm } from "@/components/demo/DemoForm";
 import { DemosList } from "@/components/demo/DemosList";
 
 const Demo = () => {
   const [initialLoad, setInitialLoad] = useState(true);
-  const [showDemos, setShowDemos] = useState(false);
-  const [showForm, setShowForm] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
-  const { toast } = useToast();
-
-  // Initialize based on URL parameters and localStorage
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const isAdmin = searchParams.get('admin') === 'true';
-    
-    if (isAdmin) {
-      localStorage.setItem('demoFormCompleted', 'true');
-      searchParams.delete('admin');
-      navigate({
-        pathname: location.pathname,
-        search: searchParams.toString()
-      }, { replace: true });
-      
-      toast({
-        title: "Admin Access Granted",
-        description: "Welcome to the demo page!"
-      });
-    }
-    
-    const hasCompletedForm = localStorage.getItem('demoFormCompleted') === 'true';
-    
-    if (hasCompletedForm) {
-      setShowDemos(true);
-      setShowForm(false);
-    } else {
-      setShowDemos(false);
-      setShowForm(true);
-    }
-    
-    setInitialLoad(false);
-  }, [navigate, toast, location]);
-
-  // Form submission handler
-  const handleFormSubmitted = useCallback(() => {
-    console.log("Form submission callback triggered in Demo component");
-    localStorage.setItem('demoFormCompleted', 'true');
-    
-    toast({
-      title: "Form submitted successfully!",
-      description: "Showing you our demos...",
-    });
-    
-    setShowDemos(true);
-    setShowForm(false);
-    
-    // Scroll to top with a slight delay to ensure the state updates are applied
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 300);
-  }, [toast]);
-
-  // Listen for form submission events from the window
-  useEffect(() => {
-    const handleWindowMessage = (event: MessageEvent) => {
-      console.log('Demo.tsx received message event:', event.data);
-      
-      // Check various forms of the success message
-      const isSuccess = 
-        (event.data?.type === 'tally-form-submit-success') || 
-        (typeof event.data === 'string' && event.data.includes('tally-form-submit-success')) ||
-        (event.data?.eventName === 'tally-form-submit-success') ||
-        (typeof event.data === 'string' && event.data.includes('thanks for completing'));
-      
-      if (isSuccess) {
-        console.log('Form submission detected via window event');
-        handleFormSubmitted();
-      }
-    };
-    
-    window.addEventListener('message', handleWindowMessage);
-    
-    return () => {
-      window.removeEventListener('message', handleWindowMessage);
-    };
-  }, [handleFormSubmitted]);
 
   // Scroll to top when the location changes
   useEffect(() => {
@@ -102,6 +20,8 @@ const Demo = () => {
         behavior: 'smooth'
       });
     }, 0);
+    
+    setInitialLoad(false);
   }, [location]);
 
   return (
@@ -128,14 +48,10 @@ const Demo = () => {
                 See our <span className="text-[#9b87f5]">AI Agents</span> in Action!
               </h1>
               
-              {showForm && <DemoForm onFormSubmitted={handleFormSubmitted} />}
-              
-              {!showForm && (
-                <p className={`mt-4 text-lg leading-relaxed text-gray-300 max-w-3xl mx-auto font-bold transition-all duration-1000 delay-300 ease-out transform
-                    ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
-                  While <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> offers fully custom & multi-channel AI agent solutions, you can experience our pre-built voice agents by clicking any one of the below.
-                </p>
-              )}
+              <p className={`mt-4 text-lg leading-relaxed text-gray-300 max-w-3xl mx-auto font-bold transition-all duration-1000 delay-300 ease-out transform
+                  ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
+                While <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> offers fully custom & multi-channel AI agent solutions, you can experience our pre-built voice agents by clicking any one of the below.
+              </p>
             </div>
           </div>
           
@@ -143,7 +59,7 @@ const Demo = () => {
           <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
         </div>
 
-        {showDemos && <DemosList />}
+        <DemosList />
 
         <ClosingCTA />
         <Footer />

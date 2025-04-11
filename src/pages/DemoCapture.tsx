@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const DemoCapture = () => {
   const navigate = useNavigate();
 
-  // Simply redirect to the /demo page which now handles the form internally
+  // Simply redirect to the /demo page
   useEffect(() => {
     navigate('/demo', { replace: true });
   }, [navigate]);
