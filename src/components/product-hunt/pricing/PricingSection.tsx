@@ -15,7 +15,7 @@ export const PricingSection: React.FC<PricingSectionProps> = () => {
     <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
       <div className="max-w-3xl mx-auto text-center mb-16">
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-          Simple Agent Pricing
+          Simple <span className="text-[#9b87f5]">Agent</span> Pricing
         </h2>
         <p className="text-xl text-gray-300 mb-8">
           Get started quickly & affordable. Just powerful AI agents that grow with your business.

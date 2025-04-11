@@ -12,7 +12,7 @@ const PricingHeader = ({ isAnnual, setIsAnnual }: PricingHeaderProps) => {
   return (
     <div className="max-w-4xl mx-auto text-center">
       <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-        Simple Agent Pricing
+        Simple <span className="text-[#9b87f5]">Agent</span> Pricing
       </h1>
       <p className="text-xl text-gray-300 mb-8">
         Get started quickly & affordably. Just powerful AI agents that grow with your business.
