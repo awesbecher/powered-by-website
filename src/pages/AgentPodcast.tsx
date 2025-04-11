@@ -1,16 +1,35 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { PoweredByText } from '@/components/shared/PoweredByText';
+import { Button } from '@/components/ui/button';
+import { Play, Pause } from 'lucide-react';
 
 const AgentPodcast: React.FC = () => {
   const [initialLoad, setInitialLoad] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
     setInitialLoad(false);
     window.scrollTo(0, 0);
   }, []);
+  
+  const togglePlayPause = () => {
+    if (!iframeRef.current) return;
+    
+    try {
+      // Send postMessage to the Jellypod iframe to control playback
+      iframeRef.current.contentWindow?.postMessage({
+        action: isPlaying ? 'pause' : 'play'
+      }, 'https://powered-by-ai-agents.jellypod.ai');
+      
+      setIsPlaying(!isPlaying);
+    } catch (error) {
+      console.error('Error controlling podcast playback:', error);
+    }
+  };
 
   return (
     <div className="flex flex-col min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
@@ -29,11 +48,26 @@ const AgentPodcast: React.FC = () => {
                 <p>Join <PoweredByText /> as we explore how AI agents are transforming the way businesses work, communicate, & engage customers.</p>
               </div>
               
+              {/* Custom Play Button */}
+              <div className="mt-8 flex justify-center">
+                <Button 
+                  onClick={togglePlayPause}
+                  className="rounded-full w-16 h-16 bg-[#9b87f5] hover:bg-[#8a74e8] text-white flex items-center justify-center transition-all duration-300"
+                >
+                  {isPlaying ? (
+                    <Pause className="w-8 h-8" />
+                  ) : (
+                    <Play className="w-8 h-8 ml-1" />
+                  )}
+                </Button>
+              </div>
+              
               {/* Podcast Player */}
-              <div className={`mt-10 mx-auto max-w-3xl transition-all duration-1000 delay-500 ease-out transform
+              <div className={`mt-8 mx-auto max-w-3xl transition-all duration-1000 delay-500 ease-out transform
                   ${initialLoad ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
                 <iframe 
-                  src="https://powered-by-ai-agents.jellypod.ai/embed?theme=slate&rounded=lg"
+                  ref={iframeRef}
+                  src="https://powered-by-ai-agents.jellypod.ai/embed?theme=slate&rounded=lg&mini=true"
                   width="100%" 
                   height="194" 
                   frameBorder="0" 
