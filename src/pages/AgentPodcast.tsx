@@ -11,6 +11,7 @@ const AgentPodcast: React.FC = () => {
   const [iframeLoaded, setIframeLoaded] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [attemptedPlays, setAttemptedPlays] = useState(0);
 
   useEffect(() => {
     setInitialLoad(false);
@@ -42,31 +43,49 @@ const AgentPodcast: React.FC = () => {
     setIframeLoaded(true);
   };
 
-  // Function to play/pause the podcast
+  // Function to directly interact with the iframe content
   const togglePlayPodcast = () => {
     if (!iframeRef.current) return;
     
-    // Create a new URL based on the current src
-    const url = new URL(iframeRef.current.src);
-    
-    // Update the action parameter
-    url.searchParams.set('action', isPlaying ? 'pause' : 'play');
-    
-    // Add a timestamp to force the iframe to recognize the parameter change
-    url.searchParams.set('t', Date.now().toString());
-    
-    // Update the iframe src with the new URL
-    iframeRef.current.src = url.toString();
-    
-    console.log(`Sending ${isPlaying ? 'pause' : 'play'} command to podcast iframe:`, url.toString());
-    
-    // Update local state immediately for better UX
-    if (!isPlaying) {
-      setIsPlaying(true);
-      toast.success("Playing podcast...");
-    } else {
-      setIsPlaying(false);
-      toast.info("Pausing podcast...");
+    try {
+      // Try to detect the play button inside the iframe and click it
+      const newAttempt = attemptedPlays + 1;
+      setAttemptedPlays(newAttempt);
+      
+      // Method 1: Using postMessage API
+      iframeRef.current.contentWindow?.postMessage({
+        action: isPlaying ? 'pause' : 'play',
+        timestamp: Date.now()
+      }, 'https://powered-by-ai-agents.jellypod.ai');
+      
+      console.log(`Sent ${isPlaying ? 'pause' : 'play'} command via postMessage`);
+      
+      // Method 2: Reload the iframe with a specific action in URL
+      const url = new URL(iframeRef.current.src);
+      url.searchParams.set('action', isPlaying ? 'pause' : 'play');
+      url.searchParams.set('t', Date.now().toString());
+      iframeRef.current.src = url.toString();
+      
+      console.log(`Sent ${isPlaying ? 'pause' : 'play'} command via URL parameter:`, url.toString());
+      
+      // Update UI immediately for better user experience
+      if (!isPlaying) {
+        setIsPlaying(true);
+        toast.success("Playing podcast...");
+      } else {
+        setIsPlaying(false);
+        toast.info("Pausing podcast...");
+      }
+      
+      // If we've tried multiple times without success, suggest refreshing
+      if (newAttempt >= 3) {
+        toast.info("If playback doesn't start, try refreshing the page", {
+          duration: 5000,
+        });
+      }
+    } catch (e) {
+      console.error('Error controlling podcast:', e);
+      toast.error("Couldn't control podcast playback");
     }
   };
 
@@ -99,7 +118,7 @@ const AgentPodcast: React.FC = () => {
                 <div className="relative rounded-lg overflow-hidden">
                   <iframe 
                     ref={iframeRef}
-                    src="https://powered-by-ai-agents.jellypod.ai/embed?theme=slate&rounded=lg&mini=true&enable_api=true"
+                    src="https://powered-by-ai-agents.jellypod.ai/embed?theme=slate&rounded=lg&mini=true&enable_api=true&auto_play=false"
                     width="100%" 
                     height="194" 
                     frameBorder="0" 
@@ -109,6 +128,15 @@ const AgentPodcast: React.FC = () => {
                     onLoad={handleIframeLoad}
                     allow="autoplay"
                   ></iframe>
+                  
+                  {/* Transparent overlay to capture clicks directly on the player */}
+                  {iframeLoaded && (
+                    <div 
+                      className="absolute inset-0 z-10 opacity-0"
+                      onClick={togglePlayPodcast}
+                      aria-label={isPlaying ? "Pause podcast" : "Play podcast"}
+                    />
+                  )}
                 </div>
                 
                 {iframeLoaded && (
