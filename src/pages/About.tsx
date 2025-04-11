@@ -79,9 +79,18 @@ const About = () => {
         />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          {/* Add the new workshop image above the CustomApproachSection */}
+          <div className={`mt-16 mb-8 max-w-4xl mx-auto transition-all duration-1000 delay-400 ease-out transform
+            ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
+            <img 
+              src="/lovable-uploads/9adc47a5-7863-4041-9365-0a05139936a2.png" 
+              alt="AI workshop presentation with audience" 
+              className="w-full h-auto rounded-xl shadow-lg"
+            />
+          </div>
+          
           <CustomApproachSection initialLoad={initialLoad} />
           
-          {/* Add the Mission Image Section above the CustomerCentricitySection */}
           <MissionImageSection initialLoad={initialLoad} />
           
           <CustomerCentricitySection initialLoad={initialLoad} />
