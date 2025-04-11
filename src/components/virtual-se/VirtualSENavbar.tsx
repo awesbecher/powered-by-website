@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -22,10 +23,10 @@ const VirtualSENavbar = () => {
 
   // Define resources dropdown items
   const resourceItems = [
+    { label: "Demos", path: "/demo" }, // Moved to the first position
     { label: "AI Research", path: "https://poweredbyagency.ghost.io", isExternal: true },
     { label: "News", path: "/news" },
     { label: "Careers", path: "/careers" },
-    { label: "Demos", path: "/demo" },
     { label: "Videos", path: "https://www.youtube.com/@Powered_byAgency", isExternal: true },
     { label: "Podcast", path: "https://powered-by-ai-agents.jellypod.ai/", isExternal: true }
   ];

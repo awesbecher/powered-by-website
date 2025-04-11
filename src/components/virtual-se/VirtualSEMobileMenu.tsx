@@ -132,6 +132,14 @@ const VirtualSEMobileMenu = () => {
                 
                 {expandedItem === "Resources" && (
                   <div className="ml-8 flex flex-col space-y-2 mt-2 mb-2">
+                    <Link
+                      to="/demo"
+                      className="py-2 text-sm text-gray-300 hover:text-white"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <ChevronRight className="h-3 w-3 mr-1 inline" />
+                      Demos
+                    </Link>
                     <a
                       href="https://poweredbyagency.ghost.io"
                       target="_blank"
@@ -167,6 +175,16 @@ const VirtualSEMobileMenu = () => {
                     >
                       <ChevronRight className="h-3 w-3 mr-1 inline" />
                       Videos
+                    </a>
+                    <a
+                      href="https://powered-by-ai-agents.jellypod.ai/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="py-2 text-sm text-gray-300 hover:text-white"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <ChevronRight className="h-3 w-3 mr-1 inline" />
+                      Podcast
                     </a>
                   </div>
                 )}

@@ -23,10 +23,10 @@ export const navItems: NavItemWithChildren[] = [
     name: "Resources", 
     path: "#",
     children: [
+      { name: "Demos", path: "/demo" }, // Moved to the first position
       { name: "AI Research", path: "https://poweredbyagency.ghost.io", isExternal: true },
       { name: "News", path: "/news" },
       { name: "Careers", path: "/careers" },
-      { name: "Demos", path: "/demo" }, // Changed from "Pricing" to "Demos"
       { name: "Videos", path: "https://www.youtube.com/@Powered_byAgency", isExternal: true },
       { name: "Podcast", path: "https://powered-by-ai-agents.jellypod.ai/", isExternal: true }
     ]
