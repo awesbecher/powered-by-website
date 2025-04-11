@@ -28,7 +28,7 @@ export const navItems: NavItemWithChildren[] = [
       { name: "Careers", path: "/careers" },
       { name: "Pricing", path: "/pricing" },
       { name: "Videos", path: "https://www.youtube.com/@Powered_byAgency", isExternal: true },
-      { name: "Podcast", path: "/agent-podcast" }
+      { name: "Podcast", path: "https://powered-by-ai-agents.jellypod.ai/", isExternal: true }
     ]
   },
   { name: "About", path: "/about" }

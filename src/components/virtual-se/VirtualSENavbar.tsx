@@ -27,7 +27,7 @@ const VirtualSENavbar = () => {
     { label: "News", path: "/news" },
     { label: "Careers", path: "/careers" },
     { label: "Videos", path: "https://www.youtube.com/@Powered_byAgency", isExternal: true },
-    { label: "Podcast", path: "/agent-podcast" }
+    { label: "Podcast", path: "https://powered-by-ai-agents.jellypod.ai/", isExternal: true }
   ];
 
   return (
