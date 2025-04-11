@@ -4,6 +4,7 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { PoweredByText } from '@/components/shared/PoweredByText';
 import { toast } from "sonner";
+import { Play, Pause } from "lucide-react";
 
 const AgentPodcast: React.FC = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -45,27 +46,27 @@ const AgentPodcast: React.FC = () => {
   const togglePlayPodcast = () => {
     if (!iframeRef.current) return;
     
-    const action = isPlaying ? 'pause' : 'play';
+    // Create a new URL based on the current src
+    const url = new URL(iframeRef.current.src);
     
-    try {
-      // Direct script injection method that bypasses cross-origin restrictions
-      iframeRef.current.src = iframeRef.current.src.includes('?') ? 
-        `${iframeRef.current.src}&action=${action}&t=${Date.now()}` : 
-        `${iframeRef.current.src}?action=${action}&t=${Date.now()}`;
-      
-      console.log(`${action} command sent to podcast iframe using URL parameter`);
-      
-      // Update local state immediately for better UX
-      if (action === 'play') {
-        setIsPlaying(true);
-        toast.success("Playing podcast...");
-      } else {
-        setIsPlaying(false);
-        toast.info("Pausing podcast...");
-      }
-    } catch (e) {
-      console.error('Error controlling podcast:', e);
-      toast.error("Couldn't control podcast playback");
+    // Update the action parameter
+    url.searchParams.set('action', isPlaying ? 'pause' : 'play');
+    
+    // Add a timestamp to force the iframe to recognize the parameter change
+    url.searchParams.set('t', Date.now().toString());
+    
+    // Update the iframe src with the new URL
+    iframeRef.current.src = url.toString();
+    
+    console.log(`Sending ${isPlaying ? 'pause' : 'play'} command to podcast iframe:`, url.toString());
+    
+    // Update local state immediately for better UX
+    if (!isPlaying) {
+      setIsPlaying(true);
+      toast.success("Playing podcast...");
+    } else {
+      setIsPlaying(false);
+      toast.info("Pausing podcast...");
     }
   };
 
@@ -95,10 +96,10 @@ const AgentPodcast: React.FC = () => {
                   </div>
                 )}
                 
-                <div className="relative">
+                <div className="relative rounded-lg overflow-hidden">
                   <iframe 
                     ref={iframeRef}
-                    src="https://powered-by-ai-agents.jellypod.ai/embed?theme=slate&rounded=lg&mini=true"
+                    src="https://powered-by-ai-agents.jellypod.ai/embed?theme=slate&rounded=lg&mini=true&enable_api=true"
                     width="100%" 
                     height="194" 
                     frameBorder="0" 
@@ -108,23 +109,25 @@ const AgentPodcast: React.FC = () => {
                     onLoad={handleIframeLoad}
                     allow="autoplay"
                   ></iframe>
-                  
-                  {/* Transparent overlay to capture clicks */}
-                  {iframeLoaded && (
-                    <div 
-                      className="absolute inset-0 cursor-pointer"
-                      onClick={togglePlayPodcast}
-                      aria-label={isPlaying ? "Pause podcast" : "Play podcast"}
-                    />
-                  )}
                 </div>
                 
                 {iframeLoaded && (
                   <button 
                     onClick={togglePlayPodcast}
-                    className="mt-4 px-6 py-2 bg-[#9b87f5] hover:bg-[#8976d9] text-white rounded-lg transition-colors"
+                    className="mt-6 px-6 py-3 bg-[#9b87f5] hover:bg-[#8976d9] text-white rounded-lg transition-colors flex items-center justify-center mx-auto gap-2"
+                    aria-label={isPlaying ? "Pause podcast" : "Play podcast"}
                   >
-                    {isPlaying ? "Pause Podcast" : "Play Podcast"}
+                    {isPlaying ? (
+                      <>
+                        <Pause size={18} />
+                        <span>Pause Podcast</span>
+                      </>
+                    ) : (
+                      <>
+                        <Play size={18} />
+                        <span>Play Podcast</span>
+                      </>
+                    )}
                   </button>
                 )}
               </div>
