@@ -3,9 +3,11 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { PoweredByText } from '@/components/shared/PoweredByText';
+import { toast } from "sonner";
 
 const AgentPodcast: React.FC = () => {
   const [initialLoad, setInitialLoad] = useState(true);
+  const [iframeLoaded, setIframeLoaded] = useState(false);
 
   useEffect(() => {
     setInitialLoad(false);
@@ -16,12 +18,24 @@ const AgentPodcast: React.FC = () => {
       // Only handle messages from our podcast domain
       if (event.origin === 'https://powered-by-ai-agents.jellypod.ai') {
         console.log('Received message from podcast iframe:', event.data);
+        
+        // Show toast when playback state changes
+        if (event.data?.event === 'play') {
+          toast.success("Podcast started playing");
+        } else if (event.data?.event === 'pause') {
+          toast.info("Podcast paused");
+        }
       }
     };
     
     window.addEventListener('message', handleIframeMessages);
     return () => window.removeEventListener('message', handleIframeMessages);
   }, []);
+
+  const handleIframeLoad = () => {
+    console.log('Podcast iframe loaded');
+    setIframeLoaded(true);
+  };
 
   return (
     <div className="flex flex-col min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
@@ -43,15 +57,21 @@ const AgentPodcast: React.FC = () => {
               {/* Podcast Player */}
               <div className={`mt-10 mx-auto max-w-3xl transition-all duration-1000 delay-500 ease-out transform
                   ${initialLoad ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
+                {!iframeLoaded && (
+                  <div className="bg-white/5 rounded-lg h-[194px] flex items-center justify-center">
+                    <div className="text-white">Loading podcast player...</div>
+                  </div>
+                )}
                 <iframe 
-                  src="https://powered-by-ai-agents.jellypod.ai/embed?theme=slate&rounded=lg"
+                  src="https://powered-by-ai-agents.jellypod.ai/embed?theme=slate&rounded=lg&enable_api=true"
                   width="100%" 
                   height="194" 
                   frameBorder="0" 
                   scrolling="no" 
                   allow="autoplay" 
                   title="Powered by AI Agents Podcast Player"
-                  className="shadow-xl rounded-lg"
+                  className={`shadow-xl rounded-lg ${!iframeLoaded ? 'hidden' : ''}`}
+                  onLoad={handleIframeLoad}
                 ></iframe>
               </div>
             </div>
