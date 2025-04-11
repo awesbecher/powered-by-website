@@ -9,6 +9,7 @@ const AgentPodcast: React.FC = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   const [iframeLoaded, setIframeLoaded] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     setInitialLoad(false);
@@ -22,8 +23,10 @@ const AgentPodcast: React.FC = () => {
         
         // Show toast when playback state changes
         if (event.data?.event === 'play') {
+          setIsPlaying(true);
           toast.success("Podcast started playing");
         } else if (event.data?.event === 'pause') {
+          setIsPlaying(false);
           toast.info("Podcast paused");
         }
       }
@@ -36,33 +39,33 @@ const AgentPodcast: React.FC = () => {
   const handleIframeLoad = () => {
     console.log('Podcast iframe loaded');
     setIframeLoaded(true);
-    
-    // Send a message to the iframe to verify connection
-    setTimeout(() => {
-      if (iframeRef.current) {
-        try {
-          iframeRef.current.contentWindow?.postMessage({
-            action: 'ready-check'
-          }, 'https://powered-by-ai-agents.jellypod.ai');
-          console.log('Ready check sent to podcast iframe');
-        } catch (e) {
-          console.error('Error sending message to iframe:', e);
-        }
-      }
-    }, 1000);
   };
 
-  // Function to try playing the podcast manually
-  const tryPlayPodcast = () => {
-    if (iframeRef.current) {
-      try {
-        iframeRef.current.contentWindow?.postMessage({
-          action: 'play'
-        }, 'https://powered-by-ai-agents.jellypod.ai');
-        console.log('Play command sent to podcast iframe');
-      } catch (e) {
-        console.error('Error sending play command to iframe:', e);
+  // Function to play/pause the podcast
+  const togglePlayPodcast = () => {
+    if (!iframeRef.current) return;
+    
+    const action = isPlaying ? 'pause' : 'play';
+    
+    try {
+      // Direct script injection method that bypasses cross-origin restrictions
+      iframeRef.current.src = iframeRef.current.src.includes('?') ? 
+        `${iframeRef.current.src}&action=${action}&t=${Date.now()}` : 
+        `${iframeRef.current.src}?action=${action}&t=${Date.now()}`;
+      
+      console.log(`${action} command sent to podcast iframe using URL parameter`);
+      
+      // Update local state immediately for better UX
+      if (action === 'play') {
+        setIsPlaying(true);
+        toast.success("Playing podcast...");
+      } else {
+        setIsPlaying(false);
+        toast.info("Pausing podcast...");
       }
+    } catch (e) {
+      console.error('Error controlling podcast:', e);
+      toast.error("Couldn't control podcast playback");
     }
   };
 
@@ -91,25 +94,37 @@ const AgentPodcast: React.FC = () => {
                     <div className="text-white">Loading podcast player...</div>
                   </div>
                 )}
-                <iframe 
-                  ref={iframeRef}
-                  src="https://powered-by-ai-agents.jellypod.ai/embed?theme=slate&rounded=lg&enable_api=true&mini=true"
-                  width="100%" 
-                  height="194" 
-                  frameBorder="0" 
-                  scrolling="no" 
-                  allow="autoplay" 
-                  title="Powered by AI Agents Podcast Player"
-                  className={`shadow-xl rounded-lg ${!iframeLoaded ? 'hidden' : ''}`}
-                  onLoad={handleIframeLoad}
-                ></iframe>
+                
+                <div className="relative">
+                  <iframe 
+                    ref={iframeRef}
+                    src="https://powered-by-ai-agents.jellypod.ai/embed?theme=slate&rounded=lg&mini=true"
+                    width="100%" 
+                    height="194" 
+                    frameBorder="0" 
+                    scrolling="no" 
+                    title="Powered by AI Agents Podcast Player"
+                    className={`shadow-xl rounded-lg ${!iframeLoaded ? 'hidden' : ''}`}
+                    onLoad={handleIframeLoad}
+                    allow="autoplay"
+                  ></iframe>
+                  
+                  {/* Transparent overlay to capture clicks */}
+                  {iframeLoaded && (
+                    <div 
+                      className="absolute inset-0 cursor-pointer"
+                      onClick={togglePlayPodcast}
+                      aria-label={isPlaying ? "Pause podcast" : "Play podcast"}
+                    />
+                  )}
+                </div>
                 
                 {iframeLoaded && (
                   <button 
-                    onClick={tryPlayPodcast}
+                    onClick={togglePlayPodcast}
                     className="mt-4 px-6 py-2 bg-[#9b87f5] hover:bg-[#8976d9] text-white rounded-lg transition-colors"
                   >
-                    Play Podcast
+                    {isPlaying ? "Pause Podcast" : "Play Podcast"}
                   </button>
                 )}
               </div>
