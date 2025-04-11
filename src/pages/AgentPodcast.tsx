@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { PoweredByText } from '@/components/shared/PoweredByText';
@@ -8,6 +8,7 @@ import { toast } from "sonner";
 const AgentPodcast: React.FC = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   const [iframeLoaded, setIframeLoaded] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
     setInitialLoad(false);
@@ -35,6 +36,34 @@ const AgentPodcast: React.FC = () => {
   const handleIframeLoad = () => {
     console.log('Podcast iframe loaded');
     setIframeLoaded(true);
+    
+    // Send a message to the iframe to verify connection
+    setTimeout(() => {
+      if (iframeRef.current) {
+        try {
+          iframeRef.current.contentWindow?.postMessage({
+            action: 'ready-check'
+          }, 'https://powered-by-ai-agents.jellypod.ai');
+          console.log('Ready check sent to podcast iframe');
+        } catch (e) {
+          console.error('Error sending message to iframe:', e);
+        }
+      }
+    }, 1000);
+  };
+
+  // Function to try playing the podcast manually
+  const tryPlayPodcast = () => {
+    if (iframeRef.current) {
+      try {
+        iframeRef.current.contentWindow?.postMessage({
+          action: 'play'
+        }, 'https://powered-by-ai-agents.jellypod.ai');
+        console.log('Play command sent to podcast iframe');
+      } catch (e) {
+        console.error('Error sending play command to iframe:', e);
+      }
+    }
   };
 
   return (
@@ -63,7 +92,8 @@ const AgentPodcast: React.FC = () => {
                   </div>
                 )}
                 <iframe 
-                  src="https://powered-by-ai-agents.jellypod.ai/embed?theme=slate&rounded=lg&enable_api=true"
+                  ref={iframeRef}
+                  src="https://powered-by-ai-agents.jellypod.ai/embed?theme=slate&rounded=lg&enable_api=true&mini=true"
                   width="100%" 
                   height="194" 
                   frameBorder="0" 
@@ -73,6 +103,15 @@ const AgentPodcast: React.FC = () => {
                   className={`shadow-xl rounded-lg ${!iframeLoaded ? 'hidden' : ''}`}
                   onLoad={handleIframeLoad}
                 ></iframe>
+                
+                {iframeLoaded && (
+                  <button 
+                    onClick={tryPlayPodcast}
+                    className="mt-4 px-6 py-2 bg-[#9b87f5] hover:bg-[#8976d9] text-white rounded-lg transition-colors"
+                  >
+                    Play Podcast
+                  </button>
+                )}
               </div>
             </div>
           </div>
