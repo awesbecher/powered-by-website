@@ -18,7 +18,7 @@ export const navItems: NavItemWithChildren[] = [
       { name: "OutboundAI", path: "/outbound-ai" },
     ]
   },
-  { name: "Demos", path: "/demo" }, // Changed from /demo-capture to /demo
+  { name: "Pricing", path: "/pricing" }, // Changed from "Demos" to "Pricing"
   { 
     name: "Resources", 
     path: "#",
@@ -26,7 +26,7 @@ export const navItems: NavItemWithChildren[] = [
       { name: "AI Research", path: "https://poweredbyagency.ghost.io", isExternal: true },
       { name: "News", path: "/news" },
       { name: "Careers", path: "/careers" },
-      { name: "Pricing", path: "/pricing" },
+      { name: "Demos", path: "/demo" }, // Changed from "Pricing" to "Demos"
       { name: "Videos", path: "https://www.youtube.com/@Powered_byAgency", isExternal: true },
       { name: "Podcast", path: "https://powered-by-ai-agents.jellypod.ai/", isExternal: true }
     ]

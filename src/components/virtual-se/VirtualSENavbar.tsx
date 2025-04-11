@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -26,6 +25,7 @@ const VirtualSENavbar = () => {
     { label: "AI Research", path: "https://poweredbyagency.ghost.io", isExternal: true },
     { label: "News", path: "/news" },
     { label: "Careers", path: "/careers" },
+    { label: "Demos", path: "/demo" },
     { label: "Videos", path: "https://www.youtube.com/@Powered_byAgency", isExternal: true },
     { label: "Podcast", path: "https://powered-by-ai-agents.jellypod.ai/", isExternal: true }
   ];
@@ -34,16 +34,13 @@ const VirtualSENavbar = () => {
     <nav className="bg-[#222222]/80 backdrop-blur-lg border-b border-gray-800/50 relative z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          {/* Custom Logo */}
           <NavbarLogo
             logoSrc="/lovable-uploads/29391c50-2dfd-4879-9bd5-70914db50c97.png"
             altText="Virtual SE Logo"
             linkPath="/getvirtual-se"
           />
 
-          {/* Navigation Items - Custom for Virtual SE */}
           <div className="hidden md:flex items-center space-x-2">
-            {/* Home Link */}
             <Link 
               to="/"
               className="px-3 py-2 text-sm font-bold relative group text-gray-300 hover:text-white transition-colors duration-200"
@@ -54,7 +51,6 @@ const VirtualSENavbar = () => {
 
             <span className="text-gray-600">|</span>
 
-            {/* Solutions Dropdown */}
             <NavDropdown
               label="Solution"
               path="/products"
@@ -65,7 +61,6 @@ const VirtualSENavbar = () => {
 
             <span className="text-gray-600">|</span>
 
-            {/* Resources Dropdown */}
             <NavDropdown
               label="Resources"
               items={resourceItems}
@@ -74,7 +69,6 @@ const VirtualSENavbar = () => {
             />
           </div>
 
-          {/* Right side buttons - only showing Get Started button */}
           <div className="hidden md:flex items-center gap-4">
             <Link
               to="/contact"
@@ -84,7 +78,6 @@ const VirtualSENavbar = () => {
             </Link>
           </div>
 
-          {/* Mobile Menu Button and Dropdown - Customized for Virtual SE */}
           <VirtualSEMobileMenu />
         </div>
       </div>
