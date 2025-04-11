@@ -1,56 +1,56 @@
 
-import React, { useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import React from "react";
+import { useEffect } from "react";
+
+// Define the Tally interface
+interface TallyWindow extends Window {
+  Tally?: {
+    loadEmbeds: () => void;
+    openPopup: (formId: string) => void;
+  };
+}
 
 const CTASection = () => {
-  // Load Tally embed script
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // Check if script is already loaded
-      if (!document.querySelector('script[src="https://tally.so/widgets/embed.js"]')) {
-        const script = document.createElement('script');
-        script.src = "https://tally.so/widgets/embed.js";
-        script.async = true;
-        document.body.appendChild(script);
-      }
-    }
+    // Load Tally script
+    const script = document.createElement("script");
+    script.src = "https://tally.so/widgets/embed.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
   }, []);
 
-  // Handle button click for Tally form
-  const handleContactSales = () => {
-    if (window.Tally && typeof window.Tally.openPopup === 'function') {
-      window.Tally.openPopup("w2og9b", {
-        width: 540,
-        height: 640, // Increased height to show more of the form
-        hideTitle: false,
-        layout: "modal"
-      });
+  const handleContactClick = () => {
+    const tallyWindow = window as TallyWindow;
+    if (tallyWindow.Tally && tallyWindow.Tally.openPopup) {
+      tallyWindow.Tally.openPopup("w2og9b");
     }
   };
 
   return (
-    <div className="mt-24">
-      <div className="bg-gradient-to-r from-[#6342ff]/20 to-[#a87cff]/20 backdrop-blur-xl border border-purple-500/30 rounded-2xl p-8 md:p-12">
-        <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 text-center">Ready to get started?</h2>
-        <p className="text-xl text-gray-300 mb-8 text-center">
-          Choose the plan that works for you or contact us for a custom solution.
-        </p>
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <Button 
-            className="bg-[#7E69AB] text-white hover:bg-[#6E59A5]"
-            onClick={handleContactSales}
-          >
-            Contact Sales
-          </Button>
-          <Button 
-            asChild 
-            variant="outline" 
-            className="bg-[#6342ff] text-white hover:bg-[#5838e0] border-transparent"
-          >
-            <Link to="/demo">Book a Demo</Link>
-          </Button>
-        </div>
+    <div className="text-center py-16">
+      <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+        Ready to transform your customer experience?
+      </h2>
+      <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
+        Get started with AI agents today or talk to our team about your specific needs.
+      </p>
+      <div className="flex flex-col sm:flex-row justify-center gap-4">
+        <button
+          onClick={handleContactClick}
+          className="px-8 py-3 text-lg font-medium text-white bg-[#9b87f5] hover:bg-[#8976d9] rounded-lg transition duration-300 shadow-lg"
+        >
+          Contact Sales
+        </button>
+        <a
+          href="/contact"
+          className="px-8 py-3 text-lg font-medium text-white bg-transparent hover:bg-white/10 border border-white/30 rounded-lg transition duration-300 shadow-lg"
+        >
+          Book a Demo
+        </a>
       </div>
     </div>
   );

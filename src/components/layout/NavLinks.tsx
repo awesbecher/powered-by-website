@@ -1,4 +1,3 @@
-
 import { useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
@@ -97,26 +96,25 @@ const DropdownNavItem = ({ item }: { item: NavItemWithChildren }) => {
       <div className={`absolute left-0 top-full mt-2 w-48 rounded-md shadow-lg bg-[#222222] border border-gray-700 transition-all duration-200 z-50 ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
         <div className="py-1">
           {item.children?.map((child) => (
-            <div key={child.name} className="focus:bg-[#2f1c4a] focus:text-white hover:bg-[#2f1c4a] px-0">
+            <div key={child.name} className="w-full">
               {child.isExternal ? (
                 <a
                   href={child.path}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white w-full block"
+                  className="block px-4 py-2 text-sm text-gray-300 hover:bg-[#2f1c4a] hover:text-white"
                   onClick={() => setIsOpen(false)}
                 >
                   {child.name}
                 </a>
               ) : (
-                <NavLink
+                <Link
                   to={child.path}
-                  isExternal={child.isExternal}
-                  isMobile={true}
+                  className="block px-4 py-2 text-sm text-gray-300 hover:bg-[#2f1c4a] hover:text-white"
                   onClick={() => setIsOpen(false)}
                 >
                   {child.name}
-                </NavLink>
+                </Link>
               )}
             </div>
           ))}
