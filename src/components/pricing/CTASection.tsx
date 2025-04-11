@@ -6,7 +6,7 @@ import { useEffect } from "react";
 interface TallyWindow extends Window {
   Tally?: {
     loadEmbeds: () => void;
-    openPopup: (formId: string) => void;
+    openPopup?: (formId: string) => void;
   };
 }
 

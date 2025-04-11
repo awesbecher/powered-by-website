@@ -26,7 +26,8 @@ const VirtualSENavbar = () => {
     { label: "AI Research", path: "https://poweredbyagency.ghost.io", isExternal: true },
     { label: "News", path: "/news" },
     { label: "Careers", path: "/careers" },
-    { label: "Videos", path: "https://www.youtube.com/@Powered_byAgency", isExternal: true }
+    { label: "Videos", path: "https://www.youtube.com/@Powered_byAgency", isExternal: true },
+    { label: "Podcast", path: "/agent-podcast" }
   ];
 
   return (
