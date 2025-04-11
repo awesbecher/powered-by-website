@@ -1,18 +1,11 @@
 
 import { TallyFormEmbed } from "@/components/voice-chat/TallyFormEmbed";
-import { Button } from "@/components/ui/button";
 
 interface DemoFormProps {
   onFormSubmitted: () => void;
 }
 
 export const DemoForm = ({ onFormSubmitted }: DemoFormProps) => {
-  // Manual form completion handler for testing
-  const handleManualFormCompleted = () => {
-    console.log("Manual form completion triggered from DemoForm component");
-    onFormSubmitted();
-  };
-
   return (
     <>
       <p className="mt-4 text-lg leading-relaxed text-gray-300 max-w-3xl mx-auto font-bold">
@@ -27,13 +20,6 @@ export const DemoForm = ({ onFormSubmitted }: DemoFormProps) => {
           alignLeft={true}
           onSubmit={onFormSubmitted}
         />
-        
-        <Button 
-          onClick={handleManualFormCompleted}
-          className="mt-4 px-4 py-2 bg-accent text-white rounded-md"
-        >
-          Manual Override (Testing)
-        </Button>
       </div>
     </>
   );
