@@ -11,8 +11,8 @@ export const MissionImageSection = ({ initialLoad }: MissionImageSectionProps) =
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
       <div className="rounded-xl overflow-hidden shadow-2xl border border-accent/30">
         <img 
-          src="/lovable-uploads/839054a0-e115-4db5-9585-78873881b35e.png" 
-          alt="Powered_by mission: democratize access to AI agents for SMBs" 
+          src="/lovable-uploads/bcaa0656-14f4-485d-8bf2-98ad41d9c172.png" 
+          alt="AI Agents for SMBs - Unlocking new agentic opportunities" 
           className="w-full h-auto"
         />
       </div>
