@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -76,24 +75,23 @@ const TavusGenerationCreator = ({ onGenerationCreated }: TavusGenerationCreatorP
         }),
       });
 
-      const data = await response.json();
+      const responseData = await response.json();
 
       if (!response.ok) {
-        const errorMessage = data.error || 'Failed to create generation';
-        // Fix: Use a standard Error constructor without the 'cause' property
+        const errorMessage = responseData.error || 'Failed to create generation';
         throw new Error(errorMessage);
       }
 
-      if (!data.id) {
+      if (!responseData.id) {
         throw new Error('Invalid response from server - missing generation ID');
       }
 
       toast({
         title: "Generation Created!",
-        description: `Generation ID: ${data.id}`,
+        description: `Generation ID: ${responseData.id}`,
       });
 
-      onGenerationCreated(data.id);
+      onGenerationCreated(responseData.id);
     } catch (error) {
       console.error('Error creating generation:', error);
       
@@ -104,8 +102,6 @@ const TavusGenerationCreator = ({ onGenerationCreated }: TavusGenerationCreatorP
         const errorObj = error as any;
         if (errorObj.details) {
           details = errorObj.details;
-        } else if (data?.details) {
-          details = data.details;
         }
         setErrorDetails(details);
       }
