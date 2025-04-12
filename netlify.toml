@@ -65,12 +65,6 @@
   to = "/index.html"
   status = 200
 
-# Add redirect for AI Avatar page
-[[redirects]]
-  from = "/ai-avatar"
-  to = "/index.html"
-  status = 200
-
 # Add security headers to prevent Safari HTTPS notifications
 [[headers]]
   for = "/*"

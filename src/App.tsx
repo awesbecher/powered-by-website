@@ -31,7 +31,6 @@ import License from "./pages/License";
 import VoiceAgentStart from "./pages/VoiceAgentStart";
 import VoiceAgentConfigEnd from "./pages/VoiceAgentConfigEnd";
 import Careers from "./pages/Careers";
-import AIAvatar from "./pages/AIAvatar";
 
 const router = createBrowserRouter([
   {
@@ -142,10 +141,6 @@ const router = createBrowserRouter([
   {
     path: "/careers",
     element: <Careers />,
-  },
-  {
-    path: "/ai-avatar",
-    element: <AIAvatar />,
   },
   {
     path: "*",

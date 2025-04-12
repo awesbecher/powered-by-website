@@ -19,6 +19,3 @@
 
 # Explicit rule for careers page
 /careers /index.html 200
-
-# Explicit rule for AI Avatar page
-/ai-avatar /index.html 200
