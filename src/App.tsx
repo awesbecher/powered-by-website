@@ -23,6 +23,11 @@ import EmailAgent from "./pages/EmailAgent";
 import TextAgent from "./pages/TextAgent";
 import VirtualSE from "./pages/VirtualSE";
 import OutboundAI from "./pages/OutboundAI";
+import News from "./pages/News";
+import Demo from "./pages/Demo";
+import ProductHunt from "./pages/ProductHunt";
+import DemoCapture from "./pages/DemoCapture";
+import License from "./pages/License";
 
 const router = createBrowserRouter([
   {
@@ -96,6 +101,26 @@ const router = createBrowserRouter([
   {
     path: "/outbound-ai",
     element: <OutboundAI />,
+  },
+  {
+    path: "/news",
+    element: <News />,
+  },
+  {
+    path: "/demo",
+    element: <Demo />,
+  },
+  {
+    path: "/launch",
+    element: <ProductHunt />,
+  },
+  {
+    path: "/product-hunt",
+    element: <DemoCapture />,
+  },
+  {
+    path: "/license",
+    element: <License />,
   },
   {
     path: "*",

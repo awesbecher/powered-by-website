@@ -4,3 +4,8 @@
 
 # Explicit rule for privacy statement
 /privacy-statement /index.html 200
+
+# Explicit rules for new routes
+/launch /index.html 200
+/demo /index.html 200
+/news /index.html 200

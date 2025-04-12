@@ -25,3 +25,19 @@
   from = "/privacy-statement"
   to = "/index.html"
   status = 200
+
+# Ensure the new routes work properly
+[[redirects]]
+  from = "/launch"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/demo"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/news"
+  to = "/index.html"
+  status = 200
