@@ -30,6 +30,7 @@ import DemoCapture from "./pages/DemoCapture";
 import License from "./pages/License";
 import VoiceAgentStart from "./pages/VoiceAgentStart";
 import VoiceAgentConfigEnd from "./pages/VoiceAgentConfigEnd";
+import Careers from "./pages/Careers";
 
 const router = createBrowserRouter([
   {
@@ -136,6 +137,10 @@ const router = createBrowserRouter([
   {
     path: "/voiceagent-config-end",
     element: <VoiceAgentConfigEnd />,
+  },
+  {
+    path: "/careers",
+    element: <Careers />,
   },
   {
     path: "*",

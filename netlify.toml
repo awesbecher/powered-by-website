@@ -52,3 +52,9 @@
   from = "/free-voice-agent"
   to = "/index.html"
   status = 200
+
+# Add redirect for careers page
+[[redirects]]
+  from = "/careers"
+  to = "/index.html"
+  status = 200
