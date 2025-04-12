@@ -94,6 +94,17 @@ const About = () => {
           <MissionImageSection initialLoad={initialLoad} />
           
           <CustomerCentricitySection initialLoad={initialLoad} />
+          
+          {/* Add the new image above the OurPromiseSection */}
+          <div className={`mt-16 mb-8 max-w-4xl mx-auto transition-all duration-1000 delay-400 ease-out transform
+            ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
+            <img 
+              src="/lovable-uploads/faa9f337-664d-4ba0-b4b2-0b39450d9a12.png" 
+              alt="Powered_by AI Agents presentation with two speakers on stage" 
+              className="w-full h-auto rounded-xl shadow-lg"
+            />
+          </div>
+          
           <AgentExpertiseSection initialLoad={initialLoad} />
           <OurPromiseSection initialLoad={initialLoad} />
         </div>
