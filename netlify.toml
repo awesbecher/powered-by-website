@@ -3,11 +3,13 @@
   publish = "dist"
   command = "npm run build"
 
+# This ensures that all routes are handled by the single page application
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
+# These specific redirects are for custom URL changes
 [[redirects]]
   from = "/ai-assistant"
   to = "/ai-receptionist"
@@ -17,4 +19,3 @@
   from = "/product-hunt"
   to = "/launch"
   status = 301
-

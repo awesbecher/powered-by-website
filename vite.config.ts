@@ -27,10 +27,11 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  // Add this build configuration to make client-side routing work in production
+  // Build configuration to make client-side routing work in production
   build: {
     rollupOptions: {},
-    // Generate a _redirects file for Netlify or similar hosting platforms
     outDir: "dist",
+    // Ensure that assets are properly loaded despite routing
+    assetsDir: "assets",
   },
 }));
