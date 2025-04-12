@@ -11,6 +11,9 @@ const corsHeaders = {
 };
 
 serve(async (req) => {
+  // Log incoming request for debugging
+  console.log(`Received ${req.method} request to tavus-create-generation`);
+  
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -18,13 +21,18 @@ serve(async (req) => {
 
   try {
     if (!tavusApiKey) {
+      console.error('TAVUS_API_KEY environment variable is not set');
       throw new Error('TAVUS_API_KEY environment variable is not set');
     }
+    
+    console.log('TAVUS_API_KEY is configured properly');
 
     // Parse request body
     let requestData;
     try {
-      requestData = await req.json();
+      const text = await req.text();
+      console.log('Request body (raw):', text);
+      requestData = text ? JSON.parse(text) : {};
     } catch (error) {
       console.error('Failed to parse request JSON:', error);
       return new Response(
@@ -33,9 +41,11 @@ serve(async (req) => {
       );
     }
 
+    console.log('Request data (parsed):', requestData);
     const { name, script } = requestData;
 
     if (!name || !script) {
+      console.error('Missing required fields:', { name: !!name, script: !!script });
       return new Response(
         JSON.stringify({ error: 'Name and script are required' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
@@ -67,21 +77,31 @@ serve(async (req) => {
       );
     }
 
+    // Prepare request payload for Tavus API
+    const tavusPayload = {
+      name,
+      content: processedScript,
+      type: "webcam"  // Using webcam type as per Tavus docs
+    };
+    
+    console.log('Tavus API request payload:', tavusPayload);
+
     // Call Tavus API
     let response;
     try {
+      console.log(`Calling Tavus API at ${tavusApiUrl}/generations`);
       response = await fetch(`${tavusApiUrl}/generations`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${tavusApiKey}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          name,
-          content: processedScript,
-          type: "webcam"  // Using webcam type as per Tavus docs
-        }),
+        body: JSON.stringify(tavusPayload),
       });
+      
+      console.log('Tavus API response status:', response.status);
+      console.log('Tavus API response headers:', Object.fromEntries(response.headers.entries()));
+      
     } catch (fetchError) {
       console.error('Network error calling Tavus API:', fetchError);
       return new Response(
@@ -107,6 +127,7 @@ serve(async (req) => {
     let data;
     try {
       data = responseText ? JSON.parse(responseText) : null;
+      console.log('Tavus API parsed response:', data);
     } catch (e) {
       console.error('Failed to parse Tavus API response as JSON:', e);
       return new Response(

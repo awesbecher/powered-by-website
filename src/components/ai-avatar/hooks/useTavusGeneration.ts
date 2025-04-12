@@ -53,6 +53,8 @@ export const useTavusGeneration = ({ onGenerationCreated }: UseTavusGenerationPr
     setErrorDetails(null);
     
     try {
+      console.log('Calling tavus-create-generation with:', { name: name.trim(), scriptLength: script.trim().length });
+      
       const response = await fetch('/api/tavus-create-generation', {
         method: 'POST',
         headers: {
@@ -64,13 +66,20 @@ export const useTavusGeneration = ({ onGenerationCreated }: UseTavusGenerationPr
         }),
       });
 
+      // Log raw response status and headers for debugging
+      console.log('Response status:', response.status);
+      console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+
       // Get text response first
       const responseText = await response.text();
+      console.log('Raw response text:', responseText);
+      
       let responseData;
       
       // Try to parse the response as JSON safely
       try {
         responseData = responseText ? JSON.parse(responseText) : null;
+        console.log('Parsed response data:', responseData);
       } catch (parseError) {
         console.error('Error parsing JSON response:', parseError, 'Raw response:', responseText);
         throw new Error(`Failed to parse server response: ${parseError.message}. Server returned: ${responseText.substring(0, 100)}...`);
@@ -78,10 +87,12 @@ export const useTavusGeneration = ({ onGenerationCreated }: UseTavusGenerationPr
 
       if (!response.ok) {
         const errorMessage = responseData?.error || 'Failed to create generation';
+        console.error('Error response from server:', responseData);
         throw new Error(errorMessage);
       }
 
       if (!responseData?.id) {
+        console.error('Missing id in response data:', responseData);
         throw new Error('Invalid response from server - missing generation ID');
       }
 
