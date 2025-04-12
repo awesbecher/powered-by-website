@@ -30,6 +30,10 @@ serve(async (req) => {
       );
     }
 
+    // Trim and process the script to ensure it meets Tavus requirements
+    // Tavus might have limitations on script length or format
+    const processedScript = script.trim().substring(0, 10000); // Limit to 10,000 characters
+
     console.log(`Creating Tavus generation with name: ${name}`);
 
     const response = await fetch(`${tavusApiUrl}/generations`, {
@@ -40,17 +44,29 @@ serve(async (req) => {
       },
       body: JSON.stringify({
         name,
-        content: script,
+        content: processedScript,
         type: "webcam"  // Using webcam type as per Tavus docs
       }),
     });
 
-    const data = await response.json();
+    // Get response as text first for debugging purposes
+    const responseText = await response.text();
+    
+    let data;
+    try {
+      data = JSON.parse(responseText);
+    } catch (e) {
+      console.error('Failed to parse Tavus API response:', responseText);
+      return new Response(
+        JSON.stringify({ error: 'Invalid response from Tavus API', details: responseText }),
+        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
     
     if (!response.ok) {
       console.error('Tavus API error:', data);
       return new Response(
-        JSON.stringify({ error: data.message || 'Failed to create generation' }),
+        JSON.stringify({ error: data.message || 'Failed to create generation', details: data }),
         { status: response.status, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }

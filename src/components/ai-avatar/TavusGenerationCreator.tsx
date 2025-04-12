@@ -15,6 +15,7 @@ const TavusGenerationCreator = ({ onGenerationCreated }: TavusGenerationCreatorP
   const [name, setName] = useState("");
   const [script, setScript] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const { toast } = useToast();
 
   const handleCreateGeneration = async () => {
@@ -28,13 +29,18 @@ const TavusGenerationCreator = ({ onGenerationCreated }: TavusGenerationCreatorP
     }
 
     setIsLoading(true);
+    setError(null);
+    
     try {
       const response = await fetch('/api/tavus-create-generation', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, script }),
+        body: JSON.stringify({ 
+          name, 
+          script: script.trim().substring(0, 10000) // Limit script to 10,000 characters
+        }),
       });
 
       const data = await response.json();
@@ -51,6 +57,7 @@ const TavusGenerationCreator = ({ onGenerationCreated }: TavusGenerationCreatorP
       onGenerationCreated(data.id);
     } catch (error) {
       console.error('Error creating generation:', error);
+      setError(error instanceof Error ? error.message : "Failed to create generation");
       toast({
         title: "Error",
         description: error instanceof Error ? error.message : "Failed to create generation",
@@ -68,6 +75,12 @@ const TavusGenerationCreator = ({ onGenerationCreated }: TavusGenerationCreatorP
         <p className="text-sm text-gray-300 mb-4">
           Start by creating a new generation with a name and script. This will give you a generation ID to use in the next steps.
         </p>
+
+        {error && (
+          <div className="bg-red-900/20 border border-red-500/50 p-3 rounded-md mb-4">
+            <p className="text-red-300 text-sm">{error}</p>
+          </div>
+        )}
 
         <div className="space-y-4">
           <div className="space-y-2">
@@ -90,6 +103,10 @@ const TavusGenerationCreator = ({ onGenerationCreated }: TavusGenerationCreatorP
               onChange={(e) => setScript(e.target.value)} 
               className="min-h-[150px] bg-white/10 border-white/20 text-white"
             />
+            <div className="text-xs text-gray-400 flex justify-between">
+              <span>Max 10,000 characters</span>
+              <span>{script.length} / 10000</span>
+            </div>
           </div>
 
           <Button 
