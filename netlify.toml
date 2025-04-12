@@ -19,3 +19,9 @@
   from = "/product-hunt"
   to = "/launch"
   status = 301
+
+# Ensure privacy statement route works properly
+[[redirects]]
+  from = "/privacy-statement"
+  to = "/index.html"
+  status = 200
