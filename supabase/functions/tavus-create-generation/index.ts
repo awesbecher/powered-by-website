@@ -31,10 +31,29 @@ serve(async (req) => {
     }
 
     // Trim and process the script to ensure it meets Tavus requirements
-    // Tavus might have limitations on script length or format
-    const processedScript = script.trim().substring(0, 10000); // Limit to 10,000 characters
+    const processedScript = script.trim();
+    
+    // Check script length - Tavus may have specific requirements
+    if (processedScript.length > 10000) {
+      return new Response(
+        JSON.stringify({ 
+          error: 'Script is too long. Maximum 10000 characters allowed.',
+          details: { scriptLength: processedScript.length }
+        }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
 
-    console.log(`Creating Tavus generation with name: ${name}`);
+    console.log(`Creating Tavus generation with name: ${name}, script length: ${processedScript.length}`);
+
+    // First try to validate if script meets Tavus requirements
+    // According to Tavus documentation, the content needs to be at least a few sentences
+    if (processedScript.split(' ').length < 10) {
+      return new Response(
+        JSON.stringify({ error: 'Script is too short. Please provide at least a few complete sentences.' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
 
     const response = await fetch(`${tavusApiUrl}/generations`, {
       method: 'POST',
@@ -50,24 +69,57 @@ serve(async (req) => {
     });
 
     // Get response as text first for debugging purposes
-    const responseText = await response.text();
+    let responseText;
+    try {
+      responseText = await response.text();
+      console.log('Tavus response:', responseText);
+    } catch (e) {
+      console.error('Failed to read Tavus API response as text:', e);
+      return new Response(
+        JSON.stringify({ error: 'Failed to read response from Tavus API', details: e.message }),
+        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
     
+    // Try to parse the response as JSON
     let data;
     try {
-      data = JSON.parse(responseText);
+      data = responseText ? JSON.parse(responseText) : null;
     } catch (e) {
-      console.error('Failed to parse Tavus API response:', responseText);
+      console.error('Failed to parse Tavus API response as JSON:', responseText, e);
       return new Response(
-        JSON.stringify({ error: 'Invalid response from Tavus API', details: responseText }),
+        JSON.stringify({ 
+          error: 'Invalid JSON response from Tavus API', 
+          details: { 
+            parseError: e.message,
+            responseText: responseText.substring(0, 500) // Limit response text length in the error
+          }
+        }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
     
     if (!response.ok) {
-      console.error('Tavus API error:', data);
+      console.error('Tavus API error:', data || responseText);
       return new Response(
-        JSON.stringify({ error: data.message || 'Failed to create generation', details: data }),
+        JSON.stringify({ 
+          error: (data && data.message) ? data.message : 'Failed to create generation', 
+          details: data || responseText,
+          status: response.status,
+          statusText: response.statusText
+        }),
         { status: response.status, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    if (!data || !data.id) {
+      console.error('Missing generation ID in successful Tavus response:', data);
+      return new Response(
+        JSON.stringify({ 
+          error: 'Invalid response format from Tavus API - missing generation ID',
+          details: data
+        }),
+        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
