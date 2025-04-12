@@ -16,6 +16,13 @@ import AIAgency from "./pages/AIAgency";
 import FileUploadPage from "./pages/FileUpload";
 import Index from "./pages/Index";
 import PrivacyStatement from "./pages/PrivacyStatement";
+import Products from "./pages/Products";
+import AIVoiceChat from "./pages/AIVoiceChat";
+import AIReceptionist from "./pages/AIReceptionist";
+import EmailAgent from "./pages/EmailAgent";
+import TextAgent from "./pages/TextAgent";
+import VirtualSE from "./pages/VirtualSE";
+import OutboundAI from "./pages/OutboundAI";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +68,34 @@ const router = createBrowserRouter([
   {
     path: "/thank-you",
     element: <ThankYou />,
+  },
+  {
+    path: "/products",
+    element: <Products />,
+  },
+  {
+    path: "/voice-chat",
+    element: <AIVoiceChat />,
+  },
+  {
+    path: "/ai-receptionist",
+    element: <AIReceptionist />,
+  },
+  {
+    path: "/email-agent",
+    element: <EmailAgent />,
+  },
+  {
+    path: "/text-agent",
+    element: <TextAgent />,
+  },
+  {
+    path: "/virtual-se",
+    element: <VirtualSE />,
+  },
+  {
+    path: "/outbound-ai",
+    element: <OutboundAI />,
   },
   {
     path: "*",
