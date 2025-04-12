@@ -9,3 +9,7 @@
 /launch /index.html 200
 /demo /index.html 200
 /news /index.html 200
+
+# Explicit rules for free voice agent URLs
+/free-voiceagent /free-voice-agent 301
+/free-voice-agent /index.html 200

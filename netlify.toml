@@ -41,3 +41,14 @@
   from = "/news"
   to = "/index.html"
   status = 200
+
+# Add redirects for free voice agent URLs
+[[redirects]]
+  from = "/free-voiceagent"
+  to = "/free-voice-agent"
+  status = 301
+
+[[redirects]]
+  from = "/free-voice-agent"
+  to = "/index.html"
+  status = 200

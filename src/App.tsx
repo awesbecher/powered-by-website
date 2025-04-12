@@ -28,6 +28,8 @@ import Demo from "./pages/Demo";
 import ProductHunt from "./pages/ProductHunt";
 import DemoCapture from "./pages/DemoCapture";
 import License from "./pages/License";
+import VoiceAgentStart from "./pages/VoiceAgentStart";
+import VoiceAgentConfigEnd from "./pages/VoiceAgentConfigEnd";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +54,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/free-voice-agent",
+    element: <FreeVoiceAgent />,
+  },
+  // Add an explicit route for the URL without the dash
+  {
+    path: "/free-voiceagent",
     element: <FreeVoiceAgent />,
   },
   {
@@ -121,6 +128,14 @@ const router = createBrowserRouter([
   {
     path: "/license",
     element: <License />,
+  },
+  {
+    path: "/voiceagent-start",
+    element: <VoiceAgentStart />,
+  },
+  {
+    path: "/voiceagent-config-end",
+    element: <VoiceAgentConfigEnd />,
   },
   {
     path: "*",
