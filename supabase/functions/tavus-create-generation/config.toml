@@ -1,5 +1,3 @@
 
-project_id = "cinohyzbtfzfcdtkgvij"
-
 [functions.tavus-create-generation]
 verify_jwt = false

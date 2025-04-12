@@ -55,7 +55,8 @@ export const useTavusGeneration = ({ onGenerationCreated }: UseTavusGenerationPr
     try {
       console.log('Calling tavus-create-generation with:', { name: name.trim(), scriptLength: script.trim().length });
       
-      const response = await fetch('/api/tavus-create-generation', {
+      // Use the full URL for the Supabase edge function
+      const response = await fetch('https://cinohyzbtfzfcdtkgvij.supabase.co/functions/v1/tavus-create-generation', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
