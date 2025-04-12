@@ -68,9 +68,9 @@ export const Header = () => {
                           </Link>
                         </li>
                         <li>
-                          <Link to="/virtual-se" className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-[#2f1c4a]">
+                          <a href="https://www.getvirtual.se" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-[#2f1c4a]">
                             Virtual SE
-                          </Link>
+                          </a>
                         </li>
                         <li>
                           <Link to="/outbound-ai" className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-[#2f1c4a]">
