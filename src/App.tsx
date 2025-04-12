@@ -55,6 +55,10 @@ const router = createBrowserRouter([
     element: <PrivacyStatement />,
   },
   {
+    path: "/privacy-statement",
+    element: <PrivacyStatement />,
+  },
+  {
     path: "/thank-you",
     element: <ThankYou />,
   },
