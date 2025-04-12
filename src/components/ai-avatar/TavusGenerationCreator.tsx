@@ -80,7 +80,8 @@ const TavusGenerationCreator = ({ onGenerationCreated }: TavusGenerationCreatorP
 
       if (!response.ok) {
         const errorMessage = data.error || 'Failed to create generation';
-        throw new Error(errorMessage, { cause: data.details });
+        // Fix: Use a standard Error constructor without the 'cause' property
+        throw new Error(errorMessage);
       }
 
       if (!data.id) {
@@ -96,10 +97,16 @@ const TavusGenerationCreator = ({ onGenerationCreated }: TavusGenerationCreatorP
     } catch (error) {
       console.error('Error creating generation:', error);
       
-      // Extract error details if available
+      // Extract error details if available - modified to not use .cause property
       let details = null;
-      if (error instanceof Error && error.cause) {
-        details = error.cause;
+      if (error instanceof Error) {
+        // Use a type assertion for any to access potential details from the JSON response
+        const errorObj = error as any;
+        if (errorObj.details) {
+          details = errorObj.details;
+        } else if (data?.details) {
+          details = data.details;
+        }
         setErrorDetails(details);
       }
 
