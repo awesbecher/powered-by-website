@@ -14,5 +14,8 @@
 /free-voiceagent /free-voice-agent 301
 /free-voice-agent /index.html 200
 
+# Explicit rule for voice agent configuration end page
+/voiceagent-config-end /index.html 200
+
 # Explicit rule for careers page
 /careers /index.html 200

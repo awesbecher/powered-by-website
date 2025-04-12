@@ -53,6 +53,12 @@
   to = "/index.html"
   status = 200
 
+# Add proper redirect for voice agent configuration end page
+[[redirects]]
+  from = "/voiceagent-config-end"
+  to = "/index.html"
+  status = 200
+
 # Add redirect for careers page
 [[redirects]]
   from = "/careers"

@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Link } from "react-router-dom";
@@ -7,6 +8,7 @@ import { POWERED_BY_STYLE } from "@/components/voice-chat/hooks/types/contactFor
 
 const VoiceAgentForm = () => {
   const [initialLoad, setInitialLoad] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Load Tally embed script
@@ -15,11 +17,26 @@ const VoiceAgentForm = () => {
     script.async = true;
     document.body.appendChild(script);
 
+    // Set up message listener for Tally form submission
+    const handleTallyMessage = (event: MessageEvent) => {
+      // Check if the message is from Tally and indicates form submission
+      if (event.data.type === 'tally-form-submit-success') {
+        console.log('Form submitted successfully, redirecting...');
+        // Redirect to the thank you/configuration end page
+        setTimeout(() => {
+          navigate('/voiceagent-config-end');
+        }, 1000);
+      }
+    };
+
+    window.addEventListener('message', handleTallyMessage);
+
     // Cleanup function
     return () => {
       document.body.removeChild(script);
+      window.removeEventListener('message', handleTallyMessage);
     };
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
