@@ -1,108 +1,25 @@
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useToast } from "@/hooks/use-toast";
 import { Loader2, RefreshCw } from "lucide-react";
+import { useGenerationStatus } from './hooks/useGenerationStatus';
+import StatusDisplay from './components/StatusDisplay';
 
 interface TavusGenerationStatusProps {
   generationId: string;
 }
 
-interface GenerationStatus {
-  id: string;
-  name: string;
-  status: string;
-  created_at: string;
-  last_updated: string;
-  progress?: number;
-}
-
 const TavusGenerationStatus = ({ generationId: initialGenerationId }: TavusGenerationStatusProps) => {
-  const [generationId, setGenerationId] = useState(initialGenerationId);
-  const [status, setStatus] = useState<GenerationStatus | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isPolling, setIsPolling] = useState(false);
-  const { toast } = useToast();
-
-  const fetchStatus = async () => {
-    if (!generationId) {
-      toast({
-        title: "Generation ID Missing",
-        description: "Please enter a generation ID to check status.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    setIsLoading(true);
-    try {
-      const response = await fetch(`/api/tavus-generation-status?id=${generationId}`);
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to fetch generation status');
-      }
-
-      setStatus(data);
-    } catch (error) {
-      console.error('Error fetching generation status:', error);
-      toast({
-        title: "Error",
-        description: error instanceof Error ? error.message : "Failed to fetch generation status",
-        variant: "destructive",
-      });
-      setStatus(null);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const togglePolling = () => {
-    setIsPolling(!isPolling);
-  };
-
-  useEffect(() => {
-    // Update local state when prop changes
-    setGenerationId(initialGenerationId);
-  }, [initialGenerationId]);
-
-  useEffect(() => {
-    let pollingInterval: number | undefined;
-    
-    if (isPolling && generationId) {
-      // Initial fetch
-      fetchStatus();
-      
-      // Set up polling every 10 seconds
-      pollingInterval = window.setInterval(() => {
-        fetchStatus();
-      }, 10000);
-    }
-    
-    return () => {
-      if (pollingInterval) {
-        clearInterval(pollingInterval);
-      }
-    };
-  }, [isPolling, generationId]);
-
-  const getStatusColor = (status?: string) => {
-    if (!status) return "bg-gray-400";
-    
-    switch (status.toLowerCase()) {
-      case 'completed':
-        return "bg-green-500";
-      case 'failed':
-        return "bg-red-500";
-      case 'processing':
-        return "bg-yellow-500";
-      case 'queued':
-        return "bg-blue-500";
-      default:
-        return "bg-gray-400";
-    }
-  };
+  const {
+    generationId,
+    setGenerationId,
+    status,
+    isLoading,
+    isPolling,
+    fetchStatus,
+    togglePolling
+  } = useGenerationStatus({ initialGenerationId });
 
   return (
     <div className="space-y-4">
@@ -142,24 +59,7 @@ const TavusGenerationStatus = ({ generationId: initialGenerationId }: TavusGener
             {isPolling ? "Stop Auto-Refresh" : "Auto-Refresh Every 10s"}
           </Button>
 
-          {status && (
-            <div className="bg-white/10 p-4 rounded-md mt-4">
-              <div className="flex items-center space-x-2 mb-3">
-                <div className={`w-3 h-3 rounded-full ${getStatusColor(status.status)}`}></div>
-                <span className="text-white font-medium">{status.status || "Unknown"}</span>
-                {status.progress !== undefined && (
-                  <span className="text-gray-300 text-sm">({status.progress}%)</span>
-                )}
-              </div>
-              
-              <div className="space-y-2 text-sm text-gray-300">
-                <p><span className="font-medium">ID:</span> {status.id}</p>
-                <p><span className="font-medium">Name:</span> {status.name}</p>
-                <p><span className="font-medium">Created:</span> {new Date(status.created_at).toLocaleString()}</p>
-                <p><span className="font-medium">Last Updated:</span> {new Date(status.last_updated).toLocaleString()}</p>
-              </div>
-            </div>
-          )}
+          <StatusDisplay status={status} />
         </div>
       </div>
     </div>
