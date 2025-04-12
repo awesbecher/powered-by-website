@@ -64,14 +64,24 @@ export const useTavusGeneration = ({ onGenerationCreated }: UseTavusGenerationPr
         }),
       });
 
-      const responseData = await response.json();
+      // Get text response first
+      const responseText = await response.text();
+      let responseData;
+      
+      // Try to parse the response as JSON safely
+      try {
+        responseData = responseText ? JSON.parse(responseText) : null;
+      } catch (parseError) {
+        console.error('Error parsing JSON response:', parseError, 'Raw response:', responseText);
+        throw new Error(`Failed to parse server response: ${parseError.message}. Server returned: ${responseText.substring(0, 100)}...`);
+      }
 
       if (!response.ok) {
-        const errorMessage = responseData.error || 'Failed to create generation';
+        const errorMessage = responseData?.error || 'Failed to create generation';
         throw new Error(errorMessage);
       }
 
-      if (!responseData.id) {
+      if (!responseData?.id) {
         throw new Error('Invalid response from server - missing generation ID');
       }
 

@@ -21,7 +21,19 @@ serve(async (req) => {
       throw new Error('TAVUS_API_KEY environment variable is not set');
     }
 
-    const { name, script } = await req.json();
+    // Parse request body
+    let requestData;
+    try {
+      requestData = await req.json();
+    } catch (error) {
+      console.error('Failed to parse request JSON:', error);
+      return new Response(
+        JSON.stringify({ error: 'Invalid request format' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const { name, script } = requestData;
 
     if (!name || !script) {
       return new Response(
@@ -55,24 +67,34 @@ serve(async (req) => {
       );
     }
 
-    const response = await fetch(`${tavusApiUrl}/generations`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${tavusApiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name,
-        content: processedScript,
-        type: "webcam"  // Using webcam type as per Tavus docs
-      }),
-    });
+    // Call Tavus API
+    let response;
+    try {
+      response = await fetch(`${tavusApiUrl}/generations`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${tavusApiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          content: processedScript,
+          type: "webcam"  // Using webcam type as per Tavus docs
+        }),
+      });
+    } catch (fetchError) {
+      console.error('Network error calling Tavus API:', fetchError);
+      return new Response(
+        JSON.stringify({ error: 'Failed to connect to Tavus API', details: fetchError.message }),
+        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
 
     // Get response as text first for debugging purposes
     let responseText;
     try {
       responseText = await response.text();
-      console.log('Tavus response:', responseText);
+      console.log('Tavus API raw response:', responseText);
     } catch (e) {
       console.error('Failed to read Tavus API response as text:', e);
       return new Response(
@@ -86,7 +108,7 @@ serve(async (req) => {
     try {
       data = responseText ? JSON.parse(responseText) : null;
     } catch (e) {
-      console.error('Failed to parse Tavus API response as JSON:', responseText, e);
+      console.error('Failed to parse Tavus API response as JSON:', e);
       return new Response(
         JSON.stringify({ 
           error: 'Invalid JSON response from Tavus API', 
