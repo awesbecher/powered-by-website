@@ -30,3 +30,15 @@ enabled = true
 [functions.vogent-call]
 verify_jwt = false
 
+[functions.tavus-create-generation]
+verify_jwt = false
+
+[functions.tavus-upload-video]
+verify_jwt = false
+
+[functions.tavus-generation-status]
+verify_jwt = false
+
+[functions.tavus-publish-video]
+verify_jwt = false
+
