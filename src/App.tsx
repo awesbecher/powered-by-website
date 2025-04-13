@@ -33,6 +33,10 @@ import VoiceAgentConfigEnd from "./pages/VoiceAgentConfigEnd";
 import Careers from "./pages/Careers";
 import GPTLanding from "./pages/GPTLanding";
 import RoomService from "./pages/room-service";
+import Insurance from "./pages/Insurance";
+import MercedesDealer from "./pages/MercedesDealer";
+import RealEstate from "./pages/RealEstate";
+import RetailServices from "./pages/RetailServices";
 
 const router = createBrowserRouter([
   {
@@ -151,6 +155,22 @@ const router = createBrowserRouter([
   {
     path: "/room-service",
     element: <RoomService />,
+  },
+  {
+    path: "/insurance",
+    element: <Insurance />,
+  },
+  {
+    path: "/mercedes-dealer",
+    element: <MercedesDealer />,
+  },
+  {
+    path: "/real-estate",
+    element: <RealEstate />,
+  },
+  {
+    path: "/retail-services",
+    element: <RetailServices />,
   },
   {
     path: "*",
