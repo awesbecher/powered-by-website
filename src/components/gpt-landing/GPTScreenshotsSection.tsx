@@ -52,7 +52,7 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
       title: "Planter's Insurance",
       description: "Experience how Voice AI Agents power an insurance use case.",
       link: "/insurance",
-      hasBlackBackground: true
+      hasBlackBackground: false  // Changed from true to false
     },
     {
       image: processedImages[2],
