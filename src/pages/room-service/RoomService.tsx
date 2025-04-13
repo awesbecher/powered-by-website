@@ -45,6 +45,15 @@ const RoomService = () => {
 
       <RoomServiceHeader />
 
+      {/* Add a second Speak to Room Service button below the hero section */}
+      <div className="container mx-auto px-4 -mt-8 mb-8 flex justify-center">
+        <CallButton
+          isProcessing={isProcessing}
+          isCallActive={isCallActive}
+          onClick={() => setIsDialogOpen(true)}
+        />
+      </div>
+
       <div className="container mx-auto px-4 relative z-10 -mt-16">
         <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8 shadow-lg">
           <h2 className="text-3xl font-bold text-center mb-6">Our Menu</h2>
@@ -73,3 +82,4 @@ const RoomService = () => {
 };
 
 export default RoomService;
+
