@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { 
@@ -99,21 +98,6 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
                 size="xl"
               >
                 🚀 Try the GPT Now
-              </Button>
-            </a>
-
-            <a 
-              href={GPT_STORE_URL}
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-block"
-            >
-              <Button 
-                variant="gradient"
-                className="bg-[#9b87f5] hover:bg-gradient-to-r hover:from-[#9b87f5] hover:to-[#7E69AB] text-white px-6 py-6 text-lg rounded-md"
-                size="xl"
-              >
-                Learn More <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </a>
           </div>
