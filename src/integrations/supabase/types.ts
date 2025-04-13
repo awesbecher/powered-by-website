@@ -9,6 +9,36 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      gpt_logs: {
+        Row: {
+          clinic_name: string | null
+          created_at: string
+          event: string
+          files_uploaded: number | null
+          id: string
+          message: string
+          user_email: string | null
+        }
+        Insert: {
+          clinic_name?: string | null
+          created_at?: string
+          event: string
+          files_uploaded?: number | null
+          id?: string
+          message: string
+          user_email?: string | null
+        }
+        Update: {
+          clinic_name?: string | null
+          created_at?: string
+          event?: string
+          files_uploaded?: number | null
+          id?: string
+          message?: string
+          user_email?: string | null
+        }
+        Relationships: []
+      }
       outbound_calls: {
         Row: {
           call_type: string
