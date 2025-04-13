@@ -6,6 +6,7 @@ import { MenuDisplay } from "./components/MenuDisplay";
 import { CallButton } from "./components/CallButton";
 import { RoomServiceDialog } from "./components/RoomServiceDialog";
 import Navbar from "@/components/layout/Navbar";
+import { GrandviewLogo } from "./components/GrandviewLogo";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 import { useToast } from "@/hooks/use-toast";
 
@@ -67,6 +68,9 @@ const RoomService = () => {
     <div className="min-h-screen bg-[#1a0b2e] text-white">
       {/* Add the standard Navbar component */}
       <Navbar />
+
+      {/* Add Grandview Hotels Logo */}
+      <GrandviewLogo />
 
       <RoomServiceHeader />
 
