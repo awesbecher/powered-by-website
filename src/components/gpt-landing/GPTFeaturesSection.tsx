@@ -61,7 +61,7 @@ export const GPTFeaturesSection: React.FC<GPTFeaturesSectionProps> = ({ initialL
       <h2 className={`text-3xl sm:text-4xl font-bold text-white text-center mb-12 transition-all duration-1000 ease-out transform delay-200 ${
         initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'
       }`}>
-        Build Your Perfect Virtual Receptionist
+        Build an Enterprise-Grade AI Voice Agent Today!
       </h2>
       
       <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-1000 ease-out transform delay-300 ${
@@ -79,3 +79,4 @@ export const GPTFeaturesSection: React.FC<GPTFeaturesSectionProps> = ({ initialL
     </section>
   );
 };
+
