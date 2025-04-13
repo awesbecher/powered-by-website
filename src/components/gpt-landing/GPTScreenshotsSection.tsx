@@ -11,8 +11,8 @@ interface GPTScreenshotsSectionProps {
 export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ initialLoad }) => {
   const navigate = useNavigate();
   const [processedImages, setProcessedImages] = React.useState<string[]>([
-    "/lovable-uploads/775c9836-f165-462f-ba92-71e5889ef819.png",
-    "/lovable-uploads/479993a0-28ec-4822-890d-a3763692122d.png", // New Planter's Insurance logo
+    "/lovable-uploads/242db4ad-39fc-4e58-8512-ef95edf5947c.png", // Updated Real Estate logo
+    "/lovable-uploads/479993a0-28ec-4822-890d-a3763692122d.png", // Planter's Insurance logo
     "/lovable-uploads/32f9e4c1-c923-4a60-a49d-a838cedd2247.png"
   ]);
 
@@ -22,7 +22,7 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
         const response = await fetch(imageUrl);
         const blob = await response.blob();
         const img = await loadImage(blob);
-        const processedBlob = await removeBackgroundAndColorize(img, '#000000');
+        const processedBlob = await removeBackgroundAndColorize(img, '#ffffff'); // White background
         const processedUrl = URL.createObjectURL(processedBlob);
         
         setProcessedImages(prev => {
@@ -35,6 +35,7 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
       }
     };
 
+    processImage(processedImages[0], 0);
     processImage(processedImages[1], 1);
     processImage(processedImages[2], 2);
   }, []);
@@ -45,14 +46,14 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
       title: "Real Estate Agency",
       description: "Experience Voice AI in a real estate use case.",
       link: "/real-estate",
-      hasBlackBackground: false
+      hasBlackBackground: false // Changed to white background
     },
     {
       image: processedImages[1],
       title: "Planter's Insurance",
       description: "Experience how Voice AI Agents power an insurance use case.",
       link: "/insurance",
-      hasBlackBackground: false  // Changed from true to false
+      hasBlackBackground: false
     },
     {
       image: processedImages[2],
