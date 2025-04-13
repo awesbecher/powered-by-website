@@ -35,7 +35,7 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
           </h1>
           
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-10">
-            Your GPT-powered receptionist that can answer calls, schedule appointments, and handle FAQs.
+            Deploy remarkably human-like AI voice agents to automate 24/7 customer engagement, appointment bookings, FAQs, & sales activities.
           </p>
           
           <h2 className="text-2xl font-semibold text-white mb-6">💡 What Your AI Voice Agent Can Do</h2>
