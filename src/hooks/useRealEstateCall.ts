@@ -15,7 +15,8 @@ export const useRealEstateCall = () => {
     setIsLoading(true);
     try {
       const vapi = getVapiInstance();
-      await vapi.start("f8131f3d-58aa-4c81-a79e-1bf758803775");
+      // Update the Assistant ID to the specified one
+      await vapi.start("c1c80d2e-6b65-4172-9f6b-09177b9e54f1");
       
       setIsCallActive(true);
       
