@@ -2,7 +2,6 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { 
   ArrowRight, 
-  Bot, 
   PhoneCall, 
   CalendarCheck, 
   ShieldCheck, 
@@ -32,10 +31,7 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
           </div>
           
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-            <span className="inline-flex items-center">
-              <Bot className="mr-2 h-12 w-12 text-[#9b87f5]" />
-              Build Your Perfect AI Voice Agent Today!
-            </span>
+            Build Your Perfect AI Voice Agent Today!
           </h1>
           
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-10">
