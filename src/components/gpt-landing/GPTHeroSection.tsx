@@ -9,7 +9,6 @@ import {
   MessageCircle, 
   Share2 
 } from "lucide-react";
-import { PoweredByText } from "@/components/shared/PoweredByText";
 
 interface GPTHeroSectionProps {
   initialLoad: boolean;
@@ -26,10 +25,6 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
         <div className={`transition-all duration-1000 ease-out transform ${
           initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'
         }`}>
-          <div className="mb-8">
-            <PoweredByText className="mb-4 mx-auto" />
-          </div>
-          
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
             Build Your Perfect AI Voice Agent Today!
           </h1>
