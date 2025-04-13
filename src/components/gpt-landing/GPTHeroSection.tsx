@@ -1,6 +1,16 @@
+
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Bot } from "lucide-react";
+import { 
+  ArrowRight, 
+  Bot, 
+  PhoneCall, 
+  CalendarCheck, 
+  ShieldCheck, 
+  UserCheck, 
+  MessageCircle, 
+  Share2 
+} from "lucide-react";
 import { PoweredByText } from "@/components/shared/PoweredByText";
 
 interface GPTHeroSectionProps {
@@ -34,27 +44,57 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
             <span className="block font-semibold mt-2">All HIPAA-compliant and ready to deploy.</span>
           </p>
           
-          <h2 className="text-2xl font-semibold text-white mb-4">💡 What Your AI Voice Agent Can Do</h2>
-          <ul className="text-lg text-gray-300 max-w-2xl mx-auto mb-10 list-none space-y-2">
-            <li className="flex items-center">
-              <span className="mr-2">✅</span> Handle inbound calls 24/7
-            </li>
-            <li className="flex items-center">
-              <span className="mr-2">✅</span> Schedule and confirm appointments
-            </li>
-            <li className="flex items-center">
-              <span className="mr-2">✅</span> Pre-screen patients by symptoms or urgency
-            </li>
-            <li className="flex items-center">
-              <span className="mr-2">✅</span> Answer common questions (hours, insurance, etc.)
-            </li>
-            <li className="flex items-center">
-              <span className="mr-2">✅</span> Escalate to staff for complex issues
-            </li>
-            <li className="flex items-center">
-              <span className="mr-2">✅</span> Fully HIPAA-compliant
-            </li>
-          </ul>
+          <h2 className="text-2xl font-semibold text-white mb-6">💡 What Your AI Voice Agent Can Do</h2>
+          
+          <div className="flex flex-wrap gap-6 justify-center mb-12">
+            <div className="flex-1 min-w-[250px] bg-[#1A1F2C]/50 p-4 rounded-lg border border-gray-800">
+              <div className="flex items-center mb-2">
+                <PhoneCall className="h-8 w-8 text-[#9b87f5] mr-3" />
+                <h3 className="font-semibold text-white text-lg">Handle Calls 24/7</h3>
+              </div>
+              <p className="text-gray-300 text-left">Never miss a lead or patient call again.</p>
+            </div>
+            
+            <div className="flex-1 min-w-[250px] bg-[#1A1F2C]/50 p-4 rounded-lg border border-gray-800">
+              <div className="flex items-center mb-2">
+                <CalendarCheck className="h-8 w-8 text-[#9b87f5] mr-3" />
+                <h3 className="font-semibold text-white text-lg">Automate Scheduling</h3>
+              </div>
+              <p className="text-gray-300 text-left">Book, reschedule, and confirm appointments automatically.</p>
+            </div>
+            
+            <div className="flex-1 min-w-[250px] bg-[#1A1F2C]/50 p-4 rounded-lg border border-gray-800">
+              <div className="flex items-center mb-2">
+                <ShieldCheck className="h-8 w-8 text-[#9b87f5] mr-3" />
+                <h3 className="font-semibold text-white text-lg">HIPAA Compliant</h3>
+              </div>
+              <p className="text-gray-300 text-left">Secure and private voice assistant, built for healthcare.</p>
+            </div>
+            
+            <div className="flex-1 min-w-[250px] bg-[#1A1F2C]/50 p-4 rounded-lg border border-gray-800">
+              <div className="flex items-center mb-2">
+                <UserCheck className="h-8 w-8 text-[#9b87f5] mr-3" />
+                <h3 className="font-semibold text-white text-lg">Patient Pre-screening</h3>
+              </div>
+              <p className="text-gray-300 text-left">Capture symptoms, urgency, and route accordingly.</p>
+            </div>
+            
+            <div className="flex-1 min-w-[250px] bg-[#1A1F2C]/50 p-4 rounded-lg border border-gray-800">
+              <div className="flex items-center mb-2">
+                <MessageCircle className="h-8 w-8 text-[#9b87f5] mr-3" />
+                <h3 className="font-semibold text-white text-lg">Answer FAQs</h3>
+              </div>
+              <p className="text-gray-300 text-left">Handle common questions like hours, location, insurance accepted, etc.</p>
+            </div>
+            
+            <div className="flex-1 min-w-[250px] bg-[#1A1F2C]/50 p-4 rounded-lg border border-gray-800">
+              <div className="flex items-center mb-2">
+                <Share2 className="h-8 w-8 text-[#9b87f5] mr-3" />
+                <h3 className="font-semibold text-white text-lg">Smart Escalation</h3>
+              </div>
+              <p className="text-gray-300 text-left">Forward urgent calls to real staff when needed.</p>
+            </div>
+          </div>
           
           <div className="flex justify-center space-x-4 mb-8">
             <a 
