@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { 
@@ -26,7 +27,7 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
           initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'
         }`}>
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
-            Build Your <span className="text-white">Free</span> Voice AI Agent<br />
+            Build Your Voice AI Agent <span className="text-[#9b87f5]">Today</span><br />
             <span className="text-[#9b87f5]">No Cost. No Commitment.</span>
           </h1>
           
@@ -109,3 +110,4 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
     </div>
   );
 };
+
