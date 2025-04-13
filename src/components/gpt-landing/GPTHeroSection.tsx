@@ -79,8 +79,8 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
               className="inline-block"
             >
               <Button 
-                variant="outline"
-                className="border-white/20 text-white hover:bg-white/10 px-6 py-6 text-lg rounded-md"
+                variant="gradient"
+                className="bg-[#9b87f5] hover:bg-gradient-to-r hover:from-[#9b87f5] hover:to-[#7E69AB] text-white px-6 py-6 text-lg rounded-md"
                 size="xl"
               >
                 Learn More <ArrowRight className="ml-2 h-5 w-5" />
