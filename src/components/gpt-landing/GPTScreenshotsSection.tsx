@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -15,9 +14,9 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
       description: "Experience Voice AI in a real estate use case."
     },
     {
-      image: "/lovable-uploads/1a963891-b5e5-4c4c-85fd-e5ec489343bd.png",
-      title: "Dynamic Conversation Flow",
-      description: "Create natural conversation paths for your voice agent"
+      image: "/lovable-uploads/7bccf1fa-dd2b-4d1a-99d0-0affccdcc85d.png",
+      title: "Insurance Firm",
+      description: "Experience how Voice AI Agents power an insurance use case."
     },
     {
       image: "/lovable-uploads/a4604ec9-99e3-4930-918e-ee95e7e58d81.png",
