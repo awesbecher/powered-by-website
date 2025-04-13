@@ -19,9 +19,9 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
       description: "Experience how Voice AI Agents power an insurance use case."
     },
     {
-      image: "/lovable-uploads/a4604ec9-99e3-4930-918e-ee95e7e58d81.png",
-      title: "Call Analytics Dashboard",
-      description: "Monitor performance and optimize your voice agent"
+      image: "/lovable-uploads/32f9e4c1-c923-4a60-a49d-a838cedd2247.png",
+      title: "Hotel & Hospitality",
+      description: "Order Room Service from a Voice AI Agent."
     }
   ];
 
