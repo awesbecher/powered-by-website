@@ -35,10 +35,27 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
             <span className="block font-semibold mt-2">All HIPAA-compliant and ready to deploy.</span>
           </p>
           
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-8">
-            Upload your configuration file or answer a few questions —
-            your custom agent will be live in minutes.
-          </p>
+          <h2 className="text-2xl font-semibold text-white mb-4">💡 What Your AI Voice Agent Can Do</h2>
+          <ul className="text-lg text-gray-300 max-w-2xl mx-auto mb-10 list-none space-y-2">
+            <li className="flex items-center">
+              <span className="mr-2">✅</span> Handle inbound calls 24/7
+            </li>
+            <li className="flex items-center">
+              <span className="mr-2">✅</span> Schedule and confirm appointments
+            </li>
+            <li className="flex items-center">
+              <span className="mr-2">✅</span> Pre-screen patients by symptoms or urgency
+            </li>
+            <li className="flex items-center">
+              <span className="mr-2">✅</span> Answer common questions (hours, insurance, etc.)
+            </li>
+            <li className="flex items-center">
+              <span className="mr-2">✅</span> Escalate to staff for complex issues
+            </li>
+            <li className="flex items-center">
+              <span className="mr-2">✅</span> Fully HIPAA-compliant
+            </li>
+          </ul>
           
           <div className="flex justify-center space-x-4 mb-8">
             <a 
