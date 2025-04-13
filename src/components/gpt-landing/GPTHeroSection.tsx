@@ -35,7 +35,7 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
             <span className="inline-flex items-center">
               <Bot className="mr-2 h-12 w-12 text-[#9b87f5]" />
-              Build Your Own AI Voice Agent
+              Build Your Perfect AI Voice Agent Today!
             </span>
           </h1>
           
