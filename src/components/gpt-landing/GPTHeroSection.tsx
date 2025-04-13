@@ -11,6 +11,7 @@ interface GPTHeroSectionProps {
 export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) => {
   // GPT URL - this is where the CTA will link to
   const GPT_STORE_URL = "https://chat.openai.com/g/g-JUxczAFDl-powered-by-voice-agent-builder";
+  const DIRECT_GPT_URL = "https://chatgpt.com/g/g-67f98710871881919806c28bcf3a6106-powered-by-voice-agent-builder";
 
   return (
     <div className="relative overflow-hidden px-6 lg:px-8 py-20">
@@ -39,18 +40,36 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
             your custom agent will be live in minutes.
           </p>
           
-          <a 
-            href={GPT_STORE_URL}
-            target="_blank" 
-            rel="noopener noreferrer"
-          >
-            <Button 
-              className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-6 text-lg rounded-md"
-              size="xl"
+          <div className="flex justify-center space-x-4 mb-8">
+            <a 
+              href={DIRECT_GPT_URL}
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block"
             >
-              👉 Try the AI Agent Now <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </a>
+              <Button 
+                className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-6 text-lg rounded-md"
+                size="xl"
+              >
+                🚀 Try the GPT Now
+              </Button>
+            </a>
+
+            <a 
+              href={GPT_STORE_URL}
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block"
+            >
+              <Button 
+                variant="outline"
+                className="border-white/20 text-white hover:bg-white/10 px-6 py-6 text-lg rounded-md"
+                size="xl"
+              >
+                Learn More <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </a>
+          </div>
         </div>
       </div>
       
