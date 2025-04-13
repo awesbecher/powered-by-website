@@ -3,7 +3,7 @@ import React from "react";
 
 export const RoomServiceHeader: React.FC = () => {
   return (
-    <div className="relative h-[60vh] mb-8 mt-32">
+    <div className="relative h-[60vh] mb-8 mt-16">
       <div className="absolute inset-0">
         <img 
           src="/lovable-uploads/e87cce6e-adc9-4426-b464-c64b14d607bd.png"
