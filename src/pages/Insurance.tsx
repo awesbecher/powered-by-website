@@ -35,20 +35,26 @@ const Insurance = () => {
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <Navbar />
-      <InsuranceHeader />
-
-      <div className="relative z-10 px-4 py-32 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <InsuranceHero 
-            onShowConsentDialog={() => setShowConsentDialog(true)}
-            isLoading={isLoading}
-          />
-          
-          <div className="bg-white/5 rounded-lg p-8 backdrop-blur-sm mt-8">
-            <InsuranceProductGrid 
-              selectedProducts={selectedProducts}
-              onProductSelect={handleProductSelect}
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <InsuranceHeader />
+        
+        <div className="py-12 sm:py-16 lg:py-20">
+          <div className="max-w-4xl mx-auto">
+            <InsuranceHero 
+              onShowConsentDialog={() => setShowConsentDialog(true)}
+              isLoading={isLoading}
             />
+            
+            <div className="mt-12">
+              <h2 className="text-3xl font-bold text-white mb-8 text-center">Our Insurance Products</h2>
+              <div className="bg-white/5 rounded-lg p-6 backdrop-blur-sm border border-white/10 shadow-lg">
+                <InsuranceProductGrid 
+                  selectedProducts={selectedProducts}
+                  onProductSelect={handleProductSelect}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
