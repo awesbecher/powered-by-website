@@ -23,12 +23,12 @@ const AnnouncementBanner = ({
             <Bot className="mr-0.5 h-3 w-3" />
             <span className="font-semibold">New Product</span>
           </Link>
-          <span><PoweredByText /> <Link to={LAUNCH_ROUTE} className="font-bold hover:underline">Officially Launches!</Link> Watch our Launch Video & learn more </span>
+          <span><PoweredByText /> Launches Virtual SE, Revolutionizing Pre-Sales Engineering with AI Agents. </span>
           <Link 
             to={LAUNCH_ROUTE}
             className="font-semibold inline-flex items-center hover:underline ml-1"
           >
-            here 
+            Learn more 
             <ArrowRight className="ml-1 h-4 w-4" />
           </Link>
         </div>
