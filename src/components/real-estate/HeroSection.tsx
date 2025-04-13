@@ -1,5 +1,5 @@
 
-import { Phone } from "lucide-react";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 export const HeroSection = () => {
   return (
@@ -17,7 +17,16 @@ export const HeroSection = () => {
         </div>
         
         <div className="relative w-full px-4 lg:px-8">
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-7xl mx-auto flex items-center">
+            <div className="w-1/4 mr-8">
+              <AspectRatio ratio={1} className="max-w-[250px]">
+                <img 
+                  src="/lovable-uploads/85f8e2ea-ebed-439d-9679-1cdab359e142.png" 
+                  alt="Township Real Estate Logo" 
+                  className="object-contain w-full h-full"
+                />
+              </AspectRatio>
+            </div>
             <div className="max-w-2xl">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight text-white">
                 Find Your Luxury Home in Edison Township
