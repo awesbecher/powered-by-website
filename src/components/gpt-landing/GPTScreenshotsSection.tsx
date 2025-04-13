@@ -13,7 +13,7 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
   const [processedImages, setProcessedImages] = React.useState<string[]>([
     "/lovable-uploads/5304586a-4dc1-4e19-bcaa-8ddc0a81b38c.png", // Township Real Estate logo
     "/lovable-uploads/479993a0-28ec-4822-890d-a3763692122d.png", // Planter's Insurance logo
-    "/lovable-uploads/32f9e4c1-c923-4a60-a49d-a838cedd2247.png"
+    "/lovable-uploads/307e1316-493f-44fb-87d2-b037b73e873c.png" // Grandview Hotels logo
   ]);
 
   React.useEffect(() => {
@@ -60,7 +60,7 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
       title: "Hotel & Hospitality",
       description: "Order Room Service from a Voice AI Agent.",
       link: "/room-service",
-      hasBlackBackground: true
+      hasBlackBackground: false // Changed from true to false for white background
     }
   ];
 
