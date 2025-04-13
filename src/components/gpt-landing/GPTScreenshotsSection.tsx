@@ -12,7 +12,7 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
   const navigate = useNavigate();
   const [processedImages, setProcessedImages] = React.useState<string[]>([
     "/lovable-uploads/775c9836-f165-462f-ba92-71e5889ef819.png",
-    "/lovable-uploads/32f9e4c1-c923-4a60-a49d-a838cedd2247.png",
+    "/lovable-uploads/479993a0-28ec-4822-890d-a3763692122d.png", // New Planter's Insurance logo
     "/lovable-uploads/32f9e4c1-c923-4a60-a49d-a838cedd2247.png"
   ]);
 
@@ -49,7 +49,7 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
     },
     {
       image: processedImages[1],
-      title: "Insurance Firm",
+      title: "Planter's Insurance",
       description: "Experience how Voice AI Agents power an insurance use case.",
       link: "/insurance",
       hasBlackBackground: true
