@@ -10,9 +10,9 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
   // We'll use placeholder screenshots until real ones are provided
   const screenshots = [
     {
-      image: "/lovable-uploads/5f0cfdc2-dcf5-478a-9921-45b10bdd2329.png",
-      title: "Voice Agent Configuration",
-      description: "Set up your AI voice agent with a simple interface"
+      image: "/lovable-uploads/775c9836-f165-462f-ba92-71e5889ef819.png",
+      title: "Real Estate Agency",
+      description: "Experience Voice AI in a real estate use case."
     },
     {
       image: "/lovable-uploads/1a963891-b5e5-4c4c-85fd-e5ec489343bd.png",
