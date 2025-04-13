@@ -31,7 +31,7 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
       <h2 className={`text-3xl sm:text-4xl font-bold text-white text-center mb-12 transition-all duration-1000 ease-out transform delay-400 ${
         initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'
       }`}>
-        See It In Action
+        See Our Voice AI Agents in Action Here:
       </h2>
       
       <div className={`grid grid-cols-1 md:grid-cols-3 gap-8 transition-all duration-1000 ease-out transform delay-500 ${
