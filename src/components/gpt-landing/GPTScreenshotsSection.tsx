@@ -1,25 +1,55 @@
+
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import { removeBackgroundAndColorize, loadImage } from "@/utils/imageProcessor";
 
 interface GPTScreenshotsSectionProps {
   initialLoad: boolean;
 }
 
 export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ initialLoad }) => {
-  // We'll use placeholder screenshots until real ones are provided
+  const [processedImages, setProcessedImages] = React.useState<string[]>([
+    "/lovable-uploads/775c9836-f165-462f-ba92-71e5889ef819.png",
+    "/lovable-uploads/32f9e4c1-c923-4a60-a49d-a838cedd2247.png",
+    "/lovable-uploads/32f9e4c1-c923-4a60-a49d-a838cedd2247.png"
+  ]);
+
+  React.useEffect(() => {
+    const processImage = async (imageUrl: string, index: number) => {
+      try {
+        const response = await fetch(imageUrl);
+        const blob = await response.blob();
+        const img = await loadImage(blob);
+        const processedBlob = await removeBackgroundAndColorize(img);
+        const processedUrl = URL.createObjectURL(processedBlob);
+        
+        setProcessedImages(prev => {
+          const newImages = [...prev];
+          newImages[index] = processedUrl;
+          return newImages;
+        });
+      } catch (error) {
+        console.error(`Error processing image at index ${index}:`, error);
+      }
+    };
+
+    // Process only the second image (index 1)
+    processImage(processedImages[1], 1);
+  }, []);
+
   const screenshots = [
     {
-      image: "/lovable-uploads/775c9836-f165-462f-ba92-71e5889ef819.png",
+      image: processedImages[0],
       title: "Real Estate Agency",
       description: "Experience Voice AI in a real estate use case."
     },
     {
-      image: "/lovable-uploads/7bccf1fa-dd2b-4d1a-99d0-0affccdcc85d.png",
+      image: processedImages[1],
       title: "Insurance Firm",
       description: "Experience how Voice AI Agents power an insurance use case."
     },
     {
-      image: "/lovable-uploads/32f9e4c1-c923-4a60-a49d-a838cedd2247.png",
+      image: processedImages[2],
       title: "Hotel & Hospitality",
       description: "Order Room Service from a Voice AI Agent."
     }
