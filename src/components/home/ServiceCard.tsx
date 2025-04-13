@@ -1,5 +1,5 @@
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Phone, MessageCircle } from "lucide-react";
 import { useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -14,6 +14,7 @@ interface ServiceProps {
 
 export const ServiceCard = ({ title, description, link, logo, category }: ServiceProps) => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   
   // When the card is clicked, direct users to the destination
   const handleClick = (e: React.MouseEvent) => {
@@ -23,8 +24,8 @@ export const ServiceCard = ({ title, description, link, logo, category }: Servic
     if (link.startsWith('http')) {
       window.open(link, '_blank');
     } else {
-      // Internal navigation
-      window.location.href = link;
+      // Use React Router navigation instead of direct window.location.href
+      navigate(link);
     }
   };
   

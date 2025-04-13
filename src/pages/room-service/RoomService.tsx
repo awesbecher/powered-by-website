@@ -1,117 +1,48 @@
 
-import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
-import { useState, useEffect } from "react";
-import { RoomServiceHeader } from "./components/RoomServiceHeader";
-import { MenuDisplay } from "./components/MenuDisplay";
-import { CallButton } from "./components/CallButton";
-import { RoomServiceDialog } from "./components/RoomServiceDialog";
-import { initiateVapiCall, stopVapiCall, getVapiInstance } from "@/services/vapiService";
+import React from "react";
+import { ChevronLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const RoomService = () => {
   const navigate = useNavigate();
-  const { toast } = useToast();
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [isCallActive, setIsCallActive] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
-
-  useEffect(() => {
-    // Clean up any active calls when the component unmounts
-    return () => {
-      if (isCallActive) {
-        stopVapiCall();
-      }
-    };
-  }, [isCallActive]);
-
-  const handleStartCall = async () => {
-    setIsProcessing(true);
-    try {
-      const vapi = getVapiInstance();
-      await vapi.start("238616a3-b611-4faa-a216-74b8d7d8b277");
-      setIsCallActive(true);
-      
-      vapi.on("call-end", () => {
-        setIsCallActive(false);
-        setIsDialogOpen(false);
-        navigate('/demo');
-        toast({
-          title: "Call Completed",
-          description: "Thank you for using our room service!",
-        });
-      });
-
-      // Keep the dialog open but change its content to show call in progress
-      setIsProcessing(false);
-      toast({
-        title: "Call Started",
-        description: "You are now connected to our room service. You can speak directly through your browser.",
-      });
-    } catch (error) {
-      console.error('Error initiating call:', error);
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: "Unable to connect to Room Service. Please try again.",
-      });
-      setIsProcessing(false);
-    }
-  };
-
-  const handleEndCall = () => {
-    stopVapiCall();
-    setIsCallActive(false);
-    setIsDialogOpen(false);
-    navigate('/demo');
-    toast({
-      title: "Call Ended",
-      description: "Your call with room service has ended.",
-    });
-  };
-
-  const toggleMute = () => {
-    setIsMuted(!isMuted);
-  };
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
-      <RoomServiceHeader />
-      
-      <Link 
-        to="/demo" 
-        className="absolute top-8 left-8 flex items-center text-white hover:text-white/80 transition-colors"
-      >
-        <ArrowLeft className="h-6 w-6 mr-2" />
-        <span>Back to Demos</span>
-      </Link>
+    <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] text-white">
+      <div className="container mx-auto px-4 py-20">
+        <button
+          onClick={() => navigate(-1)}
+          className="absolute top-8 left-8 z-20 text-white hover:text-purple-400 transition-colors flex items-center gap-2"
+        >
+          <ChevronLeft className="w-6 h-6" />
+          <span className="font-medium">Back to Demos</span>
+        </button>
 
-      <img 
-        src="/lovable-uploads/ec9dd264-4bb3-4b03-9b50-e31383652af9.png"
-        alt="GrandView Hotel"
-        className="absolute top-32 left-1/2 transform -translate-x-1/2 h-20 w-auto z-10"
-      />
-
-      <div className="mx-auto max-w-3xl px-4">
-        <CallButton 
-          isProcessing={isProcessing}
-          isCallActive={isCallActive}
-          onClick={() => setIsDialogOpen(true)}
-        />
-        <MenuDisplay />
+        <div className="max-w-4xl mx-auto mt-16 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-8">Room Service</h1>
+          <p className="text-xl text-gray-300 mb-12">
+            Experience our AI-powered room service assistant. Order food and drinks
+            directly to your room with a simple conversation.
+          </p>
+          
+          <div className="bg-black/30 backdrop-blur-sm rounded-xl p-8 mb-12">
+            <h2 className="text-2xl font-semibold mb-4">How It Works</h2>
+            <ol className="text-left list-decimal pl-6 space-y-4">
+              <li>Click the "Call Room Service" button below</li>
+              <li>Tell our AI voice assistant what you'd like to order</li>
+              <li>Confirm your order details when prompted</li>
+              <li>Your order will be prepared and delivered to your room</li>
+            </ol>
+          </div>
+          
+          <Button 
+            className="bg-[#9b87f5] hover:bg-[#7E69AB] text-white px-8 py-6 rounded-lg font-semibold text-lg"
+            onClick={() => navigate('/demo')}
+          >
+            Call Room Service
+          </Button>
+        </div>
       </div>
-
-      <RoomServiceDialog 
-        isDialogOpen={isDialogOpen}
-        setIsDialogOpen={setIsDialogOpen}
-        isCallActive={isCallActive}
-        isProcessing={isProcessing}
-        isMuted={isMuted}
-        handleStartCall={handleStartCall}
-        handleEndCall={handleEndCall}
-        toggleMute={toggleMute}
-      />
     </div>
   );
 };
