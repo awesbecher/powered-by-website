@@ -44,19 +44,22 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
       image: processedImages[0],
       title: "Real Estate Agency",
       description: "Experience Voice AI in a real estate use case.",
-      link: "/real-estate"
+      link: "/real-estate",
+      hasBlackBackground: false
     },
     {
       image: processedImages[1],
       title: "Insurance Firm",
       description: "Experience how Voice AI Agents power an insurance use case.",
-      link: "/insurance"
+      link: "/insurance",
+      hasBlackBackground: true
     },
     {
       image: processedImages[2],
       title: "Hotel & Hospitality",
       description: "Order Room Service from a Voice AI Agent.",
-      link: "/room-service"
+      link: "/room-service",
+      hasBlackBackground: true
     }
   ];
 
@@ -77,11 +80,11 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
             className="bg-white/5 backdrop-blur-sm border border-white/10 overflow-hidden hover:shadow-xl hover:shadow-[#9b87f5]/5 transition-all duration-300 cursor-pointer"
             onClick={() => screenshot.link && navigate(screenshot.link)}
           >
-            <div className="aspect-video overflow-hidden">
+            <div className={`aspect-video overflow-hidden ${screenshot.hasBlackBackground ? 'bg-black' : ''}`}>
               <img 
                 src={screenshot.image} 
                 alt={screenshot.title} 
-                className="w-full h-full object-cover transform hover:scale-105 transition-all duration-500"
+                className="w-full h-full object-contain transform hover:scale-105 transition-all duration-500"
               />
             </div>
             <CardContent className="p-4">
@@ -94,4 +97,3 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
     </section>
   );
 };
-
