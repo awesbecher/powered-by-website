@@ -21,7 +21,7 @@ const AnnouncementBanner = ({
         <div className="text-sm sm:text-base text-center text-black flex items-center">
           <Link to={LAUNCH_ROUTE} className="bg-[#1A1F2C] text-white rounded-full py-0.5 px-2 flex items-center mr-2 text-xs hover:bg-opacity-80 transition-all">
             <Bot className="mr-0.5 h-3 w-3" />
-            <span className="font-semibold">Launch</span>
+            <span className="font-semibold">New Product</span>
           </Link>
           <span><PoweredByText /> <Link to={LAUNCH_ROUTE} className="font-bold hover:underline">Officially Launches!</Link> Watch our Launch Video & learn more </span>
           <Link 
