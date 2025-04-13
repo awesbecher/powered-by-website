@@ -43,6 +43,13 @@ const RoomService = () => {
         <span className="font-medium">Back to Demos</span>
       </button>
 
+      {/* Add Grandview Hotels logo to the upper right corner */}
+      <img 
+        src="/lovable-uploads/b6af6c58-a913-450a-aa63-3dc829dc55fd.png" 
+        alt="Grandview Hotels Logo" 
+        className="absolute top-8 right-8 z-20 h-16 w-auto object-contain"
+      />
+
       <RoomServiceHeader />
 
       <div className="container mx-auto px-4 relative z-10 -mt-16">
