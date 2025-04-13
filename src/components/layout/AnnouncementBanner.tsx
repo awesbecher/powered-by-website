@@ -23,7 +23,7 @@ const AnnouncementBanner = ({
             <Bot className="mr-0.5 h-3 w-3" />
             <span className="font-semibold">New Product</span>
           </Link>
-          <span><PoweredByText /> Launches Virtual SE, Revolutionizing Pre-Sales Engineering with AI Agents. </span>
+          <span><PoweredByText /> Launches <strong>Virtual SE</strong>, Revolutionizing Pre-Sales Engineering with AI Agents. </span>
           <a 
             href={VIRTUAL_SE_URL}
             target="_blank"
