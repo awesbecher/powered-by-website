@@ -31,6 +31,7 @@ import License from "./pages/License";
 import VoiceAgentStart from "./pages/VoiceAgentStart";
 import VoiceAgentConfigEnd from "./pages/VoiceAgentConfigEnd";
 import Careers from "./pages/Careers";
+import GPTLanding from "./pages/GPTLanding";
 
 const router = createBrowserRouter([
   {
@@ -141,6 +142,10 @@ const router = createBrowserRouter([
   {
     path: "/careers",
     element: <Careers />,
+  },
+  {
+    path: "/gpt",
+    element: <GPTLanding />,
   },
   {
     path: "*",
