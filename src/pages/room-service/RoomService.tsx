@@ -43,9 +43,9 @@ const RoomService = () => {
         <span className="font-medium">Back to Demos</span>
       </button>
 
-      {/* Add Grandview Hotels logo to the upper right corner */}
+      {/* Replace existing logo with new Grandview Hotels logo */}
       <img 
-        src="/lovable-uploads/b6af6c58-a913-450a-aa63-3dc829dc55fd.png" 
+        src="/lovable-uploads/e337da17-dd0b-4200-9f90-c1ff247c6038.png" 
         alt="Grandview Hotels Logo" 
         className="absolute top-8 right-8 z-20 h-16 w-auto object-contain"
       />
@@ -80,3 +80,4 @@ const RoomService = () => {
 };
 
 export default RoomService;
+
