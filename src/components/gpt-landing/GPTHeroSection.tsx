@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { 
@@ -25,6 +26,22 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
         <div className={`transition-all duration-1000 ease-out transform ${
           initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'
         }`}>
+          <div className="flex justify-center space-x-4 mb-8">
+            <a 
+              href={DIRECT_GPT_URL}
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block"
+            >
+              <Button 
+                className="bg-[#0F172A] hover:bg-[#1A1F2C] text-white px-6 py-6 text-lg rounded-md transition-all duration-200 ease-in-out hover:scale-105"
+                size="xl"
+              >
+                Build Your Voice Agent Now <ArrowRight className="ml-2 inline-block" />
+              </Button>
+            </a>
+          </div>
+          
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
             Build Your Voice AI Agent <span className="text-[#9b87f5]">Today</span><br />
             <span className="text-[#9b87f5]">No Cost. No Commitment.</span>
@@ -103,9 +120,6 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
           </div>
         </div>
       </div>
-      
-      <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
-      <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
     </div>
   );
 };
