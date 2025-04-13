@@ -17,15 +17,17 @@ export const HeroSection = () => {
       {/* Content container */}
       <div className="relative z-20 max-w-7xl mx-auto px-4 lg:px-8 py-10 lg:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Logo column */}
+          {/* Logo column - Updated with background for better visibility */}
           <div className="lg:col-span-3">
-            <AspectRatio ratio={1} className="max-w-[180px] mx-auto lg:mx-0">
-              <img 
-                src="/lovable-uploads/85f8e2ea-ebed-439d-9679-1cdab359e142.png" 
-                alt="Township Real Estate Logo" 
-                className="object-contain w-full h-full"
-              />
-            </AspectRatio>
+            <div className="bg-white/90 rounded-lg p-4 shadow-lg max-w-[180px] mx-auto lg:mx-0">
+              <AspectRatio ratio={1} className="w-full">
+                <img 
+                  src="/lovable-uploads/85f8e2ea-ebed-439d-9679-1cdab359e142.png" 
+                  alt="Township Real Estate Logo" 
+                  className="object-contain w-full h-full"
+                />
+              </AspectRatio>
+            </div>
           </div>
           
           {/* Text content column */}
