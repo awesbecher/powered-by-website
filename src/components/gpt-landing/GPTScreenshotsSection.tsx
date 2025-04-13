@@ -11,7 +11,7 @@ interface GPTScreenshotsSectionProps {
 export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ initialLoad }) => {
   const navigate = useNavigate();
   const [processedImages, setProcessedImages] = React.useState<string[]>([
-    "/lovable-uploads/242db4ad-39fc-4e58-8512-ef95edf5947c.png", // Updated Real Estate logo
+    "/lovable-uploads/f9188366-2839-4221-9789-f1037409e89d.png", // New logo for Real Estate
     "/lovable-uploads/479993a0-28ec-4822-890d-a3763692122d.png", // Planter's Insurance logo
     "/lovable-uploads/32f9e4c1-c923-4a60-a49d-a838cedd2247.png"
   ]);
@@ -46,7 +46,7 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
       title: "Real Estate Agency",
       description: "Experience Voice AI in a real estate use case.",
       link: "/real-estate",
-      hasBlackBackground: false // Changed to white background
+      hasBlackBackground: false
     },
     {
       image: processedImages[1],
@@ -81,7 +81,7 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
             className="bg-white/5 backdrop-blur-sm border border-white/10 overflow-hidden hover:shadow-xl hover:shadow-[#9b87f5]/5 transition-all duration-300 cursor-pointer"
             onClick={() => screenshot.link && navigate(screenshot.link)}
           >
-            <div className={`aspect-video overflow-hidden ${screenshot.hasBlackBackground ? 'bg-black' : ''}`}>
+            <div className={`aspect-video overflow-hidden ${screenshot.hasBlackBackground ? 'bg-black' : 'bg-white'}`}>
               <img 
                 src={screenshot.image} 
                 alt={screenshot.title} 
