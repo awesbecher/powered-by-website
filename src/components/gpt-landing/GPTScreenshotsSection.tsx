@@ -2,12 +2,14 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { removeBackgroundAndColorize, loadImage } from "@/utils/imageProcessor";
+import { useNavigate } from "react-router-dom";
 
 interface GPTScreenshotsSectionProps {
   initialLoad: boolean;
 }
 
 export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ initialLoad }) => {
+  const navigate = useNavigate();
   const [processedImages, setProcessedImages] = React.useState<string[]>([
     "/lovable-uploads/775c9836-f165-462f-ba92-71e5889ef819.png",
     "/lovable-uploads/32f9e4c1-c923-4a60-a49d-a838cedd2247.png",
@@ -52,7 +54,8 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
     {
       image: processedImages[2],
       title: "Hotel & Hospitality",
-      description: "Order Room Service from a Voice AI Agent."
+      description: "Order Room Service from a Voice AI Agent.",
+      link: "/room-service"
     }
   ];
 
@@ -68,7 +71,11 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
         initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'
       }`}>
         {screenshots.map((screenshot, index) => (
-          <Card key={index} className="bg-white/5 backdrop-blur-sm border border-white/10 overflow-hidden hover:shadow-xl hover:shadow-[#9b87f5]/5 transition-all duration-300">
+          <Card 
+            key={index} 
+            className="bg-white/5 backdrop-blur-sm border border-white/10 overflow-hidden hover:shadow-xl hover:shadow-[#9b87f5]/5 transition-all duration-300 cursor-pointer"
+            onClick={() => screenshot.link && navigate(screenshot.link)}
+          >
             <div className="aspect-video overflow-hidden">
               <img 
                 src={screenshot.image} 
