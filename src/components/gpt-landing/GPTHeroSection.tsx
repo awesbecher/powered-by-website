@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { 
@@ -98,7 +97,7 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
                 className="bg-[#0F172A] hover:bg-[#1A1F2C] text-white px-6 py-6 text-lg rounded-md transition-all duration-200 ease-in-out hover:scale-105"
                 size="xl"
               >
-                🚀 Try the GPT Now
+                Build Your Voice Agent Now <ArrowRight className="ml-2 inline-block" />
               </Button>
             </a>
           </div>
@@ -110,4 +109,3 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
     </div>
   );
 };
-
