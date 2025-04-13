@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { RoomServiceHeader } from "./components/RoomServiceHeader";
@@ -68,17 +67,10 @@ const RoomService = () => {
       {/* Add the standard Navbar component */}
       <Navbar />
 
-      {/* Display Grandview Hotels logo */}
-      <img 
-        src="/lovable-uploads/e337da17-dd0b-4200-9f90-c1ff247c6038.png" 
-        alt="Grandview Hotels Logo" 
-        className="absolute top-8 right-8 z-20 h-16 w-auto object-contain"
-      />
-
       <RoomServiceHeader />
 
       {/* Add a second Speak to Room Service button below the hero section */}
-      <div className="container mx-auto px-4 -mt-8 mb-8 flex justify-center">
+      <div className="container mx-auto px-4 -mt-16 mb-8 flex justify-center">
         <CallButton
           isProcessing={isProcessing}
           isCallActive={isCallActive}
