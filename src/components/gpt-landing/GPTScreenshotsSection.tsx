@@ -20,7 +20,7 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
         const response = await fetch(imageUrl);
         const blob = await response.blob();
         const img = await loadImage(blob);
-        const processedBlob = await removeBackgroundAndColorize(img);
+        const processedBlob = await removeBackgroundAndColorize(img, '#000000');
         const processedUrl = URL.createObjectURL(processedBlob);
         
         setProcessedImages(prev => {
@@ -33,8 +33,9 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
       }
     };
 
-    // Process only the second image (index 1)
+    // Process the second and third images (indices 1 and 2)
     processImage(processedImages[1], 1);
+    processImage(processedImages[2], 2);
   }, []);
 
   const screenshots = [
