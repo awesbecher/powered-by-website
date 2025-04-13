@@ -1,15 +1,13 @@
 
 import React, { useState } from "react";
-import { ChevronLeft } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { RoomServiceHeader } from "./components/RoomServiceHeader";
 import { MenuDisplay } from "./components/MenuDisplay";
 import { CallButton } from "./components/CallButton";
 import { RoomServiceDialog } from "./components/RoomServiceDialog";
+import Navbar from "@/components/layout/Navbar";
 
 const RoomService = () => {
-  const navigate = useNavigate();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isCallActive, setIsCallActive] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -35,15 +33,10 @@ const RoomService = () => {
 
   return (
     <div className="min-h-screen bg-[#1a0b2e] text-white">
-      <button
-        onClick={() => navigate(-1)}
-        className="absolute top-8 left-8 z-20 text-white hover:text-purple-400 transition-colors flex items-center gap-2"
-      >
-        <ChevronLeft className="w-6 h-6" />
-        <span className="font-medium">Back to Demos</span>
-      </button>
+      {/* Add the standard Navbar component */}
+      <Navbar />
 
-      {/* Replace existing logo with new Grandview Hotels logo */}
+      {/* Display Grandview Hotels logo */}
       <img 
         src="/lovable-uploads/e337da17-dd0b-4200-9f90-c1ff247c6038.png" 
         alt="Grandview Hotels Logo" 
@@ -80,4 +73,3 @@ const RoomService = () => {
 };
 
 export default RoomService;
-
