@@ -57,7 +57,7 @@ export const GPTFeaturesSection: React.FC<GPTFeaturesSectionProps> = ({ initialL
   ];
 
   return (
-    <section className="py-8 px-4">
+    <section className="py-4 px-4">
       <h2 className={`text-3xl sm:text-4xl font-bold text-white text-center mb-12 transition-all duration-1000 ease-out transform delay-200 ${
         initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'
       }`}>
@@ -79,3 +79,4 @@ export const GPTFeaturesSection: React.FC<GPTFeaturesSectionProps> = ({ initialL
     </section>
   );
 };
+
