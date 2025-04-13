@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { 
@@ -25,15 +26,16 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
         <div className={`transition-all duration-1000 ease-out transform ${
           initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'
         }`}>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-            Build Your Perfect AI Voice Agent Today!
+          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
+            Build Your <span className="text-white">Free</span> Voice AI Agent<br />
+            <span className="text-[#9b87f5]">No Cost. No Commitment.</span>
           </h1>
           
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-10">
-            Deploy remarkably human-like AI voice agents to automate 24/7 customer engagement, appointment bookings, FAQs, & sales activities.
-          </p>
+          <div className="mt-4 flex flex-col space-y-1 text-2xl md:text-3xl text-white max-w-4xl mx-auto leading-relaxed font-bold">
+            <p>Experience the power of conversational AI completely tailored to your business</p>
+          </div>
           
-          <h2 className="text-2xl font-semibold text-white mb-6">💡 What Your AI Voice Agent Can Do</h2>
+          <h2 className="text-2xl font-semibold text-white mb-6 mt-6">💡 What Your AI Voice Agent Can Do</h2>
           
           <div className="flex flex-wrap gap-6 justify-center mb-12">
             <div className="flex-1 min-w-[250px] bg-[#1A1F2C]/50 p-4 rounded-lg border border-gray-800">
