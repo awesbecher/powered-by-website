@@ -11,7 +11,7 @@ interface GPTScreenshotsSectionProps {
 export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ initialLoad }) => {
   const navigate = useNavigate();
   const [processedImages, setProcessedImages] = React.useState<string[]>([
-    "/lovable-uploads/f9188366-2839-4221-9789-f1037409e89d.png", // New logo for Real Estate
+    "/lovable-uploads/3f561d6a-4eb6-4651-9079-1be911b02131.png", // New logo for Real Estate
     "/lovable-uploads/479993a0-28ec-4822-890d-a3763692122d.png", // Planter's Insurance logo
     "/lovable-uploads/32f9e4c1-c923-4a60-a49d-a838cedd2247.png"
   ]);
