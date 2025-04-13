@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { removeBackgroundAndColorize, loadImage } from "@/utils/imageProcessor";
@@ -48,7 +49,8 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
     {
       image: processedImages[1],
       title: "Insurance Firm",
-      description: "Experience how Voice AI Agents power an insurance use case."
+      description: "Experience how Voice AI Agents power an insurance use case.",
+      link: "/insurance"
     },
     {
       image: processedImages[2],
@@ -92,3 +94,4 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
     </section>
   );
 };
+
