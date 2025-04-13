@@ -27,7 +27,7 @@ export const additionalServices = [
   {
     title: "Schedule a Test Drive",
     description: "Book an appointment to test drive your dream car",
-    link: "/mercedes",
+    link: "/mercedes-dealer",
     logo: "/lovable-uploads/aa693bec-b111-4ff5-82d5-78ad46643ea3.png",
     category: "Auto Dealer"
   },
@@ -41,7 +41,7 @@ export const additionalServices = [
   {
     title: "Barbershop Reservations",
     description: "Chat with our reservations team",
-    link: "/retail",
+    link: "/retail-services",
     logo: "/lovable-uploads/76119a46-2fce-4a9d-8e3b-3ac7cd6e402a.png",
     category: "Retail Services"
   }

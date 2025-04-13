@@ -19,8 +19,13 @@ export const ServiceCard = ({ title, description, link, logo, category }: Servic
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     
-    // Direct users to the destination link
-    window.location.href = link;
+    // Check if the link is an external URL
+    if (link.startsWith('http')) {
+      window.open(link, '_blank');
+    } else {
+      // Internal navigation
+      window.location.href = link;
+    }
   };
   
   return (
