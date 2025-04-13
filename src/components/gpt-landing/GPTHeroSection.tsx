@@ -41,7 +41,6 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
           
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-10">
             Your GPT-powered receptionist that can answer calls, schedule appointments, and handle FAQs.
-            <span className="block font-semibold mt-2">All HIPAA-compliant and ready to deploy.</span>
           </p>
           
           <h2 className="text-2xl font-semibold text-white mb-6">💡 What Your AI Voice Agent Can Do</h2>
@@ -134,3 +133,4 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
     </div>
   );
 };
+
