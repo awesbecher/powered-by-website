@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { RoomServiceHeader } from "./components/RoomServiceHeader";
@@ -17,13 +16,11 @@ const RoomService = () => {
   const [isMuted, setIsMuted] = useState(false);
   const { toast } = useToast();
 
-  // The Vapi Assistant ID for Room Service
   const ROOM_SERVICE_ASSISTANT_ID = "238616a3-b611-4faa-a216-74b8d7d8b277";
 
   const handleStartCall = async () => {
     setIsProcessing(true);
     try {
-      // Initialize the Vapi call with the Room Service Assistant ID
       const success = await initiateVapiCall(ROOM_SERVICE_ASSISTANT_ID);
       
       if (success) {
@@ -66,16 +63,13 @@ const RoomService = () => {
 
   return (
     <div className="min-h-screen bg-[#1a0b2e] text-white">
-      {/* Add the standard Navbar component */}
       <Navbar />
 
-      {/* Add Grandview Hotels Logo */}
       <GrandviewLogo />
 
       <RoomServiceHeader />
 
-      {/* Add a second Speak to Room Service button below the hero section */}
-      <div className="container mx-auto px-4 -mt-24 mb-8 flex justify-center z-20 relative">
+      <div className="container mx-auto px-4 -mt-16 mb-8 flex justify-center z-20 relative">
         <CallButton
           isProcessing={isProcessing}
           isCallActive={isCallActive}
