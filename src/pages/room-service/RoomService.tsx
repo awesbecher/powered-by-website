@@ -6,25 +6,57 @@ import { MenuDisplay } from "./components/MenuDisplay";
 import { CallButton } from "./components/CallButton";
 import { RoomServiceDialog } from "./components/RoomServiceDialog";
 import Navbar from "@/components/layout/Navbar";
+import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
+import { useToast } from "@/hooks/use-toast";
 
 const RoomService = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isCallActive, setIsCallActive] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const { toast } = useToast();
+
+  // The Vapi Assistant ID for Room Service
+  const ROOM_SERVICE_ASSISTANT_ID = "238616a3-b611-4faa-a216-74b8d7d8b277";
 
   const handleStartCall = async () => {
     setIsProcessing(true);
-    // Simulate connection delay
-    setTimeout(() => {
-      setIsCallActive(true);
+    try {
+      // Initialize the Vapi call with the Room Service Assistant ID
+      const success = await initiateVapiCall(ROOM_SERVICE_ASSISTANT_ID);
+      
+      if (success) {
+        setIsCallActive(true);
+        toast({
+          title: "Connected to Room Service",
+          description: "You're now speaking with our AI room service assistant.",
+        });
+      }
+    } catch (error) {
+      console.error("Failed to connect to room service:", error);
+      toast({
+        variant: "destructive",
+        title: "Connection failed",
+        description: error instanceof Error ? error.message : "Please check your microphone settings and try again.",
+      });
+    } finally {
       setIsProcessing(false);
-    }, 1500);
+    }
   };
 
   const handleEndCall = () => {
-    setIsCallActive(false);
-    setIsDialogOpen(false);
+    try {
+      stopVapiCall();
+      toast({
+        title: "Call ended",
+        description: "Thank you for using our room service.",
+      });
+    } catch (error) {
+      console.error("Error ending call:", error);
+    } finally {
+      setIsCallActive(false);
+      setIsDialogOpen(false);
+    }
   };
 
   const toggleMute = () => {
@@ -82,4 +114,3 @@ const RoomService = () => {
 };
 
 export default RoomService;
-
