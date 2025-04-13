@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Phone } from "lucide-react";
 import Footer from "@/components/layout/Footer";
+import Navbar from "@/components/layout/Navbar";
 import InsuranceHeader from "@/components/insurance/InsuranceHeader";
 import InsuranceHero from "@/components/insurance/InsuranceHero";
 import InsuranceProductGrid from "@/components/insurance/InsuranceProductGrid";
@@ -33,6 +34,7 @@ const Insurance = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
+      <Navbar />
       <InsuranceHeader />
 
       <div className="relative z-10 px-4 py-32 sm:px-6 lg:px-8">
