@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { 
@@ -10,16 +11,13 @@ import {
   Share2,
   Sparkles
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface GPTHeroSectionProps {
   initialLoad: boolean;
 }
 
 export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) => {
-  // GPT URL - this is where the CTA will link to
-  const GPT_STORE_URL = "https://chat.openai.com/g/g-JUxczAFDl-powered-by-voice-agent-builder";
-  const DIRECT_GPT_URL = "https://chatgpt.com/g/g-67f98710871881919806c28bcf3a6106-powered-by-voice-agent-builder";
-
   return (
     <div className="relative overflow-hidden px-6 lg:px-8 py-8 md:py-12">
       {/* Background gradient elements */}
@@ -34,10 +32,8 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
         }`}>
           {/* Top CTA Button with animated hover effect */}
           <div className="flex justify-center mb-12">
-            <a 
-              href={DIRECT_GPT_URL}
-              target="_blank" 
-              rel="noopener noreferrer"
+            <Link 
+              to="/agent-gpt-builder"
               className="inline-block group"
             >
               <Button 
@@ -47,7 +43,7 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
                 Build Your Voice Agent Now 
                 <ArrowRight className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1" />
               </Button>
-            </a>
+            </Link>
           </div>
           
           {/* Hero headline with enhanced styling */}
@@ -72,10 +68,8 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
           
           {/* New CTA Button placed above "Why Every Business Needs Voice AI" */}
           <div className="flex justify-center mb-8">
-            <a 
-              href={DIRECT_GPT_URL}
-              target="_blank" 
-              rel="noopener noreferrer"
+            <Link 
+              to="/agent-gpt-builder"
               className="inline-block group"
             >
               <Button 
@@ -85,7 +79,7 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
                 Click Here to Build AI Voice Agent
                 <ArrowRight className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1" />
               </Button>
-            </a>
+            </Link>
           </div>
           
           {/* Enhanced "Why Every Business" section */}
@@ -175,10 +169,8 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
             
             {/* Bottom CTA Button with enhanced styling */}
             <div className="flex justify-center mt-12">
-              <a 
-                href={DIRECT_GPT_URL}
-                target="_blank" 
-                rel="noopener noreferrer"
+              <Link 
+                to="/agent-gpt-builder"
                 className="inline-block group"
               >
                 <Button 
@@ -188,7 +180,7 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
                   Build Your Voice Agent Now 
                   <ArrowRight className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1" />
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

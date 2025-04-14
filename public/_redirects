@@ -16,6 +16,9 @@
 # Explicit rule for new agent-gpt path
 /agent-gpt /index.html 200
 
+# Explicit rule for new agent-gpt-builder path
+/agent-gpt-builder /index.html 200
+
 # Explicit rules for free voice agent URLs
 /free-voiceagent /free-voice-agent 301
 /free-voice-agent /index.html 200

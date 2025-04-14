@@ -1,3 +1,4 @@
+
 import React from 'react';
 import {
   createBrowserRouter,
@@ -37,6 +38,7 @@ import MercedesDealer from "./pages/MercedesDealer";
 import RealEstate from "./pages/RealEstate";
 import RetailServices from "./pages/RetailServices";
 import CustomGPT from "@/pages/CustomGPT";
+import AgentGPTBuilder from "@/pages/AgentGPTBuilder";
 
 const router = createBrowserRouter([
   {
@@ -178,6 +180,10 @@ const router = createBrowserRouter([
   {
     path: "/custom-gpt",
     element: <CustomGPT />,
+  },
+  {
+    path: "/agent-gpt-builder",
+    element: <AgentGPTBuilder />,
   },
   {
     path: "*",
