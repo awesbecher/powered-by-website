@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -25,13 +24,12 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
 }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Scroll to bottom of messages whenever they update
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   return (
-    <Card className="h-[700px] bg-gradient-to-br from-[#1A1F2C]/70 to-[#2A2F3C]/70 border border-white/10 shadow-xl overflow-hidden rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-[#9b87f5]/20">
+    <Card className="h-[700px] bg-gradient-to-br from-[#2f1c4a] via-[#1a0b2e] to-[#251640] border border-[#9b87f5]/20 shadow-xl overflow-hidden rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-[#9b87f5]/20">
       <CardHeader className="bg-gradient-to-r from-[#2f1c4a] to-[#1a0b2e] border-b border-white/10 p-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -54,7 +52,6 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
         </p>
       </CardHeader>
       
-      {/* Messages container with improved styling and animations */}
       <CardContent className="p-5 h-[480px] overflow-y-auto bg-gradient-to-b from-transparent to-[#1a0b2e]/20">
         {messages.length === 0 ? (
           <EmptyChat setInputMessage={setInputMessage} />
@@ -84,7 +81,6 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
         )}
       </CardContent>
       
-      {/* Input area with improved styling */}
       <CardFooter className="border-t border-white/10 p-4 bg-[#1a0b2e]/30">
         <div className="flex gap-2 w-full">
           <Textarea
@@ -126,21 +122,21 @@ const EmptyChat: React.FC<{ setInputMessage: (message: string) => void }> = ({ s
       <div className="flex flex-wrap gap-3 justify-center max-w-md mx-auto">
         <Button 
           onClick={() => setInputMessage("I need a voice agent for my healthcare clinic to handle appointment scheduling.")}
-          className="bg-[#1a0b2e] border border-[#9b87f5]/30 hover:bg-[#2f1c4a] text-gray-200 transition-all duration-200 transform hover:scale-105 hover:border-[#9b87f5]/60"
+          className="bg-gradient-to-r from-[#2f1c4a] to-[#1a0b2e] border border-[#9b87f5]/30 hover:from-[#3a2360] hover:to-[#251640] text-gray-200 transition-all duration-200 transform hover:scale-105 hover:border-[#9b87f5]/60"
           size="sm"
         >
           Healthcare Agent
         </Button>
         <Button 
           onClick={() => setInputMessage("I want a voice agent for my restaurant to take reservations and answer menu questions.")}
-          className="bg-[#1a0b2e] border border-[#9b87f5]/30 hover:bg-[#2f1c4a] text-gray-200 transition-all duration-200 transform hover:scale-105 hover:border-[#9b87f5]/60"
+          className="bg-gradient-to-r from-[#2f1c4a] to-[#1a0b2e] border border-[#9b87f5]/30 hover:from-[#3a2360] hover:to-[#251640] text-gray-200 transition-all duration-200 transform hover:scale-105 hover:border-[#9b87f5]/60"
           size="sm"
         >
           Restaurant Agent
         </Button>
         <Button 
           onClick={() => setInputMessage("I need a voice agent for my retail store to handle customer service inquiries.")}
-          className="bg-[#1a0b2e] border border-[#9b87f5]/30 hover:bg-[#2f1c4a] text-gray-200 transition-all duration-200 transform hover:scale-105 hover:border-[#9b87f5]/60"
+          className="bg-gradient-to-r from-[#2f1c4a] to-[#1a0b2e] border border-[#9b87f5]/30 hover:from-[#3a2360] hover:to-[#251640] text-gray-200 transition-all duration-200 transform hover:scale-105 hover:border-[#9b87f5]/60"
           size="sm"
         >
           Retail Agent
