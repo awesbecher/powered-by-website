@@ -7,6 +7,7 @@ import AgentChat from "./AgentChat";
 import { useVoiceAgent } from "./hooks/useVoiceAgent";
 import { agentTemplates } from "./data/templateData";
 import { AgentTemplatesKey } from "./data/templateData";
+import SavedAgentList from "./SavedAgentList";
 
 interface VoiceAgentBuilderProps {
   onSelectTemplate?: (template: any) => void;
@@ -68,28 +69,10 @@ const VoiceAgentBuilder: React.FC<VoiceAgentBuilderProps> = ({ onSelectTemplate,
         
         {/* Saved agent selection grid */}
         {!selectedTemplate && !editableTemplate && initialTabOverride === "saved" && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {savedAgents.length === 0 ? (
-              <div className="text-center col-span-full py-12">
-                <h3 className="text-white text-xl mb-4">No Saved Agents</h3>
-                <p className="text-gray-300 mb-6">You haven't saved any agents yet</p>
-              </div>
-            ) : (
-              savedAgents.map((agent) => (
-                <div 
-                  key={agent.id}
-                  onClick={() => loadSavedAgent(agent)}
-                  className="border border-white/10 rounded-lg p-4 cursor-pointer bg-[#1a0b2e]/40 hover:bg-[#2f1c4a]/40 transition-colors"
-                >
-                  <h3 className="text-white font-bold">{agent.name}</h3>
-                  <p className="text-gray-300 text-sm mt-2">{agent.prompt.substring(0, 100)}...</p>
-                  <p className="text-gray-400 text-xs mt-2">
-                    Created: {new Date(agent.created_at).toLocaleDateString()}
-                  </p>
-                </div>
-              ))
-            )}
-          </div>
+          <SavedAgentList 
+            onLoadAgent={loadSavedAgent}
+            onRefresh={fetchSavedAgents}
+          />
         )}
         
         {/* Agent editor */}

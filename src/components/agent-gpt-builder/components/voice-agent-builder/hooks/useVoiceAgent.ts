@@ -73,7 +73,8 @@ export function useVoiceAgent(initialTab?: string) {
   const loadSavedAgent = (agent: any) => {
     const template = {
       name: agent.name,
-      prompt: agent.prompt
+      prompt: agent.prompt,
+      id: agent.id
     };
     setSelectedTemplate(template);
     setMessages([{ role: "system", content: agent.prompt }]);
