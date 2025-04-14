@@ -27,14 +27,12 @@ export function useAgentTemplates() {
     if (!editableTemplate) return;
     
     try {
-      const { error } = await supabase.from("gpt_logs").insert([
+      const { data, error } = await supabase.from("voice_agents").insert([
         {
-          event: "agent_saved",
-          message: editableTemplate.prompt || "",
-          clinic_name: editableTemplate.name || "",
-          user_email: selectedLanguage, // Using this field to store the language
-        },
-      ]);
+          name: editableTemplate.name || "",
+          prompt: editableTemplate.prompt || "",
+        }
+      ]).select();
       
       if (error) {
         throw new Error(error.message);
@@ -44,13 +42,16 @@ export function useAgentTemplates() {
         title: "Agent saved",
         description: "Your voice agent has been saved successfully.",
       });
+      
+      return data;
     } catch (error) {
       console.error("Error saving agent:", error);
       toast({
         variant: "destructive",
         title: "Error",
-        description: "Failed to save agent. You may need to login first.",
+        description: "Failed to save agent. Please try again.",
       });
+      return null;
     }
   };
 

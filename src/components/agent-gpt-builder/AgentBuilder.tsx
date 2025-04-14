@@ -53,6 +53,9 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad }) => {
             <TabsTrigger value="templates">
               Industry Templates
             </TabsTrigger>
+            <TabsTrigger value="saved">
+              My Agents
+            </TabsTrigger>
             <TabsTrigger value="pro">
               Agent Builder Pro
             </TabsTrigger>
@@ -90,6 +93,11 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad }) => {
           <TabsContent value="templates" className="mt-6">
             {/* Voice-enabled template agents */}
             <VoiceAgentBuilder onSelectTemplate={handleTemplateSelected} />
+          </TabsContent>
+          
+          <TabsContent value="saved" className="mt-6">
+            {/* Saved agents tab */}
+            <VoiceAgentBuilder onSelectTemplate={handleTemplateSelected} initialTab="saved" />
           </TabsContent>
           
           <TabsContent value="pro" className="mt-6">

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -64,8 +63,60 @@ const AgentBuilderPro: React.FC = () => {
   // Analytics state
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [activeTab, setActiveTab] = useState("templates");
+  const [savedAgents, setSavedAgents] = useState<any[]>([]);
   
   const { toast } = useToast();
+
+  // Fetch saved agents on component mount
+  useEffect(() => {
+    fetchSavedAgents();
+    fetchLogs();
+  }, []);
+
+  // Fetch saved agents from Supabase
+  const fetchSavedAgents = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("voice_agents")
+        .select("*")
+        .order("created_at", { ascending: false });
+      
+      if (error) throw error;
+      if (data) setSavedAgents(data);
+    } catch (error) {
+      console.error("Error fetching saved agents:", error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to load your saved agents",
+      });
+    }
+  };
+
+  // Fetch logs
+  const fetchLogs = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("gpt_logs")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(50);
+      
+      if (error) throw new Error(error.message);
+      
+      if (data) {
+        setLogs(data.map(log => ({
+          id: log.id,
+          timestamp: new Date(log.created_at).toLocaleString(),
+          event_type: log.event,
+          agent_name: log.clinic_name || "Unnamed Agent",
+          message: log.message || ""
+        })));
+      }
+    } catch (error) {
+      console.error("Error fetching logs:", error);
+    }
+  };
 
   // Handle sending a message
   const handleSend = async (inputText: string) => {
@@ -167,14 +218,12 @@ const AgentBuilderPro: React.FC = () => {
     }
     
     try {
-      const { error } = await supabase.from("gpt_logs").insert([
+      const { data, error } = await supabase.from("voice_agents").insert([
         {
-          event: "agent_saved",
-          message: agentPrompt,
-          clinic_name: agentName,
-          user_email: "en-US", // Using this field to store the language
+          name: agentName,
+          prompt: agentPrompt
         }
-      ]);
+      ]).select();
       
       if (error) throw new Error(error.message);
       
@@ -182,6 +231,9 @@ const AgentBuilderPro: React.FC = () => {
         title: "Agent Saved",
         description: "Your agent has been saved successfully.",
       });
+      
+      // Refresh the saved agents list
+      fetchSavedAgents();
       
       logUsage("agent_saved");
     } catch (error) {
@@ -234,42 +286,19 @@ const AgentBuilderPro: React.FC = () => {
     }
   };
 
-  // Fetch logs
-  const fetchLogs = async () => {
-    try {
-      const { data, error } = await supabase
-        .from("gpt_logs")
-        .select("*")
-        .order("created_at", { ascending: false })
-        .limit(50);
-      
-      if (error) throw new Error(error.message);
-      
-      if (data) {
-        setLogs(data.map(log => ({
-          id: log.id,
-          timestamp: new Date(log.created_at).toLocaleString(),
-          event_type: log.event,
-          agent_name: log.clinic_name || "Unnamed Agent",
-          message: log.message || ""
-        })));
-      }
-    } catch (error) {
-      console.error("Error fetching logs:", error);
-    }
+  // Load a saved agent
+  const loadSavedAgent = (agent: any) => {
+    setSelectedAgent({name: agent.name, prompt: agent.prompt});
+    setAgentName(agent.name);
+    setAgentPrompt(agent.prompt);
+    setMessages([]);
+    setActiveTab("customize");
+    
+    toast({
+      title: "Agent Loaded",
+      description: `Loaded "${agent.name}" successfully.`,
+    });
   };
-
-  // Log widget open event when agent is selected
-  useEffect(() => {
-    if (agentName) {
-      logUsage("agent_selected");
-    }
-  }, [agentName]);
-
-  // Fetch logs on component mount
-  useEffect(() => {
-    fetchLogs();
-  }, []);
 
   return (
     <div className="w-full max-w-7xl mx-auto">
@@ -286,6 +315,9 @@ const AgentBuilderPro: React.FC = () => {
             <TabsList className="mb-6">
               <TabsTrigger value="templates">
                 Agent Templates
+              </TabsTrigger>
+              <TabsTrigger value="saved">
+                Saved Agents
               </TabsTrigger>
               <TabsTrigger value="customize">
                 Customize
@@ -317,6 +349,38 @@ const AgentBuilderPro: React.FC = () => {
                     <p className="text-gray-300 text-sm mt-2">{tpl.prompt.substring(0, 100)}...</p>
                   </div>
                 ))}
+              </div>
+            </TabsContent>
+            
+            {/* Saved Agents Tab */}
+            <TabsContent value="saved">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {savedAgents.length === 0 ? (
+                  <div className="text-center col-span-full py-12">
+                    <h3 className="text-white text-xl mb-4">No Saved Agents</h3>
+                    <p className="text-gray-300 mb-6">You haven't saved any agents yet. Create one from a template to get started.</p>
+                    <Button 
+                      onClick={() => setActiveTab("templates")} 
+                      className="bg-gradient-to-r from-[#9b87f5] to-[#8777e5] hover:from-[#8777e5] hover:to-[#7667d5]"
+                    >
+                      Browse Templates
+                    </Button>
+                  </div>
+                ) : (
+                  savedAgents.map((agent) => (
+                    <div 
+                      key={agent.id}
+                      onClick={() => loadSavedAgent(agent)}
+                      className="border border-white/10 rounded-lg p-4 cursor-pointer bg-[#1a0b2e]/40 hover:bg-[#2f1c4a]/40 transition-colors"
+                    >
+                      <h3 className="text-white font-bold">{agent.name}</h3>
+                      <p className="text-gray-300 text-sm mt-2">{agent.prompt.substring(0, 100)}...</p>
+                      <p className="text-gray-400 text-xs mt-2">
+                        Created: {new Date(agent.created_at).toLocaleDateString()}
+                      </p>
+                    </div>
+                  ))
+                )}
               </div>
             </TabsContent>
             

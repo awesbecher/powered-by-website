@@ -93,6 +93,30 @@ export type Database = {
         }
         Relationships: []
       }
+      voice_agents: {
+        Row: {
+          created_at: string | null
+          created_by: string | null
+          id: string
+          name: string
+          prompt: string
+        }
+        Insert: {
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          name: string
+          prompt: string
+        }
+        Update: {
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          name?: string
+          prompt?: string
+        }
+        Relationships: []
+      }
       whitepapers: {
         Row: {
           description: string | null
