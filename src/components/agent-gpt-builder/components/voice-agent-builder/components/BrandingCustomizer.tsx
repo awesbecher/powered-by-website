@@ -1,5 +1,7 @@
 
 import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/use-toast";
 
 interface BrandingCustomizerProps {
   agentName: string;
@@ -29,7 +31,10 @@ const BrandingCustomizer: React.FC<BrandingCustomizerProps> = ({ agentName }) =>
 ></script>
     `;
     navigator.clipboard.writeText(snippet);
-    alert("📎 Embed snippet copied to clipboard!");
+    toast({
+      title: "Embed Snippet Copied",
+      description: "The widget embed code has been copied to your clipboard!",
+    });
   };
 
   return (
@@ -93,14 +98,15 @@ const BrandingCustomizer: React.FC<BrandingCustomizerProps> = ({ agentName }) =>
         />
       </div>
 
-      <button 
+      <Button 
         onClick={generateEmbed}
-        className="bg-gradient-to-r from-[#9b87f5] to-[#8777e5] hover:from-[#8777e5] hover:to-[#7667d5] text-white font-medium py-2 px-4 rounded"
+        className="bg-gradient-to-r from-[#9b87f5] to-[#8777e5] hover:from-[#8777e5] hover:to-[#7667d5] text-white"
       >
         📎 Copy Widget Embed
-      </button>
+      </Button>
     </div>
   );
 };
 
 export default BrandingCustomizer;
+
