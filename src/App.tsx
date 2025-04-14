@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
   createBrowserRouter,
@@ -37,6 +36,7 @@ import Insurance from "./pages/Insurance";
 import MercedesDealer from "./pages/MercedesDealer";
 import RealEstate from "./pages/RealEstate";
 import RetailServices from "./pages/RetailServices";
+import CustomGPT from "@/pages/CustomGPT";
 
 const router = createBrowserRouter([
   {
@@ -63,7 +63,6 @@ const router = createBrowserRouter([
     path: "/free-voice-agent",
     element: <FreeVoiceAgent />,
   },
-  // Add an explicit route for the URL without the dash
   {
     path: "/free-voiceagent",
     element: <FreeVoiceAgent />,
@@ -152,7 +151,6 @@ const router = createBrowserRouter([
     path: "/agent-gpt",
     element: <GPTLanding />,
   },
-  // Add a redirect from the old path to the new path
   {
     path: "/gpt",
     element: <GPTLanding />,
@@ -176,6 +174,10 @@ const router = createBrowserRouter([
   {
     path: "/retail-services",
     element: <RetailServices />,
+  },
+  {
+    path: "/custom-gpt",
+    element: <CustomGPT />,
   },
   {
     path: "*",
