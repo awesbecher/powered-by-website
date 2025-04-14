@@ -21,7 +21,7 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
   const DIRECT_GPT_URL = "https://chatgpt.com/g/g-67f98710871881919806c28bcf3a6106-powered-by-voice-agent-builder";
 
   return (
-    <div className="relative overflow-hidden px-6 lg:px-8 py-16 md:py-24">
+    <div className="relative overflow-hidden px-6 lg:px-8 py-8 md:py-12">
       {/* Background gradient elements */}
       <div className="absolute top-0 left-0 w-full h-full opacity-50 pointer-events-none">
         <div className="absolute top-20 left-[10%] w-[25rem] h-[25rem] bg-purple-600/20 rounded-full blur-[8rem]"></div>
