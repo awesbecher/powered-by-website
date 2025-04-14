@@ -1,9 +1,8 @@
 
-import { Bot, Network, MessageSquare, BarChart, Phone, DollarSign } from "lucide-react";
+import { Bot, Network, MessageSquare, BarChart } from "lucide-react";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 import Navbar from "@/components/layout/Navbar";
@@ -12,6 +11,8 @@ import ActiveCallDialog from "@/components/license/ActiveCallDialog";
 import CallConsentDialog from "@/components/license/CallConsentDialog";
 import PricingDialog from "@/components/license/PricingDialog";
 import FeatureCard from "@/components/license/FeatureCard";
+import LicenseHeader from "@/components/license/LicenseHeader";
+import LicenseHero from "@/components/license/LicenseHero";
 
 const License = () => {
   const navigate = useNavigate();
@@ -90,7 +91,6 @@ const License = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
-      {/* Add Navbar at the top */}
       <Navbar />
 
       <ActiveCallDialog 
@@ -113,57 +113,30 @@ const License = () => {
         onOpenChange={setIsPricingDialogOpen}
       />
 
-      <div className="relative min-h-[calc(100vh-80px)]">
-        <div className="absolute inset-0 flex flex-col items-center pt-20">
-          <h1 className="text-4xl md:text-5xl font-bold text-center max-w-4xl px-4 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400">
-            <span>Transform Your Sales Outreach & Customer Experience with{' '}</span>
-            <Link to="/blog/understanding-ai-agents" className="underline underline-offset-4 hover:text-purple-300 transition-colors">
-              AI Agents
-            </Link>
-          </h1>
-        </div>
-
-        <div className="relative z-10 container mx-auto px-4">
-          <div className="min-h-[30vh]"></div>
-          <div className="flex flex-col items-center justify-center gap-12 pb-20">
-            <div className="bg-black/30 backdrop-blur-sm rounded-xl p-8 pt-10 max-w-2xl">
-              <p className="text-2xl text-white text-center leading-tight">
-                RightBloom delivers cutting-edge AI agent solutions that automate and enhance your sales and customer service operations, helping innovative companies scale their business efficiently. View our products and pricing below. You can speak to a live Sales Rep to learn more or get a customized quote.
-              </p>
-            </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <LicenseHeader />
+        
+        <div className="py-10 sm:py-14">
+          <div className="max-w-5xl mx-auto">
+            <LicenseHero 
+              onShowCallDialog={() => setIsCallDialogOpen(true)}
+              onShowPricingDialog={() => setIsPricingDialogOpen(true)}
+              isLoading={isLoading}
+            />
             
-            <div className="flex flex-row items-center gap-4">
-              <Dialog open={isPricingDialogOpen} onOpenChange={setIsPricingDialogOpen}>
-                <DialogTrigger asChild>
-                  <button 
-                    className="bg-[#9b87f5] hover:bg-[#7E69AB] text-white px-10 py-2 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2 text-lg w-[280px] whitespace-nowrap"
-                  >
-                    View Products & Pricing
-                    <DollarSign className="w-5 h-5" />
-                  </button>
-                </DialogTrigger>
-              </Dialog>
-              
-              <Dialog open={isCallDialogOpen} onOpenChange={setIsCallDialogOpen}>
-                <DialogTrigger asChild>
-                  <button className="bg-purple-600 hover:bg-purple-700 text-white px-10 py-2 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2 text-lg w-[280px] whitespace-nowrap">
-                    Speak to a Sales Rep
-                    <Phone className="w-5 h-5" />
-                  </button>
-                </DialogTrigger>
-              </Dialog>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4 max-w-2xl">
-              {features.map((feature, index) => (
-                <FeatureCard
-                  key={index}
-                  icon={feature.icon}
-                  title={feature.title}
-                  description={feature.description}
-                  iconColor={feature.iconColor}
-                />
-              ))}
+            <div className="mt-16">
+              <h2 className="text-3xl font-bold text-white mb-8 text-center">Our Features</h2>
+              <div className="grid grid-cols-2 gap-4 max-w-2xl mx-auto">
+                {features.map((feature, index) => (
+                  <FeatureCard
+                    key={index}
+                    icon={feature.icon}
+                    title={feature.title}
+                    description={feature.description}
+                    iconColor={feature.iconColor}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
