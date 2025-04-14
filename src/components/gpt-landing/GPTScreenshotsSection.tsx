@@ -103,7 +103,7 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
               </div>
               <CardContent className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">{screenshot.title}</h3>
-                <p className="text-gray-300">{screenshot.description}</p>
+                <p className="text-white font-medium">{screenshot.description}</p>
               </CardContent>
             </Card>
           ))}
