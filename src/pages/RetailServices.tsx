@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 import HeroSection from "@/components/retail-services/HeroSection";
@@ -12,6 +11,10 @@ import { Activity, X } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 
 const RetailServices = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isCallActive, setIsCallActive] = useState(false);
@@ -43,7 +46,6 @@ const RetailServices = () => {
       await stopVapiCall();
       setIsCallActive(false);
       setIsLoading(false);
-      // Redirect to demo page
       navigate('/demo');
     } catch (error) {
       console.error('Error ending call:', error);
@@ -57,10 +59,8 @@ const RetailServices = () => {
 
   return (
     <div className="min-h-screen w-full bg-black">
-      {/* Added standard Navbar */}
       <Navbar />
 
-      {/* Active Call Dialog */}
       <Dialog open={isCallActive} onOpenChange={(open) => !open && handleEndCall()}>
         <DialogContent className="bg-white text-black border-gray-200 sm:max-w-md p-6 rounded-xl">
           <div className="flex flex-col space-y-6">

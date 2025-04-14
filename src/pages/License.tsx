@@ -1,6 +1,5 @@
-
 import { Bot, Network, MessageSquare, BarChart } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
@@ -15,6 +14,10 @@ import LicenseHeader from "@/components/license/LicenseHeader";
 import LicenseHero from "@/components/license/LicenseHero";
 
 const License = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const navigate = useNavigate();
   const [isCallDialogOpen, setIsCallDialogOpen] = useState(false);
   const [isPricingDialogOpen, setIsPricingDialogOpen] = useState(false);

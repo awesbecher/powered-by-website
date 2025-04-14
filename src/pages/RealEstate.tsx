@@ -1,4 +1,4 @@
-
+import { useEffect } from "react";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import { HeroSection } from "@/components/real-estate/HeroSection";
@@ -11,6 +11,10 @@ import { useRealEstateCall } from "@/hooks/useRealEstateCall";
 import { useRealEstateCallState } from "@/hooks/useRealEstateCallState";
 
 const RealEstate = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const scrollToProperties = () => {
     const featuredSection = document.getElementById('featured-properties');
     featuredSection?.scrollIntoView({ behavior: 'smooth' });

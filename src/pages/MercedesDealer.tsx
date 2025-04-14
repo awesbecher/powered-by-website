@@ -1,5 +1,4 @@
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/mercedes-dealer/HeroSection";
@@ -8,6 +7,10 @@ import ServicesGrid from "@/components/mercedes-dealer/ServicesGrid";
 import SpringSalesEvent from "@/components/mercedes-dealer/SpringSalesEvent";
 
 const MercedesDealer = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [showCallDialog, setShowCallDialog] = useState(false);
