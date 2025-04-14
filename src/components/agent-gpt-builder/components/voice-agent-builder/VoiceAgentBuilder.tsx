@@ -8,6 +8,7 @@ import { useVoiceAgent } from "./hooks/useVoiceAgent";
 import { agentTemplates } from "./data/templateData";
 import { AgentTemplatesKey } from "./data/templateData";
 import SavedAgentList from "./SavedAgentList";
+import MultiAgentManager from "./MultiAgentManager";
 import { supabase } from "@/integrations/supabase/client";
 
 interface VoiceAgentBuilderProps {
@@ -75,7 +76,7 @@ const VoiceAgentBuilder: React.FC<VoiceAgentBuilderProps> = ({ onSelectTemplate,
       
       <CardContent className="p-6">
         {/* Template selection grid */}
-        {!selectedTemplate && !editableTemplate && initialTabOverride !== "saved" && (
+        {!selectedTemplate && !editableTemplate && initialTabOverride !== "saved" && initialTabOverride !== "embeds" && (
           <VoiceAgentTemplates 
             onSelectTemplate={handleTemplateSelect}
           />
@@ -88,6 +89,11 @@ const VoiceAgentBuilder: React.FC<VoiceAgentBuilderProps> = ({ onSelectTemplate,
             onLoadAgent={loadSavedAgent}
             onRefresh={fetchSavedAgents}
           />
+        )}
+
+        {/* MultiAgentManager for embeds */}
+        {!selectedTemplate && !editableTemplate && initialTabOverride === "embeds" && (
+          <MultiAgentManager user={user} />
         )}
         
         {/* Agent editor */}

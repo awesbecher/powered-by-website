@@ -96,6 +96,16 @@ const MultiAgentManager: React.FC<MultiAgentManagerProps> = ({ user }) => {
     if (user?.id) fetchAgents();
   }, [user]);
 
+  // Show a message if no user is logged in
+  if (!user) {
+    return (
+      <div className="text-center py-12">
+        <h3 className="text-white text-xl mb-4">Authentication Required</h3>
+        <p className="text-gray-300">Please log in to manage your agents</p>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
