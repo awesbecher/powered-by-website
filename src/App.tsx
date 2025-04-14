@@ -149,6 +149,11 @@ const router = createBrowserRouter([
     element: <Careers />,
   },
   {
+    path: "/agent-gpt",
+    element: <GPTLanding />,
+  },
+  // Add a redirect from the old path to the new path
+  {
     path: "/gpt",
     element: <GPTLanding />,
   },

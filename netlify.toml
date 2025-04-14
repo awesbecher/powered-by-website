@@ -20,6 +20,12 @@
   to = "/launch"
   status = 301
 
+# Add redirect from old GPT path to new path
+[[redirects]]
+  from = "/gpt"
+  to = "/agent-gpt"
+  status = 301
+
 # Ensure privacy statement route works properly
 [[redirects]]
   from = "/privacy-statement"
