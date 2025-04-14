@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
@@ -136,17 +137,15 @@ const RetailServices = () => {
         </DialogContent>
       </Dialog>
 
-      <HeroSection />
+      <HeroSection onBookAppointment={() => setIsOpen(true)} />
 
-      <div className="flex justify-center items-center my-8">
-        <BookingDialog 
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-          handleCall={handleCall}
-          handleEndCall={handleEndCall}
-          isLoading={isLoading}
-        />
-      </div>
+      <BookingDialog 
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        handleCall={handleCall}
+        handleEndCall={handleEndCall}
+        isLoading={isLoading}
+      />
 
       <ServicesGrid />
     </div>
@@ -154,3 +153,4 @@ const RetailServices = () => {
 };
 
 export default RetailServices;
+

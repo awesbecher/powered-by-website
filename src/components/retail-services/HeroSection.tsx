@@ -1,8 +1,14 @@
 
 import { Link } from "react-router-dom";
 import RetailServicesHeader from "./RetailServicesHeader";
+import { Button } from "@/components/ui/button";
+import { Phone } from "lucide-react";
 
-const HeroSection = () => {
+interface HeroSectionProps {
+  onBookAppointment: () => void;
+}
+
+const HeroSection = ({ onBookAppointment }: HeroSectionProps) => {
   return (
     <div className="relative min-h-[80vh] flex flex-col items-center">
       <div className="absolute inset-0">
@@ -24,8 +30,17 @@ const HeroSection = () => {
             Welcome to Flagship Barbers
           </h1>
           <p className="text-gray-200 max-w-2xl mx-auto text-lg">
-            Flagship Barbers has been serving the Tacoma public for 25 years. We specialize in classic barbershop style and fades. Click on the button below to speak to our Reservations Manager to book a haircut!
+            Flagship Barbers has been serving the Tacoma public for 25 years. We specialize in classic barbershop style and fades.
           </p>
+          <div className="mt-6">
+            <Button 
+              onClick={onBookAppointment}
+              className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2"
+            >
+              <Phone className="w-5 h-5" />
+              Book an Appointment
+            </Button>
+          </div>
         </div>
       </div>
     </div>
@@ -33,3 +48,4 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
