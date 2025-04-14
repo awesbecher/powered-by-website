@@ -30,9 +30,9 @@ export const ScreenshotCard: React.FC<ScreenshotCardProps> = ({
           {/* Light glow effect behind the logo for better visibility */}
           <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-50 rounded-t-lg"></div>
           
-          {/* Logo container with glass effect for better visibility */}
+          {/* Logo container with white background and glass effect */}
           <div className="flex justify-center items-center h-32 relative z-10 mb-4 border-b border-[#9b87f5]/30 pb-4">
-            <div className="w-3/4 h-full flex items-center justify-center px-4 py-2 backdrop-blur-sm bg-white/10 rounded-lg">
+            <div className="w-3/4 h-full flex items-center justify-center px-4 py-2 backdrop-blur-sm bg-white rounded-lg">
               <img 
                 src={image} 
                 alt={title} 
