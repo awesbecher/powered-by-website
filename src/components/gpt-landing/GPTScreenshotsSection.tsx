@@ -88,47 +88,56 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
         <div className={`grid grid-cols-1 md:grid-cols-3 gap-8 transition-all duration-1000 ease-out transform delay-500 ${
           initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'
         }`}>
-          {screenshots.map((screenshot, index) => (
-            <div 
-              key={index} 
-              className="group cursor-pointer transition-all duration-300 transform hover:translate-y-[-8px]"
-              onClick={() => screenshot.link && navigate(screenshot.link)}
-            >
-              <Card className="overflow-hidden h-full bg-gradient-to-br from-[#271f37] to-[#312447] border-0 shadow-lg shadow-purple-900/20 hover:shadow-xl hover:shadow-purple-800/30">
-                <div className="p-4 relative">
-                  {/* Glowing effect behind the logo */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#9b87f5]/10 to-transparent opacity-50 rounded-t-lg"></div>
-                  
-                  {/* Logo container with purple border bottom */}
-                  <div className={`flex justify-center items-center h-32 relative z-10 mb-4 border-b border-[#9b87f5]/30 pb-4`}>
-                    <div className="w-3/4 h-full flex items-center justify-center px-4 py-2">
-                      <img 
-                        src={screenshot.image} 
-                        alt={screenshot.title} 
-                        className="max-h-full max-w-full object-contain filter drop-shadow-[0_0_8px_rgba(155,135,245,0.3)]"
-                      />
-                    </div>
-                  </div>
-                  
-                  {/* Content with improved spacing and glow effects */}
-                  <div className="p-4">
-                    <h3 className="text-xl font-bold text-[#9b87f5] mb-3 group-hover:text-white transition-colors duration-300">{screenshot.title}</h3>
-                    <p className="text-[#c4b8f0] font-medium text-sm leading-relaxed">{screenshot.description}</p>
+          {screenshots.map((screenshot, index) => {
+            // Use different gradients for each card to enhance logo visibility
+            const cardGradients = [
+              "from-[#331f60]/80 to-[#1c113a]", // Lighter for Real Estate
+              "from-[#37285f]/80 to-[#1e1340]", // Slightly different for Insurance
+              "from-[#30235a]/80 to-[#1a1239]"  // For Hotel
+            ];
+            
+            return (
+              <div 
+                key={index} 
+                className="group cursor-pointer transition-all duration-300 transform hover:translate-y-[-8px]"
+                onClick={() => screenshot.link && navigate(screenshot.link)}
+              >
+                <Card className={`overflow-hidden h-full bg-gradient-to-br ${cardGradients[index]} border-0 shadow-lg shadow-purple-900/20 hover:shadow-xl hover:shadow-purple-800/30`}>
+                  <div className="p-4 relative">
+                    {/* Light glow effect behind the logo for better visibility */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-50 rounded-t-lg"></div>
                     
-                    {/* View demo button */}
-                    <div className="mt-4 pt-3 flex justify-end">
-                      <div className="inline-flex items-center text-sm font-medium text-[#9b87f5] group-hover:text-white transition-colors duration-300">
-                        View Demo
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                        </svg>
+                    {/* Logo container with glass effect for better visibility */}
+                    <div className={`flex justify-center items-center h-32 relative z-10 mb-4 border-b border-[#9b87f5]/30 pb-4`}>
+                      <div className="w-3/4 h-full flex items-center justify-center px-4 py-2 backdrop-blur-sm bg-white/10 rounded-lg">
+                        <img 
+                          src={screenshot.image} 
+                          alt={screenshot.title} 
+                          className="max-h-full max-w-full object-contain filter drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]"
+                        />
+                      </div>
+                    </div>
+                    
+                    {/* Content with improved spacing and glow effects */}
+                    <div className="p-4">
+                      <h3 className="text-xl font-bold text-[#9b87f5] mb-3 group-hover:text-white transition-colors duration-300">{screenshot.title}</h3>
+                      <p className="text-[#c4b8f0] font-medium text-sm leading-relaxed">{screenshot.description}</p>
+                      
+                      {/* View demo button */}
+                      <div className="mt-4 pt-3 flex justify-end">
+                        <div className="inline-flex items-center text-sm font-medium text-[#9b87f5] group-hover:text-white transition-colors duration-300">
+                          View Demo
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                          </svg>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </Card>
-            </div>
-          ))}
+                </Card>
+              </div>
+            );
+          })}
         </div>
 
         {/* Information boxes with enhanced styling */}
