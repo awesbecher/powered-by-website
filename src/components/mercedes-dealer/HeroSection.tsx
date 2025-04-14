@@ -1,4 +1,3 @@
-
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Link } from "react-router-dom";
 
@@ -14,7 +13,7 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-black/50"></div>
       </div>
       
-      <div className="absolute top-6 left-6 z-10 w-40">
+      <div className="absolute top-6 left-6 z-10 w-96">
         <AspectRatio ratio={5.5/1}>
           <img 
             src="/lovable-uploads/0a2b8ea0-afdd-4814-9b46-3ebe7637b617.png"
