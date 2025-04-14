@@ -5,10 +5,11 @@ import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 import HeroSection from "@/components/retail-services/HeroSection";
 import ServicesGrid from "@/components/retail-services/ServicesGrid";
 import BookingDialog from "@/components/retail-services/BookingDialog";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Activity, X, ChevronLeft } from "lucide-react";
+import { Activity, X } from "lucide-react";
+import Navbar from "@/components/layout/Navbar";
 
 const RetailServices = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,23 +57,8 @@ const RetailServices = () => {
 
   return (
     <div className="min-h-screen w-full bg-black">
-      {/* Back Navigation */}
-      <Link 
-        to="/demo" 
-        className="absolute top-8 left-8 z-10 flex items-center text-white hover:text-gray-300 transition-colors"
-      >
-        <ChevronLeft className="w-6 h-6 mr-1" />
-        <span>Back to Demo</span>
-      </Link>
-
-      {/* Logo */}
-      <div className="absolute top-24 right-8 z-10">
-        <img 
-          src="/lovable-uploads/07f82a95-cea8-417e-96f0-5d8ef95f0200.png"
-          alt="Flagship Barbers Logo"
-          className="h-12 w-auto"
-        />
-      </div>
+      {/* Added standard Navbar */}
+      <Navbar />
 
       {/* Active Call Dialog */}
       <Dialog open={isCallActive} onOpenChange={(open) => !open && handleEndCall()}>
