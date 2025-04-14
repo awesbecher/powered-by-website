@@ -6,7 +6,8 @@ import ChatInterface from "./components/ChatInterface";
 import AgentConfigPanel from "./components/AgentConfigPanel";
 import DeploymentCTA from "./components/DeploymentCTA";
 import { useAgentBuilder } from "./hooks/useAgentBuilder";
-import VoiceAgentBuilder from "./components/VoiceAgentBuilder";
+import VoiceAgentBuilder from "./components/voice-agent-builder/VoiceAgentBuilder";
+import AgentBuilderPro from "./components/AgentBuilderPro";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface AgentBuilderProps {
@@ -52,6 +53,9 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad }) => {
             <TabsTrigger value="templates">
               Industry Templates
             </TabsTrigger>
+            <TabsTrigger value="pro">
+              Agent Builder Pro
+            </TabsTrigger>
           </TabsList>
           
           <TabsContent value="custom">
@@ -86,6 +90,11 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad }) => {
           <TabsContent value="templates" className="mt-6">
             {/* Voice-enabled template agents */}
             <VoiceAgentBuilder onSelectTemplate={handleTemplateSelected} />
+          </TabsContent>
+          
+          <TabsContent value="pro" className="mt-6">
+            {/* Advanced agent builder with more features */}
+            <AgentBuilderPro />
           </TabsContent>
         </Tabs>
       </div>
