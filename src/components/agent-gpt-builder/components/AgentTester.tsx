@@ -29,7 +29,7 @@ const AgentTester: React.FC<AgentTesterProps> = ({ agentName, agentInstructions 
   const handleSendMessage = async () => {
     if (!userInput || !agentInstructions) return;
 
-    const updatedMessages = [...messages, { role: "user", content: userInput }];
+    const updatedMessages = [...messages, { role: "user" as const, content: userInput }];
     setMessages(updatedMessages);
     setUserInput("");
     setLoading(true);
@@ -165,10 +165,11 @@ components:
   // Function to save agent to Supabase (will require authentication)
   const handleSaveAgent = async () => {
     try {
-      const { error } = await supabase.from("agents").insert([
+      const { error } = await supabase.from("gpt_logs").insert([
         {
-          name: agentName,
-          prompt: agentInstructions,
+          event: "agent_saved",
+          message: agentInstructions,
+          clinic_name: agentName,
         },
       ]);
       
