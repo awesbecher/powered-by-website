@@ -19,7 +19,7 @@ const OfferButton: React.FC<OfferButtonProps> = ({ className }) => {
           <span className="text-sm font-semibold">New Offer</span>
         </div>
         <span className="text-sm font-medium pr-1 group-hover:underline">
-          Click Here <span className="text-base">Build Your</span> Voice AI Agent Today for any Use Case
+          Click Here Build Your Voice AI Agent Today for any Use Case
         </span>
       </Link>
     </div>
