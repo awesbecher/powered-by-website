@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import RetailServicesHeader from "./RetailServicesHeader";
 
@@ -13,7 +14,7 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
       </div>
 
-      <div className="relative z-10 w-full">
+      <div className="relative z-10 w-full -mb-4">
         <RetailServicesHeader />
       </div>
 
