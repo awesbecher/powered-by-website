@@ -34,6 +34,13 @@ export const services = [
     link: "/license",
     logo: "/lovable-uploads/e9ddfbf3-072d-410d-b7ed-01c83eb30564.png",
     category: "SaaS & Software"
+  },
+  {
+    title: "Barbershop Reservations",
+    description: "Chat with our reservations team",
+    link: "/retail-services",
+    logo: "/lovable-uploads/76119a46-2fce-4a9d-8e3b-3ac7cd6e402a.png",
+    category: "Retail Services"
   }
 ];
 
