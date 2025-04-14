@@ -1,11 +1,12 @@
 
-import { Bot, Network, MessageSquare, BarChart, Phone, DollarSign, ChevronLeft } from "lucide-react";
+import { Bot, Network, MessageSquare, BarChart, Phone, DollarSign } from "lucide-react";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
+import Navbar from "@/components/layout/Navbar";
 
 import ActiveCallDialog from "@/components/license/ActiveCallDialog";
 import CallConsentDialog from "@/components/license/CallConsentDialog";
@@ -89,21 +90,8 @@ const License = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
-      <button
-        onClick={() => navigate(-1)}
-        className="absolute top-8 left-8 z-20 text-white hover:text-purple-400 transition-colors flex items-center gap-2"
-      >
-        <ChevronLeft className="w-6 h-6" />
-        <span className="font-medium">Back to Demos</span>
-      </button>
-
-      <div className="flex justify-center w-full absolute top-24 z-20">
-        <img 
-          src="/lovable-uploads/8505af38-6a90-44dc-b6bc-554d254475ea.png"
-          alt="RightBloom"
-          className="h-12 w-auto"
-        />
-      </div>
+      {/* Add Navbar at the top */}
+      <Navbar />
 
       <ActiveCallDialog 
         isOpen={isCallActive}
@@ -125,8 +113,8 @@ const License = () => {
         onOpenChange={setIsPricingDialogOpen}
       />
 
-      <div className="relative min-h-[100vh]">
-        <div className="absolute inset-0 flex flex-col items-center pt-40">
+      <div className="relative min-h-[calc(100vh-80px)]">
+        <div className="absolute inset-0 flex flex-col items-center pt-20">
           <h1 className="text-4xl md:text-5xl font-bold text-center max-w-4xl px-4 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400">
             <span>Transform Your Sales Outreach & Customer Experience with{' '}</span>
             <Link to="/blog/understanding-ai-agents" className="underline underline-offset-4 hover:text-purple-300 transition-colors">
@@ -136,7 +124,7 @@ const License = () => {
         </div>
 
         <div className="relative z-10 container mx-auto px-4">
-          <div className="min-h-[45vh]"></div>
+          <div className="min-h-[30vh]"></div>
           <div className="flex flex-col items-center justify-center gap-12 pb-20">
             <div className="bg-black/30 backdrop-blur-sm rounded-xl p-8 pt-10 max-w-2xl">
               <p className="text-2xl text-white text-center leading-tight">
