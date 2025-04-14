@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -174,7 +175,8 @@ const AgentBuilderPro: React.FC = () => {
     
     setIsListening(true);
     
-    const SpeechRecognition = window.webkitSpeechRecognition;
+    // Fix: properly cast the webkitSpeechRecognition constructor
+    const SpeechRecognition = window.webkitSpeechRecognition as unknown as new () => webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
     recognition.lang = "en-US";
     
