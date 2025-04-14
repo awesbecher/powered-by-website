@@ -82,7 +82,7 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
                 className="bg-[#0F172A] hover:bg-[#1A1F2C] text-white px-6 py-6 text-lg rounded-md transition-all duration-300 hover:scale-105 border-2 border-white group-hover:shadow-lg group-hover:shadow-[#9b87f5]/30"
                 size="xl"
               >
-                Build Your Voice Agent Now 
+                Click Here to Build AI Voice Agent
                 <ArrowRight className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1" />
               </Button>
             </a>
