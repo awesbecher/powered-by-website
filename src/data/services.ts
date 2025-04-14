@@ -8,6 +8,13 @@ export const services = [
     category: "Auto Dealer"
   },
   {
+    title: "Property Tour",
+    description: "Schedule a viewing of available properties",
+    link: "/real-estate",
+    logo: "/lovable-uploads/e305eace-d64d-4437-9d8e-533d49b3d934.png",
+    category: "Real Estate"
+  },
+  {
     title: "In-Room Dining",
     description: "Order food and drinks directly to your room",
     link: "/room-service",
@@ -27,13 +34,6 @@ export const services = [
     link: "/license",
     logo: "/lovable-uploads/e9ddfbf3-072d-410d-b7ed-01c83eb30564.png",
     category: "SaaS & Software"
-  },
-  {
-    title: "Property Tour",
-    description: "Schedule a viewing of available properties",
-    link: "/real-estate",
-    logo: "/lovable-uploads/e305eace-d64d-4437-9d8e-533d49b3d934.png",
-    category: "Real Estate"
   },
   {
     title: "Barbershop Reservations",
