@@ -12,8 +12,8 @@ const PageHeader: React.FC<PageHeaderProps> = ({ initialLoad }) => {
         Build Your Voice AI Agent
       </h1>
       <p className="text-xl text-gray-300 max-w-3xl mx-auto animate-fade-in font-medium leading-relaxed tracking-wide opacity-80">
-        Create a customized voice agent for your business by chatting with our AI assistant. 
-        Get help designing your agent's personality, knowledge base, and response patterns.
+        Build a tailored AI voice agent for your business using our agent builder. 
+        Receive support in crafting your voice agent's personality, knowledge, and response style.
       </p>
     </div>
   );
