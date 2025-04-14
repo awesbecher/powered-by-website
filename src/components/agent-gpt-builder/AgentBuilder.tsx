@@ -45,9 +45,19 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad }) => {
       {/* Tabs for switching between custom and template agents */}
       <div className={`mb-6 transition-all duration-1000 delay-300 ease-out transform ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
         <Tabs defaultValue="custom" className="w-full">
-          <TabsList className="grid grid-cols-2 max-w-md mx-auto">
-            <TabsTrigger value="custom">Custom Agent</TabsTrigger>
-            <TabsTrigger value="templates">Industry Templates</TabsTrigger>
+          <TabsList className="grid grid-cols-2 max-w-md mx-auto bg-[#1a0b2e]/80 border border-[#9b87f5]/30">
+            <TabsTrigger 
+              value="custom" 
+              className="data-[state=active]:bg-gradient-to-r from-[#9b87f5] to-[#8777e5] data-[state=active]:text-white data-[state=inactive]:text-gray-300 font-medium"
+            >
+              Custom Agent
+            </TabsTrigger>
+            <TabsTrigger 
+              value="templates" 
+              className="data-[state=active]:bg-gradient-to-r from-[#9b87f5] to-[#8777e5] data-[state=active]:text-white data-[state=inactive]:text-gray-300 font-medium"
+            >
+              Industry Templates
+            </TabsTrigger>
           </TabsList>
           
           <TabsContent value="custom">
