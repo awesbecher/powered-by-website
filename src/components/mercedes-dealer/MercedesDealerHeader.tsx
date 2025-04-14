@@ -11,7 +11,7 @@ const MercedesDealerHeader = () => {
         <img 
           src="/lovable-uploads/0a2b8ea0-afdd-4814-9b46-3ebe7637b617.png"
           alt="Mercedes of Tacoma Logo"
-          className="object-contain w-[220px] h-[90px]"
+          className="object-contain w-[240px] h-[100px]"
         />
       </div>
     </div>

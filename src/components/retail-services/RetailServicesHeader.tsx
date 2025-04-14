@@ -11,7 +11,7 @@ const RetailServicesHeader = () => {
         <img 
           src="/lovable-uploads/937b3672-600a-4613-b037-f4b0fb40cde5.png"
           alt="Flagship Barbers Logo"
-          className="object-contain w-[220px] h-[90px]"
+          className="object-contain w-[240px] h-[100px]"
         />
       </div>
     </div>

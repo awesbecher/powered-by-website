@@ -11,7 +11,7 @@ const InsuranceHeader = () => {
         <img 
           src="/lovable-uploads/71380863-25a8-4672-b241-cd4fbb01415c.png"
           alt="Planter's Insurance Logo"
-          className="object-contain w-[220px] h-[90px]"
+          className="object-contain w-[240px] h-[100px]"
         />
       </div>
     </div>
