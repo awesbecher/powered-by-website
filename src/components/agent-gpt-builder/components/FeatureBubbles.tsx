@@ -15,7 +15,8 @@ const FeatureBubbles: React.FC = () => {
       {features.map((feature, index) => (
         <div 
           key={index} 
-          className="flex items-center gap-2 bg-gradient-to-r from-[#2f1c4a]/60 to-[#1a0b2e]/60 px-4 py-2 rounded-full border border-[#9b87f5]/30"
+          className="flex items-center gap-2 bg-gradient-to-r from-[#2f1c4a]/60 to-[#1a0b2e]/60 px-4 py-2 rounded-full border border-[#9b87f5]/30 transition-all duration-300 transform hover:scale-105 hover:border-[#9b87f5]/50 hover:shadow-md hover:shadow-[#9b87f5]/20 animate-fade-in"
+          style={{ animationDelay: `${index * 0.15}s` }}
         >
           <span className="text-[#9b87f5]">{feature.icon}</span>
           <span className="text-white text-sm">{feature.text}</span>

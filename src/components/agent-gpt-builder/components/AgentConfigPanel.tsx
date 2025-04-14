@@ -59,11 +59,11 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
   };
 
   return (
-    <Card className="h-[700px] bg-gradient-to-br from-[#1A1F2C]/70 to-[#2A2F3C]/70 border border-white/10 shadow-xl overflow-hidden rounded-xl">
+    <Card className="h-[700px] bg-gradient-to-br from-[#1A1F2C]/70 to-[#2A2F3C]/70 border border-white/10 shadow-xl overflow-hidden rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-[#9b87f5]/20">
       <CardHeader className="bg-gradient-to-r from-[#2f1c4a] to-[#1a0b2e] border-b border-white/10 p-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="bg-[#9b87f5]/20 p-2 rounded-full">
+            <div className="bg-[#9b87f5]/20 p-2 rounded-full transition-all duration-300 hover:bg-[#9b87f5]/30 transform hover:scale-105">
               <Settings className="h-5 w-5 text-[#9b87f5]" />
             </div>
             <CardTitle className="text-white text-xl">Agent Configuration</CardTitle>
@@ -71,9 +71,9 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
           <Button 
             variant="ghost" 
             size="sm" 
-            className="h-8 w-8 p-0 text-gray-400 hover:text-white hover:bg-white/10"
+            className="h-8 w-8 p-0 text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-200"
           >
-            <RefreshCcw className="h-4 w-4" />
+            <RefreshCcw className="h-4 w-4 transition-transform duration-300 hover:rotate-180" />
           </Button>
         </div>
         <p className="text-gray-300 text-sm mt-2">
@@ -91,21 +91,21 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
           <TabsList className="grid w-full grid-cols-2 bg-[#1a0b2e]/40 rounded-xl p-1">
             <TabsTrigger 
               value="instructions" 
-              className="rounded-lg data-[state=active]:bg-[#9b87f5] data-[state=active]:text-white"
+              className="rounded-lg data-[state=active]:bg-[#9b87f5] data-[state=active]:text-white transition-all duration-200"
             >
               <Code2 className="h-4 w-4 mr-2" />
               Instructions
             </TabsTrigger>
             <TabsTrigger 
               value="settings"
-              className="rounded-lg data-[state=active]:bg-[#9b87f5] data-[state=active]:text-white"
+              className="rounded-lg data-[state=active]:bg-[#9b87f5] data-[state=active]:text-white transition-all duration-200"
             >
               <Settings className="h-4 w-4 mr-2" />
               Settings
             </TabsTrigger>
           </TabsList>
           
-          <TabsContent value="instructions" className="h-[520px]">
+          <TabsContent value="instructions" className="h-[520px] animate-fade-in">
             <div className="space-y-4 mt-4">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-300 flex items-center">
@@ -115,7 +115,7 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
                 <Textarea
                   value={agentInstructions}
                   onChange={(e) => setAgentInstructions(e.target.value)}
-                  className="h-[430px] bg-[#1a0b2e]/40 border-white/20 text-white resize-none focus:border-[#9b87f5]/50 focus:ring-[#9b87f5]/20 rounded-xl font-mono text-sm"
+                  className="h-[430px] bg-[#1a0b2e]/40 border-white/20 text-white resize-none focus:border-[#9b87f5]/50 focus:ring-[#9b87f5]/20 rounded-xl font-mono text-sm transition-all duration-200"
                   placeholder="Define how your agent should behave, what knowledge it has, and how it should respond..."
                 />
               </div>
@@ -125,7 +125,7 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
                   onClick={copyInstructions}
                   variant="outline" 
                   size="sm"
-                  className="bg-transparent border-white/20 text-white hover:bg-white/10"
+                  className="bg-transparent border-white/20 text-white hover:bg-white/10 transition-all duration-200 transform hover:scale-105"
                 >
                   <Copy className="h-4 w-4 mr-2" /> Copy
                 </Button>
@@ -133,7 +133,7 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
                   onClick={downloadInstructions}
                   variant="outline" 
                   size="sm"
-                  className="bg-transparent border-white/20 text-white hover:bg-white/10"
+                  className="bg-transparent border-white/20 text-white hover:bg-white/10 transition-all duration-200 transform hover:scale-105"
                 >
                   <Download className="h-4 w-4 mr-2" /> Download
                 </Button>
@@ -141,7 +141,7 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
             </div>
           </TabsContent>
           
-          <TabsContent value="settings" className="h-[520px]">
+          <TabsContent value="settings" className="h-[520px] animate-fade-in">
             <div className="space-y-6 mt-4">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-300 flex items-center">
@@ -151,7 +151,7 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
                 <Input
                   value={agentName}
                   onChange={(e) => setAgentName(e.target.value)}
-                  className="bg-[#1a0b2e]/40 border-white/20 text-white focus:border-[#9b87f5]/50 focus:ring-[#9b87f5]/20 rounded-xl"
+                  className="bg-[#1a0b2e]/40 border-white/20 text-white focus:border-[#9b87f5]/50 focus:ring-[#9b87f5]/20 rounded-xl transition-all duration-200"
                   placeholder="Enter a name for your agent"
                 />
               </div>
@@ -165,7 +165,7 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
                   {['Female', 'Male'].map((voiceType) => (
                     <div 
                       key={voiceType}
-                      className="bg-[#1a0b2e]/40 border border-white/20 hover:border-[#9b87f5]/50 rounded-xl p-4 cursor-pointer transition-all duration-200 flex items-center justify-center"
+                      className="bg-[#1a0b2e]/40 border border-white/20 hover:border-[#9b87f5]/50 rounded-xl p-4 cursor-pointer transition-all duration-200 transform hover:-translate-y-1 hover:shadow-md flex items-center justify-center"
                     >
                       <span className="text-white">{voiceType}</span>
                     </div>
@@ -184,7 +184,7 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
                       key={model}
                       className={`${
                         index === 1 ? 'bg-gradient-to-r from-[#1a0b2e]/60 to-[#2f1c4a]/60 border-[#9b87f5]/30' : 'bg-[#1a0b2e]/40 border-white/20'
-                      } border hover:border-[#9b87f5]/50 rounded-xl p-4 cursor-pointer transition-all duration-200 flex items-center justify-center`}
+                      } border hover:border-[#9b87f5]/50 rounded-xl p-4 cursor-pointer transition-all duration-200 transform hover:-translate-y-1 hover:shadow-md flex items-center justify-center`}
                     >
                       <span className="text-white">{model}</span>
                     </div>
@@ -200,7 +200,7 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
       <CardFooter className="border-t border-white/10 p-5 flex justify-end bg-[#1a0b2e]/20">
         <Button 
           onClick={saveAgent}
-          className="bg-gradient-to-r from-[#9b87f5] to-[#8777e5] hover:from-[#8777e5] hover:to-[#7667d5] text-white px-8 rounded-xl shadow-lg shadow-[#9b87f5]/20"
+          className="bg-gradient-to-r from-[#9b87f5] to-[#8777e5] hover:from-[#8777e5] hover:to-[#7667d5] text-white px-8 rounded-xl shadow-lg shadow-[#9b87f5]/20 transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
         >
           <Save className="h-5 w-5 mr-2" /> Save Agent
         </Button>
