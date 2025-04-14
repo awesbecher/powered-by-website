@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { 
@@ -52,14 +51,14 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
           </div>
           
           {/* Hero headline with enhanced styling */}
-          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl md:text-7xl mb-6 leading-tight">
+          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl md:text-7xl mb-6 leading-tight whitespace-nowrap">
             Build Your Voice AI Agent <span className="text-[#9b87f5] relative inline-block">
               Today
               <span className="absolute -top-6 -right-6 text-[#9b87f5]/70">
                 <Sparkles className="h-5 w-5 animate-pulse" />
               </span>
             </span>
-            <div className="mt-2 text-4xl sm:text-5xl md:text-6xl">
+            <div className="mt-2 text-4xl sm:text-5xl md:text-6xl whitespace-nowrap">
               <span className="bg-gradient-to-r from-[#9b87f5] to-[#a87cff] bg-clip-text text-transparent">No Cost. No Commitment.</span>
             </div>
           </h1>
