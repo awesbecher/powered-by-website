@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { 
@@ -48,6 +49,25 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
           
           <div className="mt-4 flex flex-col space-y-1 text-2xl md:text-3xl text-white max-w-4xl mx-auto leading-relaxed font-bold">
             <p>Experience the power of conversational AI completely tailored to your business</p>
+          </div>
+          
+          {/* New section about Why Every Business Needs Voice AI */}
+          <div className="mt-14 mb-14 max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold text-white mb-6">Why Every Business Needs Voice AI</h2>
+            <p className="text-gray-300 text-lg mb-6">
+              Voice AI technology has revolutionized how businesses interact with customers, providing 24/7 availability and consistent service quality. Our free voice agent gives you a taste of this powerful technology without any financial commitment.
+            </p>
+            
+            <div className="bg-[#1A1F2C]/40 p-6 rounded-lg border border-gray-700">
+              <p className="text-[#9b87f5] font-semibold mb-4">Perfect for small and medium-sized businesses looking to:</p>
+              <ul className="text-gray-300 text-left list-disc pl-6 space-y-2">
+                <li>Handle routine customer inquiries without hiring more staff</li>
+                <li>Provide instant responses to common questions anytime</li>
+                <li>Collect information from callers efficiently</li>
+                <li>Create a modern, tech-forward impression for your business</li>
+                <li>Free up your team to focus on more complex tasks</li>
+              </ul>
+            </div>
           </div>
           
           <h2 className="text-2xl font-semibold text-white mb-6 mt-6">💡 What Your AI Voice Agent Can Do</h2>
