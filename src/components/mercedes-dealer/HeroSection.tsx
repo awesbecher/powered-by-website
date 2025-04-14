@@ -44,7 +44,7 @@ const HeroSection = () => {
           <img 
             src="/lovable-uploads/0a2b8ea0-afdd-4814-9b46-3ebe7637b617.png"
             alt="Mercedes of Tacoma Logo"
-            className="object-contain w-full h-full max-w-[230px] max-h-[80px]"
+            className="object-contain w-full h-full max-w-[250px] max-h-[95px]"
           />
         </div>
       </div>
