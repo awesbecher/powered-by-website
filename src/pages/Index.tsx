@@ -13,6 +13,9 @@ import { SectionTitle } from "@/components/home/SectionTitle";
 import { AgentTypes } from "@/components/home/AgentTypes";
 import AIAgentIllustration from "@/components/home/AIAgentIllustration";
 import Footer from "@/components/layout/Footer";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -34,18 +37,18 @@ const Index = () => {
         <Navbar />
       </div>
       
-      {/* ProductHunt Badge - Placed above hero section */}
-      <div className="w-full flex justify-center mt-4 mb-2">
+      {/* Build Your Voice Agent Now Button - Replacing ProductHunt Badge */}
+      <div className="w-full flex justify-center mt-4 mb-6">
         <div className={`transition-all duration-1000 ease-out transform ${initialLoad ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
-          <a href="https://www.producthunt.com/posts/powered_by?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-powered&#0095;by" target="_blank" rel="noreferrer">
-            <img 
-              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=942846&theme=light&t=1742774856872" 
-              alt="Powered&#0095;by - Custom&#0032;AI&#0032;Agents&#0032;for&#0032;SMBs&#0046;&#0032;Agentic&#0032;voice&#0044;&#0032;email&#0044;&#0032;SMS&#0044;&#0032;&#0038;&#0032;more | Product Hunt" 
-              style={{ width: "180px", height: "39px" }} 
-              width="180" 
-              height="39" 
-            />
-          </a>
+          <Link to="/agent-gpt" className="inline-block group">
+            <Button 
+              className="bg-[#0F172A] hover:bg-[#1A1F2C] text-white px-6 py-6 text-lg rounded-md transition-all duration-300 hover:scale-105 border-2 border-white group-hover:shadow-lg group-hover:shadow-[#9b87f5]/30"
+              size="xl"
+            >
+              Build Your Voice Agent Now 
+              <ArrowRight className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1" />
+            </Button>
+          </Link>
         </div>
       </div>
       
