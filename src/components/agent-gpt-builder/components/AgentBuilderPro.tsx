@@ -145,7 +145,7 @@ const AgentBuilderPro: React.FC = () => {
         if ('speechSynthesis' in window) {
           const utterance = new SpeechSynthesisUtterance(response.message.content);
           utterance.lang = "en-US";
-          speechSynthesis.speak(utterance);
+          window.speechSynthesis.speak(utterance);
         }
       }
       
@@ -174,7 +174,8 @@ const AgentBuilderPro: React.FC = () => {
     
     setIsListening(true);
     
-    const recognition = new window.webkitSpeechRecognition();
+    const SpeechRecognition = window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
     recognition.lang = "en-US";
     
     recognition.onresult = (event: any) => {

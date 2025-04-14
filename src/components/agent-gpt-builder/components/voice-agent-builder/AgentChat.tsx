@@ -45,7 +45,10 @@ const AgentChat: React.FC<AgentChatProps> = ({
         >
           <ArrowLeft className="h-5 w-5" />
         </Button>
-        <AgentHeader selectedTemplate={selectedTemplate} />
+        <AgentHeader 
+          selectedTemplate={selectedTemplate} 
+          onBack={onBack} 
+        />
       </div>
       
       <ChatMessageList messages={messages} />
