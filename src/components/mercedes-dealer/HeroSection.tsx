@@ -1,4 +1,5 @@
 
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Link } from "react-router-dom";
 
 const HeroSection = () => {
@@ -11,6 +12,16 @@ const HeroSection = () => {
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/50"></div>
+      </div>
+      
+      <div className="absolute top-6 left-6 z-10 w-40">
+        <AspectRatio ratio={5.5/1}>
+          <img 
+            src="/lovable-uploads/0a2b8ea0-afdd-4814-9b46-3ebe7637b617.png"
+            alt="Mercedes of Tacoma Logo"
+            className="object-contain w-full h-full"
+          />
+        </AspectRatio>
       </div>
       
       <div className="relative h-full flex flex-col items-center justify-center px-4 lg:px-8">
