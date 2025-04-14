@@ -36,7 +36,6 @@ const Index = () => {
         <Navbar />
       </div>
       
-      {/* Build Your Voice Agent Now Button */}
       <div className="w-full flex justify-center mt-4 mb-6">
         <div className={`transition-all duration-1000 ease-out transform ${initialLoad ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
           <Link to="/agent-gpt" className="inline-block group">
@@ -44,7 +43,7 @@ const Index = () => {
               className="bg-[#0F172A] hover:bg-[#1A1F2C] text-white px-6 py-6 text-lg rounded-md transition-all duration-300 hover:scale-105 border-2 border-white group-hover:shadow-lg group-hover:shadow-[#9b87f5]/30"
               size="xl"
             >
-              Build an AI Voice Agent Now ->
+              Build an AI Voice Agent Now
               <ArrowRight className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1" />
             </Button>
           </Link>
@@ -68,7 +67,6 @@ const Index = () => {
         <FeaturesGrid />
       </div>
 
-      {/* Call to Action Buttons */}
       <div className="relative z-20 flex flex-col items-center justify-center px-6 mb-6">
         <CallToActionButtons 
           handleNavigation={handleNavigation}
@@ -76,7 +74,6 @@ const Index = () => {
         />
       </div>
       
-      {/* AIAgentIllustration with reduced height */}
       <div className="relative z-10 mb-8">
         <div className="w-full max-w-xl mx-auto">
           <AIAgentIllustration />
