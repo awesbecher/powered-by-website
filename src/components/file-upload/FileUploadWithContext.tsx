@@ -32,18 +32,24 @@ const FileUploadWithContext: React.FC<FileUploadWithContextProps> = ({ user }) =
 
           // Save text to Supabase if user is logged in
           if (user?.id) {
-            await supabase.from("agent_docs").insert([
-              {
-                user_id: user.id,
-                raw_text: text,
-                filename: file.name,
-              },
-            ]);
-            
-            toast({
-              title: "File uploaded",
-              description: `Successfully saved ${file.name} to your knowledge base.`,
+            const { error } = await supabase.from("agent_docs").insert({
+              user_id: user.id,
+              raw_text: text,
+              filename: file.name,
             });
+            
+            if (error) {
+              toast({
+                title: "Error uploading file",
+                description: error.message,
+                variant: "destructive",
+              });
+            } else {
+              toast({
+                title: "File uploaded",
+                description: `Successfully saved ${file.name} to your knowledge base.`,
+              });
+            }
           } else {
             toast({
               title: "Not logged in",
