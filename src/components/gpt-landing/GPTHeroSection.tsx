@@ -83,17 +83,6 @@ export const GPTHeroSection: React.FC<GPTHeroSectionProps> = ({ initialLoad }) =
             <p className="text-gray-300 text-lg mb-8 leading-relaxed max-w-2xl mx-auto">
               Voice AI technology has revolutionized how businesses interact with customers, providing 24/7 availability and consistent service quality. Our free voice agent gives you a taste of this powerful technology without any financial commitment.
             </p>
-            
-            <div className="bg-gradient-to-br from-[#1A1F2C]/70 to-[#2A2F3C]/70 p-8 rounded-xl border border-white/10 shadow-xl shadow-black/10 backdrop-blur-sm hover:shadow-[#9b87f5]/5 transition-all duration-300">
-              <p className="text-[#9b87f5] font-semibold mb-6 text-xl">Perfect for small and medium-sized businesses looking to:</p>
-              <ul className="text-gray-300 text-left list-disc pl-8 space-y-3 max-w-lg mx-auto">
-                <li className="transition-all duration-300 hover:text-white">Handle routine customer inquiries without hiring more staff</li>
-                <li className="transition-all duration-300 hover:text-white">Provide instant responses to common questions anytime</li>
-                <li className="transition-all duration-300 hover:text-white">Collect information from callers efficiently</li>
-                <li className="transition-all duration-300 hover:text-white">Create a modern, tech-forward impression for your business</li>
-                <li className="transition-all duration-300 hover:text-white">Free up your team to focus on more complex tasks</li>
-              </ul>
-            </div>
           </div>
           
           {/* Enhanced "What Your AI Voice Agent Can Do" section */}
