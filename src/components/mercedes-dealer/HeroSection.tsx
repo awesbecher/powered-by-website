@@ -1,9 +1,9 @@
-
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall } from "@/services/vapiService";
 import { HeadsetIcon } from "lucide-react";
+import MercedesDealerHeader from "./MercedesDealerHeader";
 
 const HeroSection = () => {
   const { toast } = useToast();
@@ -35,18 +35,8 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-black/50"></div>
       </div>
       
-      {/* Logo in white oval - smaller size */}
       <div className="absolute top-6 left-0 right-0 mx-auto z-10 flex justify-center">
-        <div 
-          className="bg-white rounded-full px-5 py-3 shadow-md flex items-center justify-center" 
-          style={{ width: "260px", height: "100px" }}
-        >
-          <img 
-            src="/lovable-uploads/0a2b8ea0-afdd-4814-9b46-3ebe7637b617.png"
-            alt="Mercedes of Tacoma Logo"
-            className="object-contain w-full h-full max-w-[250px] max-h-[95px]"
-          />
-        </div>
+        <MercedesDealerHeader />
       </div>
       
       <div className="relative h-full flex flex-col items-center justify-center px-4 lg:px-8">

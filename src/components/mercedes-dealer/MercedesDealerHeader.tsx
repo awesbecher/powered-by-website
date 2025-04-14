@@ -1,7 +1,7 @@
 
 import React from "react";
 
-const RetailServicesHeader = () => {
+const MercedesDealerHeader = () => {
   return (
     <div className="flex justify-center items-center py-8">
       <div 
@@ -9,8 +9,8 @@ const RetailServicesHeader = () => {
         style={{ width: "280px", height: "110px" }}
       >
         <img 
-          src="/lovable-uploads/937b3672-600a-4613-b037-f4b0fb40cde5.png"
-          alt="Flagship Barbers Logo"
+          src="/lovable-uploads/0a2b8ea0-afdd-4814-9b46-3ebe7637b617.png"
+          alt="Mercedes of Tacoma Logo"
           className="object-contain w-[220px] h-[90px]"
         />
       </div>
@@ -18,4 +18,4 @@ const RetailServicesHeader = () => {
   );
 };
 
-export default RetailServicesHeader;
+export default MercedesDealerHeader;
