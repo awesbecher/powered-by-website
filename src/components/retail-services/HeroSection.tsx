@@ -1,9 +1,10 @@
 
 import { Link } from "react-router-dom";
+import RetailServicesHeader from "./RetailServicesHeader";
 
 const HeroSection = () => {
   return (
-    <div className="relative min-h-[80vh] flex items-center">
+    <div className="relative min-h-[80vh] flex flex-col items-center">
       <div className="absolute inset-0">
         <img 
           src="/lovable-uploads/dac317cc-0dbe-4fbd-9e8b-8f3e4e1ef731.png"
@@ -13,7 +14,12 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
       </div>
 
-      <div className="relative w-full pt-24 px-4 lg:px-8">
+      {/* Added RetailServicesHeader above the hero content */}
+      <div className="relative z-10 w-full">
+        <RetailServicesHeader />
+      </div>
+
+      <div className="relative flex-grow w-full px-4 lg:px-8 flex items-center">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-5xl font-bold mb-4 text-white">
             Welcome to Flagship Barbers
