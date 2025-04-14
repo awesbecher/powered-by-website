@@ -25,7 +25,7 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="relative h-[60vh] mb-4">
+    <div className="relative h-[75vh] mb-4">
       <div className="absolute inset-0">
         <img 
           src="/lovable-uploads/a03fe01f-a020-43b3-a46c-2fda077f0baf.png"
@@ -35,22 +35,22 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-black/50"></div>
       </div>
       
-      {/* Logo in white oval - centered at the top */}
-      <div className="absolute top-8 left-0 right-0 mx-auto z-10 flex justify-center">
+      {/* Logo in white oval - moved higher */}
+      <div className="absolute top-4 left-0 right-0 mx-auto z-10 flex justify-center">
         <div 
-          className="bg-white rounded-full px-10 py-8 shadow-md flex items-center justify-center" 
-          style={{ width: "500px", height: "200px" }}
+          className="bg-white rounded-full px-10 py-6 shadow-md flex items-center justify-center" 
+          style={{ width: "400px", height: "160px" }}
         >
           <img 
             src="/lovable-uploads/0a2b8ea0-afdd-4814-9b46-3ebe7637b617.png"
             alt="Mercedes of Tacoma Logo"
-            className="object-contain w-full h-full max-w-[400px] max-h-[150px]"
+            className="object-contain w-full h-full max-w-[320px] max-h-[120px]"
           />
         </div>
       </div>
       
       <div className="relative h-full flex flex-col items-center justify-center px-4 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center mt-20"> {/* Added margin-top to push content down */}
+        <div className="max-w-7xl mx-auto text-center mt-32"> {/* Increased top margin to push content down */}
           <h1 className="text-5xl font-bold mb-4 text-white">
             Mercedes-Benz of Tacoma
           </h1>
