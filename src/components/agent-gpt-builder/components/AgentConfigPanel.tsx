@@ -1,10 +1,9 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import AgentTester from "./AgentTester";
+import AgentTester from "./tester/AgentTester";
 
 interface AgentConfigPanelProps {
   agentName: string;
