@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { AgentBuilder } from "@/components/agent-gpt-builder/AgentBuilder";
+import { Toaster } from "@/components/ui/toaster";
 
 const AgentGPTBuilder = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -24,6 +25,7 @@ const AgentGPTBuilder = () => {
         <AgentBuilder initialLoad={initialLoad} />
       </div>
       <Footer />
+      <Toaster />
     </div>
   );
 };
