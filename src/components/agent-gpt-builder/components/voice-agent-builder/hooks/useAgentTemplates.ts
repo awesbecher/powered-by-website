@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AgentTemplate } from "../types";
 import { agentTemplates, AgentTemplatesKey } from "../data/templateData";
 import { supabase } from "@/integrations/supabase/client";
@@ -9,7 +9,20 @@ export function useAgentTemplates() {
   const [selectedTemplate, setSelectedTemplate] = useState<AgentTemplate | null>(null);
   const [editableTemplate, setEditableTemplate] = useState<AgentTemplate | null>(null);
   const [selectedLanguage, setSelectedLanguage] = useState("en-US");
+  const [user, setUser] = useState<{ id: string } | null>(null);
   const { toast } = useToast();
+
+  // Fetch the current user when the hook is initialized
+  useEffect(() => {
+    const fetchUser = async () => {
+      const { data } = await supabase.auth.getUser();
+      if (data?.user) {
+        setUser(data.user);
+      }
+    };
+    
+    fetchUser();
+  }, []);
 
   const handleTemplateSelect = (key: string) => {
     const template = agentTemplates[key as AgentTemplatesKey];
@@ -31,6 +44,7 @@ export function useAgentTemplates() {
         {
           name: editableTemplate.name || "",
           prompt: editableTemplate.prompt || "",
+          created_by: user?.id  // Include the user ID if available
         }
       ]).select();
       

@@ -10,19 +10,28 @@ import { useToast } from "@/hooks/use-toast";
 interface SavedAgentListProps {
   onLoadAgent: (agent: AgentTemplate) => void;
   onRefresh?: () => void;
+  user?: { id: string } | null;
 }
 
-const SavedAgentList: React.FC<SavedAgentListProps> = ({ onLoadAgent, onRefresh }) => {
+const SavedAgentList: React.FC<SavedAgentListProps> = ({ onLoadAgent, onRefresh, user }) => {
   const [agents, setAgents] = useState<AgentTemplate[]>([]);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
 
   const fetchAgents = async () => {
     setLoading(true);
-    const { data, error } = await supabase
+    
+    let query = supabase
       .from("voice_agents")
       .select("*")
       .order("created_at", { ascending: false });
+    
+    // Filter by user if provided
+    if (user?.id) {
+      query = query.eq("created_by", user.id);
+    }
+    
+    const { data, error } = await query;
     
     if (error) {
       console.error("Error fetching agents:", error);
@@ -59,7 +68,7 @@ const SavedAgentList: React.FC<SavedAgentListProps> = ({ onLoadAgent, onRefresh 
 
   useEffect(() => {
     fetchAgents();
-  }, []);
+  }, [user]);
 
   if (loading) {
     return (

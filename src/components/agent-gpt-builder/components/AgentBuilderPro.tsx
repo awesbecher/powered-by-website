@@ -9,7 +9,6 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { openaiService } from "@/services/openaiService";
 
-// Define agent templates
 const agentTemplates = {
   realEstate: {
     name: "Real Estate Assistant",
@@ -47,33 +46,35 @@ interface LogEntry {
 }
 
 const AgentBuilderPro: React.FC = () => {
-  // Agent configuration state
   const [selectedAgent, setSelectedAgent] = useState<any>(null);
   const [agentName, setAgentName] = useState("");
   const [agentPrompt, setAgentPrompt] = useState("");
   const [brandColor, setBrandColor] = useState("#9b87f5");
   const [greeting, setGreeting] = useState("Hi! I'm your smart assistant");
-  
-  // Chat state
   const [userInput, setUserInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
   const [isListening, setIsListening] = useState(false);
-  
-  // Analytics state
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [activeTab, setActiveTab] = useState("templates");
   const [savedAgents, setSavedAgents] = useState<any[]>([]);
-  
+  const [user, setUser] = useState<{ id: string } | null>(null);
+
   const { toast } = useToast();
 
-  // Fetch saved agents on component mount
   useEffect(() => {
+    const fetchUser = async () => {
+      const { data } = await supabase.auth.getUser();
+      if (data?.user) {
+        setUser(data.user);
+      }
+    };
+    
+    fetchUser();
     fetchSavedAgents();
     fetchLogs();
   }, []);
 
-  // Fetch saved agents from Supabase
   const fetchSavedAgents = async () => {
     try {
       const { data, error } = await supabase
@@ -93,7 +94,6 @@ const AgentBuilderPro: React.FC = () => {
     }
   };
 
-  // Fetch logs
   const fetchLogs = async () => {
     try {
       const { data, error } = await supabase
@@ -118,7 +118,6 @@ const AgentBuilderPro: React.FC = () => {
     }
   };
 
-  // Handle sending a message
   const handleSend = async (inputText: string) => {
     if (!inputText.trim()) return;
     
@@ -134,7 +133,6 @@ const AgentBuilderPro: React.FC = () => {
     setLoading(true);
 
     try {
-      // Use the openaiService to generate a response
       const response = await openaiService.generateChatCompletion(updatedMessages, {
         model: "gpt-4o",
         systemPrompt: agentPrompt
@@ -143,7 +141,6 @@ const AgentBuilderPro: React.FC = () => {
       if (response.message) {
         setMessages([...updatedMessages, response.message]);
         
-        // Text-to-speech
         if ('speechSynthesis' in window) {
           const utterance = new SpeechSynthesisUtterance(response.message.content);
           utterance.lang = "en-US";
@@ -151,7 +148,6 @@ const AgentBuilderPro: React.FC = () => {
         }
       }
       
-      // Log usage
       await logUsage("message_sent", inputText);
     } catch (error) {
       console.error("Error generating response:", error);
@@ -165,7 +161,6 @@ const AgentBuilderPro: React.FC = () => {
     }
   };
 
-  // Start voice recognition
   const startVoice = () => {
     if (!('webkitSpeechRecognition' in window)) {
       toast({
@@ -178,7 +173,6 @@ const AgentBuilderPro: React.FC = () => {
     
     setIsListening(true);
     
-    // @ts-ignore - webkitSpeechRecognition is not in the TypeScript types
     const recognition = new window.webkitSpeechRecognition();
     recognition.lang = "en-US";
     
@@ -206,7 +200,6 @@ const AgentBuilderPro: React.FC = () => {
     logUsage("voice_input_start");
   };
 
-  // Save agent to Supabase
   const saveAgent = async () => {
     if (!agentName || !agentPrompt) {
       toast({
@@ -232,7 +225,6 @@ const AgentBuilderPro: React.FC = () => {
         description: "Your agent has been saved successfully.",
       });
       
-      // Refresh the saved agents list
       fetchSavedAgents();
       
       logUsage("agent_saved");
@@ -246,7 +238,6 @@ const AgentBuilderPro: React.FC = () => {
     }
   };
 
-  // Generate embed code
   const generateEmbedCode = () => {
     const snippet = `
 <!-- GPT Agent Widget -->
@@ -270,7 +261,6 @@ const AgentBuilderPro: React.FC = () => {
     logUsage("embed_code_generated");
   };
 
-  // Log usage to Supabase
   const logUsage = async (event: string, message: string = "") => {
     try {
       await supabase.from("gpt_logs").insert([
@@ -278,7 +268,7 @@ const AgentBuilderPro: React.FC = () => {
           event: event,
           message: message || "",
           clinic_name: agentName || "Unnamed Agent",
-          user_email: "user@example.com", // Placeholder for user identifier
+          user_email: "user@example.com",
         },
       ]);
     } catch (error) {
@@ -286,12 +276,11 @@ const AgentBuilderPro: React.FC = () => {
     }
   };
 
-  // Load a saved agent
   const loadSavedAgent = (agent: any) => {
     setSelectedAgent({name: agent.name, prompt: agent.prompt});
     setAgentName(agent.name);
     setAgentPrompt(agent.prompt);
-    setMessages([]);
+    setMessages([{ role: "system", content: agent.prompt }]);
     setActiveTab("customize");
     
     toast({
@@ -330,7 +319,6 @@ const AgentBuilderPro: React.FC = () => {
               </TabsTrigger>
             </TabsList>
             
-            {/* Templates Tab */}
             <TabsContent value="templates">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {Object.entries(agentTemplates).map(([key, tpl]) => (
@@ -352,39 +340,32 @@ const AgentBuilderPro: React.FC = () => {
               </div>
             </TabsContent>
             
-            {/* Saved Agents Tab */}
             <TabsContent value="saved">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {savedAgents.length === 0 ? (
-                  <div className="text-center col-span-full py-12">
-                    <h3 className="text-white text-xl mb-4">No Saved Agents</h3>
-                    <p className="text-gray-300 mb-6">You haven't saved any agents yet. Create one from a template to get started.</p>
-                    <Button 
-                      onClick={() => setActiveTab("templates")} 
-                      className="bg-gradient-to-r from-[#9b87f5] to-[#8777e5] hover:from-[#8777e5] hover:to-[#7667d5]"
-                    >
-                      Browse Templates
-                    </Button>
-                  </div>
-                ) : (
-                  savedAgents.map((agent) => (
-                    <div 
-                      key={agent.id}
-                      onClick={() => loadSavedAgent(agent)}
-                      className="border border-white/10 rounded-lg p-4 cursor-pointer bg-[#1a0b2e]/40 hover:bg-[#2f1c4a]/40 transition-colors"
-                    >
-                      <h3 className="text-white font-bold">{agent.name}</h3>
-                      <p className="text-gray-300 text-sm mt-2">{agent.prompt.substring(0, 100)}...</p>
-                      <p className="text-gray-400 text-xs mt-2">
-                        Created: {new Date(agent.created_at).toLocaleDateString()}
-                      </p>
-                    </div>
-                  ))
-                )}
-              </div>
+              {savedAgents.length === 0 ? (
+                <div className="text-center col-span-full py-12">
+                  <h3 className="text-white text-xl mb-4">No Saved Agents</h3>
+                  <p className="text-gray-300 mb-6">You haven't saved any agents yet. Create one from a template to get started.</p>
+                  <Button 
+                    onClick={() => setActiveTab("templates")} 
+                    className="bg-gradient-to-r from-[#9b87f5] to-[#8777e5] hover:from-[#8777e5] hover:to-[#7667d5]"
+                  >
+                    Browse Templates
+                  </Button>
+                </div>
+              ) : (
+                <SavedAgentList 
+                  user={user} 
+                  onLoadAgent={(agent) => {
+                    setAgentName(agent.name);
+                    setAgentPrompt(agent.prompt);
+                    setSelectedAgent({ name: agent.name, prompt: agent.prompt });
+                    setMessages([{ role: "system", content: agent.prompt }]);
+                    setActiveTab("customize");
+                  }}
+                />
+              )}
             </TabsContent>
             
-            {/* Customize Tab */}
             <TabsContent value="customize">
               {selectedAgent ? (
                 <div className="space-y-6">
@@ -470,7 +451,6 @@ const AgentBuilderPro: React.FC = () => {
               )}
             </TabsContent>
             
-            {/* Test Chat Tab */}
             <TabsContent value="test">
               {selectedAgent ? (
                 <div>
@@ -558,7 +538,6 @@ const AgentBuilderPro: React.FC = () => {
               )}
             </TabsContent>
             
-            {/* Analytics Tab */}
             <TabsContent value="analytics">
               <div>
                 <div className="flex justify-between items-center mb-4">

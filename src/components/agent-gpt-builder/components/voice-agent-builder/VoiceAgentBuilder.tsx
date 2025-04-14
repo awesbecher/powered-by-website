@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import VoiceAgentTemplates from "./VoiceAgentTemplates";
 import AgentEditor from "./AgentEditor";
@@ -8,6 +8,7 @@ import { useVoiceAgent } from "./hooks/useVoiceAgent";
 import { agentTemplates } from "./data/templateData";
 import { AgentTemplatesKey } from "./data/templateData";
 import SavedAgentList from "./SavedAgentList";
+import { supabase } from "@/integrations/supabase/client";
 
 interface VoiceAgentBuilderProps {
   onSelectTemplate?: (template: any) => void;
@@ -15,6 +16,20 @@ interface VoiceAgentBuilderProps {
 }
 
 const VoiceAgentBuilder: React.FC<VoiceAgentBuilderProps> = ({ onSelectTemplate, initialTab }) => {
+  const [user, setUser] = useState<{ id: string } | null>(null);
+
+  // Fetch user on component mount
+  useEffect(() => {
+    const fetchUser = async () => {
+      const { data } = await supabase.auth.getUser();
+      if (data?.user) {
+        setUser(data.user);
+      }
+    };
+    
+    fetchUser();
+  }, []);
+
   const {
     selectedTemplate,
     setSelectedTemplate,
@@ -62,7 +77,6 @@ const VoiceAgentBuilder: React.FC<VoiceAgentBuilderProps> = ({ onSelectTemplate,
         {/* Template selection grid */}
         {!selectedTemplate && !editableTemplate && initialTabOverride !== "saved" && (
           <VoiceAgentTemplates 
-            agentTemplates={agentTemplates} 
             onSelectTemplate={handleTemplateSelect}
           />
         )}
@@ -70,6 +84,7 @@ const VoiceAgentBuilder: React.FC<VoiceAgentBuilderProps> = ({ onSelectTemplate,
         {/* Saved agent selection grid */}
         {!selectedTemplate && !editableTemplate && initialTabOverride === "saved" && (
           <SavedAgentList 
+            user={user}
             onLoadAgent={loadSavedAgent}
             onRefresh={fetchSavedAgents}
           />
