@@ -1,10 +1,9 @@
 
 import React from "react";
-import { Card } from "@/components/ui/card";
-import { AgentTemplate } from "./types";
+import { AgentTemplates } from "./types";
 
 interface VoiceAgentTemplatesProps {
-  agentTemplates: Record<string, AgentTemplate>;
+  agentTemplates: AgentTemplates;
   onSelectTemplate: (key: string) => void;
 }
 
@@ -22,8 +21,7 @@ const VoiceAgentTemplates: React.FC<VoiceAgentTemplatesProps> = ({
             className="border border-white/10 rounded-lg p-4 cursor-pointer bg-[#1a0b2e]/40 hover:bg-[#2f1c4a]/40 transition-colors"
             onClick={() => onSelectTemplate(key)}
           >
-            <strong className="text-white block mb-1">{val.name.split(" - ")[0]}</strong>
-            <p className="text-white/70 text-sm">{val.name.split(" - ")[1]}</p>
+            <strong className="text-white block mb-1">{val.name}</strong>
           </div>
         ))}
       </div>

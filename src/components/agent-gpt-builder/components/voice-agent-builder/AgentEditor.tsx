@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { AgentTemplate } from "./types";
-import { supportedLanguages } from "@/services/voiceAgentService";
 
 interface AgentEditorProps {
   editableTemplate: AgentTemplate;
@@ -43,23 +42,18 @@ const AgentEditor: React.FC<AgentEditorProps> = ({
       </div>
       
       <div className="space-y-2">
-        <label className="text-white block mb-1">Language:</label>
+        <label className="text-white block mb-1">🌍 Language:</label>
         <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
           <SelectTrigger className="bg-[#1a0b2e]/40 border-white/10 text-white">
             <SelectValue placeholder="Select a language" />
           </SelectTrigger>
           <SelectContent className="bg-[#1a0b2e] border-white/10">
             <SelectGroup>
-              <SelectItem value="english">🇺🇸 English</SelectItem>
-              <SelectItem value="spanish">🇪🇸 Spanish</SelectItem>
-              <SelectItem value="french">🇫🇷 French</SelectItem>
-              <SelectItem value="german">🇩🇪 German</SelectItem>
-              <SelectItem value="hindi">🇮🇳 Hindi</SelectItem>
-              <SelectItem value="chinese">🇨🇳 Chinese</SelectItem>
-              <SelectItem value="japanese">🇯🇵 Japanese</SelectItem>
-              <SelectItem value="portuguese">🇵🇹 Portuguese</SelectItem>
-              <SelectItem value="italian">🇮🇹 Italian</SelectItem>
-              <SelectItem value="russian">🇷🇺 Russian</SelectItem>
+              <SelectItem value="en-US">🇺🇸 English</SelectItem>
+              <SelectItem value="es-ES">🇪🇸 Spanish</SelectItem>
+              <SelectItem value="fr-FR">🇫🇷 French</SelectItem>
+              <SelectItem value="de-DE">🇩🇪 German</SelectItem>
+              <SelectItem value="hi-IN">🇮🇳 Hindi</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>

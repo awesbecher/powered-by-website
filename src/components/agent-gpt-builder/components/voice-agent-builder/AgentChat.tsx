@@ -3,12 +3,11 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Loader2, Mic, Send, Copy, FileDown, ArrowLeft } from "lucide-react";
-import { AgentTemplate } from "./types";
-import { ChatMessage } from "@/services/openaiService";
+import { AgentTemplate, Message } from "./types";
 
 interface AgentChatProps {
   selectedTemplate: AgentTemplate;
-  messages: ChatMessage[];
+  messages: Message[];
   userInput: string;
   setUserInput: (input: string) => void;
   loading: boolean;
@@ -84,7 +83,7 @@ const AgentChat: React.FC<AgentChatProps> = ({
             className="bg-[#1a0b2e]/40 border-white/10 text-white"
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
-            placeholder="Type your message or use the mic..."
+            placeholder="Type a message..."
             onKeyDown={(e) => {
               if (e.key === "Enter" && !e.shiftKey) {
                 e.preventDefault();
@@ -131,7 +130,7 @@ const AgentChat: React.FC<AgentChatProps> = ({
             onClick={onGenerateEmbedCode}
           >
             <Copy size={16} className="mr-2" />
-            Copy Embed Snippet
+            Copy Widget Snippet
           </Button>
           <Button
             variant="outline"
@@ -139,7 +138,7 @@ const AgentChat: React.FC<AgentChatProps> = ({
             onClick={onGenerateOpenAPISpec}
           >
             <FileDown size={16} className="mr-2" />
-            Download OpenAPI Spec
+            Export OpenAPI Spec
           </Button>
         </div>
       </div>
