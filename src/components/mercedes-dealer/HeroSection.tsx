@@ -38,13 +38,13 @@ const HeroSection = () => {
       {/* Logo in white oval - smaller size */}
       <div className="absolute top-6 left-0 right-0 mx-auto z-10 flex justify-center">
         <div 
-          className="bg-white rounded-full px-6 py-4 shadow-md flex items-center justify-center" 
-          style={{ width: "320px", height: "130px" }}
+          className="bg-white rounded-full px-5 py-3 shadow-md flex items-center justify-center" 
+          style={{ width: "260px", height: "100px" }}
         >
           <img 
             src="/lovable-uploads/0a2b8ea0-afdd-4814-9b46-3ebe7637b617.png"
             alt="Mercedes of Tacoma Logo"
-            className="object-contain w-full h-full max-w-[300px] max-h-[110px]"
+            className="object-contain w-full h-full max-w-[230px] max-h-[80px]"
           />
         </div>
       </div>
