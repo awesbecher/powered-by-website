@@ -9,12 +9,16 @@ interface ClosingCTAProps {
   customHeading?: string;
   customButtonText?: string;
   useCalendly?: boolean;
+  externalLink?: string | null;
+  onContactClick?: () => void;
 }
 
 export const ClosingCTA: React.FC<ClosingCTAProps> = ({
   customHeading = "Ready to transform your business?",
   customButtonText = "Get Started",
   useCalendly = false,
+  externalLink = null,
+  onContactClick,
 }) => {
   const navigate = useNavigate();
   
@@ -36,7 +40,11 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
   }, [useCalendly]);
 
   const handleClick = () => {
-    if (!useCalendly) {
+    if (externalLink) {
+      window.open(externalLink, '_blank');
+    } else if (onContactClick) {
+      onContactClick();
+    } else if (!useCalendly) {
       navigate('/contact');
     }
     // For Cal.com, the button handles the interaction directly
