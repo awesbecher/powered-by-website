@@ -8,7 +8,6 @@ import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 
 // Import refactored components
 import { HeroSection } from '@/components/ai-receptionist/page-sections/HeroSection';
-import { AIReceptionistCard } from '@/components/ai-receptionist/page-sections/AIReceptionistCard';
 import { BenefitsSection } from '@/components/ai-receptionist/page-sections/BenefitsSection';
 import { FeaturesSection } from '@/components/ai-receptionist/page-sections/FeaturesSection';
 import { FAQSection } from '@/components/ai-receptionist/page-sections/FAQSection';

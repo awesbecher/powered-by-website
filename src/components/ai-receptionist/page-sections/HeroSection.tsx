@@ -116,4 +116,4 @@ export const HeroSection = ({
       </Dialog>
     </section>
   );
-}
+};
