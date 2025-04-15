@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -8,7 +7,6 @@ import { BenefitsSection } from '@/components/text-agent/page-sections/BenefitsS
 import { FAQSection } from '@/components/text-agent/page-sections/FAQSection';
 import { FinalCTASection } from '@/components/text-agent/page-sections/FinalCTASection';
 import { HowItWorksSection } from '@/components/text-agent/page-sections/HowItWorksSection';
-import { TestimonialsSection } from '@/components/text-agent/page-sections/TestimonialsSection';
 import { getCalApi } from "@calcom/embed-react";
 
 const TextAgent = () => {
@@ -49,9 +47,6 @@ const TextAgent = () => {
         <div className="container mx-auto px-4">
           {/* Feature Highlights */}
           <FeaturesSection />
-          
-          {/* Testimonials */}
-          <TestimonialsSection />
           
           {/* How It Works */}
           <HowItWorksSection />
