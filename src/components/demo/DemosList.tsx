@@ -1,14 +1,13 @@
 
 import React from 'react';
 import { ServiceCard } from "@/components/home/ServiceCard";
-import { Service } from "@/data/services";
 
-// Define the props expected by ServiceCard
-interface ServiceProps {
-  key: string;
+// Update the interface to match the props expected by ServiceCard and the data in services.ts
+export interface Service {
   title: string;
   description: string;
-  iconPath?: string;
+  icon?: React.ReactNode;
+  iconPath?: string; // Make iconPath optional to match ServiceCard props
   link?: string;
   buttonText?: string;
   isNew?: boolean;

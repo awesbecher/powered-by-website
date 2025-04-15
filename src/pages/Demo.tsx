@@ -34,7 +34,9 @@ const Demo = () => {
     setInitialLoad(false);
   }, [location]);
 
+  // Make sure this function is being called on button click
   const handleOpenDialog = () => {
+    console.log("Opening voice dialog");
     setShowDialog(true);
   };
 
@@ -48,6 +50,7 @@ const Demo = () => {
   const handleStartCall = async () => {
     setIsProcessing(true);
     try {
+      console.log("Starting call with Vapi");
       // Using the general assistant ID for demo
       const assistantId = "ebb38ba5-321a-49e4-b860-708bc864327f";
       await initiateVapiCall(assistantId);
@@ -57,6 +60,7 @@ const Demo = () => {
         description: "You are now connected to our AI voice agent.",
       });
     } catch (error) {
+      console.error("Error starting call:", error);
       toast({
         variant: "destructive",
         title: "Call failed",
@@ -69,6 +73,7 @@ const Demo = () => {
 
   const handleEndCall = async () => {
     try {
+      console.log("Ending call with Vapi");
       await stopVapiCall();
       toast({
         title: "Call ended",
@@ -134,7 +139,7 @@ const Demo = () => {
       </div>
 
       {/* Voice Chat Dialog */}
-      <Dialog open={showDialog} onOpenChange={handleCloseDialog}>
+      <Dialog open={showDialog} onOpenChange={setShowDialog}>
         <DialogContent className="bg-[#222222] text-white border-gray-800 sm:max-w-md">
           <div className="flex flex-col items-center space-y-4">
             <Avatar className="w-32 h-32 mx-auto mb-4">
@@ -165,7 +170,7 @@ const Demo = () => {
                     <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse mr-2"></div>
                     <span>Call Active</span>
                   </div>
-                  <span>00:00</span>
+                  <span>Active Call</span>
                 </div>
                 
                 <Button 
