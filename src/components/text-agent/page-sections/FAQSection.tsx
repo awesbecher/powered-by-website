@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import {
   Accordion,
@@ -56,16 +55,6 @@ export const FAQSection = () => {
           </AccordionItem>
         ))}
       </Accordion>
-      
-      <div className="text-center mt-12">
-        <p className="text-gray-400 mb-4">Still have questions?</p>
-        <a 
-          href="mailto:info@poweredby.agency" 
-          className="text-[#9b87f5] hover:text-[#6342ff] transition-colors duration-200 font-medium"
-        >
-          Contact our support team
-        </a>
-      </div>
     </section>
   );
 };
