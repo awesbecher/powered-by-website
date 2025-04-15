@@ -47,17 +47,17 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad }) => {
       <div className={`mb-6 transition-all duration-1000 delay-300 ease-out transform ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
         <Tabs defaultValue="custom" className="w-full">
           <div className="flex justify-center">
-            <TabsList className="max-w-md mx-auto">
-              <TabsTrigger value="custom">
+            <TabsList className="max-w-3xl w-full mx-auto">
+              <TabsTrigger value="custom" className="flex-1">
                 Custom Agent
               </TabsTrigger>
-              <TabsTrigger value="templates">
+              <TabsTrigger value="templates" className="flex-1">
                 Industry Templates
               </TabsTrigger>
-              <TabsTrigger value="saved">
+              <TabsTrigger value="saved" className="flex-1">
                 My Agents
               </TabsTrigger>
-              <TabsTrigger value="pro">
+              <TabsTrigger value="pro" className="flex-1">
                 Agent Builder Pro
               </TabsTrigger>
             </TabsList>
