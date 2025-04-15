@@ -25,7 +25,7 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
       </div>
       
       <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-        Automate Your <span className="text-[#9b87f5]">Sales Outreach</span> with Text Agent AI
+        Automate Your Customer Engagement with <span className="text-[#9b87f5]">AI SMS-Text Agents</span>
       </h1>
       
       <p className="text-xl text-gray-300 max-w-2xl">
