@@ -145,6 +145,9 @@ serve(async (req) => {
         
         break;
       }
+      
+      // Handle other relevant events
+      // ...
     }
 
     return new Response(JSON.stringify({ received: true }), {

@@ -47,31 +47,21 @@ export const useUsageLimits = (userId: string | undefined | null): UsageLimits =
 
       try {
         // Fetch user's plan
-        const { data: profileData, error: profileError } = await supabase
+        const { data: profileData } = await supabase
           .from("user_profiles")
           .select("plan")
           .eq("user_id", userId)
           .single();
         
-        if (profileError) {
-          console.error("Error fetching user profile:", profileError);
-          // If there's no profile, we'll assume they're on the free plan
-        }
-        
         const userPlan = profileData?.plan || "free";
         setPlan(userPlan);
 
         // Fetch usage data
-        const { data: usageData, error: usageError } = await supabase
+        const { data: usageData } = await supabase
           .from("usage_limits")
           .select("*")
           .eq("user_id", userId)
           .single();
-
-        if (usageError) {
-          console.error("Error fetching usage data:", usageError);
-          // If there's no usage record, we'll assume they haven't used anything yet
-        }
 
         if (usageData) {
           setAgentsCreated(usageData.agents_created || 0);
