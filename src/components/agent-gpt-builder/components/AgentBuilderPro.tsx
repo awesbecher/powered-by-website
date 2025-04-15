@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -175,7 +174,6 @@ const AgentBuilderPro: React.FC = () => {
     
     setIsListening(true);
     
-    // Fix: properly cast the webkitSpeechRecognition constructor
     const SpeechRecognition = window.webkitSpeechRecognition as unknown as new () => webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
     recognition.lang = "en-US";
@@ -295,7 +293,7 @@ const AgentBuilderPro: React.FC = () => {
 
   return (
     <div className="w-full max-w-7xl mx-auto">
-      <Card className="border border-white/10 bg-gradient-to-br from-[#1a0b2e]/70 to-[#2f1c4a]/70 shadow-xl rounded-xl overflow-hidden">
+      <Card className="border border-white/10 bg-gradient-to-br from-[#1a0b2e]/70 to-[#9b87f5]/40 shadow-xl rounded-xl overflow-hidden">
         <CardHeader className="border-b border-white/10 bg-gradient-to-r from-[#2f1c4a] to-[#1a0b2e]">
           <CardTitle className="text-white flex items-center gap-2">
             <span className="bg-[#9b87f5]/20 p-1 rounded-md"><Bot className="h-5 w-5" /></span>
