@@ -1,14 +1,10 @@
 
 import { useEffect, useState } from "react";
-import { loadStripe } from "@stripe/stripe-js";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useToast } from "@/hooks/use-toast";
-
-// Use the Supabase client that's already configured in the project
-const stripePromise = loadStripe("pk_live_51R79jUP1PhXRWWHLjHfTwVbIk11QPO4nN2jVTZy5RXPi9kPVMM4MLP98R6MLVLtEkQgAG6UxszRNfov7Ic8pwpYb00oHeE0GAX");
 
 const PLAN_LIMITS = {
   free: { agents: 1, messages: 100 },

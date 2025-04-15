@@ -44,30 +44,8 @@ serve(async (req) => {
     // Get origin URL for success/cancel redirects
     const origin = req.headers.get("origin") || "http://localhost:3000";
 
-    // Get or create customer
-    const { data: { user } } = await supabase.auth.getUser();
-    
-    // Look up customer by user ID
-    let customerId;
-    const { data: customers } = await stripe.customers.list({
-      email: user.email,
-      limit: 1,
-    });
-
-    if (customers && customers.length > 0) {
-      customerId = customers[0].id;
-    } else {
-      // Create new customer if not found
-      const newCustomer = await stripe.customers.create({
-        email: user.email,
-        metadata: { user_id }
-      });
-      customerId = newCustomer.id;
-    }
-
     // Create Stripe checkout session
     const session = await stripe.checkout.sessions.create({
-      customer: customerId,
       line_items: [
         {
           price: price_id,
@@ -82,7 +60,7 @@ serve(async (req) => {
       },
     });
 
-    return new Response(JSON.stringify({ url: session.url }), {
+    return new Response(JSON.stringify({ url: session.url, sessionId: session.id }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
     });
