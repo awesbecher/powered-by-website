@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
@@ -161,6 +162,15 @@ const AIReceptionist = () => {
                     onClick={handleTryVoiceDemo}
                   >
                     Try Voice Demo
+                  </Button>
+                  
+                  <Button 
+                    className="w-full sm:w-auto bg-[#6342ff] hover:bg-[#5835e0] text-white px-6 py-4 text-base rounded-md flex items-center justify-center"
+                    data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-receptionist"
+                    data-cal-namespace="get-started-with-ai-receptionist"
+                    data-cal-config='{"layout":"month_view"}'
+                  >
+                    Get Started
                   </Button>
                 </div>
               </div>
@@ -416,3 +426,4 @@ const AIReceptionist = () => {
 };
 
 export default AIReceptionist;
+
