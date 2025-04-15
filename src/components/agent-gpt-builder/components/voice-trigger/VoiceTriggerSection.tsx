@@ -24,7 +24,7 @@ const VoiceTriggerSection: React.FC<VoiceTriggerSectionProps> = ({ onTranscripti
   };
 
   return (
-    <Card className="border border-white/10 bg-gradient-to-br from-[#1a0b2e]/70 to-[#2f1c4a]/70 shadow-xl rounded-xl overflow-hidden">
+    <Card className="border border-white/10 bg-gradient-to-br from-[#2f1c4a] to-[#1a0b2e] shadow-xl rounded-xl overflow-hidden">
       <CardHeader className="border-b border-white/10 bg-gradient-to-r from-[#2f1c4a] to-[#1a0b2e]">
         <CardTitle className="text-white flex items-center gap-2">
           <span className="bg-[#9b87f5]/20 p-1 rounded-md">
@@ -41,7 +41,7 @@ const VoiceTriggerSection: React.FC<VoiceTriggerSectionProps> = ({ onTranscripti
           </div>
 
           <div className="flex flex-col md:flex-row items-center gap-6">
-            <div className="flex-1 bg-[#2f1c4a]/40 p-4 rounded-lg border border-white/10">
+            <div className="flex-1 bg-[#1a0b2e]/60 p-4 rounded-lg border border-white/10">
               <div className="text-center mb-4">
                 <div className="inline-block bg-[#9b87f5]/20 p-2 rounded-full mb-2">
                   <Bot className="text-[#9b87f5]" size={24} />
@@ -55,7 +55,7 @@ const VoiceTriggerSection: React.FC<VoiceTriggerSectionProps> = ({ onTranscripti
               <ArrowRight className="text-[#9b87f5]" size={24} />
             </div>
             
-            <div className="flex-1 bg-[#2f1c4a]/40 p-4 rounded-lg border border-white/10">
+            <div className="flex-1 bg-[#1a0b2e]/60 p-4 rounded-lg border border-white/10">
               <div className="text-center mb-4">
                 <div className="inline-block bg-[#9b87f5]/20 p-2 rounded-full mb-2">
                   <Bot className="text-[#9b87f5]" size={24} />
@@ -77,7 +77,7 @@ const VoiceTriggerSection: React.FC<VoiceTriggerSectionProps> = ({ onTranscripti
               <ArrowRight className="text-[#9b87f5]" size={24} />
             </div>
             
-            <div className="flex-1 bg-[#2f1c4a]/40 p-4 rounded-lg border border-white/10">
+            <div className="flex-1 bg-[#1a0b2e]/60 p-4 rounded-lg border border-white/10">
               <div className="text-center mb-4">
                 <div className="inline-block bg-[#9b87f5]/20 p-2 rounded-full mb-2">
                   <Bot className="text-[#9b87f5]" size={24} />
