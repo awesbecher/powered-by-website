@@ -11,7 +11,7 @@ interface AgentConfigPanelProps {
   setAgentName: (name: string) => void;
   agentInstructions: string;
   setAgentInstructions: (instructions: string) => void;
-  onCreateAgent?: () => void; 
+  onCreateAgent?: () => void;
 }
 
 const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
@@ -21,18 +21,18 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
   setAgentInstructions,
   onCreateAgent,
 }) => {
-  // Internal state management - no longer depends on parent component
-  const [internalActiveTab, setInternalActiveTab] = useState("instructions");
+  // Internal tab management - completely isolated from parent component
+  const [activeTab, setActiveTab] = useState("instructions");
   const [showAgentTester, setShowAgentTester] = useState(false);
 
   const handleTestAgent = () => {
-    setInternalActiveTab("test");
+    setActiveTab("test");
     setShowAgentTester(true);
   };
 
   return (
     <div className="space-y-6 transition-all duration-300">
-      <Tabs value={internalActiveTab} onValueChange={setInternalActiveTab} className="w-full">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="w-full bg-gradient-to-r from-[#2f1c4a]/60 to-[#1a0b2e]/60 border border-white/10 rounded-xl overflow-hidden">
           <TabsTrigger
             value="instructions"
