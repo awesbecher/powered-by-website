@@ -103,11 +103,6 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
     setReadyToChat(false);
     setBuilderTab("configure");
   };
-  
-  // Simple handler to update the tab state
-  const handleTabChange = (value: string) => {
-    setBuilderTab(value);
-  };
 
   return (
     <div className="container mx-auto max-w-7xl">
@@ -115,7 +110,7 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
       
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         <div className="lg:col-span-3">
-          <Tabs value={builderTab} onValueChange={handleTabChange}>
+          <Tabs value={builderTab} onValueChange={setBuilderTab}>
             <TabsList className="bg-gray-900/50 border border-gray-700">
               <TabsTrigger value="configure" disabled={isConfiguring}>Configure</TabsTrigger>
               <TabsTrigger value="chat" disabled={!readyToChat}>Chat</TabsTrigger>
