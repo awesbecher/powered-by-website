@@ -2,7 +2,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Loader2, Mic, Send } from "lucide-react";
+import { Loader2, Send } from "lucide-react";
 
 interface ChatInputAreaProps {
   userInput: string;
@@ -44,7 +44,7 @@ const ChatInputArea: React.FC<ChatInputAreaProps> = ({
           {loading ? (
             <Loader2 className="h-4 w-4 animate-spin" />
           ) : (
-            <Send size={16} />
+            <Send size={16} strokeWidth={3} className="text-white" />
           )}
         </Button>
         <Button 
@@ -69,3 +69,4 @@ const ChatInputArea: React.FC<ChatInputAreaProps> = ({
 };
 
 export default ChatInputArea;
+
