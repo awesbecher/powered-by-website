@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import Plug from "@/components/icons/Plug";
+import { Plug } from "lucide-react";
 
 const DeploymentCTA: React.FC = () => {
   useEffect(() => {
