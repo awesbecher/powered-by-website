@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Tv, Mic } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useNavigate } from "react-router-dom";
+import { CalendarButton } from "./CalendarButton";
 
 interface HeroContentProps {
   initialLoad: boolean;
@@ -57,6 +58,8 @@ export const HeroContent: React.FC<HeroContentProps> = ({
             >
               <Mic className="mr-2 h-5 w-5" /> Try Demo
             </Button>
+            
+            <CalendarButton />
           </div>
         </div>
       </div>
