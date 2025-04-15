@@ -18,7 +18,7 @@ export const FinalCTASection = () => {
         data-cal-namespace="get-started-with-ai-receptionist"
         data-cal-config='{"layout":"month_view"}'
       >
-        Schedule a Demo
+        Get Started
       </Button>
     </section>
   );
