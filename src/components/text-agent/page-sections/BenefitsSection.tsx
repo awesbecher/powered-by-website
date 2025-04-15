@@ -1,52 +1,102 @@
 
-import { MessageCircle, Clock, Users, DollarSign } from "lucide-react";
-import { PoweredByText } from "@/components/shared/PoweredByText";
+import React from 'react';
+import { Clock, DollarSign, Target, ThumbsUp, CheckCircle2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export const BenefitsSection = () => {
+  const benefits = [
+    {
+      icon: Clock,
+      title: "Save 20+ Hours Per Week",
+      description: "Eliminate repetitive manual texting and follow-ups that consume your team's valuable time."
+    },
+    {
+      icon: DollarSign,
+      title: "Reduce Cost Per Lead",
+      description: "Lower your acquisition costs by automating top-of-funnel activities and qualification."
+    },
+    {
+      icon: Target,
+      title: "Boost Response Rates",
+      description: "Increase engagement by 2-3x with perfectly timed, personalized messages that resonate."
+    },
+    {
+      icon: ThumbsUp,
+      title: "Improve Customer Experience",
+      description: "Deliver consistent, helpful communication that enhances your brand perception."
+    }
+  ];
+
+  const keyStats = [
+    { value: "280%", label: "Average increase in response rates" },
+    { value: "73%", label: "Reduction in manual follow-up time" },
+    { value: "2.5x", label: "More qualified leads" }
+  ];
+
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl bg-gradient-to-b from-[#121212] via-[#151515] to-[#121212]">
-      <div className="text-center max-w-3xl mx-auto mb-16">
-        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">The Business Benefits of AI Text Agents</h2>
-        <p className="text-xl text-gray-300">
-          Transform your customer communications, streamline workflows, and increase engagement rates with a <PoweredByText /> AI Text Agent.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {/* Benefit 1 */}
-        <div className="glass-card rounded-xl p-6 text-center">
-          <div className="bg-gradient-to-br from-[#6342ff] to-[#9b87f5] w-14 h-14 flex items-center justify-center rounded-full mx-auto mb-4">
-            <MessageCircle className="w-6 h-6 text-white" />
+    <section className="py-16">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        {/* Left column - Benefits */}
+        <div>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">Why Choose AI Text Agent</h2>
+          
+          <div className="space-y-6">
+            {benefits.map((benefit, index) => (
+              <div key={index} className="flex gap-4">
+                <div className="p-2 bg-[#6342ff]/20 rounded-lg h-fit">
+                  <benefit.icon className="w-6 h-6 text-[#9b87f5]" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white mb-1">{benefit.title}</h3>
+                  <p className="text-gray-300">{benefit.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
-          <h3 className="text-xl font-bold text-white mb-2">24/7 Text Support</h3>
-          <p className="text-gray-300">Your AI agent handles customer texts round-the-clock, ensuring no message is missed or delayed.</p>
+          
+          <div className="mt-8">
+            <Button 
+              data-cal-namespace="get-started-with-ai-sms-text-agents"
+              data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
+              data-cal-config='{"layout":"month_view"}'
+              className="bg-[#6342ff] hover:bg-[#7352ff] text-white px-6 py-3 text-lg rounded-xl"
+            >
+              Experience the Benefits
+            </Button>
+          </div>
         </div>
-
-        {/* Benefit 2 */}
-        <div className="glass-card rounded-xl p-6 text-center">
-          <div className="bg-gradient-to-br from-[#6342ff] to-[#9b87f5] w-14 h-14 flex items-center justify-center rounded-full mx-auto mb-4">
-            <Clock className="w-6 h-6 text-white" />
+        
+        {/* Right column - Stats and proof */}
+        <div className="bg-gradient-to-br from-[#2a1e43] to-[#1a0b2e] p-8 rounded-2xl border border-[#6342ff]/30">
+          <h3 className="text-2xl font-bold text-white mb-6">Real Results for Businesses Like Yours</h3>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+            {keyStats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-[#9b87f5] mb-2">{stat.value}</div>
+                <p className="text-gray-300 text-sm">{stat.label}</p>
+              </div>
+            ))}
           </div>
-          <h3 className="text-xl font-bold text-white mb-2">Time Savings</h3>
-          <p className="text-gray-300">Reclaim hours spent on SMS management while maintaining high-quality customer communication.</p>
-        </div>
-
-        {/* Benefit 3 */}
-        <div className="glass-card rounded-xl p-6 text-center">
-          <div className="bg-gradient-to-br from-[#6342ff] to-[#9b87f5] w-14 h-14 flex items-center justify-center rounded-full mx-auto mb-4">
-            <Users className="w-6 h-6 text-white" />
+          
+          <div className="space-y-4">
+            <div className="flex items-start gap-2">
+              <CheckCircle2 className="w-5 h-5 text-[#9b87f5] mt-0.5" />
+              <p className="text-gray-300">Texts sent at optimal times based on recipient behavior</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <CheckCircle2 className="w-5 h-5 text-[#9b87f5] mt-0.5" />
+              <p className="text-gray-300">Personalized content based on user data and context</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <CheckCircle2 className="w-5 h-5 text-[#9b87f5] mt-0.5" />
+              <p className="text-gray-300">Human-like conversations that build rapport and trust</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <CheckCircle2 className="w-5 h-5 text-[#9b87f5] mt-0.5" />
+              <p className="text-gray-300">Precise qualification to identify sales-ready leads</p>
+            </div>
           </div>
-          <h3 className="text-xl font-bold text-white mb-2">Higher Engagement</h3>
-          <p className="text-gray-300">Timely SMS responses and personalized communications lead to higher customer engagement rates.</p>
-        </div>
-
-        {/* Benefit 4 */}
-        <div className="glass-card rounded-xl p-6 text-center">
-          <div className="bg-gradient-to-br from-[#6342ff] to-[#9b87f5] w-14 h-14 flex items-center justify-center rounded-full mx-auto mb-4">
-            <DollarSign className="w-6 h-6 text-white" />
-          </div>
-          <h3 className="text-xl font-bold text-white mb-2">Cost Effective</h3>
-          <p className="text-gray-300">Eliminate the need for dedicated SMS support staff while maintaining exceptional communication quality.</p>
         </div>
       </div>
     </section>

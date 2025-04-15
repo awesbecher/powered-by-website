@@ -6,8 +6,9 @@ import { HeroSection } from '@/components/text-agent/page-sections/HeroSection';
 import { FeaturesSection } from '@/components/text-agent/page-sections/FeaturesSection';
 import { BenefitsSection } from '@/components/text-agent/page-sections/BenefitsSection';
 import { FAQSection } from '@/components/text-agent/page-sections/FAQSection';
-// Removed CTASection import
 import { FinalCTASection } from '@/components/text-agent/page-sections/FinalCTASection';
+import { HowItWorksSection } from '@/components/text-agent/page-sections/HowItWorksSection';
+import { TestimonialsSection } from '@/components/text-agent/page-sections/TestimonialsSection';
 import { getCalApi } from "@calcom/embed-react";
 
 const TextAgent = () => {
@@ -16,7 +17,6 @@ const TextAgent = () => {
   // Handle contact button clicks
   const handleContact = () => {
     // This function is maintained for compatibility with other components
-    // but we're no longer using Calendly's popup widget
   };
   
   // Remove initialLoad state after component mounts
@@ -42,12 +42,27 @@ const TextAgent = () => {
     <div className="min-h-screen bg-gradient-to-b from-[#1a0b2e] to-[#13151a]">
       <Navbar />
       <main>
+        {/* Hero Section */}
         <HeroSection initialLoad={initialLoad} handleContact={handleContact} />
+        
+        {/* Main content sections */}
         <div className="container mx-auto px-4">
+          {/* Feature Highlights */}
           <FeaturesSection />
+          
+          {/* Testimonials */}
+          <TestimonialsSection />
+          
+          {/* How It Works */}
+          <HowItWorksSection />
+          
+          {/* Benefits */}
           <BenefitsSection />
+          
+          {/* FAQ Section */}
           <FAQSection />
-          {/* Removed CTASection */}
+          
+          {/* Final CTA */}
           <FinalCTASection handleContact={handleContact} />
         </div>
       </main>

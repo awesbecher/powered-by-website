@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 import { PoweredByText } from "@/components/shared/PoweredByText";
 
 interface FinalCTASectionProps {
@@ -9,23 +9,51 @@ interface FinalCTASectionProps {
 
 export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl text-center">
-      <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8">
-        Stop missing important text messages.
-        <br />
-        Start engaging customers with <span className="italic text-[#9b87f5]">intelligent</span> conversations.
-      </h2>
-      <p className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto">
-        Boost response rates, improve customer satisfaction, and enhance your business communications—all with the power of a <PoweredByText /> AI Text Agent.
-      </p>
-      <Button 
-        data-cal-namespace="get-started-with-ai-sms-text-agents"
-        data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
-        data-cal-config='{"layout":"month_view"}'
-        className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-8 py-6 text-lg rounded-md mx-auto flex items-center"
-      >
-        Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
-      </Button>
+    <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-6xl text-center">
+      {/* CTA Card with gradient background */}
+      <div className="relative overflow-hidden rounded-2xl">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#6342ff] to-[#9b87f5] opacity-90"></div>
+        
+        {/* Decorative elements */}
+        <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-white/10 blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-20 w-80 h-80 rounded-full bg-white/10 blur-3xl"></div>
+        
+        <div className="relative z-10 px-8 py-16">
+          <div className="flex items-center justify-center mb-6">
+            <div className="bg-white/20 p-3 rounded-full">
+              <MessageCircle className="h-8 w-8 text-white" />
+            </div>
+          </div>
+          
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8">
+            Stop missing important text messages.
+            <br />
+            Start engaging customers with <span className="italic">intelligent</span> conversations.
+          </h2>
+          
+          <p className="text-xl text-white/90 mb-10 max-w-3xl mx-auto">
+            Boost response rates, improve customer satisfaction, and enhance your business communications—all with the power of a <PoweredByText /> AI Text Agent.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button 
+              data-cal-namespace="get-started-with-ai-sms-text-agents"
+              data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
+              data-cal-config='{"layout":"month_view"}'
+              className="bg-white hover:bg-gray-100 text-[#6342ff] px-8 py-6 text-lg rounded-xl font-bold mx-auto flex items-center w-full sm:w-auto"
+            >
+              Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+            
+            <Button 
+              className="bg-transparent hover:bg-white/10 text-white px-8 py-6 text-lg rounded-xl border-2 border-white flex items-center w-full sm:w-auto"
+              onClick={handleContact}
+            >
+              Contact Sales
+            </Button>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
