@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -58,7 +59,7 @@ const TextAgent = () => {
           <FAQSection />
           
           {/* Final CTA */}
-          <FinalCTASection handleContact={handleContact} />
+          <FinalCTASection />
         </div>
       </main>
       <Footer />
