@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -322,7 +323,7 @@ const AgentBuilderPro: React.FC = () => {
             </TabsList>
             
             <TabsContent value="templates">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 bg-[#1A1F2C]/60 p-4 rounded-lg">
                 {Object.entries(agentTemplates).map(([key, tpl]) => (
                   <div 
                     key={key}
@@ -333,7 +334,7 @@ const AgentBuilderPro: React.FC = () => {
                       setMessages([]);
                       setActiveTab("customize");
                     }}
-                    className="border border-white/10 rounded-lg p-4 cursor-pointer bg-[#1A1F2C]/60 hover:bg-[#2f1c4a]/40 transition-colors"
+                    className="border border-white/10 rounded-lg p-4 cursor-pointer bg-[#1A1F2C]/40 hover:bg-[#2f1c4a]/40 transition-colors"
                   >
                     <h3 className="text-white font-bold">{tpl.name}</h3>
                     <p className="text-gray-300 text-sm mt-2">{tpl.prompt.substring(0, 100)}...</p>
@@ -342,9 +343,9 @@ const AgentBuilderPro: React.FC = () => {
               </div>
             </TabsContent>
             
-            <TabsContent value="saved" className="bg-[#1A1F2C]/20 p-4 rounded-lg">
+            <TabsContent value="saved" className="bg-[#1A1F2C]/60 p-4 rounded-lg">
               {savedAgents.length === 0 ? (
-                <div className="text-center col-span-full py-12">
+                <div className="text-center col-span-full py-12 bg-[#1A1F2C]/40">
                   <h3 className="text-white text-xl mb-4">No Saved Agents</h3>
                   <p className="text-gray-300 mb-6">You haven't saved any agents yet. Create one from a template to get started.</p>
                   <Button 
