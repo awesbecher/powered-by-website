@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
@@ -31,11 +31,13 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
     setActiveTab(value);
   };
 
-  const handleTestAgentClick = () => {
+  // Memoized to prevent unnecessary re-renders
+  const handleTestAgentClick = useCallback(() => {
     setShowTester(true);
     setActiveTab("test");
+    // Call parent callback last to avoid rendering issues
     if (onTestAgent) onTestAgent();
-  };
+  }, [onTestAgent]);
 
   return (
     <div className="space-y-6 transition-all duration-300">

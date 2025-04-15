@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import AgentTestInterface from "./AgentTestInterface";
 import AgentDeploymentSection from "./AgentDeploymentSection";
@@ -18,8 +18,14 @@ const AgentTester: React.FC<AgentTesterProps> = ({ agentName, agentInstructions 
     messages,
     loading,
     handleSendMessage,
-    handleSaveAgent
+    handleSaveAgent,
+    updateInstructions
   } = useAgentTester(agentName, agentInstructions);
+
+  // Update instructions when they change from parent
+  useEffect(() => {
+    updateInstructions(agentInstructions);
+  }, [agentInstructions]);
 
   return (
     <Card className="border border-white/10 bg-gradient-to-br from-[#1a0b2e]/70 to-[#2f1c4a]/70 shadow-xl rounded-xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.7s' }}>

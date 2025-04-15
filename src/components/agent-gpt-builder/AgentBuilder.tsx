@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AgentConfigPanel from "./components/AgentConfigPanel";
@@ -24,9 +24,8 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
   
   // Main builder state
   const [builderTab, setBuilderTab] = useState("configure");
-  // Separate state for tracking if the chat is ready
+  // These states are now standalone and don't depend on each other
   const [readyToChat, setReadyToChat] = useState(false);
-  // Separate state for tracking configuration state
   const [isConfiguring, setIsConfiguring] = useState(false);
   
   const {
@@ -76,7 +75,8 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
     fetchUser();
   }, []);
 
-  const handleAgentCreation = () => {
+  // Memoized handler functions to prevent unnecessary re-renders
+  const handleAgentCreation = useCallback(() => {
     if (!agentName.trim() || !agentPrompt.trim()) {
       toast({
         title: "Missing information",
@@ -93,9 +93,9 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
     setIsConfiguring(true);
     setReadyToChat(true);
     setBuilderTab("chat");
-  };
+  }, [agentName, agentPrompt, toast, checkAgentCreationLimit]);
 
-  const handleStartOver = () => {
+  const handleStartOver = useCallback(() => {
     setAgentName("");
     setAgentPrompt("");
     setAgentType("customer-service");
@@ -103,9 +103,9 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
     setIsConfiguring(false);
     setReadyToChat(false);
     setBuilderTab("configure");
-  };
+  }, [setAgentName, setAgentPrompt, setAgentType, setMessages]);
 
-  const handleTestAgent = () => {
+  const handleTestAgent = useCallback(() => {
     if (!agentName.trim() || !agentPrompt.trim()) {
       toast({
         title: "Missing information",
@@ -117,7 +117,7 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
     
     setIsConfiguring(true);
     setReadyToChat(true);
-  };
+  }, [agentName, agentPrompt, toast]);
   
   return (
     <div className="container mx-auto max-w-7xl">
