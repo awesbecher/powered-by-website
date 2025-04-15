@@ -144,6 +144,36 @@
   to = "/index.html"
   status = 200
 
+[[redirects]]
+  from = "/ai-agency"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/products"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/voice-chat"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/text-agent"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/voice-business"
+  to = "/index.html"
+  status = 200
+
 # Add redirects for free voice agent URLs
 [[redirects]]
   from = "/free-voiceagent"
@@ -171,4 +201,3 @@
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Content-Security-Policy = "upgrade-insecure-requests"
-

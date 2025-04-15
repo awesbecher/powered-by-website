@@ -23,6 +23,13 @@ import DemoCapture from "./pages/DemoCapture";
 import MercedesDealer from "./pages/MercedesDealer";
 import OmegaPediatrics from "./pages/OmegaPediatrics";
 import CallConfirmation from "./pages/CallConfirmation";
+import News from "./pages/News";
+import AIAgency from "./pages/AIAgency";
+import Products from "./pages/Products";
+import Blog from "./pages/Blog";
+import AIVoiceChat from "./pages/AIVoiceChat";
+import TextAgent from "./pages/TextAgent";
+import AIVoiceBusinessLines from "./pages/AIVoiceBusinessLines";
 
 // Others as needed
 import NotFound from "./pages/NotFound";
@@ -55,9 +62,18 @@ function App() {
         <Route path="/ai-receptionist" element={<AIReceptionist />} />
         <Route path="/file-upload" element={<FileUpload />} />
         <Route path="/email-agent" element={<EmailAgent />} />
+        <Route path="/ai-agency" element={<AIAgency />} />
+        <Route path="/text-agent" element={<TextAgent />} />
+        <Route path="/voice-chat" element={<AIVoiceChat />} />
+        <Route path="/voice-business" element={<AIVoiceBusinessLines />} />
+        
+        {/* Content & products routes */}
+        <Route path="/news" element={<News />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/demo" element={<DemoCapture />} />
         
         {/* Demo and special pages */}
-        <Route path="/demo-capture" element={<DemoCapture />} />
         <Route path="/mercedes-dealer" element={<MercedesDealer />} />
         <Route path="/omega-pediatrics" element={<OmegaPediatrics />} />
         <Route path="/call-confirmation" element={<CallConfirmation />} />

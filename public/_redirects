@@ -28,6 +28,12 @@
 /mercedes-dealer /index.html 200
 /omega-pediatrics /index.html 200
 /call-confirmation /index.html 200
+/ai-agency /index.html 200
+/products /index.html 200
+/blog /index.html 200
+/voice-chat /index.html 200
+/text-agent /index.html 200
+/voice-business /index.html 200
 
 # Redirect from demos (plural) to demo (singular)
 /demos /demo 301
@@ -57,4 +63,3 @@
 /mercedes-dealer /index.html 200
 /real-estate /index.html 200
 /retail-services /index.html 200
-
