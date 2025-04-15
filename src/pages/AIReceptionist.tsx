@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
@@ -96,6 +95,10 @@ const AIReceptionist = () => {
     navigate('/real-estate');
   };
 
+  const handleTryVoiceDemo = () => {
+    window.open('/real-estate', '_blank');
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#1a0b2e] to-[#13151a]">
       <Navbar />
@@ -155,7 +158,7 @@ const AIReceptionist = () => {
                   
                   <Button 
                     className="w-full sm:w-auto bg-transparent hover:bg-white/10 text-white px-6 py-4 text-base rounded-md flex items-center justify-center border-2 border-white"
-                    onClick={goToRealEstateSite}
+                    onClick={handleTryVoiceDemo}
                   >
                     Try Voice Demo
                   </Button>
