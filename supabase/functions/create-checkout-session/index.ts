@@ -45,7 +45,10 @@ serve(async (req) => {
     const origin = req.headers.get("origin") || "http://localhost:3000";
 
     // Get or create customer
-    const { data: { user } } = await supabase.auth.getUser();
+    const { data: customerData, error: customerError } = await supabase.auth.getUser();
+    if (customerError) throw customerError;
+    
+    const user = customerData.user;
     
     // Look up customer by user ID
     let customerId;

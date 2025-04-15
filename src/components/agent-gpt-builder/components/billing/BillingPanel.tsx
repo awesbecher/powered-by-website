@@ -24,7 +24,7 @@ interface BillingPanelProps {
 const BillingPanel: React.FC<BillingPanelProps> = ({ user }) => {
   const [plan, setPlan] = useState("free");
   const [usage, setUsage] = useState({ agents_created: 0, messages_sent: 0 });
-  const [limits, setLimits] = useState(PLAN_LIMITS.free);
+  const [limits, setLimits] = useState<{ agents: number | typeof Infinity; messages: number | typeof Infinity }>(PLAN_LIMITS.free);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
@@ -33,21 +33,29 @@ const BillingPanel: React.FC<BillingPanelProps> = ({ user }) => {
       try {
         if (!user?.id) return;
 
-        const { data: profile } = await supabase
+        const { data: profile, error: profileError } = await supabase
           .from("user_profiles")
           .select("plan")
           .eq("user_id", user.id)
           .single();
 
+        if (profileError) {
+          console.error("Error fetching user profile:", profileError);
+        }
+
         const userPlan = profile?.plan || "free";
         setPlan(userPlan);
-        setLimits(PLAN_LIMITS[userPlan]);
+        setLimits(PLAN_LIMITS[userPlan as keyof typeof PLAN_LIMITS] || PLAN_LIMITS.free);
 
-        const { data: usageData } = await supabase
+        const { data: usageData, error: usageError } = await supabase
           .from("usage_limits")
           .select("*")
           .eq("user_id", user.id)
           .single();
+
+        if (usageError) {
+          console.error("Error fetching usage limits:", usageError);
+        }
 
         setUsage(usageData || { agents_created: 0, messages_sent: 0 });
       } catch (error) {
@@ -100,13 +108,13 @@ const BillingPanel: React.FC<BillingPanelProps> = ({ user }) => {
   };
 
   // Calculate percentage for progress bars
-  const calculatePercentage = (used: number, limit: number): number => {
+  const calculatePercentage = (used: number, limit: number | typeof Infinity): number => {
     if (limit === Infinity || limit === 0) return 0;
     return Math.min(Math.round((used / limit) * 100), 100);
   };
 
-  const agentPercentage = calculatePercentage(usage.agents_created, limits.agents === Infinity ? 1000 : limits.agents);
-  const messagePercentage = calculatePercentage(usage.messages_sent, limits.messages === Infinity ? 10000 : limits.messages);
+  const agentPercentage = calculatePercentage(usage.agents_created, limits.agents);
+  const messagePercentage = calculatePercentage(usage.messages_sent, limits.messages);
 
   return (
     <Card className="border border-white/10 bg-gradient-to-br from-[#1a0b2e]/70 to-[#2f1c4a]/70 shadow-xl rounded-xl overflow-hidden">
