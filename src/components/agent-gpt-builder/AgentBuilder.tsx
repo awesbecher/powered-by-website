@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import PageHeader from "./components/PageHeader";
 import FeatureBubbles from "./components/FeatureBubbles";
@@ -50,23 +51,23 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad }) => {
       <div className={`mb-6 transition-all duration-1000 delay-300 ease-out transform ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
         <Tabs defaultValue="custom" className="w-full">
           <div className="flex justify-center">
-            <TabsList className="max-w-3xl w-full mx-auto grid grid-cols-6 gap-2">
-              <TabsTrigger value="custom" className="flex-1">
+            <TabsList className="max-w-4xl w-full mx-auto grid grid-cols-6 gap-4 p-1.5 bg-[#1a0b2e]/80 border border-[#9b87f5]/30 rounded-full">
+              <TabsTrigger value="custom" className="flex-1 rounded-full data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#9b87f5] data-[state=active]:to-[#8777e5] transition-all duration-300">
                 Custom Agent
               </TabsTrigger>
-              <TabsTrigger value="templates" className="flex-1">
+              <TabsTrigger value="templates" className="flex-1 rounded-full data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#9b87f5] data-[state=active]:to-[#8777e5] transition-all duration-300">
                 Industry Templates
               </TabsTrigger>
-              <TabsTrigger value="saved" className="flex-1">
+              <TabsTrigger value="saved" className="flex-1 rounded-full data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#9b87f5] data-[state=active]:to-[#8777e5] transition-all duration-300">
                 My Agents
               </TabsTrigger>
-              <TabsTrigger value="pro" className="flex-1">
+              <TabsTrigger value="pro" className="flex-1 rounded-full data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#9b87f5] data-[state=active]:to-[#8777e5] transition-all duration-300">
                 Agent Builder Pro
               </TabsTrigger>
-              <TabsTrigger value="voice-trigger" className="flex-1">
+              <TabsTrigger value="voice-trigger" className="flex-1 rounded-full data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#9b87f5] data-[state=active]:to-[#8777e5] transition-all duration-300">
                 Voice Trigger
               </TabsTrigger>
-              <TabsTrigger value="webhook-trigger" className="flex-1">
+              <TabsTrigger value="webhook-trigger" className="flex-1 rounded-full data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#9b87f5] data-[state=active]:to-[#8777e5] transition-all duration-300">
                 Webhook Trigger
               </TabsTrigger>
             </TabsList>
