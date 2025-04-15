@@ -19,8 +19,8 @@ export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
         Boost efficiency, improve follow-up rates, and enhance customer satisfaction—all with the power of a <PoweredByText /> AI Email Agent.
       </p>
       <Button 
-        data-cal-namespace="get-started-with-voice-ai-chat"
-        data-cal-link="team-powered-by-dfbtbb/get-started-with-voice-ai-chat"
+        data-cal-namespace="get-started-with-ai-email-agents"
+        data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-email-agents"
         data-cal-config='{"layout":"month_view"}'
         className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-8 py-6 text-lg rounded-md mx-auto flex items-center"
       >

@@ -21,10 +21,10 @@ const EmailAgent = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Initialize Cal.com
+  // Initialize Cal.com with updated namespace
   useEffect(() => {
     (async function () {
-      const cal = await getCalApi({"namespace":"get-started-with-voice-ai-chat"});
+      const cal = await getCalApi({"namespace":"get-started-with-ai-email-agents"});
       cal("ui", {
         "cssVarsPerTheme": {
           "light": {"cal-brand":"#292929"},
