@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Tv, Mic } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { useNavigate } from "react-router-dom";
 
 interface HeroContentProps {
   initialLoad: boolean;
@@ -16,14 +17,10 @@ export const HeroContent: React.FC<HeroContentProps> = ({
   handleGetStarted,
 }) => {
   const [videoOpen, setVideoOpen] = useState(false);
+  const navigate = useNavigate();
 
-  // Function to open Calendly popup
-  const openCalendly = () => {
-    if (window.Calendly) {
-      window.Calendly.initPopupWidget({
-        url: 'https://calendly.com/d/cq7r-5v8-qvw?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=8e00ff'
-      });
-    }
+  const handleTryDemo = () => {
+    window.open('/insurance', '_blank');
   };
 
   return (
@@ -54,12 +51,11 @@ export const HeroContent: React.FC<HeroContentProps> = ({
               <Tv className="mr-2 h-5 w-5" /> Watch our intro to Voice AI
             </Button>
             
-            {/* "See Demo" button with black background, white text, and white outline */}
             <Button 
               className="bg-black hover:bg-gray-900 text-white px-6 py-4 text-base rounded-md flex items-center border-2 border-white"
-              onClick={openCalendly}
+              onClick={handleTryDemo}
             >
-              <Mic className="mr-2 h-5 w-5" /> See Demo
+              <Mic className="mr-2 h-5 w-5" /> Try Demo
             </Button>
           </div>
         </div>
