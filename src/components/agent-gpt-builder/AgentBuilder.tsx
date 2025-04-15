@@ -43,23 +43,25 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad }) => {
       {/* Feature bubbles */}
       <FeatureBubbles />
 
-      {/* Tabs for switching between custom and template agents */}
+      {/* Tabs for switching between custom and template agents - now centered */}
       <div className={`mb-6 transition-all duration-1000 delay-300 ease-out transform ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
         <Tabs defaultValue="custom" className="w-full">
-          <TabsList className="max-w-md mx-auto">
-            <TabsTrigger value="custom">
-              Custom Agent
-            </TabsTrigger>
-            <TabsTrigger value="templates">
-              Industry Templates
-            </TabsTrigger>
-            <TabsTrigger value="saved">
-              My Agents
-            </TabsTrigger>
-            <TabsTrigger value="pro">
-              Agent Builder Pro
-            </TabsTrigger>
-          </TabsList>
+          <div className="flex justify-center">
+            <TabsList className="max-w-md mx-auto">
+              <TabsTrigger value="custom">
+                Custom Agent
+              </TabsTrigger>
+              <TabsTrigger value="templates">
+                Industry Templates
+              </TabsTrigger>
+              <TabsTrigger value="saved">
+                My Agents
+              </TabsTrigger>
+              <TabsTrigger value="pro">
+                Agent Builder Pro
+              </TabsTrigger>
+            </TabsList>
+          </div>
           
           <TabsContent value="custom">
             {/* Main content area with chat interface and agent configuration */}

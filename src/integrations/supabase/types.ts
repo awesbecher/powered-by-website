@@ -9,6 +9,30 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      agent_docs: {
+        Row: {
+          created_at: string
+          filename: string
+          id: string
+          raw_text: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          filename: string
+          id?: string
+          raw_text: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          filename?: string
+          id?: string
+          raw_text?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       gpt_logs: {
         Row: {
           clinic_name: string | null
@@ -90,6 +114,60 @@ export type Database = {
           name?: string
           updated_at?: string | null
           value?: string
+        }
+        Relationships: []
+      }
+      usage_limits: {
+        Row: {
+          agents_created: number
+          created_at: string
+          id: string
+          messages_sent: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          agents_created?: number
+          created_at?: string
+          id?: string
+          messages_sent?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          agents_created?: number
+          created_at?: string
+          id?: string
+          messages_sent?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_profiles: {
+        Row: {
+          created_at: string
+          id: string
+          plan: string
+          stripe_customer_id: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          plan?: string
+          stripe_customer_id?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          plan?: string
+          stripe_customer_id?: string | null
+          updated_at?: string
+          user_id?: string
         }
         Relationships: []
       }
