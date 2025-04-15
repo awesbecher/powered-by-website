@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -17,7 +16,6 @@ const AIReceptionist = () => {
   const [videoOpen, setVideoOpen] = useState(false);
   const { toast } = useToast();
   
-  // Assistant ID for the AI Receptionist
   const ASSISTANT_ID = "ebb38ba5-321a-49e4-b860-708bc864327f";
   
   React.useEffect(() => {
@@ -25,7 +23,6 @@ const AIReceptionist = () => {
       setInitialLoad(false);
     }, 100);
     
-    // Load Calendly script
     const script = document.createElement('script');
     script.src = 'https://assets.calendly.com/assets/external/widget.js';
     script.async = true;
@@ -98,7 +95,6 @@ const AIReceptionist = () => {
     <div className="min-h-screen bg-gradient-to-b from-[#1a0b2e] to-[#13151a]">
       <Navbar />
       
-      {/* Hero Section */}
       <section className="relative pt-16 pb-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
           <div className="absolute -top-20 right-10 w-96 h-96 rounded-full bg-[#7100ff]/10 blur-3xl"></div>
@@ -149,7 +145,7 @@ const AIReceptionist = () => {
                     className="w-full sm:w-auto bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-4 text-base rounded-md flex items-center justify-center"
                     onClick={() => setVideoOpen(true)}
                   >
-                    Watch Demo Video
+                    Watch Overview
                   </Button>
                   
                   <Button 
@@ -209,7 +205,6 @@ const AIReceptionist = () => {
         </div>
       </section>
 
-      {/* Benefits Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl bg-gradient-to-b from-[#121212] via-[#151515] to-[#121212]">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">The Business Benefits of AI Receptionists</h2>
@@ -253,7 +248,6 @@ const AIReceptionist = () => {
         </div>
       </section>
 
-      {/* Features Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
         <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-16">
           Remarkably Human-like AI Receptionists for SMBs
@@ -285,7 +279,6 @@ const AIReceptionist = () => {
         </div>
       </section>
       
-      {/* FAQ Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
         <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-16">
           Frequently Asked Questions
@@ -313,7 +306,6 @@ const AIReceptionist = () => {
         </div>
       </section>
 
-      {/* Final CTA Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl text-center">
         <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8">
           Stop missing calls. Stop putting customers on hold.
@@ -331,7 +323,6 @@ const AIReceptionist = () => {
         </Button>
       </section>
 
-      {/* Voice Chat Dialog */}
       <Dialog open={showVoiceChatDialog} onOpenChange={handleCloseDialog}>
         <DialogContent className="bg-[#222222] text-white border-gray-800 sm:max-w-md">
           <div className="flex flex-col items-center space-y-4">
@@ -394,15 +385,14 @@ const AIReceptionist = () => {
         </DialogContent>
       </Dialog>
 
-      {/* YouTube Video Dialog */}
       <Dialog open={videoOpen} onOpenChange={setVideoOpen}>
         <DialogContent className="max-w-3xl p-1 bg-black">
           <div className="aspect-video">
             <iframe 
               width="100%" 
               height="100%" 
-              src="https://www.youtube.com/embed/A4PPY9idmpo?si=YTt05OJgGRyKheJE&autoplay=1" 
-              title="AI Receptionist Introduction" 
+              src="https://www.youtube.com/embed/wCSt1ZTXJSc?si=A4PPY9idmpo&autoplay=1" 
+              title="AI Receptionist Overview" 
               frameBorder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
               allowFullScreen
