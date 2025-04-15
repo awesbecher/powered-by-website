@@ -53,17 +53,6 @@ export const BenefitsSection = () => {
               </div>
             ))}
           </div>
-          
-          <div className="mt-8">
-            <Button 
-              data-cal-namespace="get-started-with-ai-sms-text-agents"
-              data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
-              data-cal-config='{"layout":"month_view"}'
-              className="bg-[#6342ff] hover:bg-[#7352ff] text-white px-6 py-3 text-lg rounded-xl"
-            >
-              Experience the Benefits
-            </Button>
-          </div>
         </div>
         
         {/* Right column - Stats and proof */}
@@ -98,6 +87,18 @@ export const BenefitsSection = () => {
             </div>
           </div>
         </div>
+      </div>
+      
+      {/* Centered Experience the Benefits button with Cal.com functionality */}
+      <div className="mt-12 flex justify-center">
+        <Button 
+          data-cal-namespace="get-started-with-ai-sms-text-agents"
+          data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
+          data-cal-config='{"layout":"month_view"}'
+          className="bg-[#6342ff] hover:bg-[#7352ff] text-white px-6 py-3 text-lg rounded-xl"
+        >
+          Experience the Benefits
+        </Button>
       </div>
     </section>
   );
