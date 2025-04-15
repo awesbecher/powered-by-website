@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Bot, Copy, RefreshCw, Globe, Key, PlusCircle, Trash2, Check } from "lucide-react";
@@ -40,7 +39,6 @@ const WebhookTriggerSection: React.FC<WebhookTriggerSectionProps> = ({ agentId =
   const [webhookLogs, setWebhookLogs] = useState<any[]>([]);
   const { toast } = useToast();
 
-  // For demo purposes, generate a sample webhook
   useEffect(() => {
     setWebhooks([
       {
@@ -56,8 +54,6 @@ const WebhookTriggerSection: React.FC<WebhookTriggerSectionProps> = ({ agentId =
   const fetchWebhooks = async () => {
     setIsLoading(true);
     try {
-      // In a real implementation, this would fetch from Supabase
-      // For demo purposes, we'll use the state
       setIsLoading(false);
     } catch (error) {
       console.error("Error fetching webhooks:", error);
@@ -73,8 +69,6 @@ const WebhookTriggerSection: React.FC<WebhookTriggerSectionProps> = ({ agentId =
   const fetchWebhookLogs = async () => {
     setIsLoading(true);
     try {
-      // In a real implementation, this would fetch logs from Supabase
-      // For demo purposes, we'll use sample data
       setWebhookLogs([
         {
           id: "1",
@@ -109,7 +103,6 @@ const WebhookTriggerSection: React.FC<WebhookTriggerSectionProps> = ({ agentId =
 
     setIsLoading(true);
     try {
-      // In a real implementation, this would create a webhook in Supabase
       const newWebhook: Webhook = {
         id: generateWebhookId(),
         name: newWebhookName,
@@ -138,7 +131,6 @@ const WebhookTriggerSection: React.FC<WebhookTriggerSectionProps> = ({ agentId =
 
   const toggleWebhookStatus = async (webhookId: string, currentStatus: boolean) => {
     try {
-      // In a real implementation, this would update the webhook in Supabase
       setWebhooks(webhooks.map(wh => 
         wh.id === webhookId ? {...wh, is_active: !currentStatus} : wh
       ));
@@ -159,7 +151,6 @@ const WebhookTriggerSection: React.FC<WebhookTriggerSectionProps> = ({ agentId =
 
   const deleteWebhook = async (webhookId: string) => {
     try {
-      // In a real implementation, this would delete the webhook from Supabase
       setWebhooks(webhooks.filter(wh => wh.id !== webhookId));
       
       toast({
@@ -188,12 +179,11 @@ const WebhookTriggerSection: React.FC<WebhookTriggerSectionProps> = ({ agentId =
   };
 
   const getWebhookUrl = (webhookId: string) => {
-    // In production, this would be your actual API domain
     return `${window.location.origin}/api/agent-webhook/${webhookId}`;
   };
 
   return (
-    <Card className="border border-white/10 bg-gradient-to-br from-[#1a0b2e]/70 to-[#2f1c4a]/70 shadow-xl rounded-xl overflow-hidden">
+    <Card className="border border-white/10 bg-gradient-to-br from-[#2f1c4a] to-[#1a0b2e] shadow-xl rounded-xl overflow-hidden">
       <CardHeader className="border-b border-white/10 bg-gradient-to-r from-[#2f1c4a] to-[#1a0b2e]">
         <CardTitle className="text-white flex items-center gap-2">
           <span className="bg-[#9b87f5]/20 p-1 rounded-md">
@@ -223,8 +213,7 @@ const WebhookTriggerSection: React.FC<WebhookTriggerSectionProps> = ({ agentId =
                 Create webhook URLs that external tools (Zapier, Make, IoT devices) can call to trigger your agent.
               </div>
               
-              {/* Create new webhook */}
-              <div className="bg-[#2f1c4a]/40 p-4 rounded-lg border border-white/10">
+              <div className="bg-[#1a0b2e]/60 p-4 rounded-lg border border-white/10">
                 <h3 className="text-white font-medium mb-3">Create New Webhook</h3>
                 <div className="flex gap-3">
                   <Input
@@ -248,10 +237,9 @@ const WebhookTriggerSection: React.FC<WebhookTriggerSectionProps> = ({ agentId =
                 </div>
               </div>
 
-              {/* Webhooks list */}
               <div className="space-y-4">
                 {webhooks.map((webhook) => (
-                  <div key={webhook.id} className="bg-[#2f1c4a]/40 p-4 rounded-lg border border-white/10">
+                  <div key={webhook.id} className="bg-[#1a0b2e]/60 p-4 rounded-lg border border-white/10">
                     <div className="flex justify-between items-center mb-4">
                       <h3 className="text-white font-medium">{webhook.name}</h3>
                       <div className="flex items-center gap-2">
@@ -321,7 +309,7 @@ const WebhookTriggerSection: React.FC<WebhookTriggerSectionProps> = ({ agentId =
                 ))}
                 
                 {webhooks.length === 0 && (
-                  <div className="bg-[#2f1c4a]/20 p-6 rounded-lg border border-white/10 text-center">
+                  <div className="bg-[#1a0b2e]/20 p-6 rounded-lg border border-white/10 text-center">
                     <p className="text-white/60">No webhooks created yet. Create your first webhook above.</p>
                   </div>
                 )}
@@ -347,7 +335,7 @@ const WebhookTriggerSection: React.FC<WebhookTriggerSectionProps> = ({ agentId =
               {webhookLogs.length > 0 ? (
                 <div className="space-y-3">
                   {webhookLogs.map((log) => (
-                    <div key={log.id} className="bg-[#2f1c4a]/40 p-4 rounded-lg border border-white/10">
+                    <div key={log.id} className="bg-[#1a0b2e]/40 p-4 rounded-lg border border-white/10">
                       <div className="flex justify-between mb-2">
                         <div className="text-sm text-white font-medium">
                           {webhooks.find(w => w.id === log.webhook_id)?.name || "Unknown Webhook"}
@@ -374,7 +362,7 @@ const WebhookTriggerSection: React.FC<WebhookTriggerSectionProps> = ({ agentId =
                   ))}
                 </div>
               ) : (
-                <div className="bg-[#2f1c4a]/20 p-6 rounded-lg border border-white/10 text-center">
+                <div className="bg-[#1a0b2e]/20 p-6 rounded-lg border border-white/10 text-center">
                   <p className="text-white/60">No webhook logs found. Webhook triggers will appear here.</p>
                 </div>
               )}
@@ -383,7 +371,7 @@ const WebhookTriggerSection: React.FC<WebhookTriggerSectionProps> = ({ agentId =
           
           <TabsContent value="docs">
             <div className="space-y-4">
-              <div className="bg-[#2f1c4a]/40 p-4 rounded-lg border border-white/10">
+              <div className="bg-[#1a0b2e]/40 p-4 rounded-lg border border-white/10">
                 <h3 className="text-white font-medium mb-3">How to Use Webhooks</h3>
                 <div className="text-white/80 space-y-3">
                   <p>
