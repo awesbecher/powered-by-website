@@ -1,4 +1,3 @@
-
 import { ReactNode } from 'react';
 
 export interface Service {
@@ -52,14 +51,6 @@ export const services: Service[] = [
     iconPath: "/lovable-uploads/65c7ad96-17cd-4bc0-8a6d-0148a49f3402.png",
     category: "Retail Services",
     link: "/retail-services",
-    buttonText: "Try Demo",
-  },
-  {
-    title: "Healthcare Practice",
-    description: "Experience how our AI agent serves as a medical office assistant, handling appointment scheduling and patient inquiries.",
-    iconPath: "/lovable-uploads/7bccf1fa-dd2b-4d1a-99d0-0affccdcc85d.png",
-    category: "Healthcare",
-    link: "/omega-pediatrics",
     buttonText: "Try Demo",
   }
 ];
