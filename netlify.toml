@@ -26,6 +26,12 @@
   to = "/agent-gpt"
   status = 301
 
+# Add redirect from demos (plural) to demo (singular)
+[[redirects]]
+  from = "/demos"
+  to = "/demo"
+  status = 301
+
 # Explicitly define routes for every major page
 [[redirects]]
   from = "/about"
@@ -165,3 +171,4 @@
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Content-Security-Policy = "upgrade-insecure-requests"
+

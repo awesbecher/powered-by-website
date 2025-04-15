@@ -29,6 +29,9 @@
 /omega-pediatrics /index.html 200
 /call-confirmation /index.html 200
 
+# Redirect from demos (plural) to demo (singular)
+/demos /demo 301
+
 # Redirect from old GPT path to new path
 /gpt /agent-gpt 301
 
@@ -54,3 +57,4 @@
 /mercedes-dealer /index.html 200
 /real-estate /index.html 200
 /retail-services /index.html 200
+
