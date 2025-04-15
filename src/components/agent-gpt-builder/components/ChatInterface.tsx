@@ -41,7 +41,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
           </div>
         </div>
         <p className="text-gray-300 text-sm mt-2">
-          Chat with our AI to design your custom voice agent for your business
+          Chat with our interactive AI Agent Builder to design your custom voice agent for your business
         </p>
       </CardHeader>
       
