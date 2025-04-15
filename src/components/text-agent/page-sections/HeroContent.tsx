@@ -52,21 +52,6 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
         </Button>
       </div>
       
-      <div className="pt-4 flex items-center">
-        <div className="flex -space-x-2">
-          {[1, 2, 3, 4].map(index => (
-            <div key={index} className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-400 to-blue-500 border-2 border-[#1a0b2e] flex items-center justify-center overflow-hidden">
-              <span className="text-xs text-white font-bold">
-                {String.fromCharCode(64 + index)}
-              </span>
-            </div>
-          ))}
-        </div>
-        <span className="ml-3 text-sm text-gray-400">
-          <span className="text-white font-medium">200+ businesses</span> are already using <PoweredByText /> Text Agent
-        </span>
-      </div>
-
       <Dialog open={videoOpen} onOpenChange={setVideoOpen}>
         <DialogContent className="max-w-3xl p-1 bg-black">
           <div className="aspect-video">
