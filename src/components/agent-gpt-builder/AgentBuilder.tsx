@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import PageHeader from "./components/PageHeader";
 import FeatureBubbles from "./components/FeatureBubbles";
@@ -45,17 +44,13 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad }) => {
 
   return (
     <div className="max-w-7xl mx-auto">
-      {/* Page title and description */}
       <PageHeader initialLoad={initialLoad} />
-
-      {/* Feature bubbles */}
       <FeatureBubbles />
 
-      {/* Tabs for switching between custom and template agents - now centered */}
       <div className={`mb-6 transition-all duration-1000 delay-300 ease-out transform ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
         <Tabs defaultValue="custom" className="w-full">
           <div className="flex justify-center">
-            <TabsList className="max-w-3xl w-full mx-auto">
+            <TabsList className="max-w-3xl w-full mx-auto grid grid-cols-6 gap-2">
               <TabsTrigger value="custom" className="flex-1">
                 Custom Agent
               </TabsTrigger>
@@ -78,9 +73,7 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad }) => {
           </div>
           
           <TabsContent value="custom">
-            {/* Main content area with chat interface and agent configuration */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6">
-              {/* Left side - Chat interface */}
               <div className="lg:col-span-7">
                 <ChatInterface 
                   messages={messages} 
@@ -92,7 +85,6 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad }) => {
                 />
               </div>
               
-              {/* Right side - Agent configuration */}
               <div className="lg:col-span-5">
                 <AgentConfigPanel 
                   agentName={agentName}
@@ -107,33 +99,27 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad }) => {
           </TabsContent>
           
           <TabsContent value="templates" className="mt-6">
-            {/* Voice-enabled template agents */}
             <VoiceAgentBuilder onSelectTemplate={handleTemplateSelected} />
           </TabsContent>
           
           <TabsContent value="saved" className="mt-6">
-            {/* Saved agents tab */}
             <VoiceAgentBuilder onSelectTemplate={handleTemplateSelected} initialTab="saved" />
           </TabsContent>
           
           <TabsContent value="pro" className="mt-6">
-            {/* Advanced agent builder with more features */}
             <AgentBuilderPro />
           </TabsContent>
 
           <TabsContent value="voice-trigger" className="mt-6">
-            {/* Voice trigger feature */}
             <VoiceTriggerSection onTranscription={handleVoiceTranscription} />
           </TabsContent>
 
           <TabsContent value="webhook-trigger" className="mt-6">
-            {/* Webhook trigger feature */}
             <WebhookTriggerSection agentName={agentName} />
           </TabsContent>
         </Tabs>
       </div>
       
-      {/* Bottom section with call to action */}
       <DeploymentCTA />
     </div>
   );
