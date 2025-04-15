@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Bot, Copy, RefreshCw, Globe, Key, PlusCircle, Trash2, Check } from "lucide-react";
@@ -194,15 +195,15 @@ const WebhookTriggerSection: React.FC<WebhookTriggerSectionProps> = ({ agentId =
       </CardHeader>
       
       <CardContent className="p-6">
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+        <Tabs defaultValue="webhooks" className="w-full">
           <TabsList className="mb-6 bg-[#1A1F2C]/80 border border-white/10 w-full flex">
-            <TabsTrigger value="webhooks" className="flex-1">
+            <TabsTrigger value="webhooks" className="flex-1 text-white/80 data-[state=active]:text-white data-[state=active]:bg-[#9b87f5]/20">
               Webhooks
             </TabsTrigger>
-            <TabsTrigger value="logs" className="flex-1" onClick={fetchWebhookLogs}>
+            <TabsTrigger value="logs" className="flex-1 text-white/80 data-[state=active]:text-white data-[state=active]:bg-[#9b87f5]/20">
               Logs
             </TabsTrigger>
-            <TabsTrigger value="docs" className="flex-1">
+            <TabsTrigger value="docs" className="flex-1 text-white/80 data-[state=active]:text-white data-[state=active]:bg-[#9b87f5]/20">
               Documentation
             </TabsTrigger>
           </TabsList>
@@ -249,6 +250,7 @@ const WebhookTriggerSection: React.FC<WebhookTriggerSectionProps> = ({ agentId =
                         <Switch
                           checked={webhook.is_active}
                           onCheckedChange={() => toggleWebhookStatus(webhook.id, webhook.is_active)}
+                          className="bg-[#1A1F2C]/80 data-[state=checked]:bg-[#9b87f5]/50"
                         />
                       </div>
                     </div>
