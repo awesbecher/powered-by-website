@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -102,7 +103,7 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
 
   return (
     <div className="container mx-auto max-w-7xl">
-      <PageHeader />
+      <PageHeader initialLoad={initialLoad} />
       
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         <div className="lg:col-span-3">
