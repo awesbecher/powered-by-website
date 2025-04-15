@@ -62,13 +62,13 @@ const AgentEditor: React.FC<AgentEditorProps> = ({
       <div className="flex gap-3">
         <Button 
           onClick={onLaunchAgent}
-          className="bg-gradient-to-r from-[#9b87f5] to-[#8777e5] hover:from-[#8777e5] hover:to-[#7667d5]"
+          className="bg-[#2f1c4a] text-white font-bold hover:bg-[#3a2360]"
         >
           ✅ Launch Agent
         </Button>
         <Button 
           onClick={onSaveAgent} 
-          className="bg-[#1a0b2e]/60 border-white/10 hover:bg-[#2f1c4a]/60"
+          className="bg-[#1a0b2e] text-white font-bold hover:bg-[#2f1c4a]"
         >
           💾 Save Agent
         </Button>
