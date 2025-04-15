@@ -15,7 +15,7 @@ const AgentListHeader: React.FC<AgentListHeaderProps> = ({ onRefresh, isLoading 
       <Button 
         onClick={onRefresh} 
         variant="outline"
-        className="border-white/20 text-white hover:bg-white/10"
+        className="bg-[#352f49] text-white font-bold border-white/20 hover:bg-[#423a5a]"
       >
         {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Refresh"}
       </Button>
@@ -24,3 +24,4 @@ const AgentListHeader: React.FC<AgentListHeaderProps> = ({ onRefresh, isLoading 
 };
 
 export default AgentListHeader;
+
