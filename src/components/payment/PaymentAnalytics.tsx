@@ -114,7 +114,12 @@ const PaymentAnalytics = () => {
       <CardHeader>
         <CardTitle className="flex justify-between items-center">
           <span>Payment Analytics</span>
-          <Button variant="outline" size="sm" onClick={fetchAnalytics} disabled={isLoading}>
+          <Button 
+            variant="gradient" 
+            size="sm" 
+            onClick={fetchAnalytics} 
+            disabled={isLoading}
+          >
             {isLoading ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Updating...
