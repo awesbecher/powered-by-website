@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -122,7 +121,7 @@ const VoiceTrigger: React.FC<VoiceTriggerProps> = ({ onTranscription, showCompac
     await stopRecording();
   };
 
-  // Compact mode renders just the buttons for integration into other components
+  // If showCompact is true, update the button styles
   if (showCompact) {
     return (
       <div className="flex items-center gap-2">
@@ -135,8 +134,8 @@ const VoiceTrigger: React.FC<VoiceTriggerProps> = ({ onTranscription, showCompac
             onChange={handleFileUpload}
           />
           <Button 
-            variant="outline" 
-            className="border-white/20 text-white hover:bg-white/10"
+            variant="default" 
+            className="bg-[#1A1F2C] text-white font-bold hover:bg-[#2A3342]"
             disabled={isRecording || isTranscribing}
           >
             <Upload size={16} />
@@ -145,8 +144,8 @@ const VoiceTrigger: React.FC<VoiceTriggerProps> = ({ onTranscription, showCompac
         
         <Button
           onClick={isRecording ? handleStopRecording : handleStartRecording}
-          variant="outline"
-          className={`border-white/20 text-white hover:bg-white/10 ${
+          variant="default"
+          className={`bg-[#1A1F2C] text-white font-bold hover:bg-[#2A3342] ${
             isRecording ? "bg-red-500/30 hover:bg-red-500/40" : ""
           }`}
           disabled={isTranscribing}
@@ -161,8 +160,8 @@ const VoiceTrigger: React.FC<VoiceTriggerProps> = ({ onTranscription, showCompac
         {(uploadedFile || audioURL) && (
           <Button
             onClick={handleTranscribe}
-            variant="outline"
-            className="border-white/20 text-white hover:bg-white/10"
+            variant="default"
+            className="bg-[#1A1F2C] text-white font-bold hover:bg-[#2A3342]"
             disabled={isRecording || isTranscribing}
           >
             {isTranscribing ? (
@@ -176,7 +175,7 @@ const VoiceTrigger: React.FC<VoiceTriggerProps> = ({ onTranscription, showCompac
     );
   }
 
-  // Full component with card and more information
+  // For the full component, update button styles similarly
   return (
     <Card className="border border-white/10 bg-gradient-to-br from-[#1a0b2e]/70 to-[#2f1c4a]/70 shadow-xl rounded-xl overflow-hidden">
       <CardHeader className="border-b border-white/10 bg-gradient-to-r from-[#2f1c4a] to-[#1a0b2e]">
@@ -219,8 +218,8 @@ const VoiceTrigger: React.FC<VoiceTriggerProps> = ({ onTranscription, showCompac
                 disabled={isRecording || isTranscribing}
               />
               <Button 
-                variant="outline" 
-                className="border-white/20 text-white hover:bg-white/10"
+                variant="default" 
+                className="bg-[#1A1F2C] text-white font-bold hover:bg-[#2A3342]"
                 disabled={isRecording || isTranscribing}
               >
                 <Upload className="mr-2 h-4 w-4" />
@@ -230,8 +229,10 @@ const VoiceTrigger: React.FC<VoiceTriggerProps> = ({ onTranscription, showCompac
 
             <Button
               onClick={isRecording ? handleStopRecording : handleStartRecording}
-              variant={isRecording ? "destructive" : "outline"}
-              className={!isRecording ? "border-white/20 text-white hover:bg-white/10" : ""}
+              variant="default"
+              className={`bg-[#1A1F2C] text-white font-bold hover:bg-[#2A3342] ${
+                isRecording ? "bg-red-500/30 hover:bg-red-500/40" : ""
+              }`}
               disabled={isTranscribing}
             >
               {isRecording ? (
@@ -250,7 +251,8 @@ const VoiceTrigger: React.FC<VoiceTriggerProps> = ({ onTranscription, showCompac
             {(uploadedFile || audioURL) && (
               <Button
                 onClick={handleTranscribe}
-                className="bg-gradient-to-r from-[#9b87f5] to-[#8777e5] hover:from-[#8777e5] hover:to-[#7667d5]"
+                variant="default"
+                className="bg-[#1A1F2C] text-white font-bold hover:bg-[#2A3342]"
                 disabled={isRecording || isTranscribing}
               >
                 {isTranscribing ? (
