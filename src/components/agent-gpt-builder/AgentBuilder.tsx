@@ -102,13 +102,17 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
     setActiveTab("configure");
   };
 
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
+  };
+
   return (
     <div className="container mx-auto max-w-7xl">
       <PageHeader initialLoad={initialLoad} />
       
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         <div className="lg:col-span-3">
-          <Tabs value={activeTab} onValueChange={setActiveTab}>
+          <Tabs value={activeTab} onValueChange={handleTabChange}>
             <TabsList className="bg-gray-900/50 border border-gray-700">
               <TabsTrigger value="configure" disabled={isConfiguring}>Configure</TabsTrigger>
               <TabsTrigger value="chat" disabled={!readyToChat}>Chat</TabsTrigger>
@@ -122,7 +126,7 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
                 agentInstructions={agentPrompt}
                 setAgentInstructions={setAgentPrompt}
                 activeTab="instructions"
-                setActiveTab={setActiveTab}
+                setActiveTab={(tab) => {}}
                 onCreateAgent={handleAgentCreation}
               />
             </TabsContent>
