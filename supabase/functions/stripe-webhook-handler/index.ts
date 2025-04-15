@@ -82,18 +82,12 @@ serve(async (req) => {
         const priceId = subscription.items.data[0].price.id;
         
         // Map price ID to plan name
-        let plan;
-        switch (priceId) {
-          case "price_1RDx8YP1PhXRWWHLMyCZSDJf":
-            plan = "starter";
-            break;
-          case "price_1RDx9BP1PhXRWWHLJyNv8nuW":
-            plan = "growth";
-            break;
-          default:
-            // If we can't identify the price, default to starter
-            plan = "starter";
-        }
+        const planMap = {
+          "price_1RDx8YP1PhXRWWHLMyCZSDJf": "starter",
+          "price_1RDx9BP1PhXRWWHLJyNv8nuW": "growth",
+        };
+
+        const plan = planMap[priceId] || "starter"; // Default to starter if price not found
 
         // Update user profile with plan
         const { error: profileError } = await supabase
@@ -106,6 +100,8 @@ serve(async (req) => {
 
         if (profileError) {
           console.error("Error updating user profile:", profileError);
+        } else {
+          console.log(`Updated user ${userId} to plan: ${plan}`);
         }
 
         break;
@@ -140,14 +136,16 @@ serve(async (req) => {
           
           if (updateError) {
             console.error("Error downgrading user plan:", updateError);
+          } else {
+            console.log(`Downgraded user ${userId} to free plan due to subscription cancellation`);
           }
         }
         
         break;
       }
       
-      // Handle other relevant events
-      // ...
+      default:
+        console.log(`Unhandled event type: ${event.type}`);
     }
 
     return new Response(JSON.stringify({ received: true }), {
