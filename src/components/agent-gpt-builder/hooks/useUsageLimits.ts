@@ -1,193 +1,168 @@
-import { useState, useEffect } from 'react';
-import { supabase } from '@/integrations/supabase/client';
-import { useToast } from '@/hooks/use-toast';
 
-export const useUsageLimits = () => {
-  const [usage, setUsage] = useState({ agents_created: 0, messages_sent: 0 });
-  const [limits, setLimits] = useState({ agents: 1, messages: 100 });
-  const [plan, setPlan] = useState('free');
-  const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState<{ id: string } | null>(null);
+import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
+
+const PLAN_LIMITS = {
+  free: { agents: 1, messages: 100 },
+  starter: { agents: 5, messages: 1000 },
+  growth: { agents: 15, messages: 2500 },
+  scale: { agents: Infinity, messages: Infinity },
+};
+
+interface UsageLimits {
+  isLoading: boolean;
+  canCreateAgent: boolean;
+  canSendMessage: boolean;
+  incrementAgentCount: () => Promise<boolean>;
+  incrementMessageCount: () => Promise<boolean>;
+  usageData: {
+    plan: string;
+    agentsCreated: number;
+    messagesSent: number;
+    agentLimit: number | string;
+    messageLimit: number | string;
+  };
+}
+
+export const useUsageLimits = (userId: string | undefined | null): UsageLimits => {
+  const [plan, setPlan] = useState("free");
+  const [agentsCreated, setAgentsCreated] = useState(0);
+  const [messagesSent, setMessagesSent] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
 
+  const agentLimit = plan ? PLAN_LIMITS[plan as keyof typeof PLAN_LIMITS]?.agents || 0 : 0;
+  const messageLimit = plan ? PLAN_LIMITS[plan as keyof typeof PLAN_LIMITS]?.messages || 0 : 0;
+
+  const canCreateAgent = agentLimit === Infinity || agentsCreated < agentLimit;
+  const canSendMessage = messageLimit === Infinity || messagesSent < messageLimit;
+
   useEffect(() => {
-    const fetchUserAndUsage = async () => {
+    const fetchUsageData = async () => {
+      if (!userId) {
+        setIsLoading(false);
+        return;
+      }
+
       try {
-        // Get current user
-        const { data } = await supabase.auth.getUser();
-        if (!data?.user) {
-          setLoading(false);
-          return;
-        }
-
-        setUser(data.user);
-
-        // Get user's plan
+        // Fetch user's plan
         const { data: profileData, error: profileError } = await supabase
-          .from('user_profiles')
-          .select('plan')
-          .eq('user_id', data.user.id)
+          .from("user_profiles")
+          .select("plan")
+          .eq("user_id", userId)
           .single();
-
-        if (profileError && profileError.code !== 'PGRST116') { // PGRST116 is "no rows returned"
-          console.error('Error fetching user plan:', profileError);
+        
+        if (profileError) {
+          console.error("Error fetching user profile:", profileError);
+          // If there's no profile, we'll assume they're on the free plan
         }
-
-        // Set plan (default to 'free' if not found)
-        const userPlan = profileData?.plan || 'free';
+        
+        const userPlan = profileData?.plan || "free";
         setPlan(userPlan);
-
-        // Set limits based on plan
-        const PLAN_LIMITS: Record<string, { agents: number, messages: number }> = {
-          free: { agents: 1, messages: 100 },
-          starter: { agents: 5, messages: 1000 },
-          growth: { agents: 15, messages: 2500 },
-          scale: { agents: Infinity, messages: Infinity },
-        };
-
-        setLimits(PLAN_LIMITS[userPlan] || PLAN_LIMITS.free);
 
         // Fetch usage data
         const { data: usageData, error: usageError } = await supabase
-          .from('usage_limits')
-          .select('agents_created, messages_sent')
-          .eq('user_id', data.user.id)
+          .from("usage_limits")
+          .select("*")
+          .eq("user_id", userId)
           .single();
 
-        if (usageError && usageError.code !== 'PGRST116') {
-          console.error('Error fetching usage data:', usageError);
+        if (usageError) {
+          console.error("Error fetching usage data:", usageError);
+          // If there's no usage record, we'll assume they haven't used anything yet
         }
 
-        // Set usage (default to 0 if not found)
-        setUsage(usageData || { agents_created: 0, messages_sent: 0 });
+        if (usageData) {
+          setAgentsCreated(usageData.agents_created || 0);
+          setMessagesSent(usageData.messages_sent || 0);
+        }
       } catch (error) {
-        console.error('Error in fetchUserAndUsage:', error);
+        console.error("Error fetching usage data:", error);
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
 
-    fetchUserAndUsage();
-  }, []);
+    fetchUsageData();
+  }, [userId]);
 
-  // Check if user is within agent creation limit
-  const checkAgentCreationLimit = (): boolean => {
-    if (!user) {
+  const incrementAgentCount = async (): Promise<boolean> => {
+    if (!userId) return false;
+    if (!canCreateAgent) {
       toast({
-        title: 'Authentication required',
-        description: 'Please sign in to create an agent.',
-        variant: 'destructive',
+        title: "Agent limit reached",
+        description: "Upgrade your plan to create more agents",
+        variant: "destructive",
       });
       return false;
     }
 
-    if (usage.agents_created >= limits.agents) {
-      toast({
-        title: 'Agent limit reached',
-        description: `Your ${plan} plan is limited to ${limits.agents} ${limits.agents === 1 ? 'agent' : 'agents'}. Please upgrade your plan to create more agents.`,
-        variant: 'destructive',
-      });
-      return false;
-    }
-
-    // Increment agent count in DB
-    incrementAgentCount();
-    return true;
-  };
-
-  // Check if user is within message limit
-  const checkMessageLimit = (checkOnly: boolean = false): boolean => {
-    if (!user) {
-      toast({
-        title: 'Authentication required',
-        description: 'Please sign in to interact with agents.',
-        variant: 'destructive',
-      });
-      return false;
-    }
-
-    if (usage.messages_sent >= limits.messages) {
-      toast({
-        title: 'Message limit reached',
-        description: `Your ${plan} plan is limited to ${limits.messages} messages per month. Please upgrade your plan to send more messages.`,
-        variant: 'destructive',
-      });
-      return false;
-    }
-
-    // If we're just checking (not sending a message), return true
-    if (checkOnly) return true;
-
-    // Otherwise increment message count in DB
-    incrementMessageCount();
-    return true;
-  };
-
-  // Increment agent count
-  const incrementAgentCount = async () => {
-    if (!user) return;
-
-    const newCount = usage.agents_created + 1;
-    
-    // Update local state immediately for better UX
-    setUsage(prev => ({ ...prev, agents_created: newCount }));
-    
     try {
-      // Update the database count
+      const newCount = agentsCreated + 1;
+      
       const { error } = await supabase
-        .from('usage_limits')
-        .upsert(
-          { 
-            user_id: user.id, 
-            agents_created: newCount,
-            messages_sent: usage.messages_sent,
-            updated_at: new Date().toISOString()
-          },
-          { onConflict: 'user_id' }
-        );
+        .from("usage_limits")
+        .upsert({ 
+          user_id: userId, 
+          agents_created: newCount,
+          messages_sent: messagesSent
+        });
 
-      if (error) {
-        console.error('Error updating agent count:', error);
-      }
+      if (error) throw error;
+      
+      setAgentsCreated(newCount);
+      return true;
     } catch (error) {
-      console.error('Error in incrementAgentCount:', error);
+      console.error("Error updating agent count:", error);
+      return false;
     }
   };
 
-  // Increment message count
-  const incrementMessageCount = async () => {
-    if (!user) return;
+  const incrementMessageCount = async (): Promise<boolean> => {
+    if (!userId) return false;
+    if (!canSendMessage) {
+      toast({
+        title: "Message limit reached",
+        description: "Upgrade your plan to send more messages",
+        variant: "destructive",
+      });
+      return false;
+    }
 
-    const newCount = usage.messages_sent + 1;
-    
-    // Update local state immediately for better UX
-    setUsage(prev => ({ ...prev, messages_sent: newCount }));
-    
     try {
-      // Update the database count
+      const newCount = messagesSent + 1;
+      
       const { error } = await supabase
-        .from('usage_limits')
-        .upsert(
-          { 
-            user_id: user.id, 
-            messages_sent: newCount,
-            agents_created: usage.agents_created,
-            updated_at: new Date().toISOString()
-          },
-          { onConflict: 'user_id' }
-        );
+        .from("usage_limits")
+        .upsert({ 
+          user_id: userId, 
+          agents_created: agentsCreated,
+          messages_sent: newCount
+        });
 
-      if (error) {
-        console.error('Error updating message count:', error);
-      }
+      if (error) throw error;
+      
+      setMessagesSent(newCount);
+      return true;
     } catch (error) {
-      console.error('Error in incrementMessageCount:', error);
+      console.error("Error updating message count:", error);
+      return false;
     }
   };
 
   return {
-    usageLimits: { usage, limits, plan, loading },
-    checkAgentCreationLimit,
-    checkMessageLimit,
+    isLoading,
+    canCreateAgent,
+    canSendMessage,
+    incrementAgentCount,
+    incrementMessageCount,
+    usageData: {
+      plan,
+      agentsCreated,
+      messagesSent,
+      agentLimit: agentLimit === Infinity ? "∞" : agentLimit,
+      messageLimit: messageLimit === Infinity ? "∞" : messageLimit,
+    }
   };
 };

@@ -8,7 +8,7 @@ import { Bot, Send, User, Sparkles } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 
 interface Message {
-  role: 'user' | 'assistant';
+  role: "user" | "assistant" | "system";
   content: string;
 }
 
@@ -33,7 +33,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
 }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [isScrolling, setIsScrolling] = useState(false);
-
+  
   // Scroll to bottom when new messages arrive
   useEffect(() => {
     if (!isScrolling && messagesEndRef.current) {
@@ -46,21 +46,21 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
       handleSendMessage(inputMessage);
     }
   };
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && inputMessage.trim() && !isLoading && !disabled) {
       handleSendMessage(inputMessage);
     }
   };
-
+  
   const handleScrollStart = () => {
     setIsScrolling(true);
   };
-
+  
   const handleScrollEnd = () => {
     setIsScrolling(false);
   };
-
+  
   const addStarterPrompt = () => {
     setInputMessage(getStarterPrompt());
   };
@@ -100,32 +100,30 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
             <div className="space-y-6">
               {messages.map((message, index) => (
                 <div 
-                  key={index}
-                  className={`flex gap-3 ${message.role === 'assistant' ? "items-start" : "items-start"}`}
+                  key={index} 
+                  className={`flex gap-3 ${
+                    message.role === 'assistant' ? "items-start" : "items-start"
+                  }`}
                 >
-                  <div 
-                    className={`rounded-full p-1.5 h-8 w-8 flex items-center justify-center flex-shrink-0 ${
-                      message.role === 'assistant' 
-                        ? "bg-purple-900/40 text-purple-300" 
-                        : "bg-blue-900/40 text-blue-300"
-                    }`}
-                  >
+                  <div className={`rounded-full p-1.5 h-8 w-8 flex items-center justify-center flex-shrink-0 ${
+                    message.role === 'assistant' 
+                      ? "bg-purple-900/40 text-purple-300" 
+                      : "bg-blue-900/40 text-blue-300"
+                  }`}>
                     {message.role === 'assistant' ? <Bot size={16} /> : <User size={16} />}
                   </div>
-                  <div 
-                    className={`rounded-xl py-2 px-3 max-w-[85%] ${
-                      message.role === 'assistant' 
-                        ? "bg-gray-800/50" 
-                        : "bg-purple-900/25"
-                    }`}
-                  >
+                  <div className={`rounded-xl py-2 px-3 max-w-[85%] ${
+                    message.role === 'assistant' 
+                      ? "bg-gray-800/50" 
+                      : "bg-purple-900/25"
+                  }`}>
                     <ReactMarkdown className="prose prose-invert max-w-none prose-p:leading-relaxed prose-pre:p-2 prose-pre:rounded prose-pre:bg-gray-900">
                       {message.content}
                     </ReactMarkdown>
                   </div>
                 </div>
               ))}
-              <div ref={messagesEndRef}></div>
+              <div ref={messagesEndRef} />
             </div>
           )}
         </ScrollArea>
@@ -141,12 +139,12 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
               disabled={isLoading || disabled}
             />
             <Button 
-              onClick={handleSend}
-              disabled={isLoading || !inputMessage.trim() || disabled}
+              onClick={handleSend} 
+              disabled={isLoading || !inputMessage.trim() || disabled} 
               className="bg-purple-700 hover:bg-purple-600"
             >
               {isLoading ? (
-                <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
+                <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
               ) : (
                 <Send className="h-4 w-4" />
               )}
@@ -154,7 +152,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
           </div>
           {disabled && (
             <p className="text-amber-500 text-xs mt-2">
-              You've reached your message limit. Please
+              You've reached your message limit. Please 
               <a href="/pricing" className="underline mx-1">upgrade your plan</a>
               to continue.
             </p>
