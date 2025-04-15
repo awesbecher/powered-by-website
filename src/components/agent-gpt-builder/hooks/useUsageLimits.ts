@@ -47,21 +47,29 @@ export const useUsageLimits = (userId: string | undefined | null): UsageLimits =
 
       try {
         // Fetch user's plan
-        const { data: profileData } = await supabase
+        const { data: profileData, error: profileError } = await supabase
           .from("user_profiles")
           .select("plan")
           .eq("user_id", userId)
           .single();
         
+        if (profileError && profileError.code !== 'PGRST116') {
+          console.error("Error fetching user profile:", profileError);
+        }
+        
         const userPlan = profileData?.plan || "free";
         setPlan(userPlan);
 
         // Fetch usage data
-        const { data: usageData } = await supabase
+        const { data: usageData, error: usageError } = await supabase
           .from("usage_limits")
           .select("*")
           .eq("user_id", userId)
           .single();
+
+        if (usageError && usageError.code !== 'PGRST116') {
+          console.error("Error fetching usage data:", usageError);
+        }
 
         if (usageData) {
           setAgentsCreated(usageData.agents_created || 0);
@@ -82,7 +90,7 @@ export const useUsageLimits = (userId: string | undefined | null): UsageLimits =
     if (!canCreateAgent) {
       toast({
         title: "Agent limit reached",
-        description: "Upgrade your plan to create more agents",
+        description: `You've reached your plan's limit of ${agentLimit === Infinity ? '∞' : agentLimit} agents. Upgrade your plan to create more agents.`,
         variant: "destructive",
       });
       return false;
@@ -114,7 +122,7 @@ export const useUsageLimits = (userId: string | undefined | null): UsageLimits =
     if (!canSendMessage) {
       toast({
         title: "Message limit reached",
-        description: "Upgrade your plan to send more messages",
+        description: `You've reached your plan's limit of ${messageLimit === Infinity ? '∞' : messageLimit} messages. Upgrade your plan to send more messages.`,
         variant: "destructive",
       });
       return false;

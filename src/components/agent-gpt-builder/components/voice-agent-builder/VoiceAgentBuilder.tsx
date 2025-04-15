@@ -1,36 +1,26 @@
-
-import React, { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import React, { useState } from "react";
+import { useVoiceAgent } from "./hooks/useVoiceAgent";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import VoiceAgentTemplates from "./VoiceAgentTemplates";
 import AgentEditor from "./AgentEditor";
 import AgentChat from "./AgentChat";
-import { useVoiceAgent } from "./hooks/useVoiceAgent";
-import { agentTemplates } from "./data/templateData";
-import { AgentTemplatesKey } from "./data/templateData";
 import SavedAgentList from "./SavedAgentList";
+import { Card, CardContent } from "@/components/ui/card";
 import MultiAgentManager from "./MultiAgentManager";
-import { supabase } from "@/integrations/supabase/client";
 
 interface VoiceAgentBuilderProps {
-  onSelectTemplate?: (template: any) => void;
+  onSelectTemplate: (template: { name: string; prompt: string }) => void;
   initialTab?: string;
+  checkAgentLimits?: () => Promise<boolean>;
+  disableCreation?: boolean;
 }
 
-const VoiceAgentBuilder: React.FC<VoiceAgentBuilderProps> = ({ onSelectTemplate, initialTab }) => {
-  const [user, setUser] = useState<{ id: string } | null>(null);
-
-  // Fetch user on component mount
-  useEffect(() => {
-    const fetchUser = async () => {
-      const { data } = await supabase.auth.getUser();
-      if (data?.user) {
-        setUser(data.user);
-      }
-    };
-    
-    fetchUser();
-  }, []);
-
+const VoiceAgentBuilder: React.FC<VoiceAgentBuilderProps> = ({ 
+  onSelectTemplate, 
+  initialTab,
+  checkAgentLimits,
+  disableCreation 
+}) => {
   const {
     selectedTemplate,
     setSelectedTemplate,
@@ -55,75 +45,105 @@ const VoiceAgentBuilder: React.FC<VoiceAgentBuilderProps> = ({ onSelectTemplate,
     initialTabOverride
   } = useVoiceAgent(initialTab);
 
-  // Handle template selection from the grid
-  const handleTemplateSelect = (key: string) => {
-    const template = agentTemplates[key as AgentTemplatesKey];
-    setEditableTemplate(template);
-    
-    if (onSelectTemplate) {
-      onSelectTemplate(template);
-    }
+  const handleTemplateSelect = (template: any) => {
+    setSelectedTemplate(template);
+    onSelectTemplate({ name: template.name, prompt: template.prompt });
   };
 
   return (
-    <Card className="border border-white/10 bg-gradient-to-br from-[#1a0b2e]/70 to-[#2f1c4a]/70 shadow-xl rounded-xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.7s' }}>
-      <CardHeader className="border-b border-white/10 bg-gradient-to-r from-[#2f1c4a] to-[#1a0b2e]">
-        <CardTitle className="text-white flex items-center gap-2">
-          <span className="bg-[#9b87f5]/20 p-1 rounded-md">🎙️</span>
-          Voice GPT Agent Builder
-        </CardTitle>
-      </CardHeader>
-      
-      <CardContent className="p-6">
-        {/* Template selection grid */}
-        {!selectedTemplate && !editableTemplate && initialTabOverride !== "saved" && initialTabOverride !== "embeds" && (
-          <VoiceAgentTemplates 
-            onSelectTemplate={handleTemplateSelect}
-          />
-        )}
-        
-        {/* Saved agent selection grid */}
-        {!selectedTemplate && !editableTemplate && initialTabOverride === "saved" && (
-          <SavedAgentList 
-            user={user}
-            onLoadAgent={loadSavedAgent}
-            onRefresh={fetchSavedAgents}
-          />
-        )}
+    <Card className="border border-gray-700 bg-gray-900 shadow-xl rounded-xl">
+      <CardContent className="p-4">
+        <Tabs defaultValue={initialTabOverride || "templates"} className="w-full">
+          <TabsList className="max-w-md mx-auto">
+            <TabsTrigger value="templates">Templates</TabsTrigger>
+            <TabsTrigger value="editor">Editor</TabsTrigger>
+            <TabsTrigger value="chat">Chat</TabsTrigger>
+            <TabsTrigger value="saved">My Agents</TabsTrigger>
+            <TabsTrigger value="embeds">Embeds</TabsTrigger>
+            <TabsTrigger value="multi">Multi Agent</TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="templates">
+            <VoiceAgentTemplates onSelect={handleTemplateSelect} />
+          </TabsContent>
+          
+          <TabsContent value="editor">
+            <AgentEditor
+              selectedTemplate={editableTemplate}
+              onUpdateTemplate={setEditableTemplate}
+              onLaunch={launchAgent}
+              onSave={async () => {
+                if (checkAgentLimits && disableCreation) {
+                  return;
+                }
+                if (checkAgentLimits) {
+                  const canProceed = await checkAgentLimits();
+                  if (!canProceed) return;
+                }
+                await saveAgent();
+                await fetchSavedAgents();
+              }}
+              disableCreation={disableCreation}
+            />
+          </TabsContent>
+          
+          <TabsContent value="chat">
+            <AgentChat
+              messages={messages}
+              userInput={userInput}
+              setUserInput={setUserInput}
+              loading={loading}
+              isListening={isListening}
+              selectedLanguage={selectedLanguage}
+              setSelectedLanguage={setSelectedLanguage}
+              handleSendMessage={handleSendMessage}
+              startVoiceInput={startVoiceInput}
+              generateEmbedCode={generateEmbedCode}
+              generateOpenAPISpec={generateOpenAPISpec}
+            />
+          </TabsContent>
 
-        {/* MultiAgentManager for embeds */}
-        {!selectedTemplate && !editableTemplate && initialTabOverride === "embeds" && (
-          <MultiAgentManager user={user} />
-        )}
-        
-        {/* Agent editor */}
-        {editableTemplate && (
-          <AgentEditor
-            editableTemplate={editableTemplate}
-            setEditableTemplate={setEditableTemplate}
-            selectedLanguage={selectedLanguage}
-            setSelectedLanguage={setSelectedLanguage}
-            onLaunchAgent={launchAgent}
-            onSaveAgent={saveAgent}
-          />
-        )}
-        
-        {/* Agent chat interface */}
-        {selectedTemplate && (
-          <AgentChat 
-            selectedTemplate={selectedTemplate}
-            messages={messages}
-            userInput={userInput}
-            setUserInput={setUserInput}
-            loading={loading}
-            isListening={isListening}
-            onSendMessage={handleSendMessage}
-            onStartVoiceInput={startVoiceInput}
-            onGenerateEmbedCode={generateEmbedCode}
-            onGenerateOpenAPISpec={generateOpenAPISpec}
-            onBack={() => setSelectedTemplate(null)}
-          />
-        )}
+          <TabsContent value="saved">
+            <SavedAgentList
+              savedAgents={savedAgents}
+              onSelectAgent={loadSavedAgent}
+            />
+          </TabsContent>
+
+          <TabsContent value="embeds">
+            <div>
+              <h3 className="text-xl font-semibold mb-4 text-white">Embed Your Agent</h3>
+              {selectedTemplate ? (
+                <>
+                  <p className="text-gray-400 mb-2">Use the code below to embed this agent on your website:</p>
+                  <textarea
+                    readOnly
+                    value={`<iframe src="YOUR_URL_HERE" width="300" height="400"></iframe>`}
+                    className="w-full h-32 bg-gray-800 border-gray-700 rounded-md p-2 text-gray-200"
+                  />
+                  <button
+                    onClick={generateEmbedCode}
+                    className="bg-purple-700 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded mt-2"
+                  >
+                    Generate Embed Code
+                  </button>
+                  <button
+                    onClick={generateOpenAPISpec}
+                    className="bg-purple-700 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded mt-2"
+                  >
+                    Generate OpenAPI Spec
+                  </button>
+                </>
+              ) : (
+                <p className="text-gray-400">Select a template to generate embed code.</p>
+              )}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="multi">
+            <MultiAgentManager />
+          </TabsContent>
+        </Tabs>
       </CardContent>
     </Card>
   );
