@@ -15,7 +15,7 @@ export const navItems: NavItemWithChildren[] = [
       { name: "Email Agent", path: "/email-agent" },
       { name: "Text Agent", path: "/text-agent" },
       { name: "Virtual SE", path: "https://www.getvirtual.se", isExternal: true },
-      { name: "OutboundAI", path: "/outbound-ai" },
+      { name: "OutboundAI", path: "https://tryoutbound.ai", isExternal: true },
     ]
   },
   { name: "Pricing", path: "/pricing" }, // Changed from "Demos" to "Pricing"
