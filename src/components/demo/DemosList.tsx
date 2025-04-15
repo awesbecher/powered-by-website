@@ -1,18 +1,7 @@
 
 import React from 'react';
 import { ServiceCard } from "@/components/home/ServiceCard";
-
-// Update the interface to match the props expected by ServiceCard and the data in services.ts
-export interface Service {
-  title: string;
-  description: string;
-  icon?: React.ReactNode;
-  iconPath?: string; // Make iconPath optional to match ServiceCard props
-  link?: string;
-  buttonText?: string;
-  isNew?: boolean;
-  isEnterprise?: boolean;
-}
+import { Service } from "@/data/services";
 
 export const DemosList = () => {
   // Import services directly in the component to avoid circular dependencies
@@ -27,11 +16,9 @@ export const DemosList = () => {
               key={service.title}
               title={service.title}
               description={service.description}
-              iconPath={service.iconPath}
+              logo={service.iconPath}
+              category={service.category || "AI Agent Demo"}
               link={service.link}
-              buttonText={service.buttonText}
-              isNew={service.isNew}
-              isEnterprise={service.isEnterprise}
             />
           ))}
         </div>

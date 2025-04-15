@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
@@ -34,7 +33,6 @@ const Demo = () => {
     setInitialLoad(false);
   }, [location]);
 
-  // Make sure this function is being called on button click
   const handleOpenDialog = () => {
     console.log("Opening voice dialog");
     setShowDialog(true);
@@ -83,7 +81,6 @@ const Demo = () => {
       console.error("Error ending call:", error);
     } finally {
       setIsCallActive(false);
-      setShowDialog(false);
     }
   };
 
@@ -139,7 +136,7 @@ const Demo = () => {
       </div>
 
       {/* Voice Chat Dialog */}
-      <Dialog open={showDialog} onOpenChange={setShowDialog}>
+      <Dialog open={showDialog} onOpenChange={handleCloseDialog}>
         <DialogContent className="bg-[#222222] text-white border-gray-800 sm:max-w-md">
           <div className="flex flex-col items-center space-y-4">
             <Avatar className="w-32 h-32 mx-auto mb-4">
