@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +8,7 @@ import { HeroSection } from "@/components/voice-chat/page-sections/HeroSection";
 import { FeaturesSection } from "@/components/voice-chat/page-sections/FeaturesSection";
 import { BenefitsSection } from "@/components/voice-chat/page-sections/BenefitsSection";
 import { FAQSection } from "@/components/voice-chat/page-sections/FAQSection";
-import { ClosingCTA } from "@/components/home/ClosingCTA";
+import { FinalCTASection } from "@/components/voice-chat/page-sections/FinalCTASection";
 import { properties } from "@/data/properties";
 import { forcePrefetchImages, addCSSImagePreloading } from "@/components/voice-chat/utils/imageUtils";
 
@@ -35,9 +36,11 @@ const AIVoiceChat = () => {
     // Set to false immediately to avoid any initial load animation
     setInitialLoad(false);
     
-    // Load Calendly script for the CTA button
+    // Note: We're removing the Calendly script loading as we're now using Cal.com instead
+    
+    // Load Cal.com script for all Cal.com buttons on the page
     const scriptElement = document.createElement('script');
-    scriptElement.src = 'https://assets.calendly.com/assets/external/widget.js';
+    scriptElement.src = 'https://cal.com/embed.js';
     scriptElement.async = true;
     document.body.appendChild(scriptElement);
     
@@ -46,14 +49,6 @@ const AIVoiceChat = () => {
       if (document.body.contains(scriptElement)) {
         document.body.removeChild(scriptElement);
       }
-      
-      // Remove any Calendly badges that might have been created
-      const badges = document.querySelectorAll('.calendly-badge-widget');
-      badges.forEach(badge => {
-        if (badge.parentNode) {
-          badge.parentNode.removeChild(badge);
-        }
-      });
     };
   }, []);
 
@@ -68,11 +63,7 @@ const AIVoiceChat = () => {
       <FeaturesSection />
       <BenefitsSection />
       <FAQSection />
-      <ClosingCTA 
-        customHeading="Ready to Transform Your Website With AI Voice Chat?"
-        customButtonText="Get Started"
-        useCalendly={true}
-      />
+      <FinalCTASection handleContact={handleContact} />
       <Footer />
     </div>
   );
