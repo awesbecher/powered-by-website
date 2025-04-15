@@ -2,14 +2,14 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Loader2, Send } from "lucide-react";
+import { SendIcon, Mic } from "lucide-react";
 
 interface ChatInputAreaProps {
   userInput: string;
   setUserInput: (input: string) => void;
   loading: boolean;
   isListening: boolean;
-  onSendMessage: () => void;
+  onSendMessage: (input: string) => void;
   onStartVoiceInput: () => void;
 }
 
@@ -28,23 +28,25 @@ const ChatInputArea: React.FC<ChatInputAreaProps> = ({
           className="bg-[#1a0b2e]/40 border-white/10 text-white"
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
-          placeholder="Type a message..."
+          placeholder="Type your message or use the mic..."
           onKeyDown={(e) => {
             if (e.key === "Enter" && !e.shiftKey) {
               e.preventDefault();
-              onSendMessage();
+              if (userInput.trim()) {
+                onSendMessage(userInput);
+              }
             }
           }}
         />
         <Button 
-          onClick={onSendMessage} 
+          onClick={() => onSendMessage(userInput)} 
           disabled={loading || !userInput}
           className="bg-gradient-to-r from-[#9b87f5] to-[#8777e5] hover:from-[#8777e5] hover:to-[#7667d5] text-white"
         >
           {loading ? (
-            <Loader2 className="h-4 w-4 animate-spin" />
+            <div className="h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-r-transparent" />
           ) : (
-            <Send size={16} strokeWidth={3} className="text-white" />
+            <SendIcon size={16} />
           )}
         </Button>
         <Button 
@@ -69,4 +71,3 @@ const ChatInputArea: React.FC<ChatInputAreaProps> = ({
 };
 
 export default ChatInputArea;
-
