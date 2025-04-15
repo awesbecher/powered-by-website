@@ -1,5 +1,5 @@
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { openaiService, ChatMessage } from "@/services/openaiService";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -11,16 +11,30 @@ export const useAgentTester = (agentName: string, agentInstructions: string) => 
   const { toast } = useToast();
   const initializedRef = useRef(false);
 
-  // Initialize the system message ONLY ONCE, not on every render
-  if (agentInstructions && !initializedRef.current) {
-    setMessages([{ role: "system", content: agentInstructions }]);
-    initializedRef.current = true;
-  }
+  // Initialize or update the system message when instructions change
+  useEffect(() => {
+    if (!agentInstructions) return;
+    
+    if (!initializedRef.current) {
+      // First initialization
+      setMessages([{ role: "system", content: agentInstructions }]);
+      initializedRef.current = true;
+    } else {
+      // Update the system message when instructions change
+      setMessages(prev => {
+        if (prev.length > 0 && prev[0].role === "system") {
+          return [{ role: "system", content: agentInstructions }, ...prev.slice(1)];
+        }
+        return [{ role: "system", content: agentInstructions }, ...prev];
+      });
+    }
+  }, [agentInstructions]);
 
   const handleSendMessage = async () => {
     if (!userInput || !agentInstructions) return;
 
-    const updatedMessages = [...messages, { role: "user" as const, content: userInput }];
+    const userMessage: ChatMessage = { role: "user", content: userInput };
+    const updatedMessages = [...messages, userMessage];
     setMessages(updatedMessages);
     setUserInput("");
     setLoading(true);

@@ -32,9 +32,9 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
   };
 
   const handleTestAgentClick = () => {
-    if (onTestAgent) onTestAgent();
     setShowTester(true);
     setActiveTab("test");
+    if (onTestAgent) onTestAgent();
   };
 
   return (
