@@ -24,7 +24,10 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
   
   // Main builder state
   const [builderTab, setBuilderTab] = useState("configure");
+  // Separate state for tracking if the chat is ready
   const [readyToChat, setReadyToChat] = useState(false);
+  // Separate state for tracking configuration state
+  const [isConfiguring, setIsConfiguring] = useState(false);
   
   const {
     agentName,
@@ -39,8 +42,6 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
     setInputMessage,
     isLoading,
     setIsLoading,
-    isConfiguring,
-    setIsConfiguring,
     handleSendMessage,
     getStarterPrompt
   } = useAgentBuilder();
@@ -113,11 +114,11 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
       });
       return;
     }
-
+    
     setIsConfiguring(true);
     setReadyToChat(true);
   };
-
+  
   return (
     <div className="container mx-auto max-w-7xl">
       <PageHeader initialLoad={initialLoad} />

@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
@@ -25,17 +25,21 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
 }) => {
   // Internal tab management - completely isolated from parent component
   const [activeTab, setActiveTab] = useState("instructions");
-  const [showAgentTester, setShowAgentTester] = useState(false);
+  const [showTester, setShowTester] = useState(false);
 
-  const handleTestAgent = () => {
-    setActiveTab("test");
-    setShowAgentTester(true);
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
+  };
+
+  const handleTestAgentClick = () => {
     if (onTestAgent) onTestAgent();
+    setShowTester(true);
+    setActiveTab("test");
   };
 
   return (
     <div className="space-y-6 transition-all duration-300">
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+      <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
         <TabsList className="w-full bg-gradient-to-r from-[#2f1c4a]/60 to-[#1a0b2e]/60 border border-white/10 rounded-xl overflow-hidden">
           <TabsTrigger
             value="instructions"
@@ -94,7 +98,7 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
                 </Button>
                 <Button 
                   className="flex-1 bg-gradient-to-r from-[#9b87f5] to-[#8777e5] hover:from-[#8777e5] hover:to-[#7667d5] text-white shadow-lg shadow-[#9b87f5]/20"
-                  onClick={handleTestAgent}
+                  onClick={handleTestAgentClick}
                 >
                   Test Your Agent
                 </Button>
@@ -104,7 +108,7 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
         </TabsContent>
 
         <TabsContent value="test" className="border-none mt-6 p-0">
-          {showAgentTester && (
+          {showTester && (
             <AgentTester
               agentName={agentName}
               agentInstructions={agentInstructions}
