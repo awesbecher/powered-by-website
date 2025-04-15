@@ -122,6 +122,7 @@ export function useVoiceAgent(initialTab?: string) {
     savedAgents,
     fetchSavedAgents,
     loadSavedAgent,
-    initialTabOverride
+    initialTabOverride,
+    setInitialTabOverride
   };
 }
