@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -549,7 +548,7 @@ const AgentBuilderPro: React.FC = () => {
                     onClick={fetchLogs} 
                     variant="outline" 
                     size="sm"
-                    className="border-white/20 text-white hover:bg-white/10"
+                    className="bg-[#1A1F2C] text-white font-bold border-white/20 hover:bg-[#2A3342]"
                   >
                     <BarChart2 className="mr-2 h-4 w-4" />
                     Refresh
