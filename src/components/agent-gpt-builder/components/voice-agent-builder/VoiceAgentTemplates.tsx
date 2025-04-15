@@ -10,7 +10,7 @@ interface VoiceAgentTemplatesProps {
 
 const VoiceAgentTemplates: React.FC<VoiceAgentTemplatesProps> = ({ onSelectTemplate }) => {
   return (
-    <div>
+    <div className="bg-[#1A1F2C]/20 p-6 rounded-lg">
       <p className="text-white/80 mb-4">Select a template to customize your voice agent:</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {Object.entries(agentTemplates).map(([key, template]) => (
