@@ -42,7 +42,6 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
           <TabsTrigger
             value="test"
             className="w-full data-[state=active]:bg-[#9b87f5]/20 data-[state=active]:text-white text-gray-300"
-            onClick={() => setShowAgentTester(true)}
           >
             Test & Deploy
           </TabsTrigger>
