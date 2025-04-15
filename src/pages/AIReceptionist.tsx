@@ -2,7 +2,6 @@
 import React from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import { HeroSection as VoiceChatHeroSection } from '@/components/voice-chat/page-sections/HeroSection';
 
 const AIReceptionist = () => {
   return (
