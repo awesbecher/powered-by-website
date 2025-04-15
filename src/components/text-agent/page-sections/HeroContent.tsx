@@ -1,7 +1,6 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Tv, Mic } from "lucide-react";
+import { ArrowRight, Tv, Mic, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PoweredByText } from "@/components/shared/PoweredByText";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -36,7 +35,6 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
         </ul>
       </div>
       
-      {/* "See for yourself" section with video button and new See Demo button */}
       <div className="flex flex-col items-start mb-4">
         <p className="text-gray-300 font-bold mb-1 text-left">See for yourself:</p>
         <div className="flex flex-wrap gap-3 self-start">
@@ -47,19 +45,17 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
             <Tv className="mr-2 h-5 w-5" /> Watch our intro to AI SMS-Text Agents
           </Button>
           
-          {/* Updated "See Demo" button to use Cal.com */}
           <Button 
             className="bg-transparent hover:bg-white/10 text-white px-6 py-4 text-base rounded-md flex items-center justify-center border-2 border-white"
             data-cal-namespace="get-started-with-ai-sms-text-agents"
             data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
             data-cal-config='{"layout":"month_view"}'
           >
-            <Mic className="mr-2 h-5 w-5" /> See Demo
+            <Phone className="mr-2 h-5 w-5" /> See Demo
           </Button>
         </div>
       </div>
 
-      {/* YouTube Video Dialog */}
       <Dialog open={videoOpen} onOpenChange={setVideoOpen}>
         <DialogContent className="max-w-3xl p-1 bg-black">
           <div className="aspect-video">
