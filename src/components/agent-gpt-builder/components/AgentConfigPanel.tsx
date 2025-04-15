@@ -13,6 +13,7 @@ interface AgentConfigPanelProps {
   setAgentInstructions: (instructions: string) => void;
   activeTab: string;
   setActiveTab: (tab: string) => void;
+  onCreateAgent?: () => void; 
 }
 
 const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
@@ -22,8 +23,14 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
   setAgentInstructions,
   activeTab,
   setActiveTab,
+  onCreateAgent,
 }) => {
   const [showAgentTester, setShowAgentTester] = useState(false);
+
+  const handleTestAgent = () => {
+    setActiveTab("test");
+    setShowAgentTester(true);
+  };
 
   return (
     <div className="space-y-6 transition-all duration-300">
@@ -78,15 +85,20 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
                 </p>
               </div>
 
-              <Button 
-                className="w-full bg-gradient-to-r from-[#9b87f5] to-[#8777e5] hover:from-[#8777e5] hover:to-[#7667d5] text-white shadow-lg shadow-[#9b87f5]/20"
-                onClick={() => {
-                  setActiveTab("test");
-                  setShowAgentTester(true);
-                }}
-              >
-                Test Your Agent
-              </Button>
+              <div className="flex space-x-4">
+                <Button 
+                  className="flex-1 bg-gradient-to-r from-[#9b87f5] to-[#8777e5] hover:from-[#8777e5] hover:to-[#7667d5] text-white shadow-lg shadow-[#9b87f5]/20"
+                  onClick={onCreateAgent}
+                >
+                  Create Agent
+                </Button>
+                <Button 
+                  className="flex-1 bg-gradient-to-r from-[#9b87f5] to-[#8777e5] hover:from-[#8777e5] hover:to-[#7667d5] text-white shadow-lg shadow-[#9b87f5]/20"
+                  onClick={handleTestAgent}
+                >
+                  Test Your Agent
+                </Button>
+              </div>
             </div>
           </div>
         </TabsContent>

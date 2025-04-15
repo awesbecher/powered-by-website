@@ -21,7 +21,7 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
   const [searchParams] = useSearchParams();
   const { toast } = useToast();
   const [user, setUser] = useState<{ id: string } | null>(null);
-  const [activeTab, setActiveTab] = useState("chat");
+  const [activeTab, setActiveTab] = useState("configure");
   const [readyToChat, setReadyToChat] = useState(false);
   
   const {
@@ -120,8 +120,9 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
                 setAgentName={setAgentName}
                 agentInstructions={agentPrompt}
                 setAgentInstructions={setAgentPrompt}
-                activeTab={activeTab}
-                setActiveTab={setActiveTab}
+                activeTab="instructions"
+                setActiveTab={() => {}}
+                onCreateAgent={handleAgentCreation}
               />
             </TabsContent>
             
