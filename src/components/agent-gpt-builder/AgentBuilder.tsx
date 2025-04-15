@@ -125,8 +125,6 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
                 setAgentName={setAgentName}
                 agentInstructions={agentPrompt}
                 setAgentInstructions={setAgentPrompt}
-                activeTab="instructions"
-                setActiveTab={(tab) => {}}
                 onCreateAgent={handleAgentCreation}
               />
             </TabsContent>

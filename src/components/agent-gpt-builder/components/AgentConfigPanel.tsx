@@ -11,8 +11,6 @@ interface AgentConfigPanelProps {
   setAgentName: (name: string) => void;
   agentInstructions: string;
   setAgentInstructions: (instructions: string) => void;
-  activeTab: string;
-  setActiveTab: (tab: string) => void;
   onCreateAgent?: () => void; 
 }
 
@@ -21,11 +19,10 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
   setAgentName,
   agentInstructions,
   setAgentInstructions,
-  activeTab,
-  setActiveTab,
   onCreateAgent,
 }) => {
   const [showAgentTester, setShowAgentTester] = useState(false);
+  const [activeTab, setActiveTab] = useState("instructions");
 
   const handleTestAgent = () => {
     setActiveTab("test");
@@ -34,7 +31,7 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
 
   return (
     <div className="space-y-6 transition-all duration-300">
-      <Tabs defaultValue={activeTab} onValueChange={setActiveTab} className="w-full">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="w-full bg-gradient-to-r from-[#2f1c4a]/60 to-[#1a0b2e]/60 border border-white/10 rounded-xl overflow-hidden">
           <TabsTrigger
             value="instructions"
