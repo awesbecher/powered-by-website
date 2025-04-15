@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -31,7 +30,6 @@ const PaymentAnalytics = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Format currency
   const formatCurrency = (amount: number, currency = 'usd') => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -39,13 +37,11 @@ const PaymentAnalytics = () => {
     }).format(amount);
   };
 
-  // Fetch analytics data
   const fetchAnalytics = async () => {
     setIsLoading(true);
     setError(null);
     
     try {
-      // Set date range to last 30 days
       const endDate = new Date();
       const startDate = new Date();
       startDate.setDate(startDate.getDate() - 30);
@@ -71,7 +67,6 @@ const PaymentAnalytics = () => {
     }
   };
 
-  // Initial fetch on component mount
   useEffect(() => {
     fetchAnalytics();
   }, []);
@@ -115,10 +110,11 @@ const PaymentAnalytics = () => {
         <CardTitle className="flex justify-between items-center">
           <span>Payment Analytics</span>
           <Button 
-            variant="gradient" 
+            variant="outline" 
             size="sm" 
             onClick={fetchAnalytics} 
             disabled={isLoading}
+            className="bg-[#352f49] text-white font-bold border-white/20 hover:bg-[#423a5a]"
           >
             {isLoading ? (
               <>
