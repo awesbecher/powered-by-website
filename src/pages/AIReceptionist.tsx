@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { Button } from "@/components/ui/button";
@@ -15,9 +16,10 @@ const AIReceptionist = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
   const { toast } = useToast();
-  
+  const navigate = useNavigate();
+
   const ASSISTANT_ID = "ebb38ba5-321a-49e4-b860-708bc864327f";
-  
+
   React.useEffect(() => {
     setTimeout(() => {
       setInitialLoad(false);
@@ -91,6 +93,10 @@ const AIReceptionist = () => {
     }
   };
 
+  const goToRealEstateSite = () => {
+    navigate('/real-estate');
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#1a0b2e] to-[#13151a]">
       <Navbar />
@@ -150,7 +156,7 @@ const AIReceptionist = () => {
                   
                   <Button 
                     className="w-full sm:w-auto bg-transparent hover:bg-white/10 text-white px-6 py-4 text-base rounded-md flex items-center justify-center border-2 border-white"
-                    onClick={handleVoiceChatClick}
+                    onClick={goToRealEstateSite}
                   >
                     Try Voice Demo
                   </Button>
@@ -247,7 +253,7 @@ const AIReceptionist = () => {
           </div>
         </div>
       </section>
-
+      
       <section className="py-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
         <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-16">
           Remarkably Human-like AI Receptionists for SMBs
@@ -373,11 +379,10 @@ const AIReceptionist = () => {
                   Cancel
                 </Button>
                 <Button 
-                  onClick={handleStartCall}
-                  disabled={isSubmitting}
+                  onClick={goToRealEstateSite}
                   className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white text-lg py-6"
                 >
-                  {isSubmitting ? "Starting..." : "Start Voice Chat Now"}
+                  Try Demo Now
                 </Button>
               </div>
             )}
