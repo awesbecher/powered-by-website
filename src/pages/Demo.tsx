@@ -6,7 +6,6 @@ import { WordAnimation } from "@/components/home/WordAnimation";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import OfferButton from "@/components/home/OfferButton";
 import { DemosList } from "@/components/demo/DemosList";
-import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
@@ -21,7 +20,6 @@ const Demo = () => {
   const location = useLocation();
   const { toast } = useToast();
 
-  // Scroll to top when the location changes
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo({
@@ -49,7 +47,6 @@ const Demo = () => {
     setIsProcessing(true);
     try {
       console.log("Starting call with Vapi");
-      // Using the general assistant ID for demo
       const assistantId = "ebb38ba5-321a-49e4-b860-708bc864327f";
       await initiateVapiCall(assistantId);
       setIsCallActive(true);
@@ -110,18 +107,8 @@ const Demo = () => {
               
               <p className={`mt-4 text-lg leading-relaxed text-gray-300 max-w-3xl mx-auto font-bold transition-all duration-1000 delay-300 ease-out transform
                   ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
-                While <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> offers fully custom & multi-channel AI agent solutions, you can experience our pre-built voice agents by clicking any one of the below.
+                While <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> offers fully custom & multi-channel AI agent solutions, you can experience our pre-built voice agents by exploring the demos below.
               </p>
-              
-              <div className="mt-8">
-                <Button
-                  onClick={handleOpenDialog}
-                  className="bg-white hover:bg-gray-100 text-accent px-6 py-3 text-lg font-semibold rounded-lg transition-all duration-300 flex items-center gap-2"
-                >
-                  Talk to an AI Agent Now
-                  <Phone className="h-5 w-5" />
-                </Button>
-              </div>
             </div>
           </div>
           
@@ -135,7 +122,6 @@ const Demo = () => {
         <Footer />
       </div>
 
-      {/* Voice Chat Dialog */}
       <Dialog open={showDialog} onOpenChange={handleCloseDialog}>
         <DialogContent className="bg-[#222222] text-white border-gray-800 sm:max-w-md">
           <div className="flex flex-col items-center space-y-4">
