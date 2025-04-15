@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -110,7 +111,7 @@ const EmptyChat: React.FC<{ setInputMessage: (message: string) => void }> = ({ s
           className="h-10 w-10"
         />
       </div>
-      <h3 className="text-xl font-bold text-white mb-3">Welcome to the Voice Agent Builder!</h3>
+      <h3 className="text-xl font-bold text-white mb-3">Welcome to the <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> AI Voice Agent Builder!</h3>
       <p className="text-gray-300 max-w-md mx-auto mb-6">
         Tell me about your business and what kind of voice agent you'd like to create. 
         I'll help you design the perfect agent for your needs.
