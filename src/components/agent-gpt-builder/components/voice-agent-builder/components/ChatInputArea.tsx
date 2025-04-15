@@ -3,6 +3,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { SendIcon, Mic } from "lucide-react";
+import VoiceTrigger from "../VoiceTrigger";
 
 interface ChatInputAreaProps {
   userInput: string;
@@ -21,6 +22,10 @@ const ChatInputArea: React.FC<ChatInputAreaProps> = ({
   onSendMessage,
   onStartVoiceInput
 }) => {
+  const handleTranscription = (text: string) => {
+    setUserInput(text);
+  };
+
   return (
     <div className="flex flex-col gap-3">
       <div className="flex gap-2">
@@ -59,6 +64,11 @@ const ChatInputArea: React.FC<ChatInputAreaProps> = ({
         >
           <Mic size={16} className={isListening ? "animate-pulse" : ""} />
         </Button>
+      </div>
+      
+      {/* Add voice trigger component in compact mode */}
+      <div className="flex justify-end">
+        <VoiceTrigger onTranscription={handleTranscription} showCompact={true} />
       </div>
       
       {isListening && (

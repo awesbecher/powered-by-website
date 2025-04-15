@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChatMessage } from "@/services/openaiService";
 import { Loader2, Send, Bot } from "lucide-react";
+import VoiceTrigger from "./voice-agent-builder/VoiceTrigger";
 
 interface ChatInterfaceProps {
   messages: ChatMessage[];
@@ -28,6 +29,11 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  // Handle voice transcription
+  const handleTranscription = (text: string) => {
+    setInputMessage(text);
+  };
 
   return (
     <Card className="h-[700px] bg-gradient-to-br from-[#2f1c4a] via-[#1a0b2e] to-[#251640] border border-[#9b87f5]/20 shadow-xl overflow-hidden rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-[#9b87f5]/20">
@@ -75,26 +81,33 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
       </CardContent>
       
       <CardFooter className="border-t border-white/10 p-4 bg-[#1a0b2e]/30">
-        <div className="flex gap-2 w-full">
-          <Textarea
-            placeholder="Type your message..."
-            value={inputMessage}
-            onChange={(e) => setInputMessage(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && !e.shiftKey) {
-                e.preventDefault();
-                handleSendMessage();
-              }
-            }}
-            className="min-h-[60px] bg-[#1a0b2e]/40 border-white/20 text-white resize-none focus:border-[#9b87f5]/50 focus:ring-[#9b87f5]/20 rounded-xl transition-all duration-200"
-          />
-          <Button
-            onClick={handleSendMessage}
-            disabled={isLoading || !inputMessage.trim()}
-            className="bg-gradient-to-r from-[#9b87f5] to-[#8777e5] hover:from-[#8777e5] hover:to-[#7667d5] text-white rounded-xl shadow-lg shadow-[#9b87f5]/20 transition-all duration-300 hover:shadow-xl transform hover:scale-105"
-          >
-            {isLoading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Send className="h-5 w-5" />}
-          </Button>
+        <div className="w-full space-y-4">
+          <div className="flex gap-2 w-full">
+            <Textarea
+              placeholder="Type your message..."
+              value={inputMessage}
+              onChange={(e) => setInputMessage(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  handleSendMessage();
+                }
+              }}
+              className="min-h-[60px] bg-[#1a0b2e]/40 border-white/20 text-white resize-none focus:border-[#9b87f5]/50 focus:ring-[#9b87f5]/20 rounded-xl transition-all duration-200"
+            />
+            <Button
+              onClick={handleSendMessage}
+              disabled={isLoading || !inputMessage.trim()}
+              className="bg-gradient-to-r from-[#9b87f5] to-[#8777e5] hover:from-[#8777e5] hover:to-[#7667d5] text-white rounded-xl shadow-lg shadow-[#9b87f5]/20 transition-all duration-300 hover:shadow-xl transform hover:scale-105"
+            >
+              {isLoading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Send className="h-5 w-5" />}
+            </Button>
+          </div>
+          
+          {/* Voice Trigger Component */}
+          <div className="flex justify-end">
+            <VoiceTrigger onTranscription={handleTranscription} showCompact={true} />
+          </div>
         </div>
       </CardFooter>
     </Card>

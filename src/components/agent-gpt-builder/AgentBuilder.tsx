@@ -9,6 +9,7 @@ import { useAgentBuilder } from "./hooks/useAgentBuilder";
 import VoiceAgentBuilder from "./components/voice-agent-builder/VoiceAgentBuilder";
 import AgentBuilderPro from "./components/AgentBuilderPro";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import VoiceTriggerSection from "./components/voice-trigger/VoiceTriggerSection";
 
 interface AgentBuilderProps {
   initialLoad: boolean;
@@ -35,6 +36,12 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad }) => {
     setAgentInstructions(template.prompt);
   };
 
+  const handleVoiceTranscription = (text: string) => {
+    setInputMessage(text);
+    // Optionally automatically send the message
+    // setTimeout(() => handleSendMessage(), 500);
+  };
+
   return (
     <div className="max-w-7xl mx-auto">
       {/* Page title and description */}
@@ -59,6 +66,9 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad }) => {
               </TabsTrigger>
               <TabsTrigger value="pro" className="flex-1">
                 Agent Builder Pro
+              </TabsTrigger>
+              <TabsTrigger value="voice-trigger" className="flex-1">
+                Voice Trigger
               </TabsTrigger>
             </TabsList>
           </div>
@@ -105,6 +115,11 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad }) => {
           <TabsContent value="pro" className="mt-6">
             {/* Advanced agent builder with more features */}
             <AgentBuilderPro />
+          </TabsContent>
+
+          <TabsContent value="voice-trigger" className="mt-6">
+            {/* Voice trigger feature */}
+            <VoiceTriggerSection onTranscription={handleVoiceTranscription} />
           </TabsContent>
         </Tabs>
       </div>
