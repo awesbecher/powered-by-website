@@ -21,7 +21,9 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
   const [searchParams] = useSearchParams();
   const { toast } = useToast();
   const [user, setUser] = useState<{ id: string } | null>(null);
-  const [activeTab, setActiveTab] = useState("configure");
+  
+  // Main builder state
+  const [builderTab, setBuilderTab] = useState("configure");
   const [readyToChat, setReadyToChat] = useState(false);
   
   const {
@@ -89,7 +91,7 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
 
     setIsConfiguring(true);
     setReadyToChat(true);
-    setActiveTab("chat");
+    setBuilderTab("chat");
   };
 
   const handleStartOver = () => {
@@ -99,11 +101,12 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
     setMessages([]);
     setIsConfiguring(false);
     setReadyToChat(false);
-    setActiveTab("configure");
+    setBuilderTab("configure");
   };
-
+  
+  // Simple handler to update the tab state
   const handleTabChange = (value: string) => {
-    setActiveTab(value);
+    setBuilderTab(value);
   };
 
   return (
@@ -112,7 +115,7 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
       
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         <div className="lg:col-span-3">
-          <Tabs value={activeTab} onValueChange={handleTabChange}>
+          <Tabs value={builderTab} onValueChange={handleTabChange}>
             <TabsList className="bg-gray-900/50 border border-gray-700">
               <TabsTrigger value="configure" disabled={isConfiguring}>Configure</TabsTrigger>
               <TabsTrigger value="chat" disabled={!readyToChat}>Chat</TabsTrigger>
