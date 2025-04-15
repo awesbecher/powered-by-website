@@ -1,10 +1,9 @@
-
 import React, { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChatMessage } from "@/services/openaiService";
-import { Loader2, Send, Bot, HelpCircle } from "lucide-react";
+import { Loader2, Send, Bot } from "lucide-react";
 
 interface ChatInterfaceProps {
   messages: ChatMessage[];
@@ -39,14 +38,6 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
             </div>
             <CardTitle className="text-white text-xl">Voice Agent Builder Assistant</CardTitle>
           </div>
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            className="h-8 w-8 p-0 text-gray-400 hover:text-white hover:bg-white/10 transition-colors duration-200" 
-            onClick={getStarterPrompt}
-          >
-            <HelpCircle className="h-4 w-4" />
-          </Button>
         </div>
         <p className="text-gray-300 text-sm mt-2">
           Chat with our AI to design your custom voice agent for your business
