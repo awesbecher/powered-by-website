@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import VoiceAgentTemplates from "./VoiceAgentTemplates";
@@ -9,6 +8,7 @@ import { agentTemplates } from "./data/templateData";
 import { AgentTemplatesKey } from "./data/templateData";
 import SavedAgentList from "./SavedAgentList";
 import { supabase } from "@/integrations/supabase/client";
+import { useParams } from "react-router-dom";
 
 interface VoiceAgentBuilderProps {
   onSelectTemplate?: (template: any) => void;
@@ -18,7 +18,6 @@ interface VoiceAgentBuilderProps {
 const VoiceAgentBuilder: React.FC<VoiceAgentBuilderProps> = ({ onSelectTemplate, initialTab }) => {
   const [user, setUser] = useState<{ id: string } | null>(null);
 
-  // Fetch user on component mount
   useEffect(() => {
     const fetchUser = async () => {
       const { data } = await supabase.auth.getUser();
@@ -51,10 +50,10 @@ const VoiceAgentBuilder: React.FC<VoiceAgentBuilderProps> = ({ onSelectTemplate,
     savedAgents,
     fetchSavedAgents,
     loadSavedAgent,
-    initialTabOverride
+    initialTabOverride,
+    setInitialTabOverride
   } = useVoiceAgent(initialTab);
 
-  // Handle template selection from the grid
   const handleTemplateSelect = (key: string) => {
     const template = agentTemplates[key as AgentTemplatesKey];
     setEditableTemplate(template);
@@ -62,6 +61,10 @@ const VoiceAgentBuilder: React.FC<VoiceAgentBuilderProps> = ({ onSelectTemplate,
     if (onSelectTemplate) {
       onSelectTemplate(template);
     }
+  };
+
+  const handleBrowseTemplates = () => {
+    setInitialTabOverride("templates");
   };
 
   return (
@@ -74,23 +77,21 @@ const VoiceAgentBuilder: React.FC<VoiceAgentBuilderProps> = ({ onSelectTemplate,
       </CardHeader>
       
       <CardContent className="p-6">
-        {/* Template selection grid */}
         {!selectedTemplate && !editableTemplate && initialTabOverride !== "saved" && (
           <VoiceAgentTemplates 
             onSelectTemplate={handleTemplateSelect}
           />
         )}
         
-        {/* Saved agent selection grid */}
         {!selectedTemplate && !editableTemplate && initialTabOverride === "saved" && (
           <SavedAgentList 
             user={user}
             onLoadAgent={loadSavedAgent}
             onRefresh={fetchSavedAgents}
+            onBrowseTemplates={handleBrowseTemplates}
           />
         )}
         
-        {/* Agent editor */}
         {editableTemplate && (
           <AgentEditor
             editableTemplate={editableTemplate}
@@ -102,7 +103,6 @@ const VoiceAgentBuilder: React.FC<VoiceAgentBuilderProps> = ({ onSelectTemplate,
           />
         )}
         
-        {/* Agent chat interface */}
         {selectedTemplate && (
           <AgentChat 
             selectedTemplate={selectedTemplate}

@@ -9,9 +9,15 @@ interface SavedAgentListProps {
   user: { id: string } | null;
   onLoadAgent: (agent: any) => void;
   onRefresh?: () => void;
+  onBrowseTemplates?: () => void;
 }
 
-const SavedAgentList: React.FC<SavedAgentListProps> = ({ user, onLoadAgent, onRefresh }) => {
+const SavedAgentList: React.FC<SavedAgentListProps> = ({ 
+  user, 
+  onLoadAgent, 
+  onRefresh, 
+  onBrowseTemplates 
+}) => {
   const [agents, setAgents] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
@@ -95,7 +101,7 @@ const SavedAgentList: React.FC<SavedAgentListProps> = ({ user, onLoadAgent, onRe
           <h3 className="text-white text-xl mb-4">No Saved Agents</h3>
           <p className="text-gray-300 mb-6">You haven't saved any agents yet. Create one from a template to get started.</p>
           <Button 
-            onClick={() => {/* Add navigation to templates */}} 
+            onClick={onBrowseTemplates} 
             className="bg-gradient-to-r from-[#9b87f5] to-[#8777e5] hover:from-[#8777e5] hover:to-[#7667d5]"
           >
             Browse Templates
