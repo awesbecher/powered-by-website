@@ -293,7 +293,7 @@ const AgentBuilderPro: React.FC = () => {
 
   return (
     <div className="w-full max-w-7xl mx-auto">
-      <Card className="border border-white/10 bg-gradient-to-br from-[#1a0b2e]/70 to-[#9b87f5]/40 shadow-xl rounded-xl overflow-hidden">
+      <Card className="border border-white/10 bg-[#1A1F2C] shadow-xl rounded-xl overflow-hidden">
         <CardHeader className="border-b border-white/10 bg-gradient-to-r from-[#2f1c4a] to-[#1a0b2e]">
           <CardTitle className="text-white flex items-center gap-2">
             <span className="bg-[#9b87f5]/20 p-1 rounded-md"><Bot className="h-5 w-5" /></span>
@@ -303,7 +303,7 @@ const AgentBuilderPro: React.FC = () => {
         
         <CardContent className="p-6">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="mb-6">
+            <TabsList className="mb-6 bg-[#1A1F2C]/80 border border-white/10">
               <TabsTrigger value="templates">
                 Agent Templates
               </TabsTrigger>
@@ -333,7 +333,7 @@ const AgentBuilderPro: React.FC = () => {
                       setMessages([]);
                       setActiveTab("customize");
                     }}
-                    className="border border-white/10 rounded-lg p-4 cursor-pointer bg-[#1a0b2e]/40 hover:bg-[#2f1c4a]/40 transition-colors"
+                    className="border border-white/10 rounded-lg p-4 cursor-pointer bg-[#1A1F2C]/60 hover:bg-[#2f1c4a]/40 transition-colors"
                   >
                     <h3 className="text-white font-bold">{tpl.name}</h3>
                     <p className="text-gray-300 text-sm mt-2">{tpl.prompt.substring(0, 100)}...</p>
@@ -342,7 +342,7 @@ const AgentBuilderPro: React.FC = () => {
               </div>
             </TabsContent>
             
-            <TabsContent value="saved">
+            <TabsContent value="saved" className="bg-[#1A1F2C]/20 p-4 rounded-lg">
               {savedAgents.length === 0 ? (
                 <div className="text-center col-span-full py-12">
                   <h3 className="text-white text-xl mb-4">No Saved Agents</h3>
@@ -370,14 +370,14 @@ const AgentBuilderPro: React.FC = () => {
             
             <TabsContent value="customize">
               {selectedAgent ? (
-                <div className="space-y-6">
+                <div className="space-y-6 bg-[#1A1F2C]/20 p-6 rounded-lg">
                   <div>
                     <label className="block text-white mb-2">Agent Name</label>
                     <Input 
                       value={agentName}
                       onChange={(e) => setAgentName(e.target.value)}
                       placeholder="Agent Name"
-                      className="bg-[#1a0b2e]/40 border-white/20 text-white"
+                      className="bg-[#1A1F2C]/40 border-white/20 text-white"
                     />
                   </div>
                   
@@ -388,7 +388,7 @@ const AgentBuilderPro: React.FC = () => {
                       onChange={(e) => setAgentPrompt(e.target.value)}
                       rows={5}
                       placeholder="Instructions for your agent"
-                      className="bg-[#1a0b2e]/40 border-white/20 text-white"
+                      className="bg-[#1A1F2C]/40 border-white/20 text-white"
                     />
                   </div>
                   
@@ -406,7 +406,7 @@ const AgentBuilderPro: React.FC = () => {
                           type="text"
                           value={brandColor}
                           onChange={(e) => setBrandColor(e.target.value)}
-                          className="ml-4 bg-[#1a0b2e]/40 border-white/20 text-white w-32"
+                          className="ml-4 bg-[#1A1F2C]/40 border-white/20 text-white w-32"
                         />
                       </div>
                     </div>
@@ -417,7 +417,7 @@ const AgentBuilderPro: React.FC = () => {
                         value={greeting}
                         onChange={(e) => setGreeting(e.target.value)}
                         placeholder="Greeting message"
-                        className="bg-[#1a0b2e]/40 border-white/20 text-white"
+                        className="bg-[#1A1F2C]/40 border-white/20 text-white"
                       />
                     </div>
                   </div>
@@ -440,7 +440,7 @@ const AgentBuilderPro: React.FC = () => {
                   </div>
                 </div>
               ) : (
-                <div className="text-center py-12">
+                <div className="text-center py-12 bg-[#1A1F2C]/20 rounded-lg">
                   <h3 className="text-white text-xl mb-4">No Agent Selected</h3>
                   <p className="text-gray-300 mb-6">Please select a template to customize your agent</p>
                   <Button 
@@ -455,7 +455,7 @@ const AgentBuilderPro: React.FC = () => {
             
             <TabsContent value="test">
               {selectedAgent ? (
-                <div>
+                <div className="bg-[#1A1F2C]/20 p-4 rounded-lg">
                   <div className="bg-[#1a0b2e]/40 border border-white/10 rounded-xl p-4 h-[400px] overflow-y-auto mb-4">
                     {messages.length === 0 ? (
                       <div className="flex flex-col items-center justify-center h-full text-center">
@@ -527,7 +527,7 @@ const AgentBuilderPro: React.FC = () => {
                   </div>
                 </div>
               ) : (
-                <div className="text-center py-12">
+                <div className="text-center py-12 bg-[#1A1F2C]/20 rounded-lg">
                   <h3 className="text-white text-xl mb-4">No Agent Selected</h3>
                   <p className="text-gray-300 mb-6">Please select and customize an agent before testing</p>
                   <Button 
@@ -541,7 +541,7 @@ const AgentBuilderPro: React.FC = () => {
             </TabsContent>
             
             <TabsContent value="analytics">
-              <div>
+              <div className="bg-[#1A1F2C]/20 p-4 rounded-lg">
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="text-white text-xl">Usage Analytics</h3>
                   <Button 
