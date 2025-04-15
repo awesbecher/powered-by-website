@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Phone, MessageCircle, Calendar, Clock } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { AIReceptionistCard } from "@/components/ai-receptionist/page-sections/AIReceptionistCard";
 
 interface HeroSectionProps {
   initialLoad: boolean;
