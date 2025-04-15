@@ -26,19 +26,22 @@
   to = "/agent-gpt"
   status = 301
 
-# Ensure agent-gpt route works properly
+# Explicitly define routes for every major page
+[[redirects]]
+  from = "/about"
+  to = "/index.html"
+  status = 200
+
 [[redirects]]
   from = "/agent-gpt"
   to = "/index.html"
   status = 200
 
-# Ensure agent-gpt-builder route works properly
 [[redirects]]
   from = "/agent-gpt-builder"
   to = "/index.html"
   status = 200
 
-# Ensure privacy statement route works properly
 [[redirects]]
   from = "/privacy-statement"
   to = "/index.html"
@@ -60,6 +63,81 @@
   to = "/index.html"
   status = 200
 
+[[redirects]]
+  from = "/pricing"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/careers"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact2"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/payment"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/payment-success"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/payment-cancelled"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/payment-dashboard"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/outbound-ai"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/ai-receptionist"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/file-upload"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/email-agent"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/mercedes-dealer"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/omega-pediatrics"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/call-confirmation"
+  to = "/index.html"
+  status = 200
+
 # Add redirects for free voice agent URLs
 [[redirects]]
   from = "/free-voiceagent"
@@ -74,12 +152,6 @@
 # Add proper redirect for voice agent configuration end page
 [[redirects]]
   from = "/voiceagent-config-end"
-  to = "/index.html"
-  status = 200
-
-# Add redirect for careers page
-[[redirects]]
-  from = "/careers"
   to = "/index.html"
   status = 200
 
