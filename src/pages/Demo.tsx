@@ -7,10 +7,20 @@ import { WordAnimation } from "@/components/home/WordAnimation";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import OfferButton from "@/components/home/OfferButton";
 import { DemosList } from "@/components/demo/DemosList";
+import { Button } from "@/components/ui/button";
+import { Phone } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const Demo = () => {
   const [initialLoad, setInitialLoad] = useState(true);
+  const [showDialog, setShowDialog] = useState(false);
+  const [isCallActive, setIsCallActive] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
   const location = useLocation();
+  const { toast } = useToast();
 
   // Scroll to top when the location changes
   useEffect(() => {
@@ -23,6 +33,54 @@ const Demo = () => {
     
     setInitialLoad(false);
   }, [location]);
+
+  const handleOpenDialog = () => {
+    setShowDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    if (isCallActive) {
+      handleEndCall();
+    }
+    setShowDialog(false);
+  };
+
+  const handleStartCall = async () => {
+    setIsProcessing(true);
+    try {
+      // Using the general assistant ID for demo
+      const assistantId = "ebb38ba5-321a-49e4-b860-708bc864327f";
+      await initiateVapiCall(assistantId);
+      setIsCallActive(true);
+      toast({
+        title: "Call started",
+        description: "You are now connected to our AI voice agent.",
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Call failed",
+        description: error instanceof Error ? error.message : "Please check your microphone settings and try again.",
+      });
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  const handleEndCall = async () => {
+    try {
+      await stopVapiCall();
+      toast({
+        title: "Call ended",
+        description: "Thank you for trying our AI voice agent.",
+      });
+    } catch (error) {
+      console.error("Error ending call:", error);
+    } finally {
+      setIsCallActive(false);
+      setShowDialog(false);
+    }
+  };
 
   return (
     <div className="min-h-screen w-full relative">
@@ -52,6 +110,16 @@ const Demo = () => {
                   ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
                 While <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> offers fully custom & multi-channel AI agent solutions, you can experience our pre-built voice agents by clicking any one of the below.
               </p>
+              
+              <div className="mt-8">
+                <Button
+                  onClick={handleOpenDialog}
+                  className="bg-white hover:bg-gray-100 text-accent px-6 py-3 text-lg font-semibold rounded-lg transition-all duration-300 flex items-center gap-2"
+                >
+                  Talk to an AI Agent Now
+                  <Phone className="h-5 w-5" />
+                </Button>
+              </div>
             </div>
           </div>
           
@@ -64,6 +132,69 @@ const Demo = () => {
         <ClosingCTA />
         <Footer />
       </div>
+
+      {/* Voice Chat Dialog */}
+      <Dialog open={showDialog} onOpenChange={handleCloseDialog}>
+        <DialogContent className="bg-[#222222] text-white border-gray-800 sm:max-w-md">
+          <div className="flex flex-col items-center space-y-4">
+            <Avatar className="w-32 h-32 mx-auto mb-4">
+              <AvatarImage
+                src="/lovable-uploads/bd9e9055-ba23-4fcc-9c2a-4fda4b9dd627.png"
+                alt="Michael, AI Voice Agent @ Powered_by Agency"
+                className="object-cover"
+              />
+              <AvatarFallback>MA</AvatarFallback>
+            </Avatar>
+            
+            <h2 className="text-3xl font-bold text-white text-center">
+              Start Voice Chat with Michael @ Powered_By
+            </h2>
+            
+            <p className="text-gray-300 text-lg text-center">
+              You'll be able to have a voice conversation with Michael (our AI voice agent) directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately.
+            </p>
+            
+            <p className="text-base text-gray-300">
+              By clicking "Start Voice Chat", you consent to having a voice conversation with Powered_by's AI agent. You can end the conversation at any time.
+            </p>
+            
+            {isCallActive ? (
+              <div className="flex flex-col w-full space-y-4">
+                <div className="flex items-center justify-between bg-gray-800 p-4 rounded-lg">
+                  <div className="flex items-center">
+                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse mr-2"></div>
+                    <span>Call Active</span>
+                  </div>
+                  <span>00:00</span>
+                </div>
+                
+                <Button 
+                  onClick={handleEndCall}
+                  className="w-full bg-red-600 hover:bg-red-700 text-white text-lg py-6"
+                >
+                  End Call
+                </Button>
+              </div>
+            ) : (
+              <div className="flex gap-4 w-full">
+                <Button 
+                  onClick={handleCloseDialog}
+                  className="w-full bg-gray-700 hover:bg-gray-800 text-white text-lg py-6"
+                >
+                  Cancel
+                </Button>
+                <Button 
+                  onClick={handleStartCall}
+                  disabled={isProcessing}
+                  className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white text-lg py-6"
+                >
+                  {isProcessing ? "Starting..." : "Start Voice Chat Now"}
+                </Button>
+              </div>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
