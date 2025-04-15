@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -80,7 +81,7 @@ const SavedAgentList: React.FC<SavedAgentListProps> = ({
   }, [user]);
 
   return (
-    <div className="space-y-6 bg-[#1A1F2C]/20 p-6 rounded-lg">
+    <div className="space-y-6 bg-[#1A1F2C] p-6 rounded-lg">
       <div className="flex justify-between items-center">
         <h3 className="text-white text-xl">📁 My Saved Agents</h3>
         <Button 
@@ -97,7 +98,7 @@ const SavedAgentList: React.FC<SavedAgentListProps> = ({
           <Loader2 className="h-8 w-8 animate-spin text-[#9b87f5]" />
         </div>
       ) : agents.length === 0 ? (
-        <div className="text-center py-12 bg-[#1A1F2C]/60 rounded-lg">
+        <div className="text-center py-12 bg-[#2C3142] rounded-lg">
           <h3 className="text-white text-xl mb-4">No Saved Agents</h3>
           <p className="text-gray-300 mb-6">You haven't saved any agents yet. Create one from a template to get started.</p>
           <Button 
@@ -112,7 +113,7 @@ const SavedAgentList: React.FC<SavedAgentListProps> = ({
           {agents.map((agent) => (
             <Card 
               key={agent.id}
-              className="border border-white/10 bg-[#1A1F2C]/60 hover:bg-[#2f1c4a]/40 transition-colors overflow-hidden"
+              className="border border-white/10 bg-[#2C3142] hover:bg-[#3C4252] transition-colors overflow-hidden"
             >
               <div className="p-4">
                 <h3 className="text-white font-bold">{agent.name}</h3>
