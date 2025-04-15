@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChatMessage } from "@/services/openaiService";
-import { Loader2, Send, Bot, Sparkles, HelpCircle } from "lucide-react";
+import { Loader2, Send, Bot, HelpCircle } from "lucide-react";
 
 interface ChatInterfaceProps {
   messages: ChatMessage[];
@@ -112,7 +112,11 @@ const EmptyChat: React.FC<{ setInputMessage: (message: string) => void }> = ({ s
   return (
     <div className="text-center flex flex-col items-center justify-center h-full animate-fade-in">
       <div className="bg-[#9b87f5]/10 p-4 rounded-full mb-4 transition-all duration-300 hover:bg-[#9b87f5]/20 transform hover:scale-105">
-        <Sparkles className="h-10 w-10 text-[#9b87f5]" />
+        <img 
+          src="/lovable-uploads/3874278b-1677-4b71-beb9-25a1ebe047fe.png" 
+          alt="Voice Agent Builder Icon" 
+          className="h-10 w-10"
+        />
       </div>
       <h3 className="text-xl font-bold text-white mb-3">Welcome to the Voice Agent Builder!</h3>
       <p className="text-gray-300 max-w-md mx-auto mb-6">
