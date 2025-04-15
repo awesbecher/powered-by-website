@@ -11,6 +11,7 @@ import { FAQSection } from "@/components/voice-chat/page-sections/FAQSection";
 import { FinalCTASection } from "@/components/voice-chat/page-sections/FinalCTASection";
 import { properties } from "@/data/properties";
 import { forcePrefetchImages, addCSSImagePreloading } from "@/components/voice-chat/utils/imageUtils";
+import { getCalApi } from "@calcom/embed-react";
 
 const propertyImages = properties.map(property => property.image);
 const otherImages = [
@@ -36,20 +37,18 @@ const AIVoiceChat = () => {
     // Set to false immediately to avoid any initial load animation
     setInitialLoad(false);
     
-    // Note: We're removing the Calendly script loading as we're now using Cal.com instead
-    
     // Load Cal.com script for all Cal.com buttons on the page
-    const scriptElement = document.createElement('script');
-    scriptElement.src = 'https://cal.com/embed.js';
-    scriptElement.async = true;
-    document.body.appendChild(scriptElement);
-    
-    // Cleanup on component unmount
-    return () => {
-      if (document.body.contains(scriptElement)) {
-        document.body.removeChild(scriptElement);
-      }
-    };
+    (async function () {
+      const cal = await getCalApi({"namespace":"get-started-with-voice-ai-chat"});
+      cal("ui", {
+        "cssVarsPerTheme": {
+          "light": {"cal-brand":"#292929"},
+          "dark": {"cal-brand":"#fafafa"}
+        },
+        "hideEventTypeDetails": false,
+        "layout": "month_view"
+      });
+    })();
   }, []);
 
   const handleContact = () => {

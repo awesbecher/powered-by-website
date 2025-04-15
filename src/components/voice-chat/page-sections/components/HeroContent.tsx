@@ -1,10 +1,11 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Tv, Mic } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useNavigate } from "react-router-dom";
 import { CalendarButton } from "./CalendarButton";
+import { getCalApi } from "@calcom/embed-react";
 
 interface HeroContentProps {
   initialLoad: boolean;
@@ -23,6 +24,20 @@ export const HeroContent: React.FC<HeroContentProps> = ({
   const handleTryDemo = () => {
     window.open('/insurance', '_blank');
   };
+
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({"namespace":"get-started-with-voice-ai-chat"});
+      cal("ui", {
+        "cssVarsPerTheme": {
+          "light": {"cal-brand":"#292929"},
+          "dark": {"cal-brand":"#fafafa"}
+        },
+        "hideEventTypeDetails": false,
+        "layout": "month_view"
+      });
+    })();
+  }, []);
 
   return (
     <div className={`transition-all duration-1000 ease-out transform
@@ -59,7 +74,14 @@ export const HeroContent: React.FC<HeroContentProps> = ({
               <Mic className="mr-2 h-5 w-5" /> Try Demo
             </Button>
             
-            <CalendarButton />
+            <Button 
+              data-cal-namespace="get-started-with-voice-ai-chat"
+              data-cal-link="team-powered-by-dfbtbb/get-started-with-voice-ai-chat"
+              data-cal-config='{"layout":"month_view"}'
+              className="bg-[#6342ff] hover:bg-[#5233e0] text-white px-6 py-4 text-base rounded-md flex items-center"
+            >
+              <ArrowRight className="mr-2 h-5 w-5" /> Get Started
+            </Button>
           </div>
         </div>
       </div>
