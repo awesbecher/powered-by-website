@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
@@ -12,6 +12,7 @@ interface AgentConfigPanelProps {
   agentInstructions: string;
   setAgentInstructions: (instructions: string) => void;
   onCreateAgent?: () => void;
+  onTestAgent?: () => void;
 }
 
 const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
@@ -20,6 +21,7 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
   agentInstructions,
   setAgentInstructions,
   onCreateAgent,
+  onTestAgent,
 }) => {
   // Internal tab management - completely isolated from parent component
   const [activeTab, setActiveTab] = useState("instructions");
@@ -28,6 +30,7 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
   const handleTestAgent = () => {
     setActiveTab("test");
     setShowAgentTester(true);
+    if (onTestAgent) onTestAgent();
   };
 
   return (

@@ -104,6 +104,20 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
     setBuilderTab("configure");
   };
 
+  const handleTestAgent = () => {
+    if (!agentName.trim() || !agentPrompt.trim()) {
+      toast({
+        title: "Missing information",
+        description: "Please provide both a name and prompt for your agent.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsConfiguring(true);
+    setReadyToChat(true);
+  };
+
   return (
     <div className="container mx-auto max-w-7xl">
       <PageHeader initialLoad={initialLoad} />
@@ -124,6 +138,7 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
                 agentInstructions={agentPrompt}
                 setAgentInstructions={setAgentPrompt}
                 onCreateAgent={handleAgentCreation}
+                onTestAgent={handleTestAgent}
               />
             </TabsContent>
             

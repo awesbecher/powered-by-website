@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { openaiService, ChatMessage } from "@/services/openaiService";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -9,13 +9,15 @@ export const useAgentTester = (agentName: string, agentInstructions: string) => 
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const initializedRef = useRef(false);
 
   // Reset messages when agent instructions change, but only once on initial load
   useEffect(() => {
-    if (agentInstructions) {
+    if (agentInstructions && !initializedRef.current) {
       setMessages([{ role: "system", content: agentInstructions }]);
+      initializedRef.current = true;
     }
-  }, []); // Empty dependency array to only run once on mount
+  }, [agentInstructions]);
 
   const handleSendMessage = async () => {
     if (!userInput || !agentInstructions) return;
