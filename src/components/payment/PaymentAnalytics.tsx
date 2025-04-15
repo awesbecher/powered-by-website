@@ -114,7 +114,7 @@ const PaymentAnalytics = () => {
             size="sm" 
             onClick={fetchAnalytics} 
             disabled={isLoading}
-            className="bg-[#352f49] text-white font-bold border-white/20 hover:bg-[#423a5a]"
+            className="bg-[#1A1F2C] text-white font-bold border-white/20 hover:bg-[#2A3342]"
           >
             {isLoading ? (
               <>
