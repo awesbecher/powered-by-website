@@ -26,6 +26,18 @@
   to = "/agent-gpt"
   status = 301
 
+# Ensure agent-gpt route works properly
+[[redirects]]
+  from = "/agent-gpt"
+  to = "/index.html"
+  status = 200
+
+# Ensure agent-gpt-builder route works properly
+[[redirects]]
+  from = "/agent-gpt-builder"
+  to = "/index.html"
+  status = 200
+
 # Ensure privacy statement route works properly
 [[redirects]]
   from = "/privacy-statement"
