@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import WebhookTriggerSection from "@/components/agent-gpt-builder/components/webhook-trigger/WebhookTriggerSection";
 import VoiceToWebhookSection from "@/components/agent-gpt-builder/components/voice-trigger/VoiceToWebhookSection";
+import OpenAPIGeneratorSection from "@/components/agent-gpt-builder/components/openapi-generator/OpenAPIGeneratorSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const AgentIntegrations = () => {
@@ -30,6 +31,9 @@ const AgentIntegrations = () => {
               <TabsTrigger value="voice">
                 Voice to Webhook
               </TabsTrigger>
+              <TabsTrigger value="openapi">
+                API Spec Generator
+              </TabsTrigger>
             </TabsList>
           </div>
           
@@ -39,6 +43,10 @@ const AgentIntegrations = () => {
           
           <TabsContent value="voice">
             <VoiceToWebhookSection />
+          </TabsContent>
+          
+          <TabsContent value="openapi">
+            <OpenAPIGeneratorSection />
           </TabsContent>
         </Tabs>
         

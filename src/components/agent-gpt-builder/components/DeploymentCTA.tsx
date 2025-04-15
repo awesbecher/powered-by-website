@@ -1,6 +1,7 @@
-
 import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import Plug from "@/components/icons/Plug";
 
 const DeploymentCTA: React.FC = () => {
   useEffect(() => {
@@ -26,6 +27,18 @@ const DeploymentCTA: React.FC = () => {
       >
         Ready to Deploy Your Agent? Contact Us
       </Button>
+
+      <div className="mt-6 flex justify-center">
+        <Link to="/agent-integrations">
+          <Button 
+            variant="outline" 
+            className="bg-[#1a0b2e]/60 border-white/10 text-white hover:bg-[#2f1c4a]/60"
+          >
+            <Plug className="mr-2 h-4 w-4" />
+            Explore Agent Integrations
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 };
