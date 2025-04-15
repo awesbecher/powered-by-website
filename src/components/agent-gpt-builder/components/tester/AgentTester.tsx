@@ -1,9 +1,9 @@
 
-import React, { useEffect } from "react";
+import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useAgentTester } from "./useAgentTester";
 import AgentTestInterface from "./AgentTestInterface";
 import AgentDeploymentSection from "./AgentDeploymentSection";
-import { useAgentTester } from "./useAgentTester";
 
 interface AgentTesterProps {
   agentName: string;
@@ -11,21 +11,14 @@ interface AgentTesterProps {
 }
 
 const AgentTester: React.FC<AgentTesterProps> = ({ agentName, agentInstructions }) => {
-  // Use the custom hook to manage all tester state and logic
   const {
     userInput,
     setUserInput,
     messages,
     loading,
     handleSendMessage,
-    handleSaveAgent,
-    updateInstructions
+    handleSaveAgent
   } = useAgentTester(agentName, agentInstructions);
-
-  // Update instructions when they change from parent
-  useEffect(() => {
-    updateInstructions(agentInstructions);
-  }, [agentInstructions]);
 
   return (
     <Card className="border border-white/10 bg-gradient-to-br from-[#1a0b2e]/70 to-[#2f1c4a]/70 shadow-xl rounded-xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.7s' }}>

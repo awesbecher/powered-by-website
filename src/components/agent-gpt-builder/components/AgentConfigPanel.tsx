@@ -1,5 +1,5 @@
 
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
@@ -11,8 +11,8 @@ interface AgentConfigPanelProps {
   setAgentName: (name: string) => void;
   agentInstructions: string;
   setAgentInstructions: (instructions: string) => void;
-  onCreateAgent?: () => void;
-  onTestAgent?: () => void;
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
 }
 
 const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
@@ -20,28 +20,14 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
   setAgentName,
   agentInstructions,
   setAgentInstructions,
-  onCreateAgent,
-  onTestAgent,
+  activeTab,
+  setActiveTab,
 }) => {
-  // Internal tab management - completely isolated from parent component
-  const [activeTab, setActiveTab] = useState("instructions");
-  const [showTester, setShowTester] = useState(false);
-
-  const handleTabChange = (value: string) => {
-    setActiveTab(value);
-  };
-
-  // Memoized to prevent unnecessary re-renders
-  const handleTestAgentClick = useCallback(() => {
-    setShowTester(true);
-    setActiveTab("test");
-    // Call parent callback last to avoid rendering issues
-    if (onTestAgent) onTestAgent();
-  }, [onTestAgent]);
+  const [showAgentTester, setShowAgentTester] = useState(false);
 
   return (
     <div className="space-y-6 transition-all duration-300">
-      <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
+      <Tabs defaultValue={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="w-full bg-gradient-to-r from-[#2f1c4a]/60 to-[#1a0b2e]/60 border border-white/10 rounded-xl overflow-hidden">
           <TabsTrigger
             value="instructions"
@@ -52,6 +38,7 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
           <TabsTrigger
             value="test"
             className="w-full data-[state=active]:bg-[#9b87f5]/20 data-[state=active]:text-white text-gray-300"
+            onClick={() => setShowAgentTester(true)}
           >
             Test & Deploy
           </TabsTrigger>
@@ -91,26 +78,21 @@ const AgentConfigPanel: React.FC<AgentConfigPanelProps> = ({
                 </p>
               </div>
 
-              <div className="flex space-x-4">
-                <Button 
-                  className="flex-1 bg-gradient-to-r from-[#9b87f5] to-[#8777e5] hover:from-[#8777e5] hover:to-[#7667d5] text-white shadow-lg shadow-[#9b87f5]/20"
-                  onClick={onCreateAgent}
-                >
-                  Create Agent
-                </Button>
-                <Button 
-                  className="flex-1 bg-gradient-to-r from-[#9b87f5] to-[#8777e5] hover:from-[#8777e5] hover:to-[#7667d5] text-white shadow-lg shadow-[#9b87f5]/20"
-                  onClick={handleTestAgentClick}
-                >
-                  Test Your Agent
-                </Button>
-              </div>
+              <Button 
+                className="w-full bg-gradient-to-r from-[#9b87f5] to-[#8777e5] hover:from-[#8777e5] hover:to-[#7667d5] text-white shadow-lg shadow-[#9b87f5]/20"
+                onClick={() => {
+                  setActiveTab("test");
+                  setShowAgentTester(true);
+                }}
+              >
+                Test Your Agent
+              </Button>
             </div>
           </div>
         </TabsContent>
 
         <TabsContent value="test" className="border-none mt-6 p-0">
-          {showTester && (
+          {showAgentTester && (
             <AgentTester
               agentName={agentName}
               agentInstructions={agentInstructions}

@@ -1,4 +1,5 @@
-import { useState, useRef } from "react";
+
+import { useState, useEffect } from "react";
 import { openaiService, ChatMessage } from "@/services/openaiService";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -8,19 +9,18 @@ export const useAgentTester = (agentName: string, agentInstructions: string) => 
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
-  
-  // Initialize messages once on first render
-  const initialized = useRef(false);
-  if (!initialized.current && agentInstructions) {
-    initialized.current = true;
-    setMessages([{ role: "system", content: agentInstructions }]);
-  }
+
+  // Reset messages when agent instructions change
+  useEffect(() => {
+    if (agentInstructions) {
+      setMessages([{ role: "system", content: agentInstructions }]);
+    }
+  }, [agentInstructions]);
 
   const handleSendMessage = async () => {
     if (!userInput || !agentInstructions) return;
 
-    const userMessage: ChatMessage = { role: "user", content: userInput };
-    const updatedMessages = [...messages, userMessage];
+    const updatedMessages = [...messages, { role: "user" as const, content: userInput }];
     setMessages(updatedMessages);
     setUserInput("");
     setLoading(true);
@@ -73,28 +73,12 @@ export const useAgentTester = (agentName: string, agentInstructions: string) => 
     }
   };
 
-  // Method to update the system message when instructions change
-  const updateInstructions = (newInstructions: string) => {
-    if (!newInstructions) return;
-    
-    setMessages(prev => {
-      // If we have messages and the first one is a system message
-      if (prev.length > 0 && prev[0].role === "system") {
-        return [{ role: "system", content: newInstructions }, ...prev.slice(1)];
-      }
-      // Otherwise create a new system message
-      return [{ role: "system", content: newInstructions }, ...prev];
-    });
-  };
-
   return {
     userInput,
     setUserInput,
     messages,
-    setMessages,
     loading,
     handleSendMessage,
-    handleSaveAgent,
-    updateInstructions
+    handleSaveAgent
   };
 };

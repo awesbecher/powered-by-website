@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AgentConfigPanel from "./components/AgentConfigPanel";
@@ -21,12 +21,8 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
   const [searchParams] = useSearchParams();
   const { toast } = useToast();
   const [user, setUser] = useState<{ id: string } | null>(null);
-  
-  // Main builder state
-  const [builderTab, setBuilderTab] = useState("configure");
-  // These states are now standalone and don't depend on each other
+  const [activeTab, setActiveTab] = useState("chat");
   const [readyToChat, setReadyToChat] = useState(false);
-  const [isConfiguring, setIsConfiguring] = useState(false);
   
   const {
     agentName,
@@ -41,6 +37,8 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
     setInputMessage,
     isLoading,
     setIsLoading,
+    isConfiguring,
+    setIsConfiguring,
     handleSendMessage,
     getStarterPrompt
   } = useAgentBuilder();
@@ -75,8 +73,7 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
     fetchUser();
   }, []);
 
-  // Memoized handler functions to prevent unnecessary re-renders
-  const handleAgentCreation = useCallback(() => {
+  const handleAgentCreation = () => {
     if (!agentName.trim() || !agentPrompt.trim()) {
       toast({
         title: "Missing information",
@@ -92,40 +89,25 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
 
     setIsConfiguring(true);
     setReadyToChat(true);
-    setBuilderTab("chat");
-  }, [agentName, agentPrompt, toast, checkAgentCreationLimit]);
+    setActiveTab("chat");
+  };
 
-  const handleStartOver = useCallback(() => {
+  const handleStartOver = () => {
     setAgentName("");
     setAgentPrompt("");
     setAgentType("customer-service");
     setMessages([]);
     setIsConfiguring(false);
     setReadyToChat(false);
-    setBuilderTab("configure");
-  }, [setAgentName, setAgentPrompt, setAgentType, setMessages]);
+  };
 
-  const handleTestAgent = useCallback(() => {
-    if (!agentName.trim() || !agentPrompt.trim()) {
-      toast({
-        title: "Missing information",
-        description: "Please provide both a name and prompt for your agent.",
-        variant: "destructive",
-      });
-      return;
-    }
-    
-    setIsConfiguring(true);
-    setReadyToChat(true);
-  }, [agentName, agentPrompt, toast]);
-  
   return (
     <div className="container mx-auto max-w-7xl">
       <PageHeader initialLoad={initialLoad} />
       
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         <div className="lg:col-span-3">
-          <Tabs value={builderTab} onValueChange={setBuilderTab}>
+          <Tabs value={activeTab} onValueChange={setActiveTab}>
             <TabsList className="bg-gray-900/50 border border-gray-700">
               <TabsTrigger value="configure" disabled={isConfiguring}>Configure</TabsTrigger>
               <TabsTrigger value="chat" disabled={!readyToChat}>Chat</TabsTrigger>
@@ -138,8 +120,8 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
                 setAgentName={setAgentName}
                 agentInstructions={agentPrompt}
                 setAgentInstructions={setAgentPrompt}
-                onCreateAgent={handleAgentCreation}
-                onTestAgent={handleTestAgent}
+                activeTab={activeTab}
+                setActiveTab={setActiveTab}
               />
             </TabsContent>
             
