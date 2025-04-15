@@ -39,7 +39,6 @@ import RealEstate from "./pages/RealEstate";
 import RetailServices from "./pages/RetailServices";
 import CustomGPT from "@/pages/CustomGPT";
 import AgentGPTBuilder from "@/pages/AgentGPTBuilder";
-import DocumentChat from "@/pages/DocumentChat";
 
 const router = createBrowserRouter([
   {
@@ -185,10 +184,6 @@ const router = createBrowserRouter([
   {
     path: "/agent-gpt-builder",
     element: <AgentGPTBuilder />,
-  },
-  {
-    path: "/document-chat",
-    element: <DocumentChat />,
   },
   {
     path: "*",

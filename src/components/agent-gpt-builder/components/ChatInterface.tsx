@@ -1,25 +1,17 @@
-
 import React, { useState, useRef, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Bot, Send, User, Sparkles } from "lucide-react";
-import ReactMarkdown from "react-markdown";
-
-interface Message {
-  role: "user" | "assistant" | "system";
-  content: string;
-}
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { ChatMessage } from "@/services/openaiService";
+import { Loader2, Send, Bot, Sparkles, HelpCircle } from "lucide-react";
 
 interface ChatInterfaceProps {
-  messages: Message[];
+  messages: ChatMessage[];
   inputMessage: string;
   setInputMessage: (message: string) => void;
   isLoading: boolean;
-  handleSendMessage: (message: string) => void;
-  getStarterPrompt: () => string;
-  disabled?: boolean;
+  handleSendMessage: () => void;
+  getStarterPrompt: () => void;
 }
 
 const ChatInterface: React.FC<ChatInterfaceProps> = ({
@@ -29,137 +21,128 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
   isLoading,
   handleSendMessage,
   getStarterPrompt,
-  disabled = false
 }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const [isScrolling, setIsScrolling] = useState(false);
-  
-  // Scroll to bottom when new messages arrive
-  useEffect(() => {
-    if (!isScrolling && messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [messages, isScrolling]);
 
-  const handleSend = () => {
-    if (inputMessage.trim() && !isLoading && !disabled) {
-      handleSendMessage(inputMessage);
-    }
-  };
-  
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && inputMessage.trim() && !isLoading && !disabled) {
-      handleSendMessage(inputMessage);
-    }
-  };
-  
-  const handleScrollStart = () => {
-    setIsScrolling(true);
-  };
-  
-  const handleScrollEnd = () => {
-    setIsScrolling(false);
-  };
-  
-  const addStarterPrompt = () => {
-    setInputMessage(getStarterPrompt());
-  };
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   return (
-    <Card className="border border-gray-700 bg-gray-900 shadow-xl rounded-xl h-[650px] flex flex-col">
-      <CardHeader className="border-b border-gray-800 bg-gray-800/50 px-6 py-4">
-        <CardTitle className="text-white flex items-center gap-2">
-          <Bot className="h-5 w-5 text-purple-400" />
-          Agent Chat
-        </CardTitle>
+    <Card className="h-[700px] bg-gradient-to-br from-[#2f1c4a] via-[#1a0b2e] to-[#251640] border border-[#9b87f5]/20 shadow-xl overflow-hidden rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-[#9b87f5]/20">
+      <CardHeader className="bg-gradient-to-r from-[#2f1c4a] to-[#1a0b2e] border-b border-white/10 p-5">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="bg-[#9b87f5]/20 p-2 rounded-full transition-all duration-300 hover:bg-[#9b87f5]/30">
+              <Bot className="h-5 w-5 text-[#9b87f5]" />
+            </div>
+            <CardTitle className="text-white text-xl">Voice Agent Builder Assistant</CardTitle>
+          </div>
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="h-8 w-8 p-0 text-gray-400 hover:text-white hover:bg-white/10 transition-colors duration-200" 
+            onClick={getStarterPrompt}
+          >
+            <HelpCircle className="h-4 w-4" />
+          </Button>
+        </div>
+        <p className="text-gray-300 text-sm mt-2">
+          Chat with our AI to design your custom voice agent for your business
+        </p>
       </CardHeader>
       
-      <CardContent className="flex-grow flex flex-col p-0 overflow-hidden">
-        <ScrollArea 
-          className="flex-grow p-6" 
-          onScrollCapture={handleScrollStart}
-          onWheelCapture={handleScrollStart}
-          onMouseUpCapture={handleScrollEnd}
-        >
-          {messages.length === 0 ? (
-            <div className="h-full flex flex-col items-center justify-center text-center p-4">
-              <Sparkles className="h-10 w-10 text-purple-400 mb-4" />
-              <h3 className="text-xl font-medium text-gray-200 mb-2">Start chatting with your agent</h3>
-              <p className="text-gray-400 mb-6 max-w-md">
-                Ask your agent questions to test how it would respond with your current configuration, or try a starter prompt.
-              </p>
-              <Button 
-                variant="outline" 
-                className="border-purple-500 text-purple-400 hover:bg-purple-950/30"
-                onClick={addStarterPrompt}
+      <CardContent className="p-5 h-[480px] overflow-y-auto bg-gradient-to-b from-transparent to-[#1a0b2e]/20">
+        {messages.length === 0 ? (
+          <EmptyChat setInputMessage={setInputMessage} />
+        ) : (
+          <div className="space-y-6">
+            {messages.map((msg, index) => (
+              <div
+                key={index}
+                className={`flex ${
+                  msg.role === "user" ? "justify-end" : "justify-start"
+                } animate-fade-in`}
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                Use Starter Prompt
-              </Button>
-            </div>
-          ) : (
-            <div className="space-y-6">
-              {messages.map((message, index) => (
-                <div 
-                  key={index} 
-                  className={`flex gap-3 ${
-                    message.role === 'assistant' ? "items-start" : "items-start"
+                <div
+                  className={`max-w-[85%] p-4 rounded-2xl shadow-md transition-all duration-200 hover:shadow-lg ${
+                    msg.role === "user"
+                      ? "bg-[#9b87f5]/30 text-white border border-[#9b87f5]/30 hover:border-[#9b87f5]/50"
+                      : "bg-[#1a0b2e]/60 text-white border border-white/10 hover:border-white/20"
                   }`}
                 >
-                  <div className={`rounded-full p-1.5 h-8 w-8 flex items-center justify-center flex-shrink-0 ${
-                    message.role === 'assistant' 
-                      ? "bg-purple-900/40 text-purple-300" 
-                      : "bg-blue-900/40 text-blue-300"
-                  }`}>
-                    {message.role === 'assistant' ? <Bot size={16} /> : <User size={16} />}
-                  </div>
-                  <div className={`rounded-xl py-2 px-3 max-w-[85%] ${
-                    message.role === 'assistant' 
-                      ? "bg-gray-800/50" 
-                      : "bg-purple-900/25"
-                  }`}>
-                    <ReactMarkdown className="prose prose-invert max-w-none prose-p:leading-relaxed prose-pre:p-2 prose-pre:rounded prose-pre:bg-gray-900">
-                      {message.content}
-                    </ReactMarkdown>
-                  </div>
+                  <p className="whitespace-pre-wrap">{msg.content}</p>
                 </div>
-              ))}
-              <div ref={messagesEndRef} />
-            </div>
-          )}
-        </ScrollArea>
-        
-        <div className="border-t border-gray-800 p-4">
-          <div className="flex gap-2">
-            <Input
-              placeholder={disabled ? "Upgrade your plan to send more messages" : "Type a message..."}
-              value={inputMessage}
-              onChange={(e) => setInputMessage(e.target.value)}
-              onKeyDown={handleKeyDown}
-              className="bg-gray-800 border-gray-700"
-              disabled={isLoading || disabled}
-            />
-            <Button 
-              onClick={handleSend} 
-              disabled={isLoading || !inputMessage.trim() || disabled} 
-              className="bg-purple-700 hover:bg-purple-600"
-            >
-              {isLoading ? (
-                <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
-              ) : (
-                <Send className="h-4 w-4" />
-              )}
-            </Button>
+              </div>
+            ))}
+            <div ref={messagesEndRef} />
           </div>
-          {disabled && (
-            <p className="text-amber-500 text-xs mt-2">
-              You've reached your message limit. Please 
-              <a href="/pricing" className="underline mx-1">upgrade your plan</a>
-              to continue.
-            </p>
-          )}
-        </div>
+        )}
       </CardContent>
+      
+      <CardFooter className="border-t border-white/10 p-4 bg-[#1a0b2e]/30">
+        <div className="flex gap-2 w-full">
+          <Textarea
+            placeholder="Type your message..."
+            value={inputMessage}
+            onChange={(e) => setInputMessage(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                handleSendMessage();
+              }
+            }}
+            className="min-h-[60px] bg-[#1a0b2e]/40 border-white/20 text-white resize-none focus:border-[#9b87f5]/50 focus:ring-[#9b87f5]/20 rounded-xl transition-all duration-200"
+          />
+          <Button
+            onClick={handleSendMessage}
+            disabled={isLoading || !inputMessage.trim()}
+            className="bg-gradient-to-r from-[#9b87f5] to-[#8777e5] hover:from-[#8777e5] hover:to-[#7667d5] text-white rounded-xl shadow-lg shadow-[#9b87f5]/20 transition-all duration-300 hover:shadow-xl transform hover:scale-105"
+          >
+            {isLoading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Send className="h-5 w-5" />}
+          </Button>
+        </div>
+      </CardFooter>
     </Card>
+  );
+};
+
+const EmptyChat: React.FC<{ setInputMessage: (message: string) => void }> = ({ setInputMessage }) => {
+  return (
+    <div className="text-center flex flex-col items-center justify-center h-full animate-fade-in">
+      <div className="bg-[#9b87f5]/10 p-4 rounded-full mb-4 transition-all duration-300 hover:bg-[#9b87f5]/20 transform hover:scale-105">
+        <Sparkles className="h-10 w-10 text-[#9b87f5]" />
+      </div>
+      <h3 className="text-xl font-bold text-white mb-3">Welcome to the Voice Agent Builder!</h3>
+      <p className="text-gray-300 max-w-md mx-auto mb-6">
+        Tell me about your business and what kind of voice agent you'd like to create. 
+        I'll help you design the perfect agent for your needs.
+      </p>
+      <div className="flex flex-wrap gap-3 justify-center max-w-md mx-auto">
+        <Button 
+          onClick={() => setInputMessage("I need a voice agent for my healthcare clinic to handle appointment scheduling.")}
+          className="bg-gradient-to-r from-[#2f1c4a] to-[#1a0b2e] border border-[#9b87f5]/30 hover:from-[#3a2360] hover:to-[#251640] text-gray-200 transition-all duration-200 transform hover:scale-105 hover:border-[#9b87f5]/60"
+          size="sm"
+        >
+          Healthcare Agent
+        </Button>
+        <Button 
+          onClick={() => setInputMessage("I want a voice agent for my restaurant to take reservations and answer menu questions.")}
+          className="bg-gradient-to-r from-[#2f1c4a] to-[#1a0b2e] border border-[#9b87f5]/30 hover:from-[#3a2360] hover:to-[#251640] text-gray-200 transition-all duration-200 transform hover:scale-105 hover:border-[#9b87f5]/60"
+          size="sm"
+        >
+          Restaurant Agent
+        </Button>
+        <Button 
+          onClick={() => setInputMessage("I need a voice agent for my retail store to handle customer service inquiries.")}
+          className="bg-gradient-to-r from-[#2f1c4a] to-[#1a0b2e] border border-[#9b87f5]/30 hover:from-[#3a2360] hover:to-[#251640] text-gray-200 transition-all duration-200 transform hover:scale-105 hover:border-[#9b87f5]/60"
+          size="sm"
+        >
+          Retail Agent
+        </Button>
+      </div>
+    </div>
   );
 };
 
