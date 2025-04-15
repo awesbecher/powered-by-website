@@ -3,11 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { PoweredByText } from "@/components/shared/PoweredByText";
 
-interface FinalCTASectionProps {
-  handleContact: () => void;
-}
-
-export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
+export const FinalCTASection = () => {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-6xl text-center">
       {/* CTA Card with gradient background */}
@@ -35,21 +31,14 @@ export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
             Boost response rates, improve customer satisfaction, and enhance your business communications—all with the power of a <PoweredByText /> AI Text Agent.
           </p>
           
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex justify-center items-center">
             <Button 
               data-cal-namespace="get-started-with-ai-sms-text-agents"
               data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
               data-cal-config='{"layout":"month_view"}'
-              className="bg-white hover:bg-gray-100 text-[#6342ff] px-8 py-6 text-lg rounded-xl font-bold mx-auto flex items-center w-full sm:w-auto"
+              className="bg-white hover:bg-gray-100 text-[#6342ff] px-8 py-6 text-lg rounded-xl font-bold flex items-center"
             >
               Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            
-            <Button 
-              className="bg-transparent hover:bg-white/10 text-white px-8 py-6 text-lg rounded-xl border-2 border-white flex items-center w-full sm:w-auto"
-              onClick={handleContact}
-            >
-              Contact Sales
             </Button>
           </div>
         </div>
