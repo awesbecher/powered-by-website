@@ -1,62 +1,58 @@
 
-export const services = [
-  {
-    title: "Schedule a Test Drive",
-    description: "Book an appointment to test drive your dream car",
-    link: "/mercedes-dealer",
-    logo: "/lovable-uploads/aa693bec-b111-4ff5-82d5-78ad46643ea3.png",
-    category: "Auto Dealer"
-  },
-  {
-    title: "Property Tour",
-    description: "Schedule a viewing of available properties",
-    link: "/real-estate",
-    logo: "/lovable-uploads/e305eace-d64d-4437-9d8e-533d49b3d934.png",
-    category: "Real Estate"
-  },
-  {
-    title: "In-Room Dining",
-    description: "Order food and drinks directly to your room",
-    link: "/room-service",
-    logo: "/lovable-uploads/75ff6e78-9db7-436e-a063-2b5f8c500ee7.png",
-    category: "Hospitality"
-  },
-  {
-    title: "Get a Quote",
-    description: "Get an insurance quote tailored to your needs",
-    link: "/insurance",
-    logo: "/lovable-uploads/5b3d5137-838b-44a5-8f54-bb2a4cb7dc5a.png",
-    category: "Insurance"
-  },
-  {
-    title: "Explore Products",
-    description: "Manage and upgrade your seat licenses",
-    link: "/license",
-    logo: "/lovable-uploads/e9ddfbf3-072d-410d-b7ed-01c83eb30564.png",
-    category: "SaaS & Software"
-  },
-  {
-    title: "Barbershop Reservations",
-    description: "Chat with our reservations team",
-    link: "/retail-services",
-    logo: "/lovable-uploads/76119a46-2fce-4a9d-8e3b-3ac7cd6e402a.png",
-    category: "Retail Services"
-  }
-];
+import { ReactNode } from 'react';
 
-export const additionalServices = [
+export interface Service {
+  title: string;
+  description: string;
+  icon?: ReactNode;
+  iconPath?: string;
+  link?: string;
+  buttonText?: string;
+  isNew?: boolean;
+  isEnterprise?: boolean;
+}
+
+export const services: Service[] = [
   {
-    title: "Schedule a Test Drive",
-    description: "Book an appointment to test drive your dream car",
+    title: "Mercedes Dealership",
+    description: "Experience our AI agent as a Mercedes dealership representative, helping customers with vehicle information and appointment scheduling.",
+    iconPath: "/lovable-uploads/56608f55-255c-4123-83c5-1099d1c40bcb.png",
     link: "/mercedes-dealer",
-    logo: "/lovable-uploads/aa693bec-b111-4ff5-82d5-78ad46643ea3.png",
-    category: "Auto Dealer"
+    buttonText: "Try Demo",
   },
   {
-    title: "Property Tour",
-    description: "Schedule a viewing of available properties",
+    title: "Insurance Agency",
+    description: "Our AI agent handles insurance inquiries, policy questions, and quote requests as a professional insurance representative.",
+    iconPath: "/lovable-uploads/96a0f0e1-5b20-4614-8f86-8d371a6c9b47.png",
+    link: "/insurance",
+    buttonText: "Try Demo",
+  },
+  {
+    title: "Real Estate",
+    description: "Explore how our AI agent serves as a real estate agent, helping clients with property information and scheduling viewings.",
+    iconPath: "/lovable-uploads/eb73b819-4b47-459b-88c4-aa0a3cd864b7.png",
     link: "/real-estate",
-    logo: "/lovable-uploads/e305eace-d64d-4437-9d8e-533d49b3d934.png",
-    category: "Real Estate"
+    buttonText: "Try Demo",
+  },
+  {
+    title: "Hotel Room Service",
+    description: "See how our AI agent enhances the guest experience by taking room service orders and handling customer requests.",
+    iconPath: "/lovable-uploads/75ff6e78-9db7-436e-a063-2b5f8c500ee7.png",
+    link: "/room-service",
+    buttonText: "Try Demo",
+  },
+  {
+    title: "Retail Services",
+    description: "Our AI agent assists customers with product information, appointment booking, and service inquiries for retail businesses.",
+    iconPath: "/lovable-uploads/65c7ad96-17cd-4bc0-8a6d-0148a49f3402.png",
+    link: "/retail-services",
+    buttonText: "Try Demo",
+  },
+  {
+    title: "Healthcare Practice",
+    description: "Experience how our AI agent serves as a medical office assistant, handling appointment scheduling and patient inquiries.",
+    iconPath: "/lovable-uploads/7bccf1fa-dd2b-4d1a-99d0-0affccdcc85d.png",
+    link: "/omega-pediatrics",
+    buttonText: "Try Demo",
   }
 ];

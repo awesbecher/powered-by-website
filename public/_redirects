@@ -34,6 +34,10 @@
 /voice-chat /index.html 200
 /text-agent /index.html 200
 /voice-business /index.html 200
+/room-service /index.html 200
+/insurance /index.html 200
+/real-estate /index.html 200
+/retail-services /index.html 200
 
 # Redirect from demos (plural) to demo (singular)
 /demos /demo 301
@@ -56,10 +60,3 @@
 
 # Explicit rule for careers page
 /careers /index.html 200
-
-# Explicit rules for demo service pages
-/room-service /index.html 200
-/insurance /index.html 200
-/mercedes-dealer /index.html 200
-/real-estate /index.html 200
-/retail-services /index.html 200

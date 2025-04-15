@@ -30,6 +30,10 @@ import Blog from "./pages/Blog";
 import AIVoiceChat from "./pages/AIVoiceChat";
 import TextAgent from "./pages/TextAgent";
 import AIVoiceBusinessLines from "./pages/AIVoiceBusinessLines";
+import Demo from "./pages/Demo";
+import RetailServices from "./pages/RetailServices";
+import RealEstate from "./pages/RealEstate";
+import Insurance from "./pages/Insurance";
 
 // Others as needed
 import NotFound from "./pages/NotFound";
@@ -71,10 +75,17 @@ function App() {
         <Route path="/news" element={<News />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/demo" element={<DemoCapture />} />
         
-        {/* Demo and special pages */}
+        {/* Demo routes */}
+        <Route path="/demo" element={<Demo />} />
+        <Route path="/demo-capture" element={<DemoCapture />} />
+        <Route path="/room-service" element={<RealEstate />} />
+        <Route path="/insurance" element={<Insurance />} />
         <Route path="/mercedes-dealer" element={<MercedesDealer />} />
+        <Route path="/real-estate" element={<RealEstate />} />
+        <Route path="/retail-services" element={<RetailServices />} />
+        
+        {/* Special pages */}
         <Route path="/omega-pediatrics" element={<OmegaPediatrics />} />
         <Route path="/call-confirmation" element={<CallConfirmation />} />
         

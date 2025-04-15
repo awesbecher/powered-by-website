@@ -1,10 +1,10 @@
 
-import { WordAnimation } from "@/components/home/WordAnimation";
-import { useState, useEffect } from "react";
-import { ClosingCTA } from "@/components/home/ClosingCTA";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { WordAnimation } from "@/components/home/WordAnimation";
+import { ClosingCTA } from "@/components/home/ClosingCTA";
 import OfferButton from "@/components/home/OfferButton";
 import { DemosList } from "@/components/demo/DemosList";
 

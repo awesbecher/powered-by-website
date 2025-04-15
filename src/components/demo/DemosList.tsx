@@ -1,4 +1,5 @@
 
+import React from 'react';
 import { ServiceCard } from "@/components/home/ServiceCard";
 import { services } from "@/data/services";
 
