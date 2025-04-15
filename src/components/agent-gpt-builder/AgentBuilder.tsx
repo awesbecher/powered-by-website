@@ -50,7 +50,6 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad }) => {
     canCreateAgent, 
     canSendMessage,
     incrementMessageCount,
-    incrementAgentCount,
     usageData
   } = useUsageLimits(user?.id);
 
@@ -69,42 +68,23 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad }) => {
   }, []);
 
   // Override handleSendMessage to check usage limits
-  const handleSendMessageWithLimits = async () => {
+  const handleSendMessageWithLimits = async (message: string) => {
     if (user?.id && !canSendMessage) {
       toast({
         title: "Message limit reached",
-        description: `You've reached your plan's message limit (${usageData.messagesSent}/${usageData.messageLimit}). Please upgrade to continue.`,
+        description: "You've reached your plan's message limit. Please upgrade to continue.",
         variant: "destructive",
       });
       return;
     }
 
     // Proceed with sending message
-    await handleSendMessage();
+    const success = await handleSendMessage(message);
     
     // If message was sent successfully, increment the count
-    if (user?.id) {
+    if (success && user?.id) {
       await incrementMessageCount();
     }
-  };
-
-  // Add a function to handle agent creation with limits
-  const handleCreateAgentWithLimits = async () => {
-    if (user?.id && !canCreateAgent) {
-      toast({
-        title: "Agent limit reached",
-        description: `You've reached your plan's agent limit (${usageData.agentsCreated}/${usageData.agentLimit}). Please upgrade to create more agents.`,
-        variant: "destructive",
-      });
-      return false;
-    }
-
-    // If user can create an agent, increment the count
-    if (user?.id) {
-      return await incrementAgentCount();
-    }
-
-    return true;
   };
 
   return (
@@ -115,7 +95,7 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad }) => {
       {/* Feature bubbles */}
       <FeatureBubbles />
 
-      {/* Usage limit alerts if needed */}
+      {/* Usage limit alert if needed */}
       {user && !canSendMessage && (
         <Alert variant="destructive" className="mb-4 animate-fade-in" style={{ animationDelay: '0.5s' }}>
           <AlertTriangle className="h-4 w-4" />
@@ -123,17 +103,6 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad }) => {
           <AlertDescription>
             You've reached your plan's message limit ({usageData.messagesSent}/{usageData.messageLimit}). 
             <a href="/pricing" className="underline ml-1">Upgrade your plan</a> to continue.
-          </AlertDescription>
-        </Alert>
-      )}
-      
-      {user && !canCreateAgent && (
-        <Alert variant="destructive" className="mb-4 animate-fade-in" style={{ animationDelay: '0.5s' }}>
-          <AlertTriangle className="h-4 w-4" />
-          <AlertTitle>Agent limit reached</AlertTitle>
-          <AlertDescription>
-            You've reached your plan's agent limit ({usageData.agentsCreated}/{usageData.agentLimit}). 
-            <a href="/pricing" className="underline ml-1">Upgrade your plan</a> to create more agents.
           </AlertDescription>
         </Alert>
       )}
@@ -187,8 +156,6 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad }) => {
                   setAgentInstructions={setAgentInstructions}
                   activeTab={activeTab}
                   setActiveTab={setActiveTab}
-                  checkAgentLimits={handleCreateAgentWithLimits}
-                  disableCreation={user?.id ? !canCreateAgent : false}
                 />
               </div>
             </div>
@@ -196,39 +163,22 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad }) => {
           
           <TabsContent value="templates" className="mt-6">
             {/* Voice-enabled template agents */}
-            <VoiceAgentBuilder 
-              onSelectTemplate={handleTemplateSelected} 
-              checkAgentLimits={handleCreateAgentWithLimits}
-              disableCreation={user?.id ? !canCreateAgent : false}
-            />
+            <VoiceAgentBuilder onSelectTemplate={handleTemplateSelected} />
           </TabsContent>
           
           <TabsContent value="saved" className="mt-6">
             {/* Saved agents tab */}
-            <VoiceAgentBuilder 
-              onSelectTemplate={handleTemplateSelected} 
-              initialTab="saved" 
-              checkAgentLimits={handleCreateAgentWithLimits}
-              disableCreation={user?.id ? !canCreateAgent : false}
-            />
+            <VoiceAgentBuilder onSelectTemplate={handleTemplateSelected} initialTab="saved" />
           </TabsContent>
           
           <TabsContent value="embeds" className="mt-6">
             {/* Embeds tab for managing agent embeds */}
-            <VoiceAgentBuilder 
-              onSelectTemplate={handleTemplateSelected} 
-              initialTab="embeds" 
-              checkAgentLimits={handleCreateAgentWithLimits}
-              disableCreation={user?.id ? !canCreateAgent : false}
-            />
+            <VoiceAgentBuilder onSelectTemplate={handleTemplateSelected} initialTab="embeds" />
           </TabsContent>
           
           <TabsContent value="pro" className="mt-6">
             {/* Advanced agent builder with more features */}
-            <AgentBuilderPro 
-              checkAgentLimits={handleCreateAgentWithLimits}
-              disableCreation={user?.id ? !canCreateAgent : false}
-            />
+            <AgentBuilderPro />
           </TabsContent>
           
           <TabsContent value="billing" className="mt-6">

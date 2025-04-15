@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Bot, Send, User, Sparkles } from "lucide-react";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown from "react-markdown"; 
 
 interface Message {
   role: "user" | "assistant" | "system";
@@ -117,7 +117,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
                       ? "bg-gray-800/50" 
                       : "bg-purple-900/25"
                   }`}>
-                    <ReactMarkdown>
+                    <ReactMarkdown className="prose prose-invert max-w-none prose-p:leading-relaxed prose-pre:p-2 prose-pre:rounded prose-pre:bg-gray-900">
                       {message.content}
                     </ReactMarkdown>
                   </div>
