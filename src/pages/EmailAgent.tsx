@@ -6,7 +6,7 @@ import { HeroSection } from '@/components/email-agent/page-sections/HeroSection'
 import { FeaturesSection } from '@/components/email-agent/page-sections/FeaturesSection';
 import { BenefitsSection } from '@/components/email-agent/page-sections/BenefitsSection';
 import { FAQSection } from '@/components/email-agent/page-sections/FAQSection';
-import { CTASection } from '@/components/email-agent/page-sections/CTASection';
+// Removed CTASection import
 import { FinalCTASection } from '@/components/email-agent/page-sections/FinalCTASection';
 import { getCalApi } from "@calcom/embed-react";
 
@@ -51,7 +51,7 @@ const EmailAgent = () => {
           <FeaturesSection />
           <BenefitsSection />
           <FAQSection />
-          <CTASection handleContact={handleContact} />
+          {/* Removed CTASection */}
           <FinalCTASection handleContact={handleContact} />
         </div>
       </main>
