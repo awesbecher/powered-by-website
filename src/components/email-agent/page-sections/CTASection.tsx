@@ -19,14 +19,14 @@ export const CTASection = ({ handleContact }: CTASectionProps) => {
           <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
             Book a free consultation with the <PoweredByText /> solutions team to learn how we could quickly implement an AI Email Agent that handles follow-ups, inquiries, and customer communication with remarkable efficiency.
           </p>
-          <Link to="/contact">
-            <Button 
-              className="bg-white hover:bg-gray-100 text-[#6342ff] font-bold px-8 py-6 text-lg rounded-md"
-              onClick={handleContact}
-            >
-              Schedule Your Free Consultation
-            </Button>
-          </Link>
+          <Button 
+            data-cal-namespace="get-started-with-voice-ai-chat"
+            data-cal-link="team-powered-by-dfbtbb/get-started-with-voice-ai-chat"
+            data-cal-config='{"layout":"month_view"}'
+            className="bg-white hover:bg-gray-100 text-[#6342ff] font-bold px-8 py-6 text-lg rounded-md"
+          >
+            Schedule Your Free Consultation
+          </Button>
         </div>
       </div>
     </section>

@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { HeroSection } from '@/components/email-agent/page-sections/HeroSection';
@@ -8,19 +8,10 @@ import { BenefitsSection } from '@/components/email-agent/page-sections/Benefits
 import { FAQSection } from '@/components/email-agent/page-sections/FAQSection';
 import { CTASection } from '@/components/email-agent/page-sections/CTASection';
 import { FinalCTASection } from '@/components/email-agent/page-sections/FinalCTASection';
+import { getCalApi } from "@calcom/embed-react";
 
 const EmailAgent = () => {
   const [initialLoad, setInitialLoad] = useState(true);
-  
-  // Handle contact button clicks
-  const handleContact = () => {
-    // Open Calendly or perform other contact actions
-    if (window.Calendly) {
-      window.Calendly.initPopupWidget({
-        url: 'https://calendly.com/poweredby/demo'
-      });
-    }
-  };
   
   // Remove initialLoad state after component mounts
   React.useEffect(() => {
@@ -29,6 +20,27 @@ const EmailAgent = () => {
     }, 100);
     return () => clearTimeout(timer);
   }, []);
+
+  // Initialize Cal.com
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({"namespace":"get-started-with-voice-ai-chat"});
+      cal("ui", {
+        "cssVarsPerTheme": {
+          "light": {"cal-brand":"#292929"},
+          "dark": {"cal-brand":"#fafafa"}
+        },
+        "hideEventTypeDetails": false,
+        "layout": "month_view"
+      });
+    })();
+  }, []);
+  
+  // Handle contact button clicks
+  const handleContact = () => {
+    // This function is maintained for compatibility with other components
+    // but we're no longer using Calendly's popup widget
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#1a0b2e] to-[#13151a]">

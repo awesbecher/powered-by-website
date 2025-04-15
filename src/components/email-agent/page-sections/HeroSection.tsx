@@ -12,39 +12,6 @@ interface HeroSectionProps {
 export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
   const { toast } = useToast();
 
-  useEffect(() => {
-    // Load Calendly script
-    const script = document.createElement('script');
-    script.src = 'https://assets.calendly.com/assets/external/widget.js';
-    script.async = true;
-    document.body.appendChild(script);
-    
-    // Add Calendly CSS
-    const link = document.createElement('link');
-    link.href = 'https://assets.calendly.com/assets/external/widget.css';
-    link.rel = 'stylesheet';
-    document.head.appendChild(link);
-    
-    return () => {
-      // Clean up on unmount
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-      if (document.head.contains(link)) {
-        document.head.removeChild(link);
-      }
-    };
-  }, []);
-
-  // Function to open Calendly popup
-  const openCalendly = () => {
-    if (window.Calendly) {
-      window.Calendly.initPopupWidget({
-        url: 'https://calendly.com/d/cm48-q4x-c3v?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=7100ff'
-      });
-    }
-  };
-
   return (
     <section className="relative pt-20 pb-8 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl overflow-hidden">
       {/* Background gradients similar to AI Agency page */}
@@ -78,7 +45,9 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
             </div>
             
             <button 
-              onClick={openCalendly}
+              data-cal-namespace="get-started-with-voice-ai-chat"
+              data-cal-link="team-powered-by-dfbtbb/get-started-with-voice-ai-chat"
+              data-cal-config='{"layout":"month_view"}'
               className="bg-[#6342ff] hover:bg-[#7352ff] text-white font-bold py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm"
             >
               <CalendarClock className="w-5 h-5" />

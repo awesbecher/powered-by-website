@@ -8,15 +8,6 @@ interface FinalCTASectionProps {
 }
 
 export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
-  // Function to open Calendly popup
-  const openCalendly = () => {
-    if (window.Calendly) {
-      window.Calendly.initPopupWidget({
-        url: 'https://calendly.com/d/cm48-q4x-c3v?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=7100ff'
-      });
-    }
-  };
-
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl text-center">
       <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8">
@@ -28,8 +19,10 @@ export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
         Boost efficiency, improve follow-up rates, and enhance customer satisfaction—all with the power of a <PoweredByText /> AI Email Agent.
       </p>
       <Button 
-        className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-8 py-6 text-lg rounded-md mx-auto"
-        onClick={openCalendly}
+        data-cal-namespace="get-started-with-voice-ai-chat"
+        data-cal-link="team-powered-by-dfbtbb/get-started-with-voice-ai-chat"
+        data-cal-config='{"layout":"month_view"}'
+        className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-8 py-6 text-lg rounded-md mx-auto flex items-center"
       >
         Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
       </Button>
