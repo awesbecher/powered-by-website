@@ -10,6 +10,7 @@ import VoiceAgentBuilder from "./components/voice-agent-builder/VoiceAgentBuilde
 import AgentBuilderPro from "./components/AgentBuilderPro";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import VoiceTriggerSection from "./components/voice-trigger/VoiceTriggerSection";
+import WebhookTriggerSection from "./components/webhook-trigger/WebhookTriggerSection";
 
 interface AgentBuilderProps {
   initialLoad: boolean;
@@ -70,6 +71,9 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad }) => {
               <TabsTrigger value="voice-trigger" className="flex-1">
                 Voice Trigger
               </TabsTrigger>
+              <TabsTrigger value="webhook-trigger" className="flex-1">
+                Webhook Trigger
+              </TabsTrigger>
             </TabsList>
           </div>
           
@@ -120,6 +124,11 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad }) => {
           <TabsContent value="voice-trigger" className="mt-6">
             {/* Voice trigger feature */}
             <VoiceTriggerSection onTranscription={handleVoiceTranscription} />
+          </TabsContent>
+
+          <TabsContent value="webhook-trigger" className="mt-6">
+            {/* Webhook trigger feature */}
+            <WebhookTriggerSection agentName={agentName} />
           </TabsContent>
         </Tabs>
       </div>

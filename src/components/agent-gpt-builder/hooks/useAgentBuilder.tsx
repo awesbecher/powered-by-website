@@ -61,6 +61,12 @@ export const useAgentBuilder = () => {
       if (messages.length === 0 && agentInstructions === "") {
         extractInstructionsFromMessage(response.message.content);
       }
+      
+      // Show success toast
+      toast({
+        title: "Response Generated",
+        description: "The AI has responded to your message.",
+      });
     } catch (error) {
       console.error("Error generating response:", error);
       toast({
@@ -77,6 +83,25 @@ export const useAgentBuilder = () => {
     setInputMessage("I want to create a voice agent for my business that can handle customer service inquiries. Can you help me design it?");
   };
 
+  // New function for handling webhook triggers
+  const triggerAgentFromWebhook = (payload: any) => {
+    const userMessage = payload.userMessage || payload.message || "Agent triggered via webhook";
+    
+    setInputMessage(userMessage);
+    setTimeout(() => handleSendMessage(), 100);
+    
+    toast({
+      title: "Webhook Triggered",
+      description: `Agent triggered with message: "${userMessage.substring(0, 30)}${userMessage.length > 30 ? '...' : ''}"`,
+    });
+    
+    return {
+      success: true,
+      message: "Agent triggered successfully",
+      runId: Math.random().toString(36).substring(2, 15)
+    };
+  };
+
   return {
     messages,
     inputMessage,
@@ -89,6 +114,7 @@ export const useAgentBuilder = () => {
     activeTab,
     setActiveTab,
     handleSendMessage,
-    getStarterPrompt
+    getStarterPrompt,
+    triggerAgentFromWebhook
   };
 };
