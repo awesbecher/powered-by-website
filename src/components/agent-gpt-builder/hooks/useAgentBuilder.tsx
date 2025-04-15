@@ -34,11 +34,11 @@ export const useAgentBuilder = () => {
     }
   };
 
-  const handleSendMessage = async () => {
-    if (!inputMessage.trim()) return;
+  const handleSendMessage = async (message: string): Promise<boolean> => {
+    if (!message.trim()) return false;
     
     // Add user message to chat
-    const userMessage: ChatMessage = { role: "user", content: inputMessage };
+    const userMessage: ChatMessage = { role: "user", content: message };
     setMessages(prevMessages => [...prevMessages, userMessage]);
     setInputMessage("");
     setIsLoading(true);
@@ -61,6 +61,8 @@ export const useAgentBuilder = () => {
       if (messages.length === 0 && agentInstructions === "") {
         extractInstructionsFromMessage(response.message.content);
       }
+      
+      return true;
     } catch (error) {
       console.error("Error generating response:", error);
       toast({
@@ -68,13 +70,14 @@ export const useAgentBuilder = () => {
         title: "Error",
         description: "Failed to generate a response. Please try again.",
       });
+      return false;
     } finally {
       setIsLoading(false);
     }
   };
 
-  const getStarterPrompt = () => {
-    setInputMessage("I want to create a voice agent for my business that can handle customer service inquiries. Can you help me design it?");
+  const getStarterPrompt = (): string => {
+    return "I want to create a voice agent for my business that can handle customer service inquiries. Can you help me design it?";
   };
 
   return {
