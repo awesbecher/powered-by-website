@@ -118,11 +118,10 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
               <AgentConfigPanel 
                 agentName={agentName}
                 setAgentName={setAgentName}
-                agentType={agentType}
-                setAgentType={setAgentType}
-                agentPrompt={agentPrompt}
-                setAgentPrompt={setAgentPrompt}
-                onCreateAgent={handleAgentCreation}
+                agentInstructions={agentPrompt}
+                setAgentInstructions={setAgentPrompt}
+                activeTab={activeTab}
+                setActiveTab={setActiveTab}
               />
             </TabsContent>
             
@@ -149,10 +148,7 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
             </TabsContent>
             
             <TabsContent value="deploy" className="mt-4">
-              <DeploymentCTA 
-                agentName={agentName}
-                agentPrompt={agentPrompt}
-              />
+              <DeploymentCTA />
             </TabsContent>
           </Tabs>
         </div>
