@@ -1,5 +1,5 @@
+
 import React, { useState, useRef, useEffect } from "react";
-import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChatMessage } from "@/services/openaiService";
@@ -113,7 +113,7 @@ const EmptyChat: React.FC<{ setInputMessage: (message: string) => void }> = ({ s
     <div className="text-center flex flex-col items-center justify-center h-full animate-fade-in">
       <div className="bg-[#9b87f5]/10 p-4 rounded-full mb-4 transition-all duration-300 hover:bg-[#9b87f5]/20 transform hover:scale-105">
         <img 
-          src="/lovable-uploads/3874278b-1677-4b71-beb9-25a1ebe047fe.png" 
+          src="/lovable-uploads/273d4b9e-a8a8-49f9-9309-824aa7cd2711.png" 
           alt="Voice Agent Builder Icon" 
           className="h-10 w-10"
         />
@@ -151,3 +151,4 @@ const EmptyChat: React.FC<{ setInputMessage: (message: string) => void }> = ({ s
 };
 
 export default ChatInterface;
+
