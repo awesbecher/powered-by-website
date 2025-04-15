@@ -20,7 +20,7 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
       <div className="inline-block px-4 py-1.5 rounded-full bg-[#6342ff]/20 border border-[#6342ff]/40 mb-4">
         <p className="text-sm text-[#9b87f5] font-medium flex items-center">
           <Zap className="h-3.5 w-3.5 mr-1.5" />
-          <span>Scale Your Sales with AI-Powered Texting</span>
+          <span>Scale Your SMB with Agent-based Texting</span>
         </p>
       </div>
       
