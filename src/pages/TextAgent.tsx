@@ -1,25 +1,22 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { HeroSection } from '@/components/text-agent/page-sections/HeroSection';
 import { FeaturesSection } from '@/components/text-agent/page-sections/FeaturesSection';
 import { BenefitsSection } from '@/components/text-agent/page-sections/BenefitsSection';
 import { FAQSection } from '@/components/text-agent/page-sections/FAQSection';
-import { CTASection } from '@/components/text-agent/page-sections/CTASection';
+// Removed CTASection import
 import { FinalCTASection } from '@/components/text-agent/page-sections/FinalCTASection';
+import { getCalApi } from "@calcom/embed-react";
 
 const TextAgent = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   
   // Handle contact button clicks
   const handleContact = () => {
-    // Open Calendly or perform other contact actions
-    if (window.Calendly) {
-      window.Calendly.initPopupWidget({
-        url: 'https://calendly.com/poweredby/demo'
-      });
-    }
+    // This function is maintained for compatibility with other components
+    // but we're no longer using Calendly's popup widget
   };
   
   // Remove initialLoad state after component mounts
@@ -28,6 +25,17 @@ const TextAgent = () => {
       setInitialLoad(false);
     }, 100);
     return () => clearTimeout(timer);
+  }, []);
+
+  // Initialize Cal.com
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({"namespace":"get-started-with-ai-sms-text-agents"});
+      cal("ui", {
+        "hideEventTypeDetails": false,
+        "layout": "month_view"
+      });
+    })();
   }, []);
 
   return (
@@ -39,7 +47,7 @@ const TextAgent = () => {
           <FeaturesSection />
           <BenefitsSection />
           <FAQSection />
-          <CTASection handleContact={handleContact} />
+          {/* Removed CTASection */}
           <FinalCTASection handleContact={handleContact} />
         </div>
       </main>

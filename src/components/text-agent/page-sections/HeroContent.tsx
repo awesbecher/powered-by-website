@@ -13,15 +13,6 @@ interface HeroContentProps {
 
 export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) => {
   const [videoOpen, setVideoOpen] = useState(false);
-  
-  // Function to open Calendly popup
-  const openCalendly = () => {
-    if (window.Calendly) {
-      window.Calendly.initPopupWidget({
-        url: 'https://calendly.com/d/crr5-c3g-q3z?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=7100ff'
-      });
-    }
-  };
 
   return (
     <div className={`w-full space-y-4 transition-all duration-1000 ease-out transform
@@ -56,10 +47,12 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
             <Tv className="mr-2 h-5 w-5" /> Watch our intro to AI SMS-Text Agents
           </Button>
           
-          {/* New "See Demo" button */}
+          {/* Updated "See Demo" button to use Cal.com */}
           <Button 
             className="bg-transparent hover:bg-white/10 text-white px-6 py-4 text-base rounded-md flex items-center justify-center border-2 border-white"
-            onClick={openCalendly}
+            data-cal-namespace="get-started-with-ai-sms-text-agents"
+            data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
+            data-cal-config='{"layout":"month_view"}'
           >
             <Mic className="mr-2 h-5 w-5" /> See Demo
           </Button>
