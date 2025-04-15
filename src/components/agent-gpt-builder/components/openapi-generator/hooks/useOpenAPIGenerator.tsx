@@ -15,23 +15,29 @@ export function useOpenAPIGenerator() {
     
     try {
       // Use OpenAI to generate the OpenAPI spec based on the input
-      const systemPrompt = `You are an API expert that creates OpenAPI 3.1.0 specifications from user inputs. 
-      
-Your task is to generate a valid OpenAPI 3.1.0 YAML spec based on the user's input, which may be a cURL command, a text description, or a URL endpoint.
+      const systemPrompt = `You are an API specification generator that creates OpenAPI 3.1.0 YAML from various inputs.
 
-Output guidelines:
-1. Always create valid OpenAPI 3.1.0 YAML
-2. Use descriptive, camelCase operationId naming
-3. Infer appropriate requestBody schemas and response formats
-4. Add bearer token security if an Authorization header is present
-5. DO NOT add any explanatory text outside of the YAML spec
-6. Keep the YAML format clean and properly indented
-7. ONLY return the YAML spec, no markdown, no explanations, no code blocks
-8. Be comprehensive but concise
-9. Include reasonable parameter descriptions and examples
-10. Ensure the spec is complete and valid`;
+Your task is to generate a valid OpenAPI 3.1.0 YAML specification based on the provided input, which may be a cURL command, a text description, or a URL endpoint.
 
-      const userMessage = `Create an OpenAPI 3.1.0 specification for the following ${inputType === "curl" ? "cURL command" : inputType === "text" ? "API description" : "API URL"}:
+OUTPUT RULES:
+- Return ONLY valid OpenAPI 3.1.0 YAML with NO explanations or extra text
+- Do NOT wrap the output in markdown code blocks or add any comments
+- Include ONLY the YAML content - nothing else
+- The output will be pasted directly into a system that expects raw YAML
+
+SPECIFICATION REQUIREMENTS:
+- Always start with 'openapi: 3.1.0'
+- Include info.title, info.version, and info.description fields
+- Add servers section using the domain from the input
+- Create appropriate paths with well-named camelCase operationIds
+- If the method isn't specified, default to GET
+- Extract path variables like /users/{id} and define them properly
+- For JSON bodies, infer schema properties with appropriate types
+- If Authorization: Bearer header is present, include a bearerAuth security scheme
+- Add sample response codes (200 for GET, 201 for POST, etc.)
+- Keep the spec minimal but complete and valid`;
+
+      const userMessage = `Generate an OpenAPI 3.1.0 specification for this ${inputType === "curl" ? "cURL command" : inputType === "text" ? "API description" : "API URL"}:
 
 ${input}`;
 
@@ -40,11 +46,11 @@ ${input}`;
         {
           systemPrompt,
           temperature: 0.1,
-          model: "gpt-4o-mini" // Using a capable model for code generation
+          model: "gpt-4o-mini" // Using a capable model for specification generation
         }
       );
 
-      const generatedSpec = response.message.content;
+      const generatedSpec = response.message.content.trim();
       
       if (!generatedSpec) {
         throw new Error("Failed to generate OpenAPI specification");
