@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -20,14 +21,20 @@ const AIReceptionist = () => {
 
   const ASSISTANT_ID = "ebb38ba5-321a-49e4-b860-708bc864327f";
 
-  React.useEffect(() => {
+  useEffect(() => {
     setTimeout(() => {
       setInitialLoad(false);
     }, 100);
     
+    // Load Cal.com script
     const script = document.createElement('script');
-    script.src = 'https://assets.calendly.com/assets/external/widget.js';
-    script.async = true;
+    script.type = 'text/javascript';
+    script.innerHTML = `
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", "get-started-with-ai-receptionist", {origin:"https://cal.com"});
+
+    Cal.ns["get-started-with-ai-receptionist"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"week_view"});
+    `;
     document.body.appendChild(script);
     
     return () => {
@@ -37,14 +44,6 @@ const AIReceptionist = () => {
     };
   }, []);
   
-  const openCalendly = () => {
-    if (window.Calendly) {
-      window.Calendly.initPopupWidget({
-        url: 'https://calendly.com/d/cntp-tg6-f8k?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=7100ff'
-      });
-    }
-  };
-
   const handleVoiceChatClick = () => {
     setShowVoiceChatDialog(true);
   };
@@ -323,7 +322,9 @@ const AIReceptionist = () => {
         </p>
         <Button 
           className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-8 py-6 text-lg rounded-md mx-auto"
-          onClick={openCalendly}
+          data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-receptionist"
+          data-cal-namespace="get-started-with-ai-receptionist"
+          data-cal-config='{"layout":"month_view"}'
         >
           Schedule a Demo
         </Button>
