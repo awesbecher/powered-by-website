@@ -1,12 +1,11 @@
-
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { AgentConfigPanel } from "./components/AgentConfigPanel";
-import { ChatInterface } from "./components/ChatInterface";
-import { PageHeader } from "./components/PageHeader";
-import { FeatureBubbles } from "./components/FeatureBubbles";
-import { DeploymentCTA } from "./components/DeploymentCTA";
+import AgentConfigPanel from "./components/AgentConfigPanel";
+import ChatInterface from "./components/ChatInterface";
+import PageHeader from "./components/PageHeader";
+import FeatureBubbles from "./components/FeatureBubbles";
+import DeploymentCTA from "./components/DeploymentCTA";
 import { supabase } from "@/integrations/supabase/client";
 import { useAgentBuilder } from "./hooks/useAgentBuilder";
 import { useToast } from "@/hooks/use-toast";
@@ -46,7 +45,6 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
   const { usageLimits, checkMessageLimit, checkAgentCreationLimit } = useUsageLimits();
 
   useEffect(() => {
-    // Check for success or canceled parameters in the URL
     const success = searchParams.get('success') === 'true';
     const canceled = searchParams.get('canceled') === 'true';
 
@@ -74,7 +72,6 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
     fetchUser();
   }, []);
 
-  // Handle agent creation
   const handleAgentCreation = () => {
     if (!agentName.trim() || !agentPrompt.trim()) {
       toast({
@@ -85,12 +82,10 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
       return;
     }
 
-    // Check if user is within usage limits for agent creation
     if (!checkAgentCreationLimit()) {
-      return; // The function already shows a toast
+      return;
     }
 
-    // If all validations pass, configure the agent
     setIsConfiguring(true);
     setReadyToChat(true);
     setActiveTab("chat");
@@ -138,7 +133,7 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
                 isLoading={isLoading}
                 handleSendMessage={(message) => handleSendMessage(message, checkMessageLimit)}
                 getStarterPrompt={() => getStarterPrompt(agentType)}
-                disabled={!checkMessageLimit(true)}  // Just check without incrementing
+                disabled={!checkMessageLimit(true)}
               />
               
               {readyToChat && (

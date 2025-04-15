@@ -40,6 +40,7 @@ import RetailServices from "./pages/RetailServices";
 import CustomGPT from "@/pages/CustomGPT";
 import AgentGPTBuilder from "@/pages/AgentGPTBuilder";
 import DocumentChat from "@/pages/DocumentChat";
+import AgentPricing from "@/pages/AgentPricing";
 
 const router = createBrowserRouter([
   {
@@ -189,6 +190,10 @@ const router = createBrowserRouter([
   {
     path: "/document-chat",
     element: <DocumentChat />,
+  },
+  {
+    path: "/agent-pricing",
+    element: <AgentPricing />,
   },
   {
     path: "*",
