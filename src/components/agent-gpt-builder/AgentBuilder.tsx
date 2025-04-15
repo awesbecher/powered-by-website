@@ -99,6 +99,7 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
     setMessages([]);
     setIsConfiguring(false);
     setReadyToChat(false);
+    setActiveTab("configure");
   };
 
   return (
@@ -121,7 +122,7 @@ export const AgentBuilder: React.FC<AgentBuilderProps> = ({ initialLoad = false 
                 agentInstructions={agentPrompt}
                 setAgentInstructions={setAgentPrompt}
                 activeTab="instructions"
-                setActiveTab={() => {}}
+                setActiveTab={setActiveTab}
                 onCreateAgent={handleAgentCreation}
               />
             </TabsContent>
