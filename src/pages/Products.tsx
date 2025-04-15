@@ -61,7 +61,8 @@ const Products = () => {
       title: "OutboundAI",
       description: "Deploy AI agents to handle outbound sales calls at scale, booking more meetings and qualifying leads without expanding headcount or dealing with call reluctance.",
       icon: Phone,
-      link: "/outbound-ai"
+      link: "https://tryoutbound.ai",
+      isExternal: true
     }
   ];
 
