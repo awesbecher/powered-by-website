@@ -16,7 +16,7 @@ const VoiceAgentTemplates: React.FC<VoiceAgentTemplatesProps> = ({ onSelectTempl
         {Object.entries(agentTemplates).map(([key, template]) => (
           <Card 
             key={key}
-            className="border border-white/10 bg-[#1a0b2e]/40 hover:bg-[#2f1c4a]/40 transition-colors cursor-pointer p-4"
+            className="border border-white/10 bg-[#1A1F2C]/60 hover:bg-[#2f1c4a]/40 transition-colors cursor-pointer p-4"
             onClick={() => onSelectTemplate(key)}
           >
             <h3 className="text-white font-bold mb-2">{template.name}</h3>
