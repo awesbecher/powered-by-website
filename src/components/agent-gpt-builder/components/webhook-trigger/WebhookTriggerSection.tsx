@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Bot, Copy, RefreshCw, Globe, Key, PlusCircle, Trash2, Check } from "lucide-react";
@@ -327,7 +326,7 @@ const WebhookTriggerSection: React.FC<WebhookTriggerSectionProps> = ({ agentId =
                   onClick={fetchWebhookLogs}
                   variant="outline"
                   size="sm"
-                  className="border-white/20 text-white hover:bg-white/10"
+                  className="bg-[#1A1F2C]/80 text-white border-white/20 hover:bg-[#2A3342]"
                 >
                   <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
                   Refresh
