@@ -34,6 +34,7 @@ import Demo from "./pages/Demo";
 import RetailServices from "./pages/RetailServices";
 import RealEstate from "./pages/RealEstate";
 import Insurance from "./pages/Insurance";
+import ThankYou from "./pages/ThankYou";
 
 // Others as needed
 import NotFound from "./pages/NotFound";
@@ -88,6 +89,7 @@ function App() {
         {/* Special pages */}
         <Route path="/omega-pediatrics" element={<OmegaPediatrics />} />
         <Route path="/call-confirmation" element={<CallConfirmation />} />
+        <Route path="/thank-you" element={<ThankYou />} />
         
         {/* Catch all for 404 */}
         <Route path="*" element={<NotFound />} />

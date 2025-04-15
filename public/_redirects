@@ -38,6 +38,7 @@
 /insurance /index.html 200
 /real-estate /index.html 200
 /retail-services /index.html 200
+/thank-you /index.html 200
 
 # Redirect from demos (plural) to demo (singular)
 /demos /demo 301
