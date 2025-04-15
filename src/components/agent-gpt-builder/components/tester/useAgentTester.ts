@@ -10,12 +10,12 @@ export const useAgentTester = (agentName: string, agentInstructions: string) => 
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
 
-  // Reset messages when agent instructions change
+  // Reset messages when agent instructions change, but only once on initial load
   useEffect(() => {
     if (agentInstructions) {
       setMessages([{ role: "system", content: agentInstructions }]);
     }
-  }, [agentInstructions]);
+  }, []); // Empty dependency array to only run once on mount
 
   const handleSendMessage = async () => {
     if (!userInput || !agentInstructions) return;
