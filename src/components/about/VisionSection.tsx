@@ -11,8 +11,8 @@ export const VisionSection = ({ initialLoad }: VisionSectionProps) => {
     <section className={`py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto transition-all duration-1000 delay-400 ease-out transform
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
       
-      {/* New Image Section */}
-      <div className="mb-12">
+      {/* Reduced Size Image Section */}
+      <div className="mb-12 max-w-4xl mx-auto">
         <img 
           src="/lovable-uploads/fd6bacaa-f5ae-46d3-ad21-ca95b78e1537.png" 
           alt="AI Agents for SMBs Presentation" 
@@ -40,3 +40,4 @@ export const VisionSection = ({ initialLoad }: VisionSectionProps) => {
     </section>
   );
 };
+
