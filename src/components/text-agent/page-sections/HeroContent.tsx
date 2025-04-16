@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Tv, Phone, Zap } from "lucide-react";
+import { ArrowRight, Tv, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PoweredByText } from "@/components/shared/PoweredByText";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
