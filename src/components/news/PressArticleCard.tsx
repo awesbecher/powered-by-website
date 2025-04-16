@@ -13,11 +13,12 @@ export const PressArticleCard = ({ article }: PressArticleCardProps) => {
   const isMarketWatch = article.id === "marketwatch-feature";
   const isAssociatedPress = article.id === "associated-press-virtual-se";
   const isSeekingAlpha = article.id === "seeking-alpha-ai-innovation";
-  const isMorningStar = article.id === "morningstar-ai-innovation";
+  const isMorningStar = article.id === "morningstar-ai-innovation" || article.id === "morningstar-virtual-se-launch";
   const isKtla = article.id === "ktla-ai-feature";
-  const isPrNewswire = article.id === "pr-newswire-ai-agency";
+  const isPrNewswire = article.id === "pr-newswire-ai-agency" || article.id === "prnewswire-virtual-se-launch";
   const isWgn9 = article.id === "wgn9-ai-agency";
   const isPix11News = article.id === "pix11-news-ai-agency";
+  const isFox8 = article.id === "fox8-virtual-se-launch";
   
   return (
     <a 
@@ -34,7 +35,7 @@ export const PressArticleCard = ({ article }: PressArticleCardProps) => {
           </div>
           
           {article.imageUrl && (
-            <div className={`mb-4 overflow-hidden rounded-md ${isYahooFinance ? 'bg-purple-800' : ''} ${isMarketWatch || isAssociatedPress || isMorningStar || isKtla || isPrNewswire || isWgn9 ? 'bg-white' : ''} ${isSeekingAlpha ? 'bg-black' : ''} ${isPix11News ? 'bg-black' : ''}`}>
+            <div className={`mb-4 overflow-hidden rounded-md ${isYahooFinance ? 'bg-purple-800' : ''} ${isMarketWatch || isAssociatedPress || isMorningStar || isKtla || isPrNewswire || isWgn9 || isFox8 ? 'bg-white' : ''} ${isSeekingAlpha || isPix11News ? 'bg-black' : ''}`}>
               <img 
                 src={article.imageUrl} 
                 alt={article.title} 
@@ -51,4 +52,3 @@ export const PressArticleCard = ({ article }: PressArticleCardProps) => {
     </a>
   );
 };
-
