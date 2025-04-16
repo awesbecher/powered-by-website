@@ -28,7 +28,7 @@ const allImages = [...propertyImages, ...otherImages];
 forcePrefetchImages(allImages);
 addCSSImagePreloading(allImages);
 
-const AIVoiceChat = () => {
+export const AIVoiceChat = () => {
   const [initialLoad, setInitialLoad] = useState(false); // Start as false to skip animation
   const { toast } = useToast();
   const navigate = useNavigate();
