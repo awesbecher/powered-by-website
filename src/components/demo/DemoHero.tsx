@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -55,68 +55,7 @@ export const DemoHero = ({ initialLoad }: DemoHeroProps) => {
             </div>
           </motion.div>
           
-          {/* Animated illustration */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-[#6342ff]/20 to-[#9b87f5]/20 rounded-3xl blur-xl"></div>
-            <div className="relative bg-[#1a0f2e] border border-gray-800 rounded-3xl p-6 shadow-xl">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex space-x-2">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                </div>
-                <div className="text-sm text-gray-400">AI Agent Interface</div>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-[#6342ff] flex items-center justify-center text-white font-bold">
-                    AI
-                  </div>
-                  <div className="bg-gray-800 rounded-lg p-3 max-w-[80%]">
-                    <p className="text-white">Hello! I'm your AI assistant. How can I help you today?</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start justify-end gap-3">
-                  <div className="bg-[#6342ff]/30 rounded-lg p-3 max-w-[80%]">
-                    <p className="text-white">I need information about your voice AI solution.</p>
-                  </div>
-                  <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center text-white font-bold">
-                    U
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-[#6342ff] flex items-center justify-center text-white font-bold">
-                    AI
-                  </div>
-                  <div className="bg-gray-800 rounded-lg p-3 max-w-[80%]">
-                    <p className="text-white">Our Voice AI solution enables natural conversations with customers across multiple channels including phone, web, and mobile applications.</p>
-                  </div>
-                </div>
-                
-                {/* Animated typing indicator */}
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-[#6342ff] flex items-center justify-center text-white font-bold">
-                    AI
-                  </div>
-                  <div className="bg-gray-800 rounded-lg p-3 max-w-[80%] flex items-center">
-                    <div className="flex space-x-1">
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0s" }}></div>
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0.4s" }}></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+          {/* Removed AI Agent illustration section */}
         </div>
       </div>
       
