@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -83,8 +82,8 @@ const About = () => {
           <div className={`mt-16 mb-8 max-w-4xl mx-auto transition-all duration-1000 delay-400 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <img 
-              src="/lovable-uploads/9adc47a5-7863-4041-9365-0a05139936a2.png" 
-              alt="AI workshop presentation with audience" 
+              src="/lovable-uploads/437d5ed4-6fad-4c98-91fa-aa54162ec5f8.png" 
+              alt="Team of AI Agents developers in matching t-shirts" 
               className="w-full h-auto rounded-xl shadow-lg"
             />
           </div>
@@ -111,10 +110,7 @@ const About = () => {
       </div>
 
       <div className="relative z-20">
-        <ClosingCTA 
-          customHeading="Ready to Put AI Agents to Work?" 
-          customButtonText="Get Started"
-        />
+        <ClosingCTA />
       </div>
 
       <Footer />
