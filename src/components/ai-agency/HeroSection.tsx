@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon, MessageCircle, Play } from 'lucide-react';
@@ -52,9 +51,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
             transition={{ duration: 0.7, delay: 0.2 }}
           >
             We build and deploy custom AI agents to enhance your business operations and customer experience.
-            <span className="font-semibold text-white block mt-2">
-              Clients report up to <span className="text-[#9b87f5]">35% faster response times</span> with our AI integrations.
-            </span>
           </motion.p>
           
           <motion.div 
@@ -128,3 +124,5 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
     </section>
   );
 };
+
+export default HeroSection;
