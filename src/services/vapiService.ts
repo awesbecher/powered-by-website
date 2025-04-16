@@ -37,6 +37,7 @@ const checkBrowserCompatibility = () => {
 
 export const getVapiInstance = () => {
   if (!vapiInstance) {
+    console.log("Creating new Vapi instance");
     // Initialize with the public API key
     vapiInstance = new Vapi("a212f18f-9d02-4703-914f-ac89661262c5");
     
@@ -57,6 +58,7 @@ export const getVapiInstance = () => {
 
 export const initiateVapiCall = async (assistantId: string) => {
   try {
+    console.log("Initiating Vapi call with assistant:", assistantId);
     checkBrowserCompatibility();
     
     try {
@@ -76,6 +78,7 @@ export const initiateVapiCall = async (assistantId: string) => {
     
     const vapi = getVapiInstance();
     await vapi.start(assistantId);
+    console.log("Vapi call successfully initiated");
     
     return true;
   } catch (error) {
@@ -99,8 +102,10 @@ export const initiateVapiCall = async (assistantId: string) => {
 
 export const stopVapiCall = () => {
   try {
+    console.log("Stopping Vapi call");
     const vapi = getVapiInstance();
     vapi.stop();
+    console.log("Vapi call stopped successfully");
   } catch (error) {
     console.error('Error stopping Vapi call:', error);
     throw error;

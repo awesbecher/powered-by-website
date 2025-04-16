@@ -13,6 +13,12 @@ interface CallToActionButtonsProps {
 export const CallToActionButtons = ({ handleNavigation, setShowDialog }: CallToActionButtonsProps) => {
   const [videoOpen, setVideoOpen] = useState(false);
   
+  const handleTalkToAgent = () => {
+    console.log("Talk to Agent button clicked in CallToActionButtons");
+    // Dispatch the open-voice-dialog event
+    document.dispatchEvent(new CustomEvent('open-voice-dialog'));
+  };
+  
   return (
     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-4xl">
       <Button
@@ -32,7 +38,7 @@ export const CallToActionButtons = ({ handleNavigation, setShowDialog }: CallToA
         </Button>
       </Link>
       <Button 
-        onClick={() => setShowDialog(true)}
+        onClick={handleTalkToAgent}
         className="relative z-20 bg-white hover:bg-gray-100 text-accent px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
       >
         Talk to an AI Agent Now

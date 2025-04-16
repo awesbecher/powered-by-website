@@ -32,6 +32,7 @@ const Index = () => {
 
   // Function to handle opening the voice chat dialog
   const handleOpenVoiceDialog = () => {
+    console.log("Opening voice dialog from Index page");
     document.dispatchEvent(new CustomEvent('open-voice-dialog'));
   };
 

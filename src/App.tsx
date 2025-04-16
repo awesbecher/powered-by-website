@@ -29,44 +29,43 @@ import Products from './pages/Products';
 import OutboundAI from './pages/OutboundAI';
 import License from './pages/License';
 import Index from './pages/Index';
-import { GlobalVoiceChatDialog } from '@/components/GlobalVoiceChatDialog';
+import AIAgency from './pages/AIAgency';
+import { GlobalVoiceChatDialog } from '@/components/shared/GlobalVoiceChatDialog';
 
 const queryClient = new QueryClient();
 
 function App() {
   const location = useLocation();
 
-  const WrapperWithAnimatedRoutes = ({ children }: { children: React.ReactNode }) => (
-    <AnimatePresence mode="wait" initial={false}>
-      <Routes key={location.pathname} location={location}>
-        <Route path="/" element={<Index />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/pricing" element={<Pricing />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/ai-receptionist" element={<AIReceptionist />} />
-        <Route path="/voice-chat" element={<VoiceChat />} />
-        <Route path="/email-agent" element={<EmailAgent />} />
-        <Route path="/text-agent" element={<TextAgent />} />
-        <Route path="/real-estate" element={<RealEstate />} />
-        <Route path="/getvirtual-se" element={<VirtualSE />} />
-        <Route path="/news" element={<News />} />
-        <Route path="/demo" element={<Demo />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/outbound-ai" element={<OutboundAI />} />
-        <Route path="/license" element={<License />} />
-      </Routes>
-    </AnimatePresence>
-  );
-
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-        <WrapperWithAnimatedRoutes>
-          {/* Add the GlobalVoiceChatDialog component here */}
-          <GlobalVoiceChatDialog />
-        </WrapperWithAnimatedRoutes>
+        <AnimatePresence mode="wait" initial={false}>
+          <Routes key={location.pathname} location={location}>
+            <Route path="/" element={<Index />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/ai-receptionist" element={<AIReceptionist />} />
+            <Route path="/voice-chat" element={<VoiceChat />} />
+            <Route path="/email-agent" element={<EmailAgent />} />
+            <Route path="/text-agent" element={<TextAgent />} />
+            <Route path="/real-estate" element={<RealEstate />} />
+            <Route path="/getvirtual-se" element={<VirtualSE />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/demo" element={<Demo />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/outbound-ai" element={<OutboundAI />} />
+            <Route path="/license" element={<License />} />
+            <Route path="/ai-agency" element={<AIAgency />} />
+          </Routes>
+        </AnimatePresence>
+        
+        {/* Add the GlobalVoiceChatDialog component here */}
+        <GlobalVoiceChatDialog />
+        
         <Toaster />
       </ThemeProvider>
     </QueryClientProvider>

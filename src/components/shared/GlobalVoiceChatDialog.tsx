@@ -18,43 +18,49 @@ export const GlobalVoiceChatDialog = () => {
 
   useEffect(() => {
     // Listen for custom event from navbar button
-    const handleOpenDialog = () => setShowDialog(true);
+    const handleOpenDialog = () => {
+      console.log("Open voice dialog event received");
+      setShowDialog(true);
+    };
+    
+    // Add the event listener
     document.addEventListener('open-voice-dialog', handleOpenDialog);
     
     // Remove event listener when component unmounts
-    // BUT DON'T end the call automatically on route changes
     return () => {
       document.removeEventListener('open-voice-dialog', handleOpenDialog);
-      // Remove automatic call termination on route changes
     };
-  }, [isCallActive]);
+  }, []);
 
   const handleStartCall = async () => {
+    console.log("Starting voice call with assistant:", ASSISTANT_ID);
     setIsSubmitting(true);
     try {
-      const vapi = getVapiInstance();
-      await vapi.start(ASSISTANT_ID);
-      setIsCallActive(true);
-      
-      vapi.on("call-end", () => {
-        // Only handle automatic call-end events from the service
-        // when the dialog is not being manually closed
-        if (!isClosingDialogRef.current) {
-          setIsCallActive(false);
-          setShowDialog(false);
-          navigate('/');
-        }
-      });
+      const success = await initiateVapiCall(ASSISTANT_ID);
+      if (success) {
+        setIsCallActive(true);
+        
+        const vapi = getVapiInstance();
+        vapi.on("call-end", () => {
+          // Only handle automatic call-end events from the service
+          // when the dialog is not being manually closed
+          if (!isClosingDialogRef.current) {
+            setIsCallActive(false);
+            setShowDialog(false);
+          }
+        });
 
-      toast({
-        title: "Voice Chat Started",
-        description: "You can now speak with our AI Agent through your browser.",
-      });
+        toast({
+          title: "Voice Chat Started",
+          description: "You can now speak with our AI Agent through your browser.",
+        });
+      }
     } catch (error) {
+      console.error("Error starting voice call:", error);
       toast({
         variant: "destructive",
         title: "Error",
-        description: "Failed to start voice chat. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to start voice chat. Please try again.",
       });
     } finally {
       setIsSubmitting(false);
@@ -62,6 +68,7 @@ export const GlobalVoiceChatDialog = () => {
   };
 
   const handleEndCall = () => {
+    console.log("Ending voice call");
     // Set flag to indicate we're manually closing the dialog
     isClosingDialogRef.current = true;
     
@@ -81,6 +88,7 @@ export const GlobalVoiceChatDialog = () => {
   };
 
   const handleCloseDialog = () => {
+    console.log("Closing voice dialog");
     if (isCallActive) {
       handleEndCall();
     }
