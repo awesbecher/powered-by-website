@@ -33,6 +33,9 @@ import AIAgency from './pages/AIAgency';
 import AgentGPT from './pages/AgentGPT';
 import AgentGPTBuilder from './pages/AgentGPTBuilder';
 import { GlobalVoiceChatDialog } from '@/components/shared/GlobalVoiceChatDialog';
+import MercedesDealer from './pages/MercedesDealer';
+import RoomService from './pages/room-service/RoomService';
+import RetailServices from './pages/RetailServices';
 
 const queryClient = new QueryClient();
 
@@ -64,6 +67,9 @@ function App() {
             <Route path="/ai-agency" element={<AIAgency />} />
             <Route path="/agent-gpt" element={<AgentGPT />} />
             <Route path="/agent-gpt-builder" element={<AgentGPTBuilder />} />
+            <Route path="/mercedes-dealer" element={<MercedesDealer />} />
+            <Route path="/room-service" element={<RoomService />} />
+            <Route path="/retail-services" element={<RetailServices />} />
           </Routes>
         </AnimatePresence>
         
