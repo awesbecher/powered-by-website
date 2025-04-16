@@ -12,7 +12,8 @@ import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button"; // Re-added Button import
+import { Button } from "@/components/ui/button";
+import { getCalApi } from "@calcom/embed-react";
 
 const Demo = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -31,7 +32,26 @@ const Demo = () => {
     }, 0);
     
     setInitialLoad(false);
-  }, [location]);
+    
+    // Initialize Cal.com with consistent namespace and team link
+    (async function () {
+      try {
+        console.log("Initializing Cal.com embed at Demo page level");
+        const cal = await getCalApi({"namespace":"get-started-today"});
+        cal("ui", {
+          "cssVarsPerTheme": {
+            "light": {"cal-brand":"#292929"},
+            "dark": {"cal-brand":"#fafafa"}
+          },
+          "hideEventTypeDetails": false,
+          "layout": "month_view"
+        });
+        console.log("Cal.com embed initialized successfully at Demo page level");
+      } catch (error) {
+        console.error("Error initializing Cal.com embed at Demo page level:", error);
+      }
+    })();
+  }, []);
 
   const handleOpenDialog = () => {
     console.log("Opening voice dialog");
@@ -120,7 +140,21 @@ const Demo = () => {
 
         <DemosList />
 
-        <ClosingCTA />
+        <ClosingCTA 
+          useCalendly={true}
+          onContactClick={() => {
+            console.log("Contact button clicked in Demo page");
+            
+            // Try to find and click the Cal.com button
+            const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
+            if (calBtn instanceof HTMLElement) {
+              console.log("Cal.com button found in Demo page, triggering click");
+              calBtn.click();
+            } else {
+              console.error("Cal.com button not found in DOM from Demo page");
+            }
+          }}
+        />
         <Footer />
       </div>
 
@@ -185,6 +219,14 @@ const Demo = () => {
           </div>
         </DialogContent>
       </Dialog>
+      
+      {/* Hidden Cal.com button that will be triggered programmatically */}
+      <button
+        data-cal-namespace="get-started-today"
+        data-cal-link="team-powered-by-dfbtbb/get-started-today"
+        data-cal-config='{"layout":"month_view"}'
+        className="hidden"
+      ></button>
     </div>
   );
 };
