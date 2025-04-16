@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { PoweredByText } from '@/components/shared/PoweredByText';
-import { UserCog, HeadSideBrain, RefreshCw } from 'lucide-react';
+import { UserCog, Brain, RefreshCw } from 'lucide-react';
 
 export const DifferenceSection = () => {
   const features = [
@@ -12,7 +12,7 @@ export const DifferenceSection = () => {
       description: "Large Language Model (LLM) providers like OpenAI, Anthropic, and Google excel at building robust AI engines—but they rarely deliver a fully tailored, ready-to-deploy solution. Powered_by AI adapts these world-class models to your unique business goals, customer pain points, and existing tech stack."
     },
     {
-      icon: <HeadSideBrain size={56} className="text-[#9b87f5]" />,
+      icon: <Brain size={56} className="text-[#9b87f5]" />,
       title: "Hands-On Support",
       description: "Instead of a self-service API and limited troubleshooting, our hands-on experts ensure your AI solution is properly integrated, trained, and continuously improved. We're not just handing you the keys; we're the driver, mechanic, and co-pilot every step of the way."
     },
