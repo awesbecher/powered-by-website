@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Tv, Play, Mic } from "lucide-react";
 import { useState } from "react";
@@ -25,7 +24,7 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
       
       {/* Tag line */}
       <div className="inline-block px-3 py-1 bg-[#9b87f5]/10 rounded-full border border-[#9b87f5]/20">
-        <p className="text-sm text-[#9b87f5] font-medium">Next-Generation Email Communication</p>
+        <p className="text-sm text-[#9b87f5] font-medium">AI Agent Powered Email Communication for SMBs</p>
       </div>
       
       <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
