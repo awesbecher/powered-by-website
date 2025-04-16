@@ -4,10 +4,14 @@ import Navbar from "@/components/layout/Navbar";
 import AnnouncementBanner from "@/components/layout/AnnouncementBanner";
 import Footer from "@/components/layout/Footer";
 import { HeroSection } from "@/components/ai-agency/HeroSection";
-import { IntroSection } from "@/components/ai-agency/IntroSection";
-import { NavigationButtons } from "@/components/home/NavigationButtons";
-import AgencyIllustration from "@/components/ai-agency/AgencyIllustration";
+import { UniqueAgencySection } from "@/components/ai-agency/UniqueAgencySection";
+import { DifferenceSection } from "@/components/ai-agency/DifferenceSection";
+import { ProjectApproachSection } from "@/components/ai-agency/ProjectApproachSection";
+import { PartnershipSection } from "@/components/ai-agency/PartnershipSection";
+import { FinalCTASection } from "@/components/ai-agency/FinalCTASection";
 import { SocialProofSection } from "@/components/product-hunt/social-proof/SocialProofSection";
+import { FloatingContactButton } from "@/components/ai-agency/FloatingContactButton";
+import { ScrollNav } from "@/components/ai-agency/ScrollNav";
 
 const AIAgency = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -26,19 +30,25 @@ const AIAgency = () => {
         <Navbar />
       </div>
       
-      <HeroSection initialLoad={initialLoad} />
-      
-      <IntroSection />
-      
-      <NavigationButtons />
-      
-      <div className="relative z-10 py-16">
-        <div className="container mx-auto px-4">
-          <AgencyIllustration />
-        </div>
+      <div id="hero">
+        <HeroSection initialLoad={initialLoad} />
       </div>
       
+      <UniqueAgencySection />
+      
+      <DifferenceSection />
+      
+      <ProjectApproachSection />
+      
+      <PartnershipSection />
+      
       <SocialProofSection />
+      
+      <FinalCTASection />
+      
+      <ScrollNav />
+      
+      <FloatingContactButton />
       
       <Footer />
 

@@ -3,6 +3,7 @@ import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -14,37 +15,42 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
   };
 
   return (
-    <section className="relative py-20 px-4 overflow-hidden">
+    <section className="relative py-24 px-4 overflow-hidden">
       <div className="container mx-auto max-w-7xl relative z-10">
-        <div className="text-center mb-16">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+        >
           <h1 
-            className={`text-5xl md:text-7xl font-bold text-white mb-6 transition-all duration-1000 delay-100 ${
-              initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'
-            }`}
+            className="text-5xl md:text-7xl font-bold text-white mb-6"
           >
             <span className="text-gradient">Why should those Silicon Valley nerds have all the fancy AI toys?</span>{' '}
             <span className="block mt-2">AI Agency For The Digital Age</span>
           </h1>
           
-          <p 
-            className={`text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10 transition-all duration-1000 delay-300 ${
-              initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'
-            }`}
+          <motion.p 
+            className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
           >
             We build and deploy custom AI agents to enhance your business operations and customer experience.
-          </p>
+          </motion.p>
           
-          <div 
-            className={`flex flex-wrap justify-center gap-4 transition-all duration-1000 delay-500 ${
-              initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'
-            }`}
+          <motion.div 
+            className="flex flex-wrap justify-center gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
           >
             <Link to="/contact">
               <Button 
                 size="lg" 
                 className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md"
               >
-                Get Started
+                Get Started Today
                 <ArrowRightIcon className="ml-2" />
               </Button>
             </Link>
@@ -57,8 +63,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
             >
               Talk to AI Agent
             </Button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
       
       {/* Background elements */}
