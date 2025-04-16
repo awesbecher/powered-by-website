@@ -1,4 +1,3 @@
-
 import { PressArticle } from "@/types/news";
 
 export const pressArticles: PressArticle[] = [
@@ -37,6 +36,15 @@ export const pressArticles: PressArticle[] = [
     excerpt: "Designed to help the nation's 33M SMBs, Powered_by Launches to Transform How Businesses Work, Communicate, & Engage Customers",
     externalUrl: "https://www.marketwatch.com/press-release/powered-by-officially-launches-the-world-s-first-ai-agency-for-smbs-65a48801?mod=search_headline",
     imageUrl: "/lovable-uploads/cd1be8a4-ddbb-4382-99fa-12ec568b4dcb.png"
+  },
+  {
+    id: "prnewswire-virtual-se-launch",
+    title: "Powered_by Agency Launches Virtual SE, Revolutionizing Pre-Sales Engineering with AI Agents",
+    publication: "PR Newswire",
+    date: "April 14, 2025",
+    excerpt: "Innovative AI solution transforms pre-sales engineering processes for small and medium-sized businesses",
+    externalUrl: "https://www.prnewswire.com/news-releases/poweredby-agency-launches-virtual-se-revolutionizing-pre-sales-engineering-with-ai-agents-302427710.html",
+    imageUrl: "/lovable-uploads/77fcaf98-2a45-4089-bede-83cbae52cb0d.png"
   },
   {
     id: "associated-press-virtual-se",
@@ -118,15 +126,6 @@ export const pressArticles: PressArticle[] = [
     excerpt: "Innovative AI solution transforms pre-sales engineering processes for small and medium-sized businesses",
     externalUrl: "https://www.morningstar.com/news/pr-newswire/20250414sf63509/powered_by-agency-launches-virtual-se-revolutionizing-pre-sales-engineering-with-ai-agents",
     imageUrl: "/lovable-uploads/acfdfc1d-9b32-4509-bfe5-01d67795da98.png"
-  },
-  {
-    id: "prnewswire-virtual-se-launch",
-    title: "Powered_by Agency Launches Virtual SE, Revolutionizing Pre-Sales Engineering with AI Agents",
-    publication: "PR Newswire",
-    date: "April 14, 2025",
-    excerpt: "Innovative AI solution transforms pre-sales engineering processes for small and medium-sized businesses",
-    externalUrl: "https://www.prnewswire.com/news-releases/poweredby-agency-launches-virtual-se-revolutionizing-pre-sales-engineering-with-ai-agents-302427710.html",
-    imageUrl: "/lovable-uploads/77fcaf98-2a45-4089-bede-83cbae52cb0d.png"
   },
   {
     id: "associated-press-virtual-se",
