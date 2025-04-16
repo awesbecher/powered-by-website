@@ -21,6 +21,7 @@ export const PressArticleCard = ({ article }: PressArticleCardProps) => {
   const isKxan = article.id === "kxan-virtual-se-launch";
   const isFox4 = article.id === "fox4-virtual-se-launch";
   const isUKHeraldTribune = article.id === "uk-herald-tribune-virtual-se-launch";
+  const isSmallBusinessNewsWatch = article.id === "small-business-newswatch-virtual-se-launch";
   
   return (
     <a 
@@ -38,6 +39,7 @@ export const PressArticleCard = ({ article }: PressArticleCardProps) => {
           
           {article.imageUrl && (
             <div className={`mb-4 overflow-hidden rounded-md 
+              ${isSmallBusinessNewsWatch ? 'bg-white' : ''} 
               ${isYahooFinance ? 'bg-purple-800' : ''} 
               ${isMarketWatch || isAssociatedPress || isMorningStar || isKtla || isPrNewswire || isWgn9 || isFox8 || isKxan || isFox4 ? 'bg-white' : ''} 
               ${isSeekingAlpha || isPix11News || isBenzinga ? 'bg-black' : ''}

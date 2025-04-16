@@ -153,5 +153,14 @@ export const pressArticles: PressArticle[] = [
     excerpt: "Innovative AI solution transforms pre-sales engineering processes for SaaS companies",
     externalUrl: "https://www.ukheraldtribune.com/article/803158544-virtual-se-launches-revolutionizing-saas-pre-sales-engineering-with-ai-agents",
     imageUrl: "/lovable-uploads/8de5c56f-4020-4c69-8c49-d392f864f3e0.png"
+  },
+  {
+    id: "small-business-newswatch-virtual-se-launch",
+    title: "Virtual SE Launches, Revolutionizing SaaS Pre-Sales Engineering with AI Agents",
+    publication: "Small Business News Watch",
+    date: "April 14, 2025",
+    excerpt: "Innovative AI solution transforms pre-sales engineering processes for SaaS companies",
+    externalUrl: "https://www.smallbusinessnewswatch.com/article/803158544-virtual-se-launches-revolutionizing-saas-pre-sales-engineering-with-ai-agents",
+    imageUrl: "/lovable-uploads/9c8d01f3-3381-4e29-849d-6ccb28987ae5.png"
   }
 ];
