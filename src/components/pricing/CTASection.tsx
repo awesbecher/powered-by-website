@@ -42,6 +42,11 @@ const CTASection = () => {
         <button
           onClick={handleContactClick}
           className="px-8 py-3 text-lg font-medium text-white bg-[#9b87f5] hover:bg-[#8976d9] rounded-lg transition duration-300 shadow-lg"
+          data-tally-open="w2og9b"
+          data-tally-layout="modal"
+          data-tally-width="476" 
+          data-tally-hide-title="1"
+          data-tally-auto-close="0"
         >
           Contact Sales
         </button>

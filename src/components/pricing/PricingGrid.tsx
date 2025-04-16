@@ -11,7 +11,7 @@ const PricingGrid = ({ isAnnual }: PricingGridProps) => {
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
       <PricingCard type="starter" isAnnual={isAnnual} tallyFormId="w2og9b" />
       <PricingCard type="growth" isPopular={true} isAnnual={isAnnual} tallyFormId="w2og9b" />
-      <PricingCard type="enterprise" />
+      <PricingCard type="enterprise" tallyFormId="w2og9b" />
     </div>
   );
 };

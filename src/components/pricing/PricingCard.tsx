@@ -126,8 +126,15 @@ const PricingCard = ({ type, isPopular = false, isAnnual = true, tallyFormId }: 
   const renderButton = () => {
     if (type === "enterprise") {
       return (
-        <Button asChild className="w-full bg-white hover:bg-gray-100 text-[#6342ff]">
-          <Link to="/contact">Contact Sales</Link>
+        <Button 
+          className="w-full bg-white hover:bg-gray-100 text-[#6342ff]"
+          data-tally-open={tallyFormId || "w2og9b"}
+          data-tally-layout="modal"
+          data-tally-width="476"
+          data-tally-hide-title="1"
+          data-tally-auto-close="0"
+        >
+          Contact Sales
         </Button>
       );
     }
