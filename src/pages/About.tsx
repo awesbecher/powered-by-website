@@ -78,13 +78,12 @@ const About = () => {
         />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          {/* Add the new workshop image above the CustomApproachSection */}
-          <div className={`mt-16 mb-8 max-w-4xl mx-auto transition-all duration-1000 delay-400 ease-out transform
+          <div className={`mt-8 mb-4 max-w-3xl mx-auto transition-all duration-1000 delay-400 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <img 
               src="/lovable-uploads/437d5ed4-6fad-4c98-91fa-aa54162ec5f8.png" 
               alt="Team of AI Agents developers in matching t-shirts" 
-              className="w-full h-auto rounded-xl shadow-lg"
+              className="w-full h-auto rounded-xl shadow-lg max-h-[400px] object-cover"
             />
           </div>
           
@@ -94,7 +93,6 @@ const About = () => {
           
           <CustomerCentricitySection initialLoad={initialLoad} />
           
-          {/* Add the new image above the OurPromiseSection */}
           <div className={`mt-16 mb-8 max-w-4xl mx-auto transition-all duration-1000 delay-400 ease-out transform
             ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
             <img 
