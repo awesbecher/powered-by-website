@@ -1,8 +1,9 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import { ArrowRightIcon, MessageCircle, Play } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { ArrowRightIcon, MessageCircle, Play, Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { getCalApi } from "@calcom/embed-react";
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -14,6 +15,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 300);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    // Initialize Cal.com
+    (async function () {
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+    })();
   }, []);
 
   const handleTalkToAgent = () => {
@@ -59,15 +68,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
           >
-            <Link to="/contact">
-              <Button 
-                size="lg" 
-                className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md group"
-              >
-                Transform Your Business Today
-                <ArrowRightIcon className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
+            <Button 
+              data-cal-namespace="get-started-today"
+              data-cal-link="team-powered-by-dfbtbb/get-started-today"
+              data-cal-config='{"layout":"month_view"}'
+              size="lg" 
+              className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md group"
+            >
+              Get Started
+              <Calendar className="ml-2 group-hover:scale-110 transition-transform" />
+            </Button>
             
             <Button 
               onClick={handleTalkToAgent}
