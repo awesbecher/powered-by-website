@@ -29,10 +29,10 @@ export const PartnershipSection = () => {
   ];
 
   return (
-    <section id="partnership" className="relative py-24 px-4 overflow-hidden">
+    <section id="partnership" className="relative py-16 px-4 overflow-hidden">
       <div className="container mx-auto max-w-6xl">
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
@@ -70,3 +70,4 @@ export const PartnershipSection = () => {
     </section>
   );
 };
+
