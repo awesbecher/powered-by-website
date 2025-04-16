@@ -29,10 +29,6 @@ export const FinalCTASection = () => {
             Schedule Your Demo
           </Button>
         </div>
-        
-        <p className="mt-6 text-gray-400 text-sm">
-          No credit card required. 14-day free trial available.
-        </p>
       </div>
     </section>
   );
