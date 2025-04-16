@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 
@@ -12,7 +11,7 @@ export const VisionSection = ({ initialLoad }: VisionSectionProps) => {
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
       
       {/* Reduced Size Image Section */}
-      <div className="mb-12 max-w-4xl mx-auto">
+      <div className="mb-12 max-w-3xl mx-auto">
         <img 
           src="/lovable-uploads/fd6bacaa-f5ae-46d3-ad21-ca95b78e1537.png" 
           alt="AI Agents for SMBs Presentation" 
@@ -40,4 +39,3 @@ export const VisionSection = ({ initialLoad }: VisionSectionProps) => {
     </section>
   );
 };
-
