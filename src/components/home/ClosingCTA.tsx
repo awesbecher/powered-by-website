@@ -1,81 +1,40 @@
 
-import React, { useEffect } from "react";
+import React from 'react';
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
-import { ArrowRight, Calendar } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { useEffect } from "react";
 import { getCalApi } from "@calcom/embed-react";
 
-interface ClosingCTAProps {
-  customHeading?: string;
-  customButtonText?: string;
-  useCalendly?: boolean;
-  externalLink?: string | null;
-  onContactClick?: () => void;
-}
-
-export const ClosingCTA: React.FC<ClosingCTAProps> = ({
-  customHeading = "Ready to transform your SMB with AI agents?",
-  customButtonText = "Get Started",
-  useCalendly = false, // Keeping this prop name for backward compatibility
-  externalLink = null,
-  onContactClick,
-}) => {
-  const navigate = useNavigate();
-  
+export const ClosingCTA = () => {
   useEffect(() => {
-    // Initialize Cal.com if useCalendly is true
-    if (useCalendly) {
-      (async function () {
-        const cal = await getCalApi({"namespace":"get-started-with-voice-ai-chat"});
-        cal("ui", {
-          "cssVarsPerTheme": {
-            "light": {"cal-brand":"#292929"},
-            "dark": {"cal-brand":"#fafafa"}
-          },
-          "hideEventTypeDetails": false,
-          "layout": "month_view"
-        });
-      })();
-    }
-  }, [useCalendly]);
-
-  const handleClick = () => {
-    if (externalLink) {
-      window.open(externalLink, '_blank');
-    } else if (onContactClick) {
-      onContactClick();
-    } else if (!useCalendly) {
-      navigate('/contact');
-    }
-    // For Cal.com, the button handles the interaction directly
-  };
+    // Initialize Cal.com
+    (async function () {
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+    })();
+  }, []);
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl text-center">
-      <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8">
-        {customHeading}
-      </h2>
-      <p className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto">
-        Join the businesses revolutionizing the way they work, communicate, & engage customers.
-      </p>
-      
-      {useCalendly ? (
-        <Button 
-          data-cal-namespace="get-started-with-voice-ai-chat"
-          data-cal-link="team-powered-by-dfbtbb/get-started-with-voice-ai-chat"
+    <section className="py-20 px-4 sm:px-6 lg:px-8 text-center bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
+      <div className="max-w-4xl mx-auto">
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          Transform Your Business with AI Agents
+        </h2>
+        <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+          Unlock the potential of AI-powered communication and streamline your business operations today.
+        </p>
+        <Button
+          data-cal-namespace="get-started-today"
+          data-cal-link="team-powered-by-dfbtbb/get-started-today"
           data-cal-config='{"layout":"month_view"}'
-          className="bg-[#6342ff] hover:bg-[#5233e0] text-white px-8 py-6 text-lg rounded-md mx-auto flex items-center"
+          className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md"
         >
-          {customButtonText} <Calendar className="ml-2 h-5 w-5" />
+          Get Started <ArrowRight className="ml-2 h-5 w-5" />
         </Button>
-      ) : (
-        <Button 
-          className="bg-[#6342ff] hover:bg-[#5233e0] text-white px-8 py-6 text-lg rounded-md mx-auto flex items-center"
-          onClick={handleClick}
-        >
-          {customButtonText} <ArrowRight className="ml-2 h-5 w-5" />
-        </Button>
-      )}
+      </div>
     </section>
   );
 };
+
+export default ClosingCTA;
+
