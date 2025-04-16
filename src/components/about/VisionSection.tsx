@@ -1,8 +1,6 @@
 
 import React from "react";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 
 interface VisionSectionProps {
   initialLoad: boolean;
@@ -25,21 +23,9 @@ export const VisionSection = ({ initialLoad }: VisionSectionProps) => {
             We're not just building agents. We're building a future where your systems work for you—on voice, text, email, and beyond. A future where AI seamlessly integrates into your business processes, empowers your team, and creates exceptional experiences for your customers.
           </p>
           
-          <p className="text-xl text-[#9b87f5] font-medium mb-10">
+          <p className="text-xl text-[#9b87f5] font-medium">
             This is the democratization of AI—making enterprise-grade technology accessible, affordable, and actionable for businesses of all sizes.
           </p>
-          
-          <Button 
-            variant="gradient"
-            size="lg"
-            className="group"
-            data-cal-namespace="vision-section"
-            data-cal-link="team-powered-by-dfbtbb/get-started-today"
-            data-cal-config='{"layout":"month_view"}'
-          >
-            Shape the Future With Us
-            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-          </Button>
         </div>
       </div>
     </section>

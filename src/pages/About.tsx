@@ -6,7 +6,6 @@ import { ClosingCTA } from "@/components/home/ClosingCTA";
 
 import { AboutHero } from "@/components/about/AboutHero";
 import { MissionSection } from "@/components/about/MissionSection";
-import { TeamSection } from "@/components/about/TeamSection";
 import { VisionSection } from "@/components/about/VisionSection";
 import { WhoWeAreSection } from "@/components/about/WhoWeAreSection";
 import { FloatingCTA } from "@/components/about/FloatingCTA";
@@ -76,8 +75,6 @@ const About = () => {
           initialLoad={initialLoad} 
           whoWeAreRef={whoWeAreRef} 
         />
-
-        <TeamSection initialLoad={initialLoad} />
         
         <VisionSection initialLoad={initialLoad} />
 
