@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Star } from "lucide-react";
 
@@ -52,28 +51,7 @@ const Testimonial = ({ quote, author, company, imageSrc, stats }: TestimonialPro
 export const TestimonialsSection = () => {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <Testimonial 
-          quote="The voice chat implementation has been a game-changer for our customer service. Response times dropped by 67% and customer satisfaction scores are up 42%."
-          author="Sarah Johnson"
-          company="TechSolutions Inc."
-          stats="67% faster response times"
-        />
-        
-        <Testimonial 
-          quote="We've seen a dramatic increase in lead conversion since implementing AI voice chat. The seamless handoff to our sales team has been particularly impressive."
-          author="Michael Chen"
-          company="Global Retail Partners"
-          stats="30% increase in conversions"
-        />
-        
-        <Testimonial 
-          quote="As a small business, we couldn't afford 24/7 support staff. The AI voice chat solution provides round-the-clock service without the overhead cost of additional staff."
-          author="Emma Rodriguez"
-          company="Boutique Financial Services"
-          stats="Saved $120K in annual staffing costs"
-        />
-      </div>
+      {/* Intentionally left empty, removing all testimonial boxes */}
     </section>
   );
 };
