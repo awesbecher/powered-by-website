@@ -51,7 +51,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            Our mission is to empower this critically important sector by delivery cutting-edge AI agent solutions that can transform the way businesses work, communicate, & engage customers.
+            SMBs generate 43.5% of U.S. GDP & employ about 46% of all private-sector workers. Our mission is to empower this critically important sector by delivery cutting-edge AI agent solutions that can transform the way businesses work, communicate, & engage customers.
           </motion.p>
           
           <motion.div 
