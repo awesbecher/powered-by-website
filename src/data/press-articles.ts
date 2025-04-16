@@ -48,11 +48,11 @@ export const pressArticles: PressArticle[] = [
   },
   {
     id: "associated-press-virtual-se",
-    title: "How AI Agents are Changing the Game for SMBs",
+    title: "Powered_by Agency Launches Virtual SE, Revolutionizing Pre-Sales Engineering with AI Agents",
     publication: "Associated Press",
-    date: "March 27, 2025",
-    excerpt: "",
-    externalUrl: "https://apnews.com/press-release/pr-newswire/openai-inc-artificial-intelligence-andrew-wesbecher-generative-ai-email-and-messaging-75758d0234de9888e9361fac06108385",
+    date: "April 14, 2025",
+    excerpt: "Innovative AI solution transforms pre-sales engineering processes for small and medium-sized businesses",
+    externalUrl: "https://apnews.com/press-release/pr-newswire/artificial-intelligence-2dff2af7a835dd506dd3dbef3642dadd",
     imageUrl: "/lovable-uploads/e3c48ab1-0193-4264-b8a4-53fed4118ea7.png"
   },
   {
