@@ -19,7 +19,7 @@ export const DifferenceSection = () => {
     {
       icon: <RefreshCw size={56} className="text-[#9b87f5]" />,
       title: "Ongoing Optimization",
-      description: "Your AI should evolve with your business. Rather than a "one-size-fits-all" approach, we refine and optimize your AI agent over time—no guesswork or frustrating DIY updates."
+      description: "Your AI should evolve with your business. Rather than a \"one-size-fits-all\" approach, we refine and optimize your AI agent over time—no guesswork or frustrating DIY updates."
     }
   ];
 
