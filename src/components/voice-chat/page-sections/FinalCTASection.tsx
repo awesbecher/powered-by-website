@@ -1,7 +1,6 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { PoweredByText } from "@/components/shared/PoweredByText";
 
 export const FinalCTASection = () => {
   return (
@@ -44,9 +43,7 @@ export const FinalCTASection = () => {
           </Button>
         </div>
         
-        <div className="mt-16">
-          <PoweredByText />
-        </div>
+        {/* Removed Powered_by text */}
       </div>
     </section>
   );
