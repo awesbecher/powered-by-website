@@ -42,7 +42,7 @@ export const DemoHero = ({ initialLoad }: DemoHeroProps) => {
                 onClick={() => document.getElementById('interactive-demo')?.scrollIntoView({ behavior: 'smooth' })}
                 className="bg-[#6342ff] hover:bg-[#5233e0] text-white px-6 py-6 text-lg rounded-xl"
               >
-                Try the Demo <ArrowRight className="ml-2 h-5 w-5" />
+                Try the Demos <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               
               <Button 
