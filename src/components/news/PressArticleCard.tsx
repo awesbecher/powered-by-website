@@ -42,8 +42,7 @@ export const PressArticleCard = ({ article }: PressArticleCardProps) => {
               ${isSmallBusinessNewsWatch ? 'bg-white' : ''} 
               ${isYahooFinance ? 'bg-purple-800' : ''} 
               ${isMarketWatch || isAssociatedPress || isMorningStar || isKtla || isPrNewswire || isWgn9 || isFox8 || isKxan || isFox4 ? 'bg-white' : ''} 
-              ${isSeekingAlpha || isPix11News || isBenzinga ? 'bg-black' : ''}
-              ${isUKHeraldTribune ? 'bg-white' : ''}`}>
+              ${isSeekingAlpha || isPix11News || isBenzinga ? (isBenzinga ? 'bg-white' : 'bg-black') : ''}`}>
               <img 
                 src={article.imageUrl} 
                 alt={article.title} 
