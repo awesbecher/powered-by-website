@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Users, Briefcase, Play } from "lucide-react";
+import { Users, Briefcase, Play, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
@@ -30,32 +30,37 @@ export const AboutPageButtons = ({ onScrollToSection, sectionRef }: AboutPageBut
 
   return (
     <>
-      <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+      <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8 mx-auto max-w-xl">
         <Button 
           variant="gradient" 
-          size="lg"
+          size="xl"
+          className="group relative overflow-hidden shadow-lg shadow-purple-700/20"
           onClick={handleWatchVideoClick}
         >
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           <Play className="mr-2 h-5 w-5" />
           Watch Launch Video
         </Button>
         
         <Button 
           variant="gradient" 
-          size="lg"
+          size="xl"
+          className="group shadow-lg shadow-purple-700/20"
           onClick={handleWhoWeAreClick}
         >
-          <Users className="mr-2 h-5 w-5" />
-          Our Team
+          <Users className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+          Meet Our Team
         </Button>
         
         <Button 
-          variant="gradient" 
-          size="lg"
+          variant="outline"
+          size="xl"
+          className="border-[#9b87f5]/30 bg-white/5 hover:bg-white/10 hover:border-[#9b87f5]/50 group transition-all"
           onClick={handleCareersClick}
         >
           <Briefcase className="mr-2 h-5 w-5" />
-          Careers
+          Join Us
+          <ArrowRight className="ml-2 h-4 w-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
         </Button>
       </div>
 
