@@ -50,8 +50,9 @@ const AIReceptionist = () => {
     };
   }, []);
   
+  // Modified to open real-estate page in a new tab
   const handleVoiceChatClick = () => {
-    setShowVoiceChatDialog(true);
+    window.open('/real-estate', '_blank');
   };
 
   const handleCloseDialog = () => {
@@ -98,10 +99,12 @@ const AIReceptionist = () => {
     }
   };
 
+  // Modified to open real-estate page in a new tab
   const goToRealEstateSite = () => {
-    navigate('/real-estate');
+    window.open('/real-estate', '_blank');
   };
 
+  // Modified to ensure consistency with the above change
   const handleTryVoiceDemo = () => {
     window.open('/real-estate', '_blank');
   };

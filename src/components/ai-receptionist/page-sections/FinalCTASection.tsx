@@ -31,7 +31,7 @@ export const FinalCTASection = () => {
           
           <Button 
             className="w-full sm:w-auto bg-transparent hover:bg-white/10 text-white px-8 py-6 text-lg rounded-xl flex items-center justify-center border-2 border-white"
-            onClick={() => window.open('/ai-receptionist#try-demo', '_self')}
+            onClick={() => window.open('/real-estate', '_blank')}
           >
             Try It For Free
           </Button>
