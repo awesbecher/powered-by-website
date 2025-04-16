@@ -47,7 +47,6 @@ export const HeroContent: React.FC<HeroContentProps> = ({
           Revolutionize Customer Interactions with <span className="text-[#9b87f5]">AI Voice Chat</span>
         </h1>
         <p className="text-xl text-gray-300">
-          <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md mr-1">Powered_by</span>: 
           Automate conversations, convert leads faster, and deliver instant support—24/7.
         </p>
         <div className="space-y-2 text-gray-300">
