@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { ServiceCard } from "@/components/products/ServiceCard";
 import { ProductsHero } from "@/components/products/ProductsHero";
@@ -11,6 +10,7 @@ import { FeaturedSolutionCard } from "@/components/products/FeaturedSolutionCard
 import { MessageSquare, Phone, Mail, Smartphone, Cpu } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import OfferButton from "@/components/home/OfferButton";
+import { getCalApi } from "@calcom/embed-react";
 
 const Products = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -19,10 +19,37 @@ const Products = () => {
   useEffect(() => {
     setInitialLoad(false);
     window.scrollTo(0, 0);
+    
+    (async function () {
+      try {
+        console.log("Initializing Cal.com embed at Products page level");
+        const cal = await getCalApi({"namespace":"get-started-today"});
+        cal("ui", {
+          "cssVarsPerTheme": {
+            "light": {"cal-brand":"#292929"},
+            "dark": {"cal-brand":"#fafafa"}
+          },
+          "hideEventTypeDetails": false,
+          "layout": "month_view"
+        });
+        console.log("Cal.com embed initialized successfully at Products page level");
+      } catch (error) {
+        console.error("Error initializing Cal.com embed at Products page level:", error);
+      }
+    })();
   }, []);
 
   const handleContact = () => {
-    navigate('/contact');
+    console.log("Contact button clicked in Products");
+    
+    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
+    if (calBtn instanceof HTMLElement) {
+      console.log("Cal.com button found in Products, triggering click");
+      calBtn.click();
+    } else {
+      console.error("Cal.com button not found in DOM from Products page, navigating to /contact as fallback");
+      navigate('/contact');
+    }
   };
 
   const featuredSolutions = [
@@ -68,7 +95,6 @@ const Products = () => {
 
   return (
     <div className="min-h-screen w-full relative">
-      {/* Background image at the top */}
       <div className="fixed inset-0 z-0">
         <img 
           src="/lovable-uploads/1318bebd-9e04-4b11-9a98-a8c9b0843824.png" 
@@ -78,11 +104,9 @@ const Products = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/80 via-[#2f1c4a] to-[#1a0b2e]"></div>
       </div>
 
-      {/* Content container with higher z-index */}
       <div className="relative z-10 min-h-screen">
         <Navbar />
         
-        {/* New Offer Button */}
         <div className="w-full pt-6">
           <OfferButton className={`transition-all duration-1000 ease-out transform
             ${initialLoad ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`} />
@@ -90,7 +114,6 @@ const Products = () => {
         
         <ProductsHero initialLoad={initialLoad} className="hero-section" />
         
-        {/* Featured Agent Solutions Section - now directly after hero */}
         <div className="container mx-auto px-4 py-12">
           <SectionTitle title="Featured Agent Solutions:" linked={false} />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
@@ -107,14 +130,12 @@ const Products = () => {
           </div>
         </div>
         
-        {/* Section Title for Industry Solutions - MOVED above ProductIndex */}
         <div className="container mx-auto px-4 py-6">
           <SectionTitle title="Horizontal & Vertical-Industry Solutions:" linked={false} />
         </div>
         
         <ProductIndex />
         
-        {/* Detailed Solutions */}
         <div className="max-w-full pt-2">
           <div className="space-y-0 divide-y divide-white/10">
             {serviceCardsData.map((card, index) => (
@@ -139,11 +160,20 @@ const Products = () => {
           </div>
         </div>
 
-        <ClosingCTA onContactClick={handleContact} />
+        <ClosingCTA 
+          onContactClick={handleContact}
+          useCalendly={true}
+        />
 
-        {/* Gradient orbs for visual interest */}
         <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
         <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
+        
+        <button
+          data-cal-namespace="get-started-today"
+          data-cal-link="team-powered-by-dfbtbb/get-started-today"
+          data-cal-config='{"layout":"month_view"}'
+          className="hidden"
+        ></button>
       </div>
     </div>
   );

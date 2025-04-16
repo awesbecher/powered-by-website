@@ -1,7 +1,8 @@
 
-import { LucideIcon } from "lucide-react";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Card, CardContent } from '@/components/ui/card';
+import { LucideIcon } from 'lucide-react';
 
 interface FeaturedSolutionCardProps {
   title: string;
@@ -11,62 +12,69 @@ interface FeaturedSolutionCardProps {
   isExternal?: boolean;
 }
 
-export const FeaturedSolutionCard = ({ 
-  title, 
-  description, 
-  icon: Icon, 
-  link, 
-  isExternal = false 
-}: FeaturedSolutionCardProps) => {
-  const [isHovered, setIsHovered] = useState(false);
-  
-  const handleClick = () => {
-    if (isExternal) {
-      window.open(link, "_blank", "noopener,noreferrer");
-    } else {
-      // Ensure the user is scrolled to the top of the page when navigating
-      window.scrollTo(0, 0);
+export const FeaturedSolutionCard: React.FC<FeaturedSolutionCardProps> = ({
+  title,
+  description,
+  icon: Icon,
+  link,
+  isExternal = false
+}) => {
+  const handleClick = (e: React.MouseEvent) => {
+    if (!isExternal) {
+      // For internal links, check if we should trigger Cal.com for "Get Started"
+      if (title.includes("Voice Chat") || title.includes("Receptionist") || 
+          title.includes("Email Agent") || title.includes("Text Agent")) {
+        e.preventDefault();
+        console.log(`Featured Solution Card "${title}" clicked, checking for Cal.com integration`);
+        
+        // Try to find and click the Cal.com button
+        const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
+        if (calBtn instanceof HTMLElement) {
+          console.log(`Cal.com button found from FeaturedSolutionCard ${title}, triggering click`);
+          calBtn.click();
+          return;
+        } else {
+          console.log(`Cal.com button not found from FeaturedSolutionCard ${title}, proceeding with navigation`);
+        }
+      }
     }
   };
 
-  const CardContent = () => (
-    <>
-      <div className="flex justify-start items-start mb-4">
-        <Icon className="w-8 h-8 text-accent" />
-      </div>
-      
-      <h3 className="text-xl font-semibold text-white mb-2">{title}</h3>
-      
-      <p className={`text-gray-300 mb-4 flex-grow ${description.length > 100 ? 'text-sm' : ''}`}>{description}</p>
-      
-      <div className="mt-auto">
-        <span className="text-accent text-sm font-medium group-hover:underline">
-          {isExternal ? "Visit site" : "Learn more"}
-        </span>
-      </div>
-    </>
-  );
-
-  return isExternal ? (
-    <a 
-      href={link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group bg-white/5 rounded-lg p-6 backdrop-blur-sm border border-white/10 hover:border-accent/50 transition-all duration-300 flex flex-col h-64"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <CardContent />
-    </a>
-  ) : (
-    <Link 
-      to={link}
-      className="group bg-white/5 rounded-lg p-6 backdrop-blur-sm border border-white/10 hover:border-accent/50 transition-all duration-300 flex flex-col h-64"
-      onClick={handleClick}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <CardContent />
-    </Link>
+  return (
+    <Card className="bg-white/5 backdrop-filter backdrop-blur-sm border border-white/10 hover:border-accent/50 transition-all duration-300 hover:shadow-lg hover:shadow-accent/5 hover:-translate-y-1">
+      <CardContent className="p-6">
+        <div className="flex flex-col items-center text-center">
+          <div className="bg-accent/20 p-4 rounded-full mb-4">
+            <Icon className="h-8 w-8 text-accent" />
+          </div>
+          <h3 className="text-xl font-semibold text-white mb-2">{title}</h3>
+          <p className="text-gray-400 mb-4">{description}</p>
+          {isExternal ? (
+            <a 
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent hover:text-accent-light font-semibold flex items-center mt-auto"
+            >
+              Learn More
+              <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+          ) : (
+            <Link 
+              to={link}
+              onClick={handleClick}
+              className="text-accent hover:text-accent-light font-semibold flex items-center mt-auto"
+            >
+              Learn More
+              <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </Link>
+          )}
+        </div>
+      </CardContent>
+    </Card>
   );
 };
