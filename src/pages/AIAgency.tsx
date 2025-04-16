@@ -10,9 +10,10 @@ import { ProjectApproachSection } from "@/components/ai-agency/ProjectApproachSe
 import { PartnershipSection } from "@/components/ai-agency/PartnershipSection";
 import { FinalCTASection } from "@/components/ai-agency/FinalCTASection";
 import { SocialProofSection } from "@/components/product-hunt/social-proof/SocialProofSection";
-import { FloatingContactButton } from "@/components/ai-agency/FloatingContactButton";
 import { TestimonialSection } from "@/components/ai-agency/TestimonialSection";
 import { ComparisonSection } from "@/components/ai-agency/ComparisonSection";
+// Remove FloatingContactButton import
+// import { FloatingContactButton } from "@/components/ai-agency/FloatingContactButton";
 
 const AIAgency = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -51,7 +52,8 @@ const AIAgency = () => {
       
       <FinalCTASection />
       
-      <FloatingContactButton />
+      {/* Remove FloatingContactButton */}
+      {/* <FloatingContactButton /> */}
       
       <Footer />
 
