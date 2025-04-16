@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { ArrowRight, Calendar, Headset, Phone, Clock, MessageCircle } from "lucide-react";
@@ -53,7 +52,7 @@ export const HeroSection = ({
               
               <div className="relative">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                  Reinvent Your Reception With{" "}
+                  Meet Your New{" "}
                   <div className="relative inline-block">
                     <span className="relative z-10 text-[#9b87f5]">AI Receptionist</span>
                     <span className="absolute -bottom-2 left-0 w-full h-3 bg-gradient-to-r from-[#7100ff]/30 to-[#9b87f5]/30 rounded-full z-0 blur-sm"></span>
