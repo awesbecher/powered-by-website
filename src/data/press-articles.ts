@@ -1,4 +1,3 @@
-
 import { PressArticle } from "@/types/news";
 
 export const pressArticles: PressArticle[] = [
@@ -82,6 +81,14 @@ export const pressArticles: PressArticle[] = [
     excerpt: "",
     externalUrl: "https://pix11.com/business/press-releases/cision/20250324SF48855/powered-by-officially-launches-the-worlds-first-ai-agency-for-smbs/",
     imageUrl: "/lovable-uploads/0970725a-79a6-4774-81fe-f8ca01fb5223.png"
+  },
+  {
+    id: "morningstar-virtual-se-launch",
+    title: "Powered_by Agency Launches Virtual SE, Revolutionizing Pre-Sales Engineering with AI Agents",
+    publication: "Morningstar",
+    date: "April 14, 2025",
+    excerpt: "Innovative AI solution transforms pre-sales engineering processes for small and medium-sized businesses",
+    externalUrl: "https://www.morningstar.com/news/pr-newswire/20250414sf63509/powered_by-agency-launches-virtual-se-revolutionizing-pre-sales-engineering-with-ai-agents",
+    imageUrl: "/lovable-uploads/acfdfc1d-9b32-4509-bfe5-01d67795da98.png"
   }
 ];
-
