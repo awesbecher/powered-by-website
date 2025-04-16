@@ -16,7 +16,7 @@ export const KeyBenefitsSection = () => {
   };
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[#0a0612]">
+    <section className="py-12 px-4 sm:px-6 lg:px-8 bg-[#0a0612]">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <motion.h2 
