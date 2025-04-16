@@ -11,11 +11,11 @@ export const FinalCTASection = () => {
       
       <div className="relative z-10 bg-gradient-to-r from-[#1f1235]/80 to-[#2a1d45]/80 backdrop-blur-lg p-12 rounded-3xl border border-[#9b87f5]/30 shadow-xl text-center max-w-4xl mx-auto">
         <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-          Ready to Transform Your Business Communications?
+          Ready to transform your SMB with AI agents?
         </h2>
         
         <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-          Join hundreds of businesses using our AI Receptionist to save costs, improve customer experience, and never miss an opportunity.
+          Join the businesses revolutionizing the way they work, communicate, & engage customers.
         </p>
         
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -26,7 +26,7 @@ export const FinalCTASection = () => {
             data-cal-config='{"layout":"month_view"}'
           >
             <ArrowRight className="w-5 h-5" />
-            Schedule Your Demo
+            Get Started
           </Button>
         </div>
       </div>

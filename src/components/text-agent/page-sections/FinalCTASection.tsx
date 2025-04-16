@@ -22,13 +22,11 @@ export const FinalCTASection = () => {
           </div>
           
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8">
-            Stop missing important text messages.
-            <br />
-            Start engaging customers with <span className="italic">intelligent</span> conversations.
+            Ready to transform your SMB with AI agents?
           </h2>
           
           <p className="text-xl text-white/90 mb-10 max-w-3xl mx-auto">
-            Boost response rates, improve customer satisfaction, and enhance your business communications—all with the power of a <PoweredByText /> AI Text Agent.
+            Join the businesses revolutionizing the way they work, communicate, & engage customers.
           </p>
           
           <div className="flex justify-center items-center">
@@ -38,7 +36,7 @@ export const FinalCTASection = () => {
               data-cal-config='{"layout":"month_view"}'
               className="bg-white hover:bg-gray-100 text-[#6342ff] px-8 py-6 text-lg rounded-xl font-bold flex items-center"
             >
-              Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
+              Get Started <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
         </div>

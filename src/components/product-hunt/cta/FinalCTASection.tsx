@@ -20,14 +20,14 @@ export const FinalCTASection: React.FC<FinalCTASectionProps> = () => {
         </div>
         <div className="relative px-8 py-20 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-            Ready to Transform Your Business with AI Agents?
+            Ready to transform your SMB with AI agents?
           </h2>
           <p className="text-xl text-white/90 mb-10 max-w-3xl mx-auto">
-            Join the SMBs already using <PoweredByText /> AI agents to reduce costs, improve customer satisfaction, and scale operations.
+            Join the businesses revolutionizing the way they work, communicate, & engage customers.
           </p>
           <Link to="/contact">
             <Button className="bg-white hover:bg-gray-100 text-[#6342ff] font-bold px-8 py-6 text-lg rounded-md">
-              Book a Demo <ArrowRight className="ml-2 h-5 w-5" />
+              Get Started <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </Link>
         </div>

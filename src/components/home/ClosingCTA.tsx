@@ -14,7 +14,7 @@ interface ClosingCTAProps {
 }
 
 export const ClosingCTA: React.FC<ClosingCTAProps> = ({
-  customHeading = "Ready to transform your business?",
+  customHeading = "Ready to transform your SMB with AI agents?",
   customButtonText = "Get Started",
   useCalendly = false,
   externalLink = null,
@@ -56,7 +56,7 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
         {customHeading}
       </h2>
       <p className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto">
-        Join the businesses revolutionizing customer interactions with AI technology.
+        Join the businesses revolutionizing the way they work, communicate, & engage customers.
       </p>
       
       {useCalendly ? (
