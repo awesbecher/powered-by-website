@@ -22,8 +22,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
               initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'
             }`}
           >
-            <span className="text-gradient">AI Agency</span>{' '}
-            <span className="block mt-2">For The Digital Age</span>
+            <span className="text-gradient">Why should those Silicon Valley nerds have all the fancy AI toys?</span>{' '}
+            <span className="block mt-2">AI Agency For The Digital Age</span>
           </h1>
           
           <p 
