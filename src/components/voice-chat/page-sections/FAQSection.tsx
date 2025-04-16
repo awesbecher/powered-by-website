@@ -68,6 +68,14 @@ export const FAQSection = () => {
   const handleToggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+
+  const handleContactClick = () => {
+    // Fix for TypeScript error: cast the element to HTMLElement which has click() method
+    const calendarButton = document.querySelector('[data-cal-link]') as HTMLElement;
+    if (calendarButton) {
+      calendarButton.click();
+    }
+  };
   
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-5xl">
@@ -92,7 +100,7 @@ export const FAQSection = () => {
           href="#" 
           onClick={(e) => {
             e.preventDefault();
-            document.querySelector('[data-cal-link]')?.click();
+            handleContactClick();
           }}
           className="text-[#9b87f5] hover:underline font-medium"
         >
@@ -102,3 +110,4 @@ export const FAQSection = () => {
     </section>
   );
 };
+
