@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon, MessageCircle, Play } from 'lucide-react';
@@ -41,7 +42,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
           <h1 
             className="text-5xl md:text-7xl font-bold text-white mb-6"
           >
-            <span className="text-gradient">Why should those Silicon Valley nerds have all the fancy AI toys?</span>
+            <span className="text-gradient">Why should those Silicon Valley <span className="text-[#9b87f5]">nerds</span> have all the fancy AI toys?</span>
           </h1>
           
           <motion.p 
@@ -50,7 +51,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            SMBs generate 43.5% of U.S. GDP & employ about 46% of all private-sector workers. Powered_by's mission is to empower this critically important sector by delivery cutting-edge AI agent solutions that can transform the way businesses work, communicate, & engage customers.
+            Our mission is to empower this critically important sector by delivery cutting-edge AI agent solutions that can transform the way businesses work, communicate, & engage customers.
           </motion.p>
           
           <motion.div 
