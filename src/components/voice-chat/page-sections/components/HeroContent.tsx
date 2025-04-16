@@ -65,7 +65,7 @@ export const HeroContent: React.FC<HeroContentProps> = ({
               className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-4 text-base rounded-md flex items-center"
               onClick={() => setVideoOpen(true)}
             >
-              <Tv className="mr-2 h-5 w-5" /> Watch Demo Video
+              <Tv className="mr-2 h-5 w-5" /> Watch Overview
             </Button>
             
             <Button 
@@ -87,7 +87,7 @@ export const HeroContent: React.FC<HeroContentProps> = ({
             <iframe 
               width="100%" 
               height="100%" 
-              src="https://www.youtube.com/embed/A4PPY9idmpo?si=YTt05OJgGRyKheJE&autoplay=1" 
+              src="https://www.youtube.com/embed/A4PPY9idmpo?si=Ku1bYt3Q1E79oJqW&autoplay=1" 
               title="Voice AI Introduction" 
               frameBorder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
