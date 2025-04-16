@@ -1,3 +1,4 @@
+
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ContactHeader } from "@/components/contact/ContactHeader";
@@ -45,8 +46,8 @@ const Contact = () => {
             <ContactHeader initialLoad={initialLoad} />
           </div>
           
-          {/* Schedule button container */}
-          <div className="flex flex-col items-center justify-center bg-black/30 backdrop-blur-sm rounded-[40px] p-12 mb-10 shadow-lg transition-all duration-500 ease-out transform">
+          {/* Schedule button */}
+          <div className="flex flex-col items-center justify-center">
             <Button 
               data-cal-namespace="get-started-today"
               data-cal-link="team-powered-by-dfbtbb/get-started-today"
