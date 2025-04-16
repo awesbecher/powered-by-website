@@ -78,7 +78,7 @@ export const InteractiveDemoSection = () => {
   };
 
   return (
-    <section id="interactive-demo" className="py-12 px-4 sm:px-6 lg:px-8 relative">
+    <section id="interactive-demo" className="py-8 px-4 sm:px-6 lg:px-8 relative">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
