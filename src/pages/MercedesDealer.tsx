@@ -71,7 +71,11 @@ const MercedesDealer = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-black to-neutral-900">
       <Navbar />
-      <HeroSection />
+      <HeroSection 
+        setShowCallDialog={setShowCallDialog} 
+        isProcessing={isProcessing}
+        isCallActive={isCallActive}
+      />
       <ServicesGrid />
       <SpringSalesEvent 
         isProcessing={isProcessing} 

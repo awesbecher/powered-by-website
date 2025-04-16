@@ -6,9 +6,17 @@ import MercedesDealerHeader from "./MercedesDealerHeader";
 
 interface HeroSectionProps {
   onSpeakWithUs?: () => void;
+  setShowCallDialog: (value: boolean) => void;
+  isProcessing?: boolean;
+  isCallActive?: boolean;
 }
 
-const HeroSection = ({ onSpeakWithUs }: HeroSectionProps = {}) => {
+const HeroSection = ({
+  onSpeakWithUs,
+  setShowCallDialog,
+  isProcessing = false,
+  isCallActive = false
+}: HeroSectionProps) => {
   return (
     <div className="relative h-[75vh] mb-4">
       <div className="absolute inset-0">
@@ -33,8 +41,9 @@ const HeroSection = ({ onSpeakWithUs }: HeroSectionProps = {}) => {
             Tacoma's Premier Authorized Mercedes-Benz Dealer. Experience luxury and performance with our extensive selection of new and certified pre-owned vehicles. View our special Spring pricing incentives below. Click to talk to a dealership team member now.
           </p>
           <Button 
-            onClick={() => window.location.href = "#speak-with-us"}
+            onClick={() => setShowCallDialog(true)}
             className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
+            disabled={isProcessing || isCallActive}
           >
             <Phone className="mr-2 h-4 w-4" />
             Speak with us now
