@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon, MessageCircle, Play } from 'lucide-react';
@@ -51,7 +50,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            We build and deploy custom AI agents to enhance your business operations and customer experience.
+            SMBs generate 43.5% of U.S. GDP & employ about 46% of all private-sector workers. Powered_by's mission is to empower this critically important sector by delivery cutting-edge AI agent solutions that can transform the way businesses work, communicate, & engage customers.
           </motion.p>
           
           <motion.div 
@@ -100,7 +99,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
         </motion.div>
       </div>
       
-      {/* Animated background elements */}
       <div className="absolute top-0 left-0 right-0 bottom-0 z-0 opacity-20">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-600 rounded-full filter blur-3xl animate-pulse"></div>
         <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-indigo-600 rounded-full filter blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
