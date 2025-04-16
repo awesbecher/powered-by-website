@@ -1,64 +1,32 @@
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRightIcon, Calendar } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { PoweredByText } from '@/components/shared/PoweredByText';
+import { ArrowRight } from "lucide-react";
+import { PoweredByText } from "@/components/shared/PoweredByText";
 
 export const FinalCTASection = () => {
-  const handleTalkToAgent = () => {
-    document.dispatchEvent(new CustomEvent('open-voice-dialog'));
-  };
-
   return (
-    <section className="relative py-24 px-4 overflow-hidden">
-      <div className="container mx-auto max-w-5xl">
-        <motion.div 
-          className="glass-card p-10 md:p-16 rounded-2xl border border-[#9b87f5]/30 relative overflow-hidden"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          {/* Background decoration */}
-          <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#9b87f5]/20 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-[#9b87f5]/20 rounded-full blur-3xl"></div>
-          
-          <div className="relative z-10">
-            <div className="text-center mb-10">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Get Started Today</h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-6">
-                If you're an SMB looking to level up your customer engagement with AI agents, <PoweredByText className="inline-block mx-1" /> is here to guide you. We offer a project-based engagement that ensures clear milestones, transparent pricing, and a solution designed with your success in mind.
-              </p>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Let's transform your customer experience—together.
-              </p>
-            </div>
-            
-            <div className="flex flex-col md:flex-row justify-center gap-6 items-center">
-              <Link to="/contact">
-                <Button 
-                  size="lg" 
-                  className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md w-full md:w-auto"
-                >
-                  <Calendar className="mr-2 h-5 w-5" />
-                  Schedule a Meeting
-                </Button>
-              </Link>
-              
-              <Button 
-                onClick={handleTalkToAgent}
-                size="lg" 
-                variant="outline" 
-                className="bg-transparent border-2 border-[#9b87f5] text-white hover:bg-[#9b87f5]/20 px-8 py-6 text-lg rounded-md w-full md:w-auto"
-              >
-                Talk to AI Agent
-                <ArrowRightIcon className="ml-2" />
-              </Button>
-            </div>
-          </div>
-        </motion.div>
+    <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#6342ff] to-[#a87cff]">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[#6342ff] mix-blend-multiply opacity-60"></div>
+          <div className="absolute -bottom-48 -right-48 w-96 h-96 rounded-full bg-[#a87cff] blur-3xl opacity-40"></div>
+          <div className="absolute -top-48 -left-48 w-96 h-96 rounded-full bg-[#6342ff] blur-3xl opacity-40"></div>
+        </div>
+        <div className="relative px-8 py-20 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+            Ready to transform your business with AI agents?
+          </h2>
+          <p className="text-xl text-white/90 mb-10 max-w-3xl mx-auto">
+            Join the SMBs already using <PoweredByText /> AI agents to reduce costs, improve customer satisfaction, and scale operations.
+          </p>
+          <Link to="/contact">
+            <Button className="bg-white hover:bg-gray-100 text-[#6342ff] font-bold px-8 py-6 text-lg rounded-md">
+              Book a Demo <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </Link>
+        </div>
       </div>
     </section>
   );
