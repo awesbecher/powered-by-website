@@ -25,16 +25,20 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
     (async function () {
       try {
         console.log("Initializing Cal.com embed in ClosingCTA");
-        const cal = await getCalApi({"namespace":"get-started-today"});
-        cal("ui", {
-          "cssVarsPerTheme": {
-            "light": {"cal-brand":"#292929"},
-            "dark": {"cal-brand":"#fafafa"}
-          },
-          "hideEventTypeDetails": false,
-          "layout": "month_view"
-        });
-        console.log("Cal.com embed initialized successfully in ClosingCTA");
+        const cal = await getCalApi();
+        if (cal) {
+          cal("ui", {
+            "cssVarsPerTheme": {
+              "light": {"cal-brand":"#292929"},
+              "dark": {"cal-brand":"#fafafa"}
+            },
+            "hideEventTypeDetails": false,
+            "layout": "month_view"
+          });
+          console.log("Cal.com embed initialized successfully in ClosingCTA");
+        } else {
+          console.error("Cal.com API not available in ClosingCTA");
+        }
       } catch (error) {
         console.error("Error initializing Cal.com embed in ClosingCTA:", error);
       }
@@ -55,6 +59,22 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
       calBtn.click();
     } else {
       console.error("Cal.com button not found in DOM from ClosingCTA");
+      // Try opening Cal.com directly
+      try {
+        (window as any).Cal?.('ui', {
+          styles: { branding: { brandColor: '#000000' } },
+          hideEventTypeDetails: false,
+          layout: 'month_view',
+        });
+        (window as any).Cal?.('showModal', {
+          calLink: "team-powered-by-dfbtbb/get-started-today",
+          config: {
+            layout: 'month_view',
+          },
+        });
+      } catch (err) {
+        console.error("Failed to open Cal.com modal directly:", err);
+      }
     }
   };
 
@@ -79,21 +99,19 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
           </Button>
         ) : useCalendly || onContactClick ? (
           <Button
-            data-cal-namespace="get-started-today"
-            data-cal-link="team-powered-by-dfbtbb/get-started-today"
-            data-cal-config='{"layout":"month_view"}'
             className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md"
             onClick={handleClick}
+            data-cal-link="team-powered-by-dfbtbb/get-started-today"
+            data-cal-config='{"layout":"month_view"}'
           >
             {customButtonText || "Get Started"} <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         ) : (
           <Button
-            data-cal-namespace="get-started-today"
-            data-cal-link="team-powered-by-dfbtbb/get-started-today"
-            data-cal-config='{"layout":"month_view"}'
             className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md"
             onClick={handleClick}
+            data-cal-link="team-powered-by-dfbtbb/get-started-today"
+            data-cal-config='{"layout":"month_view"}'
           >
             {customButtonText || "Get Started"} <ArrowRight className="ml-2 h-5 w-5" />
           </Button>

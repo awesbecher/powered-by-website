@@ -25,16 +25,20 @@ export const CallToActionButtons = ({ handleNavigation, setShowDialog }: CallToA
     (async function () {
       try {
         console.log("Initializing Cal.com embed in CallToActionButtons");
-        const cal = await getCalApi({"namespace":"get-started-today"});
-        cal("ui", {
-          "cssVarsPerTheme": {
-            "light": {"cal-brand":"#292929"},
-            "dark": {"cal-brand":"#fafafa"}
-          },
-          "hideEventTypeDetails": false,
-          "layout": "month_view"
-        });
-        console.log("Cal.com embed initialized successfully in CallToActionButtons");
+        const cal = await getCalApi();
+        if (cal) {
+          cal("ui", {
+            "cssVarsPerTheme": {
+              "light": {"cal-brand":"#292929"},
+              "dark": {"cal-brand":"#fafafa"}
+            },
+            "hideEventTypeDetails": false,
+            "layout": "month_view"
+          });
+          console.log("Cal.com embed initialized successfully in CallToActionButtons");
+        } else {
+          console.error("Cal.com API not available in CallToActionButtons");
+        }
       } catch (error) {
         console.error("Error initializing Cal.com embed in CallToActionButtons:", error);
       }
@@ -43,6 +47,26 @@ export const CallToActionButtons = ({ handleNavigation, setShowDialog }: CallToA
   
   const handleGetStarted = () => {
     console.log("Get Started button clicked in CallToActionButtons");
+    
+    // First try direct method
+    try {
+      (window as any).Cal?.('ui', {
+        styles: { branding: { brandColor: '#000000' } },
+        hideEventTypeDetails: false,
+        layout: 'month_view',
+      });
+      (window as any).Cal?.('showModal', {
+        calLink: "team-powered-by-dfbtbb/get-started-today",
+        config: {
+          layout: 'month_view',
+        },
+      });
+      console.log("Called Cal.com showModal directly");
+      return;
+    } catch (err) {
+      console.error("Failed to open Cal.com modal directly:", err);
+    }
+    
     // Try to find and click the Cal.com button
     const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
     if (calBtn instanceof HTMLElement) {
@@ -65,11 +89,10 @@ export const CallToActionButtons = ({ handleNavigation, setShowDialog }: CallToA
         <Tv className="ml-2 h-5 w-5" />
       </Button>
       <Button
-        data-cal-namespace="get-started-today"
-        data-cal-link="team-powered-by-dfbtbb/get-started-today"
-        data-cal-config='{"layout":"month_view"}'
         className="relative z-20 bg-accent hover:bg-accent-dark text-white px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
         onClick={handleGetStarted}
+        data-cal-link="team-powered-by-dfbtbb/get-started-today"
+        data-cal-config='{"layout":"month_view"}'
       >
         Get Started
         <ArrowRight className="ml-2 h-5 w-5" />

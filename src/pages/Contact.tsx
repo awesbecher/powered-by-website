@@ -31,16 +31,20 @@ const Contact = () => {
     (async function () {
       try {
         console.log("Initializing Cal.com embed at Contact page level");
-        const cal = await getCalApi({"namespace":"get-started-today"});
-        cal("ui", {
-          "cssVarsPerTheme": {
-            "light": {"cal-brand":"#292929"},
-            "dark": {"cal-brand":"#fafafa"}
-          },
-          "hideEventTypeDetails": false,
-          "layout": "month_view"
-        });
-        console.log("Cal.com embed initialized successfully at Contact page level");
+        const cal = await getCalApi();
+        if (cal) {
+          cal("ui", {
+            "cssVarsPerTheme": {
+              "light": {"cal-brand":"#292929"},
+              "dark": {"cal-brand":"#fafafa"}
+            },
+            "hideEventTypeDetails": false,
+            "layout": "month_view"
+          });
+          console.log("Cal.com embed initialized successfully at Contact page level");
+        } else {
+          console.error("Cal.com API not available in Contact page");
+        }
       } catch (error) {
         console.error("Error initializing Cal.com embed at Contact page level:", error);
       }
@@ -49,12 +53,38 @@ const Contact = () => {
 
   const handleScheduleClick = () => {
     console.log("Schedule button clicked in Contact page");
+    
+    // First try direct method
+    try {
+      (window as any).Cal?.('ui', {
+        styles: { branding: { brandColor: '#000000' } },
+        hideEventTypeDetails: false,
+        layout: 'month_view',
+      });
+      (window as any).Cal?.('showModal', {
+        calLink: "team-powered-by-dfbtbb/get-started-today",
+        config: {
+          layout: 'month_view',
+        },
+      });
+      console.log("Called Cal.com showModal directly");
+      return;
+    } catch (err) {
+      console.error("Failed to open Cal.com modal directly:", err);
+    }
+    
     // Try to check if the button was properly configured
     const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
     if (calBtn instanceof HTMLElement) {
-      console.log("Cal.com button found in Contact page");
+      console.log("Cal.com button found in Contact page, triggering click");
+      calBtn.click();
     } else {
       console.error("Cal.com button not found in DOM from Contact page");
+      toast({
+        title: "Scheduling unavailable",
+        description: "Please try again later or contact us directly.",
+        variant: "destructive"
+      });
     }
   };
 
@@ -73,12 +103,11 @@ const Contact = () => {
           {/* Schedule button */}
           <div className="flex flex-col items-center justify-center">
             <Button 
-              data-cal-namespace="get-started-today"
-              data-cal-link="team-powered-by-dfbtbb/get-started-today"
-              data-cal-config='{"layout":"month_view"}'
               className="bg-[#6342ff] hover:bg-[#5233e0] text-white px-8 py-6 text-xl rounded-md flex items-center gap-2 transform transition-all duration-200 hover:scale-105"
               size="lg"
               onClick={handleScheduleClick}
+              data-cal-link="team-powered-by-dfbtbb/get-started-today"
+              data-cal-config='{"layout":"month_view"}'
             >
               <Calendar className="h-6 w-6" />
               Schedule Now
@@ -92,6 +121,14 @@ const Contact = () => {
       <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
       
       <Footer />
+      
+      {/* Hidden Cal.com button that can be triggered programmatically */}
+      <button
+        id="cal-button-backup"
+        data-cal-link="team-powered-by-dfbtbb/get-started-today"
+        data-cal-config='{"layout":"month_view"}'
+        style={{ display: 'none' }}
+      ></button>
     </div>
   );
 };
