@@ -21,7 +21,7 @@ const EmailAgent = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Initialize Cal.com with updated namespace
+  // Initialize Cal.com
   useEffect(() => {
     (async function () {
       const cal = await getCalApi({"namespace":"get-started-with-ai-email-agents"});
@@ -36,12 +36,14 @@ const EmailAgent = () => {
     })();
   }, []);
   
-  // Handle contact button clicks
+  // Handle contact button clicks - direct Cal.com button trigger approach
   const handleContact = () => {
-    // Open Cal.com booking dialog
+    console.log("Contact button clicked - triggering Cal.com");
     const calButton = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-email-agents"]');
     if (calButton instanceof HTMLElement) {
       calButton.click();
+    } else {
+      console.error("Cal.com button not found in DOM");
     }
   };
 

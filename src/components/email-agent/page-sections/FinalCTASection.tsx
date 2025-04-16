@@ -1,12 +1,29 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mail } from "lucide-react";
+import { useEffect } from "react";
+import { getCalApi } from "@calcom/embed-react";
 
 interface FinalCTASectionProps {
   handleContact: () => void;
 }
 
 export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
+  // Initialize Cal.com
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({"namespace":"get-started-with-ai-email-agents"});
+      cal("ui", {
+        "cssVarsPerTheme": {
+          "light": {"cal-brand":"#292929"},
+          "dark": {"cal-brand":"#fafafa"}
+        },
+        "hideEventTypeDetails": false,
+        "layout": "month_view"
+      });
+    })();
+  }, []);
+
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
       {/* CTA Card with gradient background */}
@@ -34,13 +51,24 @@ export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button 
-              data-cal-namespace="get-started-with-ai-email-agents"
-              data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-email-agents"
-              data-cal-config='{"layout":"month_view"}'
+              onClick={() => {
+                const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-email-agents"]');
+                if (calBtn instanceof HTMLElement) {
+                  calBtn.click();
+                }
+              }}
               className="bg-white hover:bg-gray-100 text-[#6342ff] px-8 py-6 text-lg rounded-xl font-bold flex items-center w-full sm:w-auto"
             >
               Get Started <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
+            
+            {/* Hidden Cal.com button that will be triggered programmatically */}
+            <button
+              data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-email-agents"
+              data-cal-namespace="get-started-with-ai-email-agents"
+              data-cal-config='{"layout":"month_view"}'
+              className="hidden"
+            ></button>
           </div>
         </div>
       </div>
