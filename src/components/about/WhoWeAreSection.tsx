@@ -12,6 +12,16 @@ export const WhoWeAreSection = ({ initialLoad, whoWeAreRef }: WhoWeAreSectionPro
     <div className="max-w-4xl mx-auto">
       <div ref={whoWeAreRef} className={`transition-all duration-1000 delay-200 ease-out transform
         ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
+        
+        {/* Team Photo */}
+        <div className="mb-8">
+          <img 
+            src="/lovable-uploads/573aa598-a658-44ab-a9bd-9048d21051df.png" 
+            alt="Powered By Team" 
+            className="w-full h-auto rounded-2xl shadow-xl object-cover"
+          />
+        </div>
+
         <div className="flex items-center mb-6">
           <Users className="h-8 w-8 text-[#9b87f5] mr-3" />
           <h2 className="text-3xl font-bold text-white">Who We Are</h2>
