@@ -80,5 +80,14 @@
   .animate-float {
     animation: float 5s ease-in-out infinite;
   }
+  
+  /* New animation for the AI visualization */
+  .animate-spin-slow {
+    animation: spin 20s linear infinite;
+  }
+  
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
 }
-
