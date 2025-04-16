@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { PoweredByText } from '@/components/shared/PoweredByText';
@@ -24,10 +23,10 @@ export const DifferenceSection = () => {
   ];
 
   return (
-    <section id="how-different" className="relative py-24 px-4 overflow-hidden">
+    <section id="how-different" className="relative py-16 px-4 overflow-hidden">
       <div className="container mx-auto max-w-6xl">
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
@@ -60,7 +59,6 @@ export const DifferenceSection = () => {
         </div>
       </div>
       
-      {/* Background decoration */}
       <div className="absolute left-0 top-1/3 w-64 h-64 bg-purple-700/20 rounded-full blur-3xl -z-10"></div>
       <div className="absolute right-0 bottom-1/3 w-64 h-64 bg-indigo-700/20 rounded-full blur-3xl -z-10"></div>
     </section>

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Target, Code, GraduationCap, LineChart, ArrowRight } from 'lucide-react';
@@ -51,10 +52,10 @@ export const ProjectApproachSection = () => {
   ];
 
   return (
-    <section id="approach" className="relative py-24 px-4 scroll-mt-20">
+    <section id="approach" className="relative py-16 px-4 scroll-mt-20">
       <div className="container mx-auto max-w-6xl">
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-12"  // Reduced mb-16 to mb-12
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
