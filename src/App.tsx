@@ -30,6 +30,8 @@ import OutboundAI from './pages/OutboundAI';
 import License from './pages/License';
 import Index from './pages/Index';
 import AIAgency from './pages/AIAgency';
+import AgentGPT from './pages/AgentGPT';
+import AgentGPTBuilder from './pages/AgentGPTBuilder';
 import { GlobalVoiceChatDialog } from '@/components/shared/GlobalVoiceChatDialog';
 
 const queryClient = new QueryClient();
@@ -60,6 +62,8 @@ function App() {
             <Route path="/outbound-ai" element={<OutboundAI />} />
             <Route path="/license" element={<License />} />
             <Route path="/ai-agency" element={<AIAgency />} />
+            <Route path="/agent-gpt" element={<AgentGPT />} />
+            <Route path="/agent-gpt-builder" element={<AgentGPTBuilder />} />
           </Routes>
         </AnimatePresence>
         
