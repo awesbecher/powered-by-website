@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Lightbulb, Target, LineChart } from "lucide-react";
@@ -50,12 +49,6 @@ export const MissionSection = ({ initialLoad }: MissionSectionProps) => {
             We focus on practical applications that deliver measurable ROI, not just fancy tech demos. Our AI solutions solve real business problems and create tangible value for our clients.
           </p>
         </div>
-      </div>
-      
-      <div className="mt-16 text-center max-w-3xl mx-auto">
-        <blockquote className="text-2xl font-light italic text-[#9b87f5]">
-          "AI for the rest of us—designed to deliver ROI, not complexity."
-        </blockquote>
       </div>
     </section>
   );
