@@ -11,6 +11,15 @@ export const VisionSection = ({ initialLoad }: VisionSectionProps) => {
     <section className={`py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto transition-all duration-1000 delay-400 ease-out transform
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
       
+      {/* New Image Section */}
+      <div className="mb-12">
+        <img 
+          src="/lovable-uploads/fd6bacaa-f5ae-46d3-ad21-ca95b78e1537.png" 
+          alt="AI Agents for SMBs Presentation" 
+          className="w-full h-auto rounded-2xl shadow-xl object-cover"
+        />
+      </div>
+      
       <div className="backdrop-blur-md bg-gradient-to-br from-[#2a1a47]/40 to-[#1a0b2e]/40 rounded-2xl border border-[#9b87f5]/20 p-8 md:p-12">
         <div className="max-w-4xl mx-auto text-center">
           <Badge variant="outline" className="mb-3 px-3 py-1 text-sm border-purple-400/30 bg-purple-400/10 text-purple-200">
