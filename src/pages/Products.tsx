@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+
+import { useState, useEffect, useRef } from "react";
 import { ServiceCard } from "@/components/products/ServiceCard";
 import { ProductsHero } from "@/components/products/ProductsHero";
 import { ProductIndex } from "@/components/products/ProductIndex";
 import { serviceCardsData } from "@/data/serviceCardsData";
-import { ClosingCTA } from "@/components/home/ClosingCTA";
 import Navbar from "@/components/layout/Navbar";
 import { SectionTitle } from "@/components/home/SectionTitle";
 import { FeaturedSolutionCard } from "@/components/products/FeaturedSolutionCard";
@@ -11,10 +11,16 @@ import { MessageSquare, Phone, Mail, Smartphone, Cpu } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import OfferButton from "@/components/home/OfferButton";
 import { getCalApi } from "@calcom/embed-react";
+import { CTASection } from "@/components/pricing/CTASection";
+import Footer from "@/components/layout/Footer";
+import { OptimizedImage } from "@/components/shared/OptimizedImage";
+import { motion } from "framer-motion";
 
 const Products = () => {
   const [initialLoad, setInitialLoad] = useState(true);
+  const [activeSection, setActiveSection] = useState("");
   const navigate = useNavigate();
+  const sectionsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setInitialLoad(false);
@@ -37,6 +43,28 @@ const Products = () => {
         console.error("Error initializing Cal.com embed at Products page level:", error);
       }
     })();
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionsRef.current) return;
+      
+      const sections = sectionsRef.current.querySelectorAll('[id^="section-"]');
+      const scrollPosition = window.scrollY + 200; // Offset for sticky header
+      
+      sections.forEach((section) => {
+        const sectionTop = (section as HTMLElement).offsetTop;
+        const sectionHeight = section.clientHeight;
+        const sectionId = section.id.replace('section-', '');
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          setActiveSection(sectionId);
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const handleContact = () => {
@@ -93,13 +121,34 @@ const Products = () => {
     }
   ];
 
+  // Animation variants for staggered animations
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 }
+    }
+  };
+
   return (
     <div className="min-h-screen w-full relative">
       <div className="fixed inset-0 z-0">
-        <img 
+        <OptimizedImage 
           src="/lovable-uploads/1318bebd-9e04-4b11-9a98-a8c9b0843824.png" 
-          alt="Tech workspace" 
+          alt="Tech workspace backdrop" 
           className="w-full h-[60vh] object-cover object-center"
+          priority={true}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/80 via-[#2f1c4a] to-[#1a0b2e]"></div>
       </div>
@@ -114,35 +163,54 @@ const Products = () => {
         
         <ProductsHero initialLoad={initialLoad} className="hero-section" />
         
-        <div className="container mx-auto px-4 py-12">
-          <SectionTitle title="Featured Agent Solutions:" linked={false} />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
-            {featuredSolutions.map((solution, index) => (
-              <FeaturedSolutionCard
-                key={index}
-                title={solution.title}
-                description={solution.description}
-                icon={solution.icon}
-                link={solution.link}
-                isExternal={solution.isExternal}
-              />
-            ))}
-          </div>
+        <div className="sticky top-0 z-30 bg-[#1a0b2e]/90 backdrop-blur-md border-b border-[#9b87f5]/20 py-3">
+          <ProductIndex activeSection={activeSection} />
         </div>
+        
+        <motion.div 
+          className="container mx-auto px-4 py-12 md:py-16"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.div variants={itemVariants}>
+            <SectionTitle title="Featured Agent Solutions:" linked={false} />
+          </motion.div>
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {featuredSolutions.map((solution, index) => (
+              <motion.div key={index} variants={itemVariants}>
+                <FeaturedSolutionCard
+                  title={solution.title}
+                  description={solution.description}
+                  icon={solution.icon}
+                  link={solution.link}
+                  isExternal={solution.isExternal}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
         
         <div className="container mx-auto px-4 py-6">
           <SectionTitle title="Horizontal & Vertical-Industry Solutions:" linked={false} />
         </div>
         
-        <ProductIndex />
-        
-        <div className="max-w-full pt-2">
+        <div ref={sectionsRef} className="max-w-full pt-2">
           <div className="space-y-0 divide-y divide-white/10">
             {serviceCardsData.map((card, index) => (
-              <div 
+              <motion.div 
                 key={index}
                 id={`section-${index}`}
-                className="scroll-mt-24"
+                className="scroll-mt-36"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
+                viewport={{ once: true, margin: "-100px" }}
               >
                 <ServiceCard
                   title={
@@ -155,15 +223,14 @@ const Products = () => {
                   description={card.description}
                   features={card.features}
                 />
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
-        <ClosingCTA 
-          onContactClick={handleContact}
-          useCalendly={true}
-        />
+        <div className="mt-16 mb-8">
+          <CTASection />
+        </div>
 
         <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
         <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
@@ -174,6 +241,8 @@ const Products = () => {
           data-cal-config='{"layout":"month_view"}'
           className="hidden"
         ></button>
+        
+        <Footer />
       </div>
     </div>
   );
