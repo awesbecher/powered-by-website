@@ -81,7 +81,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
                       <MessageCircle className="w-6 h-6 text-white" />
                     </div>
                     <div className="ml-3">
-                      <div className="text-white font-bold">OutboundAI Agent</div>
+                      <div className="text-white font-bold">Powered_by Agent</div>
                       <div className="text-xs text-gray-400">Online now</div>
                     </div>
                   </div>
