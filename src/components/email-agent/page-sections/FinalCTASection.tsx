@@ -25,7 +25,7 @@ export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
           </div>
           
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 text-center max-w-3xl mx-auto">
-            Ready to transform your business communication with AI?
+            Ready to transform your business communication with AI email agents?
           </h2>
           
           <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto text-center">
