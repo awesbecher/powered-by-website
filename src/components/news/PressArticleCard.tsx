@@ -1,4 +1,3 @@
-
 import { PressArticle } from "@/types/news";
 import { ExternalLink } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -8,7 +7,6 @@ interface PressArticleCardProps {
 }
 
 export const PressArticleCard = ({ article }: PressArticleCardProps) => {
-  // Check which card this is to apply the appropriate background
   const isYahooFinance = article.id === "yahoo-finance-ai";
   const isMarketWatch = article.id === "marketwatch-feature";
   const isAssociatedPress = article.id === "associated-press-virtual-se";
@@ -22,6 +20,7 @@ export const PressArticleCard = ({ article }: PressArticleCardProps) => {
   const isBenzinga = article.id === "benzinga-virtual-se-launch";
   const isKxan = article.id === "kxan-virtual-se-launch";
   const isFox4 = article.id === "fox4-virtual-se-launch";
+  const isUKHeraldTribune = article.id === "uk-herald-tribune-virtual-se-launch";
   
   return (
     <a 
@@ -38,7 +37,11 @@ export const PressArticleCard = ({ article }: PressArticleCardProps) => {
           </div>
           
           {article.imageUrl && (
-            <div className={`mb-4 overflow-hidden rounded-md ${isYahooFinance ? 'bg-purple-800' : ''} ${isMarketWatch || isAssociatedPress || isMorningStar || isKtla || isPrNewswire || isWgn9 || isFox8 || isKxan || isFox4 ? 'bg-white' : ''} ${isSeekingAlpha || isPix11News || isBenzinga ? 'bg-black' : ''}`}>
+            <div className={`mb-4 overflow-hidden rounded-md 
+              ${isYahooFinance ? 'bg-purple-800' : ''} 
+              ${isMarketWatch || isAssociatedPress || isMorningStar || isKtla || isPrNewswire || isWgn9 || isFox8 || isKxan || isFox4 ? 'bg-white' : ''} 
+              ${isSeekingAlpha || isPix11News || isBenzinga ? 'bg-black' : ''}
+              ${isUKHeraldTribune ? 'bg-white' : ''}`}>
               <img 
                 src={article.imageUrl} 
                 alt={article.title} 

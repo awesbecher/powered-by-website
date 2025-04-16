@@ -1,4 +1,3 @@
-
 import { PressArticle } from "@/types/news";
 
 export const pressArticles: PressArticle[] = [
@@ -145,5 +144,14 @@ export const pressArticles: PressArticle[] = [
     excerpt: "Innovative AI solution transforms pre-sales engineering processes for small and medium-sized businesses",
     externalUrl: "https://fox4kc.com/business/press-releases/cision/20250414SF63509/powered-by-agency-launches-virtual-se-revolutionizing-pre-sales-engineering-with-ai-agents/",
     imageUrl: "/lovable-uploads/5db05339-8e43-4e68-814a-2b107f29f5b9.png"
+  },
+  {
+    id: "uk-herald-tribune-virtual-se-launch",
+    title: "Virtual SE Launches, Revolutionizing SaaS Pre-Sales Engineering with AI Agents",
+    publication: "UK Herald Tribune",
+    date: "April 14, 2025",
+    excerpt: "Innovative AI solution transforms pre-sales engineering processes for SaaS companies",
+    externalUrl: "https://www.ukheraldtribune.com/article/803158544-virtual-se-launches-revolutionizing-saas-pre-sales-engineering-with-ai-agents",
+    imageUrl: "/lovable-uploads/8de5c56f-4020-4c69-8c49-d392f864f3e0.png"
   }
 ];
