@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Target, Code, GraduationCap, LineChart, ArrowRight } from 'lucide-react';
@@ -70,12 +69,9 @@ export const ProjectApproachSection = () => {
           </p>
         </motion.div>
 
-        {/* Timeline view for larger screens */}
         <div className="hidden md:flex justify-between relative mb-20">
-          {/* Timeline bar */}
           <div className="absolute top-10 left-0 right-0 h-1 bg-gradient-to-r from-[#9b87f5] to-[#6342ff] z-0"></div>
           
-          {/* Timeline steps */}
           {steps.map((step, index) => (
             <motion.div 
               key={index}
@@ -88,9 +84,6 @@ export const ProjectApproachSection = () => {
               <div className="flex flex-col items-center">
                 <div className={`w-20 h-20 rounded-full bg-gradient-to-br ${step.gradient} flex items-center justify-center shadow-lg`}>
                   {step.icon}
-                  <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-white text-[#1a0b2e] flex items-center justify-center font-bold text-lg">
-                    {index + 1}
-                  </div>
                 </div>
                 <h3 className="text-xl font-bold text-white mt-4 text-center">{step.title}</h3>
                 <ArrowRight className="text-[#9b87f5] mt-4" size={20} />
@@ -112,9 +105,6 @@ export const ProjectApproachSection = () => {
               <div className="flex-shrink-0 md:hidden">
                 <div className={`w-20 h-20 rounded-xl bg-gradient-to-br ${step.gradient} flex items-center justify-center shadow-lg relative`}>
                   {step.icon}
-                  <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-white text-[#1a0b2e] flex items-center justify-center font-bold text-lg">
-                    {index + 1}
-                  </div>
                 </div>
               </div>
               
@@ -129,7 +119,6 @@ export const ProjectApproachSection = () => {
                   ))}
                 </ul>
                 
-                {/* Stats and case snippets */}
                 <div className="mt-6 pt-6 border-t border-white/10">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="bg-white/5 rounded-lg p-4">
@@ -146,8 +135,7 @@ export const ProjectApproachSection = () => {
             </motion.div>
           ))}
         </div>
-        
-        {/* FAQ section */}
+
         <motion.div
           className="mt-20 glass-card p-8 rounded-xl"
           initial={{ opacity: 0, y: 20 }}
