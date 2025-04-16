@@ -14,7 +14,7 @@ export const FinalCTASection = () => {
         // Ensure script is loaded
         await loadCalComScript();
         
-        const cal = await getCalApi({"namespace":"get-started-with-voice-ai-chat"});
+        const cal = await getCalApi();
         cal("ui", {
           "cssVarsPerTheme": {
             "light": {"cal-brand":"#292929"},
@@ -81,11 +81,25 @@ export const FinalCTASection = () => {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button 
             className="bg-[#6342ff] hover:bg-[#5233e0] text-white px-8 py-6 text-lg rounded-md flex items-center shadow-lg shadow-[#6342ff]/20 w-full sm:w-auto"
-            data-cal-namespace="get-started-with-voice-ai-chat"
             data-cal-link="team-powered-by-dfbtbb/get-started-with-voice-ai-chat"
             data-cal-config='{"layout":"month_view"}'
             onClick={() => {
               console.log("Get Started button clicked in VoiceChat FinalCTASection");
+              try {
+                (window as any).Cal?.('ui', {
+                  styles: { branding: { brandColor: '#000000' } },
+                  hideEventTypeDetails: false,
+                  layout: 'month_view',
+                });
+                (window as any).Cal?.('showModal', {
+                  calLink: "team-powered-by-dfbtbb/get-started-with-voice-ai-chat",
+                  config: {
+                    layout: 'month_view',
+                  },
+                });
+              } catch (err) {
+                console.error("Failed to open Cal.com modal directly in FinalCTASection:", err);
+              }
             }}
           >
             Schedule a Demo <ArrowRight className="ml-2 h-5 w-5" />
@@ -101,8 +115,6 @@ export const FinalCTASection = () => {
             Contact Sales
           </Button>
         </div>
-        
-        {/* Removed Powered_by text */}
       </div>
     </section>
   );

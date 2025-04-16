@@ -30,7 +30,7 @@ export const HeroContent: React.FC<HeroContentProps> = ({
     (async function () {
       try {
         console.log("Initializing Cal.com embed in VoiceChat HeroContent");
-        const cal = await getCalApi({"namespace":"get-started-with-voice-ai-chat"});
+        const cal = await getCalApi();
         cal("ui", {
           "cssVarsPerTheme": {
             "light": {"cal-brand":"#292929"},
@@ -83,6 +83,21 @@ export const HeroContent: React.FC<HeroContentProps> = ({
             
             <CalendarButton onClick={() => {
               console.log("CalendarButton clicked from HeroContent");
+              try {
+                (window as any).Cal?.('ui', {
+                  styles: { branding: { brandColor: '#000000' } },
+                  hideEventTypeDetails: false,
+                  layout: 'month_view',
+                });
+                (window as any).Cal?.('showModal', {
+                  calLink: "team-powered-by-dfbtbb/get-started-with-voice-ai-chat",
+                  config: {
+                    layout: 'month_view',
+                  },
+                });
+              } catch (err) {
+                console.error("Failed to open Cal.com modal from HeroContent CalendarButton:", err);
+              }
             }} />
           </div>
         </div>

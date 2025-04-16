@@ -36,7 +36,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
         // Ensure script is loaded
         await loadCalComScript();
         
-        const cal = await getCalApi({"namespace":"get-started-with-voice-ai-chat"});
+        const cal = await getCalApi();
         cal("ui", {
           "cssVarsPerTheme": {
             "light": {"cal-brand":"#292929"},
@@ -102,12 +102,26 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
             <div className={`absolute left-1/2 transform -translate-x-1/2 -top-[2rem] z-10 text-center transition-all duration-1000 delay-300 ease-out
               ${initialLoad ? 'opacity-0' : 'opacity-100'}`}>
               <button 
-                data-cal-namespace="get-started-with-voice-ai-chat"
                 data-cal-link="team-powered-by-dfbtbb/get-started-with-voice-ai-chat"
                 data-cal-config='{"layout":"month_view"}'
                 className="bg-[#6342ff] hover:bg-[#5233e0] text-white px-6 py-4 text-base rounded-md flex items-center gap-2"
                 onClick={() => {
                   console.log("Get Started button clicked in VoiceChat HeroSection");
+                  try {
+                    (window as any).Cal?.('ui', {
+                      styles: { branding: { brandColor: '#000000' } },
+                      hideEventTypeDetails: false,
+                      layout: 'month_view',
+                    });
+                    (window as any).Cal?.('showModal', {
+                      calLink: "team-powered-by-dfbtbb/get-started-with-voice-ai-chat",
+                      config: {
+                        layout: 'month_view',
+                      },
+                    });
+                  } catch (err) {
+                    console.error("Failed to open Cal.com modal directly from HeroSection:", err);
+                  }
                 }}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-calendar">
