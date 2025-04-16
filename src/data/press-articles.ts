@@ -127,5 +127,14 @@ export const pressArticles: PressArticle[] = [
     excerpt: "Innovative AI solution transforms pre-sales engineering processes for small and medium-sized businesses",
     externalUrl: "https://www.benzinga.com/pressreleases/25/04/n44791745/powered-by-agency-launches-virtual-se-revolutionizing-pre-sales-engineering-with-ai-agents",
     imageUrl: "/lovable-uploads/45b1dda4-731b-43cb-ad21-23e395adfd56.png"
+  },
+  {
+    id: "kxan-virtual-se-launch",
+    title: "Powered_by Agency Launches Virtual SE, Revolutionizing Pre-Sales Engineering with AI Agents",
+    publication: "KXAN",
+    date: "April 14, 2025",
+    excerpt: "Innovative AI solution transforms pre-sales engineering processes for small and medium-sized businesses",
+    externalUrl: "https://www.kxan.com/business/press-releases/cision/20250414SF63509/powered-by-agency-launches-virtual-se-revolutionizing-pre-sales-engineering-with-ai-agents/",
+    imageUrl: "/lovable-uploads/c1f2f583-29f8-4a0b-b49f-4c6a2d99a653.png"
   }
 ];
