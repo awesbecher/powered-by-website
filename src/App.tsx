@@ -36,6 +36,7 @@ import { GlobalVoiceChatDialog } from '@/components/shared/GlobalVoiceChatDialog
 import MercedesDealer from './pages/MercedesDealer';
 import RoomService from './pages/room-service';
 import RetailServices from './pages/RetailServices';
+import Careers from './pages/Careers';
 
 const queryClient = new QueryClient();
 
@@ -70,6 +71,7 @@ function App() {
             <Route path="/mercedes-dealer" element={<MercedesDealer />} />
             <Route path="/room-service" element={<RoomService />} />
             <Route path="/retail-services" element={<RetailServices />} />
+            <Route path="/careers" element={<Careers />} />
           </Routes>
         </AnimatePresence>
         
