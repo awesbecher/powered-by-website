@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Mail, CalendarClock } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 
 interface FinalCTASectionProps {
   handleContact: () => void;
@@ -40,20 +40,6 @@ export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
               className="bg-white hover:bg-gray-100 text-[#6342ff] px-8 py-6 text-lg rounded-xl font-bold flex items-center w-full sm:w-auto"
             >
               Get Started <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            
-            <Button 
-              onClick={() => {
-                // Try to play video by finding and clicking the Watch Overview button
-                const watchButton = document.querySelector('button:has(.lucide-tv)');
-                if (watchButton instanceof HTMLElement) {
-                  watchButton.click();
-                }
-              }}
-              className="bg-transparent hover:bg-white/20 text-white border-2 border-white px-8 py-6 text-lg rounded-xl flex items-center w-full sm:w-auto"
-            >
-              <CalendarClock className="mr-2 h-5 w-5" />
-              Schedule a Demo
             </Button>
           </div>
         </div>
