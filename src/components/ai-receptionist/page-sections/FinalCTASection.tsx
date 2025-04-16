@@ -8,15 +8,21 @@ export const FinalCTASection = () => {
   // Initialize Cal.com
   useEffect(() => {
     (async function () {
-      const cal = await getCalApi({"namespace":"get-started-with-ai-receptionist"});
-      cal("ui", {
-        "cssVarsPerTheme": {
-          "light": {"cal-brand":"#292929"},
-          "dark": {"cal-brand":"#fafafa"}
-        },
-        "hideEventTypeDetails": false,
-        "layout": "month_view"
-      });
+      try {
+        console.log("Initializing Cal.com embed in FinalCTASection");
+        const cal = await getCalApi({"namespace":"get-started-with-ai-receptionist"});
+        cal("ui", {
+          "cssVarsPerTheme": {
+            "light": {"cal-brand":"#292929"},
+            "dark": {"cal-brand":"#fafafa"}
+          },
+          "hideEventTypeDetails": false,
+          "layout": "month_view"
+        });
+        console.log("Cal.com embed initialized successfully in FinalCTASection");
+      } catch (error) {
+        console.error("Error initializing Cal.com embed in FinalCTASection:", error);
+      }
     })();
   }, []);
   
@@ -41,6 +47,9 @@ export const FinalCTASection = () => {
             data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-receptionist"
             data-cal-namespace="get-started-with-ai-receptionist"
             data-cal-config='{"layout":"month_view"}'
+            onClick={() => {
+              console.log("Get Started button clicked in FinalCTASection");
+            }}
           >
             <ArrowRight className="w-5 h-5" />
             Get Started

@@ -106,6 +106,9 @@ export const HeroSection = ({
                   data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-receptionist"
                   data-cal-namespace="get-started-with-ai-receptionist"
                   data-cal-config='{"layout":"month_view"}'
+                  onClick={() => {
+                    console.log("Get Started button clicked in HeroSection");
+                  }}
                 >
                   <ArrowRight className="w-5 h-5" />
                   Get Started

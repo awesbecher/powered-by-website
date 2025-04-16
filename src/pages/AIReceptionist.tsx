@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -30,10 +31,15 @@ const AIReceptionist = () => {
       setInitialLoad(false);
     }, 100);
     
-    // Initialize Cal.com
-    (async function () {
+    // Initialize Cal.com with a more robust approach
+    (async function initializeCalcom() {
       try {
         console.log("Initializing Cal.com embed for AI Receptionist");
+        
+        // Ensure script is loaded
+        await loadCalComScript();
+        
+        // Then initialize using the API
         const cal = await getCalApi({"namespace":"get-started-with-ai-receptionist"});
         cal("ui", {
           "cssVarsPerTheme": {
@@ -49,6 +55,31 @@ const AIReceptionist = () => {
       }
     })();
   }, []);
+  
+  // Ensure the Cal.com script is loaded
+  const loadCalComScript = () => {
+    return new Promise<void>((resolve, reject) => {
+      // If script already exists, resolve immediately
+      if (document.querySelector('script[src="https://app.cal.com/embed/embed.js"]')) {
+        console.log("Cal.com script already loaded");
+        resolve();
+        return;
+      }
+      
+      console.log("Loading Cal.com script");
+      const script = document.createElement('script');
+      script.src = "https://app.cal.com/embed/embed.js";
+      script.onload = () => {
+        console.log("Cal.com script loaded successfully");
+        resolve();
+      };
+      script.onerror = (error) => {
+        console.error("Failed to load Cal.com script:", error);
+        reject(error);
+      };
+      document.head.appendChild(script);
+    });
+  };
   
   // Modified to open real-estate page in a new tab
   const handleVoiceChatClick = () => {
