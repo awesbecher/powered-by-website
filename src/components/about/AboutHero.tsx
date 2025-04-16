@@ -22,16 +22,10 @@ export const AboutHero = ({ initialLoad, onScrollToSection, whoWeAreRef }: About
         
         <h1 className="text-4xl md:text-6xl font-bold mb-6 flex flex-col items-center">
           <div className="flex items-center gap-2">
-            <span className="text-white">Real AI.</span>
-            <Sparkles className="h-8 w-8 text-[#9b87f5]" />
+            <span className="text-white">Powered_by AI Agents</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-white">Real People.</span>
-            <Users className="h-8 w-8 text-[#9b87f5]" />
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-white">Real Results.</span>
-            <LineChart className="h-8 w-8 text-[#9b87f5]" />
+            <span className="text-white">Run_by Small Business</span>
           </div>
         </h1>
         
