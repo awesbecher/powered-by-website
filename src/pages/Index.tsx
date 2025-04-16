@@ -16,6 +16,7 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { getCalApi } from "@calcom/embed-react";
 
 const Index = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -23,6 +24,25 @@ const Index = () => {
 
   useEffect(() => {
     setInitialLoad(false);
+    
+    // Initialize Cal.com with consistent namespace and team link
+    (async function () {
+      try {
+        console.log("Initializing Cal.com embed at Index page level");
+        const cal = await getCalApi({"namespace":"get-started-today"});
+        cal("ui", {
+          "cssVarsPerTheme": {
+            "light": {"cal-brand":"#292929"},
+            "dark": {"cal-brand":"#fafafa"}
+          },
+          "hideEventTypeDetails": false,
+          "layout": "month_view"
+        });
+        console.log("Cal.com embed initialized successfully at Index page level");
+      } catch (error) {
+        console.error("Error initializing Cal.com embed at Index page level:", error);
+      }
+    })();
   }, []);
 
   const handleNavigation = (path: string) => {
@@ -34,6 +54,21 @@ const Index = () => {
   const handleOpenVoiceDialog = () => {
     console.log("Opening voice dialog from Index page");
     document.dispatchEvent(new CustomEvent('open-voice-dialog'));
+  };
+  
+  // Function to handle Cal.com button click
+  const handleCalendarClick = () => {
+    console.log("Calendar button clicked in Index page");
+    // Try to find and click the Cal.com button
+    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
+    if (calBtn instanceof HTMLElement) {
+      console.log("Cal.com button found in Index page, triggering click");
+      calBtn.click();
+    } else {
+      console.error("Cal.com button not found in DOM from Index page");
+      // Fallback to navigate to contact page
+      navigate("/contact");
+    }
   };
 
   return (
@@ -98,11 +133,35 @@ const Index = () => {
 
       <ValuesSection />
       <BlogSection />
-      <ClosingCTA />
+      <ClosingCTA 
+        useCalendly={true}
+        onContactClick={() => {
+          console.log("Contact button clicked in Index page");
+          
+          // Try to find and click the Cal.com button
+          const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
+          if (calBtn instanceof HTMLElement) {
+            console.log("Cal.com button found in Index page, triggering click");
+            calBtn.click();
+          } else {
+            console.error("Cal.com button not found in DOM from Index page");
+            // Fallback navigation to contact page
+            navigate("/contact");
+          }
+        }}
+      />
       <Footer />
 
       <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
       <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
+      
+      {/* Hidden Cal.com button that will be triggered programmatically */}
+      <button
+        data-cal-namespace="get-started-today"
+        data-cal-link="team-powered-by-dfbtbb/get-started-today"
+        data-cal-config='{"layout":"month_view"}'
+        className="hidden"
+      ></button>
     </div>
   );
 };

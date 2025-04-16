@@ -29,10 +29,34 @@ const Contact = () => {
   useEffect(() => {
     // Initialize Cal.com for popup
     (async function () {
-      const cal = await getCalApi({"namespace":"get-started-today"});
-      cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+      try {
+        console.log("Initializing Cal.com embed at Contact page level");
+        const cal = await getCalApi({"namespace":"get-started-today"});
+        cal("ui", {
+          "cssVarsPerTheme": {
+            "light": {"cal-brand":"#292929"},
+            "dark": {"cal-brand":"#fafafa"}
+          },
+          "hideEventTypeDetails": false,
+          "layout": "month_view"
+        });
+        console.log("Cal.com embed initialized successfully at Contact page level");
+      } catch (error) {
+        console.error("Error initializing Cal.com embed at Contact page level:", error);
+      }
     })();
   }, []);
+
+  const handleScheduleClick = () => {
+    console.log("Schedule button clicked in Contact page");
+    // Try to check if the button was properly configured
+    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
+    if (calBtn instanceof HTMLElement) {
+      console.log("Cal.com button found in Contact page");
+    } else {
+      console.error("Cal.com button not found in DOM from Contact page");
+    }
+  };
 
   return (
     <div className="flex flex-col min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
@@ -54,6 +78,7 @@ const Contact = () => {
               data-cal-config='{"layout":"month_view"}'
               className="bg-[#6342ff] hover:bg-[#5233e0] text-white px-8 py-6 text-xl rounded-md flex items-center gap-2 transform transition-all duration-200 hover:scale-105"
               size="lg"
+              onClick={handleScheduleClick}
             >
               <Calendar className="h-6 w-6" />
               Schedule Now

@@ -44,6 +44,17 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
   const handleClick = () => {
     if (onContactClick) {
       onContactClick();
+      return;
+    }
+    
+    // If no onContactClick provided, try to trigger Cal.com directly
+    console.log("Get Started button clicked in ClosingCTA");
+    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
+    if (calBtn instanceof HTMLElement) {
+      console.log("Cal.com button found in ClosingCTA, triggering click");
+      calBtn.click();
+    } else {
+      console.error("Cal.com button not found in DOM from ClosingCTA");
     }
   };
 
@@ -68,6 +79,9 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
           </Button>
         ) : useCalendly || onContactClick ? (
           <Button
+            data-cal-namespace="get-started-today"
+            data-cal-link="team-powered-by-dfbtbb/get-started-today"
+            data-cal-config='{"layout":"month_view"}'
             className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md"
             onClick={handleClick}
           >
@@ -79,16 +93,7 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
             data-cal-link="team-powered-by-dfbtbb/get-started-today"
             data-cal-config='{"layout":"month_view"}'
             className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md"
-            onClick={() => {
-              console.log("Get Started button clicked in ClosingCTA");
-              // Check if the button was clicked programmatically
-              const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
-              if (calBtn instanceof HTMLElement) {
-                console.log("Cal.com button found in ClosingCTA");
-              } else {
-                console.error("Cal.com button not found in DOM from ClosingCTA");
-              }
-            }}
+            onClick={handleClick}
           >
             {customButtonText || "Get Started"} <ArrowRight className="ml-2 h-5 w-5" />
           </Button>

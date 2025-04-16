@@ -41,6 +41,20 @@ export const CallToActionButtons = ({ handleNavigation, setShowDialog }: CallToA
     })();
   }, []);
   
+  const handleGetStarted = () => {
+    console.log("Get Started button clicked in CallToActionButtons");
+    // Try to find and click the Cal.com button
+    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
+    if (calBtn instanceof HTMLElement) {
+      console.log("Cal.com button found in CallToActionButtons, triggering click");
+      calBtn.click();
+    } else {
+      console.error("Cal.com button not found in DOM from CallToActionButtons");
+      // Fallback to contact page
+      handleNavigation("/contact");
+    }
+  };
+  
   return (
     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-4xl">
       <Button
@@ -55,16 +69,7 @@ export const CallToActionButtons = ({ handleNavigation, setShowDialog }: CallToA
         data-cal-link="team-powered-by-dfbtbb/get-started-today"
         data-cal-config='{"layout":"month_view"}'
         className="relative z-20 bg-accent hover:bg-accent-dark text-white px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
-        onClick={() => {
-          console.log("Get Started button clicked in CallToActionButtons");
-          // Check if button was clicked programmatically
-          const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
-          if (calBtn instanceof HTMLElement) {
-            console.log("Cal.com button found in CallToActionButtons");
-          } else {
-            console.error("Cal.com button not found in DOM from CallToActionButtons");
-          }
-        }}
+        onClick={handleGetStarted}
       >
         Get Started
         <ArrowRight className="ml-2 h-5 w-5" />
