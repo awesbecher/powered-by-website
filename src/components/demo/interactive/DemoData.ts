@@ -46,7 +46,7 @@ export const demoOptions: DemoOption[] = [
     description: "Discover how AI transforms guest services and room service experiences",
     actionText: "Start Hospitality Demo",
     color: "bg-green-600",
-    imageSrc: "/lovable-uploads/75ff6e78-9db7-436e-a063-2b5f8c500ee7.png",
+    imageSrc: "/lovable-uploads/8738dd53-7c72-421c-9b55-4ce902ca0422.png",
     routePath: "/room-service",
     assistantId: "cd922dc9-eea6-4b43-878f-cb5cfd67e005"
   },
