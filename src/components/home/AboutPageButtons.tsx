@@ -30,37 +30,33 @@ export const AboutPageButtons = ({ onScrollToSection, sectionRef }: AboutPageBut
 
   return (
     <>
-      <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8 mx-auto max-w-xl">
+      <div className="flex flex-col sm:flex-row gap-5 justify-center mt-8 mx-auto max-w-xl">
+        {/* Watch Launch Video Button */}
         <Button 
-          variant="gradient" 
-          size="xl"
-          className="group relative overflow-hidden shadow-lg shadow-purple-700/20"
+          className="bg-[#6342ff] hover:bg-[#7352ff] text-white px-8 py-6 rounded-lg text-lg font-medium flex items-center justify-center gap-3 shadow-md shadow-purple-700/20 transition-colors"
           onClick={handleWatchVideoClick}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          <Play className="mr-2 h-5 w-5" />
+          <Play className="h-5 w-5" />
           Watch Launch Video
         </Button>
         
+        {/* Meet Our Team Button */}
         <Button 
-          variant="gradient" 
-          size="xl"
-          className="group shadow-lg shadow-purple-700/20"
+          className="bg-[#6342ff] hover:bg-[#7352ff] text-white px-8 py-6 rounded-lg text-lg font-medium flex items-center justify-center gap-3 shadow-md shadow-purple-700/20 transition-colors"
           onClick={handleWhoWeAreClick}
         >
-          <Users className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+          <Users className="h-5 w-5" />
           Meet Our Team
         </Button>
         
+        {/* Join Us Button */}
         <Button 
           variant="outline"
-          size="xl"
-          className="border-[#9b87f5]/30 bg-white/5 hover:bg-white/10 hover:border-[#9b87f5]/50 group transition-all"
+          className="bg-transparent border-2 border-white/60 hover:border-white hover:bg-white/5 text-white px-8 py-6 rounded-lg text-lg font-medium flex items-center justify-center gap-3 transition-all"
           onClick={handleCareersClick}
         >
-          <Briefcase className="mr-2 h-5 w-5" />
+          <Briefcase className="h-5 w-5" />
           Join Us
-          <ArrowRight className="ml-2 h-4 w-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
         </Button>
       </div>
 
