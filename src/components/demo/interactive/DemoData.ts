@@ -1,4 +1,3 @@
-
 import { Mic, Car, Hotel, Scissors } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 
@@ -24,7 +23,7 @@ export const demoOptions: DemoOption[] = [
     actionText: "Start Real Estate Demo",
     color: "bg-purple-600",
     isPopular: true,
-    imageSrc: "/lovable-uploads/eb73b819-4b47-459b-88c4-aa0a3cd864b7.png",
+    imageSrc: "/lovable-uploads/eb107c51-6535-48bc-9f80-7571dbd064d9.png",
     routePath: "/real-estate",
     assistantId: "c1c80d2e-6b65-4172-9f6b-09177b9e54f1"
   },
