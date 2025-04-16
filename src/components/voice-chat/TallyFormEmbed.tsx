@@ -42,30 +42,35 @@ export const TallyFormEmbed: React.FC<TallyFormEmbedProps> = ({
   }, [onSubmit]);
   
   useEffect(() => {
-    // Load Tally embed script
-    const script = document.createElement('script');
-    script.src = 'https://tally.so/widgets/embed.js';
-    script.async = true;
+    // Check if Tally script already exists to prevent duplicate loading
+    const existingScript = document.querySelector('script[src="https://tally.so/widgets/embed.js"]');
     
-    script.onload = () => {
-      // Once script is loaded, set the iframe src
-      if (iframeRef.current && window.Tally) {
-        window.Tally.loadEmbeds();
-      } else if (iframeRef.current) {
-        iframeRef.current.src = iframeRef.current.dataset.tallySrc || "";
-      }
-    };
-    
-    document.body.appendChild(script);
+    // Only load script if it doesn't already exist
+    if (!existingScript) {
+      const script = document.createElement('script');
+      script.src = 'https://tally.so/widgets/embed.js';
+      script.async = true;
+      
+      script.onload = () => {
+        // Once script is loaded, initialize the iframe if needed
+        if (iframeRef.current && window.Tally) {
+          window.Tally.loadEmbeds();
+        } else if (iframeRef.current) {
+          iframeRef.current.src = iframeRef.current.dataset.tallySrc || "";
+        }
+      };
+      
+      document.body.appendChild(script);
+    } else if (iframeRef.current && window.Tally) {
+      // If script already exists, just initialize the iframe
+      window.Tally.loadEmbeds();
+    }
     
     // Add event listener for messages
     window.addEventListener('message', handleTallyEvent);
     
     // Clean up
     return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
       window.removeEventListener('message', handleTallyEvent);
     };
   }, [handleTallyEvent]);

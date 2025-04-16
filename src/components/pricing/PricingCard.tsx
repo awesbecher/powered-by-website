@@ -133,6 +133,7 @@ const PricingCard = ({ type, isPopular = false, isAnnual = true, tallyFormId }: 
           data-tally-width="476"
           data-tally-hide-title="1"
           data-tally-auto-close="0"
+          data-tally-overlay="1"
         >
           Contact Sales
         </Button>
@@ -148,6 +149,7 @@ const PricingCard = ({ type, isPopular = false, isAnnual = true, tallyFormId }: 
           data-tally-width="476"
           data-tally-hide-title="1"
           data-tally-auto-close="0"
+          data-tally-overlay="1"
         >
           Get Started
         </Button>

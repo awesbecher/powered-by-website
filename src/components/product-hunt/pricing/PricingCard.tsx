@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { CheckIcon } from "lucide-react";
@@ -40,18 +39,9 @@ export const PricingCard: React.FC<PricingCardProps> = ({
   tallyFormId
 }) => {
   useEffect(() => {
-    // Load Tally script if a form ID is provided
-    if (tallyFormId) {
-      const script = document.createElement("script");
-      script.src = "https://tally.so/widgets/embed.js";
-      script.async = true;
-      document.body.appendChild(script);
-
-      return () => {
-        document.body.removeChild(script);
-      };
-    }
-  }, [tallyFormId]);
+    // We don't need to load the Tally script here anymore,
+    // as it's now handled globally in TallyFormEmbed
+  }, []);
 
   const handleButtonClick = () => {
     if (tallyFormId) {
@@ -120,6 +110,11 @@ export const PricingCard: React.FC<PricingCardProps> = ({
             ? "bg-[#9b87f5] hover:bg-[#8976d9] text-white" 
             : "bg-white/10 hover:bg-white/20 text-white"
         }`}
+        data-tally-open={tallyFormId}
+        data-tally-layout="modal"
+        data-tally-width="476"
+        data-tally-hide-title="1" 
+        data-tally-overlay="1"
       >
         {buttonText}
       </Button>
