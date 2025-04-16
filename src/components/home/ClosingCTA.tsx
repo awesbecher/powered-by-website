@@ -82,7 +82,7 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
     <section className="py-20 px-4 sm:px-6 lg:px-8 text-center bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-          {customHeading || "Transform Your Business with AI Agents"}
+          {customHeading || "Ready to Transform Your Business with AI agents?"}
         </h2>
         <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
           Unlock the potential of AI-powered communication and streamline your business operations today.
@@ -122,3 +122,4 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
 };
 
 export default ClosingCTA;
+
