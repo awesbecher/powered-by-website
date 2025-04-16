@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
@@ -70,7 +69,6 @@ export const FAQSection = () => {
   };
 
   const handleContactClick = () => {
-    // Fix for TypeScript error: cast the element to HTMLElement which has click() method
     const calendarButton = document.querySelector('[data-cal-link]') as HTMLElement;
     if (calendarButton) {
       calendarButton.click();
@@ -93,21 +91,6 @@ export const FAQSection = () => {
           />
         ))}
       </div>
-      
-      <div className="mt-10 text-center">
-        <p className="text-gray-400 mb-2">Still have questions?</p>
-        <a 
-          href="#" 
-          onClick={(e) => {
-            e.preventDefault();
-            handleContactClick();
-          }}
-          className="text-[#9b87f5] hover:underline font-medium"
-        >
-          Contact our team for personalized answers
-        </a>
-      </div>
     </section>
   );
 };
-
