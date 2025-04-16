@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Check, X, Clock, DollarSign, Code, Users } from 'lucide-react';
+import { PoweredByText } from '@/components/shared/PoweredByText';
 
 export const ComparisonSection = () => {
   const categories = [
@@ -50,7 +51,7 @@ export const ComparisonSection = () => {
           viewport={{ once: true, margin: "-100px" }}
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Why SMBs Choose Powered_by
+            Why SMBs Choose <PoweredByText className="inline-block mx-1" />
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-[#9b87f5] to-[#6342ff] mx-auto mb-6"></div>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
