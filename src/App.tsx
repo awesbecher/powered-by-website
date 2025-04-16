@@ -1,101 +1,82 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useLocation,
+} from 'react-router-dom';
+import { ThemeProvider } from "@/components/theme-provider"
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { Toaster } from "@/components/ui/toaster"
+import { AnimatePresence } from 'framer-motion';
 
-// Main Pages
-import Index from "./pages/Index";
-import About from "./pages/About";
-import AgentGPTBuilder from "./pages/AgentGPTBuilder";
-import AgentIntegrations from "./pages/AgentIntegrations";
-import GPTLanding from "./pages/GPTLanding";
-import Pricing from "./pages/Pricing";
-import Careers from "./pages/Careers";
-import Payment from "./pages/Payment";
-import PaymentSuccess from "./pages/PaymentSuccess";
-import PaymentCancelled from "./pages/PaymentCancelled";
-import PaymentDashboard from "./pages/PaymentDashboard";
-import Contact2 from "./pages/Contact2";
-import Contact from "./pages/Contact";
-import OutboundAI from "./pages/OutboundAI";
-import AIReceptionist from "./pages/AIReceptionist";
-import FileUpload from "./pages/FileUpload";
-import EmailAgent from "./pages/EmailAgent";
-import DemoCapture from "./pages/DemoCapture";
-import MercedesDealer from "./pages/MercedesDealer";
-import OmegaPediatrics from "./pages/OmegaPediatrics";
-import CallConfirmation from "./pages/CallConfirmation";
-import News from "./pages/News";
-import AIAgency from "./pages/AIAgency";
-import Products from "./pages/Products";
-import Blog from "./pages/Blog";
-import AIVoiceChat from "./pages/AIVoiceChat";
-import TextAgent from "./pages/TextAgent";
-import AIVoiceBusinessLines from "./pages/AIVoiceBusinessLines";
-import Demo from "./pages/Demo";
-import RetailServices from "./pages/RetailServices";
-import RealEstate from "./pages/RealEstate";
-import Insurance from "./pages/Insurance";
-import ThankYou from "./pages/ThankYou";
+// Import all page components
+import Home from './pages/Home';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Pricing from './pages/Pricing';
+import Blog from './pages/Blog';
+import AIReceptionist from './pages/AIReceptionist';
+import VoiceChat from './pages/VoiceChat';
+import EmailAgent from './pages/EmailAgent';
+import TextAgent from './pages/TextAgent';
+import RealEstate from './pages/RealEstate';
+import VirtualSE from './pages/VirtualSE';
+import News from './pages/News';
+import Demo from './pages/Demo';
+import Products from './pages/Products';
+import OutboundAI from './pages/OutboundAI';
+import License from './pages/License';
 
-// Others as needed
-import NotFound from "./pages/NotFound";
+import { GlobalVoiceChatDialog } from '@/components/GlobalVoiceChatDialog';
+
+const queryClient = new QueryClient();
 
 function App() {
+  const location = useLocation();
+
+  const WrapperWithAnimatedRoutes = ({ children }: { children: React.ReactNode }) => (
+    <AnimatePresence mode="wait" initial={false}>
+      <Routes key={location.pathname} location={location}>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/ai-receptionist" element={<AIReceptionist />} />
+        <Route path="/voice-chat" element={<VoiceChat />} />
+        <Route path="/email-agent" element={<EmailAgent />} />
+        <Route path="/text-agent" element={<TextAgent />} />
+        <Route path="/real-estate" element={<RealEstate />} />
+        <Route path="/getvirtual-se" element={<VirtualSE />} />
+        <Route path="/news" element={<News />} />
+        <Route path="/demo" element={<Demo />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/outbound-ai" element={<OutboundAI />} />
+        <Route path="/license" element={<License />} />
+      </Routes>
+    </AnimatePresence>
+  );
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+        <WrapperWithAnimatedRoutes>
+          {/* Add the GlobalVoiceChatDialog component here */}
+          <GlobalVoiceChatDialog />
+        </WrapperWithAnimatedRoutes>
+        <Toaster />
+      </ThemeProvider>
+    </QueryClientProvider>
+  );
+}
+
+function Root() {
   return (
     <Router>
-      <Routes>
-        {/* Main pages */}
-        <Route path="/" element={<Index />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/agent-gpt-builder" element={<AgentGPTBuilder />} />
-        <Route path="/agent-integrations" element={<AgentIntegrations />} />
-        <Route path="/agent-gpt" element={<GPTLanding />} />
-        <Route path="/pricing" element={<Pricing />} />
-        <Route path="/careers" element={<Careers />} />
-        
-        {/* Payment routes */}
-        <Route path="/payment" element={<Payment />} />
-        <Route path="/payment-success" element={<PaymentSuccess />} />
-        <Route path="/payment-cancelled" element={<PaymentCancelled />} />
-        <Route path="/payment-dashboard" element={<PaymentDashboard />} />
-        
-        {/* Contact routes */}
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/contact2" element={<Contact2 />} />
-        
-        {/* AI service routes */}
-        <Route path="/outbound-ai" element={<OutboundAI />} />
-        <Route path="/ai-receptionist" element={<AIReceptionist />} />
-        <Route path="/file-upload" element={<FileUpload />} />
-        <Route path="/email-agent" element={<EmailAgent />} />
-        <Route path="/ai-agency" element={<AIAgency />} />
-        <Route path="/text-agent" element={<TextAgent />} />
-        <Route path="/voice-chat" element={<AIVoiceChat />} />
-        <Route path="/voice-business" element={<AIVoiceBusinessLines />} />
-        
-        {/* Content & products routes */}
-        <Route path="/news" element={<News />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/products" element={<Products />} />
-        
-        {/* Demo routes */}
-        <Route path="/demo" element={<Demo />} />
-        <Route path="/demo-capture" element={<DemoCapture />} />
-        <Route path="/room-service" element={<RealEstate />} />
-        <Route path="/insurance" element={<Insurance />} />
-        <Route path="/mercedes-dealer" element={<MercedesDealer />} />
-        <Route path="/real-estate" element={<RealEstate />} />
-        <Route path="/retail-services" element={<RetailServices />} />
-        
-        {/* Special pages */}
-        <Route path="/omega-pediatrics" element={<OmegaPediatrics />} />
-        <Route path="/call-confirmation" element={<CallConfirmation />} />
-        <Route path="/thank-you" element={<ThankYou />} />
-        
-        {/* Catch all for 404 */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <App />
     </Router>
   );
 }
 
-export default App;
+export default Root;

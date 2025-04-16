@@ -14,6 +14,9 @@ export const GlobalVoiceChatDialog = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // Use the specific assistant ID
+  const ASSISTANT_ID = "ebb38ba5-321a-49e4-b860-708bc864327f";
+
   useEffect(() => {
     // Listen for custom event from navbar button
     const handleOpenDialog = () => setShowDialog(true);
@@ -23,7 +26,6 @@ export const GlobalVoiceChatDialog = () => {
     // But DON'T automatically end calls on route changes
     return () => {
       document.removeEventListener('open-voice-dialog', handleOpenDialog);
-      // Remove automatic call termination on route changes
     };
   }, [isCallActive, location.pathname]);
 
@@ -31,7 +33,7 @@ export const GlobalVoiceChatDialog = () => {
     setIsSubmitting(true);
     try {
       const vapi = getVapiInstance();
-      await vapi.start("ebb38ba5-321a-49e4-b860-708bc864327f");
+      await vapi.start(ASSISTANT_ID);
       setIsCallActive(true);
       
       vapi.on("call-end", () => {
@@ -46,7 +48,7 @@ export const GlobalVoiceChatDialog = () => {
 
       toast({
         title: "Voice Chat Started",
-        description: "You can now speak with our AI Agent through your browser.",
+        description: "You're now connected to our AI Agent through your browser.",
       });
     } catch (error) {
       toast({
