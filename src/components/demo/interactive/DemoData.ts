@@ -57,7 +57,7 @@ export const demoOptions: DemoOption[] = [
     description: "See how AI revolutionizes appointment booking and customer service",
     actionText: "Start Retail Demo",
     color: "bg-amber-600",
-    imageSrc: "/lovable-uploads/75237bd9-59bf-497d-89fc-9805c49cf84e.png",
+    imageSrc: "/lovable-uploads/33a9f1ba-d37e-4667-9b53-7c8af3867b8a.png",
     routePath: "/retail-services",
     assistantId: "defa6102-2358-4347-a192-24c6bc23ea4c"
   }
