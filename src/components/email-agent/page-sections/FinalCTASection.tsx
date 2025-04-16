@@ -56,10 +56,6 @@ export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
               Schedule a Demo
             </Button>
           </div>
-          
-          <div className="mt-8 text-center text-white/70">
-            <p>No credit card required. Start transforming your email communications today.</p>
-          </div>
         </div>
       </div>
     </section>
