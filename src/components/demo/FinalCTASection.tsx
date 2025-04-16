@@ -1,9 +1,40 @@
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { CTAButton } from "./cta/CTAButton";
+import { CTAFeatureList } from "./cta/CTAFeatureList";
 
 export const FinalCTASection = () => {
+  const handleBookDemo = () => {
+    console.log("Final CTA button clicked");
+    try {
+      // Direct modal trigger approach
+      (window as any).Cal?.('ui', {
+        styles: { branding: { brandColor: '#6342ff' } },
+        hideEventTypeDetails: false,
+        layout: 'month_view',
+      });
+      (window as any).Cal?.('showModal', {
+        calLink: "team-powered-by-dfbtbb/get-started-today",
+        config: {
+          layout: 'month_view',
+        },
+      });
+    } catch (err) {
+      console.error("Failed to open Cal.com modal from Final CTA:", err);
+    }
+  };
+
+  const handleTryDemos = () => {
+    document.getElementById('interactive-demo')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const ctaFeatures = [
+    "No credit card required",
+    "Custom solution planning",
+    "Technical discussion with experts"
+  ];
+
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -45,62 +76,24 @@ export const FinalCTASection = () => {
                 </p>
                 
                 <div className="flex flex-wrap gap-4">
-                  <Button 
+                  <CTAButton 
                     data-cal-link="team-powered-by-dfbtbb/get-started-today"
-                    data-cal-config='{"layout":"month_view"}'
-                    onClick={() => {
-                      console.log("Final CTA button clicked");
-                      try {
-                        // Direct modal trigger approach
-                        (window as any).Cal?.('ui', {
-                          styles: { branding: { brandColor: '#6342ff' } },
-                          hideEventTypeDetails: false,
-                          layout: 'month_view',
-                        });
-                        (window as any).Cal?.('showModal', {
-                          calLink: "team-powered-by-dfbtbb/get-started-today",
-                          config: {
-                            layout: 'month_view',
-                          },
-                        });
-                      } catch (err) {
-                        console.error("Failed to open Cal.com modal from Final CTA:", err);
-                      }
-                    }}
+                    onClick={handleBookDemo}
                     className="bg-[#6342ff] hover:bg-[#5233e0] text-white px-8 py-6 text-lg rounded-xl"
                   >
-                    Book a Demo <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
+                    Book a Demo
+                  </CTAButton>
                   
-                  <Button 
-                    onClick={() => document.getElementById('interactive-demo')?.scrollIntoView({ behavior: 'smooth' })}
+                  <CTAButton 
+                    onClick={handleTryDemos}
                     variant="outline" 
                     className="bg-transparent border border-[#6342ff]/50 hover:bg-[#6342ff]/20 text-white px-8 py-6 text-lg rounded-xl"
                   >
                     Try Demos Again
-                  </Button>
+                  </CTAButton>
                 </div>
                 
-                <ul className="mt-10 space-y-2 text-sm">
-                  <li className="flex items-center text-gray-400">
-                    <svg className="w-5 h-5 mr-1.5 text-[#9b87f5]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    No credit card required
-                  </li>
-                  <li className="flex items-center text-gray-400">
-                    <svg className="w-5 h-5 mr-1.5 text-[#9b87f5]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Custom solution planning
-                  </li>
-                  <li className="flex items-center text-gray-400">
-                    <svg className="w-5 h-5 mr-1.5 text-[#9b87f5]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Technical discussion with experts
-                  </li>
-                </ul>
+                <CTAFeatureList features={ctaFeatures} />
               </div>
               
               <div className="hidden md:block relative">
