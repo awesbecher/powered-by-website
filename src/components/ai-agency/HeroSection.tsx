@@ -22,16 +22,24 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
     (async function () {
       try {
         console.log("Initializing Cal.com embed in AI Agency HeroSection");
-        const cal = await getCalApi({"namespace":"get-started-today"});
-        cal("ui", {
-          "cssVarsPerTheme": {
-            "light": {"cal-brand":"#292929"},
-            "dark": {"cal-brand":"#fafafa"}
-          },
-          "hideEventTypeDetails": false,
-          "layout": "month_view"
-        });
-        console.log("Cal.com embed initialized successfully in AI Agency HeroSection");
+        const cal = await getCalApi();
+        if (cal) {
+          cal("ui", {
+            "cssVarsPerTheme": {
+              "light": {"cal-brand":"#292929"},
+              "dark": {"cal-brand":"#fafafa"}
+            },
+            "hideEventTypeDetails": false,
+            "layout": "month_view"
+          });
+          
+          // Preload the calendar link
+          cal("preload", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+          
+          console.log("Cal.com embed initialized successfully in AI Agency HeroSection");
+        } else {
+          console.error("Cal API not available in AI Agency HeroSection");
+        }
       } catch (error) {
         console.error("Error initializing Cal.com embed in AI Agency HeroSection:", error);
       }
@@ -40,6 +48,44 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
 
   const handleTalkToAgent = () => {
     document.dispatchEvent(new CustomEvent('open-voice-dialog'));
+  };
+  
+  const handleCalendarClick = () => {
+    console.log("Calendar button clicked in AI Agency HeroSection");
+    
+    // First try direct method
+    try {
+      (window as any).Cal?.('ui', {
+        styles: { branding: { brandColor: '#000000' } },
+        hideEventTypeDetails: false,
+        layout: 'month_view',
+      });
+      (window as any).Cal?.('showModal', {
+        calLink: "team-powered-by-dfbtbb/get-started-today",
+        config: {
+          layout: 'month_view',
+        },
+      });
+      console.log("Called Cal.com showModal directly from HeroSection");
+      return;
+    } catch (err) {
+      console.error("Failed to open Cal.com modal directly from HeroSection:", err);
+    }
+    
+    // Try to find and click the Cal button
+    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
+    if (calBtn instanceof HTMLElement) {
+      console.log("Cal.com button found in HeroSection, triggering click");
+      calBtn.click();
+    } else {
+      console.error("Cal.com button not found in DOM from HeroSection");
+      // Try clicking the global backup button
+      const globalBtn = document.getElementById('cal-button-global');
+      if (globalBtn) {
+        console.log("Found global Cal.com button, clicking it");
+        globalBtn.click();
+      }
+    }
   };
 
   return (
@@ -82,21 +128,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
             transition={{ duration: 0.7, delay: 0.4 }}
           >
             <Button 
-              data-cal-namespace="get-started-today"
-              data-cal-link="team-powered-by-dfbtbb/get-started-today"
-              data-cal-config='{"layout":"month_view"}'
               size="lg" 
               className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md group"
-              onClick={() => {
-                console.log("Get Started button clicked in AI Agency HeroSection");
-                // Check if the button was actually clicked programmatically
-                const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
-                if (calBtn instanceof HTMLElement) {
-                  console.log("Cal.com button found, triggering click");
-                } else {
-                  console.error("Cal.com button not found in DOM from AI Agency HeroSection");
-                }
-              }}
+              onClick={handleCalendarClick}
+              data-cal-link="team-powered-by-dfbtbb/get-started-today"
+              data-cal-config='{"layout":"month_view"}'
             >
               Get Started
               <Calendar className="ml-2 group-hover:scale-110 transition-transform" />
