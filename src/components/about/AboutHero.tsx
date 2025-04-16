@@ -22,10 +22,14 @@ export const AboutHero = ({ initialLoad, onScrollToSection, whoWeAreRef }: About
         
         <h1 className="text-4xl md:text-6xl font-bold mb-6 flex flex-col items-center">
           <div className="flex items-center gap-2">
-            <span className="text-white">Powered_by AI Agents</span>
+            <span className="text-white">Powered</span>
+            <span className="text-[#9b87f5]">_</span>
+            <span className="text-white">by AI Agents</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-white">Run_by Small Business</span>
+            <span className="text-white">Run</span>
+            <span className="text-[#9b87f5]">_</span>
+            <span className="text-white">by Small Business</span>
           </div>
         </h1>
         
