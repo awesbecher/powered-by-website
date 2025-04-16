@@ -6,7 +6,7 @@ import { Lightbulb, TrendingUp } from 'lucide-react';
 
 export const UniqueAgencySection = () => {
   return (
-    <section id="what-is-ai-agency" className="relative py-16 px-4">
+    <section id="what-is-ai-agency" className="relative py-8 px-4">  {/* Reduced py-16 to py-8 */}
       <div className="container mx-auto max-w-6xl">
         <motion.div 
           className="glass-card p-8 md:p-12 rounded-2xl"
