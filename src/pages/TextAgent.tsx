@@ -30,7 +30,8 @@ const TextAgent = () => {
         // Ensure script is loaded
         await loadCalComScript();
         
-        const cal = await getCalApi({"namespace":"get-started-with-ai-sms-text-agents"});
+        // Remove namespace parameter
+        const cal = await getCalApi();
         cal("ui", {
           "cssVarsPerTheme": {
             "light": {"cal-brand":"#292929"},
@@ -75,11 +76,28 @@ const TextAgent = () => {
   // Handle contact button clicks - direct Cal.com button trigger approach
   const handleContact = () => {
     console.log("Contact button clicked - triggering Cal.com");
-    const calButton = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"]');
-    if (calButton instanceof HTMLElement) {
-      calButton.click();
-    } else {
-      console.error("Cal.com button not found in DOM");
+    try {
+      // Direct modal trigger approach  
+      (window as any).Cal?.('ui', {
+        styles: { branding: { brandColor: '#000000' } },
+        hideEventTypeDetails: false,
+        layout: 'month_view',
+      });
+      (window as any).Cal?.('showModal', {
+        calLink: "team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents",
+        config: {
+          layout: 'month_view',
+        },
+      });
+    } catch (err) {
+      console.error("Failed to open Cal.com modal from TextAgent:", err);
+      // Fallback to button trigger
+      const calButton = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"]');
+      if (calButton instanceof HTMLElement) {
+        calButton.click();
+      } else {
+        console.error("Cal.com button not found in DOM");
+      }
     }
   };
 
@@ -113,7 +131,6 @@ const TextAgent = () => {
       {/* Hidden Cal.com button that will be triggered programmatically if needed */}
       <button
         data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
-        data-cal-namespace="get-started-with-ai-sms-text-agents"
         data-cal-config='{"layout":"month_view"}'
         className="hidden"
       ></button>

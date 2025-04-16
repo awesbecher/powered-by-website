@@ -39,8 +39,8 @@ const AIReceptionist = () => {
         // Ensure script is loaded
         await loadCalComScript();
         
-        // Then initialize using the API
-        const cal = await getCalApi({"namespace":"get-started-with-ai-receptionist"});
+        // Then initialize using the API - remove namespace parameter
+        const cal = await getCalApi();
         cal("ui", {
           "cssVarsPerTheme": {
             "light": {"cal-brand":"#292929"},
@@ -177,6 +177,13 @@ const AIReceptionist = () => {
       />
 
       <Footer />
+      
+      {/* Hidden Cal.com button that will be triggered programmatically if needed */}
+      <button
+        data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-receptionist"
+        data-cal-config='{"layout":"month_view"}'
+        className="hidden"
+      ></button>
     </div>
   );
 };

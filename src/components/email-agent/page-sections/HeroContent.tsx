@@ -18,7 +18,8 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
     (async function () {
       try {
         console.log("Initializing Cal.com embed in EmailAgent HeroContent");
-        const cal = await getCalApi({"namespace":"get-started-with-ai-email-agents"});
+        // Remove namespace parameter
+        const cal = await getCalApi();
         cal("ui", {
           "cssVarsPerTheme": {
             "light": {"cal-brand":"#292929"},
@@ -36,13 +37,21 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
   
   const handleDemoClick = () => {
     console.log("Get Started button clicked in EmailAgent HeroContent");
-    // Try to find and click the Cal button
-    const calButton = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-email-agents"]');
-    if (calButton instanceof HTMLElement) {
-      calButton.click();
-      console.log("Cal.com button clicked programmatically from HeroContent");
-    } else {
-      console.error("Cal.com button not found in DOM from HeroContent");
+    try {
+      // Direct modal trigger approach
+      (window as any).Cal?.('ui', {
+        styles: { branding: { brandColor: '#000000' } },
+        hideEventTypeDetails: false,
+        layout: 'month_view',
+      });
+      (window as any).Cal?.('showModal', {
+        calLink: "team-powered-by-dfbtbb/get-started-with-ai-email-agents",
+        config: {
+          layout: 'month_view',
+        },
+      });
+    } catch (err) {
+      console.error("Failed to open Cal.com modal from HeroContent:", err);
       // Fallback to parent's handler
       handleContact();
     }
@@ -93,11 +102,27 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
       <div className="flex flex-wrap gap-4 pt-2">
         <Button 
           className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
-          data-cal-namespace="get-started-with-ai-email-agents"
           data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-email-agents"
           data-cal-config='{"layout":"month_view"}'
           onClick={() => {
             console.log("Cal.com button clicked directly from HeroContent");
+            try {
+              // Direct modal trigger approach
+              (window as any).Cal?.('ui', {
+                styles: { branding: { brandColor: '#000000' } },
+                hideEventTypeDetails: false,
+                layout: 'month_view',
+              });
+              (window as any).Cal?.('showModal', {
+                calLink: "team-powered-by-dfbtbb/get-started-with-ai-email-agents",
+                config: {
+                  layout: 'month_view',
+                },
+              });
+            } catch (err) {
+              console.error("Failed to open Cal.com modal from HeroContent:", err);
+              handleContact();
+            }
           }}
         >
           <ArrowRight className="mr-2 h-5 w-5" /> Get Started

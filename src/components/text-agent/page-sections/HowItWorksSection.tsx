@@ -62,10 +62,28 @@ export const HowItWorksSection = () => {
       
       <div className="mt-12 text-center">
         <Button 
-          data-cal-namespace="get-started-with-ai-sms-text-agents"
           data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
           data-cal-config='{"layout":"month_view"}'
           className="bg-[#6342ff] hover:bg-[#7352ff] text-white px-6 py-3 text-lg rounded-xl"
+          onClick={() => {
+            console.log("Get Started Today button clicked in HowItWorksSection");
+            try {
+              // Direct modal trigger approach
+              (window as any).Cal?.('ui', {
+                styles: { branding: { brandColor: '#000000' } },
+                hideEventTypeDetails: false,
+                layout: 'month_view',
+              });
+              (window as any).Cal?.('showModal', {
+                calLink: "team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents",
+                config: {
+                  layout: 'month_view',
+                },
+              });
+            } catch (err) {
+              console.error("Failed to open Cal.com modal from HowItWorksSection:", err);
+            }
+          }}
         >
           Get Started Today
         </Button>

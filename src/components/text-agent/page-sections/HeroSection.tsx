@@ -18,7 +18,8 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
     (async function () {
       try {
         console.log("Initializing Cal.com embed in TextAgent HeroSection");
-        const cal = await getCalApi({"namespace":"get-started-with-ai-sms-text-agents"});
+        // Remove namespace parameter
+        const cal = await getCalApi();
         cal("ui", {
           "cssVarsPerTheme": {
             "light": {"cal-brand":"#292929"},
@@ -132,13 +133,21 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
               <button 
                 onClick={() => {
                   console.log("See It In Action button clicked");
-                  // Direct attempt to click the Cal button
-                  const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"]');
-                  if (calBtn instanceof HTMLElement) {
-                    calBtn.click();
-                    console.log("Cal.com button clicked programmatically from HeroSection See It In Action");
-                  } else {
-                    console.error("Cal.com button not found in DOM from HeroSection See It In Action");
+                  try {
+                    // Direct modal trigger approach
+                    (window as any).Cal?.('ui', {
+                      styles: { branding: { brandColor: '#000000' } },
+                      hideEventTypeDetails: false,
+                      layout: 'month_view',
+                    });
+                    (window as any).Cal?.('showModal', {
+                      calLink: "team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents",
+                      config: {
+                        layout: 'month_view',
+                      },
+                    });
+                  } catch (err) {
+                    console.error("Failed to open Cal.com modal from HeroSection See It In Action:", err);
                     handleContact();
                   }
                 }}
@@ -155,7 +164,6 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
       {/* Hidden Cal.com button that will be triggered programmatically */}
       <button
         data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
-        data-cal-namespace="get-started-with-ai-sms-text-agents"
         data-cal-config='{"layout":"month_view"}'
         className="hidden"
       ></button>

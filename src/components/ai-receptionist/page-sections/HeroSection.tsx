@@ -104,10 +104,25 @@ export const HeroSection = ({
                 <Button 
                   className="w-full sm:w-auto bg-[#6342ff] hover:bg-[#5835e0] text-white px-6 py-4 text-base rounded-md flex items-center justify-center gap-2"
                   data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-receptionist"
-                  data-cal-namespace="get-started-with-ai-receptionist"
                   data-cal-config='{"layout":"month_view"}'
                   onClick={() => {
                     console.log("Get Started button clicked in HeroSection");
+                    try {
+                      // Direct modal trigger approach
+                      (window as any).Cal?.('ui', {
+                        styles: { branding: { brandColor: '#000000' } },
+                        hideEventTypeDetails: false,
+                        layout: 'month_view',
+                      });
+                      (window as any).Cal?.('showModal', {
+                        calLink: "team-powered-by-dfbtbb/get-started-with-ai-receptionist",
+                        config: {
+                          layout: 'month_view',
+                        },
+                      });
+                    } catch (err) {
+                      console.error("Failed to open Cal.com modal from HeroSection:", err);
+                    }
                   }}
                 >
                   <ArrowRight className="w-5 h-5" />

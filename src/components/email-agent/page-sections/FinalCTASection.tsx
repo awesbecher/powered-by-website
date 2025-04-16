@@ -14,7 +14,8 @@ export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
     (async function () {
       try {
         console.log("Initializing Cal.com embed in EmailAgent FinalCTASection");
-        const cal = await getCalApi({"namespace":"get-started-with-ai-email-agents"});
+        // Remove namespace parameter
+        const cal = await getCalApi();
         cal("ui", {
           "cssVarsPerTheme": {
             "light": {"cal-brand":"#292929"},
@@ -59,13 +60,21 @@ export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
             <Button 
               onClick={() => {
                 console.log("Get Started button clicked in EmailAgent FinalCTASection");
-                // Direct attempt to click the Cal button
-                const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-email-agents"]');
-                if (calBtn instanceof HTMLElement) {
-                  calBtn.click();
-                  console.log("Cal.com button clicked programmatically");
-                } else {
-                  console.error("Cal.com button not found in DOM");
+                try {
+                  // Direct modal trigger approach
+                  (window as any).Cal?.('ui', {
+                    styles: { branding: { brandColor: '#000000' } },
+                    hideEventTypeDetails: false,
+                    layout: 'month_view',
+                  });
+                  (window as any).Cal?.('showModal', {
+                    calLink: "team-powered-by-dfbtbb/get-started-with-ai-email-agents",
+                    config: {
+                      layout: 'month_view',
+                    },
+                  });
+                } catch (err) {
+                  console.error("Failed to open Cal.com modal directly in FinalCTASection:", err);
                   // Fallback to parent's handler
                   handleContact();
                 }
@@ -78,7 +87,6 @@ export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
             {/* Hidden Cal.com button that will be triggered programmatically */}
             <button
               data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-email-agents"
-              data-cal-namespace="get-started-with-ai-email-agents"
               data-cal-config='{"layout":"month_view"}'
               className="hidden"
             ></button>
@@ -87,4 +95,4 @@ export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
       </div>
     </section>
   );
-};
+}

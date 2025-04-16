@@ -38,6 +38,7 @@ export const CalendarButton = ({ onClick, className = "" }: CalendarButtonProps)
       onClick={(e) => {
         console.log("Calendar button clicked in CalendarButton component");
         try {
+          // Direct modal trigger approach
           (window as any).Cal?.('ui', {
             styles: { branding: { brandColor: '#000000' } },
             hideEventTypeDetails: false,

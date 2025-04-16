@@ -20,7 +20,8 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
     (async function () {
       try {
         console.log("Initializing Cal.com embed in TextAgent HeroContent");
-        const cal = await getCalApi({"namespace":"get-started-with-ai-sms-text-agents"});
+        // Remove namespace parameter
+        const cal = await getCalApi();
         cal("ui", {
           "cssVarsPerTheme": {
             "light": {"cal-brand":"#292929"},
@@ -38,13 +39,21 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
 
   const handleDemoClick = () => {
     console.log("Get Started button clicked in TextAgent HeroContent");
-    // Try to find and click the Cal button
-    const calButton = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"]');
-    if (calButton instanceof HTMLElement) {
-      calButton.click();
-      console.log("Cal.com button clicked programmatically from HeroContent");
-    } else {
-      console.error("Cal.com button not found in DOM from HeroContent");
+    try {
+      // Direct modal trigger approach
+      (window as any).Cal?.('ui', {
+        styles: { branding: { brandColor: '#000000' } },
+        hideEventTypeDetails: false,
+        layout: 'month_view',
+      });
+      (window as any).Cal?.('showModal', {
+        calLink: "team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents",
+        config: {
+          layout: 'month_view',
+        },
+      });
+    } catch (err) {
+      console.error("Failed to open Cal.com modal from HeroContent:", err);
       // Fallback to parent's handler
       handleContact();
     }
@@ -73,6 +82,8 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
         <Button 
           className="bg-[#6342ff] hover:bg-[#7352ff] text-white font-bold py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2 text-lg"
           onClick={handleDemoClick}
+          data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
+          data-cal-config='{"layout":"month_view"}'
         >
           <ArrowRight className="w-5 h-5" />
           Get Started
@@ -101,14 +112,6 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
           </div>
         </DialogContent>
       </Dialog>
-      
-      {/* Hidden Cal.com button that will be triggered programmatically */}
-      <button
-        data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
-        data-cal-namespace="get-started-with-ai-sms-text-agents"
-        data-cal-config='{"layout":"month_view"}'
-        className="hidden"
-      ></button>
     </div>
   );
 };

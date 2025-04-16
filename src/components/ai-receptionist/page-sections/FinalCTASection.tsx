@@ -10,7 +10,8 @@ export const FinalCTASection = () => {
     (async function () {
       try {
         console.log("Initializing Cal.com embed in FinalCTASection");
-        const cal = await getCalApi({"namespace":"get-started-with-ai-receptionist"});
+        // Remove namespace parameter
+        const cal = await getCalApi();
         cal("ui", {
           "cssVarsPerTheme": {
             "light": {"cal-brand":"#292929"},
@@ -45,10 +46,25 @@ export const FinalCTASection = () => {
           <Button 
             className="w-full sm:w-auto bg-[#6342ff] hover:bg-[#5835e0] text-white px-8 py-6 text-lg rounded-xl flex items-center justify-center gap-2"
             data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-receptionist"
-            data-cal-namespace="get-started-with-ai-receptionist"
             data-cal-config='{"layout":"month_view"}'
             onClick={() => {
               console.log("Get Started button clicked in FinalCTASection");
+              try {
+                // Direct modal trigger approach
+                (window as any).Cal?.('ui', {
+                  styles: { branding: { brandColor: '#000000' } },
+                  hideEventTypeDetails: false,
+                  layout: 'month_view',
+                });
+                (window as any).Cal?.('showModal', {
+                  calLink: "team-powered-by-dfbtbb/get-started-with-ai-receptionist",
+                  config: {
+                    layout: 'month_view',
+                  },
+                });
+              } catch (err) {
+                console.error("Failed to open Cal.com modal from FinalCTASection:", err);
+              }
             }}
           >
             <ArrowRight className="w-5 h-5" />
