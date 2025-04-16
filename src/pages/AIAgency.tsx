@@ -11,7 +11,6 @@ import { PartnershipSection } from "@/components/ai-agency/PartnershipSection";
 import { FinalCTASection } from "@/components/ai-agency/FinalCTASection";
 import { SocialProofSection } from "@/components/product-hunt/social-proof/SocialProofSection";
 import { FloatingContactButton } from "@/components/ai-agency/FloatingContactButton";
-import { ScrollNav } from "@/components/ai-agency/ScrollNav";
 import { TestimonialSection } from "@/components/ai-agency/TestimonialSection";
 import { ComparisonSection } from "@/components/ai-agency/ComparisonSection";
 
@@ -51,8 +50,6 @@ const AIAgency = () => {
       <SocialProofSection />
       
       <FinalCTASection />
-      
-      <ScrollNav />
       
       <FloatingContactButton />
       
