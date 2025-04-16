@@ -52,13 +52,6 @@ const Testimonial = ({ quote, author, company, imageSrc, stats }: TestimonialPro
 export const TestimonialsSection = () => {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
-      <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-4">
-        What Our Clients Say
-      </h2>
-      <p className="text-xl text-gray-300 text-center mb-16 max-w-3xl mx-auto">
-        Businesses across industries are transforming customer interactions with our AI Voice Chat
-      </p>
-      
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <Testimonial 
           quote="The voice chat implementation has been a game-changer for our customer service. Response times dropped by 67% and customer satisfaction scores are up 42%."
@@ -80,18 +73,6 @@ export const TestimonialsSection = () => {
           company="Boutique Financial Services"
           stats="Saved $120K in annual staffing costs"
         />
-      </div>
-      
-      <div className="mt-16 text-center">
-        <h3 className="text-2xl font-bold text-white mb-8">Trusted by Industry Leaders</h3>
-        <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
-          {/* Placeholder for company logos - these would be replaced with actual client logos */}
-          <div className="h-8 w-24 bg-white/20 rounded"></div>
-          <div className="h-8 w-32 bg-white/20 rounded"></div>
-          <div className="h-8 w-28 bg-white/20 rounded"></div>
-          <div className="h-8 w-30 bg-white/20 rounded"></div>
-          <div className="h-8 w-26 bg-white/20 rounded"></div>
-        </div>
       </div>
     </section>
   );
