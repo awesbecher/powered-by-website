@@ -16,15 +16,21 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
   // Initialize Cal.com
   useEffect(() => {
     (async function () {
-      const cal = await getCalApi({"namespace":"get-started-with-ai-email-agents"});
-      cal("ui", {
-        "cssVarsPerTheme": {
-          "light": {"cal-brand":"#292929"},
-          "dark": {"cal-brand":"#fafafa"}
-        },
-        "hideEventTypeDetails": false,
-        "layout": "month_view"
-      });
+      try {
+        const cal = await getCalApi();
+        if (cal) {
+          cal("ui", {
+            "cssVarsPerTheme": {
+              "light": {"cal-brand":"#292929"},
+              "dark": {"cal-brand":"#fafafa"}
+            },
+            "hideEventTypeDetails": false,
+            "layout": "month_view"
+          });
+        }
+      } catch (error) {
+        console.error("Error initializing Cal.com in HeroSection:", error);
+      }
     })();
   }, []);
 
@@ -151,9 +157,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
             {/* CTA below email mockup */}
             <div className="mt-8 flex justify-center">
               <button 
-                data-cal-namespace="get-started-with-ai-email-agents"
-                data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-email-agents"
-                data-cal-config='{"layout":"month_view"}'
+                onClick={handleContact}
                 className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white font-semibold py-3 px-5 rounded-lg transition-colors flex items-center justify-center gap-2 text-sm"
               >
                 <CalendarClock className="w-5 h-5" />

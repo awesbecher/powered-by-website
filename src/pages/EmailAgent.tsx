@@ -27,19 +27,17 @@ const EmailAgent = () => {
       try {
         console.log("Initializing Cal.com embed in EmailAgent page");
         
-        // Ensure script is loaded
-        await loadCalComScript();
-        
-        // Remove namespace parameter
         const cal = await getCalApi();
-        cal("ui", {
-          "cssVarsPerTheme": {
-            "light": {"cal-brand":"#292929"},
-            "dark": {"cal-brand":"#fafafa"}
-          },
-          "hideEventTypeDetails": false,
-          "layout": "month_view"
-        });
+        if (cal) {
+          cal("ui", {
+            "cssVarsPerTheme": {
+              "light": {"cal-brand":"#292929"},
+              "dark": {"cal-brand":"#fafafa"}
+            },
+            "hideEventTypeDetails": false,
+            "layout": "month_view"
+          });
+        }
         
         console.log("Cal.com embed initialized successfully in EmailAgent page");
       } catch (error) {
