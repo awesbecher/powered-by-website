@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon } from 'lucide-react';
@@ -27,7 +26,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
             className="text-5xl md:text-7xl font-bold text-white mb-6"
           >
             <span className="text-gradient">Why should those Silicon Valley nerds have all the fancy AI toys?</span>{' '}
-            <span className="block mt-2">AI Agency For The Digital Age</span>
           </h1>
           
           <motion.p 
@@ -38,6 +36,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
           >
             We build and deploy custom AI agents to enhance your business operations and customer experience.
           </motion.p>
+          
+          
           
           <motion.div 
             className="flex flex-wrap justify-center gap-4"
