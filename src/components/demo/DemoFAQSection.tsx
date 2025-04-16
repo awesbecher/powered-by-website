@@ -36,12 +36,6 @@ export const DemoFAQSection = () => {
             ))}
           </Accordion>
         </div>
-        
-        <div className="mt-12 text-center">
-          <p className="text-gray-400">
-            Have more questions? <a href="#" className="text-[#9b87f5] hover:underline">Contact our support team</a> or <a href="#" className="text-[#9b87f5] hover:underline">read our documentation</a>.
-          </p>
-        </div>
       </motion.div>
     </section>
   );
