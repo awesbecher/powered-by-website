@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon, MessageCircle, Play } from 'lucide-react';
@@ -35,7 +36,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="inline-block px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm mb-4 text-[#9b87f5] border border-[#9b87f5]/30"
           >
-            AI Solutions Built For Small & Medium Businesses
+            AI Agent Solutions Built For Small & Medium Businesses
           </motion.div>
           
           <h1 
@@ -104,23 +105,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-600 rounded-full filter blur-3xl animate-pulse"></div>
         <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-indigo-600 rounded-full filter blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
       </div>
-      
-      {/* Trust signals */}
-      <motion.div 
-        className="container mx-auto max-w-5xl relative z-10 mt-6"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.6 }}
-      >
-        <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6">
-          <p className="text-white/60 text-sm font-medium">TRUSTED BY INNOVATIVE SMBs</p>
-          <div className="flex flex-wrap justify-center gap-x-10 gap-y-4 opacity-70 hover:opacity-100 transition-opacity">
-            {[1, 2, 3, 4, 5].map(i => (
-              <div key={i} className="h-6 w-20 bg-white/20 rounded animate-pulse" style={{animationDelay: `${i*0.2}s`}}></div>
-            ))}
-          </div>
-        </div>
-      </motion.div>
     </section>
   );
 };
