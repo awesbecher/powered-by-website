@@ -1,4 +1,3 @@
-
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
@@ -41,11 +40,12 @@ const HeroSection = ({
             Tacoma's Premier Authorized Mercedes-Benz Dealer. Experience luxury and performance with our extensive selection of new and certified pre-owned vehicles. View our special Spring pricing incentives below. Click to talk to a dealership team member now.
           </p>
           <Button 
+            size="xl"
             onClick={() => setShowCallDialog(true)}
             className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
             disabled={isProcessing || isCallActive}
           >
-            <Phone className="mr-2 h-4 w-4" />
+            <Phone className="mr-2 h-6 w-6" />
             Speak with us now
           </Button>
         </div>
