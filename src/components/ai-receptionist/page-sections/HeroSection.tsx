@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -107,7 +108,7 @@ export const HeroSection = ({
                   data-cal-config='{"layout":"month_view"}'
                 >
                   <ArrowRight className="w-5 h-5" />
-                  Request Demo
+                  Get Started
                 </Button>
                 
                 <Button 

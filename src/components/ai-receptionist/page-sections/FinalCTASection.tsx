@@ -1,8 +1,25 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { useEffect } from "react";
+import { getCalApi } from "@calcom/embed-react";
 
 export const FinalCTASection = () => {
+  // Initialize Cal.com
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({"namespace":"get-started-with-ai-receptionist"});
+      cal("ui", {
+        "cssVarsPerTheme": {
+          "light": {"cal-brand":"#292929"},
+          "dark": {"cal-brand":"#fafafa"}
+        },
+        "hideEventTypeDetails": false,
+        "layout": "month_view"
+      });
+    })();
+  }, []);
+  
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl relative">
       <div className="absolute inset-0 overflow-hidden z-0 pointer-events-none">

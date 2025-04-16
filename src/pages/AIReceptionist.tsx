@@ -1,10 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
+import { getCalApi } from "@calcom/embed-react";
 
 // Import all page sections
 import { HeroSection } from '@/components/ai-receptionist/page-sections/HeroSection';
@@ -23,8 +22,7 @@ const AIReceptionist = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
   const { toast } = useToast();
-  const navigate = useNavigate();
-
+  
   const ASSISTANT_ID = "ebb38ba5-321a-49e4-b860-708bc864327f";
 
   useEffect(() => {
@@ -32,22 +30,24 @@ const AIReceptionist = () => {
       setInitialLoad(false);
     }, 100);
     
-    // Load Cal.com script
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.innerHTML = `
-    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-    Cal("init", "get-started-with-ai-receptionist", {origin:"https://cal.com"});
-
-    Cal.ns["get-started-with-ai-receptionist"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
-    `;
-    document.body.appendChild(script);
-    
-    return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
+    // Initialize Cal.com
+    (async function () {
+      try {
+        console.log("Initializing Cal.com embed for AI Receptionist");
+        const cal = await getCalApi({"namespace":"get-started-with-ai-receptionist"});
+        cal("ui", {
+          "cssVarsPerTheme": {
+            "light": {"cal-brand":"#292929"},
+            "dark": {"cal-brand":"#fafafa"}
+          },
+          "hideEventTypeDetails": false,
+          "layout": "month_view"
+        });
+        console.log("Cal.com embed initialized successfully");
+      } catch (error) {
+        console.error("Error initializing Cal.com embed:", error);
       }
-    };
+    })();
   }, []);
   
   // Modified to open real-estate page in a new tab
