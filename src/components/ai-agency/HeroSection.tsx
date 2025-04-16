@@ -1,32 +1,71 @@
 
-import { Link } from "react-router-dom";
+import React from 'react';
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRightIcon } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface HeroSectionProps {
   initialLoad: boolean;
 }
 
-export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
+export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
+  const handleTalkToAgent = () => {
+    document.dispatchEvent(new CustomEvent('open-voice-dialog'));
+  };
+
   return (
-    <div className="relative overflow-hidden px-6 lg:px-8 pt-6 pb-8">
-      <div className="mx-auto max-w-4xl">
-        <div className="text-center">
-          <h1 className={`text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6 transition-all duration-1000 ease-out transform
-              ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
-            Just Like a Web Design Firm.<br />
-            But with <span className="text-[#9b87f5]">much cooler tech</span>.
+    <section className="relative py-20 px-4 overflow-hidden">
+      <div className="container mx-auto max-w-7xl relative z-10">
+        <div className="text-center mb-16">
+          <h1 
+            className={`text-5xl md:text-7xl font-bold text-white mb-6 transition-all duration-1000 delay-100 ${
+              initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'
+            }`}
+          >
+            <span className="text-gradient">AI Agency</span>{' '}
+            <span className="block mt-2">For The Digital Age</span>
           </h1>
           
-          <div className={`mt-4 flex flex-col space-y-1 text-2xl md:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-bold transition-all duration-1000 delay-300 ease-out transform
-              ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}>
-            <p>Why should those Silicon Valley <span className="font-bold text-[#9b87f5] border-b-4 border-[#9b87f5]">nerds</span> have all the fancy AI toys?</p>
+          <p 
+            className={`text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10 transition-all duration-1000 delay-300 ${
+              initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'
+            }`}
+          >
+            We build and deploy custom AI agents to enhance your business operations and customer experience.
+          </p>
+          
+          <div 
+            className={`flex flex-wrap justify-center gap-4 transition-all duration-1000 delay-500 ${
+              initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'
+            }`}
+          >
+            <Link to="/contact">
+              <Button 
+                size="lg" 
+                className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md"
+              >
+                Get Started
+                <ArrowRightIcon className="ml-2" />
+              </Button>
+            </Link>
+            
+            <Button 
+              onClick={handleTalkToAgent}
+              size="lg" 
+              variant="outline" 
+              className="bg-transparent border-2 border-[#9b87f5] text-white hover:bg-[#9b87f5]/20 px-8 py-6 text-lg rounded-md"
+            >
+              Talk to AI Agent
+            </Button>
           </div>
         </div>
       </div>
       
-      <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
-      <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
-    </div>
+      {/* Background elements */}
+      <div className="absolute top-0 left-0 right-0 bottom-0 z-0 opacity-20">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-600 rounded-full filter blur-3xl"></div>
+        <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-indigo-600 rounded-full filter blur-3xl"></div>
+      </div>
+    </section>
   );
 };

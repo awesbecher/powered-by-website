@@ -28,6 +28,7 @@ import Demo from './pages/Demo';
 import Products from './pages/Products';
 import OutboundAI from './pages/OutboundAI';
 import License from './pages/License';
+import Index from './pages/Index';
 import { GlobalVoiceChatDialog } from '@/components/GlobalVoiceChatDialog';
 
 const queryClient = new QueryClient();
@@ -38,7 +39,8 @@ function App() {
   const WrapperWithAnimatedRoutes = ({ children }: { children: React.ReactNode }) => (
     <AnimatePresence mode="wait" initial={false}>
       <Routes key={location.pathname} location={location}>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Index />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/pricing" element={<Pricing />} />
