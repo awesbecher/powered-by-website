@@ -22,10 +22,10 @@ export const pressArticles: PressArticle[] = [
   },
   {
     id: "uk-herald-tribune-virtual-se-launch",
-    title: "Virtual SE Launches, Revolutionizing SaaS Pre-Sales Engineering with AI Agents",
+    title: "SaaS Companies Can Now Deploy AI Agents to Automate Pre-Sales Systems Engineering with Virtual SE",
     publication: "UK Herald Tribune",
     date: "April 14, 2025",
-    excerpt: "Innovative AI solution transforms pre-sales engineering processes for SaaS companies",
+    excerpt: "Virtual SE Launches to Help SaaS Sales Organizations Automate Pre-Sales Engineering",
     externalUrl: "https://www.ukheraldtribune.com/article/803158544-virtual-se-launches-revolutionizing-saas-pre-sales-engineering-with-ai-agents",
     imageUrl: "/lovable-uploads/8de5c56f-4020-4c69-8c49-d392f864f3e0.png"
   },
