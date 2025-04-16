@@ -6,8 +6,7 @@ import Footer from "@/components/layout/Footer";
 import { HeroSection } from "@/components/ai-agency/HeroSection";
 import { IntroSection } from "@/components/ai-agency/IntroSection";
 import { NavigationButtons } from "@/components/home/NavigationButtons";
-import { AnimatedConnections } from "@/components/ai-agency/AnimatedConnections";
-import { CentralPlatform } from "@/components/ai-agency/CentralPlatform";
+import AgencyIllustration from "@/components/ai-agency/AgencyIllustration";
 import { SocialProofSection } from "@/components/product-hunt/social-proof/SocialProofSection";
 
 const AIAgency = () => {
@@ -34,9 +33,8 @@ const AIAgency = () => {
       <NavigationButtons />
       
       <div className="relative z-10 py-16">
-        <AnimatedConnections />
         <div className="container mx-auto px-4">
-          <CentralPlatform />
+          <AgencyIllustration />
         </div>
       </div>
       

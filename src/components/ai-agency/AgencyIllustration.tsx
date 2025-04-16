@@ -17,4 +17,3 @@ const AgencyIllustration = () => {
 };
 
 export default AgencyIllustration;
-
