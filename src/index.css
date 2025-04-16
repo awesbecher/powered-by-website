@@ -18,6 +18,26 @@
   body {
     @apply bg-neutral-soft text-foreground antialiased;
   }
+
+  /* Focus states for keyboard navigation */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-[#9b87f5];
+  }
+  
+  /* Ensure skipped content is properly positioned */
+  [tabindex="-1"]:focus {
+    @apply outline-none;
+  }
+  
+  /* Better links for keyboard accessibility */
+  a:focus-visible {
+    @apply outline-2 outline-offset-2 outline-[#9b87f5] rounded;
+  }
+  
+  /* High-contrast text */
+  .high-contrast-text {
+    @apply text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)];
+  }
 }
 
 @layer components {
@@ -89,5 +109,20 @@
   @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
+  }
+}
+
+/* Improve keyboard a11y visual focus indicator */
+.focus-ring {
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#9b87f5];
+}
+
+/* Reduce motion if user prefers */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

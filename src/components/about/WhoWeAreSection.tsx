@@ -1,6 +1,8 @@
 
 import React from "react";
 import { Users } from "lucide-react";
+import { OptimizedImage } from "@/components/shared/OptimizedImage";
+import "@/components/ui/animations.css";
 
 interface WhoWeAreSectionProps {
   initialLoad: boolean;
@@ -15,19 +17,20 @@ export const WhoWeAreSection = ({ initialLoad, whoWeAreRef }: WhoWeAreSectionPro
         
         {/* Team Photo */}
         <div className="mb-8 max-w-2xl mx-auto">
-          <img 
+          <OptimizedImage 
             src="/lovable-uploads/573aa598-a658-44ab-a9bd-9048d21051df.png" 
-            alt="Powered By Team" 
-            className="w-full h-auto rounded-2xl shadow-xl object-cover"
+            alt="Powered By Team - Our diverse team of AI specialists" 
+            className="w-full h-auto rounded-2xl shadow-xl object-cover animate-fade-in"
+            priority={true}
           />
         </div>
 
         <div className="flex items-center mb-6">
-          <Users className="h-8 w-8 text-[#9b87f5] mr-3" />
-          <h2 className="text-3xl font-bold text-white">Who We Are</h2>
+          <Users className="h-8 w-8 text-[#9b87f5] mr-3" aria-hidden="true" />
+          <h2 id="who-we-are-heading" className="text-3xl font-bold text-white">Who We Are</h2>
         </div>
         
-        <div className="space-y-6 text-gray-300 backdrop-blur-sm bg-[#2a1a47]/30 p-6 rounded-xl border border-[#9b87f5]/20">
+        <div className="space-y-6 text-gray-300 backdrop-blur-sm bg-[#2a1a47]/30 p-6 rounded-xl border border-[#9b87f5]/20 animate-scale-in delay-200">
           <p className="text-lg">
             <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md">Powered_by</span> is an agency that designs and builds bespoke AI agent solutions for diverse industries. From auto dealerships to real estate agencies, retail stores to hospitality providers, our team has a proven track record of delivering AI agent solutions that empower our clients to thrive and compete.
           </p>
