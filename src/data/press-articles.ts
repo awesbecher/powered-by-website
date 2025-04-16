@@ -2,6 +2,15 @@ import { PressArticle } from "@/types/news";
 
 export const pressArticles: PressArticle[] = [
   {
+    id: "fox8-virtual-se-launch",
+    title: "Powered_by Agency Launches Virtual SE, Revolutionizing Pre-Sales Engineering with AI Agents",
+    publication: "FOX 8",
+    date: "April 14, 2025",
+    excerpt: "Innovative AI solution transforms pre-sales engineering processes for small and medium-sized businesses",
+    externalUrl: "https://fox8.com/business/press-releases/cision/20250414SF63509/powered-by-agency-launches-virtual-se-revolutionizing-pre-sales-engineering-with-ai-agents/",
+    imageUrl: "/lovable-uploads/7d67ab53-5e52-41fd-b9d3-b3b7fa0be94f.png"
+  },
+  {
     id: "marketwatch-feature",
     title: "Powered_by Leads the AI Agent Revolution for Customer Service",
     publication: "MarketWatch",
@@ -101,15 +110,6 @@ export const pressArticles: PressArticle[] = [
     imageUrl: "/lovable-uploads/77fcaf98-2a45-4089-bede-83cbae52cb0d.png"
   },
   {
-    id: "fox8-virtual-se-launch",
-    title: "Powered_by Agency Launches Virtual SE, Revolutionizing Pre-Sales Engineering with AI Agents",
-    publication: "FOX 8",
-    date: "April 14, 2025",
-    excerpt: "Innovative AI solution transforms pre-sales engineering processes for small and medium-sized businesses",
-    externalUrl: "https://fox8.com/business/press-releases/cision/20250414SF63509/powered-by-agency-launches-virtual-se-revolutionizing-pre-sales-engineering-with-ai-agents/",
-    imageUrl: "/lovable-uploads/7d67ab53-5e52-41fd-b9d3-b3b7fa0be94f.png"
-  },
-  {
     id: "associated-press-virtual-se",
     title: "Powered_by Agency Launches Virtual SE, Revolutionizing Pre-Sales Engineering with AI Agents",
     publication: "Associated Press",
@@ -137,15 +137,6 @@ export const pressArticles: PressArticle[] = [
     imageUrl: "/lovable-uploads/c1f2f583-29f8-4a0b-b49f-4c6a2d99a653.png"
   },
   {
-    id: "fox4-virtual-se-launch",
-    title: "Powered_by Agency Launches Virtual SE, Revolutionizing Pre-Sales Engineering with AI Agents",
-    publication: "FOX 4",
-    date: "April 14, 2025",
-    excerpt: "Innovative AI solution transforms pre-sales engineering processes for small and medium-sized businesses",
-    externalUrl: "https://fox4kc.com/business/press-releases/cision/20250414SF63509/powered-by-agency-launches-virtual-se-revolutionizing-pre-sales-engineering-with-ai-agents/",
-    imageUrl: "/lovable-uploads/5db05339-8e43-4e68-814a-2b107f29f5b9.png"
-  },
-  {
     id: "uk-herald-tribune-virtual-se-launch",
     title: "Virtual SE Launches, Revolutionizing SaaS Pre-Sales Engineering with AI Agents",
     publication: "UK Herald Tribune",
@@ -163,4 +154,4 @@ export const pressArticles: PressArticle[] = [
     externalUrl: "https://www.smallbusinessnewswatch.com/article/803158544-virtual-se-launches-revolutionizing-saas-pre-sales-engineering-with-ai-agents",
     imageUrl: "/lovable-uploads/9c8d01f3-3381-4e29-849d-6ccb28987ae5.png"
   }
-];
+].filter(Boolean);
