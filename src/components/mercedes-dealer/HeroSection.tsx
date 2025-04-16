@@ -1,29 +1,14 @@
+
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
-import { initiateVapiCall } from "@/services/vapiService";
-import { HeadsetIcon } from "lucide-react";
+import { Phone } from "lucide-react";
 import MercedesDealerHeader from "./MercedesDealerHeader";
 
-const HeroSection = () => {
-  const { toast } = useToast();
+interface HeroSectionProps {
+  onSpeakWithUs?: () => void;
+}
 
-  const handleVoiceCall = async () => {
-    try {
-      await initiateVapiCall("6c02f892-3082-4c68-a3ee-92ca86444331");
-      toast({
-        title: "Call initiated",
-        description: "You are now connected to Dave Frankel from Mercedes of Tacoma."
-      });
-    } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Failed to initiate call",
-        description: error instanceof Error ? error.message : "Please try again later."
-      });
-    }
-  };
-
+const HeroSection = ({ onSpeakWithUs }: HeroSectionProps = {}) => {
   return (
     <div className="relative h-[75vh] mb-4">
       <div className="absolute inset-0">
@@ -48,10 +33,10 @@ const HeroSection = () => {
             Tacoma's Premier Authorized Mercedes-Benz Dealer. Experience luxury and performance with our extensive selection of new and certified pre-owned vehicles. View our special Spring pricing incentives below. Click to talk to a dealership team member now.
           </p>
           <Button 
-            onClick={handleVoiceCall}
+            onClick={() => window.location.href = "#speak-with-us"}
             className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
           >
-            <HeadsetIcon className="mr-2 h-4 w-4" />
+            <Phone className="mr-2 h-4 w-4" />
             Speak with us now
           </Button>
         </div>
