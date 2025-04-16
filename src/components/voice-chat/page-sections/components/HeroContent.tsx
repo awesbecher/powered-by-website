@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Tv, Mic } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -24,20 +24,6 @@ export const HeroContent: React.FC<HeroContentProps> = ({
   const handleTryDemo = () => {
     window.open('https://www.poweredby.agency/real-estate', '_blank');
   };
-
-  useEffect(() => {
-    (async function () {
-      const cal = await getCalApi({"namespace":"get-started-with-voice-ai-chat"});
-      cal("ui", {
-        "cssVarsPerTheme": {
-          "light": {"cal-brand":"#292929"},
-          "dark": {"cal-brand":"#fafafa"}
-        },
-        "hideEventTypeDetails": false,
-        "layout": "month_view"
-      });
-    })();
-  }, []);
 
   return (
     <div className={`transition-all duration-1000 ease-out transform
