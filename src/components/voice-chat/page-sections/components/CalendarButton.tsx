@@ -14,10 +14,10 @@ export const CalendarButton = ({ onClick, className = "" }: CalendarButtonProps)
       data-cal-link="team-powered-by-dfbtbb/get-started-with-voice-ai-chat"
       data-cal-config='{"layout":"month_view"}'
       onClick={onClick}
-      className={`bg-[#6342ff] hover:bg-[#5233e0] text-white px-8 py-6 text-lg rounded-md flex items-center shadow-lg shadow-[#6342ff]/20 ${className}`}
+      className={`bg-[#6342ff] hover:bg-[#5233e0] text-white px-6 py-4 text-base rounded-md flex items-center ${className}`}
     >
       <Calendar className="mr-2 h-5 w-5" />
-      Schedule a Demo
+      Get Started
     </Button>
   );
 };
