@@ -25,7 +25,7 @@ export const ProductsHero = ({ initialLoad, className }: ProductsHeroProps) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Empower SMB Growth with <span className="text-[#9b87f5]">PoweredBy's AI Agent Solutions</span>
+            Empower SMB Growth with <span className="text-[#9b87f5]">AI Agent Solutions</span>
           </motion.h1>
           
           <motion.p 
