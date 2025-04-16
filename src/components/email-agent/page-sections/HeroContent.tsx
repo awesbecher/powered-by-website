@@ -1,7 +1,9 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Tv, Play, Mic } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { getCalApi } from "@calcom/embed-react";
 
 interface HeroContentProps {
   initialLoad: boolean;
@@ -11,10 +13,38 @@ interface HeroContentProps {
 export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) => {
   const [videoOpen, setVideoOpen] = useState(false);
   
+  // Initialize Cal.com at the component level
+  useEffect(() => {
+    (async function () {
+      try {
+        console.log("Initializing Cal.com embed in EmailAgent HeroContent");
+        const cal = await getCalApi({"namespace":"get-started-with-ai-email-agents"});
+        cal("ui", {
+          "cssVarsPerTheme": {
+            "light": {"cal-brand":"#292929"},
+            "dark": {"cal-brand":"#fafafa"}
+          },
+          "hideEventTypeDetails": false,
+          "layout": "month_view"
+        });
+        console.log("Cal.com embed initialized successfully in EmailAgent HeroContent");
+      } catch (error) {
+        console.error("Error initializing Cal.com embed in EmailAgent HeroContent:", error);
+      }
+    })();
+  }, []);
+  
   const handleDemoClick = () => {
+    console.log("Get Started button clicked in EmailAgent HeroContent");
+    // Try to find and click the Cal button
     const calButton = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-email-agents"]');
     if (calButton instanceof HTMLElement) {
       calButton.click();
+      console.log("Cal.com button clicked programmatically from HeroContent");
+    } else {
+      console.error("Cal.com button not found in DOM from HeroContent");
+      // Fallback to parent's handler
+      handleContact();
     }
   };
   
@@ -66,6 +96,9 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
           data-cal-namespace="get-started-with-ai-email-agents"
           data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-email-agents"
           data-cal-config='{"layout":"month_view"}'
+          onClick={() => {
+            console.log("Cal.com button clicked directly from HeroContent");
+          }}
         >
           <ArrowRight className="mr-2 h-5 w-5" /> Get Started
         </Button>

@@ -21,20 +21,56 @@ const EmailAgent = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Initialize Cal.com
+  // Initialize Cal.com with robust error handling
   useEffect(() => {
-    (async function () {
-      const cal = await getCalApi({"namespace":"get-started-with-ai-email-agents"});
-      cal("ui", {
-        "cssVarsPerTheme": {
-          "light": {"cal-brand":"#292929"},
-          "dark": {"cal-brand":"#fafafa"}
-        },
-        "hideEventTypeDetails": false,
-        "layout": "month_view"
-      });
+    (async function initializeCalcom() {
+      try {
+        console.log("Initializing Cal.com embed in EmailAgent page");
+        
+        // Ensure script is loaded
+        await loadCalComScript();
+        
+        const cal = await getCalApi({"namespace":"get-started-with-ai-email-agents"});
+        cal("ui", {
+          "cssVarsPerTheme": {
+            "light": {"cal-brand":"#292929"},
+            "dark": {"cal-brand":"#fafafa"}
+          },
+          "hideEventTypeDetails": false,
+          "layout": "month_view"
+        });
+        
+        console.log("Cal.com embed initialized successfully in EmailAgent page");
+      } catch (error) {
+        console.error("Error initializing Cal.com embed in EmailAgent page:", error);
+      }
     })();
   }, []);
+  
+  // Helper function to ensure Cal.com script is loaded
+  const loadCalComScript = () => {
+    return new Promise<void>((resolve, reject) => {
+      // If script already exists, resolve immediately
+      if (document.querySelector('script[src="https://app.cal.com/embed/embed.js"]')) {
+        console.log("Cal.com script already loaded");
+        resolve();
+        return;
+      }
+      
+      console.log("Loading Cal.com script");
+      const script = document.createElement('script');
+      script.src = "https://app.cal.com/embed/embed.js";
+      script.onload = () => {
+        console.log("Cal.com script loaded successfully");
+        resolve();
+      };
+      script.onerror = (error) => {
+        console.error("Failed to load Cal.com script:", error);
+        reject(error);
+      };
+      document.head.appendChild(script);
+    });
+  };
   
   // Handle contact button clicks - direct Cal.com button trigger approach
   const handleContact = () => {

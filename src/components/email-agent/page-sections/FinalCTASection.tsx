@@ -9,18 +9,24 @@ interface FinalCTASectionProps {
 }
 
 export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
-  // Initialize Cal.com
+  // Initialize Cal.com with robust error handling
   useEffect(() => {
     (async function () {
-      const cal = await getCalApi({"namespace":"get-started-with-ai-email-agents"});
-      cal("ui", {
-        "cssVarsPerTheme": {
-          "light": {"cal-brand":"#292929"},
-          "dark": {"cal-brand":"#fafafa"}
-        },
-        "hideEventTypeDetails": false,
-        "layout": "month_view"
-      });
+      try {
+        console.log("Initializing Cal.com embed in EmailAgent FinalCTASection");
+        const cal = await getCalApi({"namespace":"get-started-with-ai-email-agents"});
+        cal("ui", {
+          "cssVarsPerTheme": {
+            "light": {"cal-brand":"#292929"},
+            "dark": {"cal-brand":"#fafafa"}
+          },
+          "hideEventTypeDetails": false,
+          "layout": "month_view"
+        });
+        console.log("Cal.com embed initialized successfully in EmailAgent FinalCTASection");
+      } catch (error) {
+        console.error("Error initializing Cal.com embed in EmailAgent FinalCTASection:", error);
+      }
     })();
   }, []);
 
@@ -52,9 +58,16 @@ export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button 
               onClick={() => {
+                console.log("Get Started button clicked in EmailAgent FinalCTASection");
+                // Direct attempt to click the Cal button
                 const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-email-agents"]');
                 if (calBtn instanceof HTMLElement) {
                   calBtn.click();
+                  console.log("Cal.com button clicked programmatically");
+                } else {
+                  console.error("Cal.com button not found in DOM");
+                  // Fallback to parent's handler
+                  handleContact();
                 }
               }}
               className="bg-white hover:bg-gray-100 text-[#6342ff] px-8 py-6 text-lg rounded-xl font-bold flex items-center w-full sm:w-auto"
