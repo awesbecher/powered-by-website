@@ -9,8 +9,8 @@ interface PricingGridProps {
 const PricingGrid = ({ isAnnual }: PricingGridProps) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <PricingCard type="starter" isAnnual={isAnnual} />
-      <PricingCard type="growth" isPopular={true} isAnnual={isAnnual} />
+      <PricingCard type="starter" isAnnual={isAnnual} tallyFormId="w2og9b" />
+      <PricingCard type="growth" isPopular={true} isAnnual={isAnnual} tallyFormId="w2og9b" />
       <PricingCard type="enterprise" />
     </div>
   );

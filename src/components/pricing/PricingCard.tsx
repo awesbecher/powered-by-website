@@ -8,9 +8,10 @@ interface PricingCardProps {
   type: "starter" | "growth" | "enterprise";
   isPopular?: boolean;
   isAnnual?: boolean;
+  tallyFormId?: string;
 }
 
-const PricingCard = ({ type, isPopular = false, isAnnual = true }: PricingCardProps) => {
+const PricingCard = ({ type, isPopular = false, isAnnual = true, tallyFormId }: PricingCardProps) => {
   // Define card content based on type
   const getIcon = () => {
     switch (type) {
@@ -120,6 +121,38 @@ const PricingCard = ({ type, isPopular = false, isAnnual = true }: PricingCardPr
       </ul>
     );
   };
+  
+  // Button rendering with Tally integration if formId provided
+  const renderButton = () => {
+    if (type === "enterprise") {
+      return (
+        <Button asChild className="w-full bg-white hover:bg-gray-100 text-[#6342ff]">
+          <Link to="/contact">Contact Sales</Link>
+        </Button>
+      );
+    }
+    
+    if (tallyFormId) {
+      return (
+        <Button 
+          className="w-full bg-[#9b87f5] hover:bg-[#8a75e3] text-white"
+          data-tally-open={tallyFormId}
+          data-tally-layout="modal"
+          data-tally-width="476"
+          data-tally-hide-title="1"
+          data-tally-auto-close="0"
+        >
+          Get Started
+        </Button>
+      );
+    }
+    
+    return (
+      <Button asChild className="w-full bg-[#9b87f5] hover:bg-[#8a75e3] text-white">
+        <Link to="/contact">Get Started</Link>
+      </Button>
+    );
+  };
 
   return (
     <div className={`bg-black rounded-xl p-8 hover:bg-black/80 transition-all relative flex flex-col h-full ${
@@ -154,15 +187,7 @@ const PricingCard = ({ type, isPopular = false, isAnnual = true }: PricingCardPr
       </div>
 
       <div className="mt-auto">
-        {type !== "enterprise" ? (
-          <Button asChild className="w-full bg-[#9b87f5] hover:bg-[#8a75e3] text-white">
-            <Link to="/contact">Get Started</Link>
-          </Button>
-        ) : (
-          <Button asChild className="w-full bg-white hover:bg-gray-100 text-[#6342ff]">
-            <Link to="/contact">Contact Sales</Link>
-          </Button>
-        )}
+        {renderButton()}
       </div>
     </div>
   );
