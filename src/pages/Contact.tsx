@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ContactHeader } from "@/components/contact/ContactHeader";
@@ -48,10 +47,6 @@ const Contact = () => {
           
           {/* Schedule button container */}
           <div className="flex flex-col items-center justify-center bg-black/30 backdrop-blur-sm rounded-[40px] p-12 mb-10 shadow-lg transition-all duration-500 ease-out transform">
-            <p className="text-white text-center text-lg mb-8">
-              Ready to explore how AI agents can transform your business? Schedule a free consultation with our team to learn more about our solutions.
-            </p>
-            
             <Button 
               data-cal-namespace="get-started-today"
               data-cal-link="team-powered-by-dfbtbb/get-started-today"
