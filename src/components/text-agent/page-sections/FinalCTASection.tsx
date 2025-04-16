@@ -1,9 +1,35 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight, MessageCircle } from "lucide-react";
-import { PoweredByText } from "@/components/shared/PoweredByText";
+import { useEffect } from "react";
+import { getCalApi } from "@calcom/embed-react";
 
-export const FinalCTASection = () => {
+interface FinalCTASectionProps {
+  handleContact: () => void;
+}
+
+export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
+  // Initialize Cal.com at the component level for redundancy
+  useEffect(() => {
+    (async function () {
+      try {
+        console.log("Initializing Cal.com embed in TextAgent FinalCTASection");
+        const cal = await getCalApi({"namespace":"get-started-with-ai-sms-text-agents"});
+        cal("ui", {
+          "cssVarsPerTheme": {
+            "light": {"cal-brand":"#292929"},
+            "dark": {"cal-brand":"#fafafa"}
+          },
+          "hideEventTypeDetails": false,
+          "layout": "month_view"
+        });
+        console.log("Cal.com embed initialized successfully in TextAgent FinalCTASection");
+      } catch (error) {
+        console.error("Error initializing Cal.com embed in TextAgent FinalCTASection:", error);
+      }
+    })();
+  }, []);
+
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-6xl text-center">
       {/* CTA Card with gradient background */}
@@ -31,9 +57,19 @@ export const FinalCTASection = () => {
           
           <div className="flex justify-center items-center">
             <Button 
-              data-cal-namespace="get-started-with-ai-sms-text-agents"
-              data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
-              data-cal-config='{"layout":"month_view"}'
+              onClick={() => {
+                console.log("Get Started button clicked in TextAgent FinalCTASection");
+                // Direct attempt to click the Cal button
+                const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"]');
+                if (calBtn instanceof HTMLElement) {
+                  calBtn.click();
+                  console.log("Cal.com button clicked programmatically from FinalCTASection");
+                } else {
+                  console.error("Cal.com button not found in DOM from FinalCTASection");
+                  // Fallback to parent's handler
+                  handleContact();
+                }
+              }}
               className="bg-white hover:bg-gray-100 text-[#6342ff] px-8 py-6 text-lg rounded-xl font-bold flex items-center"
             >
               Get Started <ArrowRight className="ml-2 h-5 w-5" />
@@ -41,6 +77,14 @@ export const FinalCTASection = () => {
           </div>
         </div>
       </div>
+      
+      {/* Hidden Cal.com button that will be triggered programmatically */}
+      <button
+        data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
+        data-cal-namespace="get-started-with-ai-sms-text-agents"
+        data-cal-config='{"layout":"month_view"}'
+        className="hidden"
+      ></button>
     </section>
   );
 };

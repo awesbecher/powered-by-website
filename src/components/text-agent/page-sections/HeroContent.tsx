@@ -1,10 +1,11 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Tv, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PoweredByText } from "@/components/shared/PoweredByText";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { getCalApi } from "@calcom/embed-react";
 
 interface HeroContentProps {
   initialLoad: boolean;
@@ -13,6 +14,41 @@ interface HeroContentProps {
 
 export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) => {
   const [videoOpen, setVideoOpen] = useState(false);
+
+  // Initialize Cal.com at the component level
+  useEffect(() => {
+    (async function () {
+      try {
+        console.log("Initializing Cal.com embed in TextAgent HeroContent");
+        const cal = await getCalApi({"namespace":"get-started-with-ai-sms-text-agents"});
+        cal("ui", {
+          "cssVarsPerTheme": {
+            "light": {"cal-brand":"#292929"},
+            "dark": {"cal-brand":"#fafafa"}
+          },
+          "hideEventTypeDetails": false,
+          "layout": "month_view"
+        });
+        console.log("Cal.com embed initialized successfully in TextAgent HeroContent");
+      } catch (error) {
+        console.error("Error initializing Cal.com embed in TextAgent HeroContent:", error);
+      }
+    })();
+  }, []);
+
+  const handleDemoClick = () => {
+    console.log("Get Started button clicked in TextAgent HeroContent");
+    // Try to find and click the Cal button
+    const calButton = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"]');
+    if (calButton instanceof HTMLElement) {
+      calButton.click();
+      console.log("Cal.com button clicked programmatically from HeroContent");
+    } else {
+      console.error("Cal.com button not found in DOM from HeroContent");
+      // Fallback to parent's handler
+      handleContact();
+    }
+  };
 
   return (
     <div className={`w-full space-y-6 transition-all duration-1000 ease-out transform
@@ -36,9 +72,7 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
       <div className="flex flex-wrap gap-4 pt-2">
         <Button 
           className="bg-[#6342ff] hover:bg-[#7352ff] text-white font-bold py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2 text-lg"
-          data-cal-namespace="get-started-with-ai-sms-text-agents"
-          data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
-          data-cal-config='{"layout":"month_view"}'
+          onClick={handleDemoClick}
         >
           <ArrowRight className="w-5 h-5" />
           Request Demo
@@ -67,6 +101,14 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
           </div>
         </DialogContent>
       </Dialog>
+      
+      {/* Hidden Cal.com button that will be triggered programmatically */}
+      <button
+        data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
+        data-cal-namespace="get-started-with-ai-sms-text-agents"
+        data-cal-config='{"layout":"month_view"}'
+        className="hidden"
+      ></button>
     </div>
   );
 };
