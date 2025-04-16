@@ -11,7 +11,7 @@ import { HeroSection } from '@/components/ai-receptionist/page-sections/HeroSect
 import { BenefitsSection } from '@/components/ai-receptionist/page-sections/BenefitsSection';
 import { FeaturesSection } from '@/components/ai-receptionist/page-sections/FeaturesSection';
 import { HowItWorksSection } from '@/components/ai-receptionist/page-sections/HowItWorksSection';
-import { TestimonialsSection } from '@/components/ai-receptionist/page-sections/TestimonialsSection';
+// Removed TestimonialsSection import
 import { FAQSection } from '@/components/ai-receptionist/page-sections/FAQSection';
 import { FinalCTASection } from '@/components/ai-receptionist/page-sections/FinalCTASection';
 import { VoiceChatDialog } from '@/components/ai-receptionist/VoiceChatDialog';
@@ -125,7 +125,7 @@ const AIReceptionist = () => {
         
         <FeaturesSection />
         
-        <TestimonialsSection />
+        {/* Removed TestimonialsSection */}
         
         <FAQSection />
 
