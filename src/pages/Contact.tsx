@@ -2,9 +2,9 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ContactHeader } from "@/components/contact/ContactHeader";
-import { CalendlyWidget } from "@/components/contact/CalendlyWidget";
 import { useEffect, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import Cal, { getCalApi } from "@calcom/embed-react";
 
 const Contact = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -24,6 +24,14 @@ const Contact = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    // Initialize Cal.com
+    (async function () {
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+    })();
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <Navbar />
@@ -36,10 +44,15 @@ const Contact = () => {
             <ContactHeader initialLoad={initialLoad} />
           </div>
           
-          {/* Form container with minimal padding to maximize space for Calendly */}
+          {/* Cal.com embed container */}
           <div className="relative bg-black rounded-[40px] p-1 mb-2 shadow-lg transition-all duration-500 ease-out transform 
-            hover:shadow-xl">
-            <CalendlyWidget initialLoad={initialLoad} />
+            hover:shadow-xl" style={{height: "800px"}}>
+            <Cal 
+              namespace="get-started-today"
+              calLink="team-powered-by-dfbtbb/get-started-today"
+              style={{width:"100%", height:"100%", overflow:"scroll"}}
+              config={{"layout":"month_view"}}
+            />
           </div>
         </div>
       </div>

@@ -16,7 +16,7 @@ interface ClosingCTAProps {
 export const ClosingCTA: React.FC<ClosingCTAProps> = ({
   customHeading = "Ready to transform your SMB with AI agents?",
   customButtonText = "Get Started",
-  useCalendly = false,
+  useCalendly = false, // Keeping this prop name for backward compatibility
   externalLink = null,
   onContactClick,
 }) => {
