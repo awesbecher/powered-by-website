@@ -1,36 +1,23 @@
 
-import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "lucide-react";
-import { getCalApi } from "@calcom/embed-react";
 
 interface CalendarButtonProps {
+  onClick?: () => void;
   className?: string;
 }
 
-export const CalendarButton: React.FC<CalendarButtonProps> = ({ className }) => {
-  useEffect(() => {
-    (async function () {
-      const cal = await getCalApi({"namespace":"get-started-with-voice-ai-chat"});
-      cal("ui", {
-        "cssVarsPerTheme": {
-          "light": {"cal-brand":"#292929"},
-          "dark": {"cal-brand":"#fafafa"}
-        },
-        "hideEventTypeDetails": false,
-        "layout": "month_view"
-      });
-    })();
-  }, []);
-
+export const CalendarButton = ({ onClick, className = "" }: CalendarButtonProps) => {
   return (
-    <Button 
+    <Button
       data-cal-namespace="get-started-with-voice-ai-chat"
       data-cal-link="team-powered-by-dfbtbb/get-started-with-voice-ai-chat"
       data-cal-config='{"layout":"month_view"}'
-      className={`bg-[#6342ff] hover:bg-[#5233e0] text-white px-6 py-4 text-base rounded-md flex items-center ${className || ""}`}
+      onClick={onClick}
+      className={`bg-[#6342ff] hover:bg-[#5233e0] text-white px-8 py-6 text-lg rounded-md flex items-center shadow-lg shadow-[#6342ff]/20 ${className}`}
     >
-      <Calendar className="mr-2 h-5 w-5" /> Get Started
+      <Calendar className="mr-2 h-5 w-5" />
+      Schedule a Demo
     </Button>
   );
 };

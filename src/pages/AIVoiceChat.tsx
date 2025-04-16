@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -8,6 +9,8 @@ import { BenefitsSection } from "@/components/voice-chat/page-sections/BenefitsS
 import { CTASection } from "@/components/voice-chat/page-sections/CTASection";
 import { FinalCTASection } from "@/components/voice-chat/page-sections/FinalCTASection";
 import { FAQSection } from "@/components/voice-chat/page-sections/FAQSection";
+import { HowItWorksSection } from "@/components/voice-chat/page-sections/HowItWorksSection";
+import { TestimonialsSection } from "@/components/voice-chat/page-sections/TestimonialsSection";
 
 const AIVoiceChat = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -37,10 +40,11 @@ const AIVoiceChat = () => {
       
       <FeaturesSection />
       
+      <HowItWorksSection />
+      
       <BenefitsSection />
       
-      {/* CTASection is no longer used, but if we keep it, pass the handleContact prop */}
-      {/* <CTASection handleContact={handleContact} /> */}
+      <TestimonialsSection />
       
       <FAQSection />
       
