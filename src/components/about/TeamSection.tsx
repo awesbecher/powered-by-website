@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Linkedin, Github, Mail } from "lucide-react";
@@ -6,7 +7,6 @@ interface TeamMember {
   id: number;
   name: string;
   title: string;
-  image: string;
   bio: string;
   funFact: string;
   links?: {
@@ -21,7 +21,6 @@ const teamMembers: TeamMember[] = [
     id: 1,
     name: "Sarah Johnson",
     title: "Founder & CEO",
-    image: "/lovable-uploads/437d5ed4-6fad-4c98-91fa-aa54162ec5f8.png",
     bio: "Former SaaS executive with 15+ years building AI solutions for enterprise. Passionate about democratizing technology for businesses of all sizes.",
     funFact: "Favorite AI prediction: Voice interfaces will replace screens for 50% of daily tasks by 2027",
     links: {
@@ -33,7 +32,6 @@ const teamMembers: TeamMember[] = [
     id: 2,
     name: "Michael Chen",
     title: "CTO & AI Architect",
-    image: "/lovable-uploads/182eda36-d0bd-4c57-88b7-2f0dd4938f61.png",
     bio: "AI researcher turned entrepreneur with expertise in NLP, speech synthesis, and conversational design. Previously at OpenAI.",
     funFact: "Coffee order: Quad shot espresso, no room for cream",
     links: {
@@ -45,7 +43,6 @@ const teamMembers: TeamMember[] = [
     id: 3,
     name: "Priya Patel",
     title: "VP of Customer Success",
-    image: "/lovable-uploads/faa9f337-664d-4ba0-b4b2-0b39450d9a12.png",
     bio: "Expert in helping businesses navigate digital transformation. Passionate about making advanced technology accessible to non-technical teams.",
     funFact: "Productivity hack: 90-minute deep work blocks with no notifications",
     links: {
@@ -81,51 +78,42 @@ export const TeamSection = ({ initialLoad }: TeamSectionProps) => {
         {teamMembers.map((member) => (
           <div 
             key={member.id} 
-            className="relative rounded-xl overflow-hidden group cursor-pointer transition duration-300"
+            className="backdrop-blur-sm bg-[#2a1a47]/30 p-6 rounded-xl border border-[#9b87f5]/20 transition hover:border-[#9b87f5]/40 hover:bg-[#2a1a47]/40 duration-300"
             onMouseEnter={() => setActiveTeamMember(member.id)}
             onMouseLeave={() => setActiveTeamMember(null)}
           >
-            <img 
-              src={member.image} 
-              alt={member.name}
-              className="w-full h-[350px] object-cover object-center group-hover:scale-105 transition duration-500"
-            />
+            <h3 className="text-xl font-bold text-white mb-3">{member.name}</h3>
+            <p className="text-[#9b87f5] font-medium mb-4">{member.title}</p>
             
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1a0b2e] via-[#1a0b2e]/70 to-transparent flex flex-col justify-end p-6">
-              <h3 className="text-xl font-bold text-white mb-1">{member.name}</h3>
-              <p className="text-[#9b87f5] font-medium">{member.title}</p>
+            <div 
+              className={`overflow-hidden transition-all duration-300 ${
+                activeTeamMember === member.id ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
+              }`}
+            >
+              <p className="text-gray-300 text-sm mb-3">{member.bio}</p>
+              <p className="text-xs text-gray-400 italic mb-4">{member.funFact}</p>
               
-              <div 
-                className={`mt-3 overflow-hidden transition-all duration-300 ${
-                  activeTeamMember === member.id ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
-                }`}
-              >
-                <p className="text-gray-300 text-sm mb-3">{member.bio}</p>
-                <p className="text-xs text-gray-400 italic mb-4">{member.funFact}</p>
-                
-                <div className="flex gap-3">
-                  {member.links?.linkedin && (
-                    <a href={member.links.linkedin} className="text-gray-400 hover:text-[#9b87f5] transition">
-                      <Linkedin className="h-5 w-5" />
-                    </a>
-                  )}
-                  {member.links?.github && (
-                    <a href={member.links.github} className="text-gray-400 hover:text-[#9b87f5] transition">
-                      <Github className="h-5 w-5" />
-                    </a>
-                  )}
-                  {member.links?.email && (
-                    <a href={member.links.email} className="text-gray-400 hover:text-[#9b87f5] transition">
-                      <Mail className="h-5 w-5" />
-                    </a>
-                  )}
-                </div>
+              <div className="flex gap-3">
+                {member.links?.linkedin && (
+                  <a href={member.links.linkedin} className="text-gray-400 hover:text-[#9b87f5] transition">
+                    <Linkedin className="h-5 w-5" />
+                  </a>
+                )}
+                {member.links?.github && (
+                  <a href={member.links.github} className="text-gray-400 hover:text-[#9b87f5] transition">
+                    <Github className="h-5 w-5" />
+                  </a>
+                )}
+                {member.links?.email && (
+                  <a href={member.links.email} className="text-gray-400 hover:text-[#9b87f5] transition">
+                    <Mail className="h-5 w-5" />
+                  </a>
+                )}
               </div>
             </div>
           </div>
         ))}
       </div>
-      
     </section>
   );
 };
