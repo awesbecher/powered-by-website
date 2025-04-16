@@ -1,96 +1,40 @@
 
-import { Brain, Mail, Phone, MessageCircle, FileText, ShoppingCart, Bot, File, Workflow } from "lucide-react";
 import { motion } from "framer-motion";
 
 export const CentralPlatform = () => {
   return (
     <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="w-80 h-52 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10 shadow-xl transform perspective-1000 rotateX-10"
+      className="w-[150px] h-[150px] rounded-full bg-gradient-to-br from-[#9b87f5]/80 to-[#6342ff]/80 flex items-center justify-center z-10 relative"
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ 
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
+        delay: 0.2 
+      }}
     >
-      {/* Brain Icon */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <Brain className="w-16 h-16 text-[#39FF14] opacity-40" />
+      <div className="text-white text-center">
+        <h3 className="font-bold text-lg mb-1">AI Agency</h3>
+        <p className="text-xs opacity-80">Powering your business</p>
       </div>
-
-      {/* File Icon to the left of brain */}
+      
+      {/* Inner glow effect */}
+      <div className="absolute inset-0 rounded-full bg-[#9b87f5]/30 blur-md z-[-1]"></div>
+      
+      {/* Pulse animation */}
       <motion.div 
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.3, duration: 0.5 }}
-        className="absolute top-[35%] left-8 transform -translate-y-1/2 p-3 bg-gradient-to-br from-[#9b87f5]/40 to-[#9b87f5]/60 rounded-lg backdrop-blur-sm border border-white/30"
-      >
-        <File className="w-6 h-6 text-white" />
-      </motion.div>
-
-      {/* Workflow Icon to the right of brain */}
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.3, duration: 0.5 }}
-        className="absolute top-2/5 right-8 transform -translate-y-1/2 p-3 bg-gradient-to-br from-[#9b87f5]/40 to-[#9b87f5]/60 rounded-lg backdrop-blur-sm border border-white/30"
-      >
-        <Workflow className="w-6 h-6 text-white" />
-      </motion.div>
-
-      {/* Robot Icon at Top Center */}
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.3, duration: 0.5 }}
-        className="absolute top-4 left-1/2 transform -translate-x-1/2 p-3 bg-gradient-to-br from-[#9b87f5]/40 to-[#9b87f5]/60 rounded-lg backdrop-blur-sm border border-white/30"
-      >
-        <Bot className="w-6 h-6 text-white" />
-      </motion.div>
-
-      {/* Icons inside the brain box */}
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.4, duration: 0.5 }}
-        className="absolute top-4 left-4 p-3 bg-gradient-to-br from-[#9b87f5]/40 to-[#9b87f5]/60 rounded-lg backdrop-blur-sm border border-white/30"
-      >
-        <Mail className="w-6 h-6 text-white" />
-      </motion.div>
-
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.5, duration: 0.5 }}
-        className="absolute top-16 right-4 p-3 bg-gradient-to-br from-[#9b87f5]/40 to-[#9b87f5]/60 rounded-lg backdrop-blur-sm border border-white/30"
-      >
-        <Phone className="w-6 h-6 text-white" />
-      </motion.div>
-
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.6, duration: 0.5 }}
-        className="absolute bottom-4 left-4 p-3 bg-gradient-to-br from-[#9b87f5]/40 to-[#9b87f5]/60 rounded-lg backdrop-blur-sm border border-white/30"
-      >
-        <MessageCircle className="w-6 h-6 text-white" />
-      </motion.div>
-
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.7, duration: 0.5 }}
-        className="absolute bottom-4 right-4 p-3 bg-gradient-to-br from-[#9b87f5]/40 to-[#9b87f5]/60 rounded-lg backdrop-blur-sm border border-white/30"
-      >
-        <FileText className="w-6 h-6 text-white" />
-      </motion.div>
-
-      {/* Shopping Cart Icon moved down */}
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.8, duration: 0.5 }}
-        className="absolute top-3/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-3 bg-gradient-to-br from-[#9b87f5]/40 to-[#9b87f5]/60 rounded-lg backdrop-blur-sm border border-white/30"
-      >
-        <ShoppingCart className="w-6 h-6 text-white" />
-      </motion.div>
+        className="absolute inset-0 rounded-full border-2 border-[#9b87f5]/50 z-[-1]"
+        animate={{ 
+          scale: [1, 1.2, 1],
+          opacity: [0.7, 0.2, 0.7]
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          repeatType: "reverse"
+        }}
+      ></motion.div>
     </motion.div>
   );
 };
