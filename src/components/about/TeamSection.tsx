@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Linkedin, Github, Mail } from "lucide-react";
@@ -127,11 +126,8 @@ export const TeamSection = ({ initialLoad }: TeamSectionProps) => {
         ))}
       </div>
       
-      <div className="mt-12 text-center">
-        <p className="text-gray-400">
-          We're a remote-first company with team members across North America, Europe, and Asia.
-        </p>
-      </div>
     </section>
   );
 };
+
+export default TeamSection;
