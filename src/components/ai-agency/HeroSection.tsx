@@ -1,6 +1,7 @@
-import React from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import { ArrowRightIcon } from 'lucide-react';
+import { ArrowRightIcon, MessageCircle, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
@@ -9,6 +10,13 @@ interface HeroSectionProps {
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), 300);
+    return () => clearTimeout(timer);
+  }, []);
+
   const handleTalkToAgent = () => {
     document.dispatchEvent(new CustomEvent('open-voice-dialog'));
   };
@@ -22,10 +30,19 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
         >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="inline-block px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm mb-4 text-[#9b87f5] border border-[#9b87f5]/30"
+          >
+            AI Solutions Built For Small & Medium Businesses
+          </motion.div>
+          
           <h1 
             className="text-5xl md:text-7xl font-bold text-white mb-6"
           >
-            <span className="text-gradient">Why should those Silicon Valley nerds have all the fancy AI toys?</span>{' '}
+            <span className="text-gradient">Why should those Silicon Valley nerds have all the fancy AI toys?</span>
           </h1>
           
           <motion.p 
@@ -35,9 +52,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
             transition={{ duration: 0.7, delay: 0.2 }}
           >
             We build and deploy custom AI agents to enhance your business operations and customer experience.
+            <span className="font-semibold text-white block mt-2">
+              Clients report up to <span className="text-[#9b87f5]">35% faster response times</span> with our AI integrations.
+            </span>
           </motion.p>
-          
-          
           
           <motion.div 
             className="flex flex-wrap justify-center gap-4"
@@ -48,10 +66,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
             <Link to="/contact">
               <Button 
                 size="lg" 
-                className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md"
+                className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md group"
               >
-                Get Started Today
-                <ArrowRightIcon className="ml-2" />
+                Transform Your Business Today
+                <ArrowRightIcon className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
             
@@ -59,19 +77,54 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
               onClick={handleTalkToAgent}
               size="lg" 
               variant="outline" 
-              className="bg-transparent border-2 border-[#9b87f5] text-white hover:bg-[#9b87f5]/20 px-8 py-6 text-lg rounded-md"
+              className="bg-transparent border-2 border-[#9b87f5] text-white hover:bg-[#9b87f5]/20 px-8 py-6 text-lg rounded-md group"
             >
+              <MessageCircle className="mr-2 group-hover:scale-110 transition-transform" />
               Talk to AI Agent
             </Button>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.8 }}
+            className="mt-8 flex justify-center items-center"
+          >
+            <button 
+              className="flex items-center text-white/80 hover:text-white transition-colors"
+              onClick={() => document.getElementById('approach')?.scrollIntoView({behavior: 'smooth'})}
+            >
+              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mr-3">
+                <Play size={16} className="text-[#9b87f5] ml-1" />
+              </div>
+              <span>See how we work</span>
+            </button>
           </motion.div>
         </motion.div>
       </div>
       
-      {/* Background elements */}
+      {/* Animated background elements */}
       <div className="absolute top-0 left-0 right-0 bottom-0 z-0 opacity-20">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-600 rounded-full filter blur-3xl"></div>
-        <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-indigo-600 rounded-full filter blur-3xl"></div>
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-600 rounded-full filter blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-indigo-600 rounded-full filter blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
       </div>
+      
+      {/* Trust signals */}
+      <motion.div 
+        className="container mx-auto max-w-5xl relative z-10 mt-6"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.6 }}
+      >
+        <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6">
+          <p className="text-white/60 text-sm font-medium">TRUSTED BY INNOVATIVE SMBs</p>
+          <div className="flex flex-wrap justify-center gap-x-10 gap-y-4 opacity-70 hover:opacity-100 transition-opacity">
+            {[1, 2, 3, 4, 5].map(i => (
+              <div key={i} className="h-6 w-20 bg-white/20 rounded animate-pulse" style={{animationDelay: `${i*0.2}s`}}></div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
     </section>
   );
 };

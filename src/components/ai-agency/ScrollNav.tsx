@@ -10,7 +10,8 @@ export const ScrollNav = () => {
     { id: 'what-is-ai-agency', label: 'About' },
     { id: 'how-different', label: 'Difference' },
     { id: 'approach', label: 'Approach' },
-    { id: 'partnership', label: 'Partnership' }
+    { id: 'partnership', label: 'Partnership' },
+    { id: 'contact', label: 'Contact' }
   ];
 
   const scrollTo = (id: string) => {

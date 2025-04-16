@@ -12,6 +12,8 @@ import { FinalCTASection } from "@/components/ai-agency/FinalCTASection";
 import { SocialProofSection } from "@/components/product-hunt/social-proof/SocialProofSection";
 import { FloatingContactButton } from "@/components/ai-agency/FloatingContactButton";
 import { ScrollNav } from "@/components/ai-agency/ScrollNav";
+import { TestimonialSection } from "@/components/ai-agency/TestimonialSection";
+import { ComparisonSection } from "@/components/ai-agency/ComparisonSection";
 
 const AIAgency = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -39,6 +41,10 @@ const AIAgency = () => {
       <DifferenceSection />
       
       <ProjectApproachSection />
+      
+      <TestimonialSection />
+      
+      <ComparisonSection />
       
       <PartnershipSection />
       
