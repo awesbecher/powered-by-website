@@ -103,11 +103,6 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
                   </div>
                 </div>
               </div>
-              
-              {/* AI designation layer */}
-              <div className="absolute -right-5 -bottom-5 bg-[#6342ff] text-white px-4 py-2 rounded-lg text-sm font-bold shadow-lg">
-                Powered by AI
-              </div>
             </div>
             
             {/* CTA button below phone */}
