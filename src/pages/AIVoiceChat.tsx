@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -40,7 +39,8 @@ const AIVoiceChat = () => {
       
       <BenefitsSection />
       
-      <CTASection />
+      {/* CTASection is no longer used, but if we keep it, pass the handleContact prop */}
+      {/* <CTASection handleContact={handleContact} /> */}
       
       <FAQSection />
       

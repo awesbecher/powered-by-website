@@ -5,9 +5,10 @@ import { ArrowRight } from "lucide-react";
 import { PoweredByText } from "@/components/shared/PoweredByText";
 
 interface CTASectionProps {
-  handleContact: () => void;
+  handleContact?: () => void; // Make this prop optional
 }
 
 export const CTASection = ({ handleContact }: CTASectionProps) => {
-  return null; // This component is no longer used
+  // This component is no longer used but we're fixing the typing
+  return null;
 };

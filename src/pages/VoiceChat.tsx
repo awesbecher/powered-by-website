@@ -3,7 +3,7 @@ import React from 'react';
 import Navbar from "@/components/layout/Navbar";
 import AnnouncementBanner from "@/components/layout/AnnouncementBanner";
 import Footer from "@/components/layout/Footer";
-import { AIVoiceChat } from '@/pages/AIVoiceChat';
+import AIVoiceChat from '@/pages/AIVoiceChat';
 
 /**
  * VoiceChat page component
