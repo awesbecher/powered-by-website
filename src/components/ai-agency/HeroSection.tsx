@@ -45,7 +45,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
           </h1>
           
           <motion.p 
-            className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10"
+            className="text-base md:text-xl text-gray-300 max-w-3xl mx-auto mb-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
