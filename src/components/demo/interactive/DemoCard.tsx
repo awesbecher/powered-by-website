@@ -6,10 +6,49 @@ import { DemoOption } from "./DemoData";
 
 interface DemoCardProps {
   option: DemoOption;
-  onShowDialog: () => void;
+  onShowDemo: () => void;
 }
 
-export const DemoCard = ({ option, onShowDialog }: DemoCardProps) => {
+export const DemoCard = ({ option, onShowDemo }: DemoCardProps) => {
+  let features = [];
+  
+  switch(option.id) {
+    case "real-estate":
+      features = [
+        "Property listing and viewing scheduling",
+        "Personalized property recommendations",
+        "Instant answers to property questions"
+      ];
+      break;
+    case "auto-dealer":
+      features = [
+        "Vehicle specifications and comparisons",
+        "Test drive scheduling and appointment management",
+        "Financing options and service inquiries"
+      ];
+      break;
+    case "hospitality":
+      features = [
+        "Room service ordering and customization",
+        "Hotel amenity information and booking",
+        "Local recommendations and concierge services"
+      ];
+      break;
+    case "retail":
+      features = [
+        "Appointment booking and management",
+        "Service inquiries and product information",
+        "Personalized recommendations and follow-ups"
+      ];
+      break;
+    default:
+      features = [
+        "Natural language understanding for human-like interactions",
+        "Contextual awareness to maintain conversation flow",
+        "Seamless integration with existing business systems"
+      ];
+  }
+
   return (
     <div className="bg-gradient-to-r from-[#1a0f2e] to-[#2a1c49] rounded-3xl border border-gray-800 overflow-hidden shadow-xl">
       <div className="grid grid-cols-1 lg:grid-cols-2">
@@ -25,22 +64,16 @@ export const DemoCard = ({ option, onShowDialog }: DemoCardProps) => {
           </p>
           
           <ul className="space-y-3 mb-8">
-            <li className="flex items-start">
-              <div className="mr-2 mt-1 text-[#9b87f5]">•</div>
-              <span className="text-gray-300">Natural language understanding for human-like interactions</span>
-            </li>
-            <li className="flex items-start">
-              <div className="mr-2 mt-1 text-[#9b87f5]">•</div>
-              <span className="text-gray-300">Contextual awareness to maintain conversation flow</span>
-            </li>
-            <li className="flex items-start">
-              <div className="mr-2 mt-1 text-[#9b87f5]">•</div>
-              <span className="text-gray-300">Seamless integration with your existing business systems</span>
-            </li>
+            {features.map((feature, index) => (
+              <li key={index} className="flex items-start">
+                <div className="mr-2 mt-1 text-[#9b87f5]">•</div>
+                <span className="text-gray-300">{feature}</span>
+              </li>
+            ))}
           </ul>
           
           <Button 
-            onClick={onShowDialog}
+            onClick={onShowDemo}
             className="bg-[#6342ff] hover:bg-[#5233e0] text-white px-6 py-6 text-lg rounded-xl"
           >
             {option.actionText} <ArrowRight className="ml-2 h-5 w-5" />

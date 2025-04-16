@@ -9,24 +9,30 @@ import { DemoTabs } from "./interactive/DemoTabs";
 import { DemoCard } from "./interactive/DemoCard";
 import { VoiceChatDialog } from "./interactive/VoiceChatDialog";
 import { demoOptions } from "./interactive/DemoData";
+import { useNavigate } from "react-router-dom";
 
 export const InteractiveDemoSection = () => {
-  const [activeTab, setActiveTab] = useState("voice");
+  const [activeTab, setActiveTab] = useState("real-estate");
   const [showDialog, setShowDialog] = useState(false);
   const [isCallActive, setIsCallActive] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleStartCall = async () => {
     setIsProcessing(true);
     try {
-      console.log("Starting call with Vapi");
-      const assistantId = "ebb38ba5-321a-49e4-b860-708bc864327f";
-      await initiateVapiCall(assistantId);
+      const activeOption = demoOptions.find(option => option.id === activeTab);
+      if (!activeOption) {
+        throw new Error("Selected demo option not found");
+      }
+
+      console.log(`Starting call with Vapi for ${activeOption.title}`);
+      await initiateVapiCall(activeOption.assistantId);
       setIsCallActive(true);
       toast({
         title: "Call connected",
-        description: "You are now speaking with our AI voice agent.",
+        description: `You are now speaking with our ${activeOption.title} AI agent.`,
       });
     } catch (error) {
       console.error("Error starting call:", error);
@@ -62,6 +68,16 @@ export const InteractiveDemoSection = () => {
     setShowDialog(false);
   };
 
+  const handleShowDemo = (demoId: string) => {
+    const demo = demoOptions.find(option => option.id === demoId);
+    
+    if (demo?.routePath) {
+      navigate(demo.routePath);
+    } else {
+      setShowDialog(true);
+    }
+  };
+
   return (
     <section id="interactive-demo" className="py-24 px-4 sm:px-6 lg:px-8 relative">
       <motion.div
@@ -73,22 +89,22 @@ export const InteractiveDemoSection = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold mb-6 bg-gradient-to-r from-[#9b87f5] to-[#6342ff] bg-clip-text text-transparent">
-              Experience Our AI Demos
+              Experience Our Industry-Specific AI Demos
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              See how our AI agents can transform your business communications across multiple channels.
-              Select any demo below to get started.
+              See how our AI agents can transform different industries through intelligent automation and personalized interactions.
+              Select any industry demo below to get started.
             </p>
           </div>
 
-          <Tabs defaultValue="voice" value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <Tabs defaultValue="real-estate" value={activeTab} onValueChange={setActiveTab} className="w-full">
             <DemoTabs activeTab={activeTab} onTabChange={setActiveTab} />
 
             {demoOptions.map(option => (
               <TabsContent key={option.id} value={option.id} className="mt-0">
                 <DemoCard 
                   option={option} 
-                  onShowDialog={() => setShowDialog(true)} 
+                  onShowDemo={() => handleShowDemo(option.id)} 
                 />
               </TabsContent>
             ))}
@@ -105,6 +121,7 @@ export const InteractiveDemoSection = () => {
             onStartCall={handleStartCall}
             onEndCall={handleEndCall}
             onClose={handleCloseDialog}
+            activeDemo={demoOptions.find(option => option.id === activeTab)}
           />
         </DialogContent>
       </Dialog>

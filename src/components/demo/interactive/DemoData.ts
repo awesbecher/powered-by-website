@@ -1,5 +1,5 @@
 
-import { Mic, Phone, MessageSquare, Mail, LucideIcon } from "lucide-react";
+import { Mic, Car, Hotel, Scissors } from "lucide-react";
 
 export interface DemoOption {
   id: string;
@@ -10,44 +10,54 @@ export interface DemoOption {
   color: string;
   isPopular?: boolean;
   imageSrc: string;
+  routePath?: string;
+  assistantId: string;
 }
 
 export const demoOptions: DemoOption[] = [
   {
-    id: "voice",
-    title: "Voice AI",
+    id: "real-estate",
+    title: "Real Estate",
     icon: Mic,
-    description: "Experience natural conversations with our AI voice agent",
-    actionText: "Start Voice Chat",
+    description: "See how AI agents can revolutionize property showings and client interactions",
+    actionText: "Start Real Estate Demo",
     color: "bg-purple-600",
     isPopular: true,
-    imageSrc: "/lovable-uploads/bd9e9055-ba23-4fcc-9c2a-4fda4b9dd627.png"
+    imageSrc: "/lovable-uploads/eb73b819-4b47-459b-88c4-aa0a3cd864b7.png",
+    routePath: "/real-estate",
+    assistantId: "c1c80d2e-6b65-4172-9f6b-09177b9e54f1"
   },
   {
-    id: "phone",
-    title: "Phone AI",
-    icon: Phone,
-    description: "See how our AI handles customer service calls",
-    actionText: "Watch Call Demo",
+    id: "auto-dealer",
+    title: "Auto Dealer",
+    icon: Car,
+    description: "Experience how AI enhances the car buying and service experience",
+    actionText: "Start Auto Dealer Demo",
     color: "bg-blue-600",
-    imageSrc: "/lovable-uploads/a895d546-c44f-4953-843b-945b3573a24d.png"
+    imageSrc: "/lovable-uploads/56608f55-255c-4123-83c5-1099d1c40bcb.png",
+    routePath: "/mercedes-dealer",
+    assistantId: "6c02f892-3082-4c68-a3ee-92ca86444331"
   },
   {
-    id: "chat",
-    title: "Chat AI",
-    icon: MessageSquare,
-    description: "Engage with our text-based AI assistant",
-    actionText: "Start Chat",
+    id: "hospitality",
+    title: "Hotels & Hospitality",
+    icon: Hotel,
+    description: "Discover how AI transforms guest services and room service experiences",
+    actionText: "Start Hospitality Demo",
     color: "bg-green-600",
-    imageSrc: "/lovable-uploads/1a963891-b5e5-4c4c-85fd-e5ec489343bd.png"
+    imageSrc: "/lovable-uploads/75ff6e78-9db7-436e-a063-2b5f8c500ee7.png",
+    routePath: "/room-service",
+    assistantId: "cd922dc9-eea6-4b43-878f-cb5cfd67e005"
   },
   {
-    id: "email",
-    title: "Email AI",
-    icon: Mail,
-    description: "Discover AI-powered email response automation",
-    actionText: "View Email Demo",
+    id: "retail",
+    title: "Retail Services",
+    icon: Scissors,
+    description: "See how AI revolutionizes appointment booking and customer service",
+    actionText: "Start Retail Demo",
     color: "bg-amber-600",
-    imageSrc: "/lovable-uploads/6c3f7264-17ad-411e-a2f3-69970fa1948a.png"
+    imageSrc: "/lovable-uploads/75237bd9-59bf-497d-89fc-9805c49cf84e.png",
+    routePath: "/retail-services",
+    assistantId: "defa6102-2358-4347-a192-24c6bc23ea4c"
   }
 ];
