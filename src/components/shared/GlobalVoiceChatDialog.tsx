@@ -12,6 +12,9 @@ export const GlobalVoiceChatDialog = () => {
   const isClosingDialogRef = useRef(false);
   const { toast } = useToast();
   const navigate = useNavigate();
+  
+  // The assistant ID we want to use
+  const ASSISTANT_ID = "ebb38ba5-321a-49e4-b860-708bc864327f";
 
   useEffect(() => {
     // Listen for custom event from navbar button
@@ -30,7 +33,7 @@ export const GlobalVoiceChatDialog = () => {
     setIsSubmitting(true);
     try {
       const vapi = getVapiInstance();
-      await vapi.start("ebb38ba5-321a-49e4-b860-708bc864327f");
+      await vapi.start(ASSISTANT_ID);
       setIsCallActive(true);
       
       vapi.on("call-end", () => {

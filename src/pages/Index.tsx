@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
@@ -27,6 +28,11 @@ const Index = () => {
   const handleNavigation = (path: string) => {
     window.scrollTo(0, 0);
     navigate(path);
+  };
+
+  // Function to handle opening the voice chat dialog
+  const handleOpenVoiceDialog = () => {
+    document.dispatchEvent(new CustomEvent('open-voice-dialog'));
   };
 
   return (
@@ -70,7 +76,7 @@ const Index = () => {
       <div className="relative z-20 flex flex-col items-center justify-center px-6 mb-6">
         <CallToActionButtons 
           handleNavigation={handleNavigation}
-          setShowDialog={() => document.dispatchEvent(new CustomEvent('open-voice-dialog'))}
+          setShowDialog={handleOpenVoiceDialog}
         />
       </div>
       
