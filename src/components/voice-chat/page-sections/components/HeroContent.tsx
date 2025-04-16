@@ -22,7 +22,7 @@ export const HeroContent: React.FC<HeroContentProps> = ({
   const navigate = useNavigate();
 
   const handleTryDemo = () => {
-    window.open('/insurance', '_blank');
+    window.open('https://www.poweredby.agency/real-estate', '_blank');
   };
 
   useEffect(() => {
@@ -99,3 +99,4 @@ export const HeroContent: React.FC<HeroContentProps> = ({
     </div>
   );
 };
+
