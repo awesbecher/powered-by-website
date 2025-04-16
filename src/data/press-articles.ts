@@ -1,3 +1,4 @@
+
 import { PressArticle } from "@/types/news";
 
 export const pressArticles: PressArticle[] = [
@@ -12,7 +13,7 @@ export const pressArticles: PressArticle[] = [
   },
   {
     id: "kxan-virtual-se-launch",
-    title: "Powered_by Agency Launches Virtual SE, Revolutionizing Pre-Sales Engineering with AI Agents",
+    title: "Virtual SE Launches to Provide SaaS Companies with AI Agents",
     publication: "KXAN",
     date: "April 14, 2025",
     excerpt: "Innovative AI solution transforms pre-sales engineering processes for small and medium-sized businesses",
