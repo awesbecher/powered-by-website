@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -15,13 +14,12 @@ interface ClosingCTAProps {
 
 export const ClosingCTA: React.FC<ClosingCTAProps> = ({
   customHeading,
-  customButtonText,
+  customButtonText = "Get Started",
   useCalendly = false,
   externalLink = null,
   onContactClick
 }) => {
   useEffect(() => {
-    // Initialize Cal.com with correct namespace and team link
     (async function () {
       try {
         console.log("Initializing Cal.com embed in ClosingCTA");
@@ -51,7 +49,6 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
       return;
     }
     
-    // If no onContactClick provided, try to trigger Cal.com directly
     console.log("Get Started button clicked in ClosingCTA");
     const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
     if (calBtn instanceof HTMLElement) {
@@ -59,7 +56,6 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
       calBtn.click();
     } else {
       console.error("Cal.com button not found in DOM from ClosingCTA");
-      // Try opening Cal.com directly
       try {
         (window as any).Cal?.('ui', {
           styles: { branding: { brandColor: '#000000' } },
@@ -94,7 +90,7 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
             asChild
           >
             <a href={externalLink} target="_blank" rel="noopener noreferrer">
-              {customButtonText || "Get Started"} <ArrowRight className="ml-2 h-5 w-5" />
+              {customButtonText} <ArrowRight className="ml-2 h-5 w-5" />
             </a>
           </Button>
         ) : useCalendly || onContactClick ? (
@@ -104,7 +100,7 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
             data-cal-link="team-powered-by-dfbtbb/get-started-today"
             data-cal-config='{"layout":"month_view"}'
           >
-            {customButtonText || "Get Started"} <ArrowRight className="ml-2 h-5 w-5" />
+            {customButtonText} <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         ) : (
           <Button
@@ -113,7 +109,7 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
             data-cal-link="team-powered-by-dfbtbb/get-started-today"
             data-cal-config='{"layout":"month_view"}'
           >
-            {customButtonText || "Get Started"} <ArrowRight className="ml-2 h-5 w-5" />
+            {customButtonText} <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         )}
       </div>
@@ -122,4 +118,3 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
 };
 
 export default ClosingCTA;
-
