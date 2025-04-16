@@ -25,7 +25,7 @@ export const DemoHero = ({ initialLoad }: DemoHeroProps) => {
           >
             <div className="bg-gradient-to-r from-[#6342ff]/20 to-[#9b87f5]/20 px-4 py-2 rounded-full inline-flex items-center gap-2 mb-6">
               <div className="w-2 h-2 rounded-full bg-[#9b87f5] animate-pulse"></div>
-              <span className="text-[#9b87f5] font-medium">AI Demos</span>
+              <span className="text-[#9b87f5] font-medium">AI Agent Demos</span>
             </div>
             
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 leading-tight mb-6">
