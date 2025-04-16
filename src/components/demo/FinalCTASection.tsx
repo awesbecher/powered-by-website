@@ -61,7 +61,7 @@ export const FinalCTASection = () => {
                 onClick={handleBookDemo}
                 className="bg-[#6342ff] hover:bg-[#5233e0] text-white px-8 py-6 text-lg rounded-xl"
               >
-                Book a Demo
+                Get Started
               </CTAButton>
 
               <CTAFeatureList features={ctaFeatures} />
