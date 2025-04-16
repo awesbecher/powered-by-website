@@ -11,7 +11,7 @@ import { MessageSquare, Phone, Mail, Smartphone, Cpu } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import OfferButton from "@/components/home/OfferButton";
 import { getCalApi } from "@calcom/embed-react";
-import { CTASection } from "@/components/pricing/CTASection";
+import CTASection from "@/components/pricing/CTASection";  // Changed from named import to default import
 import Footer from "@/components/layout/Footer";
 import { OptimizedImage } from "@/components/shared/OptimizedImage";
 import { motion } from "framer-motion";
