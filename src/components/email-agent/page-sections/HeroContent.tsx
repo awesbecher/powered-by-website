@@ -1,9 +1,7 @@
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Tv, Mic } from "lucide-react";
-import { Link } from "react-router-dom";
-import { PoweredByText } from "@/components/shared/PoweredByText";
-import { useState, useEffect } from "react";
+import { ArrowRight, Tv, Play, Mic } from "lucide-react";
+import { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 interface HeroContentProps {
@@ -14,56 +12,71 @@ interface HeroContentProps {
 export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) => {
   const [videoOpen, setVideoOpen] = useState(false);
   
-  // Function to open Calendly popup
-  const openCalendly = () => {
-    if (window.Calendly) {
-      window.Calendly.initPopupWidget({
-        url: 'https://calendly.com/d/cm48-q4x-c3v?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=7100ff'
-      });
+  const handleDemoClick = () => {
+    const calButton = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-email-agents"]');
+    if (calButton instanceof HTMLElement) {
+      calButton.click();
     }
   };
   
   return (
-    <div className={`w-full space-y-4 transition-all duration-1000 ease-out transform
+    <div className={`w-full space-y-6 transition-all duration-1000 ease-out transform
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
-        Meet Your New <span className="text-[#9b87f5]">AI Email Agent</span>: Genius unleashed!
+      
+      {/* Tag line */}
+      <div className="inline-block px-3 py-1 bg-[#9b87f5]/10 rounded-full border border-[#9b87f5]/20">
+        <p className="text-sm text-[#9b87f5] font-medium">Next-Generation Email Communication</p>
+      </div>
+      
+      <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+        Transform Your Inbox with <span className="text-[#9b87f5] relative">
+          AI Email Agents
+          <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 358 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 9C118.957 4.47226 238.5 4.47231 355 9" stroke="#9b87f5" strokeWidth="6" strokeLinecap="round"/>
+          </svg>
+        </span>
       </h1>
-      <p className="text-lg text-gray-300">
-        Imagine an AI agent that sends and receives emails for your business completely by itself. Sounds scary, right? Well, with the latest in AI agent intelligence, you can now deploy autonomous email agents that think, write, and behave exactly as your most well-trained staff.
+      
+      <p className="text-xl text-gray-300">
+        Automate conversations, convert leads faster, and deliver instant support—24/7.
       </p>
-      <p className="text-lg text-gray-300">
-        With an AI Email Agent by <PoweredByText />, you get intelligent email communication that handles follow-ups, inquiries, and customer interactions—all autonomously and compliant with company policies and privacy requirements.
-      </p>
-      <div className="space-y-3 text-gray-300">
-        <p className="text-lg">Our AI Email Agent adapts to your business needs:</p>
-        <ul className="list-disc list-inside space-y-1 pl-2 text-sm">
-          <li>Follow-up emails after customer calls with personalized summaries</li>
-          <li>Appointment scheduling and confirmation emails</li>
-          <li>Meeting coordination and document preparation</li>
-          <li>Fully "guardrailed" and compliant to your policy guidelines & privacy standards</li>
+      
+      <div className="space-y-4 text-gray-300">
+        <p className="text-xl">Imagine an AI that:</p>
+        <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2">
+          {[
+            "Responds to inquiries in seconds, not hours",
+            "Handles customer queries with human-like understanding",
+            "Updates CRM and systems automatically",
+            "Learns from every interaction to improve over time",
+            "Provides consistent messaging across all communications",
+            "Frees your team to focus on high-value tasks"
+          ].map((item, i) => (
+            <li key={i} className="flex items-start">
+              <div className="mr-2 mt-1 text-[#9b87f5]">•</div>
+              <span>{item}</span>
+            </li>
+          ))}
         </ul>
       </div>
       
-      {/* "See for yourself" section with video button and new See Demo button */}
-      <div className="flex flex-col items-start mb-4">
-        <p className="text-gray-300 font-bold mb-1 text-left">See for yourself:</p>
-        <div className="flex flex-wrap gap-3 self-start">
-          <Button 
-            className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-4 text-base rounded-md flex items-center"
-            onClick={() => setVideoOpen(true)}
-          >
-            <Tv className="mr-2 h-5 w-5" /> Watch our intro to AI Email Agents
-          </Button>
-          
-          {/* New "See Demo" button */}
-          <Button 
-            className="bg-transparent hover:bg-white/10 text-white px-6 py-4 text-base rounded-md flex items-center justify-center border-2 border-white"
-            onClick={openCalendly}
-          >
-            <Mic className="mr-2 h-5 w-5" /> See Demo
-          </Button>
-        </div>
+      {/* CTA buttons */}
+      <div className="flex flex-wrap gap-4 pt-2">
+        <Button 
+          className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
+          data-cal-namespace="get-started-with-ai-email-agents"
+          data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-email-agents"
+          data-cal-config='{"layout":"month_view"}'
+        >
+          <ArrowRight className="mr-2 h-5 w-5" /> Get Started
+        </Button>
+        
+        <Button 
+          className="bg-transparent hover:bg-white/10 text-white border-2 border-white px-6 py-5 text-base rounded-md flex items-center"
+          onClick={() => setVideoOpen(true)}
+        >
+          <Tv className="mr-2 h-5 w-5" /> Watch Overview
+        </Button>
       </div>
       
       {/* YouTube Video Dialog */}

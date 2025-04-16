@@ -1,7 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
-import { PoweredByText } from "@/components/shared/PoweredByText";
+import { ArrowRight, Mail, CalendarClock } from "lucide-react";
 
 interface FinalCTASectionProps {
   handleContact: () => void;
@@ -9,21 +8,60 @@ interface FinalCTASectionProps {
 
 export const FinalCTASection = ({ handleContact }: FinalCTASectionProps) => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl text-center">
-      <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8">
-        Ready to transform your SMB with AI agents?
-      </h2>
-      <p className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto">
-        Join the businesses revolutionizing the way they work, communicate, & engage customers.
-      </p>
-      <Button 
-        data-cal-namespace="get-started-with-ai-email-agents"
-        data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-email-agents"
-        data-cal-config='{"layout":"month_view"}'
-        className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-8 py-6 text-lg rounded-md mx-auto flex items-center"
-      >
-        Get Started <ArrowRight className="ml-2 h-5 w-5" />
-      </Button>
+    <section className="py-24 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
+      {/* CTA Card with gradient background */}
+      <div className="relative overflow-hidden rounded-2xl">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#6342ff] to-[#9b87f5] opacity-90"></div>
+        
+        {/* Decorative elements */}
+        <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-white/10 blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-20 w-80 h-80 rounded-full bg-white/10 blur-3xl"></div>
+        
+        <div className="relative z-10 px-8 py-16">
+          <div className="flex items-center justify-center mb-6">
+            <div className="bg-white/20 p-3 rounded-full">
+              <Mail className="h-8 w-8 text-white" />
+            </div>
+          </div>
+          
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 text-center max-w-3xl mx-auto">
+            Ready to transform your business communication with AI?
+          </h2>
+          
+          <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto text-center">
+            Join the businesses revolutionizing how they engage customers and streamline operations with intelligent email automation.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button 
+              data-cal-namespace="get-started-with-ai-email-agents"
+              data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-email-agents"
+              data-cal-config='{"layout":"month_view"}'
+              className="bg-white hover:bg-gray-100 text-[#6342ff] px-8 py-6 text-lg rounded-xl font-bold flex items-center w-full sm:w-auto"
+            >
+              Get Started <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+            
+            <Button 
+              onClick={() => {
+                // Try to play video by finding and clicking the Watch Overview button
+                const watchButton = document.querySelector('button:has(.lucide-tv)');
+                if (watchButton instanceof HTMLElement) {
+                  watchButton.click();
+                }
+              }}
+              className="bg-transparent hover:bg-white/20 text-white border-2 border-white px-8 py-6 text-lg rounded-xl flex items-center w-full sm:w-auto"
+            >
+              <CalendarClock className="mr-2 h-5 w-5" />
+              Schedule a Demo
+            </Button>
+          </div>
+          
+          <div className="mt-8 text-center text-white/70">
+            <p>No credit card required. Start transforming your email communications today.</p>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };

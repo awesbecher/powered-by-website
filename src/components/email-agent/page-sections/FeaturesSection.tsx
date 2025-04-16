@@ -1,59 +1,65 @@
 
-import { Mail, MessageCircle, Settings, Clock, Shield, FileText, CalendarCheck, Users, Database, Reply } from "lucide-react";
-
-interface FeatureCardProps {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-}
-
-const FeatureCard = ({ icon, title, description }: FeatureCardProps) => {
-  return (
-    <div className="bg-[#1a1a24] p-6 rounded-xl border border-gray-800 hover:border-[#9b87f5]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#9b87f5]/10">
-      <div className="mb-4">{icon}</div>
-      <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-      <p className="text-gray-400">{description}</p>
-    </div>
-  );
-};
+import React from "react";
+import { Mail, Clock, Zap, BarChart3, Bot, Lock } from "lucide-react";
 
 export const FeaturesSection = () => {
+  const features = [
+    {
+      icon: <Mail className="h-10 w-10 text-[#9b87f5]" />,
+      title: "Smart Email Management",
+      description: "Automatically categorize, prioritize, and respond to emails based on content and urgency."
+    },
+    {
+      icon: <Clock className="h-10 w-10 text-[#9b87f5]" />,
+      title: "24/7 Availability",
+      description: "Never miss a customer inquiry, even outside business hours or during holidays."
+    },
+    {
+      icon: <Zap className="h-10 w-10 text-[#9b87f5]" />,
+      title: "Lightning-Fast Responses",
+      description: "Deliver instant, accurate replies to common questions and requests in seconds."
+    },
+    {
+      icon: <BarChart3 className="h-10 w-10 text-[#9b87f5]" />,
+      title: "Performance Analytics",
+      description: "Track response times, customer satisfaction, and conversion rates with detailed analytics."
+    },
+    {
+      icon: <Bot className="h-10 w-10 text-[#9b87f5]" />,
+      title: "Continuous Learning",
+      description: "Your Email Agent gets smarter with every interaction, constantly improving its effectiveness."
+    },
+    {
+      icon: <Lock className="h-10 w-10 text-[#9b87f5]" />,
+      title: "Enterprise-Grade Security",
+      description: "Industry-leading encryption and privacy controls keep your email communications secure."
+    }
+  ];
+
   return (
-    <section className="py-2 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
-      <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-16">
-        Autonomous AI Email Agents for Your Business
-      </h2>
+    <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl" id="features">
+      {/* Section header */}
+      <div className="text-center mb-16">
+        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Powerful Features That Drive Results</h2>
+        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          Our AI Email Agent combines advanced machine learning with practical business tools to transform your email communications.
+        </p>
+      </div>
+      
+      {/* Features grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <FeatureCard 
-          icon={<Mail className="w-10 h-10 text-[#9b87f5]" />}
-          title="Automated Follow-ups"
-          description="Send personalized follow-up emails after customer calls with summaries, next steps, and relevant information and documents." 
-        />
-        <FeatureCard 
-          icon={<Reply className="w-10 h-10 text-[#9b87f5]" />}
-          title="Super Intelligent & Privacy Compliant"
-          description="Automatically reply to customer inquiries with accurate information based on your business knowledge base & privacy standards." 
-        />
-        <FeatureCard 
-          icon={<CalendarCheck className="w-10 h-10 text-[#9b87f5]" />}
-          title="Meeting Coordination"
-          description="Autonomously schedule, confirm, and send reminders for meetings based on calendar availability." 
-        />
-        <FeatureCard 
-          icon={<FileText className="w-10 h-10 text-[#9b87f5]" />}
-          title="Document Preparation"
-          description="Generate and attach relevant documents and resources to outgoing emails based on customer needs." 
-        />
-        <FeatureCard 
-          icon={<Database className="w-10 h-10 text-[#9b87f5]" />}
-          title="CRM Integration"
-          description="Seamlessly connect with your existing CRM to track customer interactions and update contact records automatically." 
-        />
-        <FeatureCard 
-          icon={<Shield className="w-10 h-10 text-[#9b87f5]" />}
-          title="Enterprise-Grade Security"
-          description="All email communications are encrypted and processed with enterprise-level security protocols and compliance." 
-        />
+        {features.map((feature, index) => (
+          <div 
+            key={index} 
+            className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-700 hover:border-[#9b87f5]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#9b87f5]/10"
+          >
+            <div className="mb-4 bg-gray-800 rounded-xl w-16 h-16 flex items-center justify-center">
+              {feature.icon}
+            </div>
+            <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
+            <p className="text-gray-300">{feature.description}</p>
+          </div>
+        ))}
       </div>
     </section>
   );

@@ -4,9 +4,10 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { HeroSection } from '@/components/email-agent/page-sections/HeroSection';
 import { FeaturesSection } from '@/components/email-agent/page-sections/FeaturesSection';
-import { BenefitsSection } from '@/components/email-agent/page-sections/BenefitsSection';
+import { HowItWorksSection } from '@/components/email-agent/page-sections/HowItWorksSection';
+import { ROISection } from '@/components/email-agent/page-sections/ROISection';
+import { CaseStudySection } from '@/components/email-agent/page-sections/CaseStudySection';
 import { FAQSection } from '@/components/email-agent/page-sections/FAQSection';
-// Removed CTASection import
 import { FinalCTASection } from '@/components/email-agent/page-sections/FinalCTASection';
 import { getCalApi } from "@calcom/embed-react";
 
@@ -38,8 +39,11 @@ const EmailAgent = () => {
   
   // Handle contact button clicks
   const handleContact = () => {
-    // This function is maintained for compatibility with other components
-    // but we're no longer using Calendly's popup widget
+    // Open Cal.com booking dialog
+    const calButton = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-email-agents"]');
+    if (calButton instanceof HTMLElement) {
+      calButton.click();
+    }
   };
 
   return (
@@ -47,13 +51,12 @@ const EmailAgent = () => {
       <Navbar />
       <main>
         <HeroSection initialLoad={initialLoad} handleContact={handleContact} />
-        <div className="container mx-auto px-4">
-          <FeaturesSection />
-          <BenefitsSection />
-          <FAQSection />
-          {/* Removed CTASection */}
-          <FinalCTASection handleContact={handleContact} />
-        </div>
+        <FeaturesSection />
+        <HowItWorksSection />
+        <ROISection />
+        <CaseStudySection />
+        <FAQSection />
+        <FinalCTASection handleContact={handleContact} />
       </main>
       <Footer />
     </div>
