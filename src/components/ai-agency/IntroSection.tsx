@@ -2,6 +2,7 @@
 import React from 'react';
 import { InfoCard } from './InfoCard';
 import { ServiceIcons } from './ServiceIcons';
+import { Brain, Layers, RefreshCw } from 'lucide-react';
 
 export const IntroSection: React.FC = () => {
   return (
@@ -20,17 +21,17 @@ export const IntroSection: React.FC = () => {
           <InfoCard
             title="Custom AI Agents"
             description="Tailored AI solutions designed specifically for your business needs, brand voice, and customer experience."
-            icon="brain"
+            icon={Brain}
           />
           <InfoCard
             title="Multi-Channel Deployment"
             description="Deploy your AI agents across voice, chat, email, SMS, and custom channels for a unified experience."
-            icon="layers"
+            icon={Layers}
           />
           <InfoCard
             title="Continuous Optimization"
             description="We analyze performance and continuously improve your AI agents based on real interactions and feedback."
-            icon="refresh-cw"
+            icon={RefreshCw}
           />
         </div>
 
