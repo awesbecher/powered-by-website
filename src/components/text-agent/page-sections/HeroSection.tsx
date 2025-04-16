@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { HeroContent } from "./HeroContent";
 import { MessageSquare, Phone, MessageCircle } from "lucide-react";
+import { getCalApi } from "@calcom/embed-react";
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -11,6 +12,27 @@ interface HeroSectionProps {
 
 export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
   const { toast } = useToast();
+  
+  // Initialize Cal.com at the component level
+  useEffect(() => {
+    (async function () {
+      try {
+        console.log("Initializing Cal.com embed in TextAgent HeroSection");
+        const cal = await getCalApi({"namespace":"get-started-with-ai-sms-text-agents"});
+        cal("ui", {
+          "cssVarsPerTheme": {
+            "light": {"cal-brand":"#292929"},
+            "dark": {"cal-brand":"#fafafa"}
+          },
+          "hideEventTypeDetails": false,
+          "layout": "month_view"
+        });
+        console.log("Cal.com embed initialized successfully in TextAgent HeroSection");
+      } catch (error) {
+        console.error("Error initializing Cal.com embed in TextAgent HeroSection:", error);
+      }
+    })();
+  }, []);
 
   return (
     <section className="relative pt-20 pb-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl overflow-hidden">
@@ -108,9 +130,18 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
             {/* CTA button below phone */}
             <div className="mt-8">
               <button 
-                data-cal-namespace="get-started-with-ai-sms-text-agents"
-                data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
-                data-cal-config='{"layout":"month_view"}'
+                onClick={() => {
+                  console.log("See It In Action button clicked");
+                  // Direct attempt to click the Cal button
+                  const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"]');
+                  if (calBtn instanceof HTMLElement) {
+                    calBtn.click();
+                    console.log("Cal.com button clicked programmatically from HeroSection See It In Action");
+                  } else {
+                    console.error("Cal.com button not found in DOM from HeroSection See It In Action");
+                    handleContact();
+                  }
+                }}
                 className="bg-[#6342ff] hover:bg-[#7352ff] text-white font-bold py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm"
               >
                 <Phone className="w-5 h-5" />
@@ -120,6 +151,14 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
           </div>
         </div>
       </div>
+      
+      {/* Hidden Cal.com button that will be triggered programmatically */}
+      <button
+        data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
+        data-cal-namespace="get-started-with-ai-sms-text-agents"
+        data-cal-config='{"layout":"month_view"}'
+        className="hidden"
+      ></button>
     </section>
   );
 };

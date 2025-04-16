@@ -68,9 +68,17 @@ export const FeaturesSection = () => {
         
         <div className="mt-12 text-center">
           <Button 
-            data-cal-namespace="get-started-with-ai-sms-text-agents"
-            data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
-            data-cal-config='{"layout":"month_view"}'
+            onClick={() => {
+              console.log("See Features in Action button clicked");
+              // Direct attempt to click the Cal button
+              const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"]');
+              if (calBtn instanceof HTMLElement) {
+                calBtn.click();
+                console.log("Cal.com button clicked programmatically from FeaturesSection");
+              } else {
+                console.error("Cal.com button not found in DOM from FeaturesSection");
+              }
+            }}
             className="bg-[#6342ff] hover:bg-[#7352ff] text-white px-6 py-3 text-lg rounded-xl"
           >
             See Features in Action
