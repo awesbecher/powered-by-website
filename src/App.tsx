@@ -34,7 +34,7 @@ import AgentGPT from './pages/AgentGPT';
 import AgentGPTBuilder from './pages/AgentGPTBuilder';
 import { GlobalVoiceChatDialog } from '@/components/shared/GlobalVoiceChatDialog';
 import MercedesDealer from './pages/MercedesDealer';
-import RoomService from './pages/room-service/RoomService';
+import RoomService from './pages/room-service';
 import RetailServices from './pages/RetailServices';
 
 const queryClient = new QueryClient();
