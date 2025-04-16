@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon, MessageCircle, Play } from 'lucide-react';
@@ -36,7 +35,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="inline-block px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm mb-4 text-[#9b87f5] border border-[#9b87f5]/30"
           >
-            AI Agent Solutions Built For Small & Medium Businesses
+            AI Agent Solutions Built For Small & Medium-sized Businesses
           </motion.div>
           
           <h1 
