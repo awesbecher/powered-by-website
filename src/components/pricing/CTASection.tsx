@@ -1,6 +1,7 @@
 
 import React from "react";
 import { useEffect } from "react";
+import { getCalApi } from "@calcom/embed-react";
 
 // Define the Tally interface
 interface TallyWindow extends Window {
@@ -17,6 +18,19 @@ const CTASection = () => {
     script.src = "https://tally.so/widgets/embed.js";
     script.async = true;
     document.body.appendChild(script);
+
+    // Initialize Cal.com
+    (async function () {
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      cal("ui", {
+        "cssVarsPerTheme": {
+          "light": {"cal-brand":"#292929"},
+          "dark": {"cal-brand":"#fafafa"}
+        },
+        "hideEventTypeDetails": false,
+        "layout": "month_view"
+      });
+    })();
 
     return () => {
       document.body.removeChild(script);
@@ -50,12 +64,14 @@ const CTASection = () => {
         >
           Contact Sales
         </button>
-        <a
-          href="/contact"
+        <button
           className="px-8 py-3 text-lg font-medium text-white bg-transparent hover:bg-white/10 border border-white/30 rounded-lg transition duration-300 shadow-lg"
+          data-cal-namespace="get-started-today"
+          data-cal-link="team-powered-by-dfbtbb/get-started-today"
+          data-cal-config='{"layout":"month_view"}'
         >
           Get Started
-        </a>
+        </button>
       </div>
     </div>
   );
