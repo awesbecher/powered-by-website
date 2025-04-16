@@ -6,10 +6,12 @@ import Footer from '@/components/layout/Footer';
 import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 
-// Import refactored components
+// Import all page sections
 import { HeroSection } from '@/components/ai-receptionist/page-sections/HeroSection';
 import { BenefitsSection } from '@/components/ai-receptionist/page-sections/BenefitsSection';
 import { FeaturesSection } from '@/components/ai-receptionist/page-sections/FeaturesSection';
+import { HowItWorksSection } from '@/components/ai-receptionist/page-sections/HowItWorksSection';
+import { TestimonialsSection } from '@/components/ai-receptionist/page-sections/TestimonialsSection';
 import { FAQSection } from '@/components/ai-receptionist/page-sections/FAQSection';
 import { FinalCTASection } from '@/components/ai-receptionist/page-sections/FinalCTASection';
 import { VoiceChatDialog } from '@/components/ai-receptionist/VoiceChatDialog';
@@ -37,7 +39,7 @@ const AIReceptionist = () => {
     (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
     Cal("init", "get-started-with-ai-receptionist", {origin:"https://cal.com"});
 
-    Cal.ns["get-started-with-ai-receptionist"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"week_view"});
+    Cal.ns["get-started-with-ai-receptionist"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
     `;
     document.body.appendChild(script);
     
@@ -108,22 +110,28 @@ const AIReceptionist = () => {
     <div className="min-h-screen bg-gradient-to-b from-[#1a0b2e] to-[#13151a]">
       <Navbar />
       
-      <HeroSection 
-        initialLoad={initialLoad}
-        handleVoiceChatClick={handleVoiceChatClick}
-        handleTryVoiceDemo={handleTryVoiceDemo}
-        videoOpen={videoOpen}
-        setVideoOpen={setVideoOpen}
-      />
+      <main>
+        <HeroSection 
+          initialLoad={initialLoad}
+          handleVoiceChatClick={handleVoiceChatClick}
+          handleTryVoiceDemo={handleTryVoiceDemo}
+          videoOpen={videoOpen}
+          setVideoOpen={setVideoOpen}
+        />
 
-      <BenefitsSection />
+        <BenefitsSection />
+        
+        <HowItWorksSection />
+        
+        <FeaturesSection />
+        
+        <TestimonialsSection />
+        
+        <FAQSection />
+
+        <FinalCTASection />
+      </main>
       
-      <FeaturesSection />
-      
-      <FAQSection />
-
-      <FinalCTASection />
-
       <VoiceChatDialog
         showDialog={showVoiceChatDialog}
         isCallActive={isCallActive}
