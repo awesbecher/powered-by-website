@@ -14,7 +14,7 @@ export const WhoWeAreSection = ({ initialLoad, whoWeAreRef }: WhoWeAreSectionPro
         ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
         
         {/* Team Photo */}
-        <div className="mb-8 max-w-3xl mx-auto">
+        <div className="mb-8 max-w-2xl mx-auto">
           <img 
             src="/lovable-uploads/573aa598-a658-44ab-a9bd-9048d21051df.png" 
             alt="Powered By Team" 
