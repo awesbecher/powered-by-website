@@ -18,10 +18,23 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
   }, []);
 
   useEffect(() => {
-    // Initialize Cal.com
+    // Initialize Cal.com with the correct namespace and team link
     (async function () {
-      const cal = await getCalApi({"namespace":"get-started-today"});
-      cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+      try {
+        console.log("Initializing Cal.com embed in AI Agency HeroSection");
+        const cal = await getCalApi({"namespace":"get-started-today"});
+        cal("ui", {
+          "cssVarsPerTheme": {
+            "light": {"cal-brand":"#292929"},
+            "dark": {"cal-brand":"#fafafa"}
+          },
+          "hideEventTypeDetails": false,
+          "layout": "month_view"
+        });
+        console.log("Cal.com embed initialized successfully in AI Agency HeroSection");
+      } catch (error) {
+        console.error("Error initializing Cal.com embed in AI Agency HeroSection:", error);
+      }
     })();
   }, []);
 
@@ -74,6 +87,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
               data-cal-config='{"layout":"month_view"}'
               size="lg" 
               className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md group"
+              onClick={() => {
+                console.log("Get Started button clicked in AI Agency HeroSection");
+                // Check if the button was actually clicked programmatically
+                const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
+                if (calBtn instanceof HTMLElement) {
+                  console.log("Cal.com button found, triggering click");
+                } else {
+                  console.error("Cal.com button not found in DOM from AI Agency HeroSection");
+                }
+              }}
             >
               Get Started
               <Calendar className="ml-2 group-hover:scale-110 transition-transform" />

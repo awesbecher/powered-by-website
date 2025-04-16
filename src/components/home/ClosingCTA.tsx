@@ -21,10 +21,23 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
   onContactClick
 }) => {
   useEffect(() => {
-    // Initialize Cal.com
+    // Initialize Cal.com with correct namespace and team link
     (async function () {
-      const cal = await getCalApi({"namespace":"get-started-today"});
-      cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+      try {
+        console.log("Initializing Cal.com embed in ClosingCTA");
+        const cal = await getCalApi({"namespace":"get-started-today"});
+        cal("ui", {
+          "cssVarsPerTheme": {
+            "light": {"cal-brand":"#292929"},
+            "dark": {"cal-brand":"#fafafa"}
+          },
+          "hideEventTypeDetails": false,
+          "layout": "month_view"
+        });
+        console.log("Cal.com embed initialized successfully in ClosingCTA");
+      } catch (error) {
+        console.error("Error initializing Cal.com embed in ClosingCTA:", error);
+      }
     })();
   }, []);
 
@@ -66,6 +79,16 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
             data-cal-link="team-powered-by-dfbtbb/get-started-today"
             data-cal-config='{"layout":"month_view"}'
             className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md"
+            onClick={() => {
+              console.log("Get Started button clicked in ClosingCTA");
+              // Check if the button was clicked programmatically
+              const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
+              if (calBtn instanceof HTMLElement) {
+                console.log("Cal.com button found in ClosingCTA");
+              } else {
+                console.error("Cal.com button not found in DOM from ClosingCTA");
+              }
+            }}
           >
             {customButtonText || "Get Started"} <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
