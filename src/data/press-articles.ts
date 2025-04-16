@@ -20,6 +20,15 @@ export const pressArticles: PressArticle[] = [
     imageUrl: "/lovable-uploads/c1f2f583-29f8-4a0b-b49f-4c6a2d99a653.png"
   },
   {
+    id: "uk-herald-tribune-virtual-se-launch",
+    title: "Virtual SE Launches, Revolutionizing SaaS Pre-Sales Engineering with AI Agents",
+    publication: "UK Herald Tribune",
+    date: "April 14, 2025",
+    excerpt: "Innovative AI solution transforms pre-sales engineering processes for SaaS companies",
+    externalUrl: "https://www.ukheraldtribune.com/article/803158544-virtual-se-launches-revolutionizing-saas-pre-sales-engineering-with-ai-agents",
+    imageUrl: "/lovable-uploads/8de5c56f-4020-4c69-8c49-d392f864f3e0.png"
+  },
+  {
     id: "marketwatch-feature",
     title: "Powered_by Leads the AI Agent Revolution for Customer Service",
     publication: "MarketWatch",
@@ -135,15 +144,6 @@ export const pressArticles: PressArticle[] = [
     excerpt: "Innovative AI solution transforms pre-sales engineering processes for small and medium-sized businesses",
     externalUrl: "https://www.benzinga.com/pressreleases/25/04/n44791745/powered-by-agency-launches-virtual-se-revolutionizing-pre-sales-engineering-with-ai-agents",
     imageUrl: "/lovable-uploads/45b1dda4-731b-43cb-ad21-23e395adfd56.png"
-  },
-  {
-    id: "uk-herald-tribune-virtual-se-launch",
-    title: "Virtual SE Launches, Revolutionizing SaaS Pre-Sales Engineering with AI Agents",
-    publication: "UK Herald Tribune",
-    date: "April 14, 2025",
-    excerpt: "Innovative AI solution transforms pre-sales engineering processes for SaaS companies",
-    externalUrl: "https://www.ukheraldtribune.com/article/803158544-virtual-se-launches-revolutionizing-saas-pre-sales-engineering-with-ai-agents",
-    imageUrl: "/lovable-uploads/8de5c56f-4020-4c69-8c49-d392f864f3e0.png"
   },
   {
     id: "small-business-newswatch-virtual-se-launch",
