@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Tv, Mic } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -24,6 +24,27 @@ export const HeroContent: React.FC<HeroContentProps> = ({
   const handleTryDemo = () => {
     window.open('https://www.poweredby.agency/real-estate', '_blank');
   };
+  
+  // Ensure Cal.com is initialized at the component level too
+  useEffect(() => {
+    (async function () {
+      try {
+        console.log("Initializing Cal.com embed in VoiceChat HeroContent");
+        const cal = await getCalApi({"namespace":"get-started-with-voice-ai-chat"});
+        cal("ui", {
+          "cssVarsPerTheme": {
+            "light": {"cal-brand":"#292929"},
+            "dark": {"cal-brand":"#fafafa"}
+          },
+          "hideEventTypeDetails": false,
+          "layout": "month_view"
+        });
+        console.log("Cal.com embed initialized successfully in VoiceChat HeroContent");
+      } catch (error) {
+        console.error("Error initializing Cal.com embed in VoiceChat HeroContent:", error);
+      }
+    })();
+  }, []);
 
   return (
     <div className={`transition-all duration-1000 ease-out transform
@@ -60,7 +81,9 @@ export const HeroContent: React.FC<HeroContentProps> = ({
               <Mic className="mr-2 h-5 w-5" /> Try Demo
             </Button>
             
-            <CalendarButton />
+            <CalendarButton onClick={() => {
+              console.log("CalendarButton clicked from HeroContent");
+            }} />
           </div>
         </div>
       </div>

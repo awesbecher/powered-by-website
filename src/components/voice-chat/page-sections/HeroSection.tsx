@@ -27,20 +27,56 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
     handleContact();
   };
 
-  // Initialize Cal.com embed
+  // Initialize Cal.com embed with robust error handling
   useEffect(() => {
     (async function () {
-      const cal = await getCalApi({"namespace":"get-started-with-voice-ai-chat"});
-      cal("ui", {
-        "cssVarsPerTheme": {
-          "light": {"cal-brand":"#292929"},
-          "dark": {"cal-brand":"#fafafa"}
-        },
-        "hideEventTypeDetails": false,
-        "layout": "month_view"
-      });
+      try {
+        console.log("Initializing Cal.com embed in VoiceChat HeroSection");
+        
+        // Ensure script is loaded
+        await loadCalComScript();
+        
+        const cal = await getCalApi({"namespace":"get-started-with-voice-ai-chat"});
+        cal("ui", {
+          "cssVarsPerTheme": {
+            "light": {"cal-brand":"#292929"},
+            "dark": {"cal-brand":"#fafafa"}
+          },
+          "hideEventTypeDetails": false,
+          "layout": "month_view"
+        });
+        
+        console.log("Cal.com embed initialized successfully in VoiceChat HeroSection");
+      } catch (error) {
+        console.error("Error initializing Cal.com embed in VoiceChat HeroSection:", error);
+      }
     })();
   }, []);
+  
+  // Helper function to ensure Cal.com script is loaded
+  const loadCalComScript = () => {
+    return new Promise<void>((resolve, reject) => {
+      // If script already exists, resolve immediately
+      if (document.querySelector('script[src="https://app.cal.com/embed/embed.js"]')) {
+        console.log("Cal.com script already loaded");
+        resolve();
+        return;
+      }
+      
+      console.log("Loading Cal.com script");
+      const script = document.createElement('script');
+      script.src = "https://app.cal.com/embed/embed.js";
+      script.onload = () => {
+        console.log("Cal.com script loaded successfully");
+        resolve();
+      };
+      script.onerror = (error) => {
+        console.error("Failed to load Cal.com script:", error);
+        reject(error);
+      };
+      document.head.appendChild(script);
+    });
+  };
 
   return (
     <section className="pt-20 pb-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
@@ -70,6 +106,9 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
                 data-cal-link="team-powered-by-dfbtbb/get-started-with-voice-ai-chat"
                 data-cal-config='{"layout":"month_view"}'
                 className="bg-[#6342ff] hover:bg-[#5233e0] text-white px-6 py-4 text-base rounded-md flex items-center gap-2"
+                onClick={() => {
+                  console.log("Get Started button clicked in VoiceChat HeroSection");
+                }}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-calendar">
                   <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
