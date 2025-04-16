@@ -1,3 +1,4 @@
+
 import React from 'react';
 import {
   BrowserRouter as Router,
@@ -5,9 +6,9 @@ import {
   Routes,
   useLocation,
 } from 'react-router-dom';
-import { ThemeProvider } from "@/components/theme-provider"
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { Toaster } from "@/components/ui/toaster"
+import { ThemeProvider } from "@/components/theme-provider";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Toaster } from "@/components/ui/toaster";
 import { AnimatePresence } from 'framer-motion';
 
 // Import all page components
@@ -27,7 +28,6 @@ import Demo from './pages/Demo';
 import Products from './pages/Products';
 import OutboundAI from './pages/OutboundAI';
 import License from './pages/License';
-
 import { GlobalVoiceChatDialog } from '@/components/GlobalVoiceChatDialog';
 
 const queryClient = new QueryClient();
