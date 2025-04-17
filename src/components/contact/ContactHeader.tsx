@@ -12,7 +12,7 @@ export const ContactHeader = ({ initialLoad }: ContactHeaderProps) => {
       <h1 className="text-5xl font-bold text-white text-center mb-4">
         <span className="text-[#9b87f5]">Get Started</span> Today
       </h1>
-      <p className="text-lg text-white text-center mb-4">
+      <p className="text-lg text-white text-center mb-2">
         Please find a time to meet using the calendar below.
       </p>
     </div>
