@@ -16,7 +16,7 @@ export const AboutHero = ({ initialLoad, onScrollToSection, whoWeAreRef }: About
       <div className={`text-center transition-all duration-1000 ease-out transform
         ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
         
-        <Badge variant="outline" className="mb-6 px-4 py-1.5 text-sm border-purple-400/30 bg-purple-400/10 text-purple-200">
+        <Badge className="mb-6 px-4 py-1.5 text-sm border-purple-400/30 bg-purple-400/10 text-purple-200">
           Our Story
         </Badge>
         

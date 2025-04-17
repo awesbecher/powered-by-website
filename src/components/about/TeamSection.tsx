@@ -64,7 +64,7 @@ export const TeamSection = ({ initialLoad }: TeamSectionProps) => {
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
       
       <div className="text-center mb-12">
-        <Badge variant="outline" className="mb-3 px-3 py-1 text-sm border-purple-400/30 bg-purple-400/10 text-purple-200">
+        <Badge className="mb-3 px-3 py-1 text-sm border-purple-400/30 bg-purple-400/10 text-purple-200">
           Our Team
         </Badge>
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Meet The Team Behind Powered_by</h2>
