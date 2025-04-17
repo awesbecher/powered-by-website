@@ -9,11 +9,11 @@ interface DemoCallBlockProps {
 
 const DemoCallBlock = ({ className }: DemoCallBlockProps) => {
   return (
-    <Card className={`border border-[#9b87f5]/30 bg-[#1a0b2e]/40 shadow-lg ${className}`} id="demo-call">
+    <Card className={`border border-[#9b87f5]/30 bg-[#1a0b2e]/40 shadow-lg mx-auto max-w-md ${className}`} id="demo-call">
       <CardHeader className="pb-2 text-center">
         <CardTitle className="text-white flex items-center justify-center gap-2">
           <Headphones className="h-6 w-6 text-[#9b87f5]" />
-          🎧 Hear the AI in Action
+          Hear the AI in Action
         </CardTitle>
       </CardHeader>
       <CardContent className="text-center">
