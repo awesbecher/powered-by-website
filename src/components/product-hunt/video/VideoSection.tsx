@@ -39,7 +39,7 @@ export const VideoSection: React.FC<VideoSectionProps> = () => {
           <div className="aspect-video">
             <iframe 
               className="w-full h-full"
-              src="https://youtu.be/w6juT92KdRo?si=iHF_5O9ENsDVaxJB" 
+              src="https://www.youtube.com/embed/w6juT92KdRo?si=iHF_5O9ENsDVaxJB&autoplay=1" 
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
