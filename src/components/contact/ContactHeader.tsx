@@ -13,7 +13,7 @@ export const ContactHeader = ({ initialLoad }: ContactHeaderProps) => {
         <span className="text-[#9b87f5]">Get Started</span> Today
       </h1>
       <p className="text-lg text-white text-center mb-2">
-        Please find a time to meet using the calendar below.
+        Enter your contact info below to schedule.
       </p>
     </div>
   );
