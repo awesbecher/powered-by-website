@@ -27,29 +27,6 @@ const VisitSection = ({
             <div className="mb-8">
               <DemoCallBlock />
             </div>
-            
-            {/* Button removed as per user request */}
-          </div>
-          
-          <div>
-            <div className="bg-[#1a0b2e]/40 rounded-xl p-8 border border-white/10">
-              <h3 className="text-2xl font-bold text-white mb-4">Visit Us</h3>
-              <p className="text-white/70 mb-6">Experience luxury in person at our state-of-the-art dealership.</p>
-              
-              <div className="space-y-4 text-white/80">
-                <div>
-                  <h4 className="font-semibold">Address</h4>
-                  <p>1234 Mercedes Drive, Tacoma, WA 98402</p>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold">Hours</h4>
-                  <p>Monday - Friday: 9am - 8pm</p>
-                  <p>Saturday: 10am - 6pm</p>
-                  <p>Sunday: 11am - 5pm</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
