@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { ServiceCard } from "@/components/products/ServiceCard";
 import { ProductsHero } from "@/components/products/ProductsHero";
@@ -11,9 +10,8 @@ import { MessageSquare, Phone, Mail, Smartphone, Cpu } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import OfferButton from "@/components/home/OfferButton";
 import { getCalApi } from "@calcom/embed-react";
-import CTASection from "@/components/pricing/CTASection";  // Changed from named import to default import
+import CTASection from "@/components/pricing/CTASection";
 import Footer from "@/components/layout/Footer";
-import { OptimizedImage } from "@/components/shared/OptimizedImage";
 import { motion } from "framer-motion";
 
 const Products = () => {
@@ -142,17 +140,7 @@ const Products = () => {
   };
 
   return (
-    <div className="min-h-screen w-full relative">
-      <div className="fixed inset-0 z-0">
-        <OptimizedImage 
-          src="/lovable-uploads/1318bebd-9e04-4b11-9a98-a8c9b0843824.png" 
-          alt="Tech workspace backdrop" 
-          className="w-full h-[60vh] object-cover object-center"
-          priority={true}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/80 via-[#2f1c4a] to-[#1a0b2e]"></div>
-      </div>
-
+    <div className="min-h-screen w-full relative bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <div className="relative z-10 min-h-screen">
         <Navbar />
         
@@ -231,9 +219,6 @@ const Products = () => {
         <div className="mt-16 mb-8">
           <CTASection />
         </div>
-
-        <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
         
         <button
           data-cal-namespace="get-started-today"
