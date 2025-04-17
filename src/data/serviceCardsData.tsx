@@ -9,7 +9,7 @@ interface ServiceCardData {
   icon: LucideIcon;
   description: string;
   features: string[];
-  imageSrc?: string;
+  imageSrc?: string; // Keep this property for backward compatibility
 }
 
 export const serviceCardsData: ServiceCardData[] = [
@@ -40,7 +40,8 @@ export const serviceCardsData: ServiceCardData[] = [
       "Multi-Channel Support",
       "Real-time Availability Updates",
       "Instant Response to Guest Inquiries"
-    ]
+    ],
+    imageSrc: undefined
   },
   {
     title: {
@@ -54,7 +55,8 @@ export const serviceCardsData: ServiceCardData[] = [
       "Automated Appointment Scheduling",
       "24/7 Property Information",
       "Lead Qualification & Follow-up"
-    ]
+    ],
+    imageSrc: undefined
   },
   {
     title: {
@@ -68,7 +70,8 @@ export const serviceCardsData: ServiceCardData[] = [
       "Natural Language Understanding",
       "Smart Issue Escalation",
       "In-App Voice Integration"
-    ]
+    ],
+    imageSrc: undefined
   },
   {
     title: {
@@ -82,7 +85,8 @@ export const serviceCardsData: ServiceCardData[] = [
       "Automated Proposal Generation",
       "Real-time Sales Rep Routing",
       "Pain Point Analysis"
-    ]
+    ],
+    imageSrc: undefined
   },
   {
     title: {
@@ -96,7 +100,8 @@ export const serviceCardsData: ServiceCardData[] = [
       "Inventory Availability Checks",
       "Voice & Chat Integration",
       "Personalized Shopping Assistance"
-    ]
+    ],
+    imageSrc: undefined
   },
   {
     title: {
@@ -110,7 +115,8 @@ export const serviceCardsData: ServiceCardData[] = [
       "Automated Waitlist Updates",
       "Dietary Preference Tracking",
       "Menu & Hours Information"
-    ]
+    ],
+    imageSrc: undefined
   },
   {
     title: {
@@ -124,7 +130,8 @@ export const serviceCardsData: ServiceCardData[] = [
       "Course Discovery & Information",
       "Admission Requirements Guide",
       "Tour Scheduling Automation"
-    ]
+    ],
+    imageSrc: undefined
   },
   {
     title: {
@@ -138,7 +145,8 @@ export const serviceCardsData: ServiceCardData[] = [
       "Policy & Product Information",
       "Loan Eligibility Assessment",
       "Account Setup Assistance"
-    ]
+    ],
+    imageSrc: undefined
   },
   {
     title: {
@@ -152,7 +160,8 @@ export const serviceCardsData: ServiceCardData[] = [
       "Benefits Information Access",
       "Automated Onboarding Guidance",
       "Company Knowledge Base"
-    ]
+    ],
+    imageSrc: undefined
   },
   {
     title: {
@@ -166,7 +175,8 @@ export const serviceCardsData: ServiceCardData[] = [
       "Multi-platform Deployment",
       "Seamless Language Switching",
       "Cross-cultural Communication"
-    ]
+    ],
+    imageSrc: undefined
   },
   {
     title: {
@@ -180,6 +190,7 @@ export const serviceCardsData: ServiceCardData[] = [
       "Session Recommendations",
       "Event Schedule Management",
       "Post-Event Feedback Collection"
-    ]
+    ],
+    imageSrc: undefined
   }
 ];

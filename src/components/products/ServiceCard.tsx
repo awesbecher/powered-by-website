@@ -7,15 +7,14 @@ interface ServiceCardProps {
   icon: LucideIcon;
   description: string;
   features: string[];
-  imageSrc?: string;
+  imageSrc?: string; // Keep the prop for backward compatibility
 }
 
 export const ServiceCard = ({ 
   title, 
   icon: Icon, 
   description, 
-  features,
-  imageSrc 
+  features
 }: ServiceCardProps) => {
   const IconComponent = <Icon className="w-10 h-10 text-[#9b87f5]" />;
 
@@ -27,16 +26,6 @@ export const ServiceCard = ({
           {title}
         </div>
       </div>
-      
-      {imageSrc && (
-        <div className="mb-4 rounded-xl overflow-hidden shadow-lg">
-          <img 
-            src={imageSrc} 
-            alt="Service showcase" 
-            className="w-full h-auto object-cover" 
-          />
-        </div>
-      )}
       
       <p className="text-white/80 mb-4">{description}</p>
       
