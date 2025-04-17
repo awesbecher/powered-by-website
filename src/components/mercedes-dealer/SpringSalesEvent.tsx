@@ -23,7 +23,7 @@ const SpringSalesEvent = ({
     <div id="speak-with-us" className="rounded-xl overflow-hidden bg-black/50 backdrop-blur-sm p-12 mb-12">
       <div className="text-center">
         <h2 className="text-3xl font-bold mb-4 text-white">Spring Sales Event</h2>
-        <p className="text-xl mb-6 text-white">Exceptional Offers on New 2024 Models</p>
+        <p className="text-xl mb-6 text-white">Exceptional Offers on New 2025 Models</p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <button 
             className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-8 py-3 rounded-md font-semibold transition-colors"
