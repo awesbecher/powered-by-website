@@ -17,7 +17,7 @@ const DemoCallBlock = ({ className }: DemoCallBlockProps) => {
         </CardTitle>
       </CardHeader>
       <CardContent className="text-center">
-        <p className="text-3xl font-bold text-white mb-2">(555) 123-4567</p>
+        <p className="text-3xl font-bold text-white mb-2">+1 (732) 638 0513</p>
         <p className="text-white/80 text-sm">
           Call now to hear a real example of our AI answering system.
         </p>
