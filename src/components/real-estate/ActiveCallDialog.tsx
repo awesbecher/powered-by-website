@@ -2,7 +2,6 @@
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Activity, X } from "lucide-react";
-import { useEffect } from "react";
 
 interface ActiveCallDialogProps {
   isOpen: boolean;
@@ -17,14 +16,8 @@ export const ActiveCallDialog = ({
   handleEndCall, 
   toggleMute 
 }: ActiveCallDialogProps) => {
-  // Add cleanup effect that ends the call when component unmounts
-  useEffect(() => {
-    return () => {
-      if (isOpen) {
-        handleEndCall();
-      }
-    };
-  }, [isOpen, handleEndCall]);
+  // Removing the cleanup effect that was ending the call when component unmounts
+  // This ensures the call will only end when the user explicitly clicks the end call button
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && handleEndCall()}>
@@ -40,7 +33,10 @@ export const ActiveCallDialog = ({
           <div className="flex items-center space-x-4">
             <div className="relative">
               <Avatar className="h-20 w-20 rounded-full border-2 border-white shadow-md">
-                <AvatarImage src="/lovable-uploads/2d9d7374-8cc7-4dee-944c-9614e9d40f77.png" alt="Jeff Smith" />
+                <AvatarImage 
+                  src="/lovable-uploads/2d9d7374-8cc7-4dee-944c-9614e9d40f77.png" 
+                  alt="Jeff Smith" 
+                />
                 <AvatarFallback>JS</AvatarFallback>
               </Avatar>
               <div className="absolute bottom-1 left-1 flex items-center">

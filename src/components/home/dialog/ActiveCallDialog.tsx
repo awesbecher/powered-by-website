@@ -18,9 +18,9 @@ export const ActiveCallDialog = ({ handleEndCall, isUnmountingRef }: ActiveCallD
     navigate('/contact');
   };
 
-  // We're removing the automatic call ending on unmount to prevent
-  // premature call termination. The call should only end when
-  // explicitly requested by the user or the agent.
+  // We're completely removing the automatic call ending on unmount 
+  // to prevent premature call termination.
+  // The call should only end when explicitly requested by the user.
 
   return (
     <DialogContent className="bg-black text-white border-gray-800 sm:max-w-md p-6 rounded-xl">
