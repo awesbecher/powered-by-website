@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { Play } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 interface VideoSectionProps {
   initialLoad?: boolean;
@@ -60,32 +59,6 @@ export const VideoSection: React.FC<VideoSectionProps> = () => {
             ></iframe>
           </div>
         )}
-      </div>
-
-      {/* David's section */}
-      <div className="max-w-4xl mx-auto mt-6 flex flex-col md:flex-row items-center gap-6 bg-gradient-to-r from-[#1a0b2e]/80 to-[#2f1c4a]/80 p-6 rounded-xl border border-white/10">
-        <div className="shrink-0">
-          <a href="mailto:david@poweredby.agency" title="Email David">
-            <div className="h-16 w-16 rounded-full border-2 border-[#9b87f5]/50 overflow-hidden hover:border-[#9b87f5] transition-colors">
-              <img 
-                src="/lovable-uploads/860dea46-183e-4c13-89a8-cb80e1039a5d.png" 
-                alt="David, an AI agent"
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </a>
-        </div>
-        <div className="w-full text-white">
-          <p className="text-sm leading-relaxed">
-            David is actually one of our AI agents himself.
-          </p>
-          <p className="text-xs leading-relaxed">
-            If you'd like, you can email him directly at{" "}
-            <a href="mailto:david@poweredby.agency" className="text-[#9b87f5] hover:underline font-bold">
-              david@poweredby.agency
-            </a> or send him a text @ <a href="sms:+14085506231" className="text-[#9b87f5] hover:underline font-bold">(408) 550-6231</a> to learn more about AI agents.
-          </p>
-        </div>
       </div>
     </section>
   );
