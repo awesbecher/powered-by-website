@@ -34,23 +34,12 @@ export const VideoSection: React.FC<VideoSectionProps> = () => {
             >
               <Play className="w-10 h-10 text-white fill-white ml-1" />
             </button>
-            
-            <div className="absolute bottom-6 left-6 text-white text-xl font-medium z-10 bg-black/60 px-4 py-2 rounded-lg flex items-center gap-3">
-              <div className="h-8 w-8 rounded-full border-2 border-[#9b87f5]/50 overflow-hidden shrink-0">
-                <img 
-                  src="/lovable-uploads/860dea46-183e-4c13-89a8-cb80e1039a5d.png" 
-                  alt="David, an AI agent"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              Watch: Our Simple Guide to AI Agents
-            </div>
           </div>
         ) : (
           <div className="aspect-video">
             <iframe 
               className="w-full h-full"
-              src="https://www.youtube.com/embed/OtNDJ9_nv7E?si=hY-guS-6qI14qlO9&autoplay=1" 
+              src="https://youtu.be/w6juT92KdRo?si=iHF_5O9ENsDVaxJB" 
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
