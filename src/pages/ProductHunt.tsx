@@ -7,7 +7,6 @@ import { VideoSection } from "@/components/product-hunt/video/VideoSection";
 import { HowItWorksSection } from "@/components/product-hunt/how-it-works/HowItWorksSection";
 import { FeaturesSection } from "@/components/product-hunt/features/FeaturesSection";
 import { BenefitsSection } from "@/components/product-hunt/benefits/BenefitsSection";
-import { TestimonialsSection } from "@/components/product-hunt/testimonials/TestimonialsSection";
 import { PricingSection } from "@/components/product-hunt/pricing/PricingSection";
 import { FAQSection } from "@/components/product-hunt/faq/FAQSection";
 import { FinalCTASection } from "@/components/product-hunt/cta/FinalCTASection";
@@ -40,7 +39,6 @@ const ProductHunt = () => {
         <HowItWorksSection initialLoad={initialLoad} />
         <FeaturesSection initialLoad={initialLoad} />
         <BenefitsSection initialLoad={initialLoad} />
-        <TestimonialsSection initialLoad={initialLoad} />
         <PricingSection initialLoad={initialLoad} />
         <FAQSection initialLoad={initialLoad} />
         <FinalCTASection initialLoad={initialLoad} />
