@@ -11,8 +11,6 @@ import { TestimonialsSection } from "@/components/product-hunt/testimonials/Test
 import { PricingSection } from "@/components/product-hunt/pricing/PricingSection";
 import { FAQSection } from "@/components/product-hunt/faq/FAQSection";
 import { FinalCTASection } from "@/components/product-hunt/cta/FinalCTASection";
-// Removed SocialProofSection import
-// Announcement banner is still imported but not used on this page
 
 const ProductHunt = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -31,7 +29,6 @@ const ProductHunt = () => {
 
   return (
     <div className="flex flex-col min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
-      {/* Announcement banner removed for launch page */}
       <Navbar />
       
       {/* Hero Section with background image */}
@@ -40,7 +37,6 @@ const ProductHunt = () => {
       {/* Main Content */}
       <main>
         <VideoSection initialLoad={initialLoad} />
-        {/* Removed SocialProofSection */}
         <HowItWorksSection initialLoad={initialLoad} />
         <FeaturesSection initialLoad={initialLoad} />
         <BenefitsSection initialLoad={initialLoad} />

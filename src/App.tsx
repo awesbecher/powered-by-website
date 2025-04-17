@@ -37,6 +37,7 @@ import MercedesDealer from './pages/MercedesDealer';
 import RoomService from './pages/room-service';
 import RetailServices from './pages/RetailServices';
 import Careers from './pages/Careers';
+import ProductHunt from './pages/ProductHunt';
 
 const queryClient = new QueryClient();
 
@@ -72,6 +73,7 @@ function App() {
             <Route path="/room-service" element={<RoomService />} />
             <Route path="/retail-services" element={<RetailServices />} />
             <Route path="/careers" element={<Careers />} />
+            <Route path="/launch" element={<ProductHunt />} />
           </Routes>
         </AnimatePresence>
         
