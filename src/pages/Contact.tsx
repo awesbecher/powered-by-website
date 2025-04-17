@@ -4,9 +4,7 @@ import Footer from "@/components/layout/Footer";
 import { ContactHeader } from "@/components/contact/ContactHeader";
 import { useEffect, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { getCalApi } from "@calcom/embed-react";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "lucide-react";
+import Cal, { getCalApi } from "@calcom/embed-react";
 
 const Contact = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -27,66 +25,27 @@ const Contact = () => {
   }, []);
 
   useEffect(() => {
-    // Initialize Cal.com for popup
     (async function () {
       try {
-        console.log("Initializing Cal.com embed at Contact page level");
-        const cal = await getCalApi();
-        if (cal) {
-          cal("ui", {
-            "cssVarsPerTheme": {
-              "light": {"cal-brand":"#292929"},
-              "dark": {"cal-brand":"#fafafa"}
-            },
-            "hideEventTypeDetails": false,
-            "layout": "month_view"
-          });
-          console.log("Cal.com embed initialized successfully at Contact page level");
-        } else {
-          console.error("Cal.com API not available in Contact page");
-        }
+        const cal = await getCalApi({"namespace":"get-started-today"});
+        cal("ui", {
+          "cssVarsPerTheme": {
+            "light": {"cal-brand":"#292929"},
+            "dark": {"cal-brand":"#fafafa"}
+          },
+          "hideEventTypeDetails": false,
+          "layout": "month_view"
+        });
       } catch (error) {
-        console.error("Error initializing Cal.com embed at Contact page level:", error);
+        console.error("Error initializing Cal.com:", error);
+        toast({
+          title: "Calendar loading error",
+          description: "Failed to load scheduling calendar. Please try again later.",
+          variant: "destructive"
+        });
       }
     })();
-  }, []);
-
-  const handleScheduleClick = () => {
-    console.log("Schedule button clicked in Contact page");
-    
-    // First try direct method
-    try {
-      (window as any).Cal?.('ui', {
-        styles: { branding: { brandColor: '#000000' } },
-        hideEventTypeDetails: false,
-        layout: 'month_view',
-      });
-      (window as any).Cal?.('showModal', {
-        calLink: "team-powered-by-dfbtbb/get-started-today",
-        config: {
-          layout: 'month_view',
-        },
-      });
-      console.log("Called Cal.com showModal directly");
-      return;
-    } catch (err) {
-      console.error("Failed to open Cal.com modal directly:", err);
-    }
-    
-    // Try to check if the button was properly configured
-    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
-    if (calBtn instanceof HTMLElement) {
-      console.log("Cal.com button found in Contact page, triggering click");
-      calBtn.click();
-    } else {
-      console.error("Cal.com button not found in DOM from Contact page");
-      toast({
-        title: "Scheduling unavailable",
-        description: "Please try again later or contact us directly.",
-        variant: "destructive"
-      });
-    }
-  };
+  }, [toast]);
 
   return (
     <div className="flex flex-col min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
@@ -94,24 +53,20 @@ const Contact = () => {
       
       {/* Content section */}
       <div className="flex-grow flex flex-col items-center justify-center relative z-10 pt-8 px-4 pb-12">
-        <div className="max-w-2xl mx-auto w-full">
+        <div className="w-full max-w-5xl mx-auto">
           {/* Header section */}
           <div className="mb-10">
             <ContactHeader initialLoad={initialLoad} />
           </div>
           
-          {/* Schedule button */}
-          <div className="flex flex-col items-center justify-center">
-            <Button 
-              className="bg-[#6342ff] hover:bg-[#5233e0] text-white px-8 py-6 text-xl rounded-md flex items-center gap-2 transform transition-all duration-200 hover:scale-105"
-              size="lg"
-              onClick={handleScheduleClick}
-              data-cal-link="team-powered-by-dfbtbb/get-started-today"
-              data-cal-config='{"layout":"month_view"}'
-            >
-              <Calendar className="h-6 w-6" />
-              Schedule Now
-            </Button>
+          {/* Calendar section */}
+          <div className="w-full h-[800px]">
+            <Cal 
+              namespace="get-started-today"
+              calLink="team-powered-by-dfbtbb/get-started-today"
+              style={{width:"100%", height:"100%", overflow:"scroll"}}
+              config={{"layout":"month_view"}}
+            />
           </div>
         </div>
       </div>
@@ -121,14 +76,6 @@ const Contact = () => {
       <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
       
       <Footer />
-      
-      {/* Hidden Cal.com button that can be triggered programmatically */}
-      <button
-        id="cal-button-backup"
-        data-cal-link="team-powered-by-dfbtbb/get-started-today"
-        data-cal-config='{"layout":"month_view"}'
-        style={{ display: 'none' }}
-      ></button>
     </div>
   );
 };
