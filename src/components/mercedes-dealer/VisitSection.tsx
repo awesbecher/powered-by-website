@@ -24,11 +24,11 @@ const VisitSection = ({
             to="/contact" 
             className="text-[#9b87f5] hover:text-[#7a6cc5] transition-colors"
           >
-            Free Voice AI Demo
+            Free Voice Agent Demo
           </Link>
         </h2>
         <p className="text-white/80 mb-8 text-center">
-          We'll send you a personalized demo for your dealership. Experience how our AI can transform your customer service and sales efforts.
+          Let us show you how your hotel can serve more guests with less staff.
         </p>
         
         <div className="flex justify-center">

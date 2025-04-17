@@ -16,10 +16,10 @@ export const RoomServiceHeader: React.FC = () => {
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="text-center px-4">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
-            Room Service at Grandview
+            Turn your hotel phone line into a 24/7 room service concierge.
           </h1>
           <p className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed drop-shadow-lg font-bold">
-            Indulge in exquisite dining from the comfort of your luxury suite, with our 24/7 premium room service. Please choose from any of the items on our Food & Drinks Menu below. When you are ready, click the button below to speak to Room Service.
+            Our Voice AI answers, recommends, and routes guest requests in seconds — all without staff.
           </p>
         </div>
       </div>

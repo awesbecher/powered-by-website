@@ -9,6 +9,8 @@ import Navbar from "@/components/layout/Navbar";
 import { GrandviewLogo } from "./components/GrandviewLogo";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 import { useToast } from "@/hooks/use-toast";
+import { UseCaseExplainer } from "./components/UseCaseExplainer";
+import VisitSection from "@/components/mercedes-dealer/VisitSection";
 
 const RoomService = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -71,6 +73,12 @@ const RoomService = () => {
       <RoomServiceHeader />
 
       <div className="container mx-auto px-4 -mt-8 mb-8 flex justify-center z-20 relative">
+        <div className="text-center mb-4">
+          <h2 className="text-2xl font-bold text-white mb-4">Get Started in 48 Hours</h2>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 flex justify-center mb-8">
         <CallButton
           isProcessing={isProcessing}
           isCallActive={isCallActive}
@@ -78,18 +86,29 @@ const RoomService = () => {
         />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10 -mt-16">
+      <UseCaseExplainer />
+
+      <div className="container mx-auto px-4 relative z-10 py-12">
         <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8 shadow-lg">
           <h2 className="text-3xl font-bold text-center mb-6">Our Menu</h2>
           <MenuDisplay />
           
-          <CallButton
-            isProcessing={isProcessing}
-            isCallActive={isCallActive}
-            onClick={() => setIsDialogOpen(true)}
-          />
+          <div className="mt-8">
+            <CallButton
+              isProcessing={isProcessing}
+              isCallActive={isCallActive}
+              onClick={() => setIsDialogOpen(true)}
+            />
+          </div>
         </div>
       </div>
+
+      <VisitSection 
+        isProcessing={isProcessing}
+        isCallActive={isCallActive}
+        showCallDialog={isDialogOpen}
+        setShowCallDialog={setIsDialogOpen}
+      />
 
       <RoomServiceDialog
         isDialogOpen={isDialogOpen}
