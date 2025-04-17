@@ -2,12 +2,35 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { getCalApi } from "@calcom/embed-react";
 
 interface CTASectionProps {
   handleContact?: () => void;
 }
 
 const CTASection = ({ handleContact }: CTASectionProps) => {
+  // Initialize Cal.com with robust error handling
+  useEffect(() => {
+    (async function () {
+      try {
+        console.log("Initializing Cal.com embed in Products CTASection");
+        const cal = await getCalApi({"namespace":"get-started-today"});
+        cal("ui", {
+          "cssVarsPerTheme": {
+            "light": {"cal-brand":"#292929"},
+            "dark": {"cal-brand":"#fafafa"}
+          },
+          "hideEventTypeDetails": false,
+          "layout": "month_view"
+        });
+        console.log("Cal.com embed initialized successfully in Products CTASection");
+      } catch (error) {
+        console.error("Error initializing Cal.com embed in Products CTASection:", error);
+      }
+    })();
+  }, []);
+
   return (
     <motion.section 
       id="contact"
@@ -46,12 +69,9 @@ const CTASection = ({ handleContact }: CTASectionProps) => {
           >
             <Button 
               className="bg-white hover:bg-gray-100 text-[#6342ff] font-bold px-8 py-6 text-lg rounded-md"
-              data-tally-open="w2og9b"
-              data-tally-layout="modal"
-              data-tally-width="476"
-              data-tally-hide-title="1"
-              data-tally-auto-close="0"
-              data-tally-overlay="1"
+              data-cal-namespace="get-started-today"
+              data-cal-link="team-powered-by-dfbtbb/get-started-today"
+              data-cal-config='{"layout":"month_view"}'
             >
               Get Started Today
             </Button>
