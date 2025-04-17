@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Phone, Tv } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -90,11 +89,9 @@ export const CallToActionButtons = ({ handleNavigation, setShowDialog }: CallToA
       </Button>
       <Button
         className="relative z-20 bg-accent hover:bg-accent-dark text-white px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
-        onClick={handleGetStarted}
-        data-cal-link="team-powered-by-dfbtbb/get-started-today"
-        data-cal-config='{"layout":"month_view"}'
+        onClick={() => handleNavigation("/demo")}
       >
-        Get Started
+        Try Demos
         <ArrowRight className="ml-2 h-5 w-5" />
       </Button>
       <Button 
