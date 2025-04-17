@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, { Suspense } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -10,35 +11,50 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { Toaster } from "@/components/ui/toaster";
 import { AnimatePresence } from 'framer-motion';
 
-// Import all page components
-import Home from './pages/Home';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import Pricing from './pages/Pricing';
-import Blog from './pages/Blog';
-import AIReceptionist from './pages/AIReceptionist';
-import VoiceChat from './pages/VoiceChat';
-import EmailAgent from './pages/EmailAgent';
-import TextAgent from './pages/TextAgent';
-import RealEstate from './pages/RealEstate';
-import VirtualSE from './pages/VirtualSE';
-import News from './pages/News';
-import Demo from './pages/Demo';
-import Products from './pages/Products';
-import OutboundAI from './pages/OutboundAI';
-import License from './pages/License';
+// Import essential pages that need to be loaded immediately
 import Index from './pages/Index';
-import AIAgency from './pages/AIAgency';
-import AgentGPT from './pages/AgentGPT';
-import AgentGPTBuilder from './pages/AgentGPTBuilder';
-import { GlobalVoiceChatDialog } from '@/components/shared/GlobalVoiceChatDialog';
-import MercedesDealer from './pages/MercedesDealer';
-import RoomService from './pages/room-service';
-import RetailServices from './pages/RetailServices';
-import Careers from './pages/Careers';
-import ProductHunt from './pages/ProductHunt';
+import Home from './pages/Home';
 
-const queryClient = new QueryClient();
+// Lazy load other pages
+const About = React.lazy(() => import('./pages/About'));
+const Contact = React.lazy(() => import('./pages/Contact'));
+const Pricing = React.lazy(() => import('./pages/Pricing'));
+const Blog = React.lazy(() => import('./pages/Blog'));
+const AIReceptionist = React.lazy(() => import('./pages/AIReceptionist'));
+const VoiceChat = React.lazy(() => import('./pages/VoiceChat'));
+const EmailAgent = React.lazy(() => import('./pages/EmailAgent'));
+const TextAgent = React.lazy(() => import('./pages/TextAgent'));
+const RealEstate = React.lazy(() => import('./pages/RealEstate'));
+const VirtualSE = React.lazy(() => import('./pages/VirtualSE'));
+const News = React.lazy(() => import('./pages/News'));
+const Demo = React.lazy(() => import('./pages/Demo'));
+const Products = React.lazy(() => import('./pages/Products'));
+const OutboundAI = React.lazy(() => import('./pages/OutboundAI'));
+const License = React.lazy(() => import('./pages/License'));
+const AIAgency = React.lazy(() => import('./pages/AIAgency'));
+const AgentGPT = React.lazy(() => import('./pages/AgentGPT'));
+const AgentGPTBuilder = React.lazy(() => import('./pages/AgentGPTBuilder'));
+const MercedesDealer = React.lazy(() => import('./pages/MercedesDealer'));
+const RoomService = React.lazy(() => import('./pages/room-service'));
+const RetailServices = React.lazy(() => import('./pages/RetailServices'));
+const Careers = React.lazy(() => import('./pages/Careers'));
+const ProductHunt = React.lazy(() => import('./pages/ProductHunt'));
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: false,
+    },
+  },
+});
+
+// Loading component for suspense fallback
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center">
+    <div className="animate-pulse text-xl text-gray-400">Loading...</div>
+  </div>
+);
 
 function App() {
   const location = useLocation();
@@ -48,31 +64,127 @@ function App() {
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <AnimatePresence mode="wait" initial={false}>
           <Routes key={location.pathname} location={location}>
+            {/* Critical routes loaded immediately */}
             <Route path="/" element={<Index />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/trynow" element={<Contact />} />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/ai-receptionist" element={<AIReceptionist />} />
-            <Route path="/voice-chat" element={<VoiceChat />} />
-            <Route path="/email-agent" element={<EmailAgent />} />
-            <Route path="/text-agent" element={<TextAgent />} />
-            <Route path="/real-estate" element={<RealEstate />} />
-            <Route path="/getvirtual-se" element={<VirtualSE />} />
-            <Route path="/news" element={<News />} />
-            <Route path="/demo" element={<Demo />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/outbound-ai" element={<OutboundAI />} />
-            <Route path="/license" element={<License />} />
-            <Route path="/ai-agency" element={<AIAgency />} />
-            <Route path="/agent-gpt" element={<AgentGPT />} />
-            <Route path="/agent-gpt-builder" element={<AgentGPTBuilder />} />
-            <Route path="/mercedes-dealer" element={<MercedesDealer />} />
-            <Route path="/room-service" element={<RoomService />} />
-            <Route path="/retail-services" element={<RetailServices />} />
-            <Route path="/careers" element={<Careers />} />
-            <Route path="/launch" element={<ProductHunt />} />
+            
+            {/* Lazy loaded routes */}
+            <Route path="/about" element={
+              <Suspense fallback={<PageLoader />}>
+                <About />
+              </Suspense>
+            } />
+            <Route path="/trynow" element={
+              <Suspense fallback={<PageLoader />}>
+                <Contact />
+              </Suspense>
+            } />
+            {/* ... Continue with other lazy loaded routes */}
+            <Route path="/pricing" element={
+              <Suspense fallback={<PageLoader />}>
+                <Pricing />
+              </Suspense>
+            } />
+            <Route path="/blog" element={
+              <Suspense fallback={<PageLoader />}>
+                <Blog />
+              </Suspense>
+            } />
+            <Route path="/ai-receptionist" element={
+              <Suspense fallback={<PageLoader />}>
+                <AIReceptionist />
+              </Suspense>
+            } />
+            <Route path="/voice-chat" element={
+              <Suspense fallback={<PageLoader />}>
+                <VoiceChat />
+              </Suspense>
+            } />
+            <Route path="/email-agent" element={
+              <Suspense fallback={<PageLoader />}>
+                <EmailAgent />
+              </Suspense>
+            } />
+            <Route path="/text-agent" element={
+              <Suspense fallback={<PageLoader />}>
+                <TextAgent />
+              </Suspense>
+            } />
+            <Route path="/real-estate" element={
+              <Suspense fallback={<PageLoader />}>
+                <RealEstate />
+              </Suspense>
+            } />
+            <Route path="/getvirtual-se" element={
+              <Suspense fallback={<PageLoader />}>
+                <VirtualSE />
+              </Suspense>
+            } />
+            <Route path="/news" element={
+              <Suspense fallback={<PageLoader />}>
+                <News />
+              </Suspense>
+            } />
+            <Route path="/demo" element={
+              <Suspense fallback={<PageLoader />}>
+                <Demo />
+              </Suspense>
+            } />
+            <Route path="/products" element={
+              <Suspense fallback={<PageLoader />}>
+                <Products />
+              </Suspense>
+            } />
+            <Route path="/outbound-ai" element={
+              <Suspense fallback={<PageLoader />}>
+                <OutboundAI />
+              </Suspense>
+            } />
+            <Route path="/license" element={
+              <Suspense fallback={<PageLoader />}>
+                <License />
+              </Suspense>
+            } />
+            <Route path="/ai-agency" element={
+              <Suspense fallback={<PageLoader />}>
+                <AIAgency />
+              </Suspense>
+            } />
+            <Route path="/agent-gpt" element={
+              <Suspense fallback={<PageLoader />}>
+                <AgentGPT />
+              </Suspense>
+            } />
+            <Route path="/agent-gpt-builder" element={
+              <Suspense fallback={<PageLoader />}>
+                <AgentGPTBuilder />
+              </Suspense>
+            } />
+            <Route path="/mercedes-dealer" element={
+              <Suspense fallback={<PageLoader />}>
+                <MercedesDealer />
+              </Suspense>
+            } />
+            <Route path="/room-service" element={
+              <Suspense fallback={<PageLoader />}>
+                <RoomService />
+              </Suspense>
+            } />
+            <Route path="/retail-services" element={
+              <Suspense fallback={<PageLoader />}>
+                <RetailServices />
+              </Suspense>
+            } />
+            <Route path="/careers" element={
+              <Suspense fallback={<PageLoader />}>
+                <Careers />
+              </Suspense>
+            } />
+            <Route path="/launch" element={
+              <Suspense fallback={<PageLoader />}>
+                <ProductHunt />
+              </Suspense>
+            } />
           </Routes>
         </AnimatePresence>
         
