@@ -55,7 +55,7 @@ const Contact = () => {
       <div className="flex-grow flex flex-col items-center justify-center relative z-10 pt-8 px-4 pb-12">
         <div className="w-full max-w-5xl mx-auto">
           {/* Header section */}
-          <div className="mb-10">
+          <div className="mb-4"> {/* Reduced from mb-10 to mb-4 */}
             <ContactHeader initialLoad={initialLoad} />
           </div>
           
@@ -81,3 +81,4 @@ const Contact = () => {
 };
 
 export default Contact;
+
