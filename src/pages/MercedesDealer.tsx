@@ -9,7 +9,6 @@ import SpringSalesEvent from "@/components/mercedes-dealer/SpringSalesEvent";
 import MercedesCallDialog from "@/components/mercedes-dealer/MercedesCallDialog";
 import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
-import { SocialProofSection } from "@/components/product-hunt/social-proof/SocialProofSection";
 import MobileCallCTA from "@/components/mercedes-dealer/MobileCallCTA";
 
 const MercedesDealer = () => {
@@ -78,7 +77,6 @@ const MercedesDealer = () => {
         isProcessing={isProcessing}
         isCallActive={isCallActive}
       />
-      <SocialProofSection />
       <ServicesGrid />
       <SpringSalesEvent 
         isProcessing={isProcessing} 
