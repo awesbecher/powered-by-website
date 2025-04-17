@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 import HeroSection from "@/components/retail-services/HeroSection";
@@ -158,7 +159,11 @@ const RetailServices = () => {
       </div>
 
       <div className="container mx-auto px-4 py-12">
-        <h2 className="text-3xl font-bold text-center mb-8 text-white">Get Started Fast</h2>
+        <Link to="/contact" className="block">
+          <h2 className="text-3xl font-bold text-center mb-8 text-white hover:underline cursor-pointer">
+            Get Started Fast
+          </h2>
+        </Link>
         <BookingDialog 
           isOpen={isOpen}
           setIsOpen={setIsOpen}
