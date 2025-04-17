@@ -2,7 +2,6 @@
 import { cn } from "@/lib/utils";
 import { PoweredByText } from "@/components/shared/PoweredByText";
 import { motion } from "framer-motion";
-import { OptimizedImage } from "@/components/shared/OptimizedImage";
 
 interface ProductsHeroProps {
   initialLoad: boolean;
@@ -64,15 +63,7 @@ export const ProductsHero = ({ initialLoad, className }: ProductsHeroProps) => {
           </motion.div>
         </div>
         
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-[#1a0b2e]/30 backdrop-blur-sm"></div>
-          <OptimizedImage 
-            src="/lovable-uploads/7e5ffc92-3c33-4a4a-8d6d-add3197d2f2f.png" 
-            alt="AI network visualization" 
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full object-cover opacity-20"
-            priority={true}
-          />
-        </div>
+        {/* Removed the OptimizedImage and background divs */}
       </div>
     </motion.div>
   );
