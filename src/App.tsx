@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
   BrowserRouter as Router,
@@ -7,8 +6,7 @@ import {
   useLocation,
 } from 'react-router-dom';
 import { ThemeProvider } from "@/components/theme-provider";
-import { QueryClientProvider } from '@tanstack/react-query';
-import { QueryClient } from '@tanstack/react-query/build/modern/queryClient';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { Toaster } from "@/components/ui/toaster";
 import { AnimatePresence } from 'framer-motion';
 
