@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
   BrowserRouter as Router,
@@ -52,7 +51,7 @@ function App() {
             <Route path="/" element={<Index />} />
             <Route path="/home" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route path="/trynow" element={<Contact />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/ai-receptionist" element={<AIReceptionist />} />
@@ -77,9 +76,7 @@ function App() {
           </Routes>
         </AnimatePresence>
         
-        {/* Add the GlobalVoiceChatDialog component here */}
         <GlobalVoiceChatDialog />
-        
         <Toaster />
       </ThemeProvider>
     </QueryClientProvider>

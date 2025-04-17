@@ -74,7 +74,7 @@ export const CallToActionButtons = ({ handleNavigation, setShowDialog }: CallToA
     } else {
       console.error("Cal.com button not found in DOM from CallToActionButtons");
       // Fallback to contact page
-      handleNavigation("/contact");
+      handleNavigation("/trynow");
     }
   };
   

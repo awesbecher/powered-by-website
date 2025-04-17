@@ -1,4 +1,3 @@
-
 import { NavItem } from "./NavLinks";
 
 export interface NavItemWithChildren extends NavItem {
@@ -18,12 +17,12 @@ export const navItems: NavItemWithChildren[] = [
       { name: "OutboundAI", path: "https://tryoutbound.ai", isExternal: true },
     ]
   },
-  { name: "Pricing", path: "/pricing" }, // Changed from "Demos" to "Pricing"
+  { name: "Pricing", path: "/pricing" },
   { 
     name: "Resources", 
     path: "#",
     children: [
-      { name: "Demos", path: "/demo" }, // Moved to the first position
+      { name: "Demos", path: "/demo" },
       { name: "AI Research", path: "https://poweredbyagency.ghost.io", isExternal: true },
       { name: "News", path: "/news" },
       { name: "Videos", path: "https://www.youtube.com/@Powered_byAgency", isExternal: true },
@@ -33,4 +32,4 @@ export const navItems: NavItemWithChildren[] = [
   { name: "About", path: "/about" }
 ];
 
-export const consultationPaths = ['/', '/ai-agency', '/products', '/demo', '/blog', '/news', '/voice-chat', '/ai-receptionist', '/email-agent', '/about', '/contact', '/text-agent'];
+export const consultationPaths = ['/', '/ai-agency', '/products', '/demo', '/blog', '/news', '/voice-chat', '/ai-receptionist', '/email-agent', '/about', '/trynow', '/text-agent'];
