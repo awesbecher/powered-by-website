@@ -1,4 +1,3 @@
-
 import { Car, Hotel, Users2, HeadphonesIcon, Building2, MessageSquare, Globe, Calendar, UtensilsCrossed, DollarSign } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -10,6 +9,7 @@ interface ServiceCardData {
   icon: LucideIcon;
   description: string;
   features: string[];
+  imageSrc?: string;
 }
 
 export const serviceCardsData: ServiceCardData[] = [
@@ -25,7 +25,8 @@ export const serviceCardsData: ServiceCardData[] = [
       "Lead Qualification & Appointment Setting",
       "Voice & Chat Capabilities",
       "Real-time Response System"
-    ]
+    ],
+    imageSrc: "/lovable-uploads/6a8593b8-7878-4dd6-b253-c6d4fe69f9c6.png"
   },
   {
     title: {
