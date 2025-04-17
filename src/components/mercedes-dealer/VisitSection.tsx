@@ -1,7 +1,5 @@
 
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { Phone } from "lucide-react";
 import DemoCallBlock from "./DemoCallBlock";
 
 interface VisitSectionProps {
@@ -30,14 +28,7 @@ const VisitSection = ({
               <DemoCallBlock />
             </div>
             
-            <Button
-              onClick={() => setShowCallDialog(true)}
-              className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white w-full md:w-auto"
-              disabled={isProcessing || isCallActive}
-            >
-              <Phone className="mr-2 h-5 w-5" />
-              Request Your Demo
-            </Button>
+            {/* Button removed as per user request */}
           </div>
           
           <div>
