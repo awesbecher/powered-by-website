@@ -2,68 +2,56 @@
 # This file ensures that all routes are handled by index.html for SPA routing
 /* /index.html 200
 
-# Explicit rule for about page
+# Specific redirects for route changes
+/ai-assistant /ai-receptionist 301
+/product-hunt /launch 301
+/gpt /agent-gpt 301
+/demos /demo 301
+/free-voiceagent /free-voice-agent 301
+/contact /trynow 301
+
+# Primary routes
 /about /index.html 200
-
-# Explicit rule for privacy statement
-/privacy-statement /index.html 200
-
-# Explicit rules for new routes
-/launch /index.html 200
+/pricing /index.html 200
 /demo /index.html 200
 /news /index.html 200
-/pricing /index.html 200
+/blog /index.html 200
+/trynow /index.html 200
 /careers /index.html 200
-/contact /index.html 200
-/contact2 /index.html 200
+/launch /index.html 200
+
+# Product routes
+/products /index.html 200
+/ai-receptionist /index.html 200
+/voice-chat /index.html 200
+/email-agent /index.html 200
+/text-agent /index.html 200
+/outbound-ai /index.html 200
+/agent-gpt /index.html 200
+/agent-gpt-builder /index.html 200
+/ai-agency /index.html 200
+/voice-business /index.html 200
+
+# User account routes
 /payment /index.html 200
 /payment-success /index.html 200
 /payment-cancelled /index.html 200
 /payment-dashboard /index.html 200
-/outbound-ai /index.html 200
-/ai-receptionist /index.html 200
+
+# Legal routes
+/privacy-statement /index.html 200
+
+# Special purpose routes
+/free-voice-agent /index.html 200
+/voiceagent-config-end /index.html 200
 /file-upload /index.html 200
-/email-agent /index.html 200
-/demo-capture /index.html 200
+/call-confirmation /index.html 200
+
+# Demo & showcase routes
 /mercedes-dealer /index.html 200
 /omega-pediatrics /index.html 200
-/call-confirmation /index.html 200
-/ai-agency /index.html 200
-/products /index.html 200
-/blog /index.html 200
-/voice-chat /index.html 200
-/text-agent /index.html 200
-/voice-business /index.html 200
 /room-service /index.html 200
 /insurance /index.html 200
 /real-estate /index.html 200
 /retail-services /index.html 200
 /thank-you /index.html 200
-
-# Redirect from demos (plural) to demo (singular)
-/demos /demo 301
-
-# Redirect from old GPT path to new path
-/gpt /agent-gpt 301
-
-# Explicit rule for new agent-gpt path
-/agent-gpt /index.html 200
-
-# Explicit rule for new agent-gpt-builder path
-/agent-gpt-builder /index.html 200
-
-# Explicit rules for free voice agent URLs
-/free-voiceagent /free-voice-agent 301
-/free-voice-agent /index.html 200
-
-# Explicit rule for voice agent configuration end page
-/voiceagent-config-end /index.html 200
-
-# Explicit rule for careers page
-/careers /index.html 200
-
-# Redirect old contact path to new trynow path
-/contact /trynow 301
-
-# Explicit rule for new trynow path
-/trynow /index.html 200

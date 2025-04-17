@@ -9,7 +9,7 @@
   to = "/index.html"
   status = 200
 
-# These specific redirects are for custom URL changes
+# Named redirects for specific route changes
 [[redirects]]
   from = "/ai-assistant"
   to = "/ai-receptionist"
@@ -20,178 +20,27 @@
   to = "/launch"
   status = 301
 
-# Add redirect from old GPT path to new path
 [[redirects]]
   from = "/gpt"
   to = "/agent-gpt"
   status = 301
 
-# Add redirect from demos (plural) to demo (singular)
 [[redirects]]
   from = "/demos"
   to = "/demo"
   status = 301
 
-# Explicitly define routes for every major page
-[[redirects]]
-  from = "/about"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/agent-gpt"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/agent-gpt-builder"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/privacy-statement"
-  to = "/index.html"
-  status = 200
-
-# Ensure the new routes work properly
-[[redirects]]
-  from = "/launch"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/demo"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/news"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/pricing"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/careers"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/trynow"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/contact2"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/payment"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/payment-success"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/payment-cancelled"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/payment-dashboard"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/outbound-ai"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/ai-receptionist"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/file-upload"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/email-agent"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/mercedes-dealer"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/omega-pediatrics"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/call-confirmation"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/ai-agency"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/products"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/voice-chat"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/text-agent"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/voice-business"
-  to = "/index.html"
-  status = 200
-
-# Add redirects for free voice agent URLs
 [[redirects]]
   from = "/free-voiceagent"
   to = "/free-voice-agent"
   status = 301
 
 [[redirects]]
-  from = "/free-voice-agent"
-  to = "/index.html"
-  status = 200
+  from = "/contact"
+  to = "/trynow"
+  status = 301
 
-# Add proper redirect for voice agent configuration end page
-[[redirects]]
-  from = "/voiceagent-config-end"
-  to = "/index.html"
-  status = 200
-
-# Modified security headers to fix SSL issues
+# Security headers
 [[headers]]
   for = "/*"
   [headers.values]
@@ -200,10 +49,3 @@
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    # Removed problematic Content-Security-Policy header
-
-# Add redirect from old contact path to new trynow path
-[[redirects]]
-  from = "/contact"
-  to = "/trynow"
-  status = 301
