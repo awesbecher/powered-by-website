@@ -3,6 +3,7 @@ import { ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { Youtube } from "lucide-react";
 
 // ScrollToTop component to handle scrolling to top on route change
 const ScrollToTop = () => {
@@ -43,6 +44,17 @@ const Footer = () => {
           </div>
           
           <div className="flex items-center space-x-3">
+            <a 
+              href="https://www.youtube.com/@Powered_byAgency" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors"
+              aria-label="YouTube"
+            >
+              <div className="w-6 h-6 rounded-md bg-white flex items-center justify-center">
+                <Youtube color="black" size={20} />
+              </div>
+            </a>
             <a 
               href="https://x.com/poweredbyagency" 
               target="_blank" 
