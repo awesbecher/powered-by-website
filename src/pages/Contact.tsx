@@ -1,3 +1,4 @@
+
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ContactHeader } from "@/components/contact/ContactHeader";
@@ -48,9 +49,9 @@ const Contact = () => {
     <div className="flex flex-col min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <Navbar />
       
-      <div className="flex-grow flex flex-col items-center justify-center relative z-10 pt-8 px-4 pb-12">
+      <div className="flex-grow flex flex-col items-center justify-center relative z-10 pt-8 px-4 pb-8">
         <div className="w-full max-w-5xl mx-auto">
-          <div className="mb-4">
+          <div className="mb-2">
             <ContactHeader initialLoad={initialLoad} />
           </div>
           
