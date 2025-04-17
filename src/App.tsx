@@ -1,4 +1,3 @@
-
 import React, { Suspense } from 'react';
 import {
   BrowserRouter as Router,
@@ -10,6 +9,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { Toaster } from "@/components/ui/toaster";
 import { AnimatePresence } from 'framer-motion';
+import { GlobalVoiceChatDialog } from '@/components/GlobalVoiceChatDialog';
 
 // Import essential pages that need to be loaded immediately
 import Index from './pages/Index';
@@ -45,6 +45,8 @@ const queryClient = new QueryClient({
     queries: {
       refetchOnWindowFocus: false,
       retry: false,
+      staleTime: 5 * 60 * 1000, // Data is considered fresh for 5 minutes
+      cacheTime: 30 * 60 * 1000, // Cache is kept for 30 minutes
     },
   },
 });

@@ -3,44 +3,8 @@
   publish = "dist"
   command = "npm run build"
 
-# This ensures that all routes are handled by the single page application
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# ... keep existing code (redirects)
 
-# Named redirects for specific route changes
-[[redirects]]
-  from = "/ai-assistant"
-  to = "/ai-receptionist"
-  status = 301
-
-[[redirects]]
-  from = "/product-hunt"
-  to = "/launch"
-  status = 301
-
-[[redirects]]
-  from = "/gpt"
-  to = "/agent-gpt"
-  status = 301
-
-[[redirects]]
-  from = "/demos"
-  to = "/demo"
-  status = 301
-
-[[redirects]]
-  from = "/free-voiceagent"
-  to = "/free-voice-agent"
-  status = 301
-
-[[redirects]]
-  from = "/contact"
-  to = "/trynow"
-  status = 301
-
-# Security headers
 [[headers]]
   for = "/*"
   [headers.values]
@@ -49,3 +13,34 @@
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
