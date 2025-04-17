@@ -15,7 +15,7 @@ export const ContactHeader = ({ initialLoad }: ContactHeaderProps) => {
         <span className="text-[#9b87f5]">Get Started</span> Today
       </h1>
       <p className="text-lg text-white text-center mb-2">
-        Ready to put AI agents to work? Book a Free Consultation with the Powered_by Team! In this 30-min meeting, we will demo our AI agent solutions, explore use case more deeply, & uncover where they could apply to your business. Use the calendar below to find time to schedule with us.
+        Ready to put AI agents to work? Book a Free Consultation with the <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-xl">Powered_by</span> Team! In this 30-min meeting, we will demo our AI agent solutions, explore use case more deeply, & uncover where they could apply to your business. Use the calendar below to find time to schedule with us.
       </p>
     </div>
   );
