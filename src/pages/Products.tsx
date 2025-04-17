@@ -119,7 +119,6 @@ const Products = () => {
     }
   ];
 
-  // Animation variants for staggered animations
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
