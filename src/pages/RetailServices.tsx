@@ -10,6 +10,8 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Activity, X } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
+import RetailUseCaseExplainer from "@/components/retail-services/RetailUseCaseExplainer";
+import DemoCallBlock from "@/components/mercedes-dealer/DemoCallBlock";
 
 const RetailServices = () => {
   useEffect(() => {
@@ -139,13 +141,34 @@ const RetailServices = () => {
 
       <HeroSection onBookAppointment={() => setIsOpen(true)} />
 
-      <BookingDialog 
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        handleCall={handleCall}
-        handleEndCall={handleEndCall}
-        isLoading={isLoading}
-      />
+      <div className="container mx-auto px-4 py-12">
+        <h2 className="text-3xl font-bold text-center mb-8 text-white">What It Can Handle</h2>
+        <RetailUseCaseExplainer />
+      </div>
+
+      <div className="container mx-auto px-4 py-12">
+        <h2 className="text-3xl font-bold text-center mb-8 text-white">Hear It in Action</h2>
+        <div className="flex justify-center">
+          <DemoCallBlock 
+            className="max-w-md w-full"
+            title="Hear the Retail Voice AI in Action"
+            subtitle="Call now to hear how it handles a real customer request."
+          />
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 py-12">
+        <h2 className="text-3xl font-bold text-center mb-8 text-white">Get Started Fast</h2>
+        <BookingDialog 
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          handleCall={handleCall}
+          handleEndCall={handleEndCall}
+          isLoading={isLoading}
+          title="Book a Free Demo for Your Store"
+          subtitle="We'll show you how Voice AI can help your team handle more calls — with less stress."
+        />
+      </div>
 
       <ServicesGrid />
     </div>

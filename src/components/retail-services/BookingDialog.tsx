@@ -1,84 +1,65 @@
 
-import { Phone } from "lucide-react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import React from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { Phone, X } from "lucide-react";
 
 interface BookingDialogProps {
   isOpen: boolean;
   setIsOpen: (open: boolean) => void;
-  handleCall: () => Promise<void>;
-  handleEndCall: () => Promise<void>;
+  handleCall: () => void;
+  handleEndCall: () => void;
   isLoading: boolean;
+  title?: string;
+  subtitle?: string;
 }
 
-const BookingDialog = ({
-  isOpen,
-  setIsOpen,
-  handleCall,
-  handleEndCall,
-  isLoading
+const BookingDialog = ({ 
+  isOpen, 
+  setIsOpen, 
+  handleCall, 
+  handleEndCall, 
+  isLoading,
+  title = "Book an Appointment",
+  subtitle = "We'll show you how Voice AI can help your team handle more calls — with less stress."
 }: BookingDialogProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild>
-        <button className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-flex items-center gap-2">
-          <Phone className="w-5 h-5" />
-          Book an Appointment
-        </button>
-      </DialogTrigger>
-      <DialogContent className="bg-[#222222] text-white border-gray-800">
-        <DialogHeader className="flex items-start space-x-4">
-          <Avatar className="w-20 h-20">
-            <AvatarImage
-              src="/lovable-uploads/75237bd9-59bf-497d-89fc-9805c49cf84e.png"
-              alt="Alex from Flagship Barbers"
-              className="object-cover"
-            />
-          </Avatar>
-          <div className="flex-1">
-            <DialogTitle className="text-2xl font-bold text-white mb-2">
-              {isLoading ? "Voice Chat in Progress" : "Start Voice Chat with Alex @ Flagship Barbers"}
-            </DialogTitle>
-            <p className="text-gray-300">
-              {isLoading 
-                ? "You are currently in a voice conversation with our AI Agent. You can continue browsing the site while keeping this dialog open."
-                : "You'll be able to have a voice conversation with Alex directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately."}
-            </p>
-          </div>
+      <DialogContent className="max-w-md bg-white text-black p-6 rounded-xl">
+        <DialogHeader>
+          <DialogTitle className="text-2xl font-bold text-center">{title}</DialogTitle>
+          <DialogDescription className="text-center text-gray-600">
+            {subtitle}
+          </DialogDescription>
         </DialogHeader>
-        <div className="flex flex-col space-y-4 pt-4">
-          {!isLoading && (
-            <p className="text-gray-300 text-sm">
-              By clicking "Start Voice Chat", you consent to having a voice conversation with Flagship Barbers. You can end the conversation at any time.
-            </p>
-          )}
-          <div className="flex gap-2">
-            {isLoading ? (
-              <Button 
-                onClick={handleEndCall}
-                className="w-full bg-red-600 hover:bg-red-700 text-white font-bold"
-              >
-                End Call
-              </Button>
-            ) : (
-              <>
-                <Button 
-                  variant="outline"
-                  onClick={() => setIsOpen(false)}
-                  className="w-full border-gray-700 text-white hover:bg-gray-800"
-                >
-                  Cancel
-                </Button>
-                <Button 
-                  className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
-                  onClick={handleCall}
-                  disabled={isLoading}
-                >
-                  {isLoading ? "Starting..." : "Start Voice Chat"}
-                </Button>
-              </>
-            )}
+        
+        <div className="mt-4 p-4 bg-gray-100 rounded-lg border border-gray-200">
+          <div className="flex items-center justify-center mb-4">
+            <Phone className="h-10 w-10 text-[#9b87f5] bg-[#9b87f5]/10 p-2 rounded-full" />
+          </div>
+          <h3 className="text-center font-bold text-lg mb-2">Experience Our AI Voice Assistant</h3>
+          <p className="text-center text-gray-600 text-sm mb-4">
+            Hear how our AI handles customer calls by clicking below.
+          </p>
+          <Button 
+            onClick={handleCall} 
+            className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white" 
+            disabled={isLoading}
+          >
+            {isLoading ? "Connecting..." : "Start Voice Demo"}
+          </Button>
+        </div>
+        
+        <div className="mt-6 text-center">
+          <div className="flex justify-center">
+            <Button 
+              variant="outline" 
+              onClick={() => setIsOpen(false)} 
+              className="border-gray-300"
+            >
+              <X className="mr-2 h-4 w-4" />
+              Close
+            </Button>
           </div>
         </div>
       </DialogContent>

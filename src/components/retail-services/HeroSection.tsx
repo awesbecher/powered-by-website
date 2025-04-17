@@ -27,10 +27,10 @@ const HeroSection = ({ onBookAppointment }: HeroSectionProps) => {
       <div className="relative flex-grow w-full px-4 lg:px-8 flex items-center">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-5xl font-bold mb-4 text-white">
-            Welcome to Flagship Barbers
+            Never miss a customer call again — even during peak hours.
           </h1>
           <p className="text-gray-200 max-w-2xl mx-auto text-lg">
-            Flagship Barbers has been serving the Tacoma public for 25 years. We specialize in classic barbershop style and fades.
+            Voice AI that answers, routes, and resolves calls for your store — 24/7.
           </p>
           <div className="mt-6">
             <Button 
@@ -48,4 +48,3 @@ const HeroSection = ({ onBookAppointment }: HeroSectionProps) => {
 };
 
 export default HeroSection;
-
