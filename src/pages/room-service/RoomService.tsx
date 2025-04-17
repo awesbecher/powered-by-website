@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { RoomServiceHeader } from "./components/RoomServiceHeader";
@@ -71,12 +70,6 @@ const RoomService = () => {
       <GrandviewLogo />
 
       <RoomServiceHeader />
-
-      <div className="container mx-auto px-4 -mt-8 mb-8 flex justify-center z-20 relative">
-        <div className="text-center mb-4">
-          <h2 className="text-2xl font-bold text-white mb-4">Get Started in 48 Hours</h2>
-        </div>
-      </div>
 
       <div className="container mx-auto px-4 flex justify-center mb-8">
         <CallButton
