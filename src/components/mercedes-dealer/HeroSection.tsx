@@ -28,7 +28,7 @@ const HeroSection = ({
         <div className="absolute inset-0 bg-black/50"></div>
       </div>
       
-      <div className="absolute top-6 left-0 right-0 mx-auto z-10 flex justify-center">
+      <div className="absolute top-0 left-0 right-0 mx-auto z-10 flex justify-center">
         <MercedesDealerHeader />
       </div>
       
