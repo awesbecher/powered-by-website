@@ -1,3 +1,4 @@
+
 import React, { Suspense } from 'react';
 import {
   BrowserRouter as Router,
@@ -46,7 +47,7 @@ const queryClient = new QueryClient({
       refetchOnWindowFocus: false,
       retry: false,
       staleTime: 5 * 60 * 1000, // Data is considered fresh for 5 minutes
-      cacheTime: 30 * 60 * 1000, // Cache is kept for 30 minutes
+      gcTime: 30 * 60 * 1000, // Cache is kept for 30 minutes (previously called cacheTime)
     },
   },
 });
