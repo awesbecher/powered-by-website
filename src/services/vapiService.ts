@@ -53,8 +53,12 @@ export const getVapiInstance = () => {
       // Fix: Use correct function signatures for event handlers
       vapiInstance.on("call-start", () => {
         console.log("Call has started");
-        // We can still access event data internally if needed later
-        activeCallId = vapiInstance?.getCallId() || null;
+        // Store the active call ID when the call starts
+        // Use the instance's internal call tracking instead of getCallId()
+        if (vapiInstance && vapiInstance.callId) {
+          activeCallId = vapiInstance.callId;
+          console.log("Active call ID:", activeCallId);
+        }
       });
 
       vapiInstance.on("call-end", () => {
