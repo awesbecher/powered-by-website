@@ -17,9 +17,19 @@ const PageLoader = () => (
 export const RouteConfig = () => {
   const location = useLocation();
   
-  // Combine all routes except the catch-all route
-  const allRoutes = [...mainRoutes, ...productRoutes, ...demoRoutes]
-    .concat(marketingRoutes.filter(route => route.path !== '*'));
+  // Filter out catch-all route from all route arrays
+  const filteredMainRoutes = mainRoutes.filter(route => route.path !== '*');
+  const filteredMarketingRoutes = marketingRoutes.filter(route => route.path !== '*');
+  const filteredProductRoutes = productRoutes.filter(route => route.path !== '*');
+  const filteredDemoRoutes = demoRoutes.filter(route => route.path !== '*');
+  
+  // Combine all routes
+  const allRoutes = [
+    ...filteredMainRoutes,
+    ...filteredMarketingRoutes, 
+    ...filteredProductRoutes, 
+    ...filteredDemoRoutes
+  ];
 
   return (
     <Routes key={location.pathname} location={location}>

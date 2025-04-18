@@ -9,9 +9,6 @@
 /demos /demo 301
 /free-voiceagent /free-voice-agent 301
 
-# Keep trynow as alternative to contact, but don't redirect contact anymore
-# /contact /trynow 301
-
 # Primary routes
 /about /index.html 200
 /pricing /index.html 200
@@ -20,6 +17,7 @@
 /blog /index.html 200
 /trynow /index.html 200
 /contact /index.html 200
+/contact2 /index.html 200
 /careers /index.html 200
 /launch /index.html 200
 /thank-you /index.html 200
@@ -35,6 +33,7 @@
 /agent-gpt-builder /index.html 200
 /ai-agency /index.html 200
 /voice-business /index.html 200
+/getvirtual-se /index.html 200
 
 # User account routes
 /payment /index.html 200
@@ -44,6 +43,8 @@
 
 # Legal routes
 /privacy-statement /index.html 200
+/subscription-terms /index.html 200
+/terms-of-service /index.html 200
 
 # Special purpose routes
 /free-voice-agent /index.html 200
