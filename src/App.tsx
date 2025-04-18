@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from "@/components/ui/toaster";
@@ -9,20 +9,33 @@ import { RouteConfig } from './routes/RouteConfig';
 import { queryClient } from './config/queryClient';
 import { ThemeProvider, defaultThemeConfig } from './config/themeConfig';
 
-// Ensure script is loaded properly
-React.useEffect(() => {
-  // Check if GPT Engineer script needs to be loaded
-  if (!document.querySelector('script[src="https://cdn.gpteng.co/gptengineer.js"]')) {
-    const script = document.createElement('script');
-    script.src = "https://cdn.gpteng.co/gptengineer.js";
-    script.type = "module";
-    script.async = true;
-    document.head.appendChild(script);
-    console.log("GPT Engineer script added dynamically");
-  }
-}, []);
-
 function App() {
+  useEffect(() => {
+    const loadScript = (src: string) => {
+      return new Promise<void>((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.type = "module";
+        script.async = true;
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
+        document.head.appendChild(script);
+      });
+    };
+
+    const initScripts = async () => {
+      try {
+        // Load GPT Engineer script with error handling
+        await loadScript("https://cdn.gpteng.co/gptengineer.js");
+        console.log("GPT Engineer script loaded successfully");
+      } catch (error) {
+        console.warn("Could not load GPT Engineer script:", error);
+      }
+    };
+
+    initScripts();
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider {...defaultThemeConfig}>
