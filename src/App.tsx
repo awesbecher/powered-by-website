@@ -9,9 +9,13 @@ import { RouteConfig } from './routes/RouteConfig';
 import { queryClient } from './config/queryClient';
 import { ThemeProvider, defaultThemeConfig } from './config/themeConfig';
 import * as serviceWorker from './serviceWorker';
+import { ensureCustomEventSupport } from './utils/eventPolyfill';
 
 function App() {
   useEffect(() => {
+    // Ensure CustomEvent is supported in all browsers
+    ensureCustomEventSupport();
+    
     const loadScript = (src: string) => {
       return new Promise<void>((resolve, reject) => {
         const script = document.createElement('script');
@@ -38,6 +42,20 @@ function App() {
     
     // Register service worker
     serviceWorker.register();
+    
+    // Initialize Vapi to ensure it loads properly
+    try {
+      // This is a dynamic import to ensure Vapi loads correctly
+      import('@/services/vapiService').then(({ getVapiInstance }) => {
+        // Just initialize it to make sure it's ready
+        getVapiInstance();
+        console.log("Vapi service initialized on app start");
+      }).catch(err => {
+        console.error("Failed to initialize Vapi service:", err);
+      });
+    } catch (error) {
+      console.error("Error in Vapi initialization:", error);
+    }
   }, []);
 
   return (

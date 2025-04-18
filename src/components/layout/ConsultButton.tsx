@@ -11,9 +11,15 @@ const ConsultButton = ({ show }: ConsultButtonProps) => {
   
   const handleAIAgentClick = () => {
     console.log("Talk to AI Agent button clicked, dispatching event");
-    // Dispatch a custom event to open the voice dialog
-    const event = new CustomEvent('open-voice-dialog');
-    document.dispatchEvent(event);
+    
+    try {
+      // Create and dispatch the event in a try-catch block to ensure it works
+      const event = new CustomEvent('open-voice-dialog');
+      document.dispatchEvent(event);
+      console.log("open-voice-dialog event dispatched successfully");
+    } catch (error) {
+      console.error("Error dispatching open-voice-dialog event:", error);
+    }
   };
   
   return (

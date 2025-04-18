@@ -36,18 +36,47 @@ export const GlobalVoiceChatDialog = () => {
     console.log("Starting voice call with assistant:", ASSISTANT_ID);
     setIsSubmitting(true);
     try {
+      // Force HTTPS check to ensure we're in a secure context
+      if (window.location.protocol !== 'https:' && window.location.hostname !== 'localhost') {
+        throw new Error('Voice chat requires a secure connection (HTTPS). Please ensure you're accessing the site via HTTPS.');
+      }
+
+      // Check microphone permissions explicitly
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        // Stop the stream immediately after getting permission
+        stream.getTracks().forEach(track => track.stop());
+      } catch (micError) {
+        console.error('Microphone access error:', micError);
+        throw new Error('Microphone access was denied. Please enable microphone permissions in your browser settings.');
+      }
+      
       const success = await initiateVapiCall(ASSISTANT_ID);
       if (success) {
         setIsCallActive(true);
         
         const vapi = getVapiInstance();
+        vapi.on("call-start", () => {
+          console.log("Vapi call has officially started");
+        });
+        
         vapi.on("call-end", () => {
           // Only handle automatic call-end events from the service
           // when the dialog is not being manually closed
           if (!isClosingDialogRef.current) {
+            console.log("Call ended automatically by service");
             setIsCallActive(false);
             setShowDialog(false);
           }
+        });
+
+        vapi.on("error", (error) => {
+          console.error("Vapi error event received:", error);
+          toast({
+            variant: "destructive",
+            title: "Voice Chat Error",
+            description: "There was an error with the voice chat. Please try again.",
+          });
         });
 
         toast({

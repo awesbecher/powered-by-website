@@ -38,20 +38,25 @@ const checkBrowserCompatibility = () => {
 export const getVapiInstance = () => {
   if (!vapiInstance) {
     console.log("Creating new Vapi instance");
-    // Initialize with the public API key
-    vapiInstance = new Vapi("a212f18f-9d02-4703-914f-ac89661262c5");
-    
-    vapiInstance.on("call-start", () => {
-      console.log("Call has started");
-    });
+    try {
+      // Initialize with the public API key
+      vapiInstance = new Vapi("a212f18f-9d02-4703-914f-ac89661262c5");
+      
+      vapiInstance.on("call-start", () => {
+        console.log("Call has started");
+      });
 
-    vapiInstance.on("call-end", () => {
-      console.log("Call has ended");
-    });
+      vapiInstance.on("call-end", () => {
+        console.log("Call has ended");
+      });
 
-    vapiInstance.on("error", (error) => {
-      console.error("Vapi error:", error);
-    });
+      vapiInstance.on("error", (error) => {
+        console.error("Vapi error:", error);
+      });
+    } catch (error) {
+      console.error("Error creating Vapi instance:", error);
+      throw new Error("Failed to initialize voice chat service. Please try again later.");
+    }
   }
   return vapiInstance;
 };
@@ -62,6 +67,7 @@ export const initiateVapiCall = async (assistantId: string) => {
     checkBrowserCompatibility();
     
     try {
+      // First try with enhanced audio options
       await navigator.mediaDevices.getUserMedia({ 
         audio: {
           echoCancellation: true,
@@ -71,12 +77,20 @@ export const initiateVapiCall = async (assistantId: string) => {
           channelCount: 1
         } 
       });
+      console.log("Audio access granted with enhanced options");
     } catch (mediaError) {
-      console.error('MediaDevices error:', mediaError);
+      console.error('MediaDevices error with enhanced options:', mediaError);
+      // Fallback to basic audio request
+      console.log("Falling back to basic audio request");
       await navigator.mediaDevices.getUserMedia({ audio: true });
+      console.log("Audio access granted with basic options");
     }
     
     const vapi = getVapiInstance();
+    if (!vapi) {
+      throw new Error("Failed to initialize voice service");
+    }
+    
     console.log("Starting Vapi call with assistant ID:", assistantId);
     await vapi.start(assistantId);
     console.log("Vapi call successfully initiated");
@@ -94,6 +108,8 @@ export const initiateVapiCall = async (assistantId: string) => {
         errorMessage = 'Your browser version may be too old. Please update your browser or try Chrome/Firefox.';
       } else if (error.name === 'SecurityError') {
         errorMessage = 'Security error. Please ensure you are using HTTPS and have granted the necessary permissions.';
+      } else if (error.name === 'AbortError') {
+        errorMessage = 'The audio capture was aborted. Please try again.';
       }
       throw new Error(errorMessage);
     }
@@ -105,6 +121,10 @@ export const stopVapiCall = () => {
   try {
     console.log("Stopping Vapi call");
     const vapi = getVapiInstance();
+    if (!vapi) {
+      console.warn("No active Vapi instance to stop");
+      return;
+    }
     vapi.stop();
     console.log("Vapi call stopped successfully");
   } catch (error) {
