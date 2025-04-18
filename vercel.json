@@ -1,7 +1,7 @@
 {
   "functions": {
     "api/gpt-lead/index.js": {
-      "runtime": "vercel-nodejs@2.8.1"
+      "runtime": "@vercel/node@3.0.0"
     }
   },
   "routes": [
