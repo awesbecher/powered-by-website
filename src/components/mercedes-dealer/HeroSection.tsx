@@ -18,7 +18,7 @@ const HeroSection = ({
   isCallActive = false
 }: HeroSectionProps) => {
   return (
-    <div className="relative h-[75vh] mb-4">
+    <div className="relative h-[75vh] mb-4 pt-20">
       <div className="absolute inset-0">
         <img 
           src="/lovable-uploads/a03fe01f-a020-43b3-a46c-2fda077f0baf.png"
