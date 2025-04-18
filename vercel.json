@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "api/gpt-lead/index.js": {
+      "runtime": "nodejs18.x"
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/gpt-lead",
+      "dest": "api/gpt-lead/index.js"
+    }
+  ]
+}
