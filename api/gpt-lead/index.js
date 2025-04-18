@@ -12,11 +12,11 @@ module.exports = async (req, res) => {
 
     console.log('📥 New GPT Lead:', { email, firstname, lastname, company });
 
-    // TODO: send email/slack/etc here
+    // TODO: Integrate email/slack/CRM logic here
 
     return res.status(200).json({ status: 'ok' });
   } catch (err) {
     console.error('❌ API Error:', err);
-    return res.status(500).json({ error: 'Server error' });
+    return res.status(500).json({ error: 'Internal Server Error', details: err.message });
   }
 };
