@@ -28,12 +28,18 @@ export const VoiceChatDialog = ({
   const navigate = useNavigate();
   const isUnmountingRef = useRef(false);
   
-  // Remove the cleanup effect that was terminating the call on page navigation
-  // This ensures calls only end when users explicitly end them
+  // Cleanup effect to prevent memory leaks
+  useEffect(() => {
+    return () => {
+      isUnmountingRef.current = true;
+    };
+  }, []);
   
   const handleEndCallAndRedirect = () => {
     handleEndCall();
-    navigate('/contact');
+    if (!isUnmountingRef.current) {
+      navigate('/contact');
+    }
   };
 
   const dialogContent = getDialogContent(source);
@@ -54,7 +60,10 @@ export const VoiceChatDialog = ({
 
   // Active call dialog
   return (
-    <Dialog open={showDialog} onOpenChange={(open) => !open && handleEndCallAndRedirect()}>
+    <Dialog 
+      open={showDialog} 
+      onOpenChange={(open) => !open && handleEndCallAndRedirect()}
+    >
       <ActiveCallDialog 
         handleEndCall={handleEndCall} 
         isUnmountingRef={isUnmountingRef}

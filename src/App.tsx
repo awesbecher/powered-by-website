@@ -10,6 +10,7 @@ import { queryClient } from './config/queryClient';
 import { ThemeProvider, defaultThemeConfig } from './config/themeConfig';
 import * as serviceWorker from './serviceWorker';
 import { ensureCustomEventSupport } from './utils/eventPolyfill';
+import { getVapiInstance } from './services/vapiService';
 
 function App() {
   useEffect(() => {
@@ -45,14 +46,9 @@ function App() {
     
     // Initialize Vapi to ensure it loads properly
     try {
-      // This is a dynamic import to ensure Vapi loads correctly
-      import('@/services/vapiService').then(({ getVapiInstance }) => {
-        // Just initialize it to make sure it's ready
-        getVapiInstance();
-        console.log("Vapi service initialized on app start");
-      }).catch(err => {
-        console.error("Failed to initialize Vapi service:", err);
-      });
+      // Initialize Vapi instance early to ensure it's ready for use
+      getVapiInstance();
+      console.log("Vapi service initialized on app start");
     } catch (error) {
       console.error("Error in Vapi initialization:", error);
     }

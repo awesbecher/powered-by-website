@@ -3,7 +3,10 @@
  * CustomEvent polyfill for IE support and consistent behavior across browsers
  */
 export const ensureCustomEventSupport = () => {
-  if (typeof window.CustomEvent === 'function') return;
+  if (typeof window.CustomEvent === 'function') {
+    console.log("CustomEvent already supported natively");
+    return;
+  }
 
   function CustomEvent(event: string, params: CustomEventInit) {
     params = params || { bubbles: false, cancelable: false, detail: null };
@@ -14,4 +17,5 @@ export const ensureCustomEventSupport = () => {
 
   CustomEvent.prototype = window.Event.prototype;
   (window as any).CustomEvent = CustomEvent;
+  console.log("CustomEvent polyfill applied");
 };

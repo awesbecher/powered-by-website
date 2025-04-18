@@ -2,7 +2,12 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { VoiceChatDialog } from "@/components/home/VoiceChatDialog";
-import { initiateVapiCall, stopVapiCall, getVapiInstance } from "@/services/vapiService";
+import { 
+  initiateVapiCall, 
+  stopVapiCall, 
+  getVapiInstance, 
+  isVapiCallActive 
+} from "@/services/vapiService";
 import { useToast } from "@/hooks/use-toast";
 
 export const GlobalVoiceChatDialog = () => {
@@ -30,6 +35,17 @@ export const GlobalVoiceChatDialog = () => {
     return () => {
       document.removeEventListener('open-voice-dialog', handleOpenDialog);
     };
+  }, []);
+
+  // Check if there's an active call when the component mounts
+  useEffect(() => {
+    const checkActiveCall = () => {
+      if (isVapiCallActive()) {
+        setIsCallActive(true);
+      }
+    };
+
+    checkActiveCall();
   }, []);
 
   const handleStartCall = async () => {
@@ -136,4 +152,3 @@ export const GlobalVoiceChatDialog = () => {
     />
   );
 };
-

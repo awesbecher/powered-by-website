@@ -2,7 +2,11 @@
 import Vapi from "@vapi-ai/web";
 
 let vapiInstance: Vapi | null = null;
+let activeCallId: string | null = null;
 
+/**
+ * Check browser compatibility for voice chat features
+ */
 const checkBrowserCompatibility = () => {
   // Check if running in a secure context (HTTPS or localhost)
   if (!window.isSecureContext) {
@@ -35,6 +39,9 @@ const checkBrowserCompatibility = () => {
   }
 };
 
+/**
+ * Lazy-initializes and returns the Vapi instance
+ */
 export const getVapiInstance = () => {
   if (!vapiInstance) {
     console.log("Creating new Vapi instance");
@@ -42,17 +49,22 @@ export const getVapiInstance = () => {
       // Initialize with the public API key
       vapiInstance = new Vapi("a212f18f-9d02-4703-914f-ac89661262c5");
       
-      vapiInstance.on("call-start", () => {
-        console.log("Call has started");
+      // Setup default event listeners
+      vapiInstance.on("call-start", (event) => {
+        console.log("Call has started", event);
+        activeCallId = event?.call?.id || null;
       });
 
-      vapiInstance.on("call-end", () => {
-        console.log("Call has ended");
+      vapiInstance.on("call-end", (event) => {
+        console.log("Call has ended", event);
+        activeCallId = null;
       });
 
       vapiInstance.on("error", (error) => {
         console.error("Vapi error:", error);
       });
+      
+      console.log("Vapi instance created successfully");
     } catch (error) {
       console.error("Error creating Vapi instance:", error);
       throw new Error("Failed to initialize voice chat service. Please try again later.");
@@ -61,11 +73,15 @@ export const getVapiInstance = () => {
   return vapiInstance;
 };
 
+/**
+ * Initiates a voice call with the specified assistant
+ */
 export const initiateVapiCall = async (assistantId: string) => {
   try {
     console.log("Initiating Vapi call with assistant:", assistantId);
     checkBrowserCompatibility();
     
+    // Request microphone access with enhanced error handling
     try {
       // First try with enhanced audio options
       await navigator.mediaDevices.getUserMedia({ 
@@ -117,6 +133,9 @@ export const initiateVapiCall = async (assistantId: string) => {
   }
 };
 
+/**
+ * Stops the current voice call
+ */
 export const stopVapiCall = () => {
   try {
     console.log("Stopping Vapi call");
@@ -126,9 +145,34 @@ export const stopVapiCall = () => {
       return;
     }
     vapi.stop();
+    activeCallId = null;
     console.log("Vapi call stopped successfully");
   } catch (error) {
     console.error('Error stopping Vapi call:', error);
     throw error;
+  }
+};
+
+/**
+ * Returns whether a call is currently active
+ */
+export const isVapiCallActive = () => {
+  return activeCallId !== null;
+};
+
+/**
+ * Resets the Vapi instance (useful for testing or recovery from errors)
+ */
+export const resetVapiInstance = () => {
+  try {
+    if (vapiInstance) {
+      if (activeCallId) {
+        vapiInstance.stop();
+      }
+      vapiInstance = null;
+      activeCallId = null;
+    }
+  } catch (error) {
+    console.error("Error resetting Vapi instance:", error);
   }
 };
