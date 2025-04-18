@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { HeadsetIcon } from "lucide-react";
 
@@ -10,7 +11,9 @@ const ConsultButton = ({ show }: ConsultButtonProps) => {
   
   const handleAIAgentClick = () => {
     console.log("Talk to AI Agent button clicked, dispatching event");
-    document.dispatchEvent(new CustomEvent('open-voice-dialog'));
+    // Dispatch a custom event to open the voice dialog
+    const event = new CustomEvent('open-voice-dialog');
+    document.dispatchEvent(event);
   };
   
   return (

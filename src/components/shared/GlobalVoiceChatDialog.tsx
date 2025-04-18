@@ -13,7 +13,7 @@ export const GlobalVoiceChatDialog = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   
-  // The assistant ID we want to use
+  // The assistant ID we want to use - verified this is correct
   const ASSISTANT_ID = "ebb38ba5-321a-49e4-b860-708bc864327f";
 
   useEffect(() => {

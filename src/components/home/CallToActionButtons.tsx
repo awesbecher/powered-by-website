@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Phone, Tv } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -15,8 +16,9 @@ export const CallToActionButtons = ({ handleNavigation, setShowDialog }: CallToA
   
   const handleTalkToAgent = () => {
     console.log("Talk to Agent button clicked in CallToActionButtons");
-    // Dispatch the open-voice-dialog event
-    document.dispatchEvent(new CustomEvent('open-voice-dialog'));
+    // Explicitly create and dispatch the custom event
+    const event = new CustomEvent('open-voice-dialog');
+    document.dispatchEvent(event);
   };
 
   useEffect(() => {

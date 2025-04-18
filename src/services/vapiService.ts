@@ -77,6 +77,7 @@ export const initiateVapiCall = async (assistantId: string) => {
     }
     
     const vapi = getVapiInstance();
+    console.log("Starting Vapi call with assistant ID:", assistantId);
     await vapi.start(assistantId);
     console.log("Vapi call successfully initiated");
     

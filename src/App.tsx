@@ -8,6 +8,7 @@ import { GlobalVoiceChatDialog } from '@/components/shared/GlobalVoiceChatDialog
 import { RouteConfig } from './routes/RouteConfig';
 import { queryClient } from './config/queryClient';
 import { ThemeProvider, defaultThemeConfig } from './config/themeConfig';
+import * as serviceWorker from './serviceWorker';
 
 function App() {
   useEffect(() => {
@@ -34,6 +35,9 @@ function App() {
     };
 
     initScripts();
+    
+    // Register service worker
+    serviceWorker.register();
   }, []);
 
   return (
