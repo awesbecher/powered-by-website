@@ -50,13 +50,15 @@ export const getVapiInstance = () => {
       vapiInstance = new Vapi("a212f18f-9d02-4703-914f-ac89661262c5");
       
       // Setup default event listeners
-      vapiInstance.on("call-start", (event) => {
-        console.log("Call has started", event);
-        activeCallId = event?.call?.id || null;
+      // Fix: Use correct function signatures for event handlers
+      vapiInstance.on("call-start", () => {
+        console.log("Call has started");
+        // We can still access event data internally if needed later
+        activeCallId = vapiInstance?.getCallId() || null;
       });
 
-      vapiInstance.on("call-end", (event) => {
-        console.log("Call has ended", event);
+      vapiInstance.on("call-end", () => {
+        console.log("Call has ended");
         activeCallId = null;
       });
 
