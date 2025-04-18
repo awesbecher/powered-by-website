@@ -1,26 +1,22 @@
 module.exports = async (req, res) => {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method Not Allowed' });
-  }
-
-  const { email, firstname, lastname, company } = req.body;
-
-  if (!email || !firstname || !lastname || !company) {
-    return res.status(400).json({ error: 'Missing required fields' });
-  }
-
-  const HUBSPOT_TOKEN = process.env.HUBSPOT_TOKEN;
-
-  const hubspotPayload = {
-    properties: {
-      email,
-      firstname,
-      lastname,
-      company,
-      lead_source: 'Powered_by GPT',
-      lifecyclestage: 'lead'
-    }
-  };
-
   try {
-    const response = await fetch('https://api.hubapi.com/crm/v3/objects/contacts',
+    if (req.method !== 'POST') {
+      return res.status(405).json({ error: 'Method Not Allowed' });
+    }
+
+    const { email, firstname, lastname, company } = req.body || {};
+
+    if (!email || !firstname || !lastname || !company) {
+      return res.status(400).json({ error: 'Missing required fields' });
+    }
+
+    console.log('📥 New GPT Lead:', { email, firstname, lastname, company });
+
+    // TODO: send email/slack/etc here
+
+    return res.status(200).json({ status: 'ok' });
+  } catch (err) {
+    console.error('❌ API Error:', err);
+    return res.status(500).json({ error: 'Server error' });
+  }
+};
