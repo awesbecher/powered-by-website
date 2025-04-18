@@ -38,7 +38,7 @@ export const GlobalVoiceChatDialog = () => {
     try {
       // Force HTTPS check to ensure we're in a secure context
       if (window.location.protocol !== 'https:' && window.location.hostname !== 'localhost') {
-        throw new Error('Voice chat requires a secure connection (HTTPS). Please ensure you're accessing the site via HTTPS.');
+        throw new Error('Voice chat requires a secure connection (HTTPS). Please ensure you\'re accessing the site via HTTPS.');
       }
 
       // Check microphone permissions explicitly
