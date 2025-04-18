@@ -5,6 +5,7 @@ import { mainRoutes } from './mainRoutes';
 import { marketingRoutes } from './marketingRoutes';
 import { productRoutes } from './productRoutes';
 import { demoRoutes } from './demoRoutes';
+import NotFound from '@/pages/NotFound';
 
 // Loading component for suspense fallback
 const PageLoader = () => (
@@ -15,11 +16,15 @@ const PageLoader = () => (
 
 export const RouteConfig = () => {
   const location = useLocation();
+  
+  // Combine all routes except the catch-all route
+  const allRoutes = [...mainRoutes, ...productRoutes, ...demoRoutes]
+    .concat(marketingRoutes.filter(route => route.path !== '*'));
 
   return (
     <Routes key={location.pathname} location={location}>
-      {/* Render all routes with Suspense */}
-      {[...mainRoutes, ...marketingRoutes, ...productRoutes, ...demoRoutes].map((route) => (
+      {/* Render all defined routes with Suspense */}
+      {allRoutes.map((route) => (
         <Route
           key={route.path}
           path={route.path}
@@ -30,6 +35,16 @@ export const RouteConfig = () => {
           }
         />
       ))}
+      
+      {/* Catch-all route for 404s */}
+      <Route
+        path="*"
+        element={
+          <Suspense fallback={<PageLoader />}>
+            <NotFound />
+          </Suspense>
+        }
+      />
     </Routes>
   );
 };

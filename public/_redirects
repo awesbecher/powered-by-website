@@ -8,7 +8,9 @@
 /gpt /agent-gpt 301
 /demos /demo 301
 /free-voiceagent /free-voice-agent 301
-/contact /trynow 301
+
+# Keep trynow as alternative to contact, but don't redirect contact anymore
+# /contact /trynow 301
 
 # Primary routes
 /about /index.html 200
@@ -17,8 +19,10 @@
 /news /index.html 200
 /blog /index.html 200
 /trynow /index.html 200
+/contact /index.html 200
 /careers /index.html 200
 /launch /index.html 200
+/thank-you /index.html 200
 
 # Product routes
 /products /index.html 200
@@ -54,4 +58,3 @@
 /insurance /index.html 200
 /real-estate /index.html 200
 /retail-services /index.html 200
-/thank-you /index.html 200

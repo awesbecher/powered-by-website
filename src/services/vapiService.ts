@@ -50,13 +50,13 @@ export const getVapiInstance = () => {
       vapiInstance = new Vapi("a212f18f-9d02-4703-914f-ac89661262c5");
       
       // Setup default event listeners
-      // Fix: Use correct function signatures for event handlers
       vapiInstance.on("call-start", () => {
         console.log("Call has started");
         // Store the active call ID when the call starts
-        // Use the instance's internal call tracking instead of getCallId()
-        if (vapiInstance && vapiInstance.callId) {
-          activeCallId = vapiInstance.callId;
+        // Use a safe type assertion for the Vapi instance with callId property
+        const callId = (vapiInstance as any)?.callId;
+        if (callId) {
+          activeCallId = callId;
           console.log("Active call ID:", activeCallId);
         }
       });
