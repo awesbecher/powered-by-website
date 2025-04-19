@@ -1,11 +1,12 @@
-// pages/api/send-email.ts
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== 'POST') return res.status(405).end('Method Not Allowed');
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method Not Allowed' });
+  }
 
   const { email, audioUrl } = req.body;
 
@@ -14,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const data = await resend.emails.send({
+    await resend.emails.send({
       from: process.env.EMAIL_FROM || 'team@poweredby.agency',
       to: email,
       subject: '🎧 Your AI Voice Clip from Powered_by',
@@ -29,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       `,
     });
 
-    return res.status(200).json({ success: true, data });
+    return res.status(200).json({ success: true });
   } catch (error) {
     console.error('[Resend Error]', error);
     return res.status(500).json({ error: 'Failed to send email' });
