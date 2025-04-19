@@ -1,6 +1,8 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import WaveSurfer from 'wavesurfer.js';
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Mail } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -32,6 +34,7 @@ export const AudioPlayer = ({
   const waveformRef = useRef<HTMLDivElement>(null);
   const wavesurferRef = useRef<WaveSurfer | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [email, setEmail] = useState('');
   const { toast } = useToast();
 
   useEffect(() => {
@@ -84,12 +87,19 @@ export const AudioPlayer = ({
   };
 
   const handleSendEmail = async () => {
+    if (!email) {
+      toast({
+        title: "Error",
+        description: "Please enter an email address",
+        variant: "destructive",
+      });
+      return;
+    }
+
     try {
-      const recipientEmail = window.pageState?.userEmail || '';
-      
       const { data, error } = await window.supabase.functions.invoke('send-audio-email', {
         body: {
-          recipientEmail,
+          recipientEmail: email,
           audioData: base64Audio
         }
       });
@@ -98,13 +108,16 @@ export const AudioPlayer = ({
 
       toast({
         title: "Success",
-        description: "Audio file has been sent to your email",
+        description: "Audio file has been sent to your email ✅",
       });
+      
+      // Clear email input after successful send
+      setEmail('');
     } catch (error) {
       console.error('Error sending email:', error);
       toast({
         title: "Error",
-        description: "Failed to send audio file. Please try again.",
+        description: "Failed to send audio file ❌",
         variant: "destructive",
       });
     }
@@ -117,28 +130,39 @@ export const AudioPlayer = ({
       style={{ 
         backgroundColor: 'white',
         borderRadius: '16px',
-        padding: '16px',
+        padding: '20px',
         boxShadow: '0 8px 24px rgba(0, 0, 0, 0.06)',
         maxWidth: '600px',
         margin: '32px auto'
       }}
     >
       <div ref={waveformRef} />
-      <div className="flex justify-between items-center mt-4">
+      <div className="mt-6 space-y-4">
         <Button 
           onClick={handlePlayPause}
           variant="outline"
+          className="w-full"
         >
           {isPlaying ? 'Pause' : 'Play'}
         </Button>
-        <Button
-          onClick={handleSendEmail}
-          variant="outline"
-          className="flex items-center gap-2"
-        >
-          <Mail className="h-4 w-4" />
-          Send to email
-        </Button>
+
+        <div className="flex gap-2">
+          <Input
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="flex-1"
+          />
+          <Button
+            onClick={handleSendEmail}
+            variant="outline"
+            className="flex items-center gap-2"
+          >
+            <Mail className="h-4 w-4" />
+            Send
+          </Button>
+        </div>
       </div>
     </div>
   );
