@@ -13,7 +13,7 @@ serve(async (req) => {
   }
 
   try {
-    const { text } = await req.json()
+    const { text, voice } = await req.json()
     
     if (!text) {
       throw new Error('Text input is required')
@@ -28,7 +28,10 @@ serve(async (req) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          inputs: text
+          inputs: text,
+          parameters: {
+            voice: voice || 'default' // Use provided voice or fallback to default
+          }
         }),
       }
     )

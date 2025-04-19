@@ -18,8 +18,14 @@ export const useVoiceGeneration = (text: string | null) => {
       setError(null);
 
       try {
+        // Get the voice choice from pageState if it exists
+        const voiceChoice = window.pageState?.voiceChoice;
+
         const { data, error } = await supabase.functions.invoke('orpheus-tts', {
-          body: { text }
+          body: { 
+            text,
+            voice: voiceChoice 
+          }
         });
 
         if (error) throw error;

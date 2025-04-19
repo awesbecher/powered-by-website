@@ -8,5 +8,6 @@ interface Window {
   pageState?: {
     audioBlob?: string | null;
     gptText?: string | null;
+    voiceChoice?: string | null;
   };
 }
