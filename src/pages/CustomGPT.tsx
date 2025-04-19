@@ -6,6 +6,7 @@ import { ChatInterface } from "@/components/custom-gpt/ChatInterface";
 import { AudioPlayer } from "@/components/AudioPlayer";
 import { VoiceSelector } from "@/components/custom-gpt/VoiceSelector";
 import { Button } from "@/components/ui/button";
+import { Volume } from "lucide-react";
 
 const CustomGPT = () => {
   const [audioData, setAudioData] = useState<string | null>(null);
@@ -35,11 +36,12 @@ const CustomGPT = () => {
     };
   }, []);
 
-  // Function to test voice
-  const handleTestVoice = () => {
+  // Function to play voice demo
+  const handlePlayVoice = () => {
     window.pageState = {
       ...window.pageState,
-      gptText: "Hi there! I'm your AI voice agent."
+      voiceChoice: "tara",
+      gptText: "Hey, I'm your AI voice agent."
     };
     // Dispatch event to notify other components
     window.dispatchEvent(new Event('pageStateUpdated'));
@@ -69,14 +71,14 @@ const CustomGPT = () => {
           <div className="mt-6 space-y-4">
             <VoiceSelector />
             
-            {/* Test Voice Button */}
+            {/* Voice Demo Button */}
             <div className="flex justify-center">
               <Button 
-                onClick={handleTestVoice} 
+                onClick={handlePlayVoice} 
                 variant="gradient"
                 className="flex items-center gap-2"
               >
-                🔊 Test Voice
+                <Volume className="h-4 w-4" /> Play Voice
               </Button>
             </div>
             
@@ -106,4 +108,3 @@ const CustomGPT = () => {
 };
 
 export default CustomGPT;
-
