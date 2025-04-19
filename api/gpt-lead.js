@@ -38,4 +38,85 @@ export default async function handler(req, res) {
 
   doc.moveDown().fillColor('#8B5CF6').fontSize(14).text('Sample Agent Prompt:');
   doc.fillColor('white').fontSize(12).text(
-    `You are an AI voice agent for ${company}. When someone calls, answer
+    `You are an AI voice agent for ${company}. When someone calls, answer questions about office hours, services, and book appointments. If the caller needs help with a specific technical issue, escalate to a human rep.`
+  );
+
+  doc.moveDown().fillColor('#8B5CF6').fontSize(14).text('What Happens Next?');
+  doc.fillColor('white').fontSize(12).text(
+    `The Powered_by team will be in touch shortly to start building your AI agent based on the requirements and workflows you provided.`
+  );
+
+  doc.end();
+  const pdfBuffer = await getStream.buffer(doc);
+
+  try {
+    // 📨 Send to Slack
+    await fetch(slackWebhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        text: '🚀 *New GPT Lead Received!*',
+        blocks: [
+          { type: 'section', text: { type: 'mrkdwn', text: leadText } },
+          {
+            type: 'context',
+            elements: [{ type: 'mrkdwn', text: '_Submitted via Powered_by Voice Agent Builder_' }],
+          },
+        ],
+      }),
+    });
+
+    // 📧 Send confirmation to lead with PDF
+    await resend.emails.send({
+      from: 'Powered_by Team <team@poweredby.agency>',
+      to: email,
+      subject: 'Your AI Agent Summary + Next Steps',
+      html: `
+        <p>Hi ${name},</p>
+        <p>Thanks for reaching out! Your summary PDF is attached below.</p>
+        <p>👇 Next steps:</p>
+        <ul>
+          <li><a href="https://poweredby.agency/trynow">Try a Demo Experience</a></li>
+          <li><a href="https://cal.com/team-powered-by-dfbtbb/get-started-today">Book a Live Build Session</a></li>
+        </ul>
+        <p>– The Powered_by Team</p>
+      `,
+      attachments: [
+        {
+          filename: 'Powered_by_Agent_Summary.pdf',
+          content: pdfBuffer.toString('base64'),
+        },
+      ],
+    });
+
+    // 📧 Internal email to your team
+    await resend.emails.send({
+      from: 'Lead Bot <team@poweredby.agency>',
+      to: companyEmail,
+      subject: `New GPT Lead: ${name} from ${company}`,
+      html: `<p><strong>Name:</strong> ${name}<br/><strong>Email:</strong> ${email}<br/><strong>Company:</strong> ${company}</p>`,
+    });
+
+    // 📇 Push to HubSpot
+    await fetch('https://api.hubapi.com/crm/v3/objects/contacts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${hubspotToken}`,
+      },
+      body: JSON.stringify({
+        properties: {
+          email,
+          firstname: name,
+          company,
+          source: 'GPT Lead',
+        },
+      }),
+    });
+
+    res.status(200).json({ message: 'Lead processed successfully' });
+  } catch (err) {
+    console.error('Lead handler error:', err);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
