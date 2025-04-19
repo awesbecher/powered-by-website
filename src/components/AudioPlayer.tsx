@@ -5,6 +5,19 @@ import { Button } from "@/components/ui/button";
 import { Mail } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
+// Add type definitions for the global window object
+declare global {
+  interface Window {
+    supabase: any;
+    pageState?: {
+      audioBlob?: string | null;
+      gptText?: string | null;
+      voiceChoice?: string | null;
+      userEmail?: string;
+    };
+  }
+}
+
 interface AudioPlayerProps {
   base64Audio?: string | null;
   src?: string | null;
@@ -78,10 +91,13 @@ export const AudioPlayer = ({
 
   const handleSendEmail = async () => {
     try {
+      // Get user email with fallback to empty string if not available
+      const recipientEmail = window.pageState?.userEmail || '';
+      
       const { data, error } = await window.supabase.functions.invoke('upload-and-send', {
         body: {
           audioData: base64Audio,
-          recipientEmail: window.pageState?.userEmail || '',
+          recipientEmail,
           message: "Here's your requested audio file"
         }
       });
