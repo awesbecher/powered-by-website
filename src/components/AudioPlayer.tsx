@@ -19,15 +19,16 @@ export const AudioPlayer = ({ base64Audio }: AudioPlayerProps) => {
   if (!base64Audio) return null;
 
   return (
-    <Card className="w-full max-w-md mx-auto shadow-sm">
-      <CardContent className="p-4">
+    <Card className="w-full mt-4 border border-white/10">
+      <CardContent className="p-3">
         <audio 
           ref={audioRef} 
           controls 
           autoPlay
-          className="w-full rounded-lg py-3 accent-[#8B5CF6]"
+          className="w-full rounded-xl p-3 shadow-sm"
           style={{ 
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            accentColor: '#8B5CF6',
+            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
             background: 'transparent'
           }}
         >
