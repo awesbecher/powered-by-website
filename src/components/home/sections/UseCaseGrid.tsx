@@ -1,9 +1,9 @@
 
-import { Building, Briefcase, Home, Hospital, Auto, Users } from "lucide-react";
+import { Car, Building, Hospital, Home, Briefcase, Users } from "lucide-react";
 
 export const UseCaseGrid = () => {
   const cases = [
-    { icon: Auto, title: "Auto", description: "Qualify leads and schedule test drives 24/7" },
+    { icon: Car, title: "Auto", description: "Qualify leads and schedule test drives 24/7" },
     { icon: Building, title: "SaaS", description: "Handle product inquiries and support requests" },
     { icon: Hospital, title: "Insurance", description: "Process claims and answer policy questions" },
     { icon: Home, title: "Real Estate", description: "Schedule viewings and qualify buyers" },
