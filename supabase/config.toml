@@ -3,3 +3,4 @@ project_id = "your-project-id"
 
 [functions.orpheus-gcp-tts]
 verify_jwt = true
+
