@@ -15,6 +15,5 @@ export const mainRoutes = [
   { path: "/agent-gpt-builder", element: <AgentGPTBuilder /> },
   { path: "/agent-gpt", element: <AgentGPT /> },
   { path: "/chat", element: <CustomGPT /> },
-  // Catch-all route for 404 pages
   { path: "*", element: <div>Not Found</div> },
 ];

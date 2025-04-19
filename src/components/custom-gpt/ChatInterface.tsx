@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -64,7 +63,7 @@ type LeadInfo = {
 export const ChatInterface = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([
     { role: "system", content: SYSTEM_PROMPT },
-    { role: "assistant", content: "Hi, I'm Michael — your AI agent guide. How can I help?" }
+    { role: "assistant", content: "Hi, I'm Michael — your AI agent guide at Powered_by. How can I help you understand AI voice technology today?" }
   ]);
   const [inputMessage, setInputMessage] = useState("");
   const [isTyping, setIsTyping] = useState(false);
@@ -433,3 +432,4 @@ export const ChatInterface = () => {
   );
 };
 
+export default ChatInterface;
