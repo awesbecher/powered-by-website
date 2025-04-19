@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import { ChatInterface } from "@/components/custom-gpt/ChatInterface";
 import { AudioPlayer } from "@/components/AudioPlayer";
 import { VoiceSelector } from "@/components/custom-gpt/VoiceSelector";
+import { Button } from "@/components/ui/button";
 
 const CustomGPT = () => {
   const [audioData, setAudioData] = useState<string | null>(null);
@@ -34,6 +35,16 @@ const CustomGPT = () => {
     };
   }, []);
 
+  // Function to test voice
+  const handleTestVoice = () => {
+    window.pageState = {
+      ...window.pageState,
+      gptText: "Hi there! I'm your AI voice agent."
+    };
+    // Dispatch event to notify other components
+    window.dispatchEvent(new Event('pageStateUpdated'));
+  };
+
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <Navbar />
@@ -57,6 +68,18 @@ const CustomGPT = () => {
           {/* Voice Selection and Audio Player */}
           <div className="mt-6 space-y-4">
             <VoiceSelector />
+            
+            {/* Test Voice Button */}
+            <div className="flex justify-center">
+              <Button 
+                onClick={handleTestVoice} 
+                variant="gradient"
+                className="flex items-center gap-2"
+              >
+                🔊 Test Voice
+              </Button>
+            </div>
+            
             <AudioPlayer base64Audio={audioData} />
           </div>
           
@@ -83,3 +106,4 @@ const CustomGPT = () => {
 };
 
 export default CustomGPT;
+
