@@ -22,6 +22,7 @@
 /launch /index.html 200
 /thank-you /index.html 200
 /agent-marketplace /index.html 200
+/agent-gpt-builder /index.html 200
 
 # Product routes
 /products /index.html 200
