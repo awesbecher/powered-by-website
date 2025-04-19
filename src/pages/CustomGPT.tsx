@@ -4,6 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ChatInterface } from "@/components/custom-gpt/ChatInterface";
 import { AudioPlayer } from "@/components/AudioPlayer";
+import { VoiceSelector } from "@/components/custom-gpt/VoiceSelector";
 
 const CustomGPT = () => {
   const [audioData, setAudioData] = useState<string | null>(null);
@@ -53,8 +54,9 @@ const CustomGPT = () => {
             <ChatInterface />
           </div>
           
-          {/* Audio Player */}
-          <div className="mt-6 flex justify-center">
+          {/* Voice Selection and Audio Player */}
+          <div className="mt-6 space-y-4">
+            <VoiceSelector />
             <AudioPlayer base64Audio={audioData} />
           </div>
           
