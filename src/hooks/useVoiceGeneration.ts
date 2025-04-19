@@ -20,18 +20,36 @@ export const useVoiceGeneration = (text: string | null) => {
       try {
         // Get the voice choice from pageState if it exists
         const voiceChoice = window.pageState?.voiceChoice;
+        
+        // First try the Orpheus TTS service
+        try {
+          const { data: orpheusData, error: orpheusError } = await supabase.functions.invoke('orpheus-tts', {
+            body: { 
+              text,
+              voice: voiceChoice 
+            }
+          });
 
-        const { data, error } = await supabase.functions.invoke('orpheus-tts', {
+          if (!orpheusError && orpheusData.audio) {
+            setAudioBlob(orpheusData.audio);
+            return;
+          }
+        } catch (orpheusError) {
+          console.warn('Orpheus TTS failed, falling back to GCP:', orpheusError);
+        }
+
+        // Fallback to GCP TTS if Orpheus fails
+        const { data: gcpData, error: gcpError } = await supabase.functions.invoke('orpheus-gcp-tts', {
           body: { 
             text,
             voice: voiceChoice 
           }
         });
 
-        if (error) throw error;
+        if (gcpError) throw gcpError;
 
-        if (data.audio) {
-          setAudioBlob(data.audio);
+        if (gcpData.audio) {
+          setAudioBlob(gcpData.audio);
         }
       } catch (err) {
         console.error('Error generating voice:', err);

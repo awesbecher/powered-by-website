@@ -1,5 +1,5 @@
 
-project_id = "cinohyzbtfzfcdtkgvij"
+project_id = "your-project-id"
 
-[functions.orpheus-tts]
-verify_jwt = false
+[functions.orpheus-gcp-tts]
+verify_jwt = true
