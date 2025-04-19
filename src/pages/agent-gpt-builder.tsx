@@ -1,8 +1,7 @@
 
 import React from 'react';
-import AgentPromptEditor from '@/components/AgentPromptEditor';
-import AgentGPTBuilder from '@/pages/AgentGPTBuilder';
+import { AgentBuilder } from '@/components/agent-gpt-builder/AgentBuilder';
 
 export default function AgentBuilderPage() {
-  return <AgentGPTBuilder initialLoad={false} />;
+  return <AgentBuilder initialLoad={false} />;
 }
