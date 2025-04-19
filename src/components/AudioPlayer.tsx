@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Mail } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
-// Define types for the global window object
 declare global {
   interface Window {
     supabase: any;
@@ -38,7 +37,6 @@ export const AudioPlayer = ({
   useEffect(() => {
     if (!waveformRef.current) return;
 
-    // Initialize WaveSurfer
     wavesurferRef.current = WaveSurfer.create({
       container: waveformRef.current,
       waveColor: '#e4e4e7',
@@ -50,7 +48,6 @@ export const AudioPlayer = ({
       normalize: true,
     });
 
-    // Load audio source
     const audioSource = base64Audio || src;
     if (audioSource) {
       const audioUrl = base64Audio 
@@ -59,7 +56,6 @@ export const AudioPlayer = ({
       wavesurferRef.current.load(audioUrl);
     }
 
-    // Setup event listeners
     wavesurferRef.current.on('ready', () => {
       if (autoplay) {
         wavesurferRef.current?.play();
@@ -70,7 +66,6 @@ export const AudioPlayer = ({
     wavesurferRef.current.on('pause', () => setIsPlaying(false));
     wavesurferRef.current.on('finish', () => setIsPlaying(false));
 
-    // Cleanup
     return () => {
       if (wavesurferRef.current) {
         wavesurferRef.current.destroy();
@@ -90,14 +85,12 @@ export const AudioPlayer = ({
 
   const handleSendEmail = async () => {
     try {
-      // Get user email with fallback to empty string if not available
       const recipientEmail = window.pageState?.userEmail || '';
       
-      const { data, error } = await window.supabase.functions.invoke('upload-and-send', {
+      const { data, error } = await window.supabase.functions.invoke('send-audio-email', {
         body: {
-          audioData: base64Audio,
           recipientEmail,
-          message: "Here's your requested audio file"
+          audioData: base64Audio
         }
       });
 
@@ -108,6 +101,7 @@ export const AudioPlayer = ({
         description: "Audio file has been sent to your email",
       });
     } catch (error) {
+      console.error('Error sending email:', error);
       toast({
         title: "Error",
         description: "Failed to send audio file. Please try again.",
@@ -116,7 +110,6 @@ export const AudioPlayer = ({
     }
   };
 
-  // Only render if audio source exists
   if (!base64Audio && !src) return null;
 
   return (

@@ -1,6 +1,5 @@
 
-project_id = "your-project-id"
+project_id = "cinohyzbtfzfcdtkgvij"
 
-[functions.orpheus-gcp-tts]
-verify_jwt = true
-
+[functions.send-audio-email]
+verify_jwt = false
