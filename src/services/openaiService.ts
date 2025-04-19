@@ -39,6 +39,7 @@ export const openaiService = {
       }
       
       if (!data || !data.message) {
+        console.error("Invalid response structure:", data);
         throw new Error("No response returned from OpenAI");
       }
       
@@ -50,7 +51,7 @@ export const openaiService = {
       };
     } catch (error) {
       console.error("Error in generateChatCompletion:", error);
-      throw new Error("Failed to generate chat completion");
+      throw error; // Let the caller handle the error with more context
     }
   }
 };
