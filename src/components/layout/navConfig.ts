@@ -1,12 +1,15 @@
-import { NavItem } from "./NavLinks";
+
+// Import the NavItem type from NavLinks component
+import { NavItem as NavigationItem } from "./NavLinks";
 
 export interface NavItemWithChildren {
   name: string;
   path: string;
   isExternal?: boolean;
-  children?: NavItem[];
+  children?: NavigationItem[];
 }
 
+// Define our own NavItem interface for internal use
 interface NavItem {
   name: string;
   path: string;
