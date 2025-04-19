@@ -26,6 +26,7 @@ export const navItems: NavItemWithChildren[] = [
       { name: "Email Agent", path: "/email-agent" },
       { name: "Text Agent", path: "/text-agent" },
       { name: "Agent GPT", path: "/agent-gpt" },
+      { name: "Chat with Michael", path: "/chat" }, // Added Michael chatbot link
       { name: "OutboundAI", path: "https://tryoutbound.ai", isExternal: true }
     ]
   },

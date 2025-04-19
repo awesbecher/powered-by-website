@@ -6,6 +6,7 @@ const Index = lazy(() => import('@/pages/Index'));
 const AgentMarketplace = lazy(() => import('@/pages/AgentMarketplace'));
 const AgentGPTBuilder = lazy(() => import('@/pages/AgentGPTBuilder'));
 const AgentGPT = lazy(() => import('@/pages/AgentGPT'));
+const CustomGPT = lazy(() => import('@/pages/CustomGPT'));
 
 export const mainRoutes = [
   { path: "/", element: <Index /> }, 
@@ -13,6 +14,7 @@ export const mainRoutes = [
   { path: "/agent-marketplace", element: <AgentMarketplace /> },
   { path: "/agent-gpt-builder", element: <AgentGPTBuilder /> },
   { path: "/agent-gpt", element: <AgentGPT /> },
+  { path: "/chat", element: <CustomGPT /> },
   // Catch-all route for 404 pages
   { path: "*", element: <div>Not Found</div> },
 ];

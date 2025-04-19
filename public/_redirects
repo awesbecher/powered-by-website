@@ -24,6 +24,7 @@
 /agent-marketplace /index.html 200
 /agent-gpt-builder /index.html 200
 /agent-gpt /index.html 200
+/chat /index.html 200
 
 # Product routes
 /products /index.html 200
