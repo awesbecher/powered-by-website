@@ -26,10 +26,12 @@ export const AudioPlayer = ({ base64Audio }: AudioPlayerProps) => {
             ref={audioRef} 
             controls 
             autoPlay
-            className="w-full rounded-xl shadow-lg"
+            className="w-full rounded-xl"
             style={{ 
               accentColor: '#8B5CF6',
-              boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.05)',
+              borderRadius: '12px',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+              padding: '6px',
               background: 'transparent'
             }}
           >
