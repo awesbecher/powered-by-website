@@ -1,47 +1,78 @@
 
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Home from './pages/Home';
-import VoiceChat from './pages/VoiceChat';
-import TextAgent from './pages/TextAgent';
-import AgentPromptEditor from './pages/agent-gpt-builder';
-import CustomGPT from './pages/CustomGPT';
-import OmegaVoice1 from './pages/OmegaVoice1';
-import AiReceptionist from './pages/AIReceptionist';
-import AssetTest from './pages/AssetTest';
-import OpenAITest from './pages/OpenAITest';
-import { GlobalVoiceChatDialog } from '@/components/GlobalVoiceChatDialog';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { Toaster } from "@/components/ui/toaster";
+import { AnimatePresence } from 'framer-motion';
+import { GlobalVoiceChatDialog } from '@/components/shared/GlobalVoiceChatDialog';
+import { RouteConfig } from './routes/RouteConfig';
+import { queryClient } from './config/queryClient';
+import { ThemeProvider, defaultThemeConfig } from './config/themeConfig';
+import * as serviceWorker from './serviceWorker';
+import { ensureCustomEventSupport } from './utils/eventPolyfill';
+import { getVapiInstance } from './services/vapiService';
 
-const App = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-
+function App() {
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+    // Ensure CustomEvent is supported in all browsers
+    ensureCustomEventSupport();
+    
+    const loadScript = (src: string) => {
+      return new Promise<void>((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.type = "module";
+        script.async = true;
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
+        document.head.appendChild(script);
+      });
     };
 
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
+    const initScripts = async () => {
+      try {
+        // Load GPT Engineer script with error handling
+        await loadScript("https://cdn.gpteng.co/gptengineer.js");
+        console.log("GPT Engineer script loaded successfully");
+      } catch (error) {
+        console.warn("Could not load GPT Engineer script:", error);
+      }
     };
+
+    initScripts();
+    
+    // Register service worker
+    serviceWorker.register();
+    
+    // Initialize Vapi to ensure it loads properly
+    try {
+      // Initialize Vapi instance early to ensure it's ready for use
+      getVapiInstance();
+      console.log("Vapi service initialized on app start");
+    } catch (error) {
+      console.error("Error in Vapi initialization:", error);
+    }
   }, []);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/voice-chat" element={<VoiceChat />} />
-        <Route path="/text-agent" element={<TextAgent />} />
-        <Route path="/agent-gpt-builder" element={<AgentPromptEditor />} />
-        <Route path="/custom-gpt" element={<CustomGPT />} />
-        <Route path="/asset-test" element={<AssetTest />} />
-        <Route path="/openai-test" element={<OpenAITest />} />
-      </Routes>
-      
-      <GlobalVoiceChatDialog />
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider {...defaultThemeConfig}>
+        <AnimatePresence mode="wait" initial={false}>
+          <RouteConfig />
+        </AnimatePresence>
+        <GlobalVoiceChatDialog />
+        <Toaster />
+      </ThemeProvider>
+    </QueryClientProvider>
   );
-};
+}
 
-export default App;
+function Root() {
+  return (
+    <Router basename="/">
+      <App />
+    </Router>
+  );
+}
+
+export default Root;
