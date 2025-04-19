@@ -19,6 +19,9 @@ serve(async (req) => {
       throw new Error('Text input is required')
     }
 
+    // Format input text with voice XML tag
+    const formattedInput = `<voice name='${voice || "tara"}'>${text}</voice>`
+
     const response = await fetch(
       'https://api-inference.huggingface.co/models/canopylabs/orpheus-3b-0.1-ft',
       {
@@ -28,10 +31,7 @@ serve(async (req) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          inputs: text,
-          parameters: {
-            voice: voice || 'default' // Use provided voice or fallback to default
-          }
+          inputs: formattedInput
         }),
       }
     )
