@@ -4,7 +4,9 @@ import { Resend } from 'resend'
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== 'POST') return res.status(405).end('Method Not Allowed')
+  if (req.method !== 'POST') {
+    return res.status(405).end('Method Not Allowed')
+  }
 
   const { email, audioUrl } = req.body
 
@@ -23,12 +25,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           </audio>
           <p style="margin-top: 24px;">Thanks for using Powered_by.<br/>— The Team</p>
         </div>
-      `
+      `,
     })
 
     return res.status(200).json({ status: 'sent', data })
   } catch (error) {
-    console.error('Email error:', error)
-    return res.status(500).json({ error: 'Failed to send email.' })
+    console.error(error)
+    return res.status(500).json({ error: 'Failed to send email' })
   }
 }
