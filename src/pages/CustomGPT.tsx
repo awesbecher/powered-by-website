@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ChatInterface } from "@/components/custom-gpt/ChatInterface";
+import { AudioPlayer } from "@/components/AudioPlayer";
 
 const CustomGPT = () => {
   useEffect(() => {
@@ -27,6 +28,11 @@ const CustomGPT = () => {
           {/* Chat interface */}
           <div className="mt-8">
             <ChatInterface />
+          </div>
+          
+          {/* Audio Player */}
+          <div className="mt-6 flex justify-center">
+            <AudioPlayer base64Audio={window.pageState?.audioBlob || null} />
           </div>
           
           {/* Additional information section */}
