@@ -22,7 +22,9 @@ export const openaiService = {
    */
   generateChatCompletion: async (messages: ChatMessage[], options: ChatCompletionOptions = {}) => {
     try {
-      console.log("Generating chat completion with messages:", messages);
+      console.log("OpenAI Service: Starting chat completion request");
+      console.log("OpenAI Service: Using model:", options.model || "gpt-4o");
+      console.log("OpenAI Service: Message count:", messages.length);
       
       const { data, error } = await supabase.functions.invoke('openai-custom-gpt', {
         body: { 
@@ -34,29 +36,30 @@ export const openaiService = {
       });
       
       if (error) {
-        console.error("Error calling openai-custom-gpt function:", error);
+        console.error("OpenAI Service: Error calling openai-custom-gpt function:", error);
         throw new Error(`Failed to generate chat completion: ${error.message}`);
       }
       
       // Check for API-level errors returned with a 200 status
       if (data && data.error) {
-        console.error("API returned an error:", data.error, data.details || '');
+        console.error("OpenAI Service: API returned an error:", data.error, data.details || '');
         throw new Error(data.error);
       }
       
       if (!data || !data.message) {
-        console.error("Invalid response structure:", data);
+        console.error("OpenAI Service: Invalid response structure:", data);
         throw new Error("No response returned from OpenAI");
       }
       
-      console.log("Chat completion generated successfully");
+      console.log("OpenAI Service: Chat completion successful");
+      console.log("OpenAI Service: Token usage:", data.usage);
       
       return {
         message: data.message,
         usage: data.usage
       };
     } catch (error) {
-      console.error("Error in generateChatCompletion:", error);
+      console.error("OpenAI Service: Error in generateChatCompletion:", error);
       throw error; // Let the caller handle the error with more context
     }
   }

@@ -14,11 +14,13 @@ serve(async (req) => {
   }
 
   try {
+    console.log("EdgeFunction: Request received for OpenAI chat completion")
+    
     // Get the OpenAI API key from environment variables
     const openaiApiKey = Deno.env.get('OPENAI_API_KEY')
     
     if (!openaiApiKey) {
-      console.error('OpenAI API key not configured in environment variables');
+      console.error('EdgeFunction: OpenAI API key not configured in environment variables');
       return new Response(
         JSON.stringify({ 
           error: 'Configuration error: OpenAI API key is not set',
@@ -31,9 +33,14 @@ serve(async (req) => {
       )
     }
 
-    const { messages, model = "gpt-4o", temperature = 0.7, systemPrompt } = await req.json()
+    const requestBody = await req.json()
+    const { messages, model = "gpt-4o", temperature = 0.7, systemPrompt } = requestBody
+    
+    console.log("EdgeFunction: Request params - model:", model, "temperature:", temperature)
+    console.log("EdgeFunction: System prompt provided:", !!systemPrompt)
     
     if (!messages || !Array.isArray(messages)) {
+      console.error("EdgeFunction: Invalid messages format:", messages)
       return new Response(
         JSON.stringify({ 
           error: 'Invalid request',
@@ -46,11 +53,14 @@ serve(async (req) => {
       )
     }
 
+    console.log("EdgeFunction: Message count:", messages.length)
+
     // Prepare the conversation array for the OpenAI API
     const conversation = []
     
     // Add system prompt if provided
     if (systemPrompt) {
+      console.log("EdgeFunction: Adding system prompt")
       conversation.push({
         role: "system",
         content: systemPrompt
@@ -60,7 +70,8 @@ serve(async (req) => {
     // Add user messages
     conversation.push(...messages)
 
-    console.log('Sending request to OpenAI with conversation:', JSON.stringify(conversation.slice(0, 2) + '... [truncated]'))
+    console.log('EdgeFunction: Sending request to OpenAI API')
+    console.log('EdgeFunction: API Key length:', openaiApiKey.length, 'First 4 chars:', openaiApiKey.substring(0, 4))
 
     // Call OpenAI API
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -78,7 +89,7 @@ serve(async (req) => {
 
     if (!response.ok) {
       const errorText = await response.text()
-      console.error('OpenAI API error:', response.status, errorText)
+      console.error('EdgeFunction: OpenAI API error:', response.status, errorText)
       
       return new Response(
         JSON.stringify({ 
@@ -93,7 +104,8 @@ serve(async (req) => {
     }
 
     const result = await response.json()
-    console.log('OpenAI response received successfully')
+    console.log('EdgeFunction: OpenAI response received successfully')
+    console.log('EdgeFunction: Token usage:', JSON.stringify(result.usage))
 
     return new Response(
       JSON.stringify({
@@ -105,7 +117,7 @@ serve(async (req) => {
       }
     )
   } catch (error) {
-    console.error('Error in openai-custom-gpt function:', error)
+    console.error('EdgeFunction: Unhandled error in openai-custom-gpt function:', error)
     
     return new Response(
       JSON.stringify({ 
