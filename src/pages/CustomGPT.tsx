@@ -1,13 +1,36 @@
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ChatInterface } from "@/components/custom-gpt/ChatInterface";
 import { AudioPlayer } from "@/components/AudioPlayer";
 
 const CustomGPT = () => {
+  const [audioData, setAudioData] = useState<string | null>(null);
+  
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Check for pageState on window and update local state
+    if (window.pageState?.audioBlob) {
+      setAudioData(window.pageState.audioBlob);
+    }
+  }, []);
+
+  // Update local state when window.pageState.audioBlob changes
+  useEffect(() => {
+    const handlePageStateChange = () => {
+      if (window.pageState?.audioBlob) {
+        setAudioData(window.pageState.audioBlob);
+      }
+    };
+
+    // Create custom event listener to detect changes to pageState
+    window.addEventListener('pageStateUpdated', handlePageStateChange);
+
+    return () => {
+      window.removeEventListener('pageStateUpdated', handlePageStateChange);
+    };
   }, []);
 
   return (
@@ -32,7 +55,7 @@ const CustomGPT = () => {
           
           {/* Audio Player */}
           <div className="mt-6 flex justify-center">
-            <AudioPlayer base64Audio={window.pageState?.audioBlob || null} />
+            <AudioPlayer base64Audio={audioData} />
           </div>
           
           {/* Additional information section */}
