@@ -9,5 +9,6 @@ interface Window {
     audioBlob?: string | null;
     gptText?: string | null;
     voiceChoice?: string | null;
+    userEmail?: string | null;
   };
 }

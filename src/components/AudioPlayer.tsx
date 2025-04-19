@@ -1,11 +1,10 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import WaveSurfer from 'wavesurfer.js';
 import { Button } from "@/components/ui/button";
 import { Mail } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
-// Add type definitions for the global window object
+// Define types for the global window object
 declare global {
   interface Window {
     supabase: any;
@@ -13,7 +12,7 @@ declare global {
       audioBlob?: string | null;
       gptText?: string | null;
       voiceChoice?: string | null;
-      userEmail?: string;
+      userEmail?: string | null;
     };
   }
 }
