@@ -35,7 +35,13 @@ export const openaiService = {
       
       if (error) {
         console.error("Error calling openai-custom-gpt function:", error);
-        throw new Error("Failed to generate chat completion: " + error.message);
+        throw new Error(`Failed to generate chat completion: ${error.message}`);
+      }
+      
+      // Check for API-level errors returned with a 200 status
+      if (data && data.error) {
+        console.error("API returned an error:", data.error, data.details || '');
+        throw new Error(data.error);
       }
       
       if (!data || !data.message) {
