@@ -26,7 +26,7 @@ export const navItems: NavItemWithChildren[] = [
       { name: "Email Agent", path: "/email-agent" },
       { name: "Text Agent", path: "/text-agent" },
       { name: "Agent GPT", path: "/agent-gpt" },
-      { name: "Chat with Michael", path: "/chat" }, // Added Michael chatbot link
+      { name: "Chat with Michael", path: "/chat" }, 
       { name: "OutboundAI", path: "https://tryoutbound.ai", isExternal: true }
     ]
   },
@@ -36,6 +36,7 @@ export const navItems: NavItemWithChildren[] = [
     children: [
       { name: "Demos", path: "/demo" },
       { name: "Agent Marketplace", path: "/agent-marketplace" },
+      { name: "Agent Integrations", path: "/agent-integrations" },
       { name: "AI Research", path: "https://poweredbyagency.ghost.io", isExternal: true },
       { name: "News", path: "/news" },
       { name: "Videos", path: "https://www.youtube.com/@Powered_byAgency", isExternal: true },
