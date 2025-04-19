@@ -25,11 +25,16 @@
     
     <!-- Add Tally.so script for contact forms -->
     <script async src="https://tally.so/widgets/embed.js"></script>
-    <!-- Add GPT Engineer script for Select feature -->
+    
+    <!-- Critical GPT Engineer script - DO NOT REMOVE - Required for /chat and other routes -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     
     <!-- Meta tags for accessibility -->
     <meta name="description" content="Powered by: AI Agents for SMBs - Custom AI solutions for your business needs" />
+    
+    <!-- Ensure SPA routing works properly -->
+    <base href="/" />
+    <meta name="fragment" content="!" />
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->

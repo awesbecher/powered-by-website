@@ -69,7 +69,7 @@ function App() {
 
 function Root() {
   return (
-    <Router>
+    <Router basename="/">
       <App />
     </Router>
   );
