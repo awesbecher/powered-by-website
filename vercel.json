@@ -9,6 +9,21 @@
     {
       "src": "/api/gpt-lead",
       "dest": "api/gpt-lead/index.js"
+    },
+    {
+      "src": "/chat",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/agent-integrations",
+      "dest": "/index.html"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
