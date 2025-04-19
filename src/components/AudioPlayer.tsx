@@ -19,22 +19,24 @@ export const AudioPlayer = ({ base64Audio }: AudioPlayerProps) => {
   if (!base64Audio) return null;
 
   return (
-    <Card className="w-full mt-4 border border-white/10">
-      <CardContent className="p-3">
-        <audio 
-          ref={audioRef} 
-          controls 
-          autoPlay
-          className="w-full rounded-xl p-3 shadow-sm"
-          style={{ 
-            accentColor: '#8B5CF6',
-            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-            background: 'transparent'
-          }}
-        >
-          Your browser does not support the audio element.
-        </audio>
-      </CardContent>
-    </Card>
+    <div className="w-full max-w-[600px] mx-auto my-6">
+      <Card className="border border-white/10">
+        <CardContent className="p-3">
+          <audio 
+            ref={audioRef} 
+            controls 
+            autoPlay
+            className="w-full rounded-xl shadow-lg"
+            style={{ 
+              accentColor: '#8B5CF6',
+              boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.05)',
+              background: 'transparent'
+            }}
+          >
+            Your browser does not support the audio element.
+          </audio>
+        </CardContent>
+      </Card>
+    </div>
   );
 };
