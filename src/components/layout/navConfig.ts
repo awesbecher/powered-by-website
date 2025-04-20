@@ -24,8 +24,6 @@ export const navItems: NavItemWithChildren[] = [
       { name: "AI Receptionist", path: "/ai-receptionist" },
       { name: "Email Agent", path: "/email-agent" },
       { name: "Text Agent", path: "/text-agent" },
-      { name: "Agent GPT", path: "/agent-gpt" },
-      { name: "Chat with Michael", path: "/chat" }, 
       { name: "OutboundAI", path: "https://tryoutbound.ai", isExternal: true }
     ]
   },
