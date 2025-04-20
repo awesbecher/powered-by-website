@@ -1,10 +1,12 @@
 
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Bot, X } from 'lucide-react';
 import { ChatInterface } from '@/components/custom-gpt/ChatInterface';
 
 export const GlobalVoiceChatDialog = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     // Custom event listener to allow other components to open the chat
@@ -15,6 +17,11 @@ export const GlobalVoiceChatDialog = () => {
       document.removeEventListener('open-voice-dialog', handleOpenEvent);
     };
   }, []);
+
+  // Only show on /chat route
+  if (location.pathname !== '/chat') {
+    return null;
+  }
 
   if (!isOpen) {
     return (
