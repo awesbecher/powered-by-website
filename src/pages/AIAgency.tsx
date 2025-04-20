@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
 import Navbar from "@/components/layout/Navbar";
-import AnnouncementBanner from "@/components/layout/AnnouncementBanner";
 import Footer from "@/components/layout/Footer";
 import { HeroSection } from "@/components/ai-agency/HeroSection";
 import { UniqueAgencySection } from "@/components/ai-agency/UniqueAgencySection";
@@ -49,24 +48,6 @@ const AIAgency = () => {
         console.error("Error initializing Cal.com embed at AIAgency page level:", error);
       }
     })();
-    
-    // Force load the Cal.com script if it's not already loaded
-    const loadCalScript = () => {
-      if (document.querySelector('script[src="https://app.cal.com/embed/embed.js"]')) {
-        console.log("Cal.com script already exists");
-        return;
-      }
-      
-      console.log("Loading Cal.com script manually");
-      const script = document.createElement('script');
-      script.src = "https://app.cal.com/embed/embed.js";
-      script.async = true;
-      script.onload = () => console.log("Cal.com script loaded manually");
-      script.onerror = (e) => console.error("Error loading Cal.com script:", e);
-      document.head.appendChild(script);
-    };
-    
-    loadCalScript();
   }, []);
 
   // Function to manually trigger Cal.com modal
@@ -92,7 +73,6 @@ const AIAgency = () => {
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <div className="sticky top-0 z-50 w-full">
-        <AnnouncementBanner />
         <Navbar />
       </div>
       
