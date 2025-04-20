@@ -14,7 +14,7 @@ export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
             className={`text-[64px] sm:text-[96px] font-bold tracking-tight text-white mb-2 transition-all duration-1000 ease-out transform
               ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
           >
-            AI <WordAnimation /> Agents for SMBs
+            Custom AI Agents for SMBs
           </h1>
         </div>
       </div>

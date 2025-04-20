@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
@@ -8,7 +7,6 @@ import { HeroSection } from "@/components/home/HeroSection";
 import { NavigationButtons } from "@/components/home/NavigationButtons";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { StatsSection } from "@/components/home/StatsSection";
-import { AudioDemoSection } from "@/components/home/AudioDemoSection";
 import { WorkflowSection } from "@/components/home/WorkflowSection";
 import { UseCaseGrid } from "@/components/home/UseCaseGrid";
 import { getCalApi } from "@calcom/embed-react";
