@@ -1,10 +1,10 @@
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import AnnouncementBanner from "@/components/layout/AnnouncementBanner";
 import Footer from "@/components/layout/Footer";
 import { HeroSection } from "@/components/home/HeroSection";
-import { NavigationButtons } from "@/components/home/NavigationButtons";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { StatsSection } from "@/components/home/StatsSection";
 import { WorkflowSection } from "@/components/home/WorkflowSection";
@@ -67,9 +67,6 @@ const Index = () => {
         <CallToActionButtons />
       </div>
       
-      {/* Navigation Buttons */}
-      <NavigationButtons />
-      
       {/* Workflow Section */}
       <WorkflowSection />
 
@@ -88,3 +85,4 @@ const Index = () => {
 };
 
 export default Index;
+
