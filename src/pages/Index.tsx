@@ -7,8 +7,6 @@ import Footer from "@/components/layout/Footer";
 import { HeroSection } from "@/components/home/HeroSection";
 import { NavigationButtons } from "@/components/home/NavigationButtons";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import { StatsSection } from "@/components/home/StatsSection";
 import { AudioDemoSection } from "@/components/home/AudioDemoSection";
 import { WorkflowSection } from "@/components/home/WorkflowSection";
@@ -40,11 +38,6 @@ const Index = () => {
     })();
   }, []);
 
-  const handleNavigation = (path: string) => {
-    window.scrollTo(0, 0);
-    navigate(path);
-  };
-
   const handleOpenVoiceDialog = () => {
     document.dispatchEvent(new CustomEvent('open-voice-dialog'));
   };
@@ -60,7 +53,7 @@ const Index = () => {
       <HeroSection initialLoad={initialLoad} />
 
       {/* Navigation Buttons */}
-      <NavigationButtons handleNavigation={handleNavigation} setShowDialog={handleOpenVoiceDialog} />
+      <NavigationButtons />
       
       {/* Workflow Section */}
       <WorkflowSection />
