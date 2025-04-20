@@ -17,23 +17,6 @@ interface NavItem {
 
 export const navItems: NavItemWithChildren[] = [
   {
-    name: "Resources",
-    path: "/demo",
-    children: [
-      { name: "Demos", path: "/demo" },
-      { name: "Agent Marketplace", path: "/agent-marketplace" },
-      { name: "Agent Integrations", path: "/agent-integrations" },
-      { name: "AI Research", path: "https://poweredbyagency.ghost.io", isExternal: true },
-      { name: "News", path: "/news" },
-      { name: "Videos", path: "https://www.youtube.com/@Powered_byAgency", isExternal: true },
-      { name: "Podcast", path: "https://powered-by-ai-agents.jellypod.ai/", isExternal: true }
-    ]
-  },
-  {
-    name: "Pricing",
-    path: "/pricing",
-  },
-  {
     name: "Products",
     path: "/products",
     children: [
@@ -44,6 +27,23 @@ export const navItems: NavItemWithChildren[] = [
       { name: "Agent GPT", path: "/agent-gpt" },
       { name: "Chat with Michael", path: "/chat" }, 
       { name: "OutboundAI", path: "https://tryoutbound.ai", isExternal: true }
+    ]
+  },
+  {
+    name: "Pricing",
+    path: "/pricing",
+  },
+  {
+    name: "Resources",
+    path: "/demo",
+    children: [
+      { name: "Demos", path: "/demo" },
+      { name: "Agent Marketplace", path: "/agent-marketplace" },
+      { name: "Agent Integrations", path: "/agent-integrations" },
+      { name: "AI Research", path: "https://poweredbyagency.ghost.io", isExternal: true },
+      { name: "News", path: "/news" },
+      { name: "Videos", path: "https://www.youtube.com/@Powered_byAgency", isExternal: true },
+      { name: "Podcast", path: "https://powered-by-ai-agents.jellypod.ai/", isExternal: true }
     ]
   }
 ];
