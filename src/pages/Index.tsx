@@ -12,6 +12,7 @@ import { UseCaseGrid } from "@/components/home/UseCaseGrid";
 import { getCalApi } from "@calcom/embed-react";
 import { Button } from "@/components/ui/button";
 import { Bot } from "lucide-react";
+import { CallToActionButtons } from "@/components/home/CallToActionButtons";
 
 const Index = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -61,6 +62,11 @@ const Index = () => {
       {/* Hero Section */}
       <HeroSection initialLoad={initialLoad} />
 
+      {/* Call to Action Buttons */}
+      <div className="mt-8 px-4">
+        <CallToActionButtons />
+      </div>
+      
       {/* Navigation Buttons */}
       <NavigationButtons />
       
@@ -72,9 +78,6 @@ const Index = () => {
 
       {/* Stats Section */}
       <StatsSection />
-
-      {/* Audio Demo */}
-      <AudioDemoSection />
 
       {/* Final CTA */}
       <ClosingCTA useCalendly={true} />

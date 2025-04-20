@@ -1,97 +1,30 @@
 
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Phone, Tv } from "lucide-react";
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { ArrowRight, Tv, Phone } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { getCalApi } from "@calcom/embed-react";
 
-interface CallToActionButtonsProps {
-  handleNavigation: (path: string) => void;
-  setShowDialog: (show: boolean) => void;
-}
-
-export const CallToActionButtons = ({ handleNavigation, setShowDialog }: CallToActionButtonsProps) => {
+export const CallToActionButtons = () => {
+  const navigate = useNavigate();
   const [videoOpen, setVideoOpen] = useState(false);
-  
+
   const handleTalkToAgent = () => {
-    console.log("Talk to Agent button clicked in CallToActionButtons");
-    // Explicitly create and dispatch the custom event
-    const event = new CustomEvent('open-voice-dialog');
-    document.dispatchEvent(event);
+    document.dispatchEvent(new CustomEvent('open-voice-dialog'));
   };
 
-  useEffect(() => {
-    // Initialize Cal.com with namespace and team link
-    (async function () {
-      try {
-        console.log("Initializing Cal.com embed in CallToActionButtons");
-        const cal = await getCalApi();
-        if (cal) {
-          cal("ui", {
-            "cssVarsPerTheme": {
-              "light": {"cal-brand":"#292929"},
-              "dark": {"cal-brand":"#fafafa"}
-            },
-            "hideEventTypeDetails": false,
-            "layout": "month_view"
-          });
-          console.log("Cal.com embed initialized successfully in CallToActionButtons");
-        } else {
-          console.error("Cal.com API not available in CallToActionButtons");
-        }
-      } catch (error) {
-        console.error("Error initializing Cal.com embed in CallToActionButtons:", error);
-      }
-    })();
-  }, []);
-  
-  const handleGetStarted = () => {
-    console.log("Get Started button clicked in CallToActionButtons");
-    
-    // First try direct method
-    try {
-      (window as any).Cal?.('ui', {
-        styles: { branding: { brandColor: '#000000' } },
-        hideEventTypeDetails: false,
-        layout: 'month_view',
-      });
-      (window as any).Cal?.('showModal', {
-        calLink: "team-powered-by-dfbtbb/get-started-today",
-        config: {
-          layout: 'month_view',
-        },
-      });
-      console.log("Called Cal.com showModal directly");
-      return;
-    } catch (err) {
-      console.error("Failed to open Cal.com modal directly:", err);
-    }
-    
-    // Try to find and click the Cal.com button
-    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
-    if (calBtn instanceof HTMLElement) {
-      console.log("Cal.com button found in CallToActionButtons, triggering click");
-      calBtn.click();
-    } else {
-      console.error("Cal.com button not found in DOM from CallToActionButtons");
-      // Fallback to contact page
-      handleNavigation("/trynow");
-    }
-  };
-  
   return (
     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-4xl">
       <Button
         onClick={() => setVideoOpen(true)}
-        className="relative z-20 text-white bg-[#6E59A5] hover:bg-[#6E59A5]/80 px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
+        className="relative z-20 text-white bg-[#6342ff] hover:bg-[#6342ff]/80 px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
       >
         What's an AI agent?
         <Tv className="ml-2 h-5 w-5" />
       </Button>
       <Button
         className="relative z-20 bg-accent hover:bg-accent-dark text-white px-3 py-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
-        onClick={() => handleNavigation("/demo")}
+        onClick={() => navigate("/demo")}
       >
         Try Demos
         <ArrowRight className="ml-2 h-5 w-5" />
