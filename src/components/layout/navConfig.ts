@@ -17,19 +17,6 @@ interface NavItem {
 
 export const navItems: NavItemWithChildren[] = [
   {
-    name: "Products",
-    path: "/products",
-    children: [
-      { name: "AI Voice Chat", path: "/voice-chat" },
-      { name: "AI Receptionist", path: "/ai-receptionist" },
-      { name: "Email Agent", path: "/email-agent" },
-      { name: "Text Agent", path: "/text-agent" },
-      { name: "Agent GPT", path: "/agent-gpt" },
-      { name: "Chat with Michael", path: "/chat" }, 
-      { name: "OutboundAI", path: "https://tryoutbound.ai", isExternal: true }
-    ]
-  },
-  {
     name: "Resources",
     path: "/demo",
     children: [
@@ -45,7 +32,33 @@ export const navItems: NavItemWithChildren[] = [
   {
     name: "Pricing",
     path: "/pricing",
+  },
+  {
+    name: "Products",
+    path: "/products",
+    children: [
+      { name: "AI Voice Chat", path: "/voice-chat" },
+      { name: "AI Receptionist", path: "/ai-receptionist" },
+      { name: "Email Agent", path: "/email-agent" },
+      { name: "Text Agent", path: "/text-agent" },
+      { name: "Agent GPT", path: "/agent-gpt" },
+      { name: "Chat with Michael", path: "/chat" }, 
+      { name: "OutboundAI", path: "https://tryoutbound.ai", isExternal: true }
+    ]
   }
 ];
 
-export const consultationPaths = ['/', '/ai-agency', '/products', '/demo', '/blog', '/news', '/voice-chat', '/ai-receptionist', '/email-agent', '/about', '/trynow', '/text-agent'];
+export const consultationPaths = [
+  '/',
+  '/ai-agency',
+  '/products',
+  '/demo',
+  '/blog',
+  '/news',
+  '/voice-chat',
+  '/ai-receptionist',
+  '/email-agent',
+  '/about',
+  '/trynow',
+  '/text-agent'
+];
