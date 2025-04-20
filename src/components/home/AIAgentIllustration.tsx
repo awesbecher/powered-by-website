@@ -1,39 +1,78 @@
 
-import React from "react";
+import { MessageCircle, Phone, Smartphone, MessageSquare, Bot, Mail, Settings, Plug } from "lucide-react";
+import AgentBubble from "./AgentBubble";
+import NeuralNetwork from "./NeuralNetwork";
+import ConnectingLines from "./ConnectingLines";
 
 const AIAgentIllustration = () => {
   return (
-    <div className="relative">
-      <div className="absolute inset-0 bg-gradient-to-r from-[#8B5CF6]/20 to-transparent rounded-3xl"></div>
-      <div className="w-full aspect-square rounded-3xl bg-gradient-to-br from-[#8B5CF6]/30 via-purple-900/20 to-transparent p-8 backdrop-blur-sm border border-white/10 relative overflow-hidden">
-        {/* Center glowing orb */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-[#8B5CF6] opacity-30 blur-xl"></div>
-        
-        {/* Animated central element */}
-        <div className="animate-pulse w-16 h-16 rounded-full bg-[#8B5CF6]/50 mx-auto mb-8 relative z-10">
-          <div className="absolute inset-0 rounded-full border-2 border-white/20 animate-ping"></div>
+    <div className="relative w-full max-w-4xl mx-auto h-[400px] flex items-center justify-center">
+      {/* Robot and laptop container */}
+      <div className="relative">
+        {/* Laptop */}
+        <div className="w-96 h-64 bg-gradient-to-br from-[#9b87f5]/20 to-[#9b87f5]/30 rounded-lg backdrop-blur-sm border border-white/10 shadow-xl transform perspective-1000 rotateX-10 overflow-hidden">
+          <NeuralNetwork />
         </div>
-        
-        {/* Animated circular rings */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 border border-[#8B5CF6]/20 rounded-full"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-60 h-60 border border-[#8B5CF6]/10 rounded-full animate-pulse" style={{ animationDuration: '4s' }}></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 border border-[#8B5CF6]/5 rounded-full animate-pulse" style={{ animationDuration: '6s' }}></div>
-        
-        {/* "Digital" lines */}
-        <div className="space-y-4 mt-16 relative z-10">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="h-2 bg-white/10 rounded w-full md:w-3/4 mx-auto"></div>
-          ))}
-          
-          {[1, 2].map((i) => (
-            <div key={i + 3} className="h-2 bg-white/5 rounded w-1/2 mx-auto"></div>
-          ))}
-        </div>
-        
-        {/* Particles */}
-        <div className="absolute top-1/4 left-1/4 w-2 h-2 rounded-full bg-[#8B5CF6]/70 animate-pulse"></div>
-        <div className="absolute bottom-1/3 right-1/3 w-3 h-3 rounded-full bg-[#8B5CF6]/60 animate-pulse" style={{ animationDuration: '2.5s' }}></div>
-        <div className="absolute top-2/3 right-1/4 w-2 h-2 rounded-full bg-[#8B5CF6]/50 animate-pulse" style={{ animationDuration: '3s' }}></div>
+
+        {/* Agent Bubbles - Updated for better visibility */}
+        <AgentBubble 
+          title="CHAT AGENT" 
+          icon={MessageCircle} 
+          position="top-12 right-0 transform translate-x-3/4" 
+          dotPosition="top-left"
+          iconClassName="text-white"
+          bubbleClassName="from-[#9b87f5]/30 to-[#9b87f5]/40 border-white/20"
+        />
+        <AgentBubble 
+          title="VOICE AGENT" 
+          icon={Phone} 
+          position="-top-8 left-0 transform -translate-x-[75%]" 
+          dotPosition="bottom-right"
+          iconClassName="text-white"
+          bubbleClassName="from-[#9b87f5]/30 to-[#9b87f5]/40 border-white/20"
+        />
+        <AgentBubble 
+          title="SMS AGENT" 
+          icon={Smartphone} 
+          position="top-12 left-0 transform -translate-x-3/4" 
+          dotPosition="top-right"
+          iconClassName="text-white"
+          bubbleClassName="from-[#9b87f5]/30 to-[#9b87f5]/40 border-white/20"
+        />
+        <AgentBubble 
+          title="EMAIL AGENT" 
+          icon={Mail} 
+          position="top-28 right-0 transform translate-x-3/4" 
+          dotPosition="top-left"
+          iconClassName="text-white"
+          bubbleClassName="from-[#9b87f5]/30 to-[#9b87f5]/40 border-white/20"
+        />
+        <AgentBubble 
+          title="TASK AGENT" 
+          icon={Settings} 
+          position="top-28 left-0 transform -translate-x-3/4" 
+          dotPosition="top-right"
+          iconClassName="text-white"
+          bubbleClassName="from-[#9b87f5]/30 to-[#9b87f5]/40 border-white/20"
+        />
+        <AgentBubble 
+          title="API AGENT" 
+          icon={Plug} 
+          position="top-44 right-0 transform translate-x-1/2" 
+          dotPosition="top-left"
+          iconClassName="text-white"
+          bubbleClassName="from-[#9b87f5]/30 to-[#9b87f5]/40 border-white/20"
+        />
+        <AgentBubble 
+          title="SLACK AGENT" 
+          icon={MessageSquare} 
+          position="top-44 left-0 transform -translate-x-[50%]" 
+          dotPosition="top-right"
+          iconClassName="text-white"
+          bubbleClassName="from-[#9b87f5]/30 to-[#9b87f5]/40 border-white/20"
+        />
+
+        <ConnectingLines />
       </div>
     </div>
   );

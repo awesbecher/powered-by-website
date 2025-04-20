@@ -1,6 +1,6 @@
+
 {
   "hosting": {
-    "site": "powered-by-website-redundancy",
     "public": "dist",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [

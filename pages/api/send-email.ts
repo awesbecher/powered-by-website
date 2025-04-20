@@ -1,28 +1,37 @@
-
+// pages/api/send-email.ts
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { Resend } from 'resend';
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'POST') {
-    try {
-      // Extract the data from the request body
-      const { to, subject, message } = req.body;
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-      // Basic validation
-      if (!to || !subject || !message) {
-        return res.status(400).json({ error: 'Missing required fields' });
-      }
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method !== 'POST') return res.status(405).end('Method Not Allowed');
 
-      // Here you would typically connect to an email service
-      // For now, just log it and return a success response
-      console.log('Email data:', { to, subject, message });
-      
-      return res.status(200).json({ success: true, message: 'Email sent successfully!' });
-    } catch (error) {
-      console.error('Error sending email:', error);
-      return res.status(500).json({ error: 'Failed to send email' });
-    }
+  const { email, audioUrl } = req.body;
+
+  if (!email || !audioUrl) {
+    return res.status(400).json({ error: 'Missing email or audioUrl' });
   }
 
-  res.setHeader('Allow', ['POST']);
-  res.status(405).end(`Method ${req.method} Not Allowed`);
+  try {
+    const data = await resend.emails.send({
+      from: process.env.EMAIL_FROM || 'team@poweredby.agency',
+      to: email,
+      subject: '🎧 Your AI Voice Clip from Powered_by',
+      html: `
+        <div style="font-family: sans-serif; color: #111;">
+          <img src="https://poweredby.agency/assets/FullLogo_Transparent_NoBuffer.png" alt="Powered_by Logo" style="max-width: 200px; margin-bottom: 20px;" />
+          <h2 style="color: #8B5CF6;">Your AI voice clip is ready 🎙️</h2>
+          <p>Click below to listen to your voice clip powered by your AI agent.</p>
+          <a href="${audioUrl}" style="display: inline-block; background-color: #8B5CF6; color: white; padding: 14px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">▶ Play Audio</a>
+          <p style="margin-top: 30px;">Need help building your own AI voice agent? <a href="https://poweredby.agency/trynow">Book a session with our team.</a></p>
+        </div>
+      `,
+    });
+
+    return res.status(200).json({ success: true, data });
+  } catch (error) {
+    console.error('[Resend Error]', error);
+    return res.status(500).json({ error: 'Failed to send email' });
+  }
 }
