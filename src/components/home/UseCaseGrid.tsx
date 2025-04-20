@@ -56,7 +56,9 @@ export const UseCaseGrid = () => {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          Use Cases for AI Agents
+          AI Agents for Every Industry
+          <br />
+          Discover how our custom AI agents can transform your business operations.
         </motion.h2>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
