@@ -35,10 +35,17 @@ export const openaiService = {
       
       if (error) {
         console.error("Error calling openai-custom-gpt function:", error);
-        throw new Error("Failed to generate chat completion: " + error.message);
+        throw new Error(`Failed to generate chat completion: ${error.message}`);
+      }
+      
+      // Check for API-level errors returned with a 200 status
+      if (data && data.error) {
+        console.error("API returned an error:", data.error, data.details || '');
+        throw new Error(data.error);
       }
       
       if (!data || !data.message) {
+        console.error("Invalid response structure:", data);
         throw new Error("No response returned from OpenAI");
       }
       
@@ -50,7 +57,7 @@ export const openaiService = {
       };
     } catch (error) {
       console.error("Error in generateChatCompletion:", error);
-      throw new Error("Failed to generate chat completion");
+      throw error; // Let the caller handle the error with more context
     }
   }
 };

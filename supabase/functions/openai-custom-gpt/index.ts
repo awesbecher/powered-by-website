@@ -18,13 +18,32 @@ serve(async (req) => {
     const openaiApiKey = Deno.env.get('OPENAI_API_KEY')
     
     if (!openaiApiKey) {
-      throw new Error('OpenAI API key not configured in environment variables')
+      console.error('OpenAI API key not configured in environment variables');
+      return new Response(
+        JSON.stringify({ 
+          error: 'Configuration error: OpenAI API key is not set',
+          details: 'Please set the OPENAI_API_KEY in Supabase secrets'
+        }),
+        {
+          status: 500,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        }
+      )
     }
 
     const { messages, model = "gpt-4o", temperature = 0.7, systemPrompt } = await req.json()
     
     if (!messages || !Array.isArray(messages)) {
-      throw new Error('Messages are required and must be an array')
+      return new Response(
+        JSON.stringify({ 
+          error: 'Invalid request',
+          details: 'Messages are required and must be an array'
+        }),
+        {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        }
+      )
     }
 
     // Prepare the conversation array for the OpenAI API
@@ -41,7 +60,7 @@ serve(async (req) => {
     // Add user messages
     conversation.push(...messages)
 
-    console.log('Sending request to OpenAI with conversation:', JSON.stringify(conversation))
+    console.log('Sending request to OpenAI with conversation:', JSON.stringify(conversation.slice(0, 2) + '... [truncated]'))
 
     // Call OpenAI API
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -58,9 +77,19 @@ serve(async (req) => {
     })
 
     if (!response.ok) {
-      const errorData = await response.text()
-      console.error('OpenAI API error:', errorData)
-      throw new Error(`OpenAI API error: ${response.status} - ${errorData}`)
+      const errorText = await response.text()
+      console.error('OpenAI API error:', response.status, errorText)
+      
+      return new Response(
+        JSON.stringify({ 
+          error: `OpenAI API error (${response.status})`,
+          details: errorText
+        }),
+        {
+          status: 502, // Gateway error - issue with upstream service
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        }
+      )
     }
 
     const result = await response.json()
@@ -80,7 +109,7 @@ serve(async (req) => {
     
     return new Response(
       JSON.stringify({ 
-        error: error.message,
+        error: 'Failed to process request',
         details: error.toString()
       }),
       {
