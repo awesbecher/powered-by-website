@@ -1,31 +1,15 @@
 
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import { ContactHeader } from "@/components/contact/ContactHeader";
-import { useEffect, useState } from "react";
-import { useToast } from "@/hooks/use-toast";
-import Cal, { getCalApi } from "@calcom/embed-react";
+import React from 'react';
+import { Button } from "@/components/ui/button";
+import { getCalApi } from "@calcom/embed-react";
+import { useEffect } from "react";
+import { ArrowRight } from "lucide-react";
 
 const Contact = () => {
-  const [initialLoad, setInitialLoad] = useState(true);
-  const { toast } = useToast();
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setInitialLoad(false);
-    }, 100);
-    
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   useEffect(() => {
     (async function () {
       try {
-        const cal = await getCalApi({"namespace":"get-started-today"});
+        const cal = await getCalApi({"namespace":"try-now"});
         cal("ui", {
           "cssVarsPerTheme": {
             "light": {"cal-brand":"#292929"},
@@ -35,44 +19,46 @@ const Contact = () => {
           "layout": "month_view"
         });
       } catch (error) {
-        console.error("Error initializing Cal.com:", error);
-        toast({
-          title: "Calendar loading error",
-          description: "Failed to load scheduling calendar. Please try again later.",
-          variant: "destructive"
-        });
+        console.error("Error initializing Cal.com embed:", error);
       }
     })();
-  }, [toast]);
+  }, []);
 
   return (
-    <div className="flex flex-col min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
-      <Navbar />
-      
-      <div className="flex-grow flex flex-col items-center justify-center relative z-10 pt-8 px-4 pb-0">
-        <div className="w-full max-w-5xl mx-auto">
-          <div className="mb-0">
-            <ContactHeader initialLoad={initialLoad} />
-          </div>
-          
-          <div className="w-full h-[800px]">
-            <Cal 
-              namespace="get-started-today"
-              calLink="team-powered-by-dfbtbb/get-started-today"
-              style={{width:"100%", height:"100%", overflow:"scroll"}}
-              config={{"layout":"month_view"}}
-            />
-          </div>
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-12">
+      <div className="max-w-4xl w-full text-center">
+        <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+          Book a Consultation
+        </h1>
+        <p className="text-xl text-gray-300 mb-4 max-w-2xl mx-auto">
+          Schedule a personalized consultation with our AI experts to explore how our AI agents can transform your business communication.
+        </p>
+        
+        {/* Reduced margin from mb-10 to mb-6 */}
+        <div className="w-full max-w-4xl mx-auto mb-6">
+          <div 
+            data-cal-namespace="try-now"
+            data-cal-link="team-powered-by-dfbtbb/get-started-today"
+            data-cal-config='{"layout":"month_view"}'
+          ></div>
+        </div>
+
+        <div className="mt-6">
+          <Button 
+            className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md"
+            onClick={() => {
+              const calButton = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
+              if (calButton instanceof HTMLElement) {
+                calButton.click();
+              }
+            }}
+          >
+            Get Started <ArrowRight className="ml-2 h-5 w-5" />
+          </Button>
         </div>
       </div>
-
-      <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20" />
-      <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20" />
-      
-      <Footer />
     </div>
   );
 };
 
 export default Contact;
-
