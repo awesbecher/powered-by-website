@@ -58,7 +58,9 @@ export const UseCaseGrid = () => {
         >
           AI Agents for Every Industry
           <br />
-          Discover how our custom AI agents can transform your business operations.
+          <span className="text-base font-normal text-gray-400">
+            Discover how our custom AI agents can transform your business operations.
+          </span>
         </motion.h2>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
