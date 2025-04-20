@@ -8,7 +8,6 @@ import { navItems } from "./navConfig";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Bot } from "lucide-react";
 
 const Navbar = () => {
   const location = useLocation();
@@ -41,17 +40,6 @@ const Navbar = () => {
 
           {/* Right side buttons */}
           <div className="hidden md:flex items-center gap-4">
-            {/* Add Agent Builder button for better visibility */}
-            {!isBuilderPath && (
-              <Button 
-                onClick={() => navigate("/agent-gpt")}
-                variant="outline"
-                className="flex items-center gap-2 border-[#9b87f5] text-[#9b87f5] hover:bg-[#9b87f5]/10"
-              >
-                <Bot size={16} />
-                Agent Builder
-              </Button>
-            )}
             <ConsultButton show={showConsultButton} />
           </div>
 
