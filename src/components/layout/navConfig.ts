@@ -1,4 +1,3 @@
-
 // Import the NavItem type from NavLinks component
 import { NavItem as NavigationItem } from "./NavLinks";
 
@@ -46,10 +45,6 @@ export const navItems: NavItemWithChildren[] = [
   {
     name: "Pricing",
     path: "/pricing",
-  },
-  {
-    name: "Contact",
-    path: "/contact",
   }
 ];
 
