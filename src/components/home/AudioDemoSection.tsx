@@ -12,9 +12,6 @@ export const AudioDemoSection = () => {
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-3xl font-bold text-white mb-8">
-          Hear a Real Voice Agent
-        </h2>
         <div className="glass-card p-8 rounded-2xl">
           <div className="flex items-center justify-center gap-4 mb-6">
             <Volume2 className="w-8 h-8 text-[#9b87f5]" />
