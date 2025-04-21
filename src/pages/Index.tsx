@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Bot } from "lucide-react";
 import { CallToActionButtons } from "@/components/home/CallToActionButtons";
 import { HomeCard } from "@/components/home/HomeCard";
+import { GlobalVoiceChatDialog } from "@/components/shared/GlobalVoiceChatDialog"; // Add this import
 
 const Index = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -94,9 +95,11 @@ const Index = () => {
       </main>
 
       <Footer />
+      
+      {/* Add GlobalVoiceChatDialog component to enable voice chat functionality */}
+      <GlobalVoiceChatDialog />
     </div>
   );
 };
 
 export default Index;
-

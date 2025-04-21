@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Navbar from "@/components/layout/Navbar";
 import AnnouncementBanner from "@/components/layout/AnnouncementBanner";
 import Footer from "@/components/layout/Footer";
+import { GlobalVoiceChatDialog } from "@/components/shared/GlobalVoiceChatDialog"; // Add this import
 
 const Home = () => {
   return (
@@ -44,6 +45,9 @@ const Home = () => {
       </div>
       
       <Footer />
+      
+      {/* Add GlobalVoiceChatDialog component to enable voice chat functionality */}
+      <GlobalVoiceChatDialog />
     </div>
   );
 };

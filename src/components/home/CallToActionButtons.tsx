@@ -10,7 +10,14 @@ export const CallToActionButtons = () => {
   const [videoOpen, setVideoOpen] = useState(false);
 
   const handleTalkToAgent = () => {
-    document.dispatchEvent(new CustomEvent('open-voice-dialog'));
+    console.log("CallToActionButtons: Talk to Agent button clicked, dispatching event");
+    try {
+      const event = new CustomEvent('open-voice-dialog');
+      document.dispatchEvent(event);
+      console.log("CallToActionButtons: open-voice-dialog event dispatched successfully");
+    } catch (error) {
+      console.error("CallToActionButtons: Error dispatching open-voice-dialog event:", error);
+    }
   };
 
   return (
