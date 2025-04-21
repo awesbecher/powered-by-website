@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -13,7 +12,7 @@ const VirtualSeEbook = () => {
         <div className="w-full max-w-7xl bg-white/5 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border border-purple-300/20">
           <div className="p-6 bg-gradient-to-r from-[#9b87f5]/30 to-[#6342ff]/30 border-b border-purple-300/20 relative overflow-hidden">
             {/* Decorative elements */}
-            <div className="absolute top-0 left-0 w-full h-full bg-[url('/lovable-uploads/43118402-618c-4dd2-acf5-d749e3bf029d.png')] bg-cover opacity-20"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-gray-100 opacity-20"></div>
             <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-[#9b87f5]/30 blur-3xl"></div>
             <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-[#6342ff]/30 blur-3xl"></div>
             
