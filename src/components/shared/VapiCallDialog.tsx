@@ -153,8 +153,8 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
             <div className="mt-6 flex justify-center">
               <Button 
                 onClick={handleEndCall}
-                variant="destructive"
-                className="w-full py-4 text-lg"
+                variant="outline"
+                className="w-full py-4 text-lg border border-white text-red-600 hover:bg-red-50"
               >
                 <PhoneOff className="mr-2 h-5 w-5" />
                 End Voice Chat
