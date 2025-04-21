@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Phone } from "lucide-react";
 import Footer from "@/components/layout/Footer";
@@ -36,10 +35,9 @@ const Insurance = () => {
     });
   };
 
-  // Fix function to explicitly return a Promise<void>
-  const handleShowConsentDialog = (): Promise<void> => {
+  // Fix function to explicitly return a Promise<void> by making it async
+  const handleShowConsentDialog = async (): Promise<void> => {
     setShowConsentDialog(true);
-    return Promise.resolve();
   };
 
   return (
@@ -86,4 +84,3 @@ const Insurance = () => {
 };
 
 export default Insurance;
-
