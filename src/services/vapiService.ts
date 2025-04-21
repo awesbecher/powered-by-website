@@ -6,8 +6,8 @@ interface VapiConfig {
 
 // Updated API key and assistant ID
 const DEFAULT_VAPI_CONFIG: VapiConfig = {
-  apiKey: 'vapi-ai-2dqrs5n2e4jxz49aflyfbzx6', // Updated to new API key
-  assistantId: '454a442a-e28c-4285-9edf-46c03cc9c383' // Updated to new assistant ID
+  apiKey: 'vapi-ai-2dqrs5n2e4jxz49aflyfbzx6', // Using public API key format
+  assistantId: '454a442a-e28c-4285-9edf-46c03cc9c383'
 };
 
 // Create a custom event to trigger the voice dialog
