@@ -54,20 +54,6 @@ export const GlobalVoiceChatDialog = () => {
   };
 
   return (
-    <>
-      {/* Debug button for testing in development */}
-      {process.env.NODE_ENV === 'development' && (
-        <button 
-          onClick={() => {
-            console.log("Manual test trigger button clicked");
-            vapiIntegration.triggerVapiCall();
-          }}
-          className="fixed bottom-4 right-4 bg-purple-600 text-white p-2 rounded-md z-50 text-xs"
-        >
-          Test Vapi Dialog
-        </button>
-      )}
-      <VapiCallDialog open={showDialog} onOpenChange={handleDialogOpenChange} />
-    </>
+    <VapiCallDialog open={showDialog} onOpenChange={handleDialogOpenChange} />
   );
 };

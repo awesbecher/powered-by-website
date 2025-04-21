@@ -40,13 +40,14 @@ export function useVapiIntegration() {
         console.warn("Firefox detected: Vapi may have limitations with Firefox's WebRTC implementation");
       }
       
-      // Check if running in private/incognito mode
-      const fs = window.RequestFileSystem || (window as any).webkitRequestFileSystem;
-      if (fs) {
-        fs(window.TEMPORARY, 100, 
-          () => console.log("Not in private/incognito mode"),
-          () => console.warn("Private/Incognito mode detected: This may affect microphone permissions")
-        );
+      // Check for private/incognito mode without using RequestFileSystem API
+      try {
+        const testKey = 'test-private-browsing';
+        localStorage.setItem(testKey, '1');
+        localStorage.removeItem(testKey);
+        console.log("Not in private/incognito mode");
+      } catch (e) {
+        console.warn("Private/Incognito mode detected: This may affect microphone permissions");
       }
     };
     
