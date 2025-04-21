@@ -36,8 +36,7 @@ const Insurance = () => {
     });
   };
 
-  // Fixed TypeScript error by making this return a Promise
-  const handleShowConsentDialog = async (): Promise<void> => {
+  const handleShowConsentDialog = () => {
     setShowConsentDialog(true);
     return Promise.resolve();
   };

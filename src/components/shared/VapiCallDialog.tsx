@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import {
   Dialog,
@@ -7,7 +8,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { X, PhoneOff, Activity } from "lucide-react";
+import { PhoneOff, Activity, Phone } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
@@ -88,16 +89,9 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
         )}
 
         {stage === 'inCall' && (
-          <>
+          <div className="space-y-6">
             <div className="flex justify-between items-center">
               <h2 className="text-3xl font-bold">Call in Progress</h2>
-              <button
-                aria-label="End call and close"
-                onClick={handleEndCall}
-                className="text-gray-500 hover:text-white transition-colors"
-              >
-                <X className="w-6 h-6" />
-              </button>
             </div>
 
             <div className="flex items-center space-x-4 mt-4">
@@ -154,13 +148,13 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
               <Button 
                 onClick={handleEndCall}
                 variant="outline"
-                className="w-full py-4 text-lg border border-white text-red-600 hover:bg-red-50"
+                className="w-full py-6 text-xl border-2 border-white text-red-600 hover:bg-red-600 hover:text-white"
               >
                 <PhoneOff className="mr-2 h-5 w-5" />
                 End Voice Chat
               </Button>
             </div>
-          </>
+          </div>
         )}
       </DialogContent>
     </Dialog>

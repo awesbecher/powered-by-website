@@ -16,11 +16,24 @@ export async function initiateVapiCall(): Promise<void> {
   try {
     console.log('Initiating AI voice call with assistant ID:', DEFAULT_VAPI_CONFIG.assistantId);
     
-    // Instead of opening Vapi in a new window, we'll dispatch an event to open our own dialog
+    // Open Vapi in the current window (not a new window)
+    const vapiUrl = new URL('https://api.vapi.ai/call');
+    vapiUrl.searchParams.append('assistant_id', DEFAULT_VAPI_CONFIG.assistantId);
+    vapiUrl.searchParams.append('api_key', DEFAULT_VAPI_CONFIG.apiKey);
+    
+    // Dispatch event for our custom UI
     const event = new CustomEvent('open-voice-dialog');
     document.dispatchEvent(event);
     
-    console.log('Voice dialog event triggered');
+    // Connect to Vapi service in the background
+    const vapiFrame = document.createElement('iframe');
+    vapiFrame.style.display = 'none';
+    vapiFrame.src = vapiUrl.toString();
+    document.body.appendChild(vapiFrame);
+    
+    // Track connection in console
+    console.log('Voice dialog event triggered and Vapi frame connected');
+    
     return Promise.resolve();
   } catch (error) {
     console.error('Error initiating AI voice call:', error);
