@@ -2,7 +2,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
-import { componentTagger } from 'lovable-tagger';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import fs from 'fs';
@@ -19,8 +18,7 @@ if (!fs.existsSync(lovableUploadsDir)) {
 export default defineConfig({
   plugins: [
     react(),
-    tsconfigPaths(),
-    componentTagger()
+    tsconfigPaths()
   ],
   server: {
     port: 8080,
@@ -36,7 +34,7 @@ export default defineConfig({
     }
   },
   optimizeDeps: {
-    include: ['lovable-tagger']
+    exclude: ['lovable-tagger']
   },
   publicDir: 'public',
   resolve: {

@@ -1,13 +1,8 @@
 
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-
-export type AgentType = {
-  id: string;
-  name: string;
-  description: string;
-  icon: string;
-};
+import { AgentType } from "@/components/asset-test/types";
+import { defaultAgents } from "@/components/asset-test/agentsData";
 
 export function useAssetTest() {
   const [showConsentDialog, setShowConsentDialog] = useState(false);
@@ -17,36 +12,23 @@ export function useAssetTest() {
   const [isCallActive, setIsCallActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const [selectedAgent, setSelectedAgent] = useState<string | null>(null);
+  const [selectedAgent, setSelectedAgent] = useState<AgentType>(defaultAgents[0]);
   const { toast } = useToast();
 
-  const agentTypes: AgentType[] = [
-    {
-      id: "mercedes",
-      name: "Mercedes Dealership",
-      description: "Virtual sales agent for Mercedes-Benz",
-      icon: "car"
-    },
-    {
-      id: "restaurant",
-      name: "Restaurant Host",
-      description: "Virtual host for restaurant bookings",
-      icon: "utensils"
-    },
-    {
-      id: "realestate",
-      name: "Real Estate Agent",
-      description: "Virtual agent for property inquiries",
-      icon: "home"
-    }
-  ];
+  const agentTypes = defaultAgents;
 
-  const isMercedesAgent = selectedAgent === "mercedes";
-  const isRestaurantAgent = selectedAgent === "restaurant";
-  const isRealEstateAgent = selectedAgent === "realestate";
+  const isMercedesAgent = selectedAgent.id === "auto-dealership";
+  const isRestaurantAgent = selectedAgent.id === "restaurant-order";
+  const isRealEstateAgent = selectedAgent.id === "real-estate";
 
   const handleAgentSelect = (agentId: string) => {
-    setSelectedAgent(agentId);
+    const newAgents = agentTypes.map(agent => ({
+      ...agent,
+      isSelected: agent.id === agentId
+    }));
+    
+    const selectedAgent = newAgents.find(agent => agent.id === agentId) || newAgents[0];
+    setSelectedAgent(selectedAgent);
   };
 
   const handleMicClick = () => {

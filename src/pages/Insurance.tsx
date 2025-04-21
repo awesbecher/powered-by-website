@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Phone } from "lucide-react";
 import Footer from "@/components/layout/Footer";
@@ -35,6 +36,11 @@ const Insurance = () => {
     });
   };
 
+  // Make this function async to match expected type
+  const handleShowConsentDialog = async (): Promise<void> => {
+    setShowConsentDialog(true);
+  };
+
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <Navbar />
@@ -45,7 +51,7 @@ const Insurance = () => {
         <div className="py-10 sm:py-14 lg:py-16">
           <div className="max-w-5xl mx-auto">
             <InsuranceHero 
-              onShowConsentDialog={() => setShowConsentDialog(true)}
+              onShowConsentDialog={handleShowConsentDialog}
               isLoading={isLoading}
             />
             
