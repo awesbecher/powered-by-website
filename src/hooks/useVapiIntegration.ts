@@ -25,24 +25,8 @@ export function useVapiIntegration() {
     
     checkBrowserCompatibility();
     
-    // Clean up any stray Vapi elements on mount
-    const cleanupVapiElements = () => {
-      const scripts = document.querySelectorAll('script[src*="vapi.ai"]');
-      scripts.forEach(script => script.remove());
-      
-      const vapiRoot = document.getElementById('vapi-root');
-      if (vapiRoot) {
-        while(vapiRoot.firstChild) {
-          vapiRoot.removeChild(vapiRoot.firstChild);
-        }
-      }
-    };
-    
-    cleanupVapiElements();
-    
     return () => {
-      // Cleanup on unmount
-      cleanupVapiElements();
+      // Cleanup if needed
     };
   }, []);
   

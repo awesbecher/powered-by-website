@@ -6,15 +6,14 @@ interface VapiConfig {
 
 // Updated API key and assistant ID
 const DEFAULT_VAPI_CONFIG: VapiConfig = {
-  apiKey: 'a212f18f-9d02-4703-914f-ac89661262c5', // Updated to new API key
-  assistantId: 'ebb38ba5-321a-49e4-b860-708bc864327f' // Updated to new assistant ID
+  apiKey: 'a212f18f-9d02-4703-914f-ac89661262c5',
+  assistantId: 'ebb38ba5-321a-49e4-b860-708bc864327f'
 };
 
 // Create a custom event to trigger the voice dialog
 export async function initiateVapiCall(): Promise<void> {
   try {
     console.log('Initiating AI voice call with assistant ID:', DEFAULT_VAPI_CONFIG.assistantId);
-    console.log('Using API key:', DEFAULT_VAPI_CONFIG.apiKey);
     
     // First, make sure we have microphone access
     try {
@@ -38,8 +37,8 @@ export async function initiateVapiCall(): Promise<void> {
     // Create vapi-root element if it doesn't exist
     ensureVapiRootExists();
     
-    // Load the Vapi script with retry mechanism
-    return await loadVapiScriptWithRetry(3); // Try up to 3 times
+    // Load the Vapi script
+    return await loadVapiScript();
   } catch (error) {
     console.error('Error initiating AI voice call:', error);
     return Promise.reject(error);
@@ -58,7 +57,6 @@ function cleanupExistingVapiElements(): void {
         console.log('Called vapi.endCall() during cleanup');
       }
       delete (window as any).vapi;
-      console.log('Deleted global vapi object');
     } catch (e) {
       console.error('Error cleaning up global vapi object:', e);
     }
@@ -68,7 +66,6 @@ function cleanupExistingVapiElements(): void {
   const existingScript = document.querySelector('script[src*="vapi.ai"]');
   if (existingScript) {
     existingScript.remove();
-    console.log('Removed existing Vapi script');
   }
   
   // Clean up vapi-root element
@@ -77,17 +74,7 @@ function cleanupExistingVapiElements(): void {
     while (vapiRoot.firstChild) {
       vapiRoot.removeChild(vapiRoot.firstChild);
     }
-    console.log('Cleared existing Vapi root element');
   }
-  
-  // Clean up any potential Vapi iframe elements
-  const vapiIframes = document.querySelectorAll('iframe[src*="vapi.ai"]');
-  vapiIframes.forEach(iframe => {
-    iframe.remove();
-    console.log('Removed Vapi iframe');
-  });
-  
-  console.log('Finished cleanup of existing Vapi elements');
 }
 
 // Helper function to ensure vapi-root element exists
@@ -96,75 +83,22 @@ function ensureVapiRootExists(): void {
   if (!vapiRoot) {
     vapiRoot = document.createElement('div');
     vapiRoot.id = 'vapi-root';
-    // Create it with visible dimensions for debugging
+    // Create it with invisible dimensions
     vapiRoot.style.position = 'fixed';
     vapiRoot.style.zIndex = '9999';
-    vapiRoot.style.bottom = '20px';
-    vapiRoot.style.right = '20px';
-    vapiRoot.style.width = '300px'; // Make it visible for debugging
-    vapiRoot.style.height = '200px'; // Make it visible for debugging
-    vapiRoot.style.background = 'rgba(0, 0, 0, 0.1)'; // Semi-transparent for debugging
-    vapiRoot.style.border = '1px dashed red'; // Border for debugging
+    vapiRoot.style.bottom = '0';
+    vapiRoot.style.right = '0';
+    vapiRoot.style.width = '0';
+    vapiRoot.style.height = '0';
+    vapiRoot.style.overflow = 'hidden';
     document.body.appendChild(vapiRoot);
-    console.log('Created new Vapi root element with visible position and dimensions for debugging');
-  } else {
-    // Update existing element for debugging
-    vapiRoot.style.width = '300px';
-    vapiRoot.style.height = '200px';
-    vapiRoot.style.background = 'rgba(0, 0, 0, 0.1)';
-    vapiRoot.style.border = '1px dashed red';
-    console.log('Updated existing Vapi root element for visibility during debugging');
   }
-}
-
-// Helper function to load Vapi script with retry mechanism
-async function loadVapiScriptWithRetry(maxRetries: number): Promise<void> {
-  let attempts = 0;
-  
-  while (attempts < maxRetries) {
-    try {
-      attempts++;
-      console.log(`Attempt ${attempts} to load Vapi script`);
-      await loadVapiScript();
-      console.log('Vapi script loaded successfully');
-      return Promise.resolve();
-    } catch (error) {
-      console.error(`Attempt ${attempts} failed:`, error);
-      
-      if (attempts >= maxRetries) {
-        console.error(`Failed to load Vapi script after ${maxRetries} attempts`);
-        return Promise.reject(error);
-      }
-      
-      // Wait before retrying (with exponential backoff)
-      const delay = Math.pow(2, attempts) * 1000;
-      console.log(`Waiting ${delay}ms before retry...`);
-      await new Promise(resolve => setTimeout(resolve, delay));
-    }
-  }
-  
-  return Promise.reject(new Error('Failed to load Vapi script after multiple attempts'));
 }
 
 // Helper function to load Vapi script and initialize voicebot
 function loadVapiScript(): Promise<void> {
   return new Promise((resolve, reject) => {
     console.log('Creating Vapi script element');
-    
-    // Set a timeout for the entire operation
-    const timeoutId = setTimeout(() => {
-      reject(new Error('Vapi script loading timed out after 15 seconds'));
-    }, 15000);
-    
-    // Function to check if script is properly loaded
-    const checkVapiLoaded = () => {
-      if ((window as any).vapi) {
-        console.log('Vapi object found in window, continuing...');
-        return true;
-      }
-      console.log('Vapi object not found yet in window');
-      return false;
-    };
     
     const script = document.createElement('script');
     script.src = 'https://cdn.vapi.ai/messenger.js';
@@ -173,109 +107,42 @@ function loadVapiScript(): Promise<void> {
     
     // We need to ensure the script is loaded before initializing
     script.onload = () => {
-      console.log('Vapi script loaded successfully, checking for vapi object');
+      console.log('Vapi script loaded successfully');
       
-      // Check if vapi object exists immediately
-      if (checkVapiLoaded()) {
-        // Clear the timeout as script has loaded and vapi object exists
-        clearTimeout(timeoutId);
-        initializeVapiVoicebot(resolve, reject);
-      } else {
-        // Poll for vapi object to be available
-        console.log('Polling for vapi object to be available');
-        let checkCount = 0;
-        const maxChecks = 20;
-        const checkInterval = setInterval(() => {
-          checkCount++;
-          
-          if (checkVapiLoaded()) {
-            clearInterval(checkInterval);
-            clearTimeout(timeoutId);
-            initializeVapiVoicebot(resolve, reject);
-          } else if (checkCount >= maxChecks) {
-            clearInterval(checkInterval);
-            clearTimeout(timeoutId);
-            const error = new Error('Vapi script loaded but vapi object not found after multiple checks');
-            console.error(error);
-            reject(error);
+      // Wait a bit for Vapi to initialize
+      setTimeout(() => {
+        try {
+          if (!(window as any).vapi || !(window as any).vapi.initVoicebot) {
+            throw new Error('Vapi object not found after script load');
           }
-        }, 300);
-      }
+          
+          (window as any).vapi.initVoicebot({
+            assistant_id: DEFAULT_VAPI_CONFIG.assistantId,
+            api_key: DEFAULT_VAPI_CONFIG.apiKey,
+            audio: {
+              autoplay: true,
+              target_element_id: 'vapi-root',
+            },
+            input_mode: 'microphone',
+            debug: false,
+            version: 'v1',
+          });
+          
+          console.log('Vapi initVoicebot called successfully');
+          resolve();
+        } catch (initError) {
+          console.error('Error initializing Vapi voicebot:', initError);
+          reject(initError);
+        }
+      }, 1000);
     };
     
     // Handle script loading errors
     script.onerror = (err) => {
-      clearTimeout(timeoutId);
       console.error('Error loading Vapi script:', err);
-      reject('Failed to load Vapi script');
+      reject(new Error('Failed to load Vapi script'));
     };
     
     document.body.appendChild(script);
-    console.log('Vapi script added to document body');
   });
-}
-
-function initializeVapiVoicebot(resolve: (value: void) => void, reject: (reason?: any) => void): void {
-  console.log('Initializing Vapi voicebot');
-  
-  // Small delay to ensure Vapi is fully loaded
-  setTimeout(() => {
-    try {
-      console.log('Calling vapi.initVoicebot with:', {
-        assistant_id: DEFAULT_VAPI_CONFIG.assistantId,
-        api_key: DEFAULT_VAPI_CONFIG.apiKey
-      });
-      
-      if (!(window as any).vapi || !(window as any).vapi.initVoicebot) {
-        throw new Error('Vapi object or initVoicebot method not found');
-      }
-      
-      (window as any).vapi.initVoicebot({
-        assistant_id: DEFAULT_VAPI_CONFIG.assistantId,
-        api_key: DEFAULT_VAPI_CONFIG.apiKey,
-        audio: {
-          autoplay: true,
-          target_element_id: 'vapi-root',
-        },
-        input_mode: 'microphone',
-        debug: true,
-        onStartTalking: () => {
-          console.log('Vapi agent started talking');
-        },
-        onStopTalking: () => {
-          console.log('Vapi agent stopped talking');
-        },
-        onError: (error: any) => {
-          console.error('Vapi error:', error);
-        },
-        // Add additional callbacks for better debugging
-        onConversationStarted: () => {
-          console.log('Vapi conversation started');
-          document.getElementById('vapi-root')?.setAttribute('data-active', 'true');
-        },
-        onConversationEnded: () => {
-          console.log('Vapi conversation ended');
-          document.getElementById('vapi-root')?.setAttribute('data-active', 'false');
-        },
-        // Explicitly specify version
-        version: 'v1',
-      });
-      
-      console.log('Vapi initVoicebot called successfully');
-      
-      // Set a short timeout to see if everything initialized correctly
-      setTimeout(() => {
-        if ((window as any).vapi && document.getElementById('vapi-root')?.childElementCount) {
-          console.log('Vapi appears to be properly initialized with child elements');
-        } else {
-          console.warn('Vapi might not be properly initialized - no child elements found in vapi-root');
-        }
-        // Resolve anyway since we can't be 100% sure it failed
-        resolve();
-      }, 1000);
-    } catch (initError) {
-      console.error('Error initializing Vapi voicebot:', initError);
-      reject(initError);
-    }
-  }, 1000);
 }
