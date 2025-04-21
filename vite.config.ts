@@ -14,10 +14,15 @@ export default defineConfig({
   },
   build: {
     sourcemap: true,
+    minify: 'terser',
     rollupOptions: {
       output: {
-        manualChunks: undefined
+        manualChunks: undefined,
+        format: 'es'
       }
     }
+  },
+  optimizeDeps: {
+    include: ['lovable-tagger']
   }
 });
