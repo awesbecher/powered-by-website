@@ -1,46 +1,18 @@
 
 import { useEffect } from 'react';
+import { useToast } from "@/hooks/use-toast";
 
 export function useVapiIntegration() {
+  const { toast } = useToast();
+  
   useEffect(() => {
-    // Dispatch custom events from Vapi's callbacks
-    if ((window as any).vapi) {
-      console.log("Found existing vapi object in window, adding event dispatchers");
-      
-      const originalInitVoicebot = (window as any).vapi.initVoicebot;
-      if (originalInitVoicebot) {
-        (window as any).vapi.initVoicebot = (config: any) => {
-          // Add our custom event dispatchers to the config
-          const enhancedConfig = {
-            ...config,
-            onConversationStarted: () => {
-              document.dispatchEvent(new CustomEvent('vapi-conversation-started'));
-              if (config.onConversationStarted) config.onConversationStarted();
-            },
-            onConversationEnded: () => {
-              document.dispatchEvent(new CustomEvent('vapi-conversation-ended'));
-              if (config.onConversationEnded) config.onConversationEnded();
-            },
-            onError: (error: any) => {
-              document.dispatchEvent(new CustomEvent('vapi-error', { detail: error }));
-              if (config.onError) config.onError(error);
-            }
-          };
-          
-          return originalInitVoicebot.call((window as any).vapi, enhancedConfig);
-        };
-        
-        console.log("Enhanced vapi.initVoicebot with custom event dispatchers");
-      }
-    }
-    
-    // Setup browser checks for common Vapi integration issues
+    // Setup browser checks for common integration issues
     const checkBrowserCompatibility = () => {
       if (navigator.userAgent.includes('Firefox')) {
-        console.warn("Firefox detected: Vapi may have limitations with Firefox's WebRTC implementation");
+        console.warn("Firefox detected: Voice features may have limitations with Firefox's WebRTC implementation");
       }
       
-      // Check for private/incognito mode without using RequestFileSystem API
+      // Check for private/incognito mode
       try {
         const testKey = 'test-private-browsing';
         localStorage.setItem(testKey, '1');
@@ -53,8 +25,24 @@ export function useVapiIntegration() {
     
     checkBrowserCompatibility();
     
+    // Clean up any stray Vapi elements on mount
+    const cleanupVapiElements = () => {
+      const scripts = document.querySelectorAll('script[src*="vapi.ai"]');
+      scripts.forEach(script => script.remove());
+      
+      const vapiRoot = document.getElementById('vapi-root');
+      if (vapiRoot) {
+        while(vapiRoot.firstChild) {
+          vapiRoot.removeChild(vapiRoot.firstChild);
+        }
+      }
+    };
+    
+    cleanupVapiElements();
+    
     return () => {
-      // Cleanup if needed
+      // Cleanup on unmount
+      cleanupVapiElements();
     };
   }, []);
   

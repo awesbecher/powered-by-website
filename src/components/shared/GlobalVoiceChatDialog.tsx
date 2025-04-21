@@ -23,30 +23,17 @@ export const GlobalVoiceChatDialog = () => {
     document.addEventListener('vapi-error', handleVapiError);
     console.log("GlobalVoiceChatDialog: Event listeners added for 'open-voice-dialog' and 'vapi-error'");
 
-    // Check Vapi status on mount and periodically
-    const checkStatus = () => {
-      const status = vapiIntegration.checkVapiStatus();
-      console.log("Vapi integration status:", status);
-    };
-    
-    checkStatus();
-    const statusInterval = setInterval(checkStatus, 10000); // Check every 10 seconds
-
     return () => {
       document.removeEventListener('open-voice-dialog', handleOpenVoiceDialog);
       document.removeEventListener('vapi-error', handleVapiError);
-      clearInterval(statusInterval);
       console.log("GlobalVoiceChatDialog: Event listeners removed");
     };
-  }, [vapiIntegration]);
+  }, []);
 
-  // Add debug logs to verify the component is working
   useEffect(() => {
     console.log("GlobalVoiceChatDialog: Component mounted, listening for events");
-    console.log("GlobalVoiceChatDialog: Current dialog state:", showDialog);
-    
     return () => console.log("GlobalVoiceChatDialog: Component unmounted");
-  }, [showDialog]);
+  }, []);
 
   const handleDialogOpenChange = (open: boolean) => {
     console.log("GlobalVoiceChatDialog: Dialog open state changed to:", open);

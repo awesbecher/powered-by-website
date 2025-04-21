@@ -213,10 +213,6 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
               </div>
             </div>
             
-            <div id="vapi-container" className="bg-[#1a1a2e] p-2 rounded-xl border border-[#9b87f5]/10 mt-4 min-h-[100px]">
-              {/* This is where we'll move the vapi-root element for better visibility */}
-            </div>
-            
             <div className="mt-6 flex justify-center">
               <Button 
                 onClick={handleEndCall}
