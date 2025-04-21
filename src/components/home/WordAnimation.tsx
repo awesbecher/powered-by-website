@@ -1,36 +1,36 @@
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-export const WordAnimation = () => {
-  const [currentWord, setCurrentWord] = useState("Voice");
-  const words = ["Voice", "Phone", "Text", "Email", "Slack", "Chat", "Docs"];
-  const [wordIndex, setWordIndex] = useState(0);
+interface WordAnimationProps {
+  words: string[];
+  speed?: number;
+  delay?: number;
+  className?: string;
+}
+
+export const WordAnimation = ({ words, speed = 2000, delay = 200, className = '' }: WordAnimationProps) => {
+  const [index, setIndex] = useState(0);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setWordIndex((prevIndex) => {
-        const nextIndex = (prevIndex + 1) % words.length;
-        setCurrentWord(words[nextIndex]);
-        return nextIndex;
-      });
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, []);
+    const visibilityInterval = setInterval(() => {
+      setVisible(false);
+      
+      setTimeout(() => {
+        setIndex((prevIndex) => (prevIndex + 1) % words.length);
+        setVisible(true);
+      }, delay);
+      
+    }, speed);
+    
+    return () => clearInterval(visibilityInterval);
+  }, [words.length, speed, delay]);
 
   return (
     <span 
-      className="
-        relative inline-block min-w-[120px] sm:min-w-[180px] 
-        transition-all duration-500 ease-in-out 
-        animate-fade-in
-        bg-gradient-to-r from-accent via-[#E5DEFF] to-accent 
-        bg-clip-text text-transparent
-        drop-shadow-[0_0_10px_rgba(155,135,245,0.3)]
-      "
+      className={`transition-all duration-500 ${visible ? 'opacity-100' : 'opacity-0'} ${className}`}
     >
-      {currentWord}
+      {words[index]}
     </span>
   );
 };
-

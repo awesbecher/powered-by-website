@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { toast } from "sonner";
+import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 
@@ -18,6 +18,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,7 +36,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
           onLogin(email, password);
         } else {
           // Success toast and redirect to the new page
-          toast.success("Login successful!");
+          toast({
+            title: "Success",
+            description: "Login successful!"
+          });
           setTimeout(() => {
             setIsLoading(false);
             navigate("/omega-voice1");
@@ -44,13 +48,21 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
       } else {
         // Invalid credentials
         setError("Invalid email or password. Please try again.");
-        toast.error("Login failed. Invalid credentials.");
+        toast({
+          title: "Error",
+          description: "Login failed. Invalid credentials.",
+          variant: "destructive"
+        });
         setIsLoading(false);
       }
     } catch (error) {
       console.error("Login error:", error);
       setError("An unexpected error occurred. Please try again.");
-      toast.error("Login failed. Please try again.");
+      toast({
+        title: "Error",
+        description: "Login failed. Please try again.",
+        variant: "destructive"
+      });
       setIsLoading(false);
     }
   };

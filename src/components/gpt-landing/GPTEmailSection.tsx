@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { isValidEmail } from "@/utils/emailValidation";
-import { toast } from "sonner";
+import { useToast } from "@/hooks/use-toast";
 
 interface GPTEmailSectionProps {
   initialLoad: boolean;
@@ -13,13 +13,18 @@ interface GPTEmailSectionProps {
 export const GPTEmailSection: React.FC<GPTEmailSectionProps> = ({ initialLoad }) => {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validate email
     if (!isValidEmail(email)) {
-      toast.error("Please enter a valid email address");
+      toast({
+        title: "Error",
+        description: "Please enter a valid email address",
+        variant: "destructive"
+      });
       return;
     }
     
@@ -44,11 +49,18 @@ export const GPTEmailSection: React.FC<GPTEmailSectionProps> = ({ initialLoad })
         throw new Error('Failed to subscribe');
       }
       
-      toast.success("Thanks for subscribing! We'll be in touch soon.");
+      toast({
+        title: "Success", 
+        description: "Thanks for subscribing! We'll be in touch soon."
+      });
       setEmail("");
     } catch (error) {
       console.error("Subscription error:", error);
-      toast.error("Something went wrong. Please try again later.");
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again later.",
+        variant: "destructive"
+      });
     } finally {
       setIsSubmitting(false);
     }

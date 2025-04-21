@@ -3,7 +3,7 @@ import React from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Copy, Check } from "lucide-react";
-import { toast } from "sonner";
+import { toast } from "@/hooks/use-toast";
 
 interface WebhookSetupGuideProps {
   webhookUrl: string;
@@ -15,7 +15,10 @@ const WebhookSetupGuide: React.FC<WebhookSetupGuideProps> = ({ webhookUrl }) => 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(webhookUrl);
     setCopied(true);
-    toast.success("Webhook URL copied to clipboard");
+    toast({
+      title: "Success",
+      description: "Webhook URL copied to clipboard"
+    });
     setTimeout(() => setCopied(false), 2000);
   };
 
