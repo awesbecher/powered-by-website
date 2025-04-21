@@ -15,13 +15,13 @@ export const HeroSection = ({ subtitle, initialLoad }: HeroSectionProps) => {
         {/* Soft Glow */}
         <div
           aria-hidden
-          className="absolute left-1/2 top-24 -translate-x-1/2 w-[440px] h-[220px] md:w-[680px] md:h-[340px] rounded-full bg-gradient-to-br from-[#9b87f570] via-[#6342ff22] to-transparent blur-3xl opacity-50 animate-pulse"
-          style={{ filter: "blur(50px)" }}
+          className="absolute left-1/2 top-24 -translate-x-1/2 w-[440px] h-[220px] md:w-[680px] md:h-[340px] rounded-full bg-gradient-to-br from-[#9b87f5aa] via-[#6342ff66] to-transparent blur-2xl opacity-80 animate-pulse"
+          style={{ filter: "blur(40px)" }}
         />
         {/* Circuit SVG overlay */}
         <svg
           viewBox="0 0 750 200"
-          className="absolute left-1/2 top-0 -translate-x-1/2 w-[90vw] max-w-[750px] h-[200px] opacity-20 select-none"
+          className="absolute left-1/2 top-0 -translate-x-1/2 w-[90vw] max-w-[750px] h-[200px] opacity-40 select-none"
           fill="none"
           aria-hidden
         >
@@ -31,7 +31,7 @@ export const HeroSection = ({ subtitle, initialLoad }: HeroSectionProps) => {
               <stop offset="0.9" stopColor="#9b87f5" />
             </linearGradient>
           </defs>
-          <g stroke="url(#ai-circuit-gradient)" strokeWidth="1.2">
+          <g stroke="url(#ai-circuit-gradient)" strokeWidth="1.4">
             <rect x="30" y="40" width="120" height="40" rx="12" />
             <rect x="200" y="100" width="90" height="32" rx="10" />
             <rect x="350" y="60" width="50" height="60" rx="12" />
@@ -49,56 +49,56 @@ export const HeroSection = ({ subtitle, initialLoad }: HeroSectionProps) => {
       </div>
 
       {/* --- Hero Main Title --- */}
-      <h1 className="relative z-10 mb-8 font-sans">
+      <h1 className="relative z-10 mb-10 font-sans leading-tight">
         <span
-          className="block text-[2.5rem] sm:text-[3.5rem] lg:text-[4.7rem] font-extrabold leading-tight tracking-tight"
+          className="block text-[3rem] sm:text-[4rem] lg:text-[5rem] font-extrabold tracking-tight drop-shadow-md"
         >
           <span 
-            className="inline-block text-[#14142b] dark:text-white/90 drop-shadow-lg"
+            className="inline-block text-[#14142b] dark:text-white/95"
           >
             Custom{" "}
           </span>
           <span
-            className="relative px-2 text-transparent bg-gradient-to-r from-[#a899ee] via-[#9b87f5] to-[#6242ff] bg-clip-text animate-aiShimmer shadow-xl"
+            className="relative px-2 text-transparent bg-gradient-to-r from-[#a899ee] via-[#9b87f5] to-[#6242ff] bg-clip-text animate-aiShimmer shadow-lg"
             style={{
-              WebkitTextStroke: "1px #9b87f580",
-              filter: "drop-shadow(0 4px 28px #9b87f57c)",
+              WebkitTextStroke: "1.3px #9b87f5aa",
+              filter: "drop-shadow(0 5px 20px #9b87f5bb)",
             }}
           >
             AI Agents
-            <span className="absolute -top-7 left-1 animate-fade-in md:block hidden">
-              <Sparkles className="w-8 h-8 text-[#b7a9ff] opacity-70 animate-float" />
+            <span className="absolute -top-8 left-1 animate-fade-in md:block hidden">
+              <Sparkles className="w-10 h-10 text-[#b7a9ff] opacity-90 animate-float" />
             </span>
           </span>
-          <span className="block mt-3 font-extrabold tracking-wide text-white bg-gradient-to-r from-[#fff] via-[#b7a9ff]/70 to-[#fff]/95 bg-clip-text text-transparent drop-shadow-lg text-[2.3rem] sm:text-[3.2rem] lg:text-[4.3rem]">
+          <span className="block mt-4 font-extrabold tracking-wider text-[#d6bcfa] drop-shadow-md text-[2.8rem] sm:text-[3.3rem] lg:text-[4.5rem]">
             for <span className="text-[#9b87f5]">SMBs</span>
           </span>
         </span>
 
         {/* Fancy AI underline */}
-        <span className="block mx-auto mt-3 w-[63%] md:w-[33%]">
-          <svg height="16" viewBox="0 0 320 16" fill="none">
+        <span className="block mx-auto mt-5 w-[63%] md:w-[33%]">
+          <svg height="20" viewBox="0 0 320 16" fill="none">
             <path
               d="M8 12C87 5 232 3 312 12"
               stroke="#9b87f5"
               strokeWidth="6"
               strokeLinecap="round"
-              opacity="0.55"
+              opacity="0.75"
             />
           </svg>
         </span>
       </h1>
 
       {/* --- Hero Subtext --- */}
-      <div className="relative z-10">
+      <div className="relative z-10 max-w-3xl mx-auto">
         <p
           className={[
-            "text-lg xs:text-xl md:text-2xl max-w-2xl mx-auto font-medium",
-            "bg-gradient-to-r from-[#f0eaff] via-[#e6e1fb] via-55% to-[#e9e4ff]/50 bg-clip-text text-transparent",
-            "drop-shadow-[0_2px_12px_rgba(155,135,245,0.18)] tracking-wide animate-fade-in",
+            "text-xl sm:text-2xl md:text-3xl font-semibold max-w-2xl mx-auto leading-relaxed",
+            "bg-gradient-to-r from-[#d6bcfa] via-[#9b87f5] to-[#6242ff] bg-clip-text text-transparent",
+            "drop-shadow-[0_3px_15px_rgba(155,135,245,0.7)] tracking-wide animate-fade-in",
           ].join(' ')}
           style={{
-            textShadow: "0 1.5px 8px rgba(99,66,255,.20), 0 0.5px 0.5px #fff6",
+            textShadow: "0 2px 12px rgba(99,66,255,0.35), 0 0 1.5px #e2d7ff",
           }}
         >
           {subtitle
@@ -108,7 +108,7 @@ export const HeroSection = ({ subtitle, initialLoad }: HeroSectionProps) => {
         </p>
       </div>
       {/* --- Example AI Icon Overlay for Fun --- */}
-      <CircuitBoard className="absolute right-3 bottom-3 hidden sm:block text-[#9b87f5]/30 opacity-30 w-12 h-12 z-0" />
+      <CircuitBoard className="absolute right-3 bottom-3 hidden sm:block text-[#9b87f5]/50 opacity-50 w-14 h-14 z-0" />
       <style>{`
         @keyframes aiShimmer {
           0% {
@@ -120,7 +120,7 @@ export const HeroSection = ({ subtitle, initialLoad }: HeroSectionProps) => {
         }
         .animate-aiShimmer {
           background-size: 300% 100%;
-          animation: aiShimmer 3.2s linear infinite;
+          animation: aiShimmer 2.7s linear infinite;
         }
       `}</style>
     </section>

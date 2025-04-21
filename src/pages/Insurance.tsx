@@ -1,4 +1,5 @@
 
+// Fix the TS error by making handleShowConsentDialog an async function returning a Promise<void>
 import { useState, useEffect } from "react";
 import { Phone } from "lucide-react";
 import Footer from "@/components/layout/Footer";
@@ -36,7 +37,7 @@ const Insurance = () => {
     });
   };
 
-  // Fixed to return a Promise<void> by making it async
+  // Make this function async and return a promise resolving void
   const handleShowConsentDialog = async (): Promise<void> => {
     setShowConsentDialog(true);
   };
@@ -85,3 +86,4 @@ const Insurance = () => {
 };
 
 export default Insurance;
+
