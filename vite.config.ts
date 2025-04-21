@@ -1,18 +1,19 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
+import react from "@vitejs/plugin-react";
+import path from "path";
 
-// Lovable tagger must use dynamic import for ESM compatibility
-let componentTagger;
-try {
-  const taggerModule = await import("lovable-tagger");
-  componentTagger = taggerModule.componentTagger;
-} catch (error) {
-  console.warn("lovable-tagger failed to load:", error);
-}
+// ✅ Safe import for ESM compatibility with Lovable/Vercel
+import lovableTagger from "lovable-tagger";
 
 export default defineConfig({
   plugins: [
     react(),
-    ...(componentTagger ? [componentTagger()] : [])
+    // ✅ Proper ESM-compatible plugin use
+    lovableTagger.componentTagger?.(),
   ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
 });
