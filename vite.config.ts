@@ -27,6 +27,9 @@ export default defineConfig({
   ].filter(Boolean),
   server: {
     port: 8080,
+    allowedHosts: [
+      '8cc87c67-4a57-4d06-9e12-7f96ed3d254a.lovableproject.com'
+    ]
   },
   build: {
     sourcemap: true,
@@ -49,3 +52,4 @@ export default defineConfig({
     }
   }
 });
+

@@ -4,20 +4,16 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Tv, Phone } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { VapiCallDialog } from "@/components/shared/VapiCallDialog";
 
 export const CallToActionButtons = () => {
   const navigate = useNavigate();
   const [videoOpen, setVideoOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleTalkToAgent = () => {
-    console.log("CallToActionButtons: Talk to Agent button clicked, dispatching event");
-    try {
-      const event = new CustomEvent('open-voice-dialog');
-      document.dispatchEvent(event);
-      console.log("CallToActionButtons: open-voice-dialog event dispatched successfully");
-    } catch (error) {
-      console.error("CallToActionButtons: Error dispatching open-voice-dialog event:", error);
-    }
+    console.log("CallToActionButtons: Talk to Agent button clicked, opening Vapi call dialog");
+    setDialogOpen(true);
   };
 
   return (
@@ -60,6 +56,9 @@ export const CallToActionButtons = () => {
           </div>
         </DialogContent>
       </Dialog>
+
+      <VapiCallDialog open={dialogOpen} onOpenChange={setDialogOpen} />
     </div>
   );
 };
+

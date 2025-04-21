@@ -1,29 +1,20 @@
 
-import { WordAnimation } from "./WordAnimation";
+import React from 'react';
 
 interface HeroSectionProps {
-  initialLoad: boolean;
+  subtitle?: string;
 }
 
-export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
+export const HeroSection = ({ subtitle }: HeroSectionProps) => {
   return (
-    <div className="relative overflow-hidden px-6 lg:px-8 pt-4 pb-4">
-      <div className="mx-auto max-w-7xl">
-        <div className="text-center">
-          <h1 
-            className={`text-[64px] sm:text-[96px] font-bold tracking-tight text-white mb-2 transition-all duration-1000 ease-out transform
-              ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
-          >
-            Custom AI Agents for SMBs
-          </h1>
-          <p 
-            className={`text-xl text-gray-300 max-w-3xl mx-auto mb-6 transition-all duration-1000 ease-out transform
-              ${initialLoad ? 'opacity-0 translate-x-8 -translate-y-8' : 'opacity-100 translate-x-0 translate-y-0'}`}
-          >
-            Super-smart AI Agents That Talk, Text & Email. Go Live Fast. Scale Even Faster.
-          </p>
-        </div>
-      </div>
-    </div>
+    <section className="text-center py-16 px-4 max-w-4xl mx-auto">
+      <h1 className="text-5xl font-extrabold text-white mb-6">Your AI Agent Solution</h1>
+      {subtitle && (
+        <p className="text-xl text-gray-300 max-w-lg mx-auto">
+          {subtitle}
+        </p>
+      )}
+    </section>
   );
 };
+
