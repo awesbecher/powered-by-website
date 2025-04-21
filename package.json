@@ -11,7 +11,7 @@
     "postinstall": "npm install lovable-tagger --legacy-peer-deps || true"
   },
   "dependencies": {
-    "lovable-tagger": "^0.1.0",
+    "lovable-tagger": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
