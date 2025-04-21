@@ -2,55 +2,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://poweredby.agency/</loc>
-    <lastmod>2025-04-04</lastmod>
+    <loc>https://www.poweredby.agency/</loc>
   </url>
   <url>
-    <loc>https://poweredby.agency/products</loc>
-    <lastmod>2025-04-04</lastmod>
+    <loc>https://www.poweredby.agency/agent-gpt-builder</loc>
   </url>
   <url>
-    <loc>https://poweredby.agency/launch</loc>
-    <lastmod>2025-04-04</lastmod>
+    <loc>https://www.poweredby.agency/demo</loc>
   </url>
   <url>
-    <loc>https://poweredby.agency/blog</loc>
-    <lastmod>2025-04-04</lastmod>
+    <loc>https://www.poweredby.agency/about</loc>
   </url>
   <url>
-    <loc>https://poweredby.agency/demo</loc>
-    <lastmod>2025-04-04</lastmod>
+    <loc>https://www.poweredby.agency/products</loc>
   </url>
   <url>
-    <loc>https://poweredby.agency/contact</loc>
-    <lastmod>2025-04-04</lastmod>
+    <loc>https://www.poweredby.agency/blog</loc>
   </url>
   <url>
-    <loc>https://poweredby.agency/ai-agency</loc>
-    <lastmod>2025-04-04</lastmod>
+    <loc>https://www.poweredby.agency/contact</loc>
   </url>
   <url>
-    <loc>https://poweredby.agency/text-agent</loc>
-    <lastmod>2025-04-04</lastmod>
+    <loc>https://www.poweredby.agency/ai-agency</loc>
   </url>
   <url>
-    <loc>https://poweredby.agency/voice-chat</loc>
-    <lastmod>2025-04-04</lastmod>
+    <loc>https://www.poweredby.agency/text-agent</loc>
   </url>
   <url>
-    <loc>https://poweredby.agency/blog/future-of-ai-interactions</loc>
-    <lastmod>2025-04-04</lastmod>
-  </url>
-  <url>
-    <loc>https://poweredby.agency/blog/ai-voice-customer-service</loc>
-    <lastmod>2025-04-04</lastmod>
-  </url>
-  <url>
-    <loc>https://poweredby.agency/blog/ai-agents-trillion-market-opportunity</loc>
-    <lastmod>2025-04-04</lastmod>
-  </url>
-  <url>
-    <loc>https://poweredby.agency/blog/understanding-ai-agents</loc>
-    <lastmod>2025-04-04</lastmod>
+    <loc>https://www.poweredby.agency/voice-chat</loc>
   </url>
 </urlset>
