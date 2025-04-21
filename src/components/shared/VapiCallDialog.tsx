@@ -40,6 +40,20 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
       title: "Call ended",
       description: "Thank you for using our AI voice agent."
     });
+    
+    // Clean up Vapi elements if they exist
+    const script = document.querySelector('script[src="https://cdn.vapi.ai/messenger.js"]');
+    if (script) {
+      script.remove();
+    }
+    
+    const vapiRoot = document.getElementById('vapi-root');
+    if (vapiRoot) {
+      while (vapiRoot.firstChild) {
+        vapiRoot.removeChild(vapiRoot.firstChild);
+      }
+    }
+    
     navigate(-1); // Go back to previous page
   };
 
@@ -82,7 +96,11 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
               </p>
 
               <div className="flex justify-end gap-4">
-                <Button variant="outline" onClick={() => onOpenChange(false)} className="border-gray-700 text-gray-300 hover:bg-gray-800">
+                <Button 
+                  variant="destructive" 
+                  onClick={() => onOpenChange(false)} 
+                  className="text-white hover:bg-red-700"
+                >
                   Cancel
                 </Button>
                 <Button onClick={handleStartCall} className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white">
@@ -164,4 +182,3 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
     </Dialog>
   );
 };
-

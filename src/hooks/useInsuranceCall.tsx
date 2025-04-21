@@ -36,7 +36,19 @@ export function useInsuranceCall() {
   };
 
   const handleEndCall = () => {
-    // Close any Vapi tabs that might be open
+    // Clean up any Vapi elements that might be on the page
+    const script = document.querySelector('script[src="https://cdn.vapi.ai/messenger.js"]');
+    if (script) {
+      script.remove();
+    }
+    
+    const vapiRoot = document.getElementById('vapi-root');
+    if (vapiRoot) {
+      while (vapiRoot.firstChild) {
+        vapiRoot.removeChild(vapiRoot.firstChild);
+      }
+    }
+    
     toast({
       title: "Call ended",
       description: "Your insurance consultation has ended"
@@ -46,11 +58,28 @@ export function useInsuranceCall() {
   };
 
   const toggleMute = () => {
-    setIsMuted(prev => !prev);
-    toast({
-      title: isMuted ? "Microphone unmuted" : "Microphone muted",
-      description: isMuted ? "You can now speak" : "You are now muted",
-    });
+    // Try to mute/unmute the Vapi call if it's available
+    try {
+      if ((window as any).vapi && typeof (window as any).vapi.toggleMute === 'function') {
+        (window as any).vapi.toggleMute();
+        const newMuteState = !isMuted;
+        setIsMuted(newMuteState);
+        
+        toast({
+          title: newMuteState ? "Microphone muted" : "Microphone unmuted",
+          description: newMuteState ? "You are now muted" : "You can now speak",
+        });
+      } else {
+        setIsMuted(prev => !prev);
+        toast({
+          title: isMuted ? "Microphone unmuted" : "Microphone muted",
+          description: isMuted ? "You can now speak" : "You are now muted",
+        });
+      }
+    } catch (error) {
+      console.error('Error toggling mute:', error);
+      setIsMuted(prev => !prev);
+    }
     
     console.log(`Microphone ${isMuted ? 'unmuted' : 'muted'}`);
   };

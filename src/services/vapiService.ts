@@ -14,20 +14,47 @@ export async function initiateVapiCall(): Promise<void> {
   try {
     console.log('Initiating AI voice call with assistant ID:', DEFAULT_VAPI_CONFIG.assistantId);
     
-    // Open Vapi in the current window (not a new window)
-    const vapiUrl = new URL('https://api.vapi.ai/call');
-    vapiUrl.searchParams.append('assistant_id', DEFAULT_VAPI_CONFIG.assistantId);
-    vapiUrl.searchParams.append('api_key', DEFAULT_VAPI_CONFIG.apiKey);
-    
     // Dispatch event for our custom UI
     const event = new CustomEvent('open-voice-dialog');
     document.dispatchEvent(event);
     
-    // Connect to Vapi service directly with a full window redirect
-    // This will open in a new tab since iframe approach wasn't working
-    window.open(vapiUrl.toString(), '_blank');
+    // Connect to Vapi service directly using their embedded script
+    // This will actually connect to the voice service
+    const script = document.createElement('script');
+    script.src = 'https://cdn.vapi.ai/messenger.js';
+    script.async = true;
+    script.onload = () => {
+      if ((window as any).vapi) {
+        console.log('Vapi script loaded, starting voice call');
+        (window as any).vapi.initVoicebot({
+          assistant_id: DEFAULT_VAPI_CONFIG.assistantId,
+          api_key: DEFAULT_VAPI_CONFIG.apiKey,
+          audio: {
+            autoplay: true, // Auto-play audio response
+            target_element_id: 'vapi-root', // Optional target element
+          }
+        });
+      } else {
+        console.error('Vapi script loaded but vapi object not found');
+      }
+    };
     
-    console.log('Voice dialog event triggered and Vapi service launched');
+    // Add a div for Vapi to attach to
+    let vapiRoot = document.getElementById('vapi-root');
+    if (!vapiRoot) {
+      vapiRoot = document.createElement('div');
+      vapiRoot.id = 'vapi-root';
+      vapiRoot.style.position = 'absolute';
+      vapiRoot.style.top = '-1px';
+      vapiRoot.style.left = '-1px';
+      vapiRoot.style.width = '1px';
+      vapiRoot.style.height = '1px';
+      document.body.appendChild(vapiRoot);
+    }
+    
+    document.body.appendChild(script);
+    
+    console.log('Voice dialog event triggered and Vapi service loaded');
     
     return Promise.resolve();
   } catch (error) {
