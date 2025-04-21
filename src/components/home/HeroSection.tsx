@@ -9,36 +9,36 @@ interface HeroSectionProps {
 export const HeroSection = ({ subtitle, initialLoad }: HeroSectionProps) => {
   return (
     <section className="text-center py-16 px-4 max-w-4xl mx-auto">
-      {/* Fancy AI-styled title */}
-      <h1
-        className="text-5xl md:text-6xl lg:text-7xl font-black fancy-title ebook-title-glow text-gradient mb-6 relative"
-        style={{
-          lineHeight: 1.15,
-        }}
-      >
-        <span className="relative z-10">
-          Custom <span className="text-[#9b87f5] drop-shadow-[0_2px_24px_rgba(155,135,245,0.5)]">AI Agents</span>
-          <span className="block mt-1">for SMBs</span>
+      {/* Fancy AI-styled title with better readability */}
+      <h1 className="relative mb-6">
+        <span className="text-5xl md:text-6xl lg:text-7xl font-bold block">
+          Custom{" "}
+          <span className="text-[#9b87f5] inline-block">
+            AI Agents
+          </span>
         </span>
-        {/* Optional subtle background AI effect */}
+        <span className="text-5xl md:text-6xl lg:text-7xl font-bold text-white block mt-1">
+          for SMBs
+        </span>
+        
+        {/* Decorative underline */}
         <svg
-          className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-2/3 md:w-1/2 opacity-50 pointer-events-none"
-          height="18"
-          viewBox="0 0 420 18"
+          className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-2/3 md:w-1/2 opacity-70 pointer-events-none"
+          height="12"
+          viewBox="0 0 420 12"
           fill="none"
         >
           <path
-            d="M5 14C122 7 295 7 415 14"
+            d="M5 8C122 4 295 4 415 8"
             stroke="#9b87f5"
-            strokeWidth="8"
+            strokeWidth="5"
             strokeLinecap="round"
-            opacity="0.27"
           />
         </svg>
       </h1>
 
-      {/* Fancy subtext styling, with text shadow and slightly larger size */}
-      <p className="text-xl md:text-2xl text-gray-300 high-contrast-text text-shadow max-w-xl mx-auto">
+      {/* Clear, readable subtext */}
+      <p className="text-xl md:text-2xl text-white font-medium max-w-xl mx-auto">
         {subtitle
           ? subtitle
           : "Super-smart AI Agents That Talk, Text & Email. Go Live Fast. Scale Even Faster."
@@ -47,4 +47,3 @@ export const HeroSection = ({ subtitle, initialLoad }: HeroSectionProps) => {
     </section>
   );
 };
-

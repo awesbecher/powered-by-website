@@ -36,7 +36,7 @@ const Insurance = () => {
     });
   };
 
-  // Fix function to explicitly return a Promise<void> by making it async
+  // Fixed to return a Promise<void> by making it async
   const handleShowConsentDialog = async (): Promise<void> => {
     setShowConsentDialog(true);
   };
