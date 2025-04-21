@@ -19,5 +19,25 @@ export const GlobalVoiceChatDialog = () => {
     };
   }, []);
 
-  return <VapiCallDialog open={showDialog} onOpenChange={setShowDialog} />;
+  // Add debug logs to verify the component is working
+  useEffect(() => {
+    console.log("GlobalVoiceChatDialog: Component mounted, listening for events");
+    return () => console.log("GlobalVoiceChatDialog: Component unmounted");
+  }, []);
+
+  return (
+    <>
+      {/* Debug button to manually test dialog - remove in production */}
+      {process.env.NODE_ENV === 'development' && (
+        <button 
+          onClick={() => setShowDialog(true)}
+          className="fixed bottom-4 right-4 bg-purple-600 text-white p-2 rounded-md z-50 text-xs"
+          style={{ display: 'none' }}
+        >
+          Test Dialog
+        </button>
+      )}
+      <VapiCallDialog open={showDialog} onOpenChange={setShowDialog} />
+    </>
+  );
 };

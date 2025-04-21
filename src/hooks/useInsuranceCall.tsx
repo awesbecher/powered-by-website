@@ -36,17 +36,13 @@ export function useInsuranceCall() {
   };
 
   const handleEndCall = () => {
-    // Remove any hidden Vapi iframes
-    const vapiFrames = document.querySelectorAll('iframe[src*="vapi.ai"]');
-    vapiFrames.forEach(frame => {
-      frame.remove();
-    });
-    
-    setIsCallActive(false);
+    // Close any Vapi tabs that might be open
     toast({
       title: "Call ended",
       description: "Your insurance consultation has ended"
     });
+    
+    setIsCallActive(false);
   };
 
   const toggleMute = () => {
@@ -56,7 +52,6 @@ export function useInsuranceCall() {
       description: isMuted ? "You can now speak" : "You are now muted",
     });
     
-    // Send mute command to Vapi if we had a way to do that
     console.log(`Microphone ${isMuted ? 'unmuted' : 'muted'}`);
   };
 

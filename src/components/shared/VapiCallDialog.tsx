@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -56,6 +56,11 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
       setStage('confirmation');
     }
   }, [open]);
+
+  // Add debug logging
+  useEffect(() => {
+    console.log("VapiCallDialog: Dialog open state:", open, "Stage:", stage);
+  }, [open, stage]);
 
   if (!open || stage === 'closed') return null;
 
@@ -147,8 +152,7 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
             <div className="mt-6 flex justify-center">
               <Button 
                 onClick={handleEndCall}
-                variant="outline"
-                className="w-full py-6 text-xl border-2 border-white text-red-600 hover:bg-red-600 hover:text-white"
+                className="w-full py-6 text-xl bg-transparent border-2 border-white text-red-600 hover:bg-red-600 hover:text-white"
               >
                 <PhoneOff className="mr-2 h-5 w-5" />
                 End Voice Chat

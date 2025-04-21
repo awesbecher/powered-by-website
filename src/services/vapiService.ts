@@ -1,6 +1,4 @@
 
-import { useToast } from "@/hooks/use-toast";
-
 interface VapiConfig {
   apiKey: string;
   assistantId: string;
@@ -25,14 +23,11 @@ export async function initiateVapiCall(): Promise<void> {
     const event = new CustomEvent('open-voice-dialog');
     document.dispatchEvent(event);
     
-    // Connect to Vapi service in the background
-    const vapiFrame = document.createElement('iframe');
-    vapiFrame.style.display = 'none';
-    vapiFrame.src = vapiUrl.toString();
-    document.body.appendChild(vapiFrame);
+    // Connect to Vapi service directly with a full window redirect
+    // This will open in a new tab since iframe approach wasn't working
+    window.open(vapiUrl.toString(), '_blank');
     
-    // Track connection in console
-    console.log('Voice dialog event triggered and Vapi frame connected');
+    console.log('Voice dialog event triggered and Vapi service launched');
     
     return Promise.resolve();
   } catch (error) {
