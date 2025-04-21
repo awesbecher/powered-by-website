@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -8,12 +8,9 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { X, Phone, PhoneOff } from "lucide-react";
-import { useNavigate } from 'react-router-dom';
-
-const VAPI_API_KEY = 'a212f18f-9d02-4703-914f-ac89661262c5';
-const VAPI_ASSISTANT_ID = 'ebb38ba5-321a-49e4-b860-708bc864327f';
-const VAPI_URL = `https://vapi.ai?demo=true&shareKey=${VAPI_API_KEY}&assistantId=${VAPI_ASSISTANT_ID}`;
+import { X, Phone, PhoneOff, Mic, MicOff, Activity } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useToast } from "@/hooks/use-toast";
 
 interface VapiCallDialogProps {
   open: boolean;
@@ -22,69 +19,46 @@ interface VapiCallDialogProps {
 
 export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
   const [stage, setStage] = useState<'confirmation' | 'inCall' | 'closed'>('confirmation');
-  const [vapiWindow, setVapiWindow] = useState<Window | null>(null);
-  const navigate = useNavigate();
+  const [isMuted, setIsMuted] = useState(false);
+  const { toast } = useToast();
 
-  // Opens the Vapi popup with correct size and position
-  const openVapiWindow = useCallback(() => {
-    const width = 400;
-    const height = 600;
-    const left = window.screenX + (window.innerWidth - width) / 2;
-    const top = window.screenY + (window.innerHeight - height) / 2;
-
-    return window.open(
-      VAPI_URL,
-      'VapiAICall',
-      `width=${width},height=${height},top=${top},left=${left},resizable=yes,scrollbars=yes,status=yes`
-    );
-  }, []);
-
-  // Start call handler: open popup and switch to inCall stage
+  // Start call handler
   const handleStartCall = () => {
-    const newWindow = openVapiWindow();
-    if (newWindow) {
-      setVapiWindow(newWindow);
-      setStage('inCall');
-    } else {
-      alert('Pop-up blocked! Please allow pop-ups for this site to start the call.');
-    }
+    setStage('inCall');
+    toast({
+      title: "Call started",
+      description: "You are now connected to our AI voice agent."
+    });
   };
 
-  // End call handler closes popup if open and closes dialog
+  // End call handler
   const handleEndCall = () => {
-    if (vapiWindow && !vapiWindow.closed) {
-      vapiWindow.close();
-    }
     setStage('closed');
     onOpenChange(false);
+    toast({
+      title: "Call ended",
+      description: "Thank you for using our AI voice agent."
+    });
   };
 
-  // Close icon clicked (for inCall dialog)
-  const handleCloseClick = () => {
-    handleEndCall();
+  // Handle mute toggle
+  const toggleMute = () => {
+    setIsMuted(!isMuted);
+    toast({
+      title: isMuted ? "Microphone unmuted" : "Microphone muted",
+      description: isMuted ? "You can now be heard" : "You have been muted"
+    });
   };
 
   // When user closes dialog via onOpenChange (click outside or escape)
   const handleDialogOpenChange = (isOpen: boolean) => {
     if (!isOpen) {
-      // If dialog closed manually, end call and close popup
       handleEndCall();
     }
   };
 
-  // Monitor if the popup window is manually closed by the user to close dialog
-  useEffect(() => {
-    const timer = setInterval(() => {
-      if (vapiWindow && vapiWindow.closed) {
-        setStage('closed');
-        onOpenChange(false);
-      }
-    }, 500);
-    return () => clearInterval(timer);
-  }, [vapiWindow, onOpenChange]);
-
   // Reset stage when dialog opens again
-  useEffect(() => {
+  React.useEffect(() => {
     if (open) {
       setStage('confirmation');
     }
@@ -128,27 +102,78 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
               <h2 className="text-3xl font-bold">Call in Progress</h2>
               <button
                 aria-label="End call and close"
-                onClick={handleCloseClick}
-                className="text-gray-500 hover:text-gray-700"
+                onClick={handleEndCall}
+                className="text-gray-500 hover:text-white transition-colors"
               >
                 <X className="w-6 h-6" />
               </button>
             </div>
 
-            <div className="mt-6 p-4 bg-gray-800 rounded-lg flex flex-col gap-4">
-              <div className="flex justify-between items-center">
-                <span className="text-gray-400">You are connected to our AI voice agent.</span>
-                <span className="text-green-500 font-semibold">Live</span>
+            <div className="flex items-center space-x-4 mt-4">
+              <div className="relative">
+                <Avatar className="h-20 w-20 rounded-full border-2 border-[#9b87f5]/30">
+                  <AvatarImage 
+                    src="/lovable-uploads/bd9e9055-ba23-4fcc-9c2a-4fda4b9dd627.png" 
+                    alt="Michael from Powered_by Solutions" 
+                    className="object-cover"
+                  />
+                  <AvatarFallback className="bg-[#1e1e2d] text-[#9b87f5]">MB</AvatarFallback>
+                </Avatar>
+                <div className="absolute bottom-1 right-1">
+                  <div className="h-3 w-3 bg-green-500 rounded-full ring-2 ring-black"></div>
+                </div>
               </div>
-              <div className="flex justify-between items-center">
-                <span className="text-gray-400">Use your microphone and speakers to talk.</span>
+              <div className="ml-4">
+                <h3 className="text-2xl font-bold text-white">Michael</h3>
+                <p className="text-gray-400">
+                  <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md text-sm">Powered_by</span> Solutions
+                </p>
               </div>
-              <Button
-                variant="destructive"
-                onClick={handleEndCall}
-                className="mt-6 w-full"
+            </div>
+            
+            <div className="bg-[#1a1a2e] p-4 rounded-xl border border-[#9b87f5]/10 mt-4">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-xl font-bold text-white">You are connected</h3>
+                <div className="flex items-center text-[#9b87f5]">
+                  <Activity className="w-5 h-5 mr-2" />
+                  <span className="font-medium">Live</span>
+                </div>
+              </div>
+              
+              <div className="flex justify-between items-center">
+                <div className="flex items-center">
+                  <p className="text-gray-400">Your microphone</p>
+                </div>
+                <div className="flex items-center">
+                  <div className="flex space-x-0.5 mr-2">
+                    {[...Array(5)].map((_, i) => (
+                      <div 
+                        key={i} 
+                        className={`h-3 w-1 bg-[#9b87f5] rounded-full animate-pulse`}
+                        style={{ animationDelay: `${i * 0.15}s` }}
+                      ></div>
+                    ))}
+                  </div>
+                  <span className="text-gray-400">Active</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-4 mt-4">
+              <Button 
+                onClick={toggleMute}
+                variant="outline"
+                className="border-gray-700 text-gray-300 hover:bg-gray-800"
               >
-                <PhoneOff className="mr-2" />
+                {isMuted ? <MicOff className="mr-2 h-4 w-4" /> : <Mic className="mr-2 h-4 w-4" />}
+                {isMuted ? "Unmute" : "Mute"}
+              </Button>
+              
+              <Button 
+                onClick={handleEndCall}
+                variant="destructive"
+              >
+                <PhoneOff className="mr-2 h-4 w-4" />
                 End Call
               </Button>
             </div>
@@ -158,5 +183,3 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
     </Dialog>
   );
 };
-
-
