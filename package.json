@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.28.4",
+    "@vapi-ai/web": "^0.1.0",
     "framer-motion": "^11.0.14",
     "lovable-tagger": "*",
     "next-themes": "^0.2.1",
