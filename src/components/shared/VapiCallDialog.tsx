@@ -8,10 +8,11 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { PhoneOff, Activity, Phone } from "lucide-react";
+import { PhoneOff, Activity, Phone, Mic } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
+import { initiateVapiCall } from "@/services/vapiService";
 
 interface VapiCallDialogProps {
   open: boolean;
@@ -20,14 +21,30 @@ interface VapiCallDialogProps {
 
 export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
   const [stage, setStage] = useState<'confirmation' | 'inCall' | 'closed'>('confirmation');
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
 
   // Start call handler
-  const handleStartCall = () => {
-    setStage('inCall');
-    console.log("VapiCallDialog: Moved to inCall stage");
-    // No toast notification here as requested
+  const handleStartCall = async () => {
+    setIsLoading(true);
+    
+    try {
+      console.log("VapiCallDialog: Starting call initialization");
+      await initiateVapiCall();
+      
+      setStage('inCall');
+      setIsLoading(false);
+      console.log("VapiCallDialog: Moved to inCall stage, call should now be active");
+    } catch (error) {
+      console.error("VapiCallDialog: Error starting call:", error);
+      toast({
+        variant: "destructive",
+        title: "Call failed",
+        description: error instanceof Error ? error.message : "Failed to connect. Please check your microphone permissions and try again."
+      });
+      setIsLoading(false);
+    }
   };
 
   // End call handler
@@ -41,7 +58,7 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
     });
     
     // Clean up Vapi elements if they exist
-    const script = document.querySelector('script[src="https://cdn.vapi.ai/messenger.js"]');
+    const script = document.querySelector('script[src*="vapi.ai"]');
     if (script) {
       script.remove();
       console.log("VapiCallDialog: Removed Vapi script");
@@ -51,8 +68,8 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
     if (vapiRoot) {
       while (vapiRoot.firstChild) {
         vapiRoot.removeChild(vapiRoot.firstChild);
-        console.log("VapiCallDialog: Cleared Vapi root element");
       }
+      console.log("VapiCallDialog: Cleared Vapi root element");
     }
     
     // Try to tell Vapi to end the call if possible
@@ -81,13 +98,14 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
     if (open) {
       console.log("VapiCallDialog: Dialog opened, setting stage to confirmation");
       setStage('confirmation');
+      setIsLoading(false);
     }
   }, [open]);
 
   // Add debug logging
   useEffect(() => {
-    console.log("VapiCallDialog: Dialog open state:", open, "Stage:", stage);
-  }, [open, stage]);
+    console.log("VapiCallDialog: Dialog open state:", open, "Stage:", stage, "Loading:", isLoading);
+  }, [open, stage, isLoading]);
 
   if (!open || stage === 'closed') return null;
 
@@ -113,11 +131,26 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
                   variant="destructive" 
                   onClick={() => onOpenChange(false)} 
                   className="bg-red-600 text-white hover:bg-red-700"
+                  disabled={isLoading}
                 >
                   Cancel
                 </Button>
-                <Button onClick={handleStartCall} className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white">
-                  Start Voice Chat
+                <Button 
+                  onClick={handleStartCall} 
+                  className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
+                  disabled={isLoading}
+                >
+                  {isLoading ? (
+                    <>
+                      <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2"></div>
+                      Connecting...
+                    </>
+                  ) : (
+                    <>
+                      <Mic className="mr-2 h-4 w-4" />
+                      Start Voice Chat
+                    </>
+                  )}
                 </Button>
               </div>
             </div>
@@ -141,7 +174,7 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
                   <AvatarFallback className="bg-[#1e1e2d] text-[#9b87f5]">MB</AvatarFallback>
                 </Avatar>
                 <div className="absolute bottom-1 right-1">
-                  <div className="h-3 w-3 bg-green-500 rounded-full ring-2 ring-black"></div>
+                  <div className="h-3 w-3 bg-green-500 rounded-full ring-2 ring-black animate-pulse"></div>
                 </div>
               </div>
               <div className="ml-4">
@@ -180,10 +213,14 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
               </div>
             </div>
             
+            <div id="vapi-container" className="bg-[#1a1a2e] p-2 rounded-xl border border-[#9b87f5]/10 mt-4 min-h-[100px]">
+              {/* This is where we'll move the vapi-root element for better visibility */}
+            </div>
+            
             <div className="mt-6 flex justify-center">
               <Button 
                 onClick={handleEndCall}
-                className="w-full py-6 text-xl bg-transparent border-2 border-white text-red-600 hover:bg-red-600 hover:text-white"
+                className="w-full py-6 text-xl bg-red-600 text-white hover:bg-red-700"
               >
                 <PhoneOff className="mr-2 h-5 w-5" />
                 End Voice Chat

@@ -1,9 +1,11 @@
 
 import { useState, useEffect } from "react";
 import { VapiCallDialog } from "./VapiCallDialog";
+import { useVapiIntegration } from "@/hooks/useVapiIntegration";
 
 export const GlobalVoiceChatDialog = () => {
   const [showDialog, setShowDialog] = useState(false);
+  const vapiIntegration = useVapiIntegration();
 
   useEffect(() => {
     // Listen for the custom event to open the voice dialog
@@ -11,20 +13,38 @@ export const GlobalVoiceChatDialog = () => {
       console.log("GlobalVoiceChatDialog: open-voice-dialog event received");
       setShowDialog(true);
     };
+    
+    // Listen for Vapi errors
+    const handleVapiError = (event: any) => {
+      console.error("GlobalVoiceChatDialog: Vapi error received:", event.detail);
+    };
 
     document.addEventListener('open-voice-dialog', handleOpenVoiceDialog);
-    console.log("GlobalVoiceChatDialog: Event listener for 'open-voice-dialog' added");
+    document.addEventListener('vapi-error', handleVapiError);
+    console.log("GlobalVoiceChatDialog: Event listeners added for 'open-voice-dialog' and 'vapi-error'");
+
+    // Check Vapi status on mount and periodically
+    const checkStatus = () => {
+      const status = vapiIntegration.checkVapiStatus();
+      console.log("Vapi integration status:", status);
+    };
+    
+    checkStatus();
+    const statusInterval = setInterval(checkStatus, 10000); // Check every 10 seconds
 
     return () => {
       document.removeEventListener('open-voice-dialog', handleOpenVoiceDialog);
-      console.log("GlobalVoiceChatDialog: Event listener for 'open-voice-dialog' removed");
+      document.removeEventListener('vapi-error', handleVapiError);
+      clearInterval(statusInterval);
+      console.log("GlobalVoiceChatDialog: Event listeners removed");
     };
-  }, []);
+  }, [vapiIntegration]);
 
   // Add debug logs to verify the component is working
   useEffect(() => {
     console.log("GlobalVoiceChatDialog: Component mounted, listening for events");
     console.log("GlobalVoiceChatDialog: Current dialog state:", showDialog);
+    
     return () => console.log("GlobalVoiceChatDialog: Component unmounted");
   }, [showDialog]);
 
@@ -35,14 +55,16 @@ export const GlobalVoiceChatDialog = () => {
 
   return (
     <>
-      {/* Debug button to manually test dialog - remove in production */}
+      {/* Debug button for testing in development */}
       {process.env.NODE_ENV === 'development' && (
         <button 
-          onClick={() => setShowDialog(true)}
+          onClick={() => {
+            console.log("Manual test trigger button clicked");
+            vapiIntegration.triggerVapiCall();
+          }}
           className="fixed bottom-4 right-4 bg-purple-600 text-white p-2 rounded-md z-50 text-xs"
-          style={{ display: 'none' }}
         >
-          Test Dialog
+          Test Vapi Dialog
         </button>
       )}
       <VapiCallDialog open={showDialog} onOpenChange={handleDialogOpenChange} />
