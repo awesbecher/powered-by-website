@@ -22,31 +22,57 @@ export async function initiateVapiCall(): Promise<void> {
     console.log('Dispatched open-voice-dialog event');
     
     // Clean up any existing Vapi elements first
-    const existingScript = document.querySelector('script[src="https://cdn.vapi.ai/messenger.js"]');
-    if (existingScript) {
-      existingScript.remove();
-      console.log('Removed existing Vapi script');
-    }
+    cleanupExistingVapiElements();
     
-    let vapiRoot = document.getElementById('vapi-root');
-    if (vapiRoot) {
-      while (vapiRoot.firstChild) {
-        vapiRoot.removeChild(vapiRoot.firstChild);
-      }
-      console.log('Cleared existing Vapi root element');
-    } else {
-      vapiRoot = document.createElement('div');
-      vapiRoot.id = 'vapi-root';
-      vapiRoot.style.position = 'absolute';
-      vapiRoot.style.top = '-1px';
-      vapiRoot.style.left = '-1px';
-      vapiRoot.style.width = '1px';
-      vapiRoot.style.height = '1px';
-      document.body.appendChild(vapiRoot);
-      console.log('Created new Vapi root element');
-    }
+    // Create vapi-root element if it doesn't exist
+    ensureVapiRootExists();
     
-    // Connect to Vapi service directly using their embedded script
+    // Load the Vapi script
+    await loadVapiScript();
+    
+    return Promise.resolve();
+  } catch (error) {
+    console.error('Error initiating AI voice call:', error);
+    return Promise.reject(error);
+  }
+}
+
+// Helper function to clean up existing Vapi elements
+function cleanupExistingVapiElements(): void {
+  const existingScript = document.querySelector('script[src="https://cdn.vapi.ai/messenger.js"]');
+  if (existingScript) {
+    existingScript.remove();
+    console.log('Removed existing Vapi script');
+  }
+  
+  let vapiRoot = document.getElementById('vapi-root');
+  if (vapiRoot) {
+    while (vapiRoot.firstChild) {
+      vapiRoot.removeChild(vapiRoot.firstChild);
+    }
+    console.log('Cleared existing Vapi root element');
+  }
+}
+
+// Helper function to ensure vapi-root element exists
+function ensureVapiRootExists(): void {
+  let vapiRoot = document.getElementById('vapi-root');
+  if (!vapiRoot) {
+    vapiRoot = document.createElement('div');
+    vapiRoot.id = 'vapi-root';
+    vapiRoot.style.position = 'absolute';
+    vapiRoot.style.top = '-1px';
+    vapiRoot.style.left = '-1px';
+    vapiRoot.style.width = '1px';
+    vapiRoot.style.height = '1px';
+    document.body.appendChild(vapiRoot);
+    console.log('Created new Vapi root element');
+  }
+}
+
+// Helper function to load Vapi script and initialize voicebot
+function loadVapiScript(): Promise<void> {
+  return new Promise((resolve, reject) => {
     const script = document.createElement('script');
     script.src = 'https://cdn.vapi.ai/messenger.js';
     script.async = true;
@@ -87,27 +113,26 @@ export async function initiateVapiCall(): Promise<void> {
             });
             
             console.log('Vapi initVoicebot called successfully');
+            resolve();
           } catch (initError) {
             console.error('Error initializing Vapi voicebot:', initError);
+            reject(initError);
           }
         }, 1000); // Increased delay to ensure Vapi is ready
       } else {
-        console.error('Vapi script loaded but vapi object not found in window');
+        const error = new Error('Vapi script loaded but vapi object not found in window');
+        console.error(error);
+        reject(error);
       }
     };
     
     // Handle script loading errors
     script.onerror = (err) => {
       console.error('Error loading Vapi script:', err);
-      return Promise.reject('Failed to load Vapi script');
+      reject('Failed to load Vapi script');
     };
     
     document.body.appendChild(script);
     console.log('Vapi script added to document body');
-    
-    return Promise.resolve();
-  } catch (error) {
-    console.error('Error initiating AI voice call:', error);
-    return Promise.reject(error);
-  }
+  });
 }
