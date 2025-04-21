@@ -14,7 +14,6 @@ import {
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { initiateVapiCall } from '@/services/vapiService';
 
 export const GlobalVoiceChatDialog = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +23,6 @@ export const GlobalVoiceChatDialog = () => {
   const [isMuted, setIsMuted] = useState(false);
   const location = useLocation();
   const { toast } = useToast();
-  const vapiWindowRef = useRef<Window | null>(null);
 
   useEffect(() => {
     // Custom event listener to allow other components to open the chat
@@ -61,9 +59,7 @@ export const GlobalVoiceChatDialog = () => {
   const handleStartCall = async () => {
     setIsSubmitting(true);
     try {
-      // Instead of opening Vapi in a popup, we'll show our custom interface
-      // We'll still call initiateVapiCall but we'll do it in a hidden iframe later
-      // For now, let's simulate a call connection
+      // Simulate a call connection
       setTimeout(() => {
         setIsCallActive(true);
         setConfirmDialogOpen(false);
@@ -94,11 +90,6 @@ export const GlobalVoiceChatDialog = () => {
 
   const handleEndCall = async () => {
     try {
-      // Close Vapi window if it exists
-      if (vapiWindowRef.current && !vapiWindowRef.current.closed) {
-        vapiWindowRef.current.close();
-      }
-      
       setIsCallActive(false);
       toast({
         title: "Call ended",
@@ -199,34 +190,44 @@ export const GlobalVoiceChatDialog = () => {
       <Dialog open={isCallActive} onOpenChange={(open) => !open && handleEndCall()}>
         <DialogContent closeButton={false} className="bg-black text-white border-gray-800 sm:max-w-md p-6 rounded-xl">
           <div className="flex flex-col space-y-6">
-            <h2 className="text-4xl font-bold text-white mb-2">You are now Connected</h2>
+            <div className="flex justify-between items-center">
+              <h2 className="text-3xl font-bold text-white">Call in Progress</h2>
+              <button
+                onClick={handleEndCall}
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
             
             <div className="flex items-center">
               <div className="relative">
-                <Avatar className="h-20 w-20 rounded-full">
+                <Avatar className="h-20 w-20 rounded-full border-2 border-[#9b87f5]/30">
                   <AvatarImage 
                     src="/lovable-uploads/bd9e9055-ba23-4fcc-9c2a-4fda4b9dd627.png" 
                     alt="Michael from Powered_by Solutions" 
                     className="object-cover"
                   />
-                  <AvatarFallback>MB</AvatarFallback>
+                  <AvatarFallback className="bg-[#1e1e2d] text-[#9b87f5]">MB</AvatarFallback>
                 </Avatar>
-                <div className="absolute bottom-1 left-1">
-                  <div className="h-3 w-3 bg-green-500 rounded-full"></div>
+                <div className="absolute bottom-1 right-1">
+                  <div className="h-3 w-3 bg-green-500 rounded-full ring-2 ring-black"></div>
                 </div>
               </div>
               <div className="ml-4">
-                <h3 className="text-3xl font-bold text-white">Michael</h3>
-                <p className="text-gray-400">Powered_by Solutions</p>
+                <h3 className="text-2xl font-bold text-white">Michael</h3>
+                <p className="text-gray-400">
+                  <span className="bg-white text-[#6342ff] font-bold px-2 py-0.5 rounded-md text-sm">Powered_by</span> Solutions
+                </p>
               </div>
             </div>
             
-            <div className="bg-[#1e2a3b] p-4 rounded-xl">
+            <div className="bg-[#1a1a2e] p-4 rounded-xl border border-[#9b87f5]/10">
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-xl font-bold text-white">Call in progress</h3>
-                <div className="flex items-center text-gray-300">
+                <h3 className="text-xl font-bold text-white">You are connected</h3>
+                <div className="flex items-center text-[#9b87f5]">
                   <Activity className="w-5 h-5 mr-2" />
-                  <span>Live</span>
+                  <span className="font-medium">Live</span>
                 </div>
               </div>
               
@@ -239,7 +240,8 @@ export const GlobalVoiceChatDialog = () => {
                     {[...Array(5)].map((_, i) => (
                       <div 
                         key={i} 
-                        className="h-3 w-1 bg-white rounded-full"
+                        className={`h-3 w-1 bg-[#9b87f5] rounded-full animate-pulse`}
+                        style={{ animationDelay: `${i * 0.15}s` }}
                       ></div>
                     ))}
                   </div>
@@ -248,11 +250,11 @@ export const GlobalVoiceChatDialog = () => {
               </div>
             </div>
             
-            <div className="flex space-x-4">
+            <div className="grid grid-cols-2 gap-4">
               <Button 
                 onClick={toggleMute}
                 variant="outline"
-                className="flex-1 border-gray-700 text-gray-300 hover:bg-gray-800"
+                className="border-gray-700 text-gray-300 hover:bg-gray-800"
               >
                 {isMuted ? <MicOff className="mr-2 h-4 w-4" /> : <Mic className="mr-2 h-4 w-4" />}
                 {isMuted ? "Unmute" : "Mute"}
@@ -261,9 +263,8 @@ export const GlobalVoiceChatDialog = () => {
               <Button 
                 onClick={handleEndCall}
                 variant="destructive"
-                className="flex-1"
               >
-                <X className="mr-2 h-4 w-4" />
+                <PhoneOff className="mr-2 h-4 w-4" />
                 End Call
               </Button>
             </div>
