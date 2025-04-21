@@ -1,4 +1,3 @@
-
 [build]
   publish = "dist"
   command = "npm install --legacy-peer-deps && npm run build"
@@ -19,6 +18,13 @@
 # Explicit redirect for /agent-integrations route
 [[redirects]]
   from = "/agent-integrations"
+  to = "/index.html"
+  status = 200
+  force = true
+
+# Explicit redirect for /insurance route
+[[redirects]]
+  from = "/insurance"
   to = "/index.html"
   status = 200
   force = true
