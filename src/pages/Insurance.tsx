@@ -38,7 +38,10 @@ const Insurance = () => {
 
   // Make this function async to match expected type
   const handleShowConsentDialog = async (): Promise<void> => {
-    setShowConsentDialog(true);
+    return new Promise<void>((resolve) => {
+      setShowConsentDialog(true);
+      resolve();
+    });
   };
 
   return (
