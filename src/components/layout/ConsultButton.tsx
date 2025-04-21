@@ -1,7 +1,6 @@
 
 import { Link } from "react-router-dom";
 import { HeadsetIcon } from "lucide-react";
-import { ensureCustomEventSupport } from "@/utils/eventPolyfill";
 
 interface ConsultButtonProps {
   show: boolean;
@@ -14,9 +13,6 @@ const ConsultButton = ({ show }: ConsultButtonProps) => {
     console.log("Talk to AI Agent button clicked, dispatching event");
     
     try {
-      // Ensure CustomEvent is supported before dispatching
-      ensureCustomEventSupport();
-      
       // Create and dispatch the event in a try-catch block to ensure it works
       const event = new CustomEvent('open-voice-dialog');
       document.dispatchEvent(event);
