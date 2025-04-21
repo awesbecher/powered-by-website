@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import { HeroSection } from "@/components/real-estate/HeroSection";
@@ -7,36 +7,40 @@ import { ServicesSection } from "@/components/real-estate/ServicesSection";
 import { FeaturedProperties } from "@/components/real-estate/FeaturedProperties";
 import { ContactSection } from "@/components/real-estate/ContactSection";
 import { ActiveCallDialog } from "@/components/real-estate/ActiveCallDialog";
-import { useRealEstateCall } from "@/hooks/useRealEstateCall";
-import { useRealEstateCallState } from "@/hooks/useRealEstateCallState";
 
 const RealEstate = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScheduleOpen, setIsScheduleOpen] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [isCallActive, setIsCallActive] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const scrollToProperties = () => {
     const featuredSection = document.getElementById('featured-properties');
     featuredSection?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const {
-    isOpen,
-    setIsOpen,
-    isScheduleOpen,
-    setIsScheduleOpen,
-    phoneNumber,
-    setPhoneNumber
-  } = useRealEstateCallState();
+  const handleCall = async () => {
+    if (!phoneNumber) return;
+    setIsLoading(true);
+    // TODO: Implement new call functionality
+    setIsLoading(false);
+    setIsCallActive(true);
+  };
 
-  const {
-    isLoading,
-    isCallActive,
-    isMuted,
-    handleCall,
-    handleEndCall,
-    toggleMute
-  } = useRealEstateCall();
+  const handleEndCall = () => {
+    setIsCallActive(false);
+    setIsMuted(false);
+  };
+
+  const toggleMute = () => {
+    setIsMuted(!isMuted);
+  };
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
