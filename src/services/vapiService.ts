@@ -4,9 +4,10 @@ interface VapiConfig {
   assistantId: string;
 }
 
+// Updated API key and assistant ID
 const DEFAULT_VAPI_CONFIG: VapiConfig = {
-  apiKey: 'a212f18f-9d02-4703-914f-ac89661262c5',
-  assistantId: 'ebb38ba5-321a-49e4-b860-708bc864327f'
+  apiKey: 'vapi-ai-2dqrs5n2e4jxz49aflyfbzx6', // Updated to new API key
+  assistantId: '454a442a-e28c-4285-9edf-46c03cc9c383' // Updated to new assistant ID
 };
 
 // Create a custom event to trigger the voice dialog
@@ -18,6 +19,7 @@ export async function initiateVapiCall(): Promise<void> {
     // Dispatch event for our custom UI
     const event = new CustomEvent('open-voice-dialog');
     document.dispatchEvent(event);
+    console.log('Dispatched open-voice-dialog event');
     
     // Clean up any existing Vapi elements first
     const existingScript = document.querySelector('script[src="https://cdn.vapi.ai/messenger.js"]');
@@ -88,7 +90,7 @@ export async function initiateVapiCall(): Promise<void> {
           } catch (initError) {
             console.error('Error initializing Vapi voicebot:', initError);
           }
-        }, 500); // Increased delay to ensure Vapi is ready
+        }, 1000); // Increased delay to ensure Vapi is ready
       } else {
         console.error('Vapi script loaded but vapi object not found in window');
       }
