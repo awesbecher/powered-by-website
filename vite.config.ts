@@ -5,6 +5,10 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import fs from 'fs';
+import { componentTagger } from "lovable-tagger";
+
+// get vite mode
+const mode = process.env.NODE_ENV || "development";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -18,8 +22,9 @@ if (!fs.existsSync(lovableUploadsDir)) {
 export default defineConfig({
   plugins: [
     react(),
-    tsconfigPaths()
-  ],
+    tsconfigPaths(),
+    mode === "development" && componentTagger(),
+  ].filter(Boolean),
   server: {
     port: 8080,
   },

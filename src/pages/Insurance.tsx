@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Phone } from "lucide-react";
 import Footer from "@/components/layout/Footer";
@@ -36,7 +35,6 @@ const Insurance = () => {
     });
   };
 
-  // Make this function async to match expected type
   const handleShowConsentDialog = async (): Promise<void> => {
     return new Promise<void>((resolve) => {
       setShowConsentDialog(true);
