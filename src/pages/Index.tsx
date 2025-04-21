@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
@@ -13,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Bot } from "lucide-react";
 import { CallToActionButtons } from "@/components/home/CallToActionButtons";
 import { HomeCard } from "@/components/home/HomeCard";
-import { GlobalVoiceChatDialog } from "@/components/shared/GlobalVoiceChatDialog"; // Add this import
+import { GlobalVoiceChatDialog } from "@/components/shared/GlobalVoiceChatDialog";
 
 const Index = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -42,12 +41,10 @@ const Index = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#120b26] via-[#22194c] to-[#1a0b2e] pb-12">
-      {/* NAVBAR */}
       <div className="sticky top-0 z-50 w-full">
         <Navbar />
       </div>
 
-      {/* Agent Builder Button */}
       <div className="flex justify-center mt-8">
         <Button 
           onClick={() => navigate("/agent-gpt")}
@@ -61,34 +58,28 @@ const Index = () => {
       </div>
 
       <main className="mx-auto w-full max-w-5xl px-4 md:px-6 flex flex-col gap-8 mt-8">
-        {/* Hero Section in Card */}
         <HomeCard className="p-0 bg-transparent shadow-none border-0 mb-0">
           <HeroSection initialLoad={initialLoad} />
         </HomeCard>
 
-        {/* Call to Action Buttons in Card */}
         <HomeCard className="bg-[#232149]/60 p-6 md:p-10 flex flex-col items-center">
           <CallToActionButtons />
         </HomeCard>
 
-        {/* Workflow Section in Card (if not removed) */}
         {WorkflowSection && (
           <HomeCard className="p-0 bg-gradient-to-br from-[#232149]/80 via-[#251949]/70 to-[#1a0b2e]/80">
             <WorkflowSection />
           </HomeCard>
         )}
 
-        {/* Use Cases Grid in Card */}
         <HomeCard className="bg-gradient-to-br from-[#252148] to-[#181129]">
           <UseCaseGrid />
         </HomeCard>
 
-        {/* Stats Section in Card */}
         <HomeCard className="p-0 bg-gradient-to-br from-[#252148]/90 via-[#242145]/90 to-[#181129]/95">
           <StatsSection />
         </HomeCard>
 
-        {/* Final CTA in Card */}
         <HomeCard className="bg-[#232149]/80 text-white">
           <ClosingCTA useCalendly={true} />
         </HomeCard>
@@ -96,7 +87,6 @@ const Index = () => {
 
       <Footer />
       
-      {/* Add GlobalVoiceChatDialog component to enable voice chat functionality */}
       <GlobalVoiceChatDialog />
     </div>
   );

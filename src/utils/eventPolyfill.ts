@@ -1,21 +1,34 @@
 
 /**
- * CustomEvent polyfill for IE support and consistent behavior across browsers
+ * Ensures CustomEvent support across browsers by implementing a polyfill if needed
  */
-export const ensureCustomEventSupport = () => {
-  if (typeof window.CustomEvent === 'function') {
-    console.log("CustomEvent already supported natively");
-    return;
-  }
+export const ensureCustomEventSupport = (): void => {
+  if (typeof window !== 'undefined') {
+    // Check if CustomEvent constructor is supported
+    if (typeof window.CustomEvent === 'function') {
+      console.log("CustomEvent already supported natively");
+      return;
+    }
 
-  function CustomEvent(event: string, params: CustomEventInit) {
-    params = params || { bubbles: false, cancelable: false, detail: null };
-    const evt = document.createEvent('CustomEvent');
-    evt.initCustomEvent(event, params.bubbles || false, params.cancelable || false, params.detail || null);
-    return evt;
-  }
+    console.log("Implementing CustomEvent polyfill");
+    
+    // Create a polyfill for CustomEvent
+    function CustomEventPolyfill<T>(
+      event: string,
+      params?: CustomEventInit<T>
+    ): CustomEvent<T> {
+      const evt = document.createEvent('CustomEvent');
+      const eventParams = params || { bubbles: false, cancelable: false, detail: null };
+      evt.initCustomEvent(
+        event,
+        eventParams.bubbles || false,
+        eventParams.cancelable || false,
+        eventParams.detail || null
+      );
+      return evt as CustomEvent<T>;
+    }
 
-  CustomEvent.prototype = window.Event.prototype;
-  (window as any).CustomEvent = CustomEvent;
-  console.log("CustomEvent polyfill applied");
+    // Replace the native CustomEvent with our polyfill
+    window.CustomEvent = CustomEventPolyfill as any;
+  }
 };
