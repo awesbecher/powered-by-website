@@ -1,19 +1,15 @@
 
-import { useState, useEffect } from "react";
-import { Phone } from "lucide-react";
+import React from 'react';
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import InsuranceHeader from "@/components/insurance/InsuranceHeader";
 import InsuranceHero from "@/components/insurance/InsuranceHero";
 import InsuranceProductGrid from "@/components/insurance/InsuranceProductGrid";
 import InsuranceDialog from "@/components/insurance/InsuranceDialog";
+import { useState } from "react";
 import { useInsuranceCall } from "@/hooks/useInsuranceCall";
 
 const Insurance = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
   const [showConsentDialog, setShowConsentDialog] = useState(false);
   
