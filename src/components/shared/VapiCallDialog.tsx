@@ -26,10 +26,7 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
   // Start call handler
   const handleStartCall = () => {
     setStage('inCall');
-    toast({
-      title: "Call started",
-      description: "You are now connected to our AI voice agent."
-    });
+    // No toast notification here as requested
   };
 
   // End call handler
@@ -99,7 +96,7 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
                 <Button 
                   variant="destructive" 
                   onClick={() => onOpenChange(false)} 
-                  className="text-white hover:bg-red-700"
+                  className="bg-red-600 text-white hover:bg-red-700"
                 >
                   Cancel
                 </Button>

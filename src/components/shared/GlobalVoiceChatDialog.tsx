@@ -22,8 +22,9 @@ export const GlobalVoiceChatDialog = () => {
   // Add debug logs to verify the component is working
   useEffect(() => {
     console.log("GlobalVoiceChatDialog: Component mounted, listening for events");
+    console.log("GlobalVoiceChatDialog: Current dialog state:", showDialog);
     return () => console.log("GlobalVoiceChatDialog: Component unmounted");
-  }, []);
+  }, [showDialog]);
 
   return (
     <>

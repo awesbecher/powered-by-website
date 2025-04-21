@@ -19,10 +19,7 @@ export function useInsuranceCall() {
       setTimeout(() => {
         setIsLoading(false);
         setIsCallActive(true);
-        toast({
-          title: "Insurance consultation started",
-          description: "You are now connected to our AI insurance agent"
-        });
+        // Removed toast notification when call starts
       }, 1000);
     } catch (error) {
       console.error('Failed to start call:', error);
