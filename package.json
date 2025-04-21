@@ -2,13 +2,12 @@
   "name": "powered-by-website",
   "version": "0.0.0",
   "private": true,
-  ""scripts": {
-  "dev": "vite",
-  "build": "vite build",
-  "preview": "vite preview",
-  "build:dev": "vite build --mode development",
-  "postinstall": "npm install lovable-tagger --legacy-peer-deps || true"
-}
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "build:dev": "vite build --mode development",
+    "postinstall": "npm install lovable-tagger --legacy-peer-deps || true"
   },
   "dependencies": {
     "react": "^18.2.0",
