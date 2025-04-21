@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query';
@@ -10,7 +9,6 @@ import { queryClient } from './config/queryClient';
 import { ThemeProvider, defaultThemeConfig } from './config/themeConfig';
 import * as serviceWorker from './serviceWorker';
 import { ensureCustomEventSupport } from './utils/eventPolyfill';
-import { getVapiInstance } from './services/vapiService';
 
 function App() {
   useEffect(() => {
@@ -43,15 +41,6 @@ function App() {
     
     // Register service worker
     serviceWorker.register();
-    
-    // Initialize Vapi to ensure it loads properly
-    try {
-      // Initialize Vapi instance early to ensure it's ready for use
-      getVapiInstance();
-      console.log("Vapi service initialized on app start");
-    } catch (error) {
-      console.error("Error in Vapi initialization:", error);
-    }
   }, []);
 
   return (

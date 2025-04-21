@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -8,7 +7,6 @@ import ServicesGrid from "@/components/mercedes-dealer/ServicesGrid";
 import SpringSalesEvent from "@/components/mercedes-dealer/SpringSalesEvent";
 import MercedesCallDialog from "@/components/mercedes-dealer/MercedesCallDialog";
 import { useToast } from "@/hooks/use-toast";
-import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 import MobileCallCTA from "@/components/mercedes-dealer/MobileCallCTA";
 
 const MercedesDealer = () => {
@@ -34,7 +32,7 @@ const MercedesDealer = () => {
   const handleCall = async () => {
     setIsProcessing(true);
     try {
-      await initiateVapiCall("6c02f892-3082-4c68-a3ee-92ca86444331");
+      // TODO: Implement new call functionality
       setIsCallActive(true);
       toast({
         title: "Call initiated",
@@ -51,22 +49,12 @@ const MercedesDealer = () => {
     }
   };
 
-  const handleEndCall = async () => {
-    try {
-      await stopVapiCall();
-      setIsCallActive(false);
-      toast({
-        title: "Call ended",
-        description: "Thank you for calling Mercedes of Tacoma."
-      });
-    } catch (error) {
-      console.error("Error ending call:", error);
-      toast({
-        variant: "destructive",
-        title: "Failed to end call",
-        description: "Please try again."
-      });
-    }
+  const handleEndCall = () => {
+    setIsCallActive(false);
+    toast({
+      title: "Call ended",
+      description: "Thank you for calling Mercedes of Tacoma."
+    });
   };
   
   return (

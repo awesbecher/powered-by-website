@@ -1,9 +1,7 @@
-
 import React, { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { initiateVapiCall } from "@/services/vapiService";
 import { useToast } from "@/hooks/use-toast";
 
 interface OmegaVoiceChatDialogProps {
@@ -29,8 +27,7 @@ const OmegaVoiceChatDialog: React.FC<OmegaVoiceChatDialogProps> = ({
   const handleStartChat = async () => {
     setIsLoading(true);
     try {
-      // Use the Stella's Assistant ID from Vapi
-      await initiateVapiCall("f9a2d216-0bd8-4893-9091-54e167c62f4a");
+      // TODO: Implement new call functionality
       onStartChat();
     } catch (error) {
       toast({

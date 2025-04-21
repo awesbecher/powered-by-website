@@ -1,9 +1,7 @@
 import { Bot, Network, MessageSquare, BarChart } from "lucide-react";
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
-import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 import Navbar from "@/components/layout/Navbar";
 
 import ActiveCallDialog from "@/components/license/ActiveCallDialog";
@@ -26,24 +24,15 @@ const License = () => {
   const [isMuted, setIsMuted] = useState(false);
   const { toast } = useToast();
 
-  const handleEndCall = async () => {
-    try {
-      await stopVapiCall();
-      setIsCallActive(false);
-      navigate('/demo');
-    } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Failed to end call",
-        description: error.message || "Please try again later."
-      });
-    }
+  const handleEndCall = () => {
+    setIsCallActive(false);
+    navigate('/demo');
   };
 
   const handleCall = async () => {
     setIsLoading(true);
     try {
-      await initiateVapiCall("d7a8b20b-ca41-474e-bef2-4ca993f7de97");
+      // TODO: Implement new call functionality
       setIsCallActive(true);
       setIsCallDialogOpen(false);
       toast({
@@ -54,7 +43,7 @@ const License = () => {
       toast({
         variant: "destructive",
         title: "Failed to initiate call",
-        description: error.message || "Please try again later."
+        description: error instanceof Error ? error.message : "Please try again later."
       });
     } finally {
       setIsLoading(false);

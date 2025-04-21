@@ -2,7 +2,18 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { componentTagger } from 'lovable-tagger';
-import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname, resolve } from 'path';
+import fs from 'fs';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Ensure lovable-uploads directory exists
+const lovableUploadsDir = resolve(__dirname, './public/lovable-uploads');
+if (!fs.existsSync(lovableUploadsDir)) {
+  fs.mkdirSync(lovableUploadsDir, { recursive: true });
+}
 
 export default defineConfig({
   plugins: [
@@ -29,8 +40,8 @@ export default defineConfig({
   publicDir: 'public',
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-      '/lovable-uploads': path.resolve(__dirname, './public/lovable-uploads')
+      '@': resolve(__dirname, './src'),
+      '/lovable-uploads': lovableUploadsDir
     }
   }
 });

@@ -1,9 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { useToast } from "@/hooks/use-toast";
-import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 import { getCalApi } from "@calcom/embed-react";
 
 // Import all page sections
@@ -11,7 +9,6 @@ import { HeroSection } from '@/components/ai-receptionist/page-sections/HeroSect
 import { BenefitsSection } from '@/components/ai-receptionist/page-sections/BenefitsSection';
 import { FeaturesSection } from '@/components/ai-receptionist/page-sections/FeaturesSection';
 import { HowItWorksSection } from '@/components/ai-receptionist/page-sections/HowItWorksSection';
-// Removed TestimonialsSection import
 import { FAQSection } from '@/components/ai-receptionist/page-sections/FAQSection';
 import { FinalCTASection } from '@/components/ai-receptionist/page-sections/FinalCTASection';
 import { VoiceChatDialog } from '@/components/ai-receptionist/VoiceChatDialog';
@@ -23,8 +20,6 @@ const AIReceptionist = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
   const { toast } = useToast();
-  
-  const ASSISTANT_ID = "ebb38ba5-321a-49e4-b860-708bc864327f";
 
   useEffect(() => {
     setTimeout(() => {
@@ -96,14 +91,12 @@ const AIReceptionist = () => {
   const handleStartCall = async () => {
     setIsSubmitting(true);
     try {
-      const success = await initiateVapiCall(ASSISTANT_ID);
-      if (success) {
-        setIsCallActive(true);
-        toast({
-          title: "Call started successfully",
-          description: "You're now connected to our AI receptionist.",
-        });
-      }
+      // TODO: Implement new call functionality
+      setIsCallActive(true);
+      toast({
+        title: "Call started successfully",
+        description: "You're now connected to our AI receptionist.",
+      });
     } catch (error) {
       console.error("Failed to start call:", error);
       toast({
@@ -116,18 +109,12 @@ const AIReceptionist = () => {
     }
   };
 
-  const handleEndCall = async () => {
-    try {
-      await stopVapiCall();
-      toast({
-        title: "Call ended",
-        description: "Thank you for trying our AI receptionist.",
-      });
-    } catch (error) {
-      console.error("Error ending call:", error);
-    } finally {
-      setIsCallActive(false);
-    }
+  const handleEndCall = () => {
+    setIsCallActive(false);
+    toast({
+      title: "Call ended",
+      description: "Thank you for trying our AI receptionist.",
+    });
   };
 
   // Modified to open real-estate page in a new tab
@@ -158,8 +145,6 @@ const AIReceptionist = () => {
         <HowItWorksSection />
         
         <FeaturesSection />
-        
-        {/* Removed TestimonialsSection */}
         
         <FAQSection />
 

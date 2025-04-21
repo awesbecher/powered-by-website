@@ -1,12 +1,17 @@
-
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Bot, X } from 'lucide-react';
+import { Bot, X, Phone, PhoneOff } from 'lucide-react';
 import { ChatInterface } from '@/components/custom-gpt/ChatInterface';
-import { initiateVapiCall, stopVapiCall } from '@/services/vapiService';
 import { useToast } from '@/hooks/use-toast';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
+import * as DialogPrimitive from "@radix-ui/react-dialog";
 
 export const GlobalVoiceChatDialog = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,8 +20,6 @@ export const GlobalVoiceChatDialog = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const location = useLocation();
   const { toast } = useToast();
-
-  const ASSISTANT_ID = "ebb38ba5-321a-49e4-b860-708bc864327f";
 
   useEffect(() => {
     // Custom event listener to allow other components to open the chat
@@ -27,8 +30,17 @@ export const GlobalVoiceChatDialog = () => {
     
     document.addEventListener('open-voice-dialog', handleOpenEvent);
 
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (event.key === 'v' && event.ctrlKey) {
+        setIsOpen(true);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+
     return () => {
       document.removeEventListener('open-voice-dialog', handleOpenEvent);
+      window.removeEventListener('keydown', handleKeyPress);
     };
   }, []);
 
@@ -44,21 +56,18 @@ export const GlobalVoiceChatDialog = () => {
   const handleStartCall = async () => {
     setIsSubmitting(true);
     try {
-      console.log("Starting Vapi call with assistant ID:", ASSISTANT_ID);
-      const success = await initiateVapiCall(ASSISTANT_ID);
-      if (success) {
-        setIsCallActive(true);
-        setConfirmDialogOpen(false);
-        toast({
-          title: "Call started successfully",
-          description: "You're now connected to our AI voice agent.",
-        });
-      }
-    } catch (error) {
-      console.error("Failed to start call:", error);
+      // TODO: Implement new call functionality
+      setIsCallActive(true);
+      setConfirmDialogOpen(false);
       toast({
-        title: "Failed to start call",
-        description: error instanceof Error ? error.message : "Please check your microphone settings and try again.",
+        title: "Call started",
+        description: "You are now connected.",
+      });
+    } catch (error) {
+      console.error("Error starting call:", error);
+      toast({
+        title: "Error",
+        description: "Failed to start call. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -68,14 +77,19 @@ export const GlobalVoiceChatDialog = () => {
 
   const handleEndCall = async () => {
     try {
-      await stopVapiCall();
+      // TODO: Implement call ending functionality
       setIsCallActive(false);
       toast({
         title: "Call ended",
-        description: "Thank you for trying our AI voice agent.",
+        description: "The call has been ended.",
       });
     } catch (error) {
       console.error("Error ending call:", error);
+      toast({
+        title: "Error",
+        description: "Failed to end call. Please try again.",
+        variant: "destructive",
+      });
     }
   };
 
@@ -91,7 +105,7 @@ export const GlobalVoiceChatDialog = () => {
         className="fixed bottom-6 right-6 z-50 bg-[#8B5CF6] p-4 rounded-full shadow-lg cursor-pointer transition-all duration-300 hover:scale-110 hover:bg-[#7C3AED] focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2"
         aria-label="Open AI Assistant"
       >
-        <Bot className="h-6 w-6 text-white" />
+        <Phone className="h-6 w-6 text-white" />
       </button>
     ) : null;
   }
@@ -118,33 +132,38 @@ export const GlobalVoiceChatDialog = () => {
   if (confirmDialogOpen) {
     return (
       <Dialog open={confirmDialogOpen} onOpenChange={setConfirmDialogOpen}>
-        <DialogContent className="bg-[#222222] text-white border-gray-800 sm:max-w-md">
-          <h2 className="text-2xl font-bold text-white mb-4">Start Voice Chat with AI Agent</h2>
-          
-          <p className="text-gray-300 mb-6">
-            You'll be able to have a voice conversation with our AI assistant directly through your browser. 
-            Please ensure your microphone is enabled and your speaker volume is turned on appropriately.
-          </p>
-          
-          <p className="text-gray-300 mb-6">
-            By clicking "Start Voice Chat", you consent to having a voice conversation with our AI agent. 
-            You can end the conversation at any time.
-          </p>
-          
-          <div className="flex gap-4">
-            <Button 
-              onClick={handleCloseConfirmDialog}
-              className="w-full bg-gray-700 hover:bg-gray-600 text-white"
-            >
-              Cancel
-            </Button>
-            <Button 
-              onClick={handleStartCall}
-              disabled={isSubmitting}
-              className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
-            >
-              {isSubmitting ? "Connecting..." : "Start Voice Chat"}
-            </Button>
+        <DialogContent closeButton={false} className="bg-[#222222] text-white border-gray-800 sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Start Voice Chat</DialogTitle>
+            <DialogDescription>
+              {isCallActive
+                ? 'Your call is currently active. Click the button below to end the call.'
+                : 'Click the button below to start a voice chat.'}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex justify-center">
+            {isCallActive ? (
+              <Button
+                onClick={handleEndCall}
+                className="w-32 bg-destructive hover:bg-destructive/90 text-white"
+              >
+                <PhoneOff className="mr-2 h-4 w-4" />
+                End Call
+              </Button>
+            ) : (
+              <Button
+                onClick={handleStartCall}
+                disabled={isSubmitting}
+                className="w-32 bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
+              >
+                {isSubmitting ? "Connecting..." : (
+                  <>
+                    <Phone className="mr-2 h-4 w-4" />
+                    Start Call
+                  </>
+                )}
+              </Button>
+            )}
           </div>
         </DialogContent>
       </Dialog>
@@ -155,7 +174,7 @@ export const GlobalVoiceChatDialog = () => {
   if (isCallActive) {
     return (
       <Dialog open={isCallActive} onOpenChange={(open) => !open && handleEndCall()}>
-        <DialogContent className="bg-black text-white border-gray-800 sm:max-w-md">
+        <DialogContent closeButton={false} className="bg-black text-white border-gray-800 sm:max-w-md">
           <div className="space-y-6">
             <h2 className="text-2xl font-bold">You are now Connected</h2>
             
@@ -179,8 +198,7 @@ export const GlobalVoiceChatDialog = () => {
             
             <Button 
               onClick={handleEndCall}
-              variant="destructive" 
-              className="w-full"
+              className="w-full bg-destructive hover:bg-destructive/90 text-white"
             >
               End Call
             </Button>

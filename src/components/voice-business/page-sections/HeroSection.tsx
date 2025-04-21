@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { VoiceChatDialog } from "@/components/voice-business/VoiceChatDialog";
 import { useToast } from "@/hooks/use-toast";
-import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 import { HeroContent } from "./HeroContent";
 import { ServiceBoxes } from "./ServiceBoxes";
 import { Headset } from "lucide-react";
@@ -49,14 +48,12 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
   const handleStartCall = async () => {
     setIsSubmitting(true);
     try {
-      const success = await initiateVapiCall(ASSISTANT_ID);
-      if (success) {
-        setIsCallActive(true);
-        toast({
-          title: "Call started successfully",
-          description: "You're now connected to our AI voice agent.",
-        });
-      }
+      // TODO: Implement new call functionality
+      setIsCallActive(true);
+      toast({
+        title: "Call started successfully",
+        description: "You're now connected to our AI voice agent.",
+      });
     } catch (error) {
       console.error("Failed to start call:", error);
       toast({
@@ -71,7 +68,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
 
   const handleEndCall = async () => {
     try {
-      await stopVapiCall();
+      // TODO: Implement call ending functionality
       toast({
         title: "Call ended",
         description: "Thank you for trying our AI voice agent.",

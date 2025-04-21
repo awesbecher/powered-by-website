@@ -6,7 +6,6 @@ import { CallButton } from "./components/CallButton";
 import { RoomServiceDialog } from "./components/RoomServiceDialog";
 import Navbar from "@/components/layout/Navbar";
 import { GrandviewLogo } from "./components/GrandviewLogo";
-import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 import { useToast } from "@/hooks/use-toast";
 import { UseCaseExplainer } from "./components/UseCaseExplainer";
 import VisitSection from "@/components/mercedes-dealer/VisitSection";
@@ -18,20 +17,15 @@ const RoomService = () => {
   const [isMuted, setIsMuted] = useState(false);
   const { toast } = useToast();
 
-  const ROOM_SERVICE_ASSISTANT_ID = "238616a3-b611-4faa-a216-74b8d7d8b277";
-
   const handleStartCall = async () => {
     setIsProcessing(true);
     try {
-      const success = await initiateVapiCall(ROOM_SERVICE_ASSISTANT_ID);
-      
-      if (success) {
-        setIsCallActive(true);
-        toast({
-          title: "Connected to Room Service",
-          description: "You're now speaking with our AI room service assistant.",
-        });
-      }
+      // TODO: Implement new call functionality
+      setIsCallActive(true);
+      toast({
+        title: "Connected to Room Service",
+        description: "You're now speaking with our AI room service assistant.",
+      });
     } catch (error) {
       console.error("Failed to connect to room service:", error);
       toast({
@@ -45,18 +39,12 @@ const RoomService = () => {
   };
 
   const handleEndCall = () => {
-    try {
-      stopVapiCall();
-      toast({
-        title: "Call ended",
-        description: "Thank you for using our room service.",
-      });
-    } catch (error) {
-      console.error("Error ending call:", error);
-    } finally {
-      setIsCallActive(false);
-      setIsDialogOpen(false);
-    }
+    setIsCallActive(false);
+    setIsDialogOpen(false);
+    toast({
+      title: "Call ended",
+      description: "Thank you for using our room service.",
+    });
   };
 
   const toggleMute = () => {

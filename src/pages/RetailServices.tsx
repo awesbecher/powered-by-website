@@ -1,8 +1,6 @@
-
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
-import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 import HeroSection from "@/components/retail-services/HeroSection";
 import ServicesGrid from "@/components/retail-services/ServicesGrid";
 import BookingDialog from "@/components/retail-services/BookingDialog";
@@ -28,7 +26,7 @@ const RetailServices = () => {
   const handleCall = async () => {
     setIsLoading(true);
     try {
-      await initiateVapiCall("defa6102-2358-4347-a192-24c6bc23ea4c");
+      // TODO: Implement new call functionality
       setIsCallActive(true);
       setIsOpen(false);
       toast({
@@ -45,20 +43,10 @@ const RetailServices = () => {
     }
   };
 
-  const handleEndCall = async () => {
-    try {
-      await stopVapiCall();
-      setIsCallActive(false);
-      setIsLoading(false);
-      navigate('/demo');
-    } catch (error) {
-      console.error('Error ending call:', error);
-      toast({
-        variant: "destructive",
-        title: "Failed to end voice chat",
-        description: "Please try again."
-      });
-    }
+  const handleEndCall = () => {
+    setIsCallActive(false);
+    setIsLoading(false);
+    navigate('/demo');
   };
 
   return (

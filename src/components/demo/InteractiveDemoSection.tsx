@@ -3,7 +3,6 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
-import { initiateVapiCall, stopVapiCall } from "@/services/vapiService";
 import { DemoTabs } from "./interactive/DemoTabs";
 import { DemoCard } from "./interactive/DemoCard";
 import { VoiceChatDialog } from "./interactive/VoiceChatDialog";
@@ -26,8 +25,7 @@ export const InteractiveDemoSection = () => {
         throw new Error("Selected demo option not found");
       }
 
-      console.log(`Starting call with Vapi for ${activeOption.title}`);
-      await initiateVapiCall(activeOption.assistantId);
+      // TODO: Implement new call functionality
       setIsCallActive(true);
       toast({
         title: "Call connected",
@@ -47,8 +45,7 @@ export const InteractiveDemoSection = () => {
 
   const handleEndCall = async () => {
     try {
-      console.log("Ending call with Vapi");
-      await stopVapiCall();
+      // TODO: Implement call ending functionality
       toast({
         title: "Call ended",
         description: "Thank you for trying our AI voice agent.",

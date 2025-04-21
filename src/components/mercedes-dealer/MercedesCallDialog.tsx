@@ -1,7 +1,5 @@
-
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
-import { stopVapiCall } from "@/services/vapiService";
 import { X, Activity } from "lucide-react";
 import {
   Dialog,
@@ -139,10 +137,9 @@ const MercedesCallDialog = ({
             </div>
             <div className="flex justify-end space-x-2 mt-4">
               <Button 
-                variant="outline"
                 onClick={() => setShowCallDialog(false)}
                 disabled={isProcessing}
-                className="border-gray-300 text-gray-700 hover:bg-gray-100"
+                className="border border-gray-300 text-gray-700 hover:bg-gray-100"
               >
                 Cancel
               </Button>

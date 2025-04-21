@@ -9,7 +9,6 @@ import OmegaVoiceChatDialog from "@/components/omega/OmegaVoiceChatDialog";
 import OmegaActiveCallDialog from "@/components/omega/OmegaActiveCallDialog";
 import OmegaVideoDialog from "@/components/omega/OmegaVideoDialog";
 import { useToast } from "@/hooks/use-toast";
-import { stopVapiCall } from "@/services/vapiService";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const OmegaVoice1 = () => {
@@ -41,17 +40,12 @@ const OmegaVoice1 = () => {
   };
 
   const handleEndCall = () => {
-    try {
-      stopVapiCall();
-      setIsCallActive(false);
-      setIsActiveCallDialogOpen(false);
-      toast({
-        title: "Call Ended",
-        description: "Your conversation with Stella has ended.",
-      });
-    } catch (error) {
-      console.error("Error ending call:", error);
-    }
+    setIsCallActive(false);
+    setIsActiveCallDialogOpen(false);
+    toast({
+      title: "Call Ended",
+      description: "Your conversation with Stella has ended.",
+    });
   };
 
   return (

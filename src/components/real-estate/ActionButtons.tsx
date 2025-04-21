@@ -1,9 +1,7 @@
-
 import { Phone } from "lucide-react";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { stopVapiCall } from "@/services/vapiService";
 import { VoiceChatDialog } from "./VoiceChatDialog";
 
 interface ActionButtonsProps {
@@ -27,7 +25,7 @@ export const ActionButtons = ({
 
   const handleEndCall = async () => {
     try {
-      await stopVapiCall();
+      // TODO: Implement call ending functionality
       setIsOpen(false);
       navigate('/demo');
     } catch (error) {
@@ -56,7 +54,6 @@ export const ActionButtons = ({
             />
           </Dialog>
           <Button 
-            variant="ghost"
             onClick={scrollToProperties}
             className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white px-4 sm:px-6 py-3 rounded-md font-semibold transition-colors"
           >

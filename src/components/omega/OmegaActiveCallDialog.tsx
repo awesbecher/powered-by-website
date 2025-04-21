@@ -1,10 +1,8 @@
-
 import React, { useEffect } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Activity, X } from "lucide-react";
-import { stopVapiCall } from "@/services/vapiService";
 import { useToast } from "@/hooks/use-toast";
 
 interface OmegaActiveCallDialogProps {
@@ -31,7 +29,6 @@ const OmegaActiveCallDialog: React.FC<OmegaActiveCallDialogProps> = ({
 
   const handleEndCall = () => {
     try {
-      stopVapiCall();
       onEndCall();
     } catch (error) {
       console.error("Error ending call:", error);

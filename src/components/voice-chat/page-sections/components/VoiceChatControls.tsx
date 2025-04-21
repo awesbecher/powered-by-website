@@ -1,8 +1,6 @@
-
 import { useState, useRef, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { VoiceChatDialog } from "@/components/voice-chat/VoiceChatDialog";
-import { initiateVapiCall, stopVapiCall, isVapiCallActive } from "@/services/vapiService";
 
 interface VoiceChatControlsProps {
   source?: "home" | "voice-chat" | "voice-business";
@@ -19,9 +17,8 @@ export const VoiceChatControls = ({ source = "voice-chat" }: VoiceChatControlsPr
   
   // Check for active call when component mounts
   useEffect(() => {
-    if (isVapiCallActive()) {
-      setIsCallActive(true);
-    }
+    // TODO: Implement check for active call
+    setIsCallActive(false);
   }, []);
 
   const handleVoiceChatClick = () => {
@@ -43,14 +40,12 @@ export const VoiceChatControls = ({ source = "voice-chat" }: VoiceChatControlsPr
     console.log("VoiceChatControls: Starting call");
     setIsSubmitting(true);
     try {
-      const success = await initiateVapiCall(ASSISTANT_ID);
-      if (success) {
-        setIsCallActive(true);
-        toast({
-          title: "Call started successfully",
-          description: "You're now connected to our AI voice agent.",
-        });
-      }
+      // TODO: Implement new call functionality
+      setIsCallActive(true);
+      toast({
+        title: "Call started successfully",
+        description: "You're now connected to our AI voice agent.",
+      });
     } catch (error) {
       console.error("Failed to start call:", error);
       toast({
@@ -66,7 +61,7 @@ export const VoiceChatControls = ({ source = "voice-chat" }: VoiceChatControlsPr
   const handleEndCall = async () => {
     console.log("VoiceChatControls: Ending call");
     try {
-      await stopVapiCall();
+      // TODO: Implement call ending functionality
       toast({
         title: "Call ended",
         description: "Thank you for trying our AI voice agent.",
