@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import {
   Dialog,
@@ -8,9 +7,10 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { X, Phone, PhoneOff, Mic, MicOff, Activity } from "lucide-react";
+import { X, PhoneOff, Activity } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useToast } from "@/hooks/use-toast";
+import { useNavigate } from "react-router-dom";
 
 interface VapiCallDialogProps {
   open: boolean;
@@ -19,8 +19,8 @@ interface VapiCallDialogProps {
 
 export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
   const [stage, setStage] = useState<'confirmation' | 'inCall' | 'closed'>('confirmation');
-  const [isMuted, setIsMuted] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   // Start call handler
   const handleStartCall = () => {
@@ -39,15 +39,7 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
       title: "Call ended",
       description: "Thank you for using our AI voice agent."
     });
-  };
-
-  // Handle mute toggle
-  const toggleMute = () => {
-    setIsMuted(!isMuted);
-    toast({
-      title: isMuted ? "Microphone unmuted" : "Microphone muted",
-      description: isMuted ? "You can now be heard" : "You have been muted"
-    });
+    navigate(-1); // Go back to previous page
   };
 
   // When user closes dialog via onOpenChange (click outside or escape)
@@ -88,7 +80,6 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
                   Cancel
                 </Button>
                 <Button onClick={handleStartCall} className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white">
-                  <Phone className="mr-2 h-4 w-4" />
                   Start Voice Chat
                 </Button>
               </div>
@@ -159,22 +150,14 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
               </div>
             </div>
             
-            <div className="grid grid-cols-2 gap-4 mt-4">
-              <Button 
-                onClick={toggleMute}
-                variant="outline"
-                className="border-gray-700 text-gray-300 hover:bg-gray-800"
-              >
-                {isMuted ? <MicOff className="mr-2 h-4 w-4" /> : <Mic className="mr-2 h-4 w-4" />}
-                {isMuted ? "Unmute" : "Mute"}
-              </Button>
-              
+            <div className="mt-6 flex justify-center">
               <Button 
                 onClick={handleEndCall}
                 variant="destructive"
+                className="w-full py-4 text-lg"
               >
-                <PhoneOff className="mr-2 h-4 w-4" />
-                End Call
+                <PhoneOff className="mr-2 h-5 w-5" />
+                End Voice Chat
               </Button>
             </div>
           </>
