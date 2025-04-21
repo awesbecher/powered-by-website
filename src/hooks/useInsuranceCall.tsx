@@ -13,13 +13,15 @@ export function useInsuranceCall() {
     setIsLoading(true);
     
     try {
+      console.log("Starting Vapi call initialization");
       // Initiate the call using the Vapi service
       await initiateVapiCall();
       
       setTimeout(() => {
         setIsLoading(false);
         setIsCallActive(true);
-        // Removed toast notification when call starts
+        // Removed toast notification when call starts, as requested
+        console.log("Call is now active");
       }, 1000);
     } catch (error) {
       console.error('Failed to start call:', error);
@@ -33,10 +35,13 @@ export function useInsuranceCall() {
   };
 
   const handleEndCall = () => {
+    console.log("Ending call and cleaning up Vapi resources");
+    
     // Clean up any Vapi elements that might be on the page
     const script = document.querySelector('script[src="https://cdn.vapi.ai/messenger.js"]');
     if (script) {
       script.remove();
+      console.log("Removed Vapi script");
     }
     
     const vapiRoot = document.getElementById('vapi-root');
@@ -44,6 +49,17 @@ export function useInsuranceCall() {
       while (vapiRoot.firstChild) {
         vapiRoot.removeChild(vapiRoot.firstChild);
       }
+      console.log("Cleared Vapi root element");
+    }
+    
+    // Try to tell Vapi to end the call if possible
+    try {
+      if ((window as any).vapi && typeof (window as any).vapi.endCall === 'function') {
+        (window as any).vapi.endCall();
+        console.log("Called vapi.endCall()");
+      }
+    } catch (err) {
+      console.error("Error calling vapi.endCall():", err);
     }
     
     toast({

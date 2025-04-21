@@ -13,6 +13,7 @@ const DEFAULT_VAPI_CONFIG: VapiConfig = {
 export async function initiateVapiCall(): Promise<void> {
   try {
     console.log('Initiating AI voice call with assistant ID:', DEFAULT_VAPI_CONFIG.assistantId);
+    console.log('Using API key:', DEFAULT_VAPI_CONFIG.apiKey.substring(0, 8) + '...');
     
     // Dispatch event for our custom UI
     const event = new CustomEvent('open-voice-dialog');
@@ -22,6 +23,7 @@ export async function initiateVapiCall(): Promise<void> {
     const existingScript = document.querySelector('script[src="https://cdn.vapi.ai/messenger.js"]');
     if (existingScript) {
       existingScript.remove();
+      console.log('Removed existing Vapi script');
     }
     
     let vapiRoot = document.getElementById('vapi-root');
@@ -29,6 +31,7 @@ export async function initiateVapiCall(): Promise<void> {
       while (vapiRoot.firstChild) {
         vapiRoot.removeChild(vapiRoot.firstChild);
       }
+      console.log('Cleared existing Vapi root element');
     } else {
       vapiRoot = document.createElement('div');
       vapiRoot.id = 'vapi-root';
@@ -38,41 +41,56 @@ export async function initiateVapiCall(): Promise<void> {
       vapiRoot.style.width = '1px';
       vapiRoot.style.height = '1px';
       document.body.appendChild(vapiRoot);
+      console.log('Created new Vapi root element');
     }
     
     // Connect to Vapi service directly using their embedded script
-    // This will actually connect to the voice service
     const script = document.createElement('script');
     script.src = 'https://cdn.vapi.ai/messenger.js';
     script.async = true;
     
     // We need to ensure the script is loaded before initializing
     script.onload = () => {
+      console.log('Vapi script loaded successfully');
+      
       if ((window as any).vapi) {
-        console.log('Vapi script loaded, starting voice call');
+        console.log('Vapi object found in window, initializing voice bot');
         
         // Small delay to ensure Vapi is fully loaded
         setTimeout(() => {
           try {
+            console.log('Calling vapi.initVoicebot with:', {
+              assistant_id: DEFAULT_VAPI_CONFIG.assistantId,
+              api_key: DEFAULT_VAPI_CONFIG.apiKey.substring(0, 8) + '...'
+            });
+            
             (window as any).vapi.initVoicebot({
               assistant_id: DEFAULT_VAPI_CONFIG.assistantId,
               api_key: DEFAULT_VAPI_CONFIG.apiKey,
               audio: {
-                autoplay: true, // Auto-play audio response
-                target_element_id: 'vapi-root', // Target element
+                autoplay: true,
+                target_element_id: 'vapi-root',
               },
-              // Ensure we're using microphone input
               input_mode: 'microphone',
-              // Add logging to help debug
-              debug: true
+              debug: true,
+              onStartTalking: () => {
+                console.log('Vapi agent started talking');
+              },
+              onStopTalking: () => {
+                console.log('Vapi agent stopped talking');
+              },
+              onError: (error: any) => {
+                console.error('Vapi error:', error);
+              }
             });
+            
             console.log('Vapi initVoicebot called successfully');
           } catch (initError) {
             console.error('Error initializing Vapi voicebot:', initError);
           }
-        }, 300);
+        }, 500); // Increased delay to ensure Vapi is ready
       } else {
-        console.error('Vapi script loaded but vapi object not found');
+        console.error('Vapi script loaded but vapi object not found in window');
       }
     };
     
@@ -83,8 +101,7 @@ export async function initiateVapiCall(): Promise<void> {
     };
     
     document.body.appendChild(script);
-    
-    console.log('Voice dialog event triggered and Vapi service loading started');
+    console.log('Vapi script added to document body');
     
     return Promise.resolve();
   } catch (error) {

@@ -26,11 +26,13 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
   // Start call handler
   const handleStartCall = () => {
     setStage('inCall');
+    console.log("VapiCallDialog: Moved to inCall stage");
     // No toast notification here as requested
   };
 
   // End call handler
   const handleEndCall = () => {
+    console.log("VapiCallDialog: Ending call");
     setStage('closed');
     onOpenChange(false);
     toast({
@@ -42,13 +44,25 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
     const script = document.querySelector('script[src="https://cdn.vapi.ai/messenger.js"]');
     if (script) {
       script.remove();
+      console.log("VapiCallDialog: Removed Vapi script");
     }
     
     const vapiRoot = document.getElementById('vapi-root');
     if (vapiRoot) {
       while (vapiRoot.firstChild) {
         vapiRoot.removeChild(vapiRoot.firstChild);
+        console.log("VapiCallDialog: Cleared Vapi root element");
       }
+    }
+    
+    // Try to tell Vapi to end the call if possible
+    try {
+      if ((window as any).vapi && typeof (window as any).vapi.endCall === 'function') {
+        (window as any).vapi.endCall();
+        console.log("VapiCallDialog: Called vapi.endCall()");
+      }
+    } catch (err) {
+      console.error("VapiCallDialog: Error calling vapi.endCall():", err);
     }
     
     navigate(-1); // Go back to previous page
@@ -56,6 +70,7 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
 
   // When user closes dialog via onOpenChange (click outside or escape)
   const handleDialogOpenChange = (isOpen: boolean) => {
+    console.log("VapiCallDialog: Dialog open change to", isOpen);
     if (!isOpen) {
       handleEndCall();
     }
@@ -64,6 +79,7 @@ export const VapiCallDialog = ({ open, onOpenChange }: VapiCallDialogProps) => {
   // Reset stage when dialog opens again
   React.useEffect(() => {
     if (open) {
+      console.log("VapiCallDialog: Dialog opened, setting stage to confirmation");
       setStage('confirmation');
     }
   }, [open]);

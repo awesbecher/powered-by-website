@@ -13,9 +13,11 @@ export const GlobalVoiceChatDialog = () => {
     };
 
     document.addEventListener('open-voice-dialog', handleOpenVoiceDialog);
+    console.log("GlobalVoiceChatDialog: Event listener for 'open-voice-dialog' added");
 
     return () => {
       document.removeEventListener('open-voice-dialog', handleOpenVoiceDialog);
+      console.log("GlobalVoiceChatDialog: Event listener for 'open-voice-dialog' removed");
     };
   }, []);
 
@@ -25,6 +27,11 @@ export const GlobalVoiceChatDialog = () => {
     console.log("GlobalVoiceChatDialog: Current dialog state:", showDialog);
     return () => console.log("GlobalVoiceChatDialog: Component unmounted");
   }, [showDialog]);
+
+  const handleDialogOpenChange = (open: boolean) => {
+    console.log("GlobalVoiceChatDialog: Dialog open state changed to:", open);
+    setShowDialog(open);
+  };
 
   return (
     <>
@@ -38,7 +45,7 @@ export const GlobalVoiceChatDialog = () => {
           Test Dialog
         </button>
       )}
-      <VapiCallDialog open={showDialog} onOpenChange={setShowDialog} />
+      <VapiCallDialog open={showDialog} onOpenChange={handleDialogOpenChange} />
     </>
   );
 };
