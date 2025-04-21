@@ -36,9 +36,10 @@ const Insurance = () => {
     });
   };
 
-  // Fix function to explicitly return a Promise<void> by making it async
+  // Fix TypeScript error by making this an async function
   const handleShowConsentDialog = async (): Promise<void> => {
     setShowConsentDialog(true);
+    return Promise.resolve();
   };
 
   return (
