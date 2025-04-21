@@ -12,6 +12,7 @@ import { getCalApi } from "@calcom/embed-react";
 import { Button } from "@/components/ui/button";
 import { Bot } from "lucide-react";
 import { CallToActionButtons } from "@/components/home/CallToActionButtons";
+import { HomeCard } from "@/components/home/HomeCard";
 
 const Index = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -20,7 +21,7 @@ const Index = () => {
   useEffect(() => {
     setInitialLoad(false);
     window.scrollTo(0, 0);
-    
+
     (async function () {
       try {
         const cal = await getCalApi();
@@ -39,7 +40,8 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
+    <div className="min-h-screen w-full bg-gradient-to-br from-[#120b26] via-[#22194c] to-[#1a0b2e] pb-12">
+      {/* NAVBAR */}
       <div className="sticky top-0 z-50 w-full">
         <Navbar />
       </div>
@@ -49,7 +51,7 @@ const Index = () => {
         <Button 
           onClick={() => navigate("/agent-gpt")}
           variant="outline"
-          className="flex items-center gap-2 border-[#9b87f5] text-[#9b87f5] hover:bg-[#9b87f5]/10"
+          className="flex items-center gap-2 border-[#9b87f5] text-[#9b87f5] hover:bg-[#9b87f5]/10 shadow-lg shadow-[#9b87f5]/10"
           size="lg"
         >
           <Bot size={20} />
@@ -57,25 +59,39 @@ const Index = () => {
         </Button>
       </div>
 
-      {/* Hero Section */}
-      <HeroSection initialLoad={initialLoad} />
+      <main className="mx-auto w-full max-w-5xl px-4 md:px-6 flex flex-col gap-8 mt-8">
+        {/* Hero Section in Card */}
+        <HomeCard className="p-0 bg-transparent shadow-none border-0 mb-0">
+          <HeroSection initialLoad={initialLoad} />
+        </HomeCard>
 
-      {/* Call to Action Buttons */}
-      <div className="mt-8 px-4">
-        <CallToActionButtons />
-      </div>
-      
-      {/* Workflow Section */}
-      <WorkflowSection />
+        {/* Call to Action Buttons in Card */}
+        <HomeCard className="bg-[#232149]/60 p-6 md:p-10 flex flex-col items-center">
+          <CallToActionButtons />
+        </HomeCard>
 
-      {/* Use Cases Grid */}
-      <UseCaseGrid />
+        {/* Workflow Section in Card (if not removed) */}
+        {WorkflowSection && (
+          <HomeCard className="p-0 bg-gradient-to-br from-[#232149]/80 via-[#251949]/70 to-[#1a0b2e]/80">
+            <WorkflowSection />
+          </HomeCard>
+        )}
 
-      {/* Stats Section */}
-      <StatsSection />
+        {/* Use Cases Grid in Card */}
+        <HomeCard className="bg-gradient-to-br from-[#252148] to-[#181129]">
+          <UseCaseGrid />
+        </HomeCard>
 
-      {/* Final CTA */}
-      <ClosingCTA useCalendly={true} />
+        {/* Stats Section in Card */}
+        <HomeCard className="p-0 bg-gradient-to-br from-[#252148]/90 via-[#242145]/90 to-[#181129]/95">
+          <StatsSection />
+        </HomeCard>
+
+        {/* Final CTA in Card */}
+        <HomeCard className="bg-[#232149]/80 text-white">
+          <ClosingCTA useCalendly={true} />
+        </HomeCard>
+      </main>
 
       <Footer />
     </div>
@@ -83,3 +99,4 @@ const Index = () => {
 };
 
 export default Index;
+
