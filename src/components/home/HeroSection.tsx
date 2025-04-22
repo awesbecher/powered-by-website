@@ -2,13 +2,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+/**
+ * HeroSection: Visually mimics the "Cluely" hero with blue gradient, vertical lines,
+ * and glow effect. Content remains the same.
+ */
 interface HeroSectionProps {
   subtitle?: string;
   initialLoad?: boolean;
 }
 
 export const HeroSection = ({ subtitle, initialLoad }: HeroSectionProps) => {
-  // Animation (optional slight delay fade-in)
+  // Animation for fade-in
   const [loaded, setLoaded] = useState(!initialLoad);
 
   useEffect(() => {
@@ -20,27 +24,46 @@ export const HeroSection = ({ subtitle, initialLoad }: HeroSectionProps) => {
 
   return (
     <section
-      className="relative overflow-hidden min-h-[82vh] flex items-center justify-center px-6"
+      className="relative flex items-center justify-center min-h-[82vh] px-6"
       aria-label="Hero Section"
       style={{
-        background: "linear-gradient(135deg, #7c3aed 0%, #6342ff 50%, #4c3698 100%)"
+        // Roughly replicate the "Cluely" blue background
+        // The image will be used as a fallback, but the main effect comes from gradients and overlays below
+        background:
+          "linear-gradient(180deg, #1e267f 0%, #171233 80%)"
       }}
     >
-      {/* Subtle textured overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle at 60% 40%, rgba(255,255,255,0.11) 0%, rgba(124,58,237,0.04) 80%, transparent 100%)"
-        }}
-      ></div>
+      {/* Fixed: vertically striped overlay, mimics Cluely's lines */}
+      <div aria-hidden className="absolute inset-0 z-0 pointer-events-none">
+        {/* Main blue gradient overlay */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(180deg, #1b266e 0%, #1d1a38 100%)"
+          }}
+        />
+        {/* Vertical lines (SVG as background) */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              `repeating-linear-gradient(90deg,rgba(82,128,255,0.09) 0px,rgba(82,128,255,0.09) 1.5px,transparent 1.5px,transparent 96px)`,
+            opacity: 0.9
+          }}
+        />
+        {/* Purple-pink soft glow at the bottom */}
+        <div 
+          className="absolute left-1/2 bottom-0 -translate-x-1/2"
+          style={{
+            width: "90vw",
+            height: "180px",
+            background: "radial-gradient(ellipse at center bottom, rgba(181,108,255,0.25), rgba(158,70,252,0.16), transparent 90%)"
+          }}
+        />
+      </div>
 
-      {/* Content */}
+      {/* Content Layer */}
       <div className="relative z-10 w-full max-w-3xl mx-auto flex flex-col items-center pt-20 pb-16">
-        {/* Logo or badge (if present) */}
-        {/* <img src="/lovable-uploads/64bb9d7d-aaaa-4015-9a4b-839ae9f0114d.png" alt="" className="mb-6 w-32 h-auto" /> */}
-
-        {/* Main Headline */}
         <h1
           className={
             `text-center font-extrabold text-white drop-shadow-[0_2px_6px_rgba(99,66,255,0.09)] transition-all duration-700
@@ -64,7 +87,7 @@ export const HeroSection = ({ subtitle, initialLoad }: HeroSectionProps) => {
           Super-smart voice, text & email AI Agents that answer, engage, and convert your leads 24/7. No code required.
         </p>
 
-        {/* CTA Buttons - prominent and clear */}
+        {/* CTA Buttons */}
         <div
           className={
             "mt-10 flex flex-col sm:flex-row gap-4 items-center justify-center transition-all duration-700 delay-200 " +
@@ -92,3 +115,4 @@ export const HeroSection = ({ subtitle, initialLoad }: HeroSectionProps) => {
     </section>
   );
 };
+
