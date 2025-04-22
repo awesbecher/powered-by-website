@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
@@ -40,7 +41,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-[#120b26] via-[#22194c] to-[#1a0b2e] pb-12">
+    <div className="min-h-screen w-full bg-[#120b26] pb-12">
       <div className="sticky top-0 z-50 w-full">
         <Navbar />
       </div>
@@ -57,11 +58,10 @@ const Index = () => {
         </Button>
       </div>
 
-      <main className="mx-auto w-full max-w-5xl px-4 md:px-6 flex flex-col gap-8 mt-8">
-        <HomeCard className="p-0 bg-transparent shadow-none border-0 mb-0">
-          <HeroSection initialLoad={initialLoad} />
-        </HomeCard>
+      {/* New Hero Section 2025 */}
+      <HeroSection initialLoad={initialLoad} />
 
+      <main className="mx-auto w-full max-w-5xl px-4 md:px-6 flex flex-col gap-8 mt-8">
         <HomeCard className="bg-[#232149]/60 p-6 md:p-10 flex flex-col items-center">
           <CallToActionButtons />
         </HomeCard>
