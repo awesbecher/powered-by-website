@@ -5,7 +5,7 @@ import About from '@/pages/About';
 import Contact from '@/pages/Contact';
 import Demo from '@/pages/Demo';
 import VoiceChat from '@/pages/VoiceChat';
-import AIRecepionist from '@/pages/AIRecepionist';
+import AIReceptionist from '@/pages/AIReceptionist';
 import Insurance from '@/pages/Insurance';
 import AIAgency from '@/pages/AIAgency';
 import AgentGPT from '@/pages/AgentGPT';
@@ -25,7 +25,7 @@ const RouteConfig = ({ location }) => {
       <Route path="/contact" element={<Contact />} />
       <Route path="/demo" element={<Demo />} />
       <Route path="/voice-chat" element={<VoiceChat />} />
-      <Route path="/ai-receptionist" element={<AIRecepionist />} />
+      <Route path="/ai-receptionist" element={<AIReceptionist />} />
       <Route path="/insurance" element={<Insurance />} />
       <Route path="/ai-agency" element={<AIAgency />} />
       <Route path="/agent-gpt" element={<AgentGPT />} />
