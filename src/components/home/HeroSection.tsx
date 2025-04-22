@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -71,10 +70,7 @@ export const HeroSection = ({ subtitle, initialLoad }: HeroSectionProps) => {
                   text-4xl md:text-6xl lg:text-7xl tracking-tight`
           }
         >
-          AI Agents<br />
-          <span className="bg-gradient-to-r from-[#ffd700] to-[#9b87f5] bg-clip-text text-transparent">
-            for Modern SMBs
-          </span>
+          Custom AI Agents for <span className="text-[#9b87f5]">SMBs</span>
         </h1>
 
         {/* Subheadline */}
@@ -115,4 +111,3 @@ export const HeroSection = ({ subtitle, initialLoad }: HeroSectionProps) => {
     </section>
   );
 };
-
