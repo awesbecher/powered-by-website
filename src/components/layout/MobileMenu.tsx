@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-import { NavLinkProps } from "./NavLinks";
-import { NavLink } from "./NavLink";
-import { ConsultButton } from "./ConsultButton";
+import { NavLinkProps } from "./NavLink";
+import NavLink from "./NavLink";
+import ConsultButton from "./ConsultButton";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useClickOutside } from "@/hooks/use-click-outside";
 import { Menu, X } from "lucide-react";
