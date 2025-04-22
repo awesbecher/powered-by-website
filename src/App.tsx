@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, useLocation } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from "@/components/ui/toaster";
 import { AnimatePresence } from 'framer-motion';
 import { GlobalVoiceChatDialog } from '@/components/shared/GlobalVoiceChatDialog';
-import { RouteConfig } from './routes/RouteConfig';
+import RouteConfig from './routes/RouteConfig';
 import { queryClient } from './config/queryClient';
-import { ThemeProvider, defaultThemeConfig } from './config/themeConfig';
+import { ThemeProvider } from './config/themeConfig';
 import * as serviceWorker from './serviceWorker';
 import { ensureCustomEventSupport } from './utils/eventPolyfill';
 
 function App() {
+  const location = useLocation();
+  
   useEffect(() => {
     // Ensure CustomEvent is supported in all browsers
     ensureCustomEventSupport();
@@ -45,9 +47,9 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider {...defaultThemeConfig}>
+      <ThemeProvider>
         <AnimatePresence mode="wait" initial={false}>
-          <RouteConfig />
+          <RouteConfig location={location} />
         </AnimatePresence>
         <GlobalVoiceChatDialog />
         <Toaster />

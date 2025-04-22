@@ -1,17 +1,23 @@
-
 import React, { ReactNode } from 'react';
-import { ThemeProvider } from 'next-themes'; // Fix import
+import { ThemeProvider as NextThemeProvider } from 'next-themes';
 
-interface ThemeConfigProps {
+export const defaultThemeConfig = {
+  attribute: 'class',
+  defaultTheme: 'dark',
+  enableSystem: true,
+  disableTransitionOnChange: false
+};
+
+interface ThemeProviderProps {
   children: ReactNode;
 }
 
-export const ThemeConfig: React.FC<ThemeConfigProps> = ({ children }) => {
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   return (
-    <ThemeProvider attribute="class" defaultTheme="dark">
+    <NextThemeProvider {...defaultThemeConfig}>
       {children}
-    </ThemeProvider>
+    </NextThemeProvider>
   );
 };
 
-export default ThemeConfig;
+export default ThemeProvider;
