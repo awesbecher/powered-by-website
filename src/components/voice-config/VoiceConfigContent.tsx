@@ -3,27 +3,31 @@ import React, { useState, useEffect } from 'react';
 import { PoweredByText } from "@/components/shared/PoweredByText";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { AlertCircle, Loader2, CheckCircle } from "lucide-react";
+import { AlertCircle, Loader2, CheckCircle, RefreshCw } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface VoiceConfigContentProps {
   playHTLoaded?: boolean;
+  playHTError?: string | null;
 }
 
-const VoiceConfigContent: React.FC<VoiceConfigContentProps> = ({ playHTLoaded = false }) => {
+const VoiceConfigContent: React.FC<VoiceConfigContentProps> = ({ 
+  playHTLoaded = false,
+  playHTError = null
+}) => {
   const { toast } = useToast();
   const [loadingTimeout, setLoadingTimeout] = useState(false);
 
   // Set a timeout to show an error message if the agent doesn't load within 15 seconds
   useEffect(() => {
-    if (playHTLoaded) return;
+    if (playHTLoaded || playHTError) return;
     
     const timeoutId = setTimeout(() => {
       setLoadingTimeout(true);
     }, 15000);
     
     return () => clearTimeout(timeoutId);
-  }, [playHTLoaded]);
+  }, [playHTLoaded, playHTError]);
 
   // Function to refresh the page
   const handleRetry = () => {
@@ -71,7 +75,7 @@ const VoiceConfigContent: React.FC<VoiceConfigContentProps> = ({ playHTLoaded = 
               {/* Agent container */}
               <div id="playht-agent-container" className="min-h-[450px] w-full flex flex-col items-center justify-center relative bg-black/30 rounded-xl overflow-hidden border border-white/10">
                 {/* Loading state */}
-                {!playHTLoaded && (
+                {!playHTLoaded && !playHTError && (
                   <div className="flex flex-col items-center justify-center gap-4">
                     {!loadingTimeout ? (
                       <>
@@ -84,18 +88,35 @@ const VoiceConfigContent: React.FC<VoiceConfigContentProps> = ({ playHTLoaded = 
                     ) : (
                       <div className="text-center p-6">
                         <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
-                        <h3 className="text-xl font-semibold text-white mb-2">Voice Agent Failed to Load</h3>
+                        <h3 className="text-xl font-semibold text-white mb-2">Voice Agent Taking Too Long</h3>
                         <p className="text-gray-300 mb-6">We're having trouble connecting to the voice service.</p>
                         <Button 
                           variant="outline" 
                           onClick={handleRetry}
                           className="border-white/20 text-white hover:bg-white/10"
                         >
-                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                          Retry
+                          <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
+                          Try Again
                         </Button>
                       </div>
                     )}
+                  </div>
+                )}
+                
+                {/* Error state */}
+                {playHTError && (
+                  <div className="text-center p-6">
+                    <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
+                    <h3 className="text-xl font-semibold text-white mb-2">Voice Agent Failed to Load</h3>
+                    <p className="text-gray-300 mb-6">{playHTError}</p>
+                    <Button 
+                      variant="outline" 
+                      onClick={handleRetry}
+                      className="border-white/20 text-white hover:bg-white/10"
+                    >
+                      <RefreshCw className="mr-2 h-4 w-4" />
+                      Try Again
+                    </Button>
                   </div>
                 )}
                 

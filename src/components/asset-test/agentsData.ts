@@ -1,5 +1,5 @@
 
-import { DollarSign, Car, Pizza, House } from "lucide-react";
+import { DollarSign, Car, Pizza, Home } from "lucide-react";
 import { AgentType } from "./types";
 
 export const defaultAgents: AgentType[] = [
@@ -33,7 +33,7 @@ export const defaultAgents: AgentType[] = [
   {
     id: "real-estate",
     name: "Real Estate: Find a House",
-    icon: House,
+    icon: Home,
     description: "Find your dream home with our AI assistant",
     phoneNumber: "(732) 702 8348",
     isSelected: false,
