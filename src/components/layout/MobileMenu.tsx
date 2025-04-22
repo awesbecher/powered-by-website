@@ -2,6 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { X } from 'lucide-react';
 
+interface NavItem {
+  label: string;
+  href: string;
+  isExternal?: boolean;
+}
+
 interface NavLinkProps {
   href: string;
   isExternal?: boolean;

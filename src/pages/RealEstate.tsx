@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
@@ -19,6 +20,30 @@ const RealEstate = () => {
   const [isCallActive, setIsCallActive] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  
+  // Add sample properties data
+  const [properties, setProperties] = useState([
+    {
+      id: '1',
+      title: 'Modern Apartment',
+      price: '$250,000',
+      location: 'Downtown',
+      bedrooms: 2,
+      bathrooms: 1,
+      area: '850 sq ft',
+      image: '/lovable-uploads/2d521c8d-084d-4a87-8491-cb795033a1d6.png'
+    },
+    {
+      id: '2',
+      title: 'Family Home',
+      price: '$450,000',
+      location: 'Suburbs',
+      bedrooms: 4,
+      bathrooms: 2.5,
+      area: '2200 sq ft',
+      image: '/lovable-uploads/92d1275c-847a-49ad-a297-792c7bf899a7.png'
+    }
+  ]);
 
   const scrollToProperties = () => {
     const featuredSection = document.getElementById('featured-properties');
@@ -68,7 +93,9 @@ const RealEstate = () => {
 
       <ServicesSection />
       
-      <FeaturedProperties />
+      <div id="featured-properties">
+        <FeaturedProperties properties={properties} />
+      </div>
       
       <ContactSection 
         isScheduleOpen={isScheduleOpen}

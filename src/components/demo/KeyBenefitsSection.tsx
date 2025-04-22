@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { Check, CheckCircle, ShieldCheck } from 'lucide-react';
-import { BenefitCard } from './BenefitCard';
+import { BenefitCard } from './benefits/BenefitCard';
 
 interface BenefitCardProps {
   icon: React.ElementType;

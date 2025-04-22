@@ -52,7 +52,7 @@ type SheetSide = "top" | "right" | "bottom" | "left";
 interface SheetContentProps
   extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
     VariantProps<typeof sheetVariants> {
-  side: SheetSide;
+  side?: SheetSide;
 }
 
 const SheetContent = React.forwardRef<
