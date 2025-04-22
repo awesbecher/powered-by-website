@@ -15,7 +15,8 @@
   "dependencies": {
     "lovable-tagger": "latest",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "latest"
   },
   "devDependencies": {
     "vite": "^4.5.13",
