@@ -61,20 +61,18 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ navItems, showConsultButton }) 
             {/* Navigation Links */}
             {navItems.map((item) => (
               <NavLink
-                key={item.title}  // Move key out of the props
                 to={item.href}
                 isExternal={item.external || false}
                 isMobile={true}
                 onClick={closeMenu}
-              >
-                {item.title}
-              </NavLink>
+                children={item.title}
+              />
             ))}
 
             {/* Consult Button */}
             {showConsultButton && (
-              <div className="mt-4">
-                <ConsultButton show={true} isMobile={true} onClick={closeMenu} />
+              <div className="mt-4" onClick={closeMenu}>
+                <ConsultButton show={true} />
               </div>
             )}
           </div>
