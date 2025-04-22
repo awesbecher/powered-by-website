@@ -32,7 +32,7 @@ const VoiceConfig = () => {
   }, []);
 
   return (
-    <div className="min-h-screen w-full bg-[#F9F9FB]">
+    <div className="min-h-screen flex flex-col bg-[#F9F9FB]">
       <Navbar />
       <VoiceConfigContent />
       <Footer />
