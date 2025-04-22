@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
+
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface FAQItemProps {
   question: string;
@@ -8,89 +10,95 @@ interface FAQItemProps {
   onClick: () => void;
 }
 
-const FAQItem = ({ question, answer, isOpen, onClick }: FAQItemProps) => {
+const FAQItem: React.FC<FAQItemProps> = ({ question, answer, isOpen, onClick }) => {
   return (
-    <div className="bg-[#1a1a24] rounded-xl border border-gray-800 overflow-hidden">
+    <div className="border-b border-white/10 last:border-b-0">
       <button
-        className="w-full p-6 flex items-center justify-between text-left focus:outline-none"
+        className="w-full flex justify-between items-center py-5 text-left"
         onClick={onClick}
       >
-        <h3 className="text-lg font-bold text-white">{question}</h3>
-        {isOpen ? (
-          <ChevronUp className="h-5 w-5 text-[#9b87f5]" />
-        ) : (
-          <ChevronDown className="h-5 w-5 text-[#9b87f5]" />
-        )}
+        <h3 className="text-xl font-semibold text-white pr-8">{question}</h3>
+        <ChevronDown
+          className={`w-5 h-5 text-[#9b87f5] transition-transform ${
+            isOpen ? "transform rotate-180" : ""
+          }`}
+        />
       </button>
-      
-      <div 
-        className={`transition-all duration-300 ease-in-out overflow-hidden ${
-          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        }`}
-      >
-        <p className="px-6 pb-6 text-gray-400">{answer}</p>
-      </div>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden"
+          >
+            <div className="pb-5 text-gray-300 leading-relaxed">{answer}</div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
 
 export const FAQSection = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
-  
+  const [openIndex, setOpenIndex] = useState(0);
+
   const faqs = [
     {
-      question: "How quickly can I implement voice AI on my website?",
-      answer: "Most businesses are up and running within 1-2 weeks. Simple implementations can be completed in as little as 48 hours. Our team handles the integration to ensure a smooth setup process."
+      question: "How do voice AI agents work?",
+      answer:
+        "Voice AI agents use advanced speech recognition to understand spoken language, natural language processing to interpret meaning, and text-to-speech technology to respond verbally. These systems learn from interactions to continuously improve their performance and accuracy over time."
     },
     {
-      question: "Will the AI understand my industry terminology?",
-      answer: "Yes! We train your AI on your specific industry, products, and services to ensure accurate and relevant conversations. The voice agent will retain all your business context and desired call outcomes."
+      question: "Can the voice agent integrate with my current systems?",
+      answer:
+        "Yes, our voice agents are designed to integrate seamlessly with your existing CRM, scheduling software, phone systems, and other business tools through our extensive API connections. We handle all technical aspects of the integration process."
     },
     {
-      question: "Can I customize the voice and personality of the AI?",
-      answer: "Absolutely. Choose from various voice options or create a custom voice that matches your brand identity perfectly. We can configure the tone, speaking style, and personality to align with your company's values."
+      question: "What industries benefit most from AI voice agents?",
+      answer:
+        "While voice agents can benefit many industries, they're particularly valuable for healthcare (appointment scheduling, patient screening), real estate (property inquiries, showing scheduling), financial services (basic transactions, information requests), and customer service across all sectors."
     },
     {
-      question: "How does the AI handle complex customer inquiries?",
-      answer: "The AI can handle most routine questions and tasks. For complex situations, it can seamlessly transfer to a human agent. You define the escalation criteria, and the system automatically routes conversations when human intervention is needed."
+      question: "How long does implementation take?",
+      answer:
+        "Typical implementation takes 3-4 weeks from start to finish, including knowledge base building, integration with your systems, and training the voice agent on your specific business information. More complex implementations may take longer."
     },
     {
-      question: "What kind of analytics and reporting do you provide?",
-      answer: "Our platform offers comprehensive analytics including conversation metrics, sentiment analysis, conversion rates, and call quality scores. You'll have access to a dashboard that shows performance trends and actionable insights."
-    },
-    {
-      question: "Is the voice chat solution GDPR and CCPA compliant?",
-      answer: "Yes, our solution is built with data privacy regulations in mind. We offer features to help you maintain compliance with GDPR, CCPA, and other relevant privacy laws, including data deletion capabilities and transparent data collection notices."
+      question: "What happens if the AI can't handle a call?",
+      answer:
+        "We design intelligent escalation paths for each voice agent. When the AI encounters a complex situation it's not equipped to handle, it can seamlessly transfer the call to an appropriate human team member, along with a summary of the conversation so far."
     }
   ];
-  
-  const handleToggle = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(index === openIndex ? -1 : index);
   };
 
-  const handleContactClick = () => {
-    const calendarButton = document.querySelector('[data-cal-link]') as HTMLElement;
-    if (calendarButton) {
-      calendarButton.click();
-    }
-  };
-  
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-5xl">
-      <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-16">
-        Frequently Asked Questions
-      </h2>
-      <div className="space-y-4">
-        {faqs.map((faq, index) => (
-          <FAQItem 
-            key={index}
-            question={faq.question}
-            answer={faq.answer}
-            isOpen={openIndex === index}
-            onClick={() => handleToggle(index)}
-          />
-        ))}
+    <section className="py-24 px-4">
+      <div className="container mx-auto max-w-4xl">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-white mb-6">Frequently Asked Questions</h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            Common questions about our AI voice agents and services
+          </p>
+        </div>
+
+        <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 md:p-8 border border-white/10">
+          {faqs.map((faq, index) => (
+            <FAQItem
+              question={faq.question}
+              answer={faq.answer}
+              isOpen={index === openIndex}
+              onClick={() => toggleFAQ(index)}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
 };
+
+export default FAQSection;

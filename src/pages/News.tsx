@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
@@ -57,7 +57,7 @@ const News = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-16">
           {pressArticles.map((article) => (
-            <PressArticleCard key={article.id} article={article} />
+            <PressArticleCard article={article} />
           ))}
         </div>
       </section>
@@ -72,9 +72,9 @@ const News = () => {
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {newsArticles.map((post) => (
+              {newsArticles.map((post, index) => (
                 <Link 
-                  key={post.id} 
+                  key={index} 
                   to={`/blog/${post.slug}`}
                   className="block"
                 >

@@ -1,10 +1,16 @@
+import React from 'react';
 
-import React from "react";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import { JobCard } from "@/components/careers/JobCard";
-import { CareersHero } from "@/components/careers/CareersHero";
-import { jobOpenings } from "@/data/jobOpenings";
+const JobCard = ({ job }) => {
+  return (
+    <div className="bg-white rounded-lg shadow-md p-6">
+      <h2 className="text-2xl font-bold mb-2">{job.title}</h2>
+      <p className="text-gray-600 mb-4">{job.description}</p>
+      <p className="text-gray-600 mb-4">Location: {job.location}</p>
+      <p className="text-gray-600 mb-4">Salary: {job.salary}</p>
+      <p className="text-gray-600 mb-4">Posted: {job.posted}</p>
+    </div>
+  );
+};
 
 const Careers = () => {
   return (
@@ -18,8 +24,8 @@ const Careers = () => {
         
         <div className="mt-12">
           <div className="grid grid-cols-1 gap-5 max-w-3xl mx-auto">
-            {jobOpenings.map((job) => (
-              <JobCard key={job.id} job={job} />
+            {jobOpenings.map((job, index) => (
+              <JobCard key={index} job={job} />
             ))}
           </div>
           

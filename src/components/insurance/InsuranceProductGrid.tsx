@@ -1,36 +1,39 @@
-import React from 'react';
-import { InsuranceProductCard, InsuranceProductCardProps } from "./InsuranceProductCard";
-import { ForwardRefExoticComponent } from "react";
-import { LucideProps } from "lucide-react";
 
-interface InsuranceProductGridProps {
-  products: {
-    id: string;
-    name: string;
-    icon: ForwardRefExoticComponent<LucideProps>;
-  }[];
-  selectedProduct: string | null;
+import React from 'react';
+import { InsuranceProductCard } from "./InsuranceProductCard";
+
+export interface InsuranceProductGridProps {
+  selectedProducts: string[];
   onProductSelect: (productId: string) => void;
 }
 
-export const InsuranceProductGrid: React.FC<InsuranceProductGridProps> = ({ products, selectedProduct, onProductSelect }) => {
-  const handleProductSelect = (productId: string) => {
-    onProductSelect(productId);
-  };
+export const InsuranceProductGrid: React.FC<InsuranceProductGridProps> = ({ 
+  selectedProducts, 
+  onProductSelect 
+}) => {
+  const products = [
+    { id: "health", name: "Health Insurance", icon: "🏥" },
+    { id: "life", name: "Life Insurance", icon: "💓" },
+    { id: "auto", name: "Auto Insurance", icon: "🚗" },
+    { id: "home", name: "Home Insurance", icon: "🏠" },
+    { id: "travel", name: "Travel Insurance", icon: "✈️" },
+    { id: "pet", name: "Pet Insurance", icon: "🐾" }
+  ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 pt-4">
       {products.map((product) => (
         <InsuranceProductCard
-          key={product.id}
           id={product.id}
           name={product.name}
           icon={product.icon}
-          isSelected={product.id === selectedProduct}
+          isSelected={selectedProducts.includes(product.id)}
           isEnabled={true}
-          onSelect={handleProductSelect}
+          onSelect={onProductSelect}
         />
       ))}
     </div>
   );
 };
+
+export default InsuranceProductGrid;

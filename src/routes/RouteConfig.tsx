@@ -1,60 +1,41 @@
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Home from '@/pages/Home';
+import About from '@/pages/About';
+import Contact from '@/pages/Contact';
+import Demo from '@/pages/Demo';
+import VoiceChat from '@/pages/VoiceChat';
+import AIRecepionist from '@/pages/AIRecepionist';
+import Insurance from '@/pages/Insurance';
+import AIAgency from '@/pages/AIAgency';
+import AgentGPT from '@/pages/AgentGPT';
+import AgentGPTBuilder from '@/pages/AgentGPTBuilder';
+import GPTLanding from '@/pages/GPTLanding';
+import AgentMarketplace from '@/pages/AgentMarketplace';
+import Careers from '@/pages/Careers';
+import News from '@/pages/News';
 
-import { Suspense } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import { mainRoutes } from './mainRoutes';
-import { marketingRoutes } from './marketingRoutes';
-import { productRoutes } from './productRoutes';
-import { demoRoutes } from './demoRoutes';
-import NotFound from '@/pages/NotFound';
-
-// Loading component for suspense fallback
-const PageLoader = () => (
-  <div className="min-h-screen flex items-center justify-center">
-    <div className="animate-pulse text-xl text-gray-400">Loading...</div>
-  </div>
-);
-
-export const RouteConfig = () => {
-  const location = useLocation();
-  
-  // Filter out catch-all route from all route arrays
-  const filteredMainRoutes = mainRoutes.filter(route => route.path !== '*');
-  const filteredMarketingRoutes = marketingRoutes.filter(route => route.path !== '*');
-  const filteredProductRoutes = productRoutes.filter(route => route.path !== '*');
-  const filteredDemoRoutes = demoRoutes.filter(route => route.path !== '*');
-  
-  // Combine all routes
-  const allRoutes = [
-    ...filteredMainRoutes,
-    ...filteredMarketingRoutes, 
-    ...filteredProductRoutes, 
-    ...filteredDemoRoutes
-  ];
-
+// Fix Routes props by removing key prop
+const RouteConfig = ({ location }) => {
   return (
-    <Routes key={location.pathname} location={location}>
-      {/* Render all defined routes with Suspense */}
-      {allRoutes.map((route) => (
-        <Route
-          key={route.path}
-          path={route.path}
-          element={
-            <Suspense fallback={<PageLoader />}>
-              {route.element}
-            </Suspense>
-          }
-        />
-      ))}
-      
-      {/* Catch-all route for 404s */}
-      <Route
-        path="*"
-        element={
-          <Suspense fallback={<PageLoader />}>
-            <NotFound />
-          </Suspense>
-        }
-      />
+    <Routes location={location}>
+      {/* Remove key prop from Route components */}
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/demo" element={<Demo />} />
+      <Route path="/voice-chat" element={<VoiceChat />} />
+      <Route path="/ai-receptionist" element={<AIRecepionist />} />
+      <Route path="/insurance" element={<Insurance />} />
+      <Route path="/ai-agency" element={<AIAgency />} />
+      <Route path="/agent-gpt" element={<AgentGPT />} />
+      <Route path="/agent-gpt-builder" element={<AgentGPTBuilder />} />
+      <Route path="/gpt-landing" element={<GPTLanding />} />
+      <Route path="/agent-marketplace" element={<AgentMarketplace />} />
+      <Route path="/careers" element={<Careers />} />
+      <Route path="/news" element={<News />} />
     </Routes>
   );
 };
+
+export default RouteConfig;

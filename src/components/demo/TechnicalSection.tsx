@@ -1,104 +1,100 @@
+
 import React from 'react';
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { TechnicalFeatureItem } from "./technical/TechnicalFeatureItem";
-import { technicalFeaturesData } from "./technical/TechnicalFeaturesData";
-import ArchitectureFlow from "./technical/ArchitectureFlow";
+
+interface TechnicalFeatureItemProps {
+  title: string;
+  description: string;
+}
+
+const TechnicalFeatureItem: React.FC<TechnicalFeatureItemProps> = ({ title, description }) => {
+  return (
+    <div className="mb-8 last:mb-0">
+      <h3 className="text-xl font-bold mb-2 text-white">{title}</h3>
+      <p className="text-gray-300">{description}</p>
+    </div>
+  );
+};
 
 export const TechnicalSection = () => {
-  const handleCalendarClick = () => {
-    console.log("Technical Section CTA clicked");
-    try {
-      (window as any).Cal?.('ui', {
-        styles: { branding: { brandColor: '#6342ff' } },
-        hideEventTypeDetails: false,
-        layout: 'month_view',
-      });
-      (window as any).Cal?.('showModal', {
-        calLink: "team-powered-by-dfbtbb/get-started-today",
-        config: {
-          layout: 'month_view',
-        },
-      });
-    } catch (err) {
-      console.error("Failed to open Cal.com modal from Technical Section:", err);
+  const techFeatures = [
+    {
+      title: "Natural Language Processing",
+      description: "Our AI agents utilize state-of-the-art NLP models to understand conversational context, remember details from earlier in conversations, and provide relevant responses."
+    },
+    {
+      title: "Multi-channel Integration",
+      description: "Deploy the same AI brain across voice, chat, email, and SMS channels to deliver consistent experiences regardless of how customers prefer to connect."
+    },
+    {
+      title: "Knowledge Base Integration",
+      description: "Connect your existing documentation, product information, and FAQs to empower your AI agents with the information they need to answer questions accurately."
+    },
+    {
+      title: "Realtime Analytics",
+      description: "Monitor performance, sentiment, and conversion rates through detailed dashboards, identifying opportunities for optimization and improvement."
+    },
+    {
+      title: "Conversation Handoff",
+      description: "Seamless transition from AI to human agents when complex issues arise, complete with full conversation context to maintain continuity."
+    },
+    {
+      title: "Secure Data Handling",
+      description: "Enterprise-grade security with optional HIPAA compliance ensures customer data remains protected throughout all interactions."
     }
-  };
+  ];
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 relative">
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <svg className="absolute right-0 bottom-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="techGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#6342ff" stopOpacity="0.05" />
-              <stop offset="100%" stopColor="#9b87f5" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-          <path d="M0,100 L100,0 L100,100 L0,100 Z" fill="url(#techGradient)"></path>
-        </svg>
-      </div>
-      
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="max-w-7xl mx-auto relative z-10"
-      >
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6 bg-gradient-to-r from-[#9b87f5] to-[#6342ff] bg-clip-text text-transparent">
-            How Our AI Works
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            A peek behind the scenes of our advanced AI architecture that powers seamless, human-like interactions.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Flow Diagram */}
-          <div className="bg-[#1a0f2e]/60 backdrop-blur-sm border border-gray-800 rounded-3xl p-8 relative">
-            <div className="absolute inset-0 flex items-center justify-center overflow-hidden rounded-3xl">
-              <div className="w-[400px] h-[400px] rounded-full bg-[#6342ff]/5 blur-3xl"></div>
-            </div>
-            
-            <div className="relative z-10">
-              <h3 className="text-2xl font-bold mb-6 text-white">
-                AI Agent Architecture
-              </h3>
-              
-              <ArchitectureFlow />
-            </div>
-          </div>
-          
-          {/* Key Technical Features */}
+    <section className="py-24 px-4 bg-gradient-to-br from-[#1a0b2e]/80 via-[#271844]/80 to-[#1a0b2e]/80">
+      <div className="container mx-auto max-w-6xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h3 className="text-2xl font-bold mb-8 text-white">
-              Technical Capabilities
-            </h3>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Technical Features</h2>
+            <p className="text-xl text-gray-300 mb-8">
+              Our AI agents are built on cutting-edge technology to deliver exceptional performance and capabilities.
+            </p>
             
-            <div className="space-y-6">
-              {technicalFeaturesData.map((feature, index) => (
+            <div className="bg-white/5 rounded-lg p-6 border border-white/10">
+              {techFeatures.map((feature) => (
                 <TechnicalFeatureItem
-                  key={index}
                   title={feature.title}
                   description={feature.description}
                 />
               ))}
             </div>
-            
-            <div className="mt-10">
-              <Button 
-                data-cal-link="team-powered-by-dfbtbb/get-started-today"
-                onClick={handleCalendarClick}
-                className="bg-gray-800 hover:bg-gray-700 text-white px-6 py-3 rounded-xl border border-gray-700"
-              >
-                Schedule a Technical Walkthrough
-              </Button>
+          </div>
+          
+          <div className="lg:h-full flex items-center justify-center">
+            <div className="relative">
+              {/* Code diagram representation */}
+              <div className="bg-[#1e1634] p-6 rounded-lg border border-[#6342ff]/30 shadow-lg shadow-[#6342ff]/10 font-mono text-sm overflow-hidden max-w-lg">
+                <div className="mb-4 text-gray-400">// AI Agent Technical Implementation</div>
+                <div className="mb-2 text-[#ff79c6]">class <span className="text-[#50fa7b]">AIAgent</span> &#123;</div>
+                <div className="mb-2 ml-4 text-[#8be9fd]">constructor<span className="text-white">(</span><span className="text-[#ffb86c]">config</span><span className="text-white">)</span> &#123;</div>
+                <div className="mb-2 ml-8 text-[#f1fa8c]">this.language = config.language;</div>
+                <div className="mb-2 ml-8 text-[#f1fa8c]">this.knowledgeBase = new KnowledgeBase();</div>
+                <div className="mb-2 ml-8 text-[#f1fa8c]">this.channels = [];</div>
+                <div className="mb-2 ml-4 text-white">&#125;</div>
+                <div className="mb-2 ml-4 text-[#8be9fd]">async <span className="text-[#50fa7b]">processInput</span><span className="text-white">(</span><span className="text-[#ffb86c]">input</span><span className="text-white">)</span> &#123;</div>
+                <div className="mb-2 ml-8 text-[#f1fa8c]">const intent = await this.detectIntent(input);</div>
+                <div className="mb-2 ml-8 text-[#f1fa8c]">const context = this.getConversationContext();</div>
+                <div className="mb-2 ml-8 text-[#f1fa8c]">return this.generateResponse(intent, context);</div>
+                <div className="mb-2 ml-4 text-white">&#125;</div>
+                <div className="text-[#ff79c6]">&#125;</div>
+              </div>
+              
+              {/* Floating UI elements */}
+              <div className="absolute -top-4 -right-4 bg-[#6342ff] text-white px-3 py-1 text-xs rounded-full">
+                NLP Engine
+              </div>
+              <div className="absolute -bottom-3 -left-3 bg-[#9b87f5] text-white px-3 py-1 text-xs rounded-full">
+                Real-time Processing
+              </div>
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };
+
+export default TechnicalSection;

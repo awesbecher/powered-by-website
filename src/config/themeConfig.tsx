@@ -1,16 +1,17 @@
 
-import { ThemeProvider as NextThemesProvider } from "next-themes";
-import type { ThemeProviderProps } from "next-themes";
+import React, { ReactNode } from 'react';
+import { ThemeProvider } from 'next-themes'; // Fix import
 
-export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
-  return (
-    <NextThemesProvider {...props}>
-      {children}
-    </NextThemesProvider>
-  );
+interface ThemeConfigProps {
+  children: ReactNode;
 }
 
-export const defaultThemeConfig = {
-  defaultTheme: "dark",
-  storageKey: "vite-ui-theme",
-} as const;
+export const ThemeConfig: React.FC<ThemeConfigProps> = ({ children }) => {
+  return (
+    <ThemeProvider attribute="class" defaultTheme="dark">
+      {children}
+    </ThemeProvider>
+  );
+};
+
+export default ThemeConfig;

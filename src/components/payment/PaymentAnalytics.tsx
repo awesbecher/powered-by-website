@@ -37,6 +37,11 @@ const PaymentAnalytics = () => {
     }).format(amount);
   };
 
+  const calculatePercentage = (value: number | string, total: number): number => {
+    const numericValue = typeof value === 'string' ? parseFloat(value) : value;
+    return (numericValue / total) * 100;
+  };
+
   const fetchAnalytics = async () => {
     setIsLoading(true);
     setError(null);
@@ -153,7 +158,7 @@ const PaymentAnalytics = () => {
             </div>
             <p className="text-2xl font-bold">{analytics.overview.totalPayments}</p>
             <p className="text-xs text-gray-500 mt-1">
-              Success rate: {analytics.overview.successRate.toFixed(1)}%
+              Success rate: {calculatePercentage(analytics.overview.successRate, 100).toFixed(1)}%
             </p>
           </div>
           
@@ -180,7 +185,7 @@ const PaymentAnalytics = () => {
               <div className="flex items-center gap-2">
                 <span className="text-sm font-medium">{count}</span>
                 <span className="text-xs text-gray-500">
-                  ({((count / Number(analytics.overview.totalPayments)) * 100).toFixed(1)}%)
+                  ({calculatePercentage(count, analytics.overview.totalPayments).toFixed(1)}%)
                 </span>
               </div>
             </div>

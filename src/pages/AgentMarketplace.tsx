@@ -256,10 +256,10 @@ const AgentMarketplace = () => {
         className="py-16 px-6 md:px-12 text-center max-w-5xl mx-auto"
       >
         <div className="inline-block mb-6">
-          <Badge className="px-3 py-1 bg-[#8B5CF6]/20 text-[#8B5CF6] border-[#8B5CF6]/30 text-sm font-medium rounded-full flex items-center gap-1.5">
+          <CustomBadge className="px-3 py-1 bg-[#8B5CF6]/20 text-[#8B5CF6] border-[#8B5CF6]/30 text-sm font-medium rounded-full flex items-center gap-1.5">
             <Bot size={14} />
             Agent Templates
-          </Badge>
+          </CustomBadge>
         </div>
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
           Choose Your Voice Agent Template
@@ -290,7 +290,7 @@ const AgentMarketplace = () => {
           
           <div className="flex flex-wrap justify-center gap-2 mb-8">
             {categories.map(category => (
-              <Badge 
+              <CustomBadge 
                 key={category}
                 className={`px-4 py-1.5 rounded-full text-sm font-medium cursor-pointer ${
                   filterCategory === category 
@@ -301,15 +301,15 @@ const AgentMarketplace = () => {
               >
                 {filterCategory === category && <CheckCircle className="mr-1" size={12} />}
                 {category.charAt(0).toUpperCase() + category.slice(1)}
-              </Badge>
+              </CustomBadge>
             ))}
             {filterCategory && (
-              <Badge 
+              <CustomBadge 
                 className="px-4 py-1.5 rounded-full text-sm font-medium cursor-pointer bg-red-500/20 text-red-400 border-red-500/30 hover:bg-red-500/30"
                 onClick={() => setFilterCategory(null)}
               >
                 Clear Filter
-              </Badge>
+              </CustomBadge>
             )}
           </div>
         </div>

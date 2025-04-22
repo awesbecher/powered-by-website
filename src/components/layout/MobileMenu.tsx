@@ -1,9 +1,9 @@
+
 import React, { useState, useRef, useEffect } from "react";
-import { NavLinkProps } from "./NavLink";
-import NavLink from "./NavLink";
-import ConsultButton from "./ConsultButton";
+import NavLink, { NavLinkProps } from "./NavLink"; // Fix import
+import ConsultButton from "./ConsultButton"; // Fix import
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useClickOutside } from "@/hooks/use-click-outside";
+import { useClickOutside } from "@/hooks/use-click-outside"; // Fix hook import
 import { Menu, X } from "lucide-react";
 
 interface MobileMenuProps {
@@ -59,14 +59,16 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ navItems, showConsultButton }) 
         >
           <div className="container mx-auto p-4 flex flex-col gap-4">
             {/* Navigation Links */}
-            {navItems.map((item) => (
+            {navItems.map((item, index) => (
               <NavLink
-                to={item.href}
+                key={index}
+                href={item.href}
                 isExternal={item.external || false}
                 isMobile={true}
                 onClick={closeMenu}
-                children={item.title}
-              />
+              >
+                {item.title}
+              </NavLink>
             ))}
 
             {/* Consult Button */}

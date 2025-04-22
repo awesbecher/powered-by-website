@@ -1,107 +1,88 @@
-import React, { useState, useRef } from "react";
-import { Phone, Mail, Smartphone, Settings, MessageSquare, Slack } from "lucide-react";
-import { useInView } from "framer-motion";
+
+import React from 'react';
+import { Headset, MessageSquare, Mail, Phone, CalendarClock, ShieldCheck } from "lucide-react";
 
 interface AgentTypeProps {
   title: string;
   description: string;
-  icon: React.ReactNode;
+  icon: React.ComponentType<any>;
   index: number;
 }
 
-const AgentType = ({ title, description, icon, index }: AgentTypeProps) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.4 });
-
+const AgentType: React.FC<AgentTypeProps> = ({ title, description, icon: Icon, index }) => {
+  const isEven = index % 2 === 0;
+  
   return (
-    <div 
-      ref={ref}
-      className="flex flex-col md:flex-row gap-4 py-6 border-t border-white/10 transition-all duration-500 ease-out"
-      style={{
-        opacity: isInView ? 1 : 0,
-        transform: isInView ? `translateY(0)` : `translateY(20px)`,
-        transitionDelay: `${index * 150}ms`
-      }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className="md:w-[240px] flex-shrink-0 flex items-start gap-3 transition-all duration-300 ease-out">
-        <div className={`text-accent transition-all duration-300 ${isHovered ? 'scale-110 text-[#9b87f5]' : ''}`}>
-          {icon}
-        </div>
-        <h3 className={`text-lg font-bold text-white whitespace-nowrap transition-all duration-300 ${isHovered ? 'text-[#9b87f5]' : ''}`}>
-          {title}
-        </h3>
+    <div className={`flex flex-col md:flex-row items-center gap-6 p-6 rounded-xl bg-white/5 hover:bg-white/10 transition-all border border-white/10 ${isEven ? "md:flex-row" : "md:flex-row-reverse"}`}>
+      <div className="w-16 h-16 flex-shrink-0 bg-gradient-to-br from-[#7c3aed]/30 to-[#6342ff]/30 rounded-xl flex items-center justify-center">
+        <Icon className="w-8 h-8 text-[#9b87f5]" />
       </div>
-      <div className="flex-1 md:pl-16 relative overflow-hidden">
-        <p 
-          className={`text-gray-300 text-base leading-relaxed transition-all duration-500 ease-out
-            ${isHovered ? 'translate-y-0 opacity-100' : 'translate-y-0 opacity-80'}`}
-        >
-          {description}
-        </p>
-        {isHovered && (
-          <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#9b87f5] to-transparent transform animate-pulse" />
-        )}
+      
+      <div className="flex-1">
+        <h3 className="text-xl font-bold mb-2 text-white">{title}</h3>
+        <p className="text-gray-300">{description}</p>
       </div>
     </div>
   );
 };
 
 export const AgentTypes = () => {
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
-  
-  const agentTypes = [
+  const agents = [
     {
       title: "Voice Agents",
-      description: "Remarkably human-like agents that handle both incoming and outgoing calls with smart intelligence & a personable touch. They can qualify leads, provide quick answers, schedule appointments, & even make outgoing calls to drive new sales efforts.",
-      icon: <Phone size={24} />
+      description: "Humanlike AI agents that answer phone calls, take appointments, and handle customer inquiries 24/7.",
+      icon: Headset
     },
     {
-      title: "Email & Text Agents",
-      description: "Automate emails and SMS texts with customers or internal teams with a personal touch that feels genuine. These agents respond instantly to common inquiries, assist with order updates, and even follow up on leads. Their capacity for real-time, context-aware communication astonishes.",
-      icon: <div className="flex gap-1"><Mail size={24} /><Smartphone size={24} /></div>
+      title: "Chat Agents",
+      description: "Website chat agents that engage visitors, answer questions, and convert prospects into customers.",
+      icon: MessageSquare
     },
     {
-      title: "Internal Workflow Agents",
-      description: "Streamline your back-end processes with agents designed to automate repetitive tasks and gather critical data. Whether it's coordinating employee schedules, managing approvals, or updating internal databases, accelerate routine workflows to keep your operations efficient.",
-      icon: <Settings size={24} />
+      title: "Email Agents",
+      description: "AI email assistants that process, categorize, and respond to incoming emails without human intervention.",
+      icon: Mail
     },
     {
-      title: "Team Collaboration Agents",
-      description: "AI agents that act as virtual team members, helping coordinate tasks, track project milestones, and even send timely reminders. These digital workers keep everyone on the same page, reducing communication gaps and facilitating smoother collaboration.",
-      icon: <Slack size={24} />
+      title: "SMS Agents",
+      description: "Text messaging agents that handle appointment scheduling, reminders, and customer support via SMS.",
+      icon: Phone
     },
     {
-      title: "Website Chatbot Agents",
-      description: "Our AI chatbots transform your website into an interactive engagement hub, guiding visitors, answering questions, and capturing key lead information. Beyond standard customer support, they provide personalized product recommendations or escalate complex queries to a human team member. Fast, intuitive, and available 24/7.",
-      icon: <MessageSquare size={24} />
+      title: "Scheduling Agents",
+      description: "Specialized agents that manage your calendar, book meetings, and send automated reminders.",
+      icon: CalendarClock
     },
+    {
+      title: "HIPAA-Compliant Agents",
+      description: "Secure AI assistants designed for healthcare organizations with PHI protection built-in.",
+      icon: ShieldCheck
+    }
   ];
 
   return (
-    <div 
-      id="agent-types-section" 
-      className="container mx-auto px-4 transition-all duration-700 ease-out"
-      style={{
-        opacity: isInView ? 1 : 0,
-        transform: isInView ? 'translateY(0)' : 'translateY(40px)'
-      }}
-      ref={sectionRef}
-    >
-      <div className="max-w-5xl mx-auto">
-        {agentTypes.map((agent, index) => (
-          <AgentType
-            key={index}
-            title={agent.title}
-            description={agent.description}
-            icon={agent.icon}
-            index={index}
-          />
-        ))}
+    <section className="py-16 px-4">
+      <div className="container mx-auto max-w-6xl">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-white mb-6">Our Agent Types</h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            We offer specialized AI agents designed for different communication channels and business needs.
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {agents.map((agent, index) => (
+            <AgentType
+              title={agent.title}
+              description={agent.description}
+              icon={agent.icon}
+              index={index}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
+
+export default AgentTypes;
