@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
@@ -10,7 +9,7 @@ import {
   ArrowRight, 
   Bot, 
   CalendarClock, 
-  ChartBar, 
+  BarChart, 
   CheckCircle, 
   Filter, 
   GraduationCap, 
@@ -98,7 +97,7 @@ const agents: AgentCard[] = [
       "Pain Point Discovery"
     ],
     template: "b2b",
-    icon: <ChartBar className="w-6 h-6 text-white" />,
+    icon: <BarChart className="w-6 h-6 text-white" />,
     categories: ["chat", "sales", "outbound"]
   },
   {
