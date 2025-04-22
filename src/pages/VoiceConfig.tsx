@@ -1,15 +1,27 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import VoiceConfigContent from "@/components/voice-config/VoiceConfigContent";
 
 const VoiceConfig = () => {
+  // Inject PlayHT script
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://play.ht/widgets/agent.js';
+    script.setAttribute('agent-id', 'YOUR_AGENT_ID'); // Replace with your actual agent ID
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
+    <div className="min-h-screen w-full bg-[#F9F9FB]">
       <Navbar />
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Content will be added later */}
-      </div>
+      <VoiceConfigContent />
       <Footer />
     </div>
   );
