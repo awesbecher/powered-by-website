@@ -16,7 +16,8 @@
     "lovable-tagger": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "latest"
+    "react-router-dom": "latest",
+    "@tanstack/react-query": "latest"
   },
   "devDependencies": {
     "vite": "^4.5.13",
