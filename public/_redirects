@@ -64,3 +64,6 @@
 /insurance /index.html 200
 /real-estate /index.html 200
 /retail-services /index.html 200
+
+# Voice Config route
+/voice-config /index.html 200

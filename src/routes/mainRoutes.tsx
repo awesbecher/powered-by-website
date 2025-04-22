@@ -10,6 +10,7 @@ const ChatRedirect = lazy(() => import('@/pages/ChatRedirect'));
 const AgentIntegrations = lazy(() => import('@/pages/AgentIntegrations'));
 const NotFoundPage = lazy(() => import('@/pages/NotFound'));
 const Insurance = lazy(() => import('@/pages/Insurance'));
+const VoiceConfig = lazy(() => import('@/pages/VoiceConfig'));
 
 export const mainRoutes = [
   { path: "/", element: <Index /> }, 
@@ -20,5 +21,6 @@ export const mainRoutes = [
   { path: "/chat", element: <ChatRedirect /> },
   { path: "/agent-integrations", element: <AgentIntegrations /> },
   { path: "/insurance", element: <Insurance /> },
+  { path: "/voice-config", element: <VoiceConfig /> },
   { path: "*", element: <NotFoundPage /> },
 ];

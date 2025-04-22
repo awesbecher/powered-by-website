@@ -29,6 +29,13 @@
   status = 200
   force = true
 
+# Explicit redirect for /voice-config route
+[[redirects]]
+  from = "/voice-config"
+  to = "/index.html"
+  status = 200
+  force = true
+
 [[headers]]
   for = "/*"
   [headers.values]
