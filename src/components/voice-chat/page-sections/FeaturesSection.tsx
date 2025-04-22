@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { Mic, MessageCircle, Settings, Clock, Shield, Phone } from "lucide-react";
 
 interface FeatureCardProps {

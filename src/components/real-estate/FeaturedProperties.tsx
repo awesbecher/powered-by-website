@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { PropertyCard } from "./PropertyCard";
 import { properties } from "@/data/properties";

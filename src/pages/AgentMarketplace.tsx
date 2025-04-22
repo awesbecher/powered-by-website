@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
@@ -200,7 +201,6 @@ const AgentMarketplace = () => {
   const [filterCategory, setFilterCategory] = useState<string | null>(null);
   const [filteredAgents, setFilteredAgents] = useState<AgentCard[]>(agents);
   
-  // Available filter categories
   const categories = ["voice", "chat", "outbound", "sales", "support"];
 
   useEffect(() => {
@@ -208,7 +208,6 @@ const AgentMarketplace = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Filter agents based on search query and category
   useEffect(() => {
     let result = [...agents];
     
@@ -250,7 +249,6 @@ const AgentMarketplace = () => {
     <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] text-white">
       <Navbar />
 
-      {/* Hero Section */}
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
@@ -317,7 +315,6 @@ const AgentMarketplace = () => {
         </div>
       </motion.div>
 
-      {/* Grid Section */}
       <motion.div
         initial="hidden"
         animate="visible"

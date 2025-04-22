@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { useState, useEffect } from "react";
 import { WebsiteHeader } from "./WebsiteHeader";
 import { WebsiteContent } from "./WebsiteContent";

@@ -180,7 +180,7 @@ const PaymentAnalytics = () => {
               <div className="flex items-center gap-2">
                 <span className="text-sm font-medium">{count}</span>
                 <span className="text-xs text-gray-500">
-                  ({((count / analytics.overview.totalPayments) * 100).toFixed(1)}%)
+                  ({((count / Number(analytics.overview.totalPayments)) * 100).toFixed(1)}%)
                 </span>
               </div>
             </div>

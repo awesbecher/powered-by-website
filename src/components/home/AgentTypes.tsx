@@ -1,8 +1,6 @@
-import React from 'react';
-import { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Phone, Mail, Smartphone, Settings, MessageSquare, Slack } from "lucide-react";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
 
 interface AgentTypeProps {
   title: string;

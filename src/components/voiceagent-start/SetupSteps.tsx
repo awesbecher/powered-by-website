@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { 
   Building, MessageCircle, ShoppingBag, User, 
   Target, Mic, FileText, Shield, Lock, 
