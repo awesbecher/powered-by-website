@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 /**
  * HeroSection: Visually mimics the "Cluely" hero with blue gradient, vertical lines,
  * and glow effect. Content remains the same.
+ * Updated: 2024-04-22
  */
 interface HeroSectionProps {
   subtitle?: string;
