@@ -19,7 +19,7 @@ const VoiceConfig = () => {
     initScript.type = 'text/javascript';
     initScript.innerHTML = `
       addEventListener("load", () => {
-        PlayAI.open('QkoU6baIf2yLhMgZbsdhA');
+        PlayAI.open('xswK4S905J5N9KHm7x0gz');
       });
     `;
     document.head.appendChild(initScript);
