@@ -3,7 +3,7 @@ import { NavLinkProps } from "./NavLinks";
 import { NavLink } from "./NavLink";
 import { ConsultButton } from "./ConsultButton";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useOnClickOutside } from "@/hooks/use-click-outside";
+import { useClickOutside } from "@/hooks/use-click-outside";
 import { Menu, X } from "lucide-react";
 
 interface MobileMenuProps {
@@ -24,7 +24,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ navItems, showConsultButton }) 
     setIsOpen(false);
   };
 
-  useOnClickOutside(menuRef, closeMenu);
+  useClickOutside(menuRef, closeMenu);
 
   // Disable scrolling when the mobile menu is open
   useEffect(() => {
