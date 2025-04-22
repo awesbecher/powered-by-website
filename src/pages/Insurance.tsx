@@ -1,10 +1,9 @@
-
 import React from 'react';
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import InsuranceHeader from "@/components/insurance/InsuranceHeader";
 import InsuranceHero from "@/components/insurance/InsuranceHero";
-import InsuranceProductGrid from "@/components/insurance/InsuranceProductGrid";
+import { InsuranceProductGrid } from "@/components/insurance/InsuranceProductGrid";
 import InsuranceDialog from "@/components/insurance/InsuranceDialog";
 import { useState } from "react";
 import { useInsuranceCall } from "@/hooks/useInsuranceCall";
