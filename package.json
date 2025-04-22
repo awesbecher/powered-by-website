@@ -14,10 +14,8 @@
   },
   "dependencies": {
     "lovable-tagger": "latest"
-    // Add your other dependencies here
   },
   "devDependencies": {
     "vite": "^4.5.13"
-    // Add other dev tools here
   }
 }
