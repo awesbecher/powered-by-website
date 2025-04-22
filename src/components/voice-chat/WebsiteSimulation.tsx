@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from "react";
 import { WebsiteHeader } from "./WebsiteHeader";
-import { WebsiteContent } from "./WebsiteContent";
+import WebsiteContent from "./WebsiteContent";
 import { LoadingState } from "./LoadingState";
 import { CallInProgress } from "./CallInProgress";
 import { useImagePreloader } from "./hooks/useImagePreloader";
