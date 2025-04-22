@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from "@/components/ui/button";
 
 interface HeroSectionProps {
   subtitle?: string;
@@ -9,81 +8,82 @@ interface HeroSectionProps {
 }
 
 export const HeroSection = ({ subtitle, initialLoad }: HeroSectionProps) => {
+  // Animation (optional slight delay fade-in)
   const [loaded, setLoaded] = useState(!initialLoad);
 
   useEffect(() => {
     if (initialLoad) {
-      const timer = setTimeout(() => {
-        setLoaded(true);
-      }, 100);
+      const timer = setTimeout(() => setLoaded(true), 100);
       return () => clearTimeout(timer);
     }
   }, [initialLoad]);
 
-  // Function to create ripple effect on button click
-  const createRipple = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const button = event.currentTarget;
-    const circle = document.createElement("span");
-    const diameter = Math.max(button.clientWidth, button.clientHeight);
-    const radius = diameter / 2;
-
-    circle.style.width = circle.style.height = `${diameter}px`;
-    circle.style.left = `${event.clientX - button.getBoundingClientRect().left - radius}px`;
-    circle.style.top = `${event.clientY - button.getBoundingClientRect().top - radius}px`;
-    circle.classList.add("ripple");
-
-    const ripple = button.querySelector(".ripple");
-    if (ripple) {
-      ripple.remove();
-    }
-
-    button.appendChild(circle);
-  };
-
   return (
-    <section className="hero-2025 relative overflow-hidden" aria-label="Hero 2025">
-      {/* Background grid and glow effect */}
-      <div className="hero-2025-grid"></div>
-      <div className="hero-2025-glow"></div>
-      
-      <div className="hero-2025-container flex flex-col items-center justify-center relative z-10">
-        {/* Badge */}
-        <div className={`hero-2025-badge hero-animate hero-badge ${loaded ? 'opacity-100' : 'opacity-0'}`}>
-          AI Agents for Small & Medium Businesses
-        </div>
-        
-        {/* Heading */}
-        <h1 className={`hero-2025-title text-white text-center hero-animate hero-title ${loaded ? 'opacity-100' : 'opacity-0'}`}>
-          Custom AI Agents for SMBs
+    <section
+      className="relative overflow-hidden min-h-[82vh] flex items-center justify-center px-6"
+      aria-label="Hero Section"
+      style={{
+        background: "linear-gradient(135deg, #7c3aed 0%, #6342ff 50%, #4c3698 100%)"
+      }}
+    >
+      {/* Subtle textured overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle at 60% 40%, rgba(255,255,255,0.11) 0%, rgba(124,58,237,0.04) 80%, transparent 100%)"
+        }}
+      ></div>
+
+      {/* Content */}
+      <div className="relative z-10 w-full max-w-3xl mx-auto flex flex-col items-center pt-20 pb-16">
+        {/* Logo or badge (if present) */}
+        {/* <img src="/lovable-uploads/64bb9d7d-aaaa-4015-9a4b-839ae9f0114d.png" alt="" className="mb-6 w-32 h-auto" /> */}
+
+        {/* Main Headline */}
+        <h1
+          className={
+            `text-center font-extrabold text-white drop-shadow-[0_2px_6px_rgba(99,66,255,0.09)] transition-all duration-700
+                  ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}
+                  text-4xl md:text-6xl lg:text-7xl tracking-tight`
+          }
+        >
+          AI Agents<br />
+          <span className="bg-gradient-to-r from-[#ffd700] to-[#9b87f5] bg-clip-text text-transparent">
+            for Modern SMBs
+          </span>
         </h1>
-        
-        {/* Subtitle */}
-        <p className={`hero-2025-subtitle text-white/90 text-center hero-animate hero-subtitle ${loaded ? 'opacity-100' : 'opacity-0'}`}>
-          Super-smart AI Agents That Talk, Text, &amp; Email. Go Live Fast. Scale Even Faster.
+
+        {/* Subheadline */}
+        <p
+          className={
+            "mt-6 text-center text-lg md:text-2xl text-gray-100/90 font-medium max-w-2xl mx-auto transition-all duration-700 delay-100 " +
+            (loaded ? "opacity-80 translate-y-0" : "opacity-0 translate-y-8")
+          }
+        >
+          Super-smart voice, text & email AI Agents that answer, engage, and convert your leads 24/7. No code required.
         </p>
-        
-        {/* CTA Buttons */}
-        <div className={`cta-group hero-animate hero-cta ${loaded ? 'opacity-100' : 'opacity-0'}`}>
-          <Link to="/contact">
-            <button 
-              className="cta-primary ripple-container"
-              onClick={createRipple}
-            >
-              What's an AI Agent?
-            </button>
-          </Link>
-          
-          <Link to="/demo">
-            <button 
-              className="cta-primary ripple-container"
-              onClick={createRipple}
+
+        {/* CTA Buttons - prominent and clear */}
+        <div
+          className={
+            "mt-10 flex flex-col sm:flex-row gap-4 items-center justify-center transition-all duration-700 delay-200 " +
+            (loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8")
+          }
+        >
+          <Link to="/demo" className="w-full sm:w-auto">
+            <button
+              className="px-8 py-4 rounded-full text-lg font-bold text-white bg-gradient-to-r from-[#ffd700] to-[#9b87f5] shadow-lg hover:from-[#ffe873] hover:to-[#6342ff] transition-all duration-200 w-full sm:w-auto"
+              tabIndex={0}
             >
               Try Demos
             </button>
           </Link>
-          
-          <Link to="/contact">
-            <button className="cta-secondary">
+          <Link to="/contact" className="w-full sm:w-auto">
+            <button
+              className="px-8 py-4 rounded-full text-lg font-bold text-white bg-white/10 border border-white/30 shadow-md hover:bg-white/20 transition-all duration-200 w-full sm:w-auto"
+              tabIndex={0}
+            >
               Talk to an AI Agent now
             </button>
           </Link>
