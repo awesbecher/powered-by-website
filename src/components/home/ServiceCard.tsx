@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { Phone, MessageCircle } from "lucide-react";
 import { useEffect } from "react";
@@ -16,15 +16,12 @@ export const ServiceCard = ({ title, description, link, logo, category }: Servic
   const { toast } = useToast();
   const navigate = useNavigate();
   
-  // When the card is clicked, direct users to the destination
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     
-    // Check if the link is an external URL
     if (link.startsWith('http')) {
       window.open(link, '_blank');
     } else {
-      // Use React Router navigation instead of direct window.location.href
       navigate(link);
     }
   };

@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { Phone, Clock, MessageCircle, DollarSign, Zap, Shield } from "lucide-react";
 
 const BenefitCard = ({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) => {

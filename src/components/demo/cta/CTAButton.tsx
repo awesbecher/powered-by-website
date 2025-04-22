@@ -6,11 +6,12 @@ import { ArrowRight } from "lucide-react";
 interface CTAButtonProps extends ButtonProps {
   children: React.ReactNode;
   showArrow?: boolean;
+  onClick?: () => void;  // Add onClick prop to interface
 }
 
-export const CTAButton = ({ children, showArrow = true, ...props }: CTAButtonProps) => {
+export const CTAButton = ({ children, showArrow = true, onClick, ...props }: CTAButtonProps) => {
   return (
-    <Button {...props}>
+    <Button onClick={onClick} {...props}>
       {children}
       {showArrow && <ArrowRight className="ml-2 h-5 w-5" />}
     </Button>

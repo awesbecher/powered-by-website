@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { Mic, MessageCircle, Settings, Clock, Shield, Phone, Calendar, User, BarChart, ArrowRightCircle } from "lucide-react";
 
 interface FeatureCardProps {
@@ -20,7 +20,6 @@ const FeatureCard = ({ icon, title, description }: FeatureCardProps) => {
 export const FeaturesSection = () => {
   return (
     <section className="py-2 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
-      {/* Updated title split into two lines */}
       <div className="text-center mb-8">
         <h2 className="text-3xl sm:text-4xl font-bold text-white">
           Try an AI Receptionist yourself!
@@ -30,7 +29,6 @@ export const FeaturesSection = () => {
         </h3>
       </div>
       
-      {/* Business card grid with center aligned content and reduced width - increased font size for business categories */}
       <div className="mb-12 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-[60%] mx-auto sm:max-w-[50%]">
         <div className="relative group">
           <div className="absolute -inset-1 bg-gradient-to-r from-[#6342ff] to-[#9b87f5] rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-300"></div>

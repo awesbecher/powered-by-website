@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { Calendar, Phone, MessageCircle } from "lucide-react";
 
 interface FeatureCardProps {

@@ -1,5 +1,4 @@
-
-import React, { useState } from "react";
+import React from 'react';
 import { Badge } from "@/components/ui/badge";
 import { Linkedin, Github, Mail } from "lucide-react";
 
@@ -64,9 +63,9 @@ export const TeamSection = ({ initialLoad }: TeamSectionProps) => {
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
       
       <div className="text-center mb-12">
-        <Badge className="mb-3 px-3 py-1 text-sm border-purple-400/30 bg-purple-400/10 text-purple-200">
+        <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-purple-400/30 bg-purple-400/10 text-purple-200 shadow-sm shadow-purple-500/20">
           Our Team
-        </Badge>
+        </div>
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Meet The Team Behind Powered_by</h2>
         <p className="text-lg text-gray-300 max-w-2xl mx-auto">
           A global team of AI experts, engineers, and business strategists committed to bringing cutting-edge AI to SMBs.

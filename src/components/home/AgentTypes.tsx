@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { useState } from "react";
 import { Phone, Mail, Smartphone, Settings, MessageSquare, Slack } from "lucide-react";
 import { useInView } from "framer-motion";
@@ -73,7 +73,7 @@ export const AgentTypes = () => {
     },
     {
       title: "Team Collaboration Agents",
-      description: "AI agents that act as virtual team members, helping coordinate tasks, tracking project milestones, and even sending timely reminders. These digital workers keep everyone on the same page, reducing communication gaps and facilitating smoother collaboration.",
+      description: "AI agents that act as virtual team members, helping coordinate tasks, track project milestones, and even send timely reminders. These digital workers keep everyone on the same page, reducing communication gaps and facilitating smoother collaboration.",
       icon: <Slack size={24} />
     },
     {

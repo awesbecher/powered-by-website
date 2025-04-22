@@ -1,5 +1,4 @@
-
-import React from "react";
+import React from 'react';
 import { Badge } from "@/components/ui/badge";
 import { Lightbulb, Target, LineChart } from "lucide-react";
 
@@ -13,9 +12,9 @@ export const MissionSection = ({ initialLoad }: MissionSectionProps) => {
       ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
       
       <div className="text-center mb-12">
-        <Badge className="mb-3 px-3 py-1 text-sm border-purple-400/30 bg-purple-400/10 text-purple-200">
+        <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-purple-400/30 bg-purple-400/10 text-purple-200 shadow-sm shadow-purple-500/20">
           Our Mission
-        </Badge>
+        </div>
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Why We Exist</h2>
         <div className="w-24 h-1 bg-gradient-to-r from-[#9b87f5] to-[#6342ff] mx-auto"></div>
       </div>

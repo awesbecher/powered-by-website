@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { TechnicalFeatureItem } from "./technical/TechnicalFeatureItem";
@@ -79,7 +79,7 @@ export const TechnicalSection = () => {
             
             <div className="space-y-6">
               {technicalFeaturesData.map((feature, index) => (
-                <TechnicalFeatureItem 
+                <TechnicalFeatureItem
                   key={index}
                   title={feature.title}
                   description={feature.description}

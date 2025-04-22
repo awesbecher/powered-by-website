@@ -1,5 +1,4 @@
-
-import React from "react";
+import React from 'react';
 import { AboutPageButtons } from "@/components/home/AboutPageButtons";
 import { Sparkles, LineChart, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -16,9 +15,9 @@ export const AboutHero = ({ initialLoad, onScrollToSection, whoWeAreRef }: About
       <div className={`text-center transition-all duration-1000 ease-out transform
         ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
         
-        <Badge className="mb-6 px-4 py-1.5 text-sm border-purple-400/30 bg-purple-400/10 text-purple-200">
-          Our Story
-        </Badge>
+        <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-purple-400/30 bg-purple-400/10 text-purple-200 shadow-sm shadow-purple-500/20">
+          About Us
+        </div>
         
         <h1 className="text-4xl md:text-6xl font-bold mb-6 flex flex-col items-center">
           <div className="flex items-center gap-2">

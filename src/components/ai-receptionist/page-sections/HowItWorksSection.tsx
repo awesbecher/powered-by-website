@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { Phone, Bot, Calendar, BarChart } from "lucide-react";
 
 const StepCard = ({ 

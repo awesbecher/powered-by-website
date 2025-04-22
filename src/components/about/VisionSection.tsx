@@ -1,5 +1,4 @@
-
-import React from "react";
+import React from 'react';
 import { Badge } from "@/components/ui/badge";
 import { OptimizedImage } from "@/components/shared/OptimizedImage";
 import "@/components/ui/animations.css";
@@ -25,9 +24,9 @@ export const VisionSection = ({ initialLoad }: VisionSectionProps) => {
       
       <div className="backdrop-blur-md bg-gradient-to-br from-[#2a1a47]/40 to-[#1a0b2e]/40 rounded-2xl border border-[#9b87f5]/20 p-8 md:p-12 animate-scale-in">
         <div className="max-w-4xl mx-auto text-center">
-          <Badge className="mb-3 px-3 py-1 text-sm border-purple-400/30 bg-purple-400/10 text-purple-200">
+          <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-purple-400/30 bg-purple-400/10 text-purple-200 shadow-sm shadow-purple-500/20">
             Our Vision
-          </Badge>
+          </div>
           
           <h2 id="vision-heading" className="text-3xl md:text-4xl font-bold text-white mb-8">The Future We're Building</h2>
           
