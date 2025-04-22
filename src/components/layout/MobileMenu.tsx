@@ -1,85 +1,84 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { X } from 'lucide-react';
 
-import React, { useState, useRef, useEffect } from "react";
-import NavLink, { NavLinkProps } from "./NavLink"; // Fix import
-import ConsultButton from "./ConsultButton"; // Fix import
-import { useIsMobile } from "@/hooks/use-mobile";
-import { useClickOutside } from "@/hooks/use-click-outside"; // Fix hook import
-import { Menu, X } from "lucide-react";
-
-interface MobileMenuProps {
-  navItems: NavLinkProps[];
-  showConsultButton: boolean;
+interface NavLinkProps {
+  href: string;
+  isExternal?: boolean;
+  isMobile: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ navItems, showConsultButton }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const isMobile = useIsMobile();
-  const menuRef = useRef(null);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const closeMenu = () => {
-    setIsOpen(false);
-  };
-
-  useClickOutside(menuRef, closeMenu);
-
-  // Disable scrolling when the mobile menu is open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
+const NavLink: React.FC<NavLinkProps> = ({ href, isExternal, isMobile, onClick, children }) => {
+  const handleClick = () => {
+    if (isMobile) {
+      onClick();
     }
+  };
 
-    // Cleanup function to re-enable scrolling when the component unmounts
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen]);
+  if (isExternal) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block py-2 px-4 text-sm hover:bg-gray-700 text-white"
+        onClick={handleClick}
+      >
+        {children}
+      </a>
+    );
+  }
 
   return (
-    <div className="md:hidden relative">
-      {/* Hamburger Menu Button */}
-      <button
-        onClick={toggleMenu}
-        className="text-white focus:outline-none transition-transform transform hover:scale-110"
-        aria-label={isOpen ? "Close Menu" : "Open Menu"}
-      >
-        {isOpen ? <X size={30} /> : <Menu size={30} />}
-      </button>
+    <Link
+      to={href}
+      className="block py-2 px-4 text-sm hover:bg-gray-700 text-white"
+      onClick={handleClick}
+    >
+      {children}
+    </Link>
+  );
+};
 
-      {/* Mobile Menu Dropdown */}
-      {isOpen && (
-        <div
-          ref={menuRef}
-          className="absolute top-0 right-0 mt-12 w-screen min-h-screen bg-[#222222]/95 backdrop-blur-lg rounded-md shadow-xl z-50 overflow-y-auto"
-        >
-          <div className="container mx-auto p-4 flex flex-col gap-4">
-            {/* Navigation Links */}
-            {navItems.map((item, index) => (
-              <NavLink
-                key={index}
-                href={item.href}
-                isExternal={item.external || false}
-                isMobile={true}
-                onClick={closeMenu}
-              >
-                {item.title}
-              </NavLink>
-            ))}
+interface MobileMenuProps {
+  isOpen: boolean;
+  closeMenu: () => void;
+}
 
-            {/* Consult Button */}
-            {showConsultButton && (
-              <div className="mt-4" onClick={closeMenu}>
-                <ConsultButton show={true} />
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, closeMenu }) => {
+  const menuItems = [
+    { label: 'Home', href: '/' },
+    { label: 'About', href: '/about' },
+    { label: 'Demos', href: '/demo' },
+    { label: 'Contact', href: '/contact' },
+    { label: 'AI Agency', href: '/ai-agency' },
+    { label: 'Agent Marketplace', href: '/agent-marketplace' },
+    { label: 'Careers', href: '/careers' },
+    { label: 'News', href: '/news' },
+  ];
+
+  return (
+    <div className={`fixed top-0 left-0 w-full h-full bg-gray-800 z-50 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out`}>
+      <div className="flex items-center justify-between p-4">
+        <span className="text-lg font-bold text-white">Menu</span>
+        <button onClick={closeMenu} className="p-2 text-gray-50 hover:text-white">
+          <X className="h-6 w-6" />
+        </button>
+      </div>
+      <nav className="flex flex-col">
+        {menuItems.map((item) => (
+          <NavLink
+            href={item.href}
+            isExternal={item.isExternal}
+            isMobile={true}
+            onClick={closeMenu}
+          >
+            {item.label}
+          </NavLink>
+        ))}
+      </nav>
     </div>
   );
 };

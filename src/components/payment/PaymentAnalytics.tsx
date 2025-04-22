@@ -1,198 +1,71 @@
-import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Loader2, RefreshCw, DollarSign, Users, CreditCard, AlertTriangle } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
-import { toast } from "sonner";
+import React, { useEffect, useState } from 'react';
+import { BarChart, Bar } from 'recharts';
 
-interface PaymentAnalytics {
-  period: {
-    start: string;
-    end: string;
-  };
-  overview: {
-    totalPayments: number;
-    successfulPayments: number;
-    failedPayments: number;
-    successRate: number;
-    totalAmount: number;
-    currency: string;
-  };
-  paymentMethods: Record<string, number>;
-  refunds: {
-    count: number;
-    amount: number;
-  };
+interface PaymentAnalyticsProps {
+  data: { date: string; value: number }[];
 }
 
-const PaymentAnalytics = () => {
-  const [analytics, setAnalytics] = useState<PaymentAnalytics | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const formatCurrency = (amount: number, currency = 'usd') => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: currency,
-    }).format(amount);
-  };
-
-  const calculatePercentage = (value: number | string, total: number): number => {
-    const numericValue = typeof value === 'string' ? parseFloat(value) : value;
-    return (numericValue / total) * 100;
-  };
-
-  const fetchAnalytics = async () => {
-    setIsLoading(true);
-    setError(null);
-    
-    try {
-      const endDate = new Date();
-      const startDate = new Date();
-      startDate.setDate(startDate.getDate() - 30);
-      
-      const { data, error } = await supabase.functions.invoke('payment-analytics', {
-        body: {
-          startDate: startDate.toISOString(),
-          endDate: endDate.toISOString()
-        }
-      });
-      
-      if (error) {
-        throw new Error(error.message);
-      }
-      
-      setAnalytics(data);
-    } catch (err) {
-      console.error('Error fetching analytics:', err);
-      setError('Failed to load payment analytics');
-      toast.error('Failed to load payment analytics');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+const PaymentAnalytics: React.FC<PaymentAnalyticsProps> = ({ data }) => {
+  const [currentValue, setCurrentValue] = useState(0);
+  const [previousValue, setPreviousValue] = useState(0);
+  const [percentChange, setPercentChange] = useState(0);
 
   useEffect(() => {
-    fetchAnalytics();
-  }, []);
+    if (data.length > 0) {
+      setCurrentValue(data[data.length - 1].value);
+      setPreviousValue(data.length > 1 ? data[data.length - 2].value : 0);
+    }
+  }, [data]);
 
-  if (isLoading && !analytics) {
-    return (
-      <Card>
-        <CardContent className="pt-6 flex justify-center items-center h-64">
-          <div className="flex flex-col items-center">
-            <Loader2 className="h-8 w-8 animate-spin text-primary mb-4" />
-            <p>Loading payment analytics...</p>
-          </div>
-        </CardContent>
-      </Card>
-    );
-  }
+  useEffect(() => {
+    if (previousValue !== 0) {
+      const percentChange = ((currentValue - previousValue) / previousValue * 100) as number;
+      setPercentChange(percentChange);
+    } else {
+      setPercentChange(0);
+    }
+  }, [currentValue, previousValue]);
 
-  if (error && !analytics) {
-    return (
-      <Card>
-        <CardContent className="pt-6 flex justify-center items-center h-64">
-          <div className="flex flex-col items-center text-center">
-            <AlertTriangle className="h-8 w-8 text-amber-500 mb-4" />
-            <p className="mb-4">{error}</p>
-            <Button variant="outline" onClick={fetchAnalytics} size="sm">
-              <RefreshCw className="mr-2 h-4 w-4" /> Try Again
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
-    );
-  }
+  const gradientOffset = () => {
+    const dataMax = Math.max(...data.map((item) => item.value));
+    const dataMin = Math.min(...data.map((item) => item.value));
 
-  if (!analytics) {
-    return null;
-  }
+    if (dataMax <= 0) {
+      return 0;
+    }
+    if (dataMin >= 0) {
+      return 1;
+    }
+
+    return dataMax / (dataMax - dataMin);
+  };
+
+  const off = gradientOffset();
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex justify-between items-center">
-          <span>Payment Analytics</span>
-          <Button 
-            variant="outline" 
-            size="sm" 
-            onClick={fetchAnalytics} 
-            disabled={isLoading}
-            className="bg-[#1A1F2C] text-white font-bold border-white/20 hover:bg-[#2A3342]"
-          >
-            {isLoading ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Updating...
-              </>
-            ) : (
-              <>
-                <RefreshCw className="mr-2 h-4 w-4" /> Refresh
-              </>
-            )}
-          </Button>
-        </CardTitle>
-        <CardDescription>
-          Data from {new Date(analytics.period.start).toLocaleDateString()} to {new Date(analytics.period.end).toLocaleDateString()}
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-          <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-            <div className="flex items-center mb-2">
-              <DollarSign className="h-5 w-5 text-green-500 mr-2" />
-              <h3 className="text-sm font-medium">Total Revenue</h3>
-            </div>
-            <p className="text-2xl font-bold">
-              {formatCurrency(analytics.overview.totalAmount, analytics.overview.currency)}
-            </p>
-            <p className="text-xs text-gray-500 mt-1">
-              After refunds: {formatCurrency(analytics.overview.totalAmount - analytics.refunds.amount)}
-            </p>
-          </div>
-          
-          <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-            <div className="flex items-center mb-2">
-              <Users className="h-5 w-5 text-blue-500 mr-2" />
-              <h3 className="text-sm font-medium">Transactions</h3>
-            </div>
-            <p className="text-2xl font-bold">{analytics.overview.totalPayments}</p>
-            <p className="text-xs text-gray-500 mt-1">
-              Success rate: {calculatePercentage(analytics.overview.successRate, 100).toFixed(1)}%
-            </p>
-          </div>
-          
-          <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-            <div className="flex items-center mb-2">
-              <CreditCard className="h-5 w-5 text-purple-500 mr-2" />
-              <h3 className="text-sm font-medium">Refunds</h3>
-            </div>
-            <p className="text-2xl font-bold">{analytics.refunds.count}</p>
-            <p className="text-xs text-gray-500 mt-1">
-              Amount: {formatCurrency(analytics.refunds.amount)}
-            </p>
-          </div>
+    <div className="bg-white/5 border-white/10 p-4 rounded-md">
+      <h3 className="text-lg font-medium text-white mb-2">Payment Analytics</h3>
+      <div className="flex items-baseline justify-between">
+        <div className="space-y-2">
+          <p className="text-2xl font-bold text-white">${currentValue.toFixed(2)}</p>
+          <p className="text-sm text-gray-400">Total Revenue</p>
         </div>
-        
-        <h3 className="font-medium mb-3">Payment Methods</h3>
-        <div className="space-y-3">
-          {Object.entries(analytics.paymentMethods).map(([method, count]) => (
-            <div key={method} className="flex items-center justify-between">
-              <div className="flex items-center">
-                <div className="w-3 h-3 rounded-full bg-primary mr-2"></div>
-                <span className="capitalize">{method.replace('_', ' ')}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-medium">{count}</span>
-                <span className="text-xs text-gray-500">
-                  ({calculatePercentage(count, analytics.overview.totalPayments).toFixed(1)}%)
-                </span>
-              </div>
-            </div>
-          ))}
+        <div className={`text-sm font-medium ${percentChange >= 0 ? 'text-green-500' : 'text-red-500'}`}>
+          {percentChange >= 0 ? '+' : ''}{percentChange.toFixed(2)}%
         </div>
-      </CardContent>
-    </Card>
+      </div>
+      <div className="mt-4">
+        <BarChart width={300} height={100} data={data}>
+          <defs>
+            <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+              <stop offset={off} stopColor="#8884d8" stopOpacity={1} />
+              <stop offset={off} stopColor="#8884d8" stopOpacity={0} />
+            </linearGradient>
+          </defs>
+          <Bar dataKey="value" stroke="#8884d8" fill="url(#colorUv)" />
+        </BarChart>
+      </div>
+    </div>
   );
 };
 

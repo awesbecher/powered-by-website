@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import CustomBadge from "@/components/ui/custom-badge";
 import { 
   ArrowRight, 
   Bot, 

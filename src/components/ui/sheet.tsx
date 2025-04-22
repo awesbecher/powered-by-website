@@ -1,7 +1,3 @@
-
-// Fix the type error in the sheet component
-// Error: src/components/ui/sheet.tsx(62,37): error TS2322: Type 'string' is not assignable to type '"right" | "top" | "bottom" | "left"'.
-
 import * as React from "react"
 import * as SheetPrimitive from "@radix-ui/react-dialog"
 import { cva, type VariantProps } from "class-variance-authority"
@@ -51,10 +47,12 @@ const sheetVariants = cva(
   }
 )
 
+type SheetSide = "top" | "right" | "bottom" | "left";
+
 interface SheetContentProps
   extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
     VariantProps<typeof sheetVariants> {
-  side: "top" | "right" | "bottom" | "left";
+  side: SheetSide;
 }
 
 const SheetContent = React.forwardRef<

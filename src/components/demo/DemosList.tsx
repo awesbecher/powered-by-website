@@ -1,5 +1,6 @@
+
 import React from 'react';
-import { ServiceCard } from "@/components/demo/ServiceCard";
+import ServiceCard from "@/components/demo/ServiceCard";
 
 interface ServiceProps {
   title: string;
