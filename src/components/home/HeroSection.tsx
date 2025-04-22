@@ -70,7 +70,7 @@ export const HeroSection = ({ subtitle, initialLoad }: HeroSectionProps) => {
                   text-4xl md:text-6xl lg:text-7xl tracking-tight`
           }
         >
-          Custom AI Agents for <span className="text-[#9b87f5]">SMBs</span>
+          Custom AI Agent Solutions for <span className="text-[#9b87f5]">SMBs</span>
         </h1>
 
         {/* Subheadline */}
@@ -80,7 +80,7 @@ export const HeroSection = ({ subtitle, initialLoad }: HeroSectionProps) => {
             (loaded ? "opacity-80 translate-y-0" : "opacity-0 translate-y-8")
           }
         >
-          Super-smart voice, text & email AI Agents that answer, engage, and convert your leads 24/7. No code required.
+          Automate Conversations, Accelerate Growth: AI Agents for Voice, Phone, Email, and Text.
         </p>
 
         {/* CTA Buttons */}
