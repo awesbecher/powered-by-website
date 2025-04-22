@@ -5,16 +5,29 @@ import Footer from "@/components/layout/Footer";
 import VoiceConfigContent from "@/components/voice-config/VoiceConfigContent";
 
 const VoiceConfig = () => {
-  // Inject PlayHT script
+  // Inject PlayHT Web SDK and initialization scripts
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://play.ht/widgets/agent.js';
-    script.setAttribute('agent-id', 'YOUR_AGENT_ID'); // Replace with your actual agent ID
-    script.async = true;
-    document.body.appendChild(script);
+    // First script for PlayHT Web SDK
+    const sdkScript = document.createElement('script');
+    sdkScript.type = 'text/javascript';
+    sdkScript.src = 'https://cdn.jsdelivr.net/npm/@play-ai/agent-web-sdk@ht';
+    sdkScript.async = true;
+    document.head.appendChild(sdkScript);
 
+    // Second script for agent initialization
+    const initScript = document.createElement('script');
+    initScript.type = 'text/javascript';
+    initScript.innerHTML = `
+      addEventListener("load", () => {
+        PlayAI.open('QkoU6baIf2yLhMgZbsdhA');
+      });
+    `;
+    document.head.appendChild(initScript);
+
+    // Cleanup function to remove scripts when component unmounts
     return () => {
-      document.body.removeChild(script);
+      document.head.removeChild(sdkScript);
+      document.head.removeChild(initScript);
     };
   }, []);
 
