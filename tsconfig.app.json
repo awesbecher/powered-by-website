@@ -21,6 +21,9 @@
     "noImplicitAny": false,
     "noFallthroughCasesInSwitch": false,
 
+    /* Type Declarations */
+    "types": ["react", "react-dom", "react-router-dom", "framer-motion"],
+
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
