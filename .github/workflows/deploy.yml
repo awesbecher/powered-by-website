@@ -9,22 +9,13 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    container:
-      image: node:18.19.0-slim
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Verify Node.js version
-        run: |
-          node -v
-          npm -v
-
       - name: Install dependencies
-        run: |
-          npm config set engine-strict true
-          npm ci
+        run: npm ci
 
       - name: Build the project
         run: npm run build
