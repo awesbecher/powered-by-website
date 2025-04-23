@@ -9,4 +9,4 @@ on:
 
 environment:
   name: staging
-  url: https://powered-by-website-staging.web.app 
+  url: https://powered-by-website-staging.vercel.app 
