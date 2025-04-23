@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
@@ -32,7 +32,7 @@ interface AgentCard {
   industry: string;
   features: string[];
   template: string;
-  icon: JSX.Element;
+  icon: ReactNode;
   categories: string[];
 }
 
@@ -195,14 +195,6 @@ const agents: AgentCard[] = [
   }
 ];
 
-const Badge = ({ children, className, ...props }) => {
-  return (
-    <span className={`px-2 py-1 rounded-full text-xs ${className}`} {...props}>
-      {children}
-    </span>
-  );
-};
-
 const AgentMarketplace = () => {
   const navigate = useNavigate();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -355,7 +347,10 @@ const AgentMarketplace = () => {
                 </ul>
                 <div className="flex flex-wrap gap-2 mb-6">
                   {agent.categories.map((category, idx) => (
-                    <Badge key={idx} className="bg-white/10 text-gray-300 border-white/5 px-2 text-xs">
+                    <Badge 
+                      variant="secondary"
+                      className="bg-white/10 text-gray-300 border-white/5 px-2 text-xs"
+                    >
                       {category.charAt(0).toUpperCase() + category.slice(1)}
                     </Badge>
                   ))}
