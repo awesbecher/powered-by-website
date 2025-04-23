@@ -1,4 +1,3 @@
-
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
@@ -23,13 +22,16 @@ export default defineConfig({
   plugins: [
     react(),
     tsconfigPaths(),
+    // Only enable Lovable tagger in development mode
     mode === "development" && componentTagger(),
   ].filter(Boolean),
   server: {
     port: 8080,
-    allowedHosts: [
-      '8cc87c67-4a57-4d06-9e12-7f96ed3d254a.lovableproject.com'
-    ]
+    // Only allow Lovable domain in development
+    allowedHosts: mode === "development" ? [
+      '8cc87c67-4a57-4d06-9e12-7f96ed3d254a.lovableproject.com',
+      'localhost'
+    ] : undefined
   },
   build: {
     sourcemap: true,
