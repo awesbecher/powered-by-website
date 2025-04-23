@@ -62,7 +62,6 @@ This project is built with .
 
 ## How can I deploy this project?
 
-
 Simply open [Lovable](https://lovable.dev/projects/8cc87c67-4a57-4d06-9e12-7f96ed3d254a) and click on Share -> Publish.
 
 ## I want to use a custom domain - is that possible?
@@ -70,3 +69,4 @@ Simply open [Lovable](https://lovable.dev/projects/8cc87c67-4a57-4d06-9e12-7f96e
 We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
 
 # Trigger rebuild
+# Test deployment workflow - 2024-04-23
