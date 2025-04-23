@@ -15,11 +15,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Setup Node.js 18
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18.x'
-          cache: 'npm'
+      - name: Setup Node.js with nvm
+        run: |
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          nvm install
+          nvm use
           
       - name: Install dependencies
         run: npm install --legacy-peer-deps
@@ -34,11 +36,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Setup Node.js 18
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18.x'
-          cache: 'npm'
+      - name: Setup Node.js with nvm
+        run: |
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          nvm install
+          nvm use
           
       - name: Install dependencies
         run: npm install --legacy-peer-deps
@@ -65,11 +69,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Setup Node.js 18
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18.x'
-          cache: 'npm'
+      - name: Setup Node.js with nvm
+        run: |
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          nvm install
+          nvm use
           
       - name: Install dependencies
         run: npm install --legacy-peer-deps
