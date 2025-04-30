@@ -119,7 +119,7 @@ const EmptyChat: React.FC<{ setInputMessage: (message: string) => void }> = ({ s
     <div className="text-center flex flex-col items-center justify-center h-full animate-fade-in">
       <div className="bg-[#9b87f5]/10 p-4 rounded-full mb-4 transition-all duration-300 hover:bg-[#9b87f5]/20 transform hover:scale-105">
         <img 
-          src="/lovable-uploads/273d4b9e-a8a8-49f9-9309-824aa7cd2711.png" 
+          src="/assets/images/273d4b9e-a8a8-49f9-9309-824aa7cd2711.png" 
           alt="Voice Agent Builder Icon" 
           className="h-10 w-10"
         />

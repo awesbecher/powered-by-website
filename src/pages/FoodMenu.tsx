@@ -61,7 +61,7 @@ const FoodMenu = () => {
     <div className="min-h-screen w-full bg-[#222222] px-4 py-16 sm:px-6 lg:px-8">
       {!isMobile && <div className="absolute top-8 right-8">
         <img 
-          src="/lovable-uploads/f61255a3-5368-4739-a068-ec3431ea636f.png" 
+          src="/assets/images/f61255a3-5368-4739-a068-ec3431ea636f.png" 
           alt="GrandView Hotel Logo" 
           className="h-24 w-auto"
         />
@@ -110,7 +110,7 @@ const FoodMenu = () => {
       <div className="mx-auto max-w-6xl mt-20">
         <div className="bg-white rounded-lg p-4 shadow-lg">
           <img 
-            src="/lovable-uploads/ac8b8cfd-fc02-4e33-88bc-33898e7820f9.png" 
+            src="/assets/images/ac8b8cfd-fc02-4e33-88bc-33898e7820f9.png" 
             alt="Restaurant Menu" 
             className="w-full h-auto"
           />

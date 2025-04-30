@@ -76,9 +76,9 @@ export const FAQSection = () => {
   };
 
   return (
-    <section className="py-24 px-4">
+    <section className="py-12 px-4">
       <div className="container mx-auto max-w-4xl">
-        <div className="text-center mb-16">
+        <div className="text-center mb-6">
           <h2 className="text-4xl font-bold text-white mb-6">Frequently Asked Questions</h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Common questions about our AI voice agents and services

@@ -17,14 +17,15 @@ interface NavItem {
 
 export const navItems: NavItemWithChildren[] = [
   {
-    name: "Products",
+    name: "Solutions",
     path: "/products",
     children: [
       { name: "AI Voice Chat", path: "/voice-chat" },
       { name: "AI Receptionist", path: "/ai-receptionist" },
       { name: "Email Agent", path: "/email-agent" },
-      { name: "Text Agent", path: "/text-agent" },
-      { name: "OutboundAI", path: "https://tryoutbound.ai", isExternal: true }
+      { name: "SMS-Text Agent", path: "/text-agent" },
+      { name: "OutboundAI", path: "https://tryoutbound.ai", isExternal: true },
+      { name: "Virtual SE", path: "https://www.getvirtual.se", isExternal: true }
     ]
   },
   {
@@ -43,6 +44,10 @@ export const navItems: NavItemWithChildren[] = [
       { name: "Videos", path: "https://www.youtube.com/@Powered_byAgency", isExternal: true },
       { name: "Podcast", path: "https://powered-by-ai-agents.jellypod.ai/", isExternal: true }
     ]
+  },
+  {
+    name: "About",
+    path: "/about",
   }
 ];
 

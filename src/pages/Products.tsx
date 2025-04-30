@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { ServiceCard } from "@/components/products/ServiceCard";
 import { ProductsHero } from "@/components/products/ProductsHero";
@@ -25,6 +24,24 @@ const Products = () => {
     setInitialLoad(false);
     window.scrollTo(0, 0);
     
+    // Save current scroll position in history state
+    const currentState = window.history.state || {};
+    window.history.replaceState(
+      { ...currentState, scrollY: window.scrollY },
+      document.title
+    );
+    
+    // Handle popstate (back/forward navigation)
+    const handlePopState = (event: PopStateEvent) => {
+      if (event.state?.scrollY !== undefined) {
+        window.scrollTo(0, event.state.scrollY);
+      } else {
+        window.scrollTo(0, 0);
+      }
+    };
+    
+    window.addEventListener('popstate', handlePopState);
+    
     (async function () {
       try {
         console.log("Initializing Cal.com embed at Products page level");
@@ -42,6 +59,10 @@ const Products = () => {
         console.error("Error initializing Cal.com embed at Products page level:", error);
       }
     })();
+    
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
   }, []);
 
   useEffect(() => {
@@ -160,6 +181,7 @@ const Products = () => {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
+          id="featured-solutions"
         >
           <motion.div variants={itemVariants}>
             <SectionTitle title="Featured Agent Solutions:" linked={false} />

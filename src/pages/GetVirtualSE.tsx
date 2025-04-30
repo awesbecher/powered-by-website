@@ -56,7 +56,7 @@ const GetVirtualSE = () => {
       {/* Background image at the top */}
       <div className="fixed inset-0 z-0">
         <img 
-          src="/lovable-uploads/c86cda73-fde4-4673-92c8-fd650286b9e6.png" 
+          src="/assets/images/c86cda73-fde4-4673-92c8-fd650286b9e6.png" 
           alt="Team planning at whiteboard" 
           className="w-full h-[60vh] object-cover object-center"
         />

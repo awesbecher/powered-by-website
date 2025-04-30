@@ -1,9 +1,7 @@
 import React from 'react';
 import { useEffect, useState, useRef } from "react";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import PageLayout from "@/components/layout/PageLayout";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
-
 import { AboutHero } from "@/components/about/AboutHero";
 import { MissionSection } from "@/components/about/MissionSection";
 import { VisionSection } from "@/components/about/VisionSection";
@@ -56,7 +54,7 @@ const About = () => {
   };
 
   return (
-    <div className="min-h-screen w-full relative">
+    <PageLayout>
       {/* Skip to main content link for accessibility */}
       <a 
         ref={skipLinkRef}
@@ -73,7 +71,7 @@ const About = () => {
 
       <div className="fixed inset-0 z-0 opacity-50">
         <img 
-          src="/lovable-uploads/182eda36-d0bd-4c57-88b7-2f0dd4938f61.png" 
+          src="/assets/images/182eda36-d0bd-4c57-88b7-2f0dd4938f61.png" 
           alt="Team collaboration background" 
           className="w-full h-full object-cover object-top"
           aria-hidden="true"
@@ -82,11 +80,7 @@ const About = () => {
       </div>
 
       <div className="relative z-10 min-h-screen bg-transparent">
-        <div className="sticky top-0 z-50 w-full">
-          <Navbar />
-        </div>
-
-        <main id="main-content" tabIndex={-1} className="outline-none focus:outline-none">
+        <main id="main-content" tabIndex={-1} className="outline-none focus:outline-none mx-auto w-full max-w-5xl px-4 md:px-6">
           <AboutHero 
             initialLoad={initialLoad}
             onScrollToSection={scrollToSection}
@@ -118,9 +112,7 @@ const About = () => {
           useCalendly={true}
         />
       </div>
-
-      <Footer />
-    </div>
+    </PageLayout>
   );
 };
 

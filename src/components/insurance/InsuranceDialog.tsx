@@ -42,7 +42,7 @@ const InsuranceDialog = ({
               <div className="relative">
                 <Avatar className="h-20 w-20 rounded-full border-2 border-white shadow-md">
                   <AvatarImage 
-                    src="/lovable-uploads/d346b971-ac00-4e01-b998-88ba7938a22f.png" 
+                    src="/assets/images/d346b971-ac00-4e01-b998-88ba7938a22f.png" 
                     alt="Alex Fisher" 
                     className="object-cover"
                   />
@@ -117,7 +117,7 @@ const InsuranceDialog = ({
             <DialogHeader className="flex flex-row items-center gap-4">
               <Avatar className="w-16 h-16">
                 <AvatarImage 
-                  src="/lovable-uploads/d346b971-ac00-4e01-b998-88ba7938a22f.png"
+                  src="/assets/images/d346b971-ac00-4e01-b998-88ba7938a22f.png"
                   alt="Alex Fisher"
                   className="object-cover"
                 />

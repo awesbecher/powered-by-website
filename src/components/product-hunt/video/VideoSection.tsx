@@ -22,7 +22,7 @@ export const VideoSection: React.FC<VideoSectionProps> = () => {
           <div className="aspect-video relative flex items-center justify-center cursor-pointer group" onClick={handlePlayClick}>
             {/* Custom thumbnail image */}
             <img 
-              src="/lovable-uploads/21245db4-d879-4add-9238-10f627230a98.png"
+              src="/assets/images/21245db4-d879-4add-9238-10f627230a98.png"
               alt="Introducing: POWERED_BY AGENCY - Custom AI Agents for SMBs" 
               className="absolute inset-0 w-full h-full object-cover"
             />

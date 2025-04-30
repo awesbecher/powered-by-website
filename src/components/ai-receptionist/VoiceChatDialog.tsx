@@ -28,7 +28,7 @@ export const VoiceChatDialog = ({
         <div className="flex flex-col items-center space-y-4">
           <Avatar className="w-32 h-32 mx-auto mb-4">
             <AvatarImage
-              src="/lovable-uploads/bd9e9055-ba23-4fcc-9c2a-4fda4b9dd627.png"
+              src="/assets/images/bd9e9055-ba23-4fcc-9c2a-4fda4b9dd627.png"
               alt="AI Receptionist @ Powered_by Agency"
               className="object-cover"
             />

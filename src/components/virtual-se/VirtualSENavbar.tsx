@@ -35,7 +35,7 @@ const VirtualSENavbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <NavbarLogo
-            logoSrc="/lovable-uploads/29391c50-2dfd-4879-9bd5-70914db50c97.png"
+            logoSrc="/assets/images/29391c50-2dfd-4879-9bd5-70914db50c97.png"
             altText="Virtual SE Logo"
             linkPath="/getvirtual-se"
           />

@@ -1,9 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon, MessageCircle, Play, Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { getCalApi } from "@calcom/embed-react";
+import VideoModal from '@/components/shared/VideoModal';
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -11,6 +11,7 @@ interface HeroSectionProps {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
   
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 300);
@@ -98,80 +99,72 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
           transition={{ duration: 0.7 }}
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="inline-block px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm mb-4 text-[#9b87f5] border border-[#9b87f5]/30"
-          >
-            AI Agent Solutions Built For Small & Medium-sized Businesses
-          </motion.div>
-          
-          <h1 
-            className="text-5xl md:text-7xl font-bold text-white mb-6"
-          >
-            <span className="text-gradient">Why should those Silicon Valley <span className="text-[#9b87f5]">nerds</span> have all the fancy AI toys?</span>
-          </h1>
-          
-          <motion.p 
-            className="text-base md:text-xl text-gray-300 max-w-3xl mx-auto mb-10"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
           >
-            SMBs generate 43.5% of U.S. GDP & employ about 46% of all private-sector workers. Our mission is to empower this critically important sector by delivery cutting-edge AI agent solutions that can transform the way businesses work, communicate, & engage customers.
-          </motion.p>
-          
-          <motion.div 
-            className="flex flex-wrap justify-center gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-          >
-            <Button 
-              size="lg" 
-              className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md group"
-              onClick={handleCalendarClick}
-              data-cal-link="team-powered-by-dfbtbb/get-started-today"
-              data-cal-config='{"layout":"month_view"}'
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="inline-block px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm mb-4 text-[#9b87f5] border border-[#9b87f5]/30"
             >
-              Get Started
-              <Calendar className="ml-2 group-hover:scale-110 transition-transform" />
-            </Button>
+              AI Agents That Work as Hard as You Do
+            </motion.div>
             
-            <Button 
-              onClick={handleTalkToAgent}
-              size="lg" 
-              variant="outline" 
-              className="bg-transparent border-2 border-[#9b87f5] text-white hover:bg-[#9b87f5]/20 px-8 py-6 text-lg rounded-md group"
+            <h1 className="text-6xl md:text-8xl font-bold text-white mb-6">
+              Custom AI Agents <br className="hidden md:block" />
+              for <span className="text-[#9b87f5]">SMBs</span>
+            </h1>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
+              Deploy AI voice, email, & SMS-text agents that automate your customer interactions. Our AI agents are custom-trained on your business and can handle support, sales, and scheduling.
+            </p>
+            <motion.div 
+              className="flex flex-wrap justify-center gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.4 }}
             >
-              <MessageCircle className="mr-2 group-hover:scale-110 transition-transform" />
-              Talk to AI Agent
-            </Button>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.8 }}
-            className="mt-8 flex justify-center items-center"
-          >
-            <button 
-              className="flex items-center text-white/80 hover:text-white transition-colors"
-              onClick={() => document.getElementById('approach')?.scrollIntoView({behavior: 'smooth'})}
-            >
-              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mr-3">
-                <Play size={16} className="text-[#9b87f5] ml-1" />
-              </div>
-              <span>See how we work</span>
-            </button>
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="bg-transparent border-2 border-[#9b87f5] text-white hover:bg-[#9b87f5]/20 px-8 py-6 text-lg rounded-md group"
+                onClick={() => window.location.href = '/demo'}
+              >
+                See Demos
+                <ArrowRightIcon className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
+
+              <Button 
+                size="lg" 
+                className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md group"
+                onClick={handleCalendarClick}
+                data-cal-link="team-powered-by-dfbtbb/get-started-today"
+                data-cal-config='{"layout":"month_view"}'
+              >
+                Get Started
+                <Calendar className="ml-2 group-hover:scale-110 transition-transform" />
+              </Button>
+              
+              <Button 
+                onClick={handleTalkToAgent}
+                size="lg" 
+                variant="outline" 
+                className="bg-transparent border-2 border-[#9b87f5] text-white hover:bg-[#9b87f5]/20 px-8 py-6 text-lg rounded-md group"
+              >
+                <MessageCircle className="mr-2 group-hover:scale-110 transition-transform" />
+                Talk to AI Agent
+              </Button>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
-      
-      <div className="absolute top-0 left-0 right-0 bottom-0 z-0 opacity-20">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-600 rounded-full filter blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-indigo-600 rounded-full filter blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
-      </div>
+
+      <VideoModal
+        isOpen={isVideoOpen}
+        onClose={() => setIsVideoOpen(false)}
+        videoId="w6juT92KdRo"
+      />
     </section>
   );
 };

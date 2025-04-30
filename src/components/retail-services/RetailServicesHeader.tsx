@@ -9,7 +9,7 @@ const RetailServicesHeader = () => {
         style={{ width: "280px", height: "110px" }}
       >
         <img 
-          src="/lovable-uploads/a7ad94d4-2964-4f67-bf33-ff3ad3a1ce04.png"
+          src="/assets/images/a7ad94d4-2964-4f67-bf33-ff3ad3a1ce04.png"
           alt="Flagship Barbers Logo"
           className="object-contain w-[240px] h-[100px] filter invert"
         />

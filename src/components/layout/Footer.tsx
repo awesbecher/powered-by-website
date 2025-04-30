@@ -1,4 +1,3 @@
-
 import { ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
@@ -23,10 +22,23 @@ const Footer = () => {
       <footer className="w-full py-4 px-6 bg-gradient-to-r from-[#1a0b2e]/50 via-[#2f1c4a]/50 to-[#1a0b2e]/50 backdrop-blur-sm border-t border-white/5">
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-gray-400 font-light">
-            © 2025 Powered_by Agency, LLC. All rights reserved.
+            2025 Powered_by Agency, LLC. All rights reserved.
           </p>
           
           <div className="flex space-x-4 text-sm text-gray-400">
+            <a 
+              href="mailto:team@poweredby.agency" 
+              className="hover:text-white transition-colors"
+            >
+              Contact
+            </a>
+            <Link 
+              to="/about" 
+              onClick={() => window.scrollTo(0, 0)}
+              className="hover:text-white transition-colors"
+            >
+              About Us
+            </Link>
             <Link 
               to="/terms-of-service" 
               onClick={() => window.scrollTo(0, 0)}
@@ -64,7 +76,7 @@ const Footer = () => {
             >
               <div className="w-6 h-6 rounded-md bg-white flex items-center justify-center">
                 <img 
-                  src="/lovable-uploads/b02dc570-9fbb-41b9-81cf-b85f6d49be5f.png" 
+                  src="/assets/images/b02dc570-9fbb-41b9-81cf-b85f6d49be5f.png" 
                   alt="X Logo" 
                   className="w-6 h-6 object-cover"
                   style={{ objectPosition: "0 0", objectFit: "cover", width: "24px", height: "24px" }}
@@ -80,7 +92,7 @@ const Footer = () => {
             >
               <div className="w-6 h-6 rounded-md bg-white flex items-center justify-center">
                 <img 
-                  src="/lovable-uploads/b02dc570-9fbb-41b9-81cf-b85f6d49be5f.png" 
+                  src="/assets/images/b02dc570-9fbb-41b9-81cf-b85f6d49be5f.png" 
                   alt="LinkedIn Logo" 
                   className="w-6 h-6 object-cover"
                   style={{ objectPosition: "100% 0", objectFit: "cover", width: "24px", height: "24px" }}

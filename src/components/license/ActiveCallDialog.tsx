@@ -42,7 +42,7 @@ const ActiveCallDialog: React.FC<ActiveCallDialogProps> = ({
           <div className="flex items-center space-x-4">
             <div className="relative">
               <Avatar className="h-20 w-20 rounded-full border-2 border-white shadow-md">
-                <AvatarImage src="/lovable-uploads/0d1c3dc0-7aad-4ddd-8b25-1edf45232f70.png" alt="Christina Bell" />
+                <AvatarImage src="/assets/images/0d1c3dc0-7aad-4ddd-8b25-1edf45232f70.png" alt="Christina Bell" />
                 <AvatarFallback>CB</AvatarFallback>
               </Avatar>
               <div className="absolute bottom-1 left-1 flex items-center">

@@ -1,3 +1,6 @@
+// This component has been replaced by CallConfirmationDialog and CallInProgressDialog
+// Please use those components instead
+// This file can be safely deleted
 
 import { Phone } from "lucide-react";
 import { DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -22,7 +25,7 @@ export const VoiceChatDialog = ({
       <DialogHeader className="flex items-start space-x-4">
         <Avatar className="w-20 h-20">
           <AvatarImage
-            src="/lovable-uploads/2d521c8d-084d-4a87-8491-cb795033a1d6.png"
+            src="/assets/images/2d521c8d-084d-4a87-8491-cb795033a1d6.png"
             alt="Jeff Smith from Township Real Estate"
             className="object-cover"
           />

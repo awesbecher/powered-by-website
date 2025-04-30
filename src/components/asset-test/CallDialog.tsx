@@ -37,20 +37,20 @@ const CallDialog: React.FC<CallDialogProps> = ({
 
   let agentName = "Alex Fisher";
   let agentRole = "Planter's Insurance";
-  let avatarSrc = "/lovable-uploads/d346b971-ac00-4e01-b998-88ba7938a22f.png";
+  let avatarSrc = "/assets/images/d346b971-ac00-4e01-b998-88ba7938a22f.png";
   
   if (isMercedesAgent) {
     agentName = "Dave Frankel";
     agentRole = "Mercedes of Tacoma";
-    avatarSrc = "/lovable-uploads/1a963891-b5e5-4c4c-85fd-e5ec489343bd.png";
+    avatarSrc = "/assets/images/1a963891-b5e5-4c4c-85fd-e5ec489343bd.png";
   } else if (isRestaurantAgent) {
     agentName = "Dominic";
     agentRole = "Slice House of Anaheim";
-    avatarSrc = "/lovable-uploads/9793533b-ce65-4073-babd-b90b6b5c99ef.png";
+    avatarSrc = "/assets/images/9793533b-ce65-4073-babd-b90b6b5c99ef.png";
   } else if (isRealEstateAgent) {
     agentName = "Jeff Smith";
     agentRole = "Township Real Estate";
-    avatarSrc = "/lovable-uploads/2d521c8d-084d-4a87-8491-cb795033a1d6.png";
+    avatarSrc = "/assets/images/2d521c8d-084d-4a87-8491-cb795033a1d6.png";
   }
 
   // If it's the real estate agent, use a different design

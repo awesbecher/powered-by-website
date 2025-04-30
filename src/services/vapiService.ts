@@ -1,148 +1,110 @@
+import Vapi from '@vapi-ai/web';
 
-interface VapiConfig {
-  apiKey: string;
-  assistantId: string;
-}
+// Vapi configuration
+const API_KEY = 'a212f18f-9d02-4703-914f-ac89661262c5';
 
-// Updated API key and assistant ID
-const DEFAULT_VAPI_CONFIG: VapiConfig = {
-  apiKey: 'a212f18f-9d02-4703-914f-ac89661262c5',
-  assistantId: 'ebb38ba5-321a-49e4-b860-708bc864327f'
+// Assistant IDs for different services
+const ASSISTANT_IDS = {
+  realEstate: 'c1c80d2e-6b65-4172-9f6b-09177b9e54f1',
+  mercedes: 'c1c80d2e-6b65-4172-9f6b-09177b9e54f1', // Using real estate ID temporarily
+  roomService: '238616a3-b611-4faa-a216-74b8d7d8b277',
+  retail: 'defa6102-2358-4347-a192-24c6bc23ea4c',
+  general: 'ebb38ba5-321a-49e4-b860-708bc864327f'
 };
 
-// Create a custom event to trigger the voice dialog
-export async function initiateVapiCall(): Promise<void> {
+let vapiInstance: Vapi | null = null;
+let mediaStream: MediaStream | null = null;
+let isCallActive = false;
+
+export async function initiateVapiCall(service: keyof typeof ASSISTANT_IDS = 'general'): Promise<void> {
   try {
-    console.log('Initiating AI voice call with assistant ID:', DEFAULT_VAPI_CONFIG.assistantId);
-    
-    // First, make sure we have microphone access
+    // Clean up any existing instances
+    if (vapiInstance) {
+      await cleanupVapiCall();
+    }
+
+    // Get microphone permissions first
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      // Stop the stream immediately - we're just checking permissions
-      stream.getTracks().forEach(track => track.stop());
-      console.log('Microphone permission granted');
-    } catch (micError) {
-      console.error('Microphone permission denied:', micError);
-      return Promise.reject(new Error('Microphone access is required. Please allow microphone access and try again.'));
+      mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      console.log('Microphone access granted');
+    } catch (error) {
+      console.error('Microphone access error:', error);
+      throw new Error(`Microphone access error: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
     
-    // Dispatch event for our custom UI
-    const event = new CustomEvent('open-voice-dialog');
-    document.dispatchEvent(event);
-    console.log('Dispatched open-voice-dialog event');
-    
-    // Clean up any existing Vapi elements first
-    cleanupExistingVapiElements();
-    
-    // Create vapi-root element if it doesn't exist
-    ensureVapiRootExists();
-    
-    // Load the Vapi script
-    return await loadVapiScript();
-  } catch (error) {
-    console.error('Error initiating AI voice call:', error);
-    return Promise.reject(error);
-  }
-}
-
-// Helper function to clean up existing Vapi elements
-function cleanupExistingVapiElements(): void {
-  console.log('Starting cleanup of existing Vapi elements');
-  
-  // Clean up global vapi object if it exists
-  if ((window as any).vapi) {
+    // Initialize Vapi with service-specific assistant
     try {
-      if (typeof (window as any).vapi.endCall === 'function') {
-        (window as any).vapi.endCall();
-        console.log('Called vapi.endCall() during cleanup');
-      }
-      delete (window as any).vapi;
-    } catch (e) {
-      console.error('Error cleaning up global vapi object:', e);
-    }
-  }
-  
-  // Remove any existing Vapi scripts
-  const existingScript = document.querySelector('script[src*="vapi.ai"]');
-  if (existingScript) {
-    existingScript.remove();
-  }
-  
-  // Clean up vapi-root element
-  let vapiRoot = document.getElementById('vapi-root');
-  if (vapiRoot) {
-    while (vapiRoot.firstChild) {
-      vapiRoot.removeChild(vapiRoot.firstChild);
-    }
-  }
-}
-
-// Helper function to ensure vapi-root element exists
-function ensureVapiRootExists(): void {
-  let vapiRoot = document.getElementById('vapi-root');
-  if (!vapiRoot) {
-    vapiRoot = document.createElement('div');
-    vapiRoot.id = 'vapi-root';
-    // Create it with invisible dimensions
-    vapiRoot.style.position = 'fixed';
-    vapiRoot.style.zIndex = '9999';
-    vapiRoot.style.bottom = '0';
-    vapiRoot.style.right = '0';
-    vapiRoot.style.width = '0';
-    vapiRoot.style.height = '0';
-    vapiRoot.style.overflow = 'hidden';
-    document.body.appendChild(vapiRoot);
-  }
-}
-
-// Helper function to load Vapi script and initialize voicebot
-function loadVapiScript(): Promise<void> {
-  return new Promise((resolve, reject) => {
-    console.log('Creating Vapi script element');
-    
-    const script = document.createElement('script');
-    script.src = 'https://cdn.vapi.ai/messenger.js';
-    script.async = true;
-    script.crossOrigin = 'anonymous';
-    
-    // We need to ensure the script is loaded before initializing
-    script.onload = () => {
-      console.log('Vapi script loaded successfully');
+      console.log('Starting Vapi initialization...');
       
-      // Wait a bit for Vapi to initialize
-      setTimeout(() => {
-        try {
-          if (!(window as any).vapi || !(window as any).vapi.initVoicebot) {
-            throw new Error('Vapi object not found after script load');
-          }
-          
-          (window as any).vapi.initVoicebot({
-            assistant_id: DEFAULT_VAPI_CONFIG.assistantId,
-            api_key: DEFAULT_VAPI_CONFIG.apiKey,
-            audio: {
-              autoplay: true,
-              target_element_id: 'vapi-root',
-            },
-            input_mode: 'microphone',
-            debug: false,
-            version: 'v1',
-          });
-          
-          console.log('Vapi initVoicebot called successfully');
-          resolve();
-        } catch (initError) {
-          console.error('Error initializing Vapi voicebot:', initError);
-          reject(initError);
-        }
-      }, 1000);
-    };
-    
-    // Handle script loading errors
-    script.onerror = (err) => {
-      console.error('Error loading Vapi script:', err);
-      reject(new Error('Failed to load Vapi script'));
-    };
-    
-    document.body.appendChild(script);
-  });
+      // Create Vapi instance with API key and audio stream
+      vapiInstance = new Vapi(API_KEY);
+
+      // Set up error handling
+      vapiInstance.on('error', (error: any) => {
+        console.error('Vapi error event:', error);
+      });
+
+      // Wait for audio stream to be ready
+      if (mediaStream) {
+        // @ts-ignore - Property exists but type is not defined
+        vapiInstance.audioStream = mediaStream;
+      }
+
+      // Start call with assistant ID
+      console.log('Starting call with assistant:', ASSISTANT_IDS[service]);
+      const call = await vapiInstance.start(ASSISTANT_IDS[service]);
+
+      console.log('Vapi call started successfully:', call);
+      isCallActive = true;
+    } catch (error) {
+      console.error('Vapi initialization details:', {
+        error,
+        message: error instanceof Error ? error.message : 'Unknown error',
+        stack: error instanceof Error ? error.stack : undefined,
+        assistantId: ASSISTANT_IDS[service]
+      });
+      
+      // Clean up media stream if Vapi initialization fails
+      if (mediaStream) {
+        mediaStream.getTracks().forEach(track => track.stop());
+        mediaStream = null;
+      }
+      throw new Error(`Vapi initialization error: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+  } catch (error) {
+    // Clean up everything if any error occurs
+    await cleanupVapiCall();
+    throw error;
+  }
+}
+
+// Clean up resources without page refresh
+async function cleanupVapiCall(): Promise<void> {
+  // Stop media stream
+  if (mediaStream) {
+    mediaStream.getTracks().forEach(track => track.stop());
+    mediaStream = null;
+  }
+
+  // Stop Vapi instance
+  if (vapiInstance) {
+    try {
+      await vapiInstance.stop();
+    } catch (error) {
+      console.error('Error stopping Vapi:', error);
+    }
+    vapiInstance = null;
+  }
+
+  isCallActive = false;
+}
+
+// Only refresh the page when explicitly ending the call
+export async function endVapiCall(): Promise<void> {
+  await cleanupVapiCall();
+  window.location.reload();
+}
+
+export function getVapiCallStatus(): boolean {
+  return isCallActive;
 }

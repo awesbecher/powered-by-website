@@ -31,7 +31,7 @@ export const ActiveCallDialog = ({ handleEndCall, isUnmountingRef }: ActiveCallD
           <div className="relative">
             <Avatar className="h-20 w-20 rounded-full">
               <AvatarImage 
-                src="/lovable-uploads/bd9e9055-ba23-4fcc-9c2a-4fda4b9dd627.png" 
+                src="/assets/images/bd9e9055-ba23-4fcc-9c2a-4fda4b9dd627.png" 
                 alt="Michael from Powered_by Solutions" 
                 className="object-cover"
               />

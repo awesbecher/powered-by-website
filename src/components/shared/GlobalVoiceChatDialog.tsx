@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { VapiCallDialog } from "./VapiCallDialog";
 import { useVapiIntegration } from "@/hooks/useVapiIntegration";

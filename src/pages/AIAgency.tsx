@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { HeroSection } from "@/components/ai-agency/HeroSection";
+import { AgencyHeroSection } from "@/components/ai-agency/AgencyHeroSection";
 import { UniqueAgencySection } from "@/components/ai-agency/UniqueAgencySection";
 import { DifferenceSection } from "@/components/ai-agency/DifferenceSection";
 import { ProjectApproachSection } from "@/components/ai-agency/ProjectApproachSection";
@@ -77,7 +76,7 @@ const AIAgency = () => {
       </div>
       
       <div id="hero">
-        <HeroSection initialLoad={initialLoad} />
+        <AgencyHeroSection initialLoad={initialLoad} />
       </div>
       
       <UniqueAgencySection />

@@ -13,7 +13,7 @@ const HeroSection = ({ onBookAppointment }: HeroSectionProps) => {
     <div className="relative min-h-[80vh] flex flex-col items-center">
       <div className="absolute inset-0">
         <img 
-          src="/lovable-uploads/dac317cc-0dbe-4fbd-9e8b-8f3e4e1ef731.png"
+          src="/assets/images/dac317cc-0dbe-4fbd-9e8b-8f3e4e1ef731.png"
           alt="Professional Barbershop Interior"
           className="w-full h-full object-cover"
         />

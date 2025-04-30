@@ -16,8 +16,8 @@ export const useImagePreloader = () => {
         // Get all property images
         const propertyImages = properties.map(property => property.image);
         const otherImages = [
-          "/lovable-uploads/f6cd5c39-f85a-4586-9140-cd8e12d9b947.png",  // Logo
-          "/lovable-uploads/f8dcc881-9e41-4bee-b8e5-78e0fdbccabb.png", // Agent image
+          "/assets/images/f6cd5c39-f85a-4586-9140-cd8e12d9b947.png",  // Logo
+          "/assets/images/f8dcc881-9e41-4bee-b8e5-78e0fdbccabb.png", // Agent image
         ];
         
         // Combine all images to preload

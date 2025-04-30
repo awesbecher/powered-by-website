@@ -17,7 +17,7 @@ export const ServiceBoxes = ({ initialLoad }: ServiceBoxesProps) => {
           {/* Sarah's Image */}
           <div className="mb-4 flex justify-center">
             <img 
-              src="/lovable-uploads/9a61c267-112f-464b-9479-2be87bbe7d9b.png" 
+              src="/assets/images/9a61c267-112f-464b-9479-2be87bbe7d9b.png" 
               alt="Sarah - AI Text Agent" 
               className="w-24 h-24 rounded-full object-cover border-2 border-[#9b87f5]"
             />

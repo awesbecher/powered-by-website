@@ -19,7 +19,7 @@ const FeatureCard = ({ icon, title, description }: FeatureCardProps) => {
 
 export const FeaturesSection = () => {
   return (
-    <section className="py-0 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
+    <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
       <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-16">
         Easily Deploy Voice AI Chat in Your Existing Website
       </h2>

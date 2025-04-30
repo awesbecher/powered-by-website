@@ -14,7 +14,7 @@ export const StrategyImage = ({ initialLoad }: StrategyImageProps) => {
         <div className={`transition-all duration-1000 ease-out transform rounded-xl overflow-hidden shadow-xl
           ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
           <OptimizedImage 
-            src="/lovable-uploads/1eda3529-e1b0-45f1-badb-0d5917c2438e.png" 
+            src="/assets/images/1eda3529-e1b0-45f1-badb-0d5917c2438e.png" 
             alt="AI Agent Architecture whiteboard - Strategic planning and system design" 
             className="w-full object-cover rounded-xl animate-fade-in delay-300"
           />

@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -20,6 +19,17 @@ export const HeroSection = ({
   videoOpen, 
   setVideoOpen 
 }: HeroSectionProps) => {
+  const handleGetStarted = () => {
+    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
+    if (calBtn instanceof HTMLElement) {
+      console.log("Cal.com button found, triggering click");
+      calBtn.click();
+    } else {
+      console.error("Cal.com button not found in DOM, navigating to /contact as fallback");
+      window.location.href = '/contact';
+    }
+  };
+
   return (
     <section className="relative pt-24 pb-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
@@ -102,31 +112,10 @@ export const HeroSection = ({
               
               <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
                 <Button 
-                  className="w-full sm:w-auto bg-[#6342ff] hover:bg-[#5835e0] text-white px-6 py-4 text-base rounded-md flex items-center justify-center gap-2"
-                  data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-receptionist"
-                  data-cal-config='{"layout":"month_view"}'
-                  onClick={() => {
-                    console.log("Get Started button clicked in HeroSection");
-                    try {
-                      // Direct modal trigger approach
-                      (window as any).Cal?.('ui', {
-                        styles: { branding: { brandColor: '#000000' } },
-                        hideEventTypeDetails: false,
-                        layout: 'month_view',
-                      });
-                      (window as any).Cal?.('showModal', {
-                        calLink: "team-powered-by-dfbtbb/get-started-with-ai-receptionist",
-                        config: {
-                          layout: 'month_view',
-                        },
-                      });
-                    } catch (err) {
-                      console.error("Failed to open Cal.com modal from HeroSection:", err);
-                    }
-                  }}
+                  className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
+                  onClick={handleGetStarted}
                 >
-                  <ArrowRight className="w-5 h-5" />
-                  Get Started
+                  <ArrowRight className="mr-2 h-5 w-5" /> Get Started
                 </Button>
                 
                 <Button 
@@ -152,6 +141,13 @@ export const HeroSection = ({
           <AIReceptionistCard handleVoiceChatClick={handleVoiceChatClick} initialLoad={initialLoad} />
         </div>
       </div>
+
+      {/* Hidden Cal.com button */}
+      <button
+        className="hidden"
+        data-cal-link="team-powered-by-dfbtbb/get-started-today"
+        data-cal-config='{"layout":"month_view"}'
+      />
 
       <Dialog open={videoOpen} onOpenChange={setVideoOpen}>
         <DialogContent className="max-w-3xl p-1 bg-black">

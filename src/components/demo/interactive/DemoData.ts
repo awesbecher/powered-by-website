@@ -24,7 +24,7 @@ export const demoOptions: DemoOption[] = [
     actionText: "Start Real Estate Demo",
     color: "bg-purple-600",
     isPopular: true,
-    imageSrc: "/lovable-uploads/eb107c51-6535-48bc-9f80-7571dbd064d9.png",
+    imageSrc: "/assets/images/eb107c51-6535-48bc-9f80-7571dbd064d9.png",
     routePath: "/real-estate",
     assistantId: "c1c80d2e-6b65-4172-9f6b-09177b9e54f1"
   },
@@ -35,7 +35,7 @@ export const demoOptions: DemoOption[] = [
     description: "Experience how AI enhances the car buying and service experience",
     actionText: "Start Auto Dealer Demo",
     color: "bg-blue-600",
-    imageSrc: "/lovable-uploads/d1983f69-1e5e-4a0c-b197-282aa2fca163.png",
+    imageSrc: "/assets/images/d1983f69-1e5e-4a0c-b197-282aa2fca163.png",
     routePath: "/mercedes-dealer",
     assistantId: "6c02f892-3082-4c68-a3ee-92ca86444331"
   },
@@ -46,7 +46,7 @@ export const demoOptions: DemoOption[] = [
     description: "Discover how AI transforms guest services and room service experiences",
     actionText: "Start Hospitality Demo",
     color: "bg-green-600",
-    imageSrc: "/lovable-uploads/8738dd53-7c72-421c-9b55-4ce902ca0422.png",
+    imageSrc: "/assets/images/8738dd53-7c72-421c-9b55-4ce902ca0422.png",
     routePath: "/room-service",
     assistantId: "cd922dc9-eea6-4b43-878f-cb5cfd67e005"
   },
@@ -57,7 +57,7 @@ export const demoOptions: DemoOption[] = [
     description: "See how AI revolutionizes appointment booking and customer service",
     actionText: "Start Retail Demo",
     color: "bg-amber-600",
-    imageSrc: "/lovable-uploads/33a9f1ba-d37e-4667-9b53-7c8af3867b8a.png",
+    imageSrc: "/assets/images/33a9f1ba-d37e-4667-9b53-7c8af3867b8a.png",
     routePath: "/retail-services",
     assistantId: "defa6102-2358-4347-a192-24c6bc23ea4c"
   }

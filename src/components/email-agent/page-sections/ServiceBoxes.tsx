@@ -17,7 +17,7 @@ export const ServiceBoxes = ({ initialLoad }: ServiceBoxesProps) => {
           {/* Restore Nick's Image */}
           <div className="mb-4 flex justify-center">
             <img 
-              src="/lovable-uploads/aacd8d9f-424d-4420-be70-8362bbbea179.png" 
+              src="/assets/images/aacd8d9f-424d-4420-be70-8362bbbea179.png" 
               alt="Nick - AI Email Agent" 
               className="w-24 h-24 rounded-full object-cover border-2 border-[#9b87f5]"
             />

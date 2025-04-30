@@ -57,7 +57,7 @@ const OmegaVoice1 = () => {
       <div className="container mx-auto px-4 py-10">
         <div className="flex justify-center mb-4">
           <img 
-            src="/lovable-uploads/2855384c-487c-46d3-90a0-b663019ac215.png" 
+            src="/assets/images/2855384c-487c-46d3-90a0-b663019ac215.png" 
             alt="Omega Pediatrics - Accessibility & Love" 
             className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg"
           />
@@ -73,7 +73,7 @@ const OmegaVoice1 = () => {
             <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4 border-2 border-white flex-shrink-0">
               <AspectRatio ratio={1/1} className="bg-transparent">
                 <img 
-                  src="/lovable-uploads/d4d24e48-4703-40a7-8bdf-c5b6db42f9ea.png" 
+                  src="/assets/images/d4d24e48-4703-40a7-8bdf-c5b6db42f9ea.png" 
                   alt="Stella - Omega's AI Receptionist"
                   className="object-cover w-full h-full rounded-full"
                 />

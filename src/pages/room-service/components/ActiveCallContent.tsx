@@ -33,7 +33,7 @@ export const ActiveCallContent: React.FC<ActiveCallContentProps> = ({
       <div className="flex items-center space-x-4">
         <div className="relative">
           <Avatar className="h-20 w-20 rounded-full border-2 border-white shadow-md">
-            <AvatarImage src="/lovable-uploads/ec9dd264-4bb3-4b03-9b50-e31383652af9.png" alt="Grandview Room Service" />
+            <AvatarImage src="/assets/images/ec9dd264-4bb3-4b03-9b50-e31383652af9.png" alt="Grandview Room Service" />
             <AvatarFallback>GV</AvatarFallback>
           </Avatar>
           <div className="absolute bottom-1 left-1 flex items-center">

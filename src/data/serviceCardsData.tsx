@@ -26,7 +26,7 @@ export const serviceCardsData: ServiceCardData[] = [
       "Voice & Chat Capabilities",
       "Real-time Response System"
     ],
-    imageSrc: "/lovable-uploads/6a8593b8-7878-4dd6-b253-c6d4fe69f9c6.png"
+    imageSrc: "/assets/images/6a8593b8-7878-4dd6-b253-c6d4fe69f9c6.png"
   },
   {
     title: {

@@ -29,7 +29,7 @@ export const HeroSection = ({ initialLoad }: HeroSectionProps) => {
               <Button
                 className="bg-[#4A2A82] hover:bg-[#3D2269] text-white px-6 py-6 text-lg rounded-md w-full sm:w-auto flex items-center"
               >
-                <img src="/lovable-uploads/a5f716f2-7362-4352-8931-2d27b2892c7e.png" alt="Product Hunt" className="w-6 h-6 mr-2" />
+                <img src="/assets/images/a5f716f2-7362-4352-8931-2d27b2892c7e.png" alt="Product Hunt" className="w-6 h-6 mr-2" />
                 View on Product Hunt
               </Button>
             </a>

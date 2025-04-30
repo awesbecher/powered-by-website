@@ -1,19 +1,38 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useEffect } from "react";
 import { getCalApi } from "@calcom/embed-react";
 
 export const FinalCTASection = () => {
+  const handleCalendarClick = () => {
+    console.log("Calendar button clicked in FinalCTASection");
+    try {
+      (window as any).Cal?.('ui', {
+        styles: { branding: { brandColor: '#000000' } },
+        hideEventTypeDetails: false,
+        layout: 'month_view',
+      });
+      (window as any).Cal?.('showModal', {
+        calLink: "team-powered-by-dfbtbb/get-started-today",
+        config: {
+          layout: 'month_view',
+        },
+      });
+    } catch (err) {
+      console.error("Failed to open Cal.com modal from FinalCTASection:", err);
+      // Fallback to finding and clicking the button
+      const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
+      if (calBtn instanceof HTMLElement) {
+        calBtn.click();
+      }
+    }
+  };
+
   // Initialize Cal.com with robust error handling
   useEffect(() => {
     (async function () {
       try {
         console.log("Initializing Cal.com embed in VoiceChat FinalCTASection");
-        
-        // Ensure script is loaded
-        await loadCalComScript();
-        
         const cal = await getCalApi();
         cal("ui", {
           "cssVarsPerTheme": {
@@ -23,38 +42,12 @@ export const FinalCTASection = () => {
           "hideEventTypeDetails": false,
           "layout": "month_view"
         });
-        
         console.log("Cal.com embed initialized successfully in VoiceChat FinalCTASection");
       } catch (error) {
         console.error("Error initializing Cal.com embed in VoiceChat FinalCTASection:", error);
       }
     })();
   }, []);
-  
-  // Helper function to ensure Cal.com script is loaded
-  const loadCalComScript = () => {
-    return new Promise<void>((resolve, reject) => {
-      // If script already exists, resolve immediately
-      if (document.querySelector('script[src="https://app.cal.com/embed/embed.js"]')) {
-        console.log("Cal.com script already loaded");
-        resolve();
-        return;
-      }
-      
-      console.log("Loading Cal.com script");
-      const script = document.createElement('script');
-      script.src = "https://app.cal.com/embed/embed.js";
-      script.onload = () => {
-        console.log("Cal.com script loaded successfully");
-        resolve();
-      };
-      script.onerror = (error) => {
-        console.error("Failed to load Cal.com script:", error);
-        reject(error);
-      };
-      document.head.appendChild(script);
-    });
-  };
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl text-center relative overflow-hidden">
@@ -81,38 +74,18 @@ export const FinalCTASection = () => {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button 
             className="bg-[#6342ff] hover:bg-[#5233e0] text-white px-8 py-6 text-lg rounded-md flex items-center shadow-lg shadow-[#6342ff]/20 w-full sm:w-auto"
-            data-cal-link="team-powered-by-dfbtbb/get-started-with-voice-ai-chat"
+            onClick={handleCalendarClick}
+            data-cal-link="team-powered-by-dfbtbb/get-started-today"
             data-cal-config='{"layout":"month_view"}'
-            onClick={() => {
-              console.log("Get Started button clicked in VoiceChat FinalCTASection");
-              try {
-                (window as any).Cal?.('ui', {
-                  styles: { branding: { brandColor: '#000000' } },
-                  hideEventTypeDetails: false,
-                  layout: 'month_view',
-                });
-                (window as any).Cal?.('showModal', {
-                  calLink: "team-powered-by-dfbtbb/get-started-with-voice-ai-chat",
-                  config: {
-                    layout: 'month_view',
-                  },
-                });
-              } catch (err) {
-                console.error("Failed to open Cal.com modal directly in FinalCTASection:", err);
-              }
-            }}
           >
             Schedule a Demo <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
           
           <Button 
-            className="bg-transparent hover:bg-white/5 text-white border-2 border-white/20 hover:border-white/40 px-8 py-6 text-lg rounded-md flex items-center w-full sm:w-auto"
-            onClick={() => {
-              console.log("Contact Sales button clicked in VoiceChat FinalCTASection");
-              window.open('/contact', '_self');
-            }}
+            className="bg-black hover:bg-gray-900 text-white px-8 py-6 text-lg rounded-md flex items-center border-2 border-[#6342ff]/50 w-full sm:w-auto"
+            onClick={() => window.open('https://www.poweredby.agency/real-estate', '_blank')}
           >
-            Contact Sales
+            Try Live Demo <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         </div>
       </div>

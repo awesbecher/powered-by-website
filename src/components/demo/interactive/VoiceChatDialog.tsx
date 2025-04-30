@@ -26,19 +26,19 @@ export const VoiceChatDialog = ({
   
   // Get avatar images for each industry
   const getAvatarImage = () => {
-    if (!activeDemo) return "/lovable-uploads/1a963891-b5e5-4c4c-85fd-e5ec489343bd.png";
+    if (!activeDemo) return "/assets/images/1a963891-b5e5-4c4c-85fd-e5ec489343bd.png";
     
     switch(activeDemo.id) {
       case "real-estate":
-        return "/lovable-uploads/2d521c8d-084d-4a87-8491-cb795033a1d6.png";
+        return "/assets/images/2d521c8d-084d-4a87-8491-cb795033a1d6.png";
       case "auto-dealer":
-        return "/lovable-uploads/1a963891-b5e5-4c4c-85fd-e5ec489343bd.png";
+        return "/assets/images/1a963891-b5e5-4c4c-85fd-e5ec489343bd.png";
       case "hospitality":
-        return "/lovable-uploads/75ff6e78-9db7-436e-a063-2b5f8c500ee7.png";
+        return "/assets/images/75ff6e78-9db7-436e-a063-2b5f8c500ee7.png";
       case "retail":
-        return "/lovable-uploads/75237bd9-59bf-497d-89fc-9805c49cf84e.png";
+        return "/assets/images/75237bd9-59bf-497d-89fc-9805c49cf84e.png";
       default:
-        return "/lovable-uploads/1a963891-b5e5-4c4c-85fd-e5ec489343bd.png";
+        return "/assets/images/1a963891-b5e5-4c4c-85fd-e5ec489343bd.png";
     }
   };
   

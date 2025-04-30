@@ -25,7 +25,7 @@ export const ServiceBoxes = ({ initialLoad, onTryNow }: ServiceBoxesProps) => {
         {/* Logo image above the card - now with headset overlay */}
         <div className="flex justify-center mb-3 relative">
           <img 
-            src="/lovable-uploads/cf3e4a34-142d-4988-99e0-6c90f83d89e7.png" 
+            src="/assets/images/cf3e4a34-142d-4988-99e0-6c90f83d89e7.png" 
             alt="Voice AI Logo" 
             className="w-40 h-40 object-contain cursor-pointer hover:opacity-90 transition-opacity" 
             onClick={openCalendly} 

@@ -48,7 +48,7 @@ const MercedesCallDialog = ({
               <div className="relative">
                 <Avatar className="h-20 w-20 rounded-full border-2 border-white shadow-md">
                   <AvatarImage 
-                    src="/lovable-uploads/1a963891-b5e5-4c4c-85fd-e5ec489343bd.png" 
+                    src="/assets/images/1a963891-b5e5-4c4c-85fd-e5ec489343bd.png" 
                     alt="Dave Frankel" 
                     className="object-cover"
                   />
@@ -115,7 +115,7 @@ const MercedesCallDialog = ({
             <DialogHeader className="flex flex-row items-start">
               <Avatar className="h-16 w-16 mr-4 border-2 border-[#9b87f5]">
                 <AvatarImage 
-                  src="/lovable-uploads/1a963891-b5e5-4c4c-85fd-e5ec489343bd.png" 
+                  src="/assets/images/1a963891-b5e5-4c4c-85fd-e5ec489343bd.png" 
                   alt="Dave Frankel" 
                   className="object-cover"
                 />

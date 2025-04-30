@@ -12,7 +12,7 @@ export const LaunchHeroSection = ({ initialLoad }: LaunchHeroSectionProps) => {
       {/* Background image container */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="/lovable-uploads/91bd573a-cfea-4ac8-a555-cf0c34f77d76.png" 
+          src="/assets/images/91bd573a-cfea-4ac8-a555-cf0c34f77d76.png" 
           alt="Rocket launch with cloud plume" 
           className="w-full h-[70vh] object-cover object-center brightness-50"
         />

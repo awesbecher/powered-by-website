@@ -1,11 +1,9 @@
-
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { WebsiteSimulation } from "@/components/voice-chat/WebsiteSimulation";
+import { HeroVoiceEmbedSimulator } from "@/components/voice-chat/hero/HeroVoiceEmbedSimulator";
 import { HeroContent } from "./components/HeroContent";
 import { FeaturesList } from "./components/FeaturesList";
 import { VoiceChatControls } from "./components/VoiceChatControls";
-import { CalendarButton } from "./components/CalendarButton";
 import { getCalApi } from "@calcom/embed-react";
 
 interface HeroSectionProps {
@@ -14,19 +12,6 @@ interface HeroSectionProps {
 }
 
 export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
-  const handleVoiceChatClick = () => {
-    // Find and click the hidden button in VoiceChatControls
-    const triggerButton = document.getElementById('voice-chat-trigger');
-    if (triggerButton) {
-      triggerButton.click();
-    }
-  };
-
-  const handleGetStarted = () => {
-    // Navigate to contact page
-    handleContact();
-  };
-
   // Initialize Cal.com embed with robust error handling
   useEffect(() => {
     (async function () {
@@ -52,99 +37,58 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
       }
     })();
   }, []);
-  
-  // Helper function to ensure Cal.com script is loaded
-  const loadCalComScript = () => {
-    return new Promise<void>((resolve, reject) => {
-      // If script already exists, resolve immediately
-      if (document.querySelector('script[src="https://app.cal.com/embed/embed.js"]')) {
-        console.log("Cal.com script already loaded");
-        resolve();
-        return;
-      }
-      
-      console.log("Loading Cal.com script");
-      const script = document.createElement('script');
-      script.src = "https://app.cal.com/embed/embed.js";
-      script.onload = () => {
-        console.log("Cal.com script loaded successfully");
-        resolve();
-      };
-      script.onerror = (error) => {
-        console.error("Failed to load Cal.com script:", error);
+
+  const loadCalComScript = async () => {
+    return new Promise((resolve, reject) => {
+      try {
+        const existingScript = document.querySelector('script[src="https://app.cal.com/embed/embed.js"]');
+        if (existingScript) {
+          resolve(true);
+          return;
+        }
+
+        const script = document.createElement('script');
+        script.src = 'https://app.cal.com/embed/embed.js';
+        script.async = true;
+        script.onload = () => resolve(true);
+        script.onerror = () => reject(new Error('Failed to load Cal.com script'));
+        document.body.appendChild(script);
+      } catch (error) {
         reject(error);
-      };
-      document.head.appendChild(script);
+      }
     });
   };
 
   return (
-    <section className="pt-20 pb-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
-        {/* Left side - Hero content */}
-        <div className="lg:col-span-7">
-          <HeroContent 
-            initialLoad={initialLoad}
-            handleVoiceChatClick={handleVoiceChatClick}
-            handleGetStarted={handleGetStarted}
-          />
-          
-          {/* Feature list now under the hero content */}
-          <div className="mt-8">
-            <FeaturesList initialLoad={initialLoad} compact={true} />
+    <section className="relative bg-gradient-to-b from-gray-900 to-black">
+      <div className="absolute inset-0 bg-[url('/assets/grid-pattern.svg')] opacity-10" />
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+        <div className="grid lg:grid-cols-2 gap-8 items-center">
+          {/* Left Column */}
+          <div>
+            <HeroContent initialLoad={initialLoad} handleContact={handleContact} />
+          </div>
+
+          {/* Right Column */}
+          <div className="relative">
+            <div className="lg:absolute lg:inset-0 lg:left-12 flex items-center">
+              <div className="w-full max-w-lg mx-auto">
+                <HeroVoiceEmbedSimulator />
+              </div>
+            </div>
           </div>
         </div>
-        
-        {/* Right side - Website Simulation with Calendly button on top */}
-        <div className="lg:col-span-5 flex flex-col items-center">
-          <div className="w-full relative">
-            {/* Calendly Button positioned with reduced spacing */}
-            <div className={`absolute left-1/2 transform -translate-x-1/2 -top-[2rem] z-10 text-center transition-all duration-1000 delay-300 ease-out
-              ${initialLoad ? 'opacity-0' : 'opacity-100'}`}>
-              <button 
-                data-cal-link="team-powered-by-dfbtbb/get-started-with-voice-ai-chat"
-                data-cal-config='{"layout":"month_view"}'
-                className="bg-[#6342ff] hover:bg-[#5233e0] text-white px-6 py-4 text-base rounded-md flex items-center gap-2"
-                onClick={() => {
-                  console.log("Get Started button clicked in VoiceChat HeroSection");
-                  try {
-                    (window as any).Cal?.('ui', {
-                      styles: { branding: { brandColor: '#000000' } },
-                      hideEventTypeDetails: false,
-                      layout: 'month_view',
-                    });
-                    (window as any).Cal?.('showModal', {
-                      calLink: "team-powered-by-dfbtbb/get-started-with-voice-ai-chat",
-                      config: {
-                        layout: 'month_view',
-                      },
-                    });
-                  } catch (err) {
-                    console.error("Failed to open Cal.com modal directly from HeroSection:", err);
-                  }
-                }}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-calendar">
-                  <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
-                  <line x1="16" x2="16" y1="2" y2="6"></line>
-                  <line x1="8" x2="8" y1="2" y2="6"></line>
-                  <line x1="3" x2="21" y1="10" y2="10"></line>
-                </svg>
-                Get Started Now!
-              </button>
-            </div>
-            
-            {/* Website Simulation with reduced top margin */}
-            <div className={`w-full mt-8 transition-all duration-1000 delay-500 ease-out transform
-              ${initialLoad ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-              <WebsiteSimulation />
-            </div>
-          </div>
+
+        {/* Features List */}
+        <div className="mt-16">
+          <FeaturesList initialLoad={initialLoad} />
+        </div>
+
+        {/* Voice Chat Controls */}
+        <div className="mt-8">
+          <VoiceChatControls />
         </div>
       </div>
-
-      {/* Include the VoiceChatControls component */}
-      <VoiceChatControls source="voice-chat" />
     </section>
   );
 };

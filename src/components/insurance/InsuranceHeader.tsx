@@ -9,7 +9,7 @@ const InsuranceHeader = () => {
         style={{ width: "280px", height: "110px" }}
       >
         <img 
-          src="/lovable-uploads/71380863-25a8-4672-b241-cd4fbb01415c.png"
+          src="/assets/images/71380863-25a8-4672-b241-cd4fbb01415c.png"
           alt="Planter's Insurance Logo"
           className="object-contain w-[240px] h-[100px]"
         />

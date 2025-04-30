@@ -16,7 +16,7 @@ export const VisionSection = ({ initialLoad }: VisionSectionProps) => {
       {/* Reduced Size Image Section */}
       <div className="mb-12 max-w-3xl mx-auto">
         <OptimizedImage 
-          src="/lovable-uploads/fd6bacaa-f5ae-46d3-ad21-ca95b78e1537.png" 
+          src="/assets/images/fd6bacaa-f5ae-46d3-ad21-ca95b78e1537.png" 
           alt="AI Agents for SMBs Presentation - Visual representation of our vision" 
           className="w-full h-auto rounded-2xl shadow-xl object-cover animate-fade-in"
         />

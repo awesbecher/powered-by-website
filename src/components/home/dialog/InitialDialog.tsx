@@ -33,7 +33,7 @@ export const InitialDialog = ({
     <DialogContent className="bg-[#222222] text-white border-gray-800 sm:max-w-md">
       <Avatar className="w-32 h-32 mx-auto mb-4">
         <AvatarImage
-          src="/lovable-uploads/bd9e9055-ba23-4fcc-9c2a-4fda4b9dd627.png"
+          src="/assets/images/bd9e9055-ba23-4fcc-9c2a-4fda4b9dd627.png"
           alt="Michael, AI Voice Agent @ Powered_by Agency"
           className="object-cover"
         />

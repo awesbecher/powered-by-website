@@ -9,7 +9,7 @@ const LicenseHeader = () => {
         style={{ width: "280px", height: "110px" }}
       >
         <img 
-          src="/lovable-uploads/36878018-71dd-426b-b99d-4eeffa24d71a.png"
+          src="/assets/images/36878018-71dd-426b-b99d-4eeffa24d71a.png"
           alt="RightBloom Logo"
           className="object-contain w-[240px] h-[100px]"
         />

@@ -32,8 +32,8 @@ export const GPTScreenshotsSection: React.FC<GPTScreenshotsSectionProps> = ({ in
       }
     };
 
-    loadImageAndProcess("/lovable-uploads/0199a99b-199a-4495-a99a-99a9a9a9a9a9.png", setProcessedImage1, setLoadingImage1);
-    loadImageAndProcess("/lovable-uploads/0288b88c-288b-4678-b88c-8c8c8c8c8c8c.png", setProcessedImage2, setLoadingImage2);
+    loadImageAndProcess("/assets/images/0199a99b-199a-4495-a99a-99a9a9a9a9a9.png", setProcessedImage1, setLoadingImage1);
+    loadImageAndProcess("/assets/images/0288b88c-288b-4678-b88c-8c8c8c8c8c8c.png", setProcessedImage2, setLoadingImage2);
   }, []);
 
   return (

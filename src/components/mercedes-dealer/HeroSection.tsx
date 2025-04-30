@@ -21,7 +21,7 @@ const HeroSection = ({
     <div className="relative h-[75vh] mb-4 pt-20">
       <div className="absolute inset-0">
         <img 
-          src="/lovable-uploads/a03fe01f-a020-43b3-a46c-2fda077f0baf.png"
+          src="/assets/images/a03fe01f-a020-43b3-a46c-2fda077f0baf.png"
           alt="Mercedes-Benz Dealership Building"
           className="w-full h-full object-cover"
         />

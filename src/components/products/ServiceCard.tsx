@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { LucideIcon } from 'lucide-react';
 
@@ -16,7 +15,7 @@ export const ServiceCard = ({
   description, 
   features
 }: ServiceCardProps) => {
-  const IconComponent = <Icon className="w-10 h-10 text-[#9b87f5]" />;
+  const IconComponent = <Icon className="w-10 h-10 text-white" />;
 
   return (
     <div className="bg-[#1a0b2e]/40 rounded-2xl p-6 space-y-4 border border-white/10">

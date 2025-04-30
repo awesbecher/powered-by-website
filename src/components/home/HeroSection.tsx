@@ -63,7 +63,7 @@ export const HeroSection = ({ subtitle, initialLoad }: HeroSectionProps) => {
       </div>
 
       {/* Content Layer */}
-      <div className="relative z-10 w-full max-w-3xl mx-auto flex flex-col items-center pt-20 pb-16">
+      <div className="relative z-10 w-full max-w-3xl mx-auto flex flex-col items-center pt-20 pb-8">
         <h1
           className={
             `text-center font-extrabold text-white drop-shadow-[0_2px_6px_rgba(99,66,255,0.09)] transition-all duration-700

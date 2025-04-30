@@ -1,108 +1,128 @@
-
 import { useEffect, useState } from "react";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import { HeroSection } from "@/components/real-estate/HeroSection";
 import { ActionButtons } from "@/components/real-estate/ActionButtons";
 import { ServicesSection } from "@/components/real-estate/ServicesSection";
-import { FeaturedProperties } from "@/components/real-estate/FeaturedProperties";
 import { ContactSection } from "@/components/real-estate/ContactSection";
-import { ActiveCallDialog } from "@/components/real-estate/ActiveCallDialog";
+import { CallConfirmationDialog } from "@/components/shared/CallConfirmationDialog";
+import { CallInProgressDialog } from "@/components/shared/CallInProgressDialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { initiateVapiCall, endVapiCall } from "@/services/vapiService";
+import { useToast } from "@/hooks/use-toast";
 
 const RealEstate = () => {
+  // Scroll to top on mount
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const [isOpen, setIsOpen] = useState(false);
+  // Dialog states
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [showCallInProgress, setShowCallInProgress] = useState(false);
   const [isScheduleOpen, setIsScheduleOpen] = useState(false);
+
+  // Call states
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [isCallActive, setIsCallActive] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  
-  // Add sample properties data
-  const [properties, setProperties] = useState([
-    {
-      id: '1',
-      title: 'Modern Apartment',
-      price: '$250,000',
-      location: 'Downtown',
-      bedrooms: 2,
-      bathrooms: 1,
-      area: '850 sq ft',
-      image: '/lovable-uploads/2d521c8d-084d-4a87-8491-cb795033a1d6.png'
-    },
-    {
-      id: '2',
-      title: 'Family Home',
-      price: '$450,000',
-      location: 'Suburbs',
-      bedrooms: 4,
-      bathrooms: 2.5,
-      area: '2200 sq ft',
-      image: '/lovable-uploads/92d1275c-847a-49ad-a297-792c7bf899a7.png'
+  const [callDuration, setCallDuration] = useState(0);
+  const { toast } = useToast();
+
+  // Call handlers
+  const handleStartCall = async () => {
+    try {
+      setIsLoading(true);
+      // Initialize Vapi call first
+      await initiateVapiCall('realEstate');
+      // Only if successful, close confirmation and show call dialog
+      setShowConfirmation(false);
+      setShowCallInProgress(true);
+    } catch (error) {
+      console.error('Failed to start call:', error);
+      let errorMessage = "Failed to start the voice chat. Please try again.";
+      
+      if (error instanceof Error) {
+        const errorText = error.message.toLowerCase();
+        if (errorText.includes('permission denied') || errorText.includes('notallowederror')) {
+          errorMessage = "Microphone access was denied. Please allow microphone access and try again.";
+        } else if (errorText.includes('notfounderror')) {
+          errorMessage = "No microphone found. Please check your microphone connection and try again.";
+        } else if (errorText.includes('notreadableerror')) {
+          errorMessage = "Could not access your microphone. Please check if another application is using it.";
+        } else {
+          errorMessage = `Voice chat error: ${error.message}`;
+        }
+      }
+      
+      toast({
+        variant: "destructive",
+        title: "Call Error",
+        description: errorMessage,
+        duration: 5000,
+      });
+    } finally {
+      setIsLoading(false);
     }
-  ]);
-
-  const scrollToProperties = () => {
-    const featuredSection = document.getElementById('featured-properties');
-    featuredSection?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleCall = async () => {
-    if (!phoneNumber) return;
-    setIsLoading(true);
-    // TODO: Implement new call functionality
-    setIsLoading(false);
-    setIsCallActive(true);
-  };
-
-  const handleEndCall = () => {
-    setIsCallActive(false);
-    setIsMuted(false);
-  };
-
-  const toggleMute = () => {
-    setIsMuted(!isMuted);
+  const handleEndCall = async () => {
+    try {
+      await endVapiCall();
+      setShowCallInProgress(false);
+      setCallDuration(0);
+    } catch (error) {
+      console.error('Error ending call:', error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to end the call properly. Please refresh the page.",
+      });
+    }
   };
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <Navbar />
 
-      {/* Active Call Dialog */}
-      <ActiveCallDialog 
-        isOpen={isCallActive} 
-        isMuted={isMuted}
-        handleEndCall={handleEndCall}
-        toggleMute={toggleMute}
-      />
-
       <HeroSection />
       
       <ActionButtons 
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        phoneNumber={phoneNumber}
-        setPhoneNumber={setPhoneNumber}
-        handleCall={handleCall}
-        isLoading={isLoading}
-        scrollToProperties={scrollToProperties}
+        isOpen={showConfirmation}
+        setIsOpen={setShowConfirmation}
       />
 
+      <Dialog open={showConfirmation} onOpenChange={setShowConfirmation}>
+        <DialogContent>
+          <DialogTitle className="sr-only">Talk to an Agent</DialogTitle>
+          <CallConfirmationDialog 
+            service="realEstate"
+            onStartCall={handleStartCall}
+            onClose={() => setShowConfirmation(false)}
+            isLoading={isLoading}
+          />
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={showCallInProgress} onOpenChange={setShowCallInProgress}>
+        <DialogContent>
+          <DialogTitle className="sr-only">Call in Progress</DialogTitle>
+          <CallInProgressDialog 
+            service="realEstate"
+            onEndCall={handleEndCall}
+            callDuration={callDuration}
+            setCallDuration={setCallDuration}
+          />
+        </DialogContent>
+      </Dialog>
+
       <ServicesSection />
-      
-      <div id="featured-properties">
-        <FeaturedProperties properties={properties} />
-      </div>
       
       <ContactSection 
         isScheduleOpen={isScheduleOpen}
         setIsScheduleOpen={setIsScheduleOpen}
         phoneNumber={phoneNumber}
         setPhoneNumber={setPhoneNumber}
-        handleCall={handleCall}
+        handleCall={() => setShowConfirmation(true)}
         isLoading={isLoading}
       />
 

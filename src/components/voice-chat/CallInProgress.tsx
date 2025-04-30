@@ -1,126 +1,50 @@
-
-import React, { useEffect, MutableRefObject } from "react";
-import { X, Activity } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { Button } from "@/components/ui/button";
+import { Mic, MicOff, Phone } from "lucide-react";
 
 interface CallInProgressProps {
   isMuted: boolean;
-  setIsMuted: (isMuted: boolean) => void;
+  onMuteToggle: () => void;
   onRestart: () => void;
-  isSimulation?: boolean; // Add this prop to determine if this is in the simulation or real UI
-  isUnmountingRef?: MutableRefObject<boolean>;
 }
 
-export const CallInProgress = ({ 
-  isMuted, 
-  setIsMuted, 
-  onRestart, 
-  isSimulation = false,
-  isUnmountingRef
-}: CallInProgressProps) => {
-  const navigate = useNavigate();
-  
-  // We're removing the automatic call ending on unmount to prevent
-  // premature call termination. Instead, we'll only end calls
-  // when explicitly requested by the user.
-  
-  const handleEndCall = () => {
-    // First call the original restart function
-    onRestart();
-    
-    // Then navigate to the contact page if not in simulation
-    if (!isSimulation) {
-      navigate('/contact');
-    }
-  };
-
+export const CallInProgress: React.FC<CallInProgressProps> = ({
+  isMuted,
+  onMuteToggle,
+  onRestart,
+}) => {
   return (
-    <div className="absolute inset-0 bg-black/20 flex items-center justify-center z-10">
-      <div className="bg-black rounded-xl shadow-xl max-w-[300px] w-full p-4 m-4">
-        <div className="flex justify-between items-center mb-3">
-          <h2 className="text-base font-bold text-white">
-            {isSimulation 
-              ? "You are now connected with Stephanie Tolson" 
-              : "You are now connected with Paul Berman"}
-          </h2>
-          <button onClick={handleEndCall} className="text-gray-300 hover:text-white">
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-        
-        <div className="flex items-center space-x-3 mb-3">
-          <div className="relative">
-            <div className="h-12 w-12 rounded-full overflow-hidden border-2 border-gray-700 shadow-md">
-              {isSimulation ? (
-                <img 
-                  src="/lovable-uploads/7fafe6a4-b6c1-4526-9310-a32650aec834.png" 
-                  alt="Stephanie Tolson" 
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <img 
-                  src="/lovable-uploads/4bf8609b-100b-47bc-83ab-a1a376a57c4d.png" 
-                  alt="Paul Berman" 
-                  className="w-full h-full object-cover"
-                />
-              )}
-            </div>
-            <div className="absolute bottom-0 left-0 flex items-center">
-              <div className="h-2 w-2 bg-green-500 rounded-full"></div>
-              <div className="ml-0.5 flex space-x-0.5">
-                {[...Array(4)].map((_, i) => (
-                  <div 
-                    key={i} 
-                    className={`h-1.5 w-0.5 rounded-full ${i === 0 ? 'bg-white' : 'bg-gray-500'}`}
-                  ></div>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div>
-            <h3 className="text-base font-bold text-white">
-              {isSimulation ? "Stephanie Tolson" : "Paul Berman"}
-            </h3>
-            <p className="text-sm text-gray-400">
-              {isSimulation ? "Senior Realtor" : "Chief Technical Evangelist @ Powered_by"}
-            </p>
+    <div className="flex flex-col items-center justify-center min-h-[500px] bg-gray-900/95">
+      <div className="flex flex-col items-center space-y-8">
+        <div className="w-24 h-24 rounded-full bg-blue-500/20 flex items-center justify-center">
+          <div className="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center">
+            <Phone className="w-8 h-8 text-white" />
           </div>
         </div>
         
-        <div className="bg-gray-900 p-3 rounded-lg mb-3">
-          <div className="flex justify-between items-center mb-2">
-            <h3 className="text-sm font-bold text-white">Call in progress</h3>
-            <div className="flex items-center text-gray-300">
-              <Activity className="w-3 h-3 mr-1" />
-              <span className="text-xs">Live</span>
-            </div>
-          </div>
-          
-          <div className="flex justify-between items-center">
-            <p className="text-gray-400 text-sm">Your microphone</p>
-            <div className="flex items-center">
-              <div className="flex space-x-0.5 mr-2">
-                <div className="h-2 w-0.5 bg-white rounded-full"></div>
-                {[...Array(4)].map((_, i) => (
-                  <div 
-                    key={i} 
-                    className={`h-2 w-0.5 rounded-full ${i < 2 ? 'bg-gray-400' : 'bg-gray-600'}`}
-                  ></div>
-                ))}
-              </div>
-              <span className="text-gray-300 text-xs">Active</span>
-            </div>
-          </div>
+        <div className="text-center">
+          <h3 className="text-xl font-semibold text-white mb-2">Call in Progress</h3>
+          <p className="text-gray-400">Speaking with AI Assistant</p>
         </div>
-        
-        <div className="flex justify-center">
-          <button 
-            onClick={handleEndCall}
-            className="w-full py-2 px-3 bg-red-500 text-white rounded-md flex items-center justify-center space-x-2 hover:bg-red-600 transition-colors text-sm"
+
+        <div className="flex items-center space-x-4">
+          <Button
+            onClick={onMuteToggle}
+            variant="outline"
+            className={`rounded-full p-3 ${
+              isMuted ? 'bg-red-500 hover:bg-red-600' : 'bg-gray-700 hover:bg-gray-600'
+            }`}
           >
-            <X className="w-3 h-3 mr-1" />
-            <span>End Call</span>
-          </button>
+            {isMuted ? <MicOff className="w-6 h-6 text-white" /> : <Mic className="w-6 h-6 text-white" />}
+          </Button>
+          
+          <Button
+            onClick={onRestart}
+            variant="destructive"
+            className="rounded-full p-3 bg-red-500 hover:bg-red-600"
+          >
+            <Phone className="w-6 h-6 text-white rotate-135" />
+          </Button>
         </div>
       </div>
     </div>

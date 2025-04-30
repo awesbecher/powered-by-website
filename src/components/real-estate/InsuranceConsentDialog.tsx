@@ -22,7 +22,7 @@ const InsuranceConsentDialog = ({
         <DialogHeader className="flex flex-row items-center gap-4">
           <Avatar className="w-16 h-16">
             <AvatarImage 
-              src="/lovable-uploads/2d521c8d-084d-4a87-8491-cb795033a1d6.png"
+              src="/assets/images/2d521c8d-084d-4a87-8491-cb795033a1d6.png"
               alt="Jeff Smith"
               className="object-cover"
             />

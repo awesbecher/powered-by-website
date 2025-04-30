@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Tv, Zap } from "lucide-react";
@@ -37,25 +36,14 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
     })();
   }, []);
 
-  const handleDemoClick = () => {
-    console.log("Get Started button clicked in TextAgent HeroContent");
-    try {
-      // Direct modal trigger approach
-      (window as any).Cal?.('ui', {
-        styles: { branding: { brandColor: '#000000' } },
-        hideEventTypeDetails: false,
-        layout: 'month_view',
-      });
-      (window as any).Cal?.('showModal', {
-        calLink: "team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents",
-        config: {
-          layout: 'month_view',
-        },
-      });
-    } catch (err) {
-      console.error("Failed to open Cal.com modal from HeroContent:", err);
-      // Fallback to parent's handler
-      handleContact();
+  const handleGetStarted = () => {
+    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
+    if (calBtn instanceof HTMLElement) {
+      console.log("Cal.com button found, triggering click");
+      calBtn.click();
+    } else {
+      console.error("Cal.com button not found in DOM, navigating to /contact as fallback");
+      window.location.href = '/contact';
     }
   };
 
@@ -81,9 +69,7 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
       <div className="flex flex-wrap gap-4 pt-2">
         <Button 
           className="bg-[#6342ff] hover:bg-[#7352ff] text-white font-bold py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2 text-lg"
-          onClick={handleDemoClick}
-          data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
-          data-cal-config='{"layout":"month_view"}'
+          onClick={handleGetStarted}
         >
           <ArrowRight className="w-5 h-5" />
           Get Started
@@ -96,6 +82,13 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
           <Tv className="mr-2 h-5 w-5" /> Watch Product Tour
         </Button>
       </div>
+      
+      {/* Hidden Cal.com button */}
+      <button
+        className="hidden"
+        data-cal-link="team-powered-by-dfbtbb/get-started-today"
+        data-cal-config='{"layout":"month_view"}'
+      />
       
       <Dialog open={videoOpen} onOpenChange={setVideoOpen}>
         <DialogContent className="max-w-3xl p-1 bg-black">

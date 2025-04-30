@@ -14,7 +14,7 @@ export const WebsiteContent = ({ onStartCall, autoSimulate = false }: WebsiteCon
       {/* Logo at top left */}
       <div className="mb-2">
         <img 
-          src="/lovable-uploads/f6cd5c39-f85a-4586-9140-cd8e12d9b947.png" 
+          src="/assets/images/f6cd5c39-f85a-4586-9140-cd8e12d9b947.png" 
           alt="Business Connections Logo" 
           className="h-8 mb-1"
         />

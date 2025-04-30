@@ -20,41 +20,41 @@ const getPostImage = (slug: string, customImage?: string) => {
   
   switch (slug) {
     case "understanding-ai-agents":
-      return "/lovable-uploads/b9c7959b-bd61-40d9-b0b3-317a40353486.png";
+      return "/assets/images/b9c7959b-bd61-40d9-b0b3-317a40353486.png";
     case "ai-agents-trillion-market-opportunity":
-      return "/lovable-uploads/248b1b18-6411-432d-8281-dc0d70f64a28.png";
+      return "/assets/images/248b1b18-6411-432d-8281-dc0d70f64a28.png";
     case "workflow-automation-ai-agents-vs-rpa":
-      return "/lovable-uploads/13d3a8ff-b938-4d03-9efe-99fe283b96fe.png";
+      return "/assets/images/13d3a8ff-b938-4d03-9efe-99fe283b96fe.png";
     case "build-or-buy-ai-agents-evaluation":
-      return "/lovable-uploads/18fb4a10-0b23-4838-8db0-7e02de039f1a.png";
+      return "/assets/images/18fb4a10-0b23-4838-8db0-7e02de039f1a.png";
     case "openai-anthropic-smb-specialized-partners":
-      return "/lovable-uploads/f971b5e9-817b-426a-9db0-5db472970633.png";
+      return "/assets/images/f971b5e9-817b-426a-9db0-5db472970633.png";
     case "voice-ai-retail-customer-service":
-      return "/lovable-uploads/ba13be0d-77b7-49f3-aa99-9524e25c5294.png";
+      return "/assets/images/ba13be0d-77b7-49f3-aa99-9524e25c5294.png";
     case "saas-customer-engagement-automation":
-      return "/lovable-uploads/d2c09a06-b1ad-4f03-bcc5-6ea523b06f41.png";
+      return "/assets/images/d2c09a06-b1ad-4f03-bcc5-6ea523b06f41.png";
     case "human-like-ai-secrets":
-      return "/lovable-uploads/ba7183d3-c2d6-46b1-b51e-afa9de2b5af2.png";
+      return "/assets/images/ba7183d3-c2d6-46b1-b51e-afa9de2b5af2.png";
     case "practical-ways-smbs-use-conversational-agents":
-      return "/lovable-uploads/95284a6f-5cd3-4e2c-abf1-b7b5d98cb8bd.png";
+      return "/assets/images/95284a6f-5cd3-4e2c-abf1-b7b5d98cb8bd.png";
     case "customer-service-evolution":
-      return "/lovable-uploads/8505af38-6a90-44dc-b6bc-554d254475ea.png";
+      return "/assets/images/8505af38-6a90-44dc-b6bc-554d254475ea.png";
     case "breaking-down-ai-fears-smb":
-      return "/lovable-uploads/ac998611-204a-4c1d-984c-5f8d400f57ef.png";
+      return "/assets/images/ac998611-204a-4c1d-984c-5f8d400f57ef.png";
     case "ai-voice-customer-service":
-      return "/lovable-uploads/ec9dd264-4bb3-4b03-9b50-e31383652af9.png";
+      return "/assets/images/ec9dd264-4bb3-4b03-9b50-e31383652af9.png";
     case "future-of-ai-interactions":
-      return "/lovable-uploads/d496422a-1cc8-4b83-9d26-16bfda3ac8ed.png";
+      return "/assets/images/d496422a-1cc8-4b83-9d26-16bfda3ac8ed.png";
     case "ai-driven-personalization":
-      return "/lovable-uploads/e305eace-d64d-4437-9d8e-533d49b3d934.png";
+      return "/assets/images/e305eace-d64d-4437-9d8e-533d49b3d934.png";
     case "powered-by-reasons":
-      return "/lovable-uploads/ce50f548-f2b7-4f05-820b-79c23bb58625.png";
+      return "/assets/images/ce50f548-f2b7-4f05-820b-79c23bb58625.png";
     case "ai-agents-vs-rpa":
-      return "/lovable-uploads/4a4cd2c8-60ca-4613-afa8-cf62ebc5ee1a.png";
+      return "/assets/images/4a4cd2c8-60ca-4613-afa8-cf62ebc5ee1a.png";
     case "agentic-revolution":
-      return "/lovable-uploads/7815dd46-92f4-4475-809a-a644ec7fd3b9.png";
+      return "/assets/images/7815dd46-92f4-4475-809a-a644ec7fd3b9.png";
     default:
-      return "/lovable-uploads/af07ee0c-70fa-4261-a83e-98ef6108f8ae.png"; // Default image
+      return "/assets/images/af07ee0c-70fa-4261-a83e-98ef6108f8ae.png"; // Default image
   }
 };
 

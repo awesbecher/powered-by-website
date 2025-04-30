@@ -4,13 +4,14 @@ import React, { useState } from "react";
 import NavLink from "./NavLink";
 import { NavItemWithChildren } from "./navConfig";
 import { ChevronDown } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { motion, AnimatePresence } from "framer-motion";
 
 export interface NavItem {
   name: string;
@@ -22,47 +23,115 @@ interface NavLinksProps {
   navItems: NavItemWithChildren[];
 }
 
+const menuItemVariants = {
+  initial: { opacity: 0, x: -10 },
+  enter: (i: number) => ({
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.3,
+      delay: i * 0.05,
+      ease: [0.21, 1.11, 0.81, 0.99]
+    }
+  }),
+  hover: {
+    scale: 1.05,
+    transition: {
+      duration: 0.2,
+      ease: "easeOut"
+    }
+  }
+};
+
+const dropdownVariants = {
+  hidden: {
+    opacity: 0,
+    y: -5,
+    clipPath: "inset(0% 50% 100% 50% round 8px)",
+    transition: {
+      duration: 0.2,
+      ease: [0.36, 0, 0.66, -0.56]
+    }
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    clipPath: "inset(0% 0% 0% 0% round 8px)",
+    transition: {
+      duration: 0.3,
+      ease: [0.21, 1.11, 0.81, 0.99],
+      staggerChildren: 0.05
+    }
+  },
+  exit: {
+    opacity: 0,
+    y: -5,
+    clipPath: "inset(0% 50% 100% 50% round 8px)",
+    transition: {
+      duration: 0.2,
+      ease: [0.36, 0, 0.66, -0.56]
+    }
+  }
+};
+
 const NavLinks = ({ navItems }: NavLinksProps) => {
   const location = useLocation();
   
   return (
-    <div className="hidden md:flex items-center justify-center flex-1">
+    <motion.div 
+      className="hidden md:flex items-center justify-center flex-1"
+      initial="initial"
+      animate="enter"
+    >
       <div className="flex items-center space-x-2">
-        {/* Home Link */}
-        <NavLink to="/">Home</NavLink>
-
-        <span className="text-gray-600">|</span>
-
-        {/* AI Agency Link */}
-        <NavLink to="/ai-agency">AI Agency</NavLink>
-
-        <span className="text-gray-600">|</span>
-
-        {/* Other Nav Items */}
+        {/* Navigation Links */}
         {navItems.map((item, index) => (
           <React.Fragment key={item.name}>
-            {item.children ? (
-              <DropdownNavItem item={item} />
-            ) : (
-              <NavLink 
-                to={item.path} 
-                isExternal={item.isExternal}
-              >
-                {item.name}
-              </NavLink>
-            )}
+            <motion.div 
+              variants={menuItemVariants} 
+              custom={index}
+              whileHover="hover"
+            >
+              {item.children ? (
+                <DropdownNavItem item={item} />
+              ) : (
+                <NavLink 
+                  to={item.path} 
+                  isExternal={item.isExternal}
+                >
+                  {item.name}
+                </NavLink>
+              )}
+            </motion.div>
             {index < navItems.length - 1 && (
-              <span className="text-gray-600">|</span>
+              <motion.span 
+                variants={menuItemVariants} 
+                custom={index + 1}
+                className="text-gray-600"
+              >
+                |
+              </motion.span>
             )}
           </React.Fragment>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
 const DropdownNavItem = ({ item }: { item: NavItemWithChildren }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  
+  const handleItemClick = (path: string, isExternal: boolean = false) => {
+    if (isExternal) {
+      window.open(path, "_blank", "noopener,noreferrer");
+    } else {
+      window.scrollTo(0, 0);
+      navigate(path);
+    }
+    setIsOpen(false);
+  };
   
   return (
     <div 
@@ -71,12 +140,12 @@ const DropdownNavItem = ({ item }: { item: NavItemWithChildren }) => {
       onMouseLeave={() => setIsOpen(false)}
     >
       {/* Direct link to item path */}
-      <Link
-        to={item.path}
+      <button
+        onClick={() => handleItemClick(item.path)}
         className="px-3 py-2 text-sm font-bold relative group text-gray-300 hover:text-white transition-colors duration-200"
       >
         {item.name}
-      </Link>
+      </button>
       
       {/* Dropdown trigger button */}
       <button
@@ -93,33 +162,33 @@ const DropdownNavItem = ({ item }: { item: NavItemWithChildren }) => {
       </button>
       
       {/* Dropdown content */}
-      <div className={`absolute left-0 top-full mt-2 w-48 rounded-md shadow-lg bg-[#222222] border border-gray-700 transition-all duration-200 z-50 ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-        <div className="py-1">
-          {item.children?.map((child) => (
-            <div key={child.name} className="w-full">
-              {child.isExternal ? (
-                <a
-                  href={child.path}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block px-4 py-2 text-sm text-gray-300 hover:bg-[#2f1c4a] hover:text-white"
-                  onClick={() => setIsOpen(false)}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            variants={dropdownVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="absolute left-0 top-full mt-2 w-48 rounded-md shadow-lg bg-[#222222] border border-gray-700 z-50"
+          >
+            <div className="py-1">
+              {item.children?.map((child, index) => (
+                <motion.button
+                  key={child.name}
+                  className="w-full text-left px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-gray-800"
+                  onClick={() => handleItemClick(child.path, child.isExternal)}
+                  whileHover={{ x: 4 }}
+                  transition={{ duration: 0.2 }}
+                  variants={menuItemVariants}
+                  custom={index}
                 >
                   {child.name}
-                </a>
-              ) : (
-                <Link
-                  to={child.path}
-                  className="block px-4 py-2 text-sm text-gray-300 hover:bg-[#2f1c4a] hover:text-white"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {child.name}
-                </Link>
-              )}
+                </motion.button>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

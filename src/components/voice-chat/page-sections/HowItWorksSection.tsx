@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Check, Headphones, MessageCircle, Database } from "lucide-react";
 
@@ -22,7 +21,7 @@ const Step = ({ title, description, icon }: StepProps) => {
 
 export const HowItWorksSection = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
+    <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
       <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-16">
         How AI Voice Chat Works
       </h2>
@@ -59,4 +58,3 @@ export const HowItWorksSection = () => {
     </section>
   );
 };
-

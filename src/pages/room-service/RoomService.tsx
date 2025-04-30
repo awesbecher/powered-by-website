@@ -1,105 +1,111 @@
-import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
+import React, { useState, useEffect } from "react";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { CallConfirmationDialog } from "@/components/shared/CallConfirmationDialog";
+import { CallInProgressDialog } from "@/components/shared/CallInProgressDialog";
 import { RoomServiceHeader } from "./components/RoomServiceHeader";
 import { MenuDisplay } from "./components/MenuDisplay";
 import { CallButton } from "./components/CallButton";
-import { RoomServiceDialog } from "./components/RoomServiceDialog";
 import Navbar from "@/components/layout/Navbar";
-import { GrandviewLogo } from "./components/GrandviewLogo";
 import { useToast } from "@/hooks/use-toast";
 import { UseCaseExplainer } from "./components/UseCaseExplainer";
-import VisitSection from "@/components/mercedes-dealer/VisitSection";
+import { initiateVapiCall, endVapiCall } from "@/services/vapiService";
 
 const RoomService = () => {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [isCallActive, setIsCallActive] = useState(false);
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
+  // Dialog states
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [showCallInProgress, setShowCallInProgress] = useState(false);
+  const [callDuration, setCallDuration] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
   const handleStartCall = async () => {
-    setIsProcessing(true);
     try {
-      // TODO: Implement new call functionality
-      setIsCallActive(true);
-      toast({
-        title: "Connected to Room Service",
-        description: "You're now speaking with our AI room service assistant.",
-      });
+      setIsLoading(true);
+      // Initialize room service call using the working vapiService
+      await initiateVapiCall('roomService');
+      // Only if successful, close confirmation and show call dialog
+      setShowConfirmation(false);
+      setShowCallInProgress(true);
     } catch (error) {
-      console.error("Failed to connect to room service:", error);
+      console.error('Call error details:', error);
+      let errorMessage = "Failed to start the voice chat. Please try again.";
+      
+      if (error instanceof Error) {
+        const errorText = error.message.toLowerCase();
+        if (errorText.includes('permission denied') || errorText.includes('notallowederror')) {
+          errorMessage = "Microphone access was denied. Please allow microphone access and try again.";
+        } else if (errorText.includes('notfounderror')) {
+          errorMessage = "No microphone found. Please check your microphone connection and try again.";
+        } else if (errorText.includes('notreadableerror')) {
+          errorMessage = "Could not access your microphone. Please check if another application is using it.";
+        } else {
+          errorMessage = `Voice chat error: ${error.message}`;
+        }
+      }
+      
       toast({
         variant: "destructive",
-        title: "Connection failed",
-        description: error instanceof Error ? error.message : "Please check your microphone settings and try again.",
+        title: "Call Error",
+        description: errorMessage,
+        duration: 5000,
       });
     } finally {
-      setIsProcessing(false);
+      setIsLoading(false);
     }
   };
 
-  const handleEndCall = () => {
-    setIsCallActive(false);
-    setIsDialogOpen(false);
-    toast({
-      title: "Call ended",
-      description: "Thank you for using our room service.",
-    });
-  };
-
-  const toggleMute = () => {
-    setIsMuted(!isMuted);
+  const handleEndCall = async () => {
+    try {
+      await endVapiCall();
+      setShowCallInProgress(false);
+      setCallDuration(0);
+    } catch (error) {
+      console.error('Error ending call:', error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to end the call properly. Please refresh the page.",
+      });
+    }
   };
 
   return (
-    <div className="min-h-screen bg-[#1a0b2e] text-white">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-black to-neutral-900">
       <Navbar />
-
-      <GrandviewLogo />
-
-      <RoomServiceHeader />
-
-      <div className="container mx-auto px-4 flex justify-center mb-8">
-        <CallButton
-          isProcessing={isProcessing}
-          isCallActive={isCallActive}
-          onClick={() => setIsDialogOpen(true)}
-        />
+      <div className="flex-1 container mx-auto px-4 py-8">
+        <RoomServiceHeader setShowCallDialog={setShowConfirmation} />
+        <MenuDisplay />
+        <UseCaseExplainer />
       </div>
 
-      <UseCaseExplainer />
+      <Dialog open={showConfirmation} onOpenChange={setShowConfirmation}>
+        <DialogContent>
+          <DialogTitle className="sr-only">Start Room Service Call</DialogTitle>
+          <CallConfirmationDialog
+            onStartCall={handleStartCall}
+            onClose={() => setShowConfirmation(false)}
+            isLoading={isLoading}
+            service="roomService"
+          />
+        </DialogContent>
+      </Dialog>
 
-      <div className="container mx-auto px-4 relative z-10 py-12">
-        <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8 shadow-lg">
-          <h2 className="text-3xl font-bold text-center mb-6">Our Menu</h2>
-          <MenuDisplay />
-          
-          <div className="mt-8">
-            <CallButton
-              isProcessing={isProcessing}
-              isCallActive={isCallActive}
-              onClick={() => setIsDialogOpen(true)}
-            />
-          </div>
-        </div>
-      </div>
+      <Dialog open={showCallInProgress} onOpenChange={setShowCallInProgress}>
+        <DialogContent>
+          <DialogTitle className="sr-only">Room Service Call in Progress</DialogTitle>
+          <CallInProgressDialog
+            onEndCall={handleEndCall}
+            callDuration={callDuration}
+            setCallDuration={setCallDuration}
+            service="roomService"
+          />
+        </DialogContent>
+      </Dialog>
 
-      <VisitSection 
-        isProcessing={isProcessing}
-        isCallActive={isCallActive}
-        showCallDialog={isDialogOpen}
-        setShowCallDialog={setIsDialogOpen}
-      />
-
-      <RoomServiceDialog
-        isDialogOpen={isDialogOpen}
-        setIsDialogOpen={setIsDialogOpen}
-        isCallActive={isCallActive}
-        isProcessing={isProcessing}
-        isMuted={isMuted}
-        handleStartCall={handleStartCall}
-        handleEndCall={handleEndCall}
-        toggleMute={toggleMute}
+      <CallButton 
+        onClick={() => setShowConfirmation(true)} 
+        isProcessing={isLoading}
+        isCallActive={showCallInProgress}
       />
     </div>
   );

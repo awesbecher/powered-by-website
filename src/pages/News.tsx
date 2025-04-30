@@ -28,7 +28,7 @@ const News = () => {
           {/* Modified overlay gradient to be less opaque */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/60 via-[#1a0b2e]/70 to-[#1a0b2e] z-10"></div>
           <img 
-            src="/lovable-uploads/a53ff8c8-9033-4442-8c48-6cde96e79af7.png"
+            src="/assets/images/a53ff8c8-9033-4442-8c48-6cde96e79af7.png"
             alt="Printing press in motion" 
             className="w-full h-full object-cover object-center opacity-60" 
           />

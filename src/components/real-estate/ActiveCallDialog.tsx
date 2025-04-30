@@ -1,3 +1,6 @@
+// This component has been replaced by CallConfirmationDialog and CallInProgressDialog
+// Please use those components instead
+// This file can be safely deleted
 
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -34,7 +37,7 @@ export const ActiveCallDialog = ({
             <div className="relative">
               <Avatar className="h-20 w-20 rounded-full border-2 border-white shadow-md">
                 <AvatarImage 
-                  src="/lovable-uploads/2d9d7374-8cc7-4dee-944c-9614e9d40f77.png" 
+                  src="/assets/images/2d9d7374-8cc7-4dee-944c-9614e9d40f77.png" 
                   alt="Jeff Smith" 
                 />
                 <AvatarFallback>JS</AvatarFallback>

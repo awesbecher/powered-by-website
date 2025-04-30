@@ -1,49 +1,52 @@
-
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Tv, Mic } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useNavigate } from "react-router-dom";
-import { CalendarButton } from "./CalendarButton";
 import { getCalApi } from "@calcom/embed-react";
 
 interface HeroContentProps {
   initialLoad: boolean;
-  handleVoiceChatClick: () => void;
-  handleGetStarted: () => void;
+  handleContact: () => void;
 }
 
-export const HeroContent: React.FC<HeroContentProps> = ({
-  initialLoad,
-  handleVoiceChatClick,
-  handleGetStarted,
-}) => {
+export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) => {
   const [videoOpen, setVideoOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleTryDemo = () => {
-    window.open('https://www.poweredby.agency/real-estate', '_blank');
+    const triggerButton = document.getElementById('voice-chat-trigger');
+    if (triggerButton) {
+      triggerButton.click();
+    }
   };
-  
-  // Ensure Cal.com is initialized at the component level too
+
+  const handleGetStarted = () => {
+    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
+    if (calBtn instanceof HTMLElement) {
+      console.log("Cal.com button found, triggering click");
+      calBtn.click();
+    } else {
+      console.error("Cal.com button not found in DOM, navigating to /contact as fallback");
+      window.location.href = '/contact';
+    }
+  };
+
   useEffect(() => {
-    (async function () {
-      try {
-        console.log("Initializing Cal.com embed in VoiceChat HeroContent");
-        const cal = await getCalApi();
-        cal("ui", {
-          "cssVarsPerTheme": {
-            "light": {"cal-brand":"#292929"},
-            "dark": {"cal-brand":"#fafafa"}
-          },
-          "hideEventTypeDetails": false,
-          "layout": "month_view"
-        });
-        console.log("Cal.com embed initialized successfully in VoiceChat HeroContent");
-      } catch (error) {
-        console.error("Error initializing Cal.com embed in VoiceChat HeroContent:", error);
-      }
-    })();
+    // Initialize Cal.com
+    (window as any).Cal = {
+      q: (window as any).Cal ? (window as any).Cal.q : [],
+      ns: {},
+    };
+    
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://app.cal.com/embed/embed.js';
+    document.body.appendChild(script);
+    
+    return () => {
+      document.body.removeChild(script);
+    };
   }, []);
 
   return (
@@ -56,64 +59,53 @@ export const HeroContent: React.FC<HeroContentProps> = ({
         <p className="text-xl text-gray-300">
           Automate conversations, convert leads faster, and deliver instant support—24/7.
         </p>
-        <div className="space-y-2 text-gray-300">
-          <p className="text-xl">Deploy Human-like AI Voice Chat Directly on Your Website to:</p>
-          <ul className="list-disc list-inside space-y-1 pl-2 text-sm md:text-base">
-            <li>Boost Conversions: Turn visitors into customers with engaging conversations</li>
-            <li>Automate Customer Support: Provide immediate answers & reduce response times</li>
-            <li>Offer 24/7 Availability: Ensure reliable, personalized support day or night</li>
-          </ul>
-        </div>
-        <div className="flex flex-col items-start md:items-start pt-4">
-          <p className="text-gray-300 font-bold mb-2 text-left">See for yourself:</p>
-          <div className="flex flex-wrap gap-3 self-start">
-            <Button 
-              className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-4 text-base rounded-md flex items-center"
-              onClick={() => setVideoOpen(true)}
-            >
-              <Tv className="mr-2 h-5 w-5" /> Watch Overview
-            </Button>
-            
-            <Button 
-              className="bg-black hover:bg-gray-900 text-white px-6 py-4 text-base rounded-md flex items-center border-2 border-white"
-              onClick={handleTryDemo}
-            >
-              <Mic className="mr-2 h-5 w-5" /> Try Demo
-            </Button>
-            
-            <CalendarButton onClick={() => {
-              console.log("CalendarButton clicked from HeroContent");
-              try {
-                (window as any).Cal?.('ui', {
-                  styles: { branding: { brandColor: '#000000' } },
-                  hideEventTypeDetails: false,
-                  layout: 'month_view',
-                });
-                (window as any).Cal?.('showModal', {
-                  calLink: "team-powered-by-dfbtbb/get-started-with-voice-ai-chat",
-                  config: {
-                    layout: 'month_view',
-                  },
-                });
-              } catch (err) {
-                console.error("Failed to open Cal.com modal from HeroContent CalendarButton:", err);
-              }
-            }} />
+        <div className="flex flex-col items-start md:items-start pt-4 space-y-6">
+          <div>
+            <p className="text-gray-300 font-bold mb-2 text-left">See for yourself:</p>
+            <div className="flex flex-wrap gap-3 self-start">
+              <Button 
+                className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-4 text-base rounded-md flex items-center"
+                onClick={() => setVideoOpen(true)}
+              >
+                <Tv className="mr-2 h-5 w-5" /> Watch Overview
+              </Button>
+              
+              <Button 
+                className="bg-black hover:bg-gray-900 text-white px-6 py-4 text-base rounded-md flex items-center border-2 border-white"
+                onClick={handleTryDemo}
+              >
+                <Mic className="mr-2 h-5 w-5" /> Try Demo
+              </Button>
+            </div>
           </div>
+
+          <Button 
+            className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
+            onClick={handleGetStarted}
+          >
+            Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
+          </Button>
+
+          {/* Hidden Cal.com button */}
+          <button
+            className="hidden"
+            data-cal-link="team-powered-by-dfbtbb/get-started-today"
+            data-cal-config='{"layout":"month_view"}'
+          />
         </div>
       </div>
 
-      {/* YouTube Video Dialog */}
+      {/* Video Dialog */}
       <Dialog open={videoOpen} onOpenChange={setVideoOpen}>
-        <DialogContent className="max-w-3xl p-1 bg-black">
+        <DialogContent className="max-w-4xl p-0 bg-black">
           <div className="aspect-video">
-            <iframe 
-              width="100%" 
-              height="100%" 
-              src="https://www.youtube.com/embed/A4PPY9idmpo?si=Ku1bYt3Q1E79oJqW&autoplay=1" 
-              title="Voice AI Introduction" 
-              frameBorder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/A4PPY9idmpo?si=Ku1bYt3Q1E79oJqW&autoplay=1"
+              title="Voice AI Introduction"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>
           </div>

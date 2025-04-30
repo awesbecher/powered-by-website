@@ -54,7 +54,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
             </p>
             <div className="flex flex-wrap items-center gap-6">
               <div className="opacity-60 hover:opacity-100 transition-opacity">
-                <img src="/lovable-uploads/481415ac-8aa5-41e0-8679-2701410d3c93.png" alt="Company logo" className="h-8 w-auto" />
+                <img src="/assets/images/481415ac-8aa5-41e0-8679-2701410d3c93.png" alt="Company logo" className="h-8 w-auto" />
               </div>
               <div className="h-6 w-px bg-gray-700"></div>
               <div className="text-gray-300 font-semibold">

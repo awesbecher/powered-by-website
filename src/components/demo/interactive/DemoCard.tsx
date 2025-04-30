@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -57,7 +56,7 @@ export const DemoCard = ({ option, onShowDemo }: DemoCardProps) => {
             <option.icon className="h-7 w-7 text-white" />
           </div>
           
-          <h3 className="text-2xl sm:text-3xl font-bold mb-4">{option.title}</h3>
+          <h3 className="text-2xl sm:text-3xl font-bold mb-4 text-white">{option.title}</h3>
           
           <p className="text-gray-300 mb-6 text-lg">
             {option.description}

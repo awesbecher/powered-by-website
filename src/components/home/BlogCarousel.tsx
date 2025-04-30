@@ -64,17 +64,17 @@ export const BlogCarousel = ({ blogPosts }: BlogCarouselProps) => {
 
   const getCustomImage = (index: number) => {
     switch (index) {
-      case 0: return "/lovable-uploads/1d9e2ce4-55d8-420a-83ba-9f66a644ade8.png";
-      case 1: return "/lovable-uploads/d01b909c-5068-4b11-99e2-56b8eed3c895.png";
-      case 2: return "/lovable-uploads/cb3348ad-fffb-48e3-ae8f-f12e86dda512.png";
-      case 3: return "/lovable-uploads/628d30f0-dbf5-4a0a-8ed9-2b193dee90c6.png";
-      case 4: return "/lovable-uploads/95284a6f-5cd3-4e2c-abf1-b7b5d98cb8bd.png";
-      case 5: return "/lovable-uploads/ac998611-204a-4c1d-984c-5f8d400f57ef.png";
-      case 6: return "/lovable-uploads/18fb4a10-0b23-4838-8db0-7e02de039f1a.png";
-      case 7: return "/lovable-uploads/ce50f548-f2b7-4f05-820b-79c23bb58625.png";
-      case 8: return "/lovable-uploads/4a4cd2c8-60ca-4613-afa8-cf62ebc5ee1a.png";
-      case 9: return "/lovable-uploads/fdae0d27-7df9-4062-b863-55b0961f6e23.png";
-      case 10: return "/lovable-uploads/f971b5e9-817b-426a-9db0-5db472970633.png";
+      case 0: return "/assets/images/1d9e2ce4-55d8-420a-83ba-9f66a644ade8.png";
+      case 1: return "/assets/images/d01b909c-5068-4b11-99e2-56b8eed3c895.png";
+      case 2: return "/assets/images/cb3348ad-fffb-48e3-ae8f-f12e86dda512.png";
+      case 3: return "/assets/images/628d30f0-dbf5-4a0a-8ed9-2b193dee90c6.png";
+      case 4: return "/assets/images/95284a6f-5cd3-4e2c-abf1-b7b5d98cb8bd.png";
+      case 5: return "/assets/images/ac998611-204a-4c1d-984c-5f8d400f57ef.png";
+      case 6: return "/assets/images/18fb4a10-0b23-4838-8db0-7e02de039f1a.png";
+      case 7: return "/assets/images/ce50f548-f2b7-4f05-820b-79c23bb58625.png";
+      case 8: return "/assets/images/4a4cd2c8-60ca-4613-afa8-cf62ebc5ee1a.png";
+      case 9: return "/assets/images/fdae0d27-7df9-4062-b863-55b0961f6e23.png";
+      case 10: return "/assets/images/f971b5e9-817b-426a-9db0-5db472970633.png";
       default: return undefined;
     }
   };

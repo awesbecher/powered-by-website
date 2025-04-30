@@ -50,7 +50,7 @@ const OmegaActiveCallDialog: React.FC<OmegaActiveCallDialogProps> = ({
             <div className="relative w-20 h-20 rounded-full overflow-hidden">
               <AspectRatio ratio={1/1} className="bg-gray-800">
                 <img 
-                  src="/lovable-uploads/730d1ffb-26f6-49bf-b7b9-ea7f9dba24d0.png" 
+                  src="/assets/images/730d1ffb-26f6-49bf-b7b9-ea7f9dba24d0.png" 
                   alt="Stella from Omega Pediatrics" 
                   className="object-cover w-full h-full rounded-full"
                 />

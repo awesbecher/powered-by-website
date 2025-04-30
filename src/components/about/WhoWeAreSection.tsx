@@ -18,7 +18,7 @@ export const WhoWeAreSection = ({ initialLoad, whoWeAreRef }: WhoWeAreSectionPro
         {/* Team Photo */}
         <div className="mb-8 max-w-2xl mx-auto">
           <OptimizedImage 
-            src="/lovable-uploads/573aa598-a658-44ab-a9bd-9048d21051df.png" 
+            src="/assets/images/573aa598-a658-44ab-a9bd-9048d21051df.png" 
             alt="Powered By Team - Our diverse team of AI specialists" 
             className="w-full h-auto rounded-2xl shadow-xl object-cover animate-fade-in"
             priority={true}

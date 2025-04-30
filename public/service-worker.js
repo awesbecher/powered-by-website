@@ -1,10 +1,9 @@
-
 const CACHE_NAME = 'powered-by-cache-v1';
 const urlsToCache = [
   '/',
   '/index.html',
   '/manifest.json',
-  '/favicon.ico',
+  '/assets/team/PWB-favicon.png',
   '/static/js/main.js',
   '/static/css/main.css',
 ];

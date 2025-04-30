@@ -1,5 +1,4 @@
-
-import { Check, MessageSquare, Settings, UserPlus, BarChart3 } from "lucide-react";
+import { Check, MessageSquare, Settings, UserPlus, BarChart3, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const HowItWorksSection = () => {
@@ -25,6 +24,17 @@ export const HowItWorksSection = () => {
       description: "Monitor engagement metrics, conversion rates, and optimize your campaign performance over time.",
     },
   ];
+
+  const handleGetStarted = () => {
+    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
+    if (calBtn instanceof HTMLElement) {
+      console.log("Cal.com button found, triggering click");
+      calBtn.click();
+    } else {
+      console.error("Cal.com button not found in DOM, navigating to /contact as fallback");
+      window.location.href = '/contact';
+    }
+  };
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
@@ -62,31 +72,19 @@ export const HowItWorksSection = () => {
       
       <div className="mt-12 text-center">
         <Button 
-          data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
-          data-cal-config='{"layout":"month_view"}'
-          className="bg-[#6342ff] hover:bg-[#7352ff] text-white px-6 py-3 text-lg rounded-xl"
-          onClick={() => {
-            console.log("Get Started Today button clicked in HowItWorksSection");
-            try {
-              // Direct modal trigger approach
-              (window as any).Cal?.('ui', {
-                styles: { branding: { brandColor: '#000000' } },
-                hideEventTypeDetails: false,
-                layout: 'month_view',
-              });
-              (window as any).Cal?.('showModal', {
-                calLink: "team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents",
-                config: {
-                  layout: 'month_view',
-                },
-              });
-            } catch (err) {
-              console.error("Failed to open Cal.com modal from HowItWorksSection:", err);
-            }
-          }}
+          className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
+          onClick={handleGetStarted}
         >
+          <ArrowRight className="mr-2 h-5 w-5" />
           Get Started Today
         </Button>
+
+        {/* Hidden Cal.com button */}
+        <button
+          className="hidden"
+          data-cal-link="team-powered-by-dfbtbb/get-started-today"
+          data-cal-config='{"layout":"month_view"}'
+        />
       </div>
     </section>
   );

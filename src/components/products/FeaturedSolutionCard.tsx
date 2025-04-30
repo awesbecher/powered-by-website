@@ -1,4 +1,3 @@
-
 import { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
@@ -37,7 +36,7 @@ export const FeaturedSolutionCard = ({
         whileTap={{ scale: 0.98 }}
         transition={{ duration: 0.2 }}
       >
-        <div className="flex items-center text-accent font-medium">
+        <div className="flex items-center text-white font-bold">
           <span>Learn more</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"

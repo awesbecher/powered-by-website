@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Clock, DollarSign, Target, ThumbsUp, CheckCircle2 } from "lucide-react";
+import { Clock, DollarSign, Target, ThumbsUp, CheckCircle2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const BenefitsSection = () => {
@@ -32,6 +31,17 @@ export const BenefitsSection = () => {
     { value: "73%", label: "Reduction in manual follow-up time" },
     { value: "2.5x", label: "More qualified leads" }
   ];
+
+  const handleGetStarted = () => {
+    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
+    if (calBtn instanceof HTMLElement) {
+      console.log("Cal.com button found, triggering click");
+      calBtn.click();
+    } else {
+      console.error("Cal.com button not found in DOM, navigating to /contact as fallback");
+      window.location.href = '/contact';
+    }
+  };
 
   return (
     <section className="py-16">
@@ -92,13 +102,19 @@ export const BenefitsSection = () => {
       {/* Centered Experience the Benefits button with Cal.com functionality */}
       <div className="mt-12 flex justify-center">
         <Button 
-          data-cal-namespace="get-started-with-ai-sms-text-agents"
-          data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
-          data-cal-config='{"layout":"month_view"}'
-          className="bg-[#6342ff] hover:bg-[#7352ff] text-white px-6 py-3 text-lg rounded-xl"
+          className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
+          onClick={handleGetStarted}
         >
+          <ArrowRight className="mr-2 h-5 w-5" />
           Experience the Benefits
         </Button>
+
+        {/* Hidden Cal.com button */}
+        <button
+          className="hidden"
+          data-cal-link="team-powered-by-dfbtbb/get-started-today"
+          data-cal-config='{"layout":"month_view"}'
+        />
       </div>
     </section>
   );

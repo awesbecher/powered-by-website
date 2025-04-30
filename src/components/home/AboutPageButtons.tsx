@@ -1,7 +1,6 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Users, Briefcase, Play, ArrowRight } from "lucide-react";
+import { Users, Play } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
@@ -11,17 +10,12 @@ interface AboutPageButtonsProps {
 }
 
 export const AboutPageButtons = ({ onScrollToSection, sectionRef }: AboutPageButtonsProps) => {
-  const navigate = useNavigate();
   const [showVideoDialog, setShowVideoDialog] = useState(false);
 
   const handleWhoWeAreClick = () => {
     if (onScrollToSection && sectionRef) {
       onScrollToSection(sectionRef);
     }
-  };
-
-  const handleCareersClick = () => {
-    navigate('/careers');
   };
 
   const handleWatchVideoClick = () => {
@@ -47,16 +41,6 @@ export const AboutPageButtons = ({ onScrollToSection, sectionRef }: AboutPageBut
         >
           <Users className="h-5 w-5" />
           Meet Our Team
-        </Button>
-        
-        {/* Join Us Button */}
-        <Button 
-          variant="outline"
-          className="bg-transparent border-2 border-white/60 hover:border-white hover:bg-white/5 text-white px-8 py-6 rounded-lg text-lg font-medium flex items-center justify-center gap-3 transition-all"
-          onClick={handleCareersClick}
-        >
-          <Briefcase className="h-5 w-5" />
-          Join Us
         </Button>
       </div>
 

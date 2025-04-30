@@ -19,7 +19,7 @@ const Logo = () => {
     <div className="flex-shrink-0">
       <Link to="/" onClick={handleClick}>
         <img 
-          src="/lovable-uploads/21341be9-b85c-4ea3-b346-3c45080b3810.png" 
+          src="/assets/images/21341be9-b85c-4ea3-b346-3c45080b3810.png" 
           alt="Powered By Agency" 
           className="h-8 w-auto object-contain"
         />

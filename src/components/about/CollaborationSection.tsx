@@ -20,7 +20,7 @@ export const CollaborationSection = ({ scrollPosition, collaborationRef }: Colla
         {/* Added Image with optimization */}
         <div className="mb-10 max-w-4xl mx-auto">
           <OptimizedImage 
-            src="/lovable-uploads/55940d61-20dd-4c93-8911-5bfcbb287aca.png" 
+            src="/assets/images/55940d61-20dd-4c93-8911-5bfcbb287aca.png" 
             alt="AI Agent Architecture - Visualization of our agent technology stack" 
             className="w-full h-auto rounded-2xl shadow-xl object-cover animate-fade-in"
           />

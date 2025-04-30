@@ -1,49 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
+import { NavItemWithChildren } from './navConfig';
 
 interface NavItem {
   label: string;
   href: string;
   isExternal?: boolean;
+  children?: NavItem[];
 }
 
 interface NavLinkProps {
-  href: string;
-  isExternal?: boolean;
-  isMobile: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
+  item: NavItem;
+  closeMenu: () => void;
 }
 
-const NavLink: React.FC<NavLinkProps> = ({ href, isExternal, isMobile, onClick, children }) => {
+const NavLink: React.FC<NavLinkProps> = ({ item, closeMenu }) => {
   const handleClick = () => {
-    if (isMobile) {
-      onClick();
-    }
+    closeMenu();
   };
 
-  if (isExternal) {
+  if (item.isExternal) {
     return (
       <a
-        href={href}
+        href={item.href}
         target="_blank"
         rel="noopener noreferrer"
         className="block py-2 px-4 text-sm hover:bg-gray-700 text-white"
         onClick={handleClick}
       >
-        {children}
+        {item.label}
       </a>
     );
   }
 
   return (
     <Link
-      to={href}
+      to={item.href}
       className="block py-2 px-4 text-sm hover:bg-gray-700 text-white"
       onClick={handleClick}
     >
-      {children}
+      {item.label}
     </Link>
   );
 };
@@ -51,18 +49,22 @@ const NavLink: React.FC<NavLinkProps> = ({ href, isExternal, isMobile, onClick, 
 interface MobileMenuProps {
   isOpen: boolean;
   closeMenu: () => void;
+  navItems: NavItemWithChildren[];
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, closeMenu }) => {
+const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, closeMenu, navItems }) => {
   const menuItems = [
-    { label: 'Home', href: '/' },
-    { label: 'About', href: '/about' },
-    { label: 'Demos', href: '/demo' },
-    { label: 'Contact', href: '/contact' },
     { label: 'AI Agency', href: '/ai-agency' },
-    { label: 'Agent Marketplace', href: '/agent-marketplace' },
-    { label: 'Careers', href: '/careers' },
-    { label: 'News', href: '/news' },
+    ...navItems.map(item => ({
+      label: item.name,
+      href: item.path,
+      isExternal: item.isExternal,
+      children: item.children?.map(child => ({
+        label: child.name,
+        href: child.path,
+        isExternal: child.isExternal
+      }))
+    }))
   ];
 
   return (
@@ -76,12 +78,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, closeMenu }) => {
       <nav className="flex flex-col">
         {menuItems.map((item) => (
           <NavLink
-            href={item.href}
-            isExternal={item.isExternal}
-            isMobile={true}
-            onClick={closeMenu}
+            key={item.href}
+            item={item}
+            closeMenu={closeMenu}
           >
-            {item.label}
           </NavLink>
         ))}
       </nav>

@@ -1,65 +1,35 @@
+import React from 'react';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
 
-import { Button } from "@/components/ui/button";
-import { Calendar } from "lucide-react";
-import { useEffect } from "react";
-import { getCalApi } from "@calcom/embed-react";
-
-interface CalendarButtonProps {
-  onClick?: () => void;
-  className?: string;
-}
-
-export const CalendarButton = ({ onClick, className = "" }: CalendarButtonProps) => {
-  // Ensure Cal.com is initialized when this component mounts
-  useEffect(() => {
-    (async function () {
-      try {
-        console.log("Initializing Cal.com embed in CalendarButton component");
-        const cal = await getCalApi();
-        cal("ui", {
-          "cssVarsPerTheme": {
-            "light": {"cal-brand":"#292929"},
-            "dark": {"cal-brand":"#fafafa"}
-          },
-          "hideEventTypeDetails": false,
-          "layout": "month_view"
-        });
-        console.log("Cal.com embed initialized successfully in CalendarButton component");
-      } catch (error) {
-        console.error("Error initializing Cal.com embed in CalendarButton component:", error);
-      }
-    })();
-  }, []);
+export const CalendarButton = () => {
+  const handleGetStarted = () => {
+    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
+    if (calBtn instanceof HTMLElement) {
+      console.log("Cal.com button found, triggering click");
+      calBtn.click();
+    } else {
+      console.error("Cal.com button not found in DOM, navigating to /contact as fallback");
+      window.location.href = '/contact';
+    }
+  };
 
   return (
-    <Button
-      data-cal-link="team-powered-by-dfbtbb/get-started-with-voice-ai-chat"
-      data-cal-config='{"layout":"month_view"}'
-      onClick={(e) => {
-        console.log("Calendar button clicked in CalendarButton component");
-        try {
-          // Direct modal trigger approach
-          (window as any).Cal?.('ui', {
-            styles: { branding: { brandColor: '#000000' } },
-            hideEventTypeDetails: false,
-            layout: 'month_view',
-          });
-          (window as any).Cal?.('showModal', {
-            calLink: "team-powered-by-dfbtbb/get-started-with-voice-ai-chat",
-            config: {
-              layout: 'month_view',
-            },
-          });
-          if (onClick) onClick();
-        } catch (err) {
-          console.error("Failed to open Cal.com modal directly from CalendarButton:", err);
-          if (onClick) onClick();
-        }
-      }}
-      className={`bg-[#6342ff] hover:bg-[#5233e0] text-white px-6 py-4 text-base rounded-md flex items-center ${className}`}
-    >
-      <Calendar className="mr-2 h-5 w-5" />
-      Get Started
-    </Button>
+    <div className="flex flex-col items-center gap-4">
+      <Button 
+        className="bg-white hover:bg-gray-100 text-[#6342ff] px-8 py-6 text-lg rounded-md flex items-center gap-2 mx-auto"
+        onClick={handleGetStarted}
+      >
+        Get Started Now!
+        <ArrowRight className="w-5 h-5" />
+      </Button>
+
+      {/* Hidden Cal.com button */}
+      <button
+        className="hidden"
+        data-cal-link="team-powered-by-dfbtbb/get-started-today"
+        data-cal-config='{"layout":"month_view"}'
+      />
+    </div>
   );
 };

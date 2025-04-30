@@ -1,4 +1,3 @@
-
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 export const HeroSection = () => {
@@ -8,7 +7,7 @@ export const HeroSection = () => {
       <div className="absolute inset-0 right-0">
         <div className="absolute inset-0 bg-gradient-to-r from-[#1a0b2e] via-[#1a0b2e]/80 to-transparent z-10"></div>
         <img 
-          src="/lovable-uploads/2d9d7374-8cc7-4dee-944c-9614e9d40f77.png"
+          src="/assets/images/2d9d7374-8cc7-4dee-944c-9614e9d40f77.png"
           alt="Luxury Estate"
           className="w-full h-full object-cover opacity-80"
         />
@@ -22,7 +21,7 @@ export const HeroSection = () => {
             <div className="bg-white/90 rounded-lg p-4 shadow-lg max-w-[180px] mx-auto lg:mx-0">
               <AspectRatio ratio={1} className="w-full">
                 <img 
-                  src="/lovable-uploads/85f8e2ea-ebed-439d-9679-1cdab359e142.png" 
+                  src="/assets/team/township-realestate.png" 
                   alt="Township Real Estate Logo" 
                   className="object-contain w-full h-full"
                 />

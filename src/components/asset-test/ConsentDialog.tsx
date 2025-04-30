@@ -23,7 +23,7 @@ const ConsentDialog: React.FC<ConsentDialogProps> = ({
         <DialogHeader className="flex flex-row items-center gap-4">
           <Avatar className="w-16 h-16">
             <AvatarImage 
-              src="/lovable-uploads/156d245d-e750-4ef3-8995-a7ae211eeeee.png"
+              src="/assets/images/156d245d-e750-4ef3-8995-a7ae211eeeee.png"
               alt="Alex Fisher"
               className="object-cover"
             />

@@ -1,11 +1,22 @@
+import React, { useEffect } from 'react';
 
-import React from "react";
+interface LoadingStateProps {
+  onComplete?: () => void;
+}
 
-export const LoadingState = () => {
+export const LoadingState: React.FC<LoadingStateProps> = ({ onComplete }) => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onComplete?.();
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [onComplete]);
+
   return (
-    <div className="p-4 bg-white min-h-[500px] max-h-[500px] h-[500px] flex flex-col items-center justify-center">
-      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#9b87f5]"></div>
-      <p className="mt-4 text-base text-gray-600">Connecting to an agent...</p>
+    <div className="flex flex-col items-center justify-center min-h-[500px] bg-gray-900">
+      <div className="w-16 h-16 border-4 border-t-blue-500 border-r-transparent border-b-blue-500 border-l-transparent rounded-full animate-spin"></div>
+      <p className="mt-4 text-white text-lg">Connecting to AI Agent...</p>
     </div>
   );
 };

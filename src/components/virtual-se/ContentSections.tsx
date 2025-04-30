@@ -24,7 +24,7 @@ const ContentSections = ({ initialLoad }: ContentSectionsProps) => {
               {!isPlaying ? (
                 <>
                   <img 
-                    src="/lovable-uploads/a4604ec9-99e3-4930-918e-ee95e7e58d81.png" 
+                    src="/assets/images/a4604ec9-99e3-4930-918e-ee95e7e58d81.png" 
                     alt="Zoom meeting with multiple participants" 
                     className="w-full h-auto object-cover"
                     loading="lazy"

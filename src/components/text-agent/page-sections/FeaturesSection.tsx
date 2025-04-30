@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { BadgeCheck, MessageSquare, Users, BarChart3, Zap, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
 
 export const FeaturesSection = () => {
   const features = [
@@ -37,6 +37,17 @@ export const FeaturesSection = () => {
     }
   ];
 
+  const handleGetStarted = () => {
+    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
+    if (calBtn instanceof HTMLElement) {
+      console.log("Cal.com button found, triggering click");
+      calBtn.click();
+    } else {
+      console.error("Cal.com button not found in DOM, navigating to /contact as fallback");
+      window.location.href = '/contact';
+    }
+  };
+
   return (
     <section className="py-16 relative overflow-hidden">
       {/* Background decoration */}
@@ -68,21 +79,19 @@ export const FeaturesSection = () => {
         
         <div className="mt-12 text-center">
           <Button 
-            onClick={() => {
-              console.log("See Features in Action button clicked");
-              // Direct attempt to click the Cal button
-              const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"]');
-              if (calBtn instanceof HTMLElement) {
-                calBtn.click();
-                console.log("Cal.com button clicked programmatically from FeaturesSection");
-              } else {
-                console.error("Cal.com button not found in DOM from FeaturesSection");
-              }
-            }}
-            className="bg-[#6342ff] hover:bg-[#7352ff] text-white px-6 py-3 text-lg rounded-xl"
+            className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
+            onClick={handleGetStarted}
           >
+            <ArrowRight className="mr-2 h-5 w-5" />
             See Features in Action
           </Button>
+
+          {/* Hidden Cal.com button */}
+          <button
+            className="hidden"
+            data-cal-link="team-powered-by-dfbtbb/get-started-today"
+            data-cal-config='{"layout":"month_view"}'
+          />
         </div>
       </div>
     </section>

@@ -14,7 +14,7 @@ export const BackgroundImage: React.FC = () => {
         
         {/* Background image - increased opacity from 0.2 to 0.4 */}
         <img
-          src="/lovable-uploads/131b4a87-de91-4b08-9702-1bcde3ef8356.png"
+          src="/assets/images/131b4a87-de91-4b08-9702-1bcde3ef8356.png"
           alt=""
           className="absolute inset-0 h-full w-full object-cover opacity-40"
           style={{ objectPosition: "center 20%" }}

@@ -1,4 +1,3 @@
-
 import { serviceCardsData } from "@/data/serviceCardsData";
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
@@ -88,7 +87,7 @@ export const ProductIndex = ({ activeSection }: ProductIndexProps) => {
             } border transition-all duration-300 flex items-center gap-2`}
             aria-current={activeSection === index.toString() ? "page" : undefined}
           >
-            <card.icon className="h-5 w-5 text-accent flex-shrink-0" />
+            <card.icon className="h-5 w-5 text-white flex-shrink-0" />
             <p className="text-sm text-white whitespace-nowrap">{card.title.main.replace(':', '')}</p>
           </button>
         ))}
