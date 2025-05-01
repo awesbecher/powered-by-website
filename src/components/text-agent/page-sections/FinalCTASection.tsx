@@ -1,18 +1,28 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
+import React, { useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { getCalApi } from "@calcom/embed-react";
 
 export const FinalCTASection = () => {
-  const handleGetStarted = () => {
-    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
-    if (calBtn instanceof HTMLElement) {
-      console.log("Cal.com button found, triggering click");
-      calBtn.click();
-    } else {
-      console.error("Cal.com button not found in DOM, navigating to /contact as fallback");
-      window.location.href = '/contact';
-    }
-  };
+  // Initialize Cal.com
+  useEffect(() => {
+    (async function () {
+      try {
+        console.log("Initializing Cal.com embed in TextAgent FinalCTASection");
+        const cal = await getCalApi();
+        cal("ui", {
+          theme: "dark",
+          cssVarsPerTheme: {
+            light: {"cal-brand": "#292929"},
+            dark: {"cal-brand": "#fafafa"}
+          },
+          hideEventTypeDetails: false,
+          layout: "column_view"
+        });
+      } catch (error) {
+        console.error("Error initializing Cal.com in TextAgent FinalCTASection:", error);
+      }
+    })();
+  }, []);
 
   return (
     <section className="relative py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
@@ -24,22 +34,16 @@ export const FinalCTASection = () => {
           <p className="text-lg text-white/90 mb-8">
             Get started with AI Text Agent today and experience the future of customer service.
           </p>
-          <Button 
+          <button 
+            data-cal-link="team-powered-by-dfbtbb/get-started-today"
+            data-cal-config='{"layout":"column_view","theme":"dark"}'
             className="bg-white hover:bg-gray-100 text-[#6342ff] px-8 py-6 text-lg rounded-md flex items-center gap-2 mx-auto"
-            onClick={handleGetStarted}
           >
             Get Started Now
             <ArrowRight className="w-5 h-5" />
-          </Button>
+          </button>
         </div>
       </div>
-
-      {/* Hidden Cal.com button */}
-      <button
-        className="hidden"
-        data-cal-link="team-powered-by-dfbtbb/get-started-today"
-        data-cal-config='{"layout":"month_view"}'
-      />
     </section>
   );
 };

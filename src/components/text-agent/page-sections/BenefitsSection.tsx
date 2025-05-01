@@ -1,8 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Clock, DollarSign, Target, ThumbsUp, CheckCircle2, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { getCalApi } from "@calcom/embed-react";
 
 export const BenefitsSection = () => {
+  // Initialize Cal.com
+  useEffect(() => {
+    (async function () {
+      try {
+        console.log("Initializing Cal.com embed in TextAgent BenefitsSection");
+        const cal = await getCalApi();
+        cal("ui", {
+          theme: "dark",
+          cssVarsPerTheme: {
+            light: {"cal-brand": "#292929"},
+            dark: {"cal-brand": "#fafafa"}
+          },
+          hideEventTypeDetails: false,
+          layout: "column_view"
+        });
+      } catch (error) {
+        console.error("Error initializing Cal.com in TextAgent BenefitsSection:", error);
+      }
+    })();
+  }, []);
+
   const benefits = [
     {
       icon: Clock,
@@ -32,89 +53,51 @@ export const BenefitsSection = () => {
     { value: "2.5x", label: "More qualified leads" }
   ];
 
-  const handleGetStarted = () => {
-    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
-    if (calBtn instanceof HTMLElement) {
-      console.log("Cal.com button found, triggering click");
-      calBtn.click();
-    } else {
-      console.error("Cal.com button not found in DOM, navigating to /contact as fallback");
-      window.location.href = '/contact';
-    }
-  };
-
   return (
     <section className="py-16">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Left column - Benefits */}
         <div>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">Why Choose AI Text Agent</h2>
-          
-          <div className="space-y-6">
-            {benefits.map((benefit, index) => (
-              <div key={index} className="flex gap-4">
-                <div className="p-2 bg-[#6342ff]/20 rounded-lg h-fit">
-                  <benefit.icon className="w-6 h-6 text-[#9b87f5]" />
+          <div className="space-y-8">
+            {benefits.map((benefit, index) => {
+              const Icon = benefit.icon;
+              return (
+                <div key={index} className="flex gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="p-2 bg-[#9b87f5]/10 rounded-lg">
+                      <Icon className="h-6 w-6 text-[#9b87f5]" />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-white mb-2">{benefit.title}</h3>
+                    <p className="text-gray-300">{benefit.description}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-1">{benefit.title}</h3>
-                  <p className="text-gray-300">{benefit.description}</p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
+          </div>
+          <div className="mt-8">
+            <button 
+              data-cal-link="team-powered-by-dfbtbb/get-started-today"
+              data-cal-config='{"layout":"column_view","theme":"dark"}'
+              className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-4 text-lg rounded-md inline-flex items-center gap-2"
+            >
+              Experience the Benefits
+              <ArrowRight className="w-5 h-5" />
+            </button>
           </div>
         </div>
-        
-        {/* Right column - Stats and proof */}
-        <div className="bg-gradient-to-br from-[#2a1e43] to-[#1a0b2e] p-8 rounded-2xl border border-[#6342ff]/30">
-          <h3 className="text-2xl font-bold text-white mb-6">Real Results for Businesses Like Yours</h3>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
-            {keyStats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-[#9b87f5] mb-2">{stat.value}</div>
-                <p className="text-gray-300 text-sm">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-          
-          <div className="space-y-4">
-            <div className="flex items-start gap-2">
-              <CheckCircle2 className="w-5 h-5 text-[#9b87f5] mt-0.5" />
-              <p className="text-gray-300">Texts sent at optimal times based on recipient behavior</p>
-            </div>
-            <div className="flex items-start gap-2">
-              <CheckCircle2 className="w-5 h-5 text-[#9b87f5] mt-0.5" />
-              <p className="text-gray-300">Personalized content based on user data and context</p>
-            </div>
-            <div className="flex items-start gap-2">
-              <CheckCircle2 className="w-5 h-5 text-[#9b87f5] mt-0.5" />
-              <p className="text-gray-300">Human-like conversations that build rapport and trust</p>
-            </div>
-            <div className="flex items-start gap-2">
-              <CheckCircle2 className="w-5 h-5 text-[#9b87f5] mt-0.5" />
-              <p className="text-gray-300">Precise qualification to identify sales-ready leads</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      {/* Centered Experience the Benefits button with Cal.com functionality */}
-      <div className="mt-12 flex justify-center">
-        <Button 
-          className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
-          onClick={handleGetStarted}
-        >
-          <ArrowRight className="mr-2 h-5 w-5" />
-          Experience the Benefits
-        </Button>
 
-        {/* Hidden Cal.com button */}
-        <button
-          className="hidden"
-          data-cal-link="team-powered-by-dfbtbb/get-started-today"
-          data-cal-config='{"layout":"month_view"}'
-        />
+        {/* Right column - Stats */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {keyStats.map((stat, index) => (
+            <div key={index} className="text-center p-6 bg-white/5 rounded-xl">
+              <div className="text-3xl font-bold text-[#9b87f5] mb-2">{stat.value}</div>
+              <div className="text-gray-300">{stat.label}</div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

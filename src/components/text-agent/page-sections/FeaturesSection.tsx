@@ -1,9 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BadgeCheck, MessageSquare, Users, BarChart3, Zap, ShieldCheck } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { getCalApi } from "@calcom/embed-react";
 
 export const FeaturesSection = () => {
+  // Initialize Cal.com
+  useEffect(() => {
+    (async function () {
+      try {
+        console.log("Initializing Cal.com embed in TextAgent FeaturesSection");
+        const cal = await getCalApi();
+        cal("ui", {
+          theme: "dark",
+          cssVarsPerTheme: {
+            light: {"cal-brand": "#292929"},
+            dark: {"cal-brand": "#fafafa"}
+          },
+          hideEventTypeDetails: false,
+          layout: "column_view"
+        });
+      } catch (error) {
+        console.error("Error initializing Cal.com in TextAgent FeaturesSection:", error);
+      }
+    })();
+  }, []);
+
   const features = [
     {
       icon: MessageSquare,
@@ -37,62 +58,39 @@ export const FeaturesSection = () => {
     }
   ];
 
-  const handleGetStarted = () => {
-    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
-    if (calBtn instanceof HTMLElement) {
-      console.log("Cal.com button found, triggering click");
-      calBtn.click();
-    } else {
-      console.error("Cal.com button not found in DOM, navigating to /contact as fallback");
-      window.location.href = '/contact';
-    }
-  };
-
   return (
-    <section className="py-16 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute -top-20 -left-20 w-64 h-64 bg-[#6342ff]/10 rounded-full blur-3xl z-0"></div>
-      <div className="absolute -bottom-20 -right-20 w-72 h-72 bg-[#6342ff]/10 rounded-full blur-3xl z-0"></div>
-      
-      <div className="relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Feature Highlights</h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Everything you need to automate and scale your sales outreach text messaging
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
-          {features.map((feature, index) => (
-            <div 
-              key={index} 
-              className="bg-gradient-to-br from-[#1e1230] to-[#13151a] p-6 rounded-xl border border-white/5 hover:border-[#6342ff]/30 transition-all duration-300 hover:shadow-lg hover:shadow-[#6342ff]/10"
-            >
-              <div className="mb-4 p-3 bg-[#6342ff]/20 rounded-lg inline-block">
-                <feature.icon className="w-6 h-6 text-[#9b87f5]" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
+    <section className="py-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
+      <div className="text-center mb-12">
+        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+          Powerful Features for Modern Businesses
+        </h2>
+        <p className="text-gray-300 text-lg max-w-3xl mx-auto">
+          Our AI Text Agent comes packed with everything you need to automate and scale your text communication.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        {features.map((feature, index) => {
+          const Icon = feature.icon;
+          return (
+            <div key={index} className="p-6 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
+              <Icon className="h-8 w-8 text-[#9b87f5] mb-4" />
+              <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
               <p className="text-gray-300">{feature.description}</p>
             </div>
-          ))}
-        </div>
-        
-        <div className="mt-12 text-center">
-          <Button 
-            className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
-            onClick={handleGetStarted}
-          >
-            <ArrowRight className="mr-2 h-5 w-5" />
-            See Features in Action
-          </Button>
+          );
+        })}
+      </div>
 
-          {/* Hidden Cal.com button */}
-          <button
-            className="hidden"
-            data-cal-link="team-powered-by-dfbtbb/get-started-today"
-            data-cal-config='{"layout":"month_view"}'
-          />
-        </div>
+      <div className="text-center">
+        <button 
+          data-cal-link="team-powered-by-dfbtbb/get-started-today"
+          data-cal-config='{"layout":"column_view","theme":"dark"}'
+          className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-4 text-lg rounded-md inline-flex items-center gap-2"
+        >
+          See Features in Action
+          <ArrowRight className="w-5 h-5" />
+        </button>
       </div>
     </section>
   );
