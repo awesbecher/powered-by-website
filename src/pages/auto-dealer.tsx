@@ -4,15 +4,8 @@ import { MetricsSection } from "@/components/auto-dealer/MetricsSection";
 import { FeaturesGrid } from "@/components/auto-dealer/FeaturesGrid";
 import { PlayHtAgent } from "@/components/auto-dealer/PlayHtAgent";
 import { SEO } from "@/components/shared/SEO";
-import { useEffect } from 'react';
-import { initializePlayHT } from '@/services/playhtService';
 
 const AutoDealer = () => {
-  useEffect(() => {
-    // Initialize Play.ht SDK
-    initializePlayHT();
-  }, []);
-
   return (
     <>
       <SEO 
