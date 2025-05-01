@@ -1,28 +1,19 @@
+import React from 'react';
 import PageLayout from "@/components/layout/PageLayout";
-import { HeroSection } from "@/components/auto-dealer/HeroSection";
-import { MetricsSection } from "@/components/auto-dealer/MetricsSection";
-import { FeaturesGrid } from "@/components/auto-dealer/FeaturesGrid";
 import { PlayHtAgent } from "@/components/auto-dealer/PlayHtAgent";
 import { SEO } from "@/components/shared/SEO";
-import Script from 'next/script';
 
-const AutoDealer = () => {
+const AutoDealer: React.FC = () => {
   return (
     <>
       <SEO 
         title="AI Agents for Auto Dealers | Powered By"
         description="Transform your dealership with intelligent AI agents that handle inquiries, schedule test drives, and qualify leads 24/7."
       />
-      <Script 
-        src="https://play-ai.github.io/web-sdk/index.js"
-        strategy="lazyOnload"
-      />
       <PageLayout>
-        <div className="min-h-screen bg-gradient-to-b from-black to-[#1E1E1E] px-4 py-12">
-          <div className="container mx-auto space-y-12">
-            <HeroSection />
-            <MetricsSection />
-            <FeaturesGrid />
+        <div className="min-h-screen bg-white px-4 py-12">
+          <div className="container mx-auto">
+            <h1 className="text-4xl font-bold mb-8">Auto Dealer Demo</h1>
             <PlayHtAgent />
           </div>
         </div>

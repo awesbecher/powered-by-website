@@ -1,16 +1,16 @@
 import { lazy } from 'react';
 
-const Home = lazy(() => import('@/pages/Home'));
-const Index = lazy(() => import('@/pages/Index'));
-const AgentMarketplace = lazy(() => import('@/pages/AgentMarketplace'));
-const AgentGPTBuilder = lazy(() => import('@/pages/AgentGPTBuilder'));
-const AgentGPT = lazy(() => import('@/pages/AgentGPT'));
-const CustomGPT = lazy(() => import('@/pages/CustomGPT'));
-const ChatRedirect = lazy(() => import('@/pages/ChatRedirect'));
-const AgentIntegrations = lazy(() => import('@/pages/AgentIntegrations'));
-const NotFoundPage = lazy(() => import('@/pages/NotFound'));
-const Insurance = lazy(() => import('@/pages/Insurance'));
-const VoiceConfig = lazy(() => import('@/pages/VoiceConfig'));
+const Home = lazy(() => import('@/pages/home'));
+const Index = lazy(() => import('@/pages/index'));
+const AgentMarketplace = lazy(() => import('@/pages/agent-marketplace'));
+const AgentGPTBuilder = lazy(() => import('@/pages/agent-gpt-builder'));
+const AgentGPT = lazy(() => import('@/pages/agent-gpt'));
+const CustomGPT = lazy(() => import('@/pages/custom-gpt'));
+const ChatRedirect = lazy(() => import('@/pages/chat-redirect'));
+const AgentIntegrations = lazy(() => import('@/pages/agent-integrations'));
+const NotFoundPage = lazy(() => import('@/pages/not-found'));
+const Insurance = lazy(() => import('@/pages/insurance'));
+const VoiceConfig = lazy(() => import('@/pages/voice-config'));
 
 export const mainRoutes = [
   { path: "/", element: <Index /> }, 

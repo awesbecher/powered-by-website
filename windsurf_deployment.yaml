@@ -1,11 +1,6 @@
 # Windsurf Deploys Configuration (Beta)
 # This is an auto-generated file used to store your app deployment configuration. Do not modify.
 # The ID of the project (different from project name) on the provider's system. This is populated as a way to update existing deployments.
-version: 1
-project_id: prj_j3pwh8GEDJGVKPym5aYf00AnEZwg
-deployment_provider: vercel
-preview_url: https://powered-by-website-new-powered-by-agency-llc.vercel.app
-framework: vite
-build_command: npm run build
-install_command: npm install
-node_version: 18.x
+project_id: 5b6a3014-284d-4f2a-ab94-2ddfcc25976a
+# The framework of the web application (examples: nextjs, react, vue, etc.)
+framework: nextjs

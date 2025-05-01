@@ -1,22 +1,21 @@
-
 import { lazy } from 'react';
 
-const About = lazy(() => import('@/pages/About'));
-const Contact = lazy(() => import('@/pages/Contact'));
-const Contact2 = lazy(() => import('@/pages/Contact2'));
-const Pricing = lazy(() => import('@/pages/Pricing'));
-const Blog = lazy(() => import('@/pages/Blog'));
-const News = lazy(() => import('@/pages/News'));
-const Demo = lazy(() => import('@/pages/Demo'));
-const Products = lazy(() => import('@/pages/Products'));
-const Careers = lazy(() => import('@/pages/Careers'));
-const ProductHunt = lazy(() => import('@/pages/ProductHunt'));
-const ThankYou = lazy(() => import('@/pages/ThankYou'));
-const NotFound = lazy(() => import('@/pages/NotFound'));
-const DemoCapture = lazy(() => import('@/pages/DemoCapture'));
-const PrivacyStatement = lazy(() => import('@/pages/PrivacyStatement'));
-const TermsOfService = lazy(() => import('@/pages/TermsOfService'));
-const SubscriptionTerms = lazy(() => import('@/pages/SubscriptionTerms'));
+const About = lazy(() => import('@/pages/about'));
+const Contact = lazy(() => import('@/pages/contact'));
+const Contact2 = lazy(() => import('@/pages/contact2'));
+const Pricing = lazy(() => import('@/pages/pricing'));
+const Blog = lazy(() => import('@/pages/blog'));
+const News = lazy(() => import('@/pages/news'));
+const Demo = lazy(() => import('@/pages/demo'));
+const Products = lazy(() => import('@/pages/products'));
+const Careers = lazy(() => import('@/pages/careers'));
+const ProductHunt = lazy(() => import('@/pages/product-hunt'));
+const ThankYou = lazy(() => import('@/pages/thank-you'));
+const NotFound = lazy(() => import('@/pages/not-found'));
+const DemoCapture = lazy(() => import('@/pages/demo-capture'));
+const PrivacyStatement = lazy(() => import('@/pages/privacy-statement'));
+const TermsOfService = lazy(() => import('@/pages/terms-of-service'));
+const SubscriptionTerms = lazy(() => import('@/pages/subscription-terms'));
 
 export const marketingRoutes = [
   { path: "/about", element: <About /> },
