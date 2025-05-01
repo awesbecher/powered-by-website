@@ -236,71 +236,20 @@ export async function initiateVapiCall(service: keyof typeof ASSISTANT_IDS = 'ge
 
     // Create audio nodes
     const source = audioContext.createMediaStreamSource(mediaStream);
-    const destination = audioContext.createMediaStreamDestination();
-    const gainNode = audioContext.createGain();
     
-    // Set up gain
-    gainNode.gain.value = 1.5; // Boost input slightly
-    
-    // Connect nodes
-    source.connect(gainNode);
-    gainNode.connect(destination);
-
-    // Create audio element for monitoring
-    const audioElement = new Audio();
-    audioElement.srcObject = destination.stream;
-    audioElement.autoplay = true;
-
     // Create Vapi instance
     vapiInstance = await setupVapiInstance();
     if (!vapiInstance) {
       throw new Error('Failed to create Vapi instance');
     }
 
-    // Set up Vapi with destination stream
+    // Set up Vapi with media stream directly
     // @ts-ignore - Properties exist but types are not defined
     vapiInstance.audioContext = audioContext;
     // @ts-ignore - Properties exist but types are not defined
     vapiInstance.audioInput = source;
     // @ts-ignore - Properties exist but types are not defined
-    vapiInstance.audioOutput = destination;
-    // @ts-ignore - Properties exist but types are not defined
-    vapiInstance.audioStream = destination.stream;
-
-    // Set up audio element event handlers
-    audioElement.onplay = () => {
-      logTelemetry('vapi_audio_play');
-    };
-
-    audioElement.onended = () => {
-      logTelemetry('vapi_audio_ended');
-    };
-
-    audioElement.onerror = (error) => {
-      logError('vapi_audio_error', 'Audio element error', error);
-    };
-
-    // Log audio track details
-    destination.stream.getAudioTracks().forEach(track => {
-      logTelemetry('vapi_track_added', {
-        kind: track.kind,
-        enabled: track.enabled,
-        muted: track.muted,
-        readyState: track.readyState,
-        constraints: track.getConstraints()
-      });
-    });
-
-    // Enhanced logging for audio setup
-    logTelemetry('audio_setup', {
-      contextState: audioContext.state,
-      sampleRate: audioContext.sampleRate,
-      baseLatency: audioContext.baseLatency,
-      outputLatency: audioContext.outputLatency,
-      microphoneActive: mediaStream.active,
-      destinationActive: destination.stream.active,
-      destinationTracks: destination.stream.getAudioTracks().length
-    });
+    vapiInstance.audioStream = mediaStream;
 
     // Start the call
     logTelemetry('call_init', { 
