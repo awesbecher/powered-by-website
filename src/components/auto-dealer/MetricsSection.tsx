@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { getCalApi } from "@calcom/embed-react";
@@ -49,56 +49,8 @@ const item = {
 };
 
 export const MetricsSection = () => {
-  const metricsRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const animateValue = (start: number, end: number, duration: number, element: HTMLElement) => {
-      let startTimestamp: number | null = null;
-      
-      const step = (timestamp: number) => {
-        if (!startTimestamp) startTimestamp = timestamp;
-        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        const currentValue = Math.floor(progress * (end - start) + start);
-        element.textContent = currentValue.toString();
-        
-        if (progress < 1) {
-          window.requestAnimationFrame(step);
-        }
-      };
-      
-      window.requestAnimationFrame(step);
-    };
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const valueElements = entry.target.querySelectorAll('.metric-value');
-            valueElements.forEach((element, index) => {
-              if (element instanceof HTMLElement) {
-                animateValue(0, metrics[index].value, 2000, element);
-              }
-            });
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (metricsRef.current) {
-      observer.observe(metricsRef.current);
-    }
-
-    return () => {
-      if (metricsRef.current) {
-        observer.unobserve(metricsRef.current);
-      }
-    };
-  }, []);
-
   // Initialize Cal.com
-  React.useEffect(() => {
+  useEffect(() => {
     (async function () {
       try {
         const cal = await getCalApi();
@@ -127,10 +79,7 @@ export const MetricsSection = () => {
         className="container mx-auto px-4 sm:px-6 lg:px-8"
       >
         {/* Metrics Grid */}
-        <div 
-          ref={metricsRef}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {metrics.map((metric, index) => (
             <motion.div
               key={index}

@@ -8,7 +8,6 @@ export const HeroSection = () => {
   useEffect(() => {
     (async function () {
       try {
-        console.log("Initializing Cal.com embed in Mercedes Dealer Hero");
         const cal = await getCalApi();
         cal("ui", {
           theme: "dark",
@@ -20,7 +19,7 @@ export const HeroSection = () => {
           layout: "column_view"
         });
       } catch (error) {
-        console.error("Error initializing Cal.com in Mercedes Dealer Hero:", error);
+        console.error("Error initializing Cal.com in Auto Dealer Hero:", error);
       }
     })();
   }, []);
@@ -30,8 +29,8 @@ export const HeroSection = () => {
       {/* Background Image with Gradient Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/assets/images/mercedes-showroom.jpg"
-          alt="Mercedes Showroom"
+          src="/assets/images/auto-showroom.jpg"
+          alt="Auto Showroom"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/50 to-transparent"></div>
@@ -52,7 +51,7 @@ export const HeroSection = () => {
             className="text-4xl md:text-5xl lg:text-[5rem] leading-tight font-extrabold"
           >
             <span className="text-[#8B5CF6]">AI Agents</span> for<br />
-            Mercedes Dealers
+            Auto Dealers
           </motion.h1>
           
           <motion.p 
