@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import DemoCallBlock from "./DemoCallBlock";
@@ -16,23 +15,18 @@ const VisitSection = ({
   setShowCallDialog
 }: VisitSectionProps) => {
   return (
-    <div className="container mx-auto px-4 py-12 flex justify-center items-center min-h-[50vh]">
-      <div className="text-center max-w-2xl w-full">
-        <h2 className="text-3xl font-bold text-white mb-6 text-center">
-          Book Your{" "}
-          <Link 
-            to="/contact" 
-            className="text-[#9b87f5] hover:text-[#7a6cc5] transition-colors"
-          >
-            Free Voice Agent Demo
-          </Link>
+    <div className="container mx-auto px-4 py-6 flex justify-center items-center min-h-[30vh]">
+      <div className="max-w-2xl mx-auto text-center">
+        <h2 className="text-3xl font-bold text-white mb-8">
+          Call the Dealership Below or Click to Speak to us Live!
         </h2>
-        <p className="text-white/80 mb-8 text-center">
-          Let us show you how your hotel can serve more guests with less staff.
-        </p>
         
         <div className="flex justify-center">
-          <DemoCallBlock />
+          <DemoCallBlock 
+            title="Experience Sales"
+            subtitle="Try our sales assistant"
+            onStartCall={() => setShowCallDialog(true)}
+          />
         </div>
       </div>
     </div>

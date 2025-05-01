@@ -1,105 +1,127 @@
-import React, { useState, useEffect } from "react";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import HeroSection from "@/components/mercedes-dealer/HeroSection";
-import VisitSection from "@/components/mercedes-dealer/VisitSection";
-import ServicesGrid from "@/components/mercedes-dealer/ServicesGrid";
-import SpringSalesEvent from "@/components/mercedes-dealer/SpringSalesEvent";
-import { CallConfirmationDialog } from "@/components/shared/CallConfirmationDialog";
-import { CallInProgressDialog } from "@/components/shared/CallInProgressDialog";
-import { Dialog } from "@/components/ui/dialog";
-import { useToast } from "@/hooks/use-toast";
-import MobileCallCTA from "@/components/mercedes-dealer/MobileCallCTA";
+import React, { useState } from "react";
+import { Box, Typography, Button, ButtonGroup } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { useSnackbar } from "notistack";
+import { motion } from "framer-motion";
+
+import { ROUTES } from "@/constants/routes";
+import { SERVICE_CONTENT } from "@/constants/services";
+import { usePageTitle } from "@/hooks/usePageTitle";
+import { useCallDialog } from "@/hooks/useCallDialog";
 import { initiateVapiCall, endVapiCall } from "@/services/vapiService";
+import { startCall as startPlayHTCall, stopCall as stopPlayHTCall } from "@/services/playhtService";
 
-const MercedesDealer = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+import { PageContainer } from "@/components/shared/PageContainer";
+import { ServiceHeader } from "@/components/shared/ServiceHeader";
+import { ServiceDescription } from "@/components/shared/ServiceDescription";
+import { CallDialog } from "@/components/shared/CallDialog";
+import { ServiceFeatures } from "@/components/shared/ServiceFeatures";
 
-  // Dialog states
-  const [showConfirmation, setShowConfirmation] = useState(false);
-  const [showCallInProgress, setShowCallInProgress] = useState(false);
-  const [showOffers, setShowOffers] = useState(false);
+const service = "mercedes";
+const content = SERVICE_CONTENT[service];
 
-  // Call states
-  const [isLoading, setIsLoading] = useState(false);
-  const [callDuration, setCallDuration] = useState(0);
-  const { toast } = useToast();
+export function MercedesDealer() {
+  const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
+  const { isOpen, openDialog, closeDialog } = useCallDialog();
+  const [isCallActive, setIsCallActive] = useState(false);
+  const [usePlayHT, setUsePlayHT] = useState(false);
 
-  // Call handlers
+  usePageTitle("Mercedes Dealer Service");
+
   const handleStartCall = async () => {
     try {
-      setIsLoading(true);
-      // Initialize Vapi call with Mercedes assistant
-      await initiateVapiCall('mercedes');
-      // Only if successful, close confirmation and show call dialog
-      setShowConfirmation(false);
-      setShowCallInProgress(true);
+      if (usePlayHT) {
+        await startPlayHTCall();
+      } else {
+        await initiateVapiCall('mercedes');
+      }
+      setIsCallActive(true);
+      openDialog();
     } catch (error) {
-      console.error('Failed to start call:', error);
-      toast({
-        variant: "destructive",
-        title: "Call Error",
-        description: "Failed to start the voice chat. Please try again.",
+      console.error("Failed to start call:", error);
+      enqueueSnackbar("Failed to start call. Please try again.", {
+        variant: "error",
       });
-    } finally {
-      setIsLoading(false);
     }
   };
 
   const handleEndCall = async () => {
-    // End the Vapi call first (this will refresh the page)
-    await endVapiCall();
-    // These won't execute due to page refresh, but including for completeness
-    setShowCallInProgress(false);
-    setCallDuration(0);
+    try {
+      if (usePlayHT) {
+        await stopPlayHTCall();
+      } else {
+        await endVapiCall();
+      }
+      setIsCallActive(false);
+      closeDialog();
+    } catch (error) {
+      console.error("Failed to end call:", error);
+      enqueueSnackbar("Failed to end call. Please try again.", {
+        variant: "error",
+      });
+    }
   };
-  
+
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-black to-neutral-900">
-      <Navbar />
-      <HeroSection 
-        setShowCallDialog={setShowConfirmation}
-        isProcessing={isLoading}
-        isCallActive={showCallInProgress}
+    <PageContainer>
+      <ServiceHeader
+        title={content.title}
+        logo={content.logo}
+        onBack={() => navigate(ROUTES.HOME)}
       />
-      <ServicesGrid />
-      <SpringSalesEvent 
-        isProcessing={isLoading}
-        isCallActive={showCallInProgress}
-        setShowOffers={setShowOffers}
-        setShowCallDialog={setShowConfirmation}
+
+      <Box sx={{ mt: 4 }}>
+        <ServiceDescription description={content.description} />
+      </Box>
+
+      <Box sx={{ mt: 4, display: "flex", justifyContent: "center" }}>
+        <ButtonGroup>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                setUsePlayHT(false);
+                handleStartCall();
+              }}
+              disabled={isCallActive}
+            >
+              Speak with us now
+            </Button>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Button
+              variant="outlined"
+              size="small"
+              onClick={() => {
+                setUsePlayHT(true);
+                handleStartCall();
+              }}
+              disabled={isCallActive}
+              sx={{ ml: 1 }}
+            >
+              Try Beta Voice
+            </Button>
+          </motion.div>
+        </ButtonGroup>
+      </Box>
+
+      <Box sx={{ mt: 6 }}>
+        <Typography variant="h5" component="h2" gutterBottom>
+          Features
+        </Typography>
+        <ServiceFeatures features={content.features} />
+      </Box>
+
+      <CallDialog
+        open={isOpen}
+        onClose={handleEndCall}
+        title="Mercedes Dealer Service"
+        description={`Speaking with our Mercedes Dealer ${usePlayHT ? 'PlayHT' : 'VAPI'} Assistant`}
       />
-      <VisitSection 
-        isProcessing={isLoading}
-        isCallActive={showCallInProgress}
-        showCallDialog={showConfirmation}
-        setShowCallDialog={setShowConfirmation}
-      />
-      <MobileCallCTA setShowCallDialog={setShowConfirmation} />
-
-      <Dialog open={showConfirmation} onOpenChange={setShowConfirmation}>
-        <CallConfirmationDialog 
-          onStartCall={handleStartCall}
-          onClose={() => setShowConfirmation(false)}
-          isLoading={isLoading}
-          service="mercedes"
-        />
-      </Dialog>
-
-      <Dialog open={showCallInProgress} onOpenChange={setShowCallInProgress}>
-        <CallInProgressDialog 
-          onEndCall={handleEndCall}
-          callDuration={callDuration}
-          setCallDuration={setCallDuration}
-          service="mercedes"
-        />
-      </Dialog>
-
-      <Footer />
-    </div>
+    </PageContainer>
   );
-};
+}
 
 export default MercedesDealer;

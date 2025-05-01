@@ -28,10 +28,11 @@ import ExternalRedirect from '@/components/shared/ExternalRedirect';
 
 const RouteConfig = () => {
   const location = useLocation();
+  console.log('Current location:', location); // Debug log
 
   return (
     <AnimatePresence mode="wait">
-      <Routes key={location.pathname}>
+      <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Index />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
@@ -47,7 +48,11 @@ const RouteConfig = () => {
         <Route path="/agent-integrations" element={<AgentIntegrations />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="/news" element={<News />} />
-        <Route path="/mercedes-dealer" element={<MercedesDealer />} />
+        <Route path="/mercedes-dealer" element={
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <MercedesDealer />
+          </React.Suspense>
+        } />
         <Route path="/room-service" element={<RoomServiceContainer />} />
         <Route path="/real-estate" element={<RealEstate />} />
         <Route path="/retail-services" element={<RetailServices />} />

@@ -1,18 +1,17 @@
-
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
 import MercedesDealerHeader from "./MercedesDealerHeader";
 
 interface HeroSectionProps {
-  onSpeakWithUs?: () => void;
+  onStartCall: () => void;
   setShowCallDialog: (value: boolean) => void;
   isProcessing?: boolean;
   isCallActive?: boolean;
 }
 
 const HeroSection = ({
-  onSpeakWithUs,
+  onStartCall,
   setShowCallDialog,
   isProcessing = false,
   isCallActive = false
@@ -41,7 +40,7 @@ const HeroSection = ({
           </p>
           <Button 
             size="xl"
-            onClick={() => setShowCallDialog(true)}
+            onClick={onStartCall}
             className="bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
             disabled={isProcessing || isCallActive}
           >

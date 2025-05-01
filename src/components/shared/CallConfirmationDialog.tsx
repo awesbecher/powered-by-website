@@ -23,6 +23,15 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
     logoAlt: 'Township Real Estate Logo',
     callMessage: 'Connecting you with Jeff Smith at Township Real Estate...'
   },
+  mercedes: {
+    name: 'Chris @ Mercedes-Benz of Tacoma',
+    description: 'Speak with Chris, your Mercedes-Benz of Tacoma AI assistant! Get information about our latest models, schedule test drives, discuss financing options, and learn about our exclusive deals.',
+    image: '/assets/team/Chris Cambridge.jpg',
+    imageAlt: 'Chris - Mercedes-Benz of Tacoma Assistant',
+    logo: '/assets/team/mercedes-logo.png',
+    logoAlt: 'Mercedes-Benz of Tacoma Logo',
+    callMessage: 'Connecting you with Chris at Mercedes-Benz of Tacoma...'
+  },
   roomService: {
     name: 'Room Service',
     description: 'Welcome to Room Service at Powered By! Our AI assistant is ready to take your order, answer questions about our menu, and ensure you have a delightful dining experience.',
@@ -65,65 +74,67 @@ export function CallConfirmationDialog({
   isLoading = false,
   service = 'realEstate'
 }: CallConfirmationDialogProps) {
+  const content = SERVICE_CONTENT[service];
+  const dialogClass = service === 'mercedes' ? 'bg-black text-white' : 'sm:max-w-md';
+  const logoClass = service === 'mercedes' ? 'brightness-0 invert w-48 object-contain' : '';
+
   return (
-    <DialogContent className="sm:max-w-md">
-      <div className="flex flex-col space-y-6">
-        {/* Header with close button */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-3">
-              <div className="h-16 w-16 rounded-full overflow-hidden">
-                <img 
-                  src={SERVICE_CONTENT[service].image} 
-                  alt={SERVICE_CONTENT[service].imageAlt}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <div className="h-12 w-auto">
-                <img 
-                  src={SERVICE_CONTENT[service].logo} 
-                  alt={SERVICE_CONTENT[service].logoAlt}
-                  className="h-full w-auto object-contain"
-                />
+    <DialogContent className={dialogClass}>
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={onClose}
+        className={`absolute right-4 top-4 ${service === 'mercedes' ? 'text-white hover:text-white/80' : ''}`}
+      >
+        <X className="h-4 w-4" />
+        <span className="sr-only">Close</span>
+      </Button>
+      
+      <div className="flex flex-col items-center justify-center pt-1 px-4">
+        <img 
+          src={content.logo} 
+          alt={content.logoAlt} 
+          className={`mb-2 ${logoClass}`}
+        />
+        <div className="flex flex-col space-y-3">
+          {/* Agent info */}
+          <div className="flex flex-col items-center space-y-2">
+            <div className="relative">
+              <img
+                src={content.image}
+                alt={content.imageAlt}
+                className="w-20 h-20 rounded-full object-cover"
+              />
+              <div className="absolute bottom-0 right-0 bg-green-500 p-1 rounded-full">
+                <User className="h-4 w-4 text-white" />
               </div>
             </div>
+            <div className="text-center space-y-1">
+              <h3 className={`font-semibold ${service === 'mercedes' ? 'text-white' : ''}`}>{content.name}</h3>
+              <p className={service === 'mercedes' ? 'text-white/80' : 'text-muted-foreground'}>{content.description}</p>
+            </div>
           </div>
-          <button
-            onClick={onClose}
-            className="rounded-full p-2 hover:bg-gray-100 transition-colors"
+
+          {/* Call button */}
+          <Button
+            onClick={onStartCall}
+            disabled={isLoading}
+            size="lg"
+            className={`w-full ${service === 'mercedes' ? 'bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white' : ''}`}
           >
-            <X className="h-5 w-5 text-gray-500" />
-          </button>
+            {isLoading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Initializing call...
+              </>
+            ) : (
+              <>
+                <Phone className="mr-2 h-4 w-4" />
+                Start Voice Chat
+              </>
+            )}
+          </Button>
         </div>
-
-        {/* Content */}
-        <div className="space-y-4">
-          <DialogTitle className="text-xl font-semibold">
-            {SERVICE_CONTENT[service].name}
-          </DialogTitle>
-          <p className="text-gray-600">
-            {SERVICE_CONTENT[service].description}
-          </p>
-        </div>
-
-        {/* Action Button */}
-        <Button
-          onClick={onStartCall}
-          disabled={isLoading}
-          className="w-full py-6 text-lg bg-[#6342ff] hover:bg-[#7254ff] text-white"
-        >
-          {isLoading ? (
-            <>
-              <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-              Starting call...
-            </>
-          ) : (
-            <>
-              <Phone className="mr-2 h-5 w-5" />
-              Start Voice Chat
-            </>
-          )}
-        </Button>
       </div>
     </DialogContent>
   );
