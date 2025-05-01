@@ -15,10 +15,7 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
   const navigate = useNavigate();
 
   const handleTryDemo = () => {
-    const triggerButton = document.getElementById('voice-chat-trigger');
-    if (triggerButton) {
-      triggerButton.click();
-    }
+    window.open('/real-estate', '_blank');
   };
 
   const handleGetStarted = () => {
@@ -33,20 +30,23 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
   };
 
   useEffect(() => {
-    // Initialize Cal.com
-    (window as any).Cal = {
-      q: (window as any).Cal ? (window as any).Cal.q : [],
-      ns: {},
-    };
-    
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = 'https://app.cal.com/embed/embed.js';
-    document.body.appendChild(script);
-    
-    return () => {
-      document.body.removeChild(script);
-    };
+    (async function () {
+      try {
+        console.log("Initializing Cal.com embed");
+        const cal = await getCalApi({"namespace":"get-started-today"});
+        cal("ui", {
+          "theme": "dark",
+          "cssVarsPerTheme": {
+            "light": {"cal-brand": "#292929"},
+            "dark": {"cal-brand": "#fafafa"}
+          },
+          "hideEventTypeDetails": false,
+          "layout": "column_view"
+        });
+      } catch (error) {
+        console.error("Error initializing Cal.com:", error);
+      }
+    })();
   }, []);
 
   return (
@@ -79,19 +79,14 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
             </div>
           </div>
 
-          <Button 
-            className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
-            onClick={handleGetStarted}
-          >
-            Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
-
-          {/* Hidden Cal.com button */}
           <button
-            className="hidden"
+            data-cal-namespace="get-started-today"
             data-cal-link="team-powered-by-dfbtbb/get-started-today"
-            data-cal-config='{"layout":"month_view"}'
-          />
+            data-cal-config='{"layout":"column_view","theme":"dark"}'
+            className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
+          >
+            Schedule a Demo <ArrowRight className="ml-2 h-5 w-5" />
+          </button>
         </div>
       </div>
 
