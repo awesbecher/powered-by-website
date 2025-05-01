@@ -66,7 +66,9 @@ export const VapiDialog: React.FC<VapiDialogProps> = ({
             <>
               <h2 className="text-2xl font-semibold mb-4 text-white">Ready to start your call?</h2>
               <p className="text-gray-300 text-center mb-6">
-                Click below to connect with your AI assistant
+                Click below to speak live to Chris Cambridge, a Planter's Insurance Agent.
+                <br /><br />
+                Please ensure your computer's mic and speaker are enabled to enter the voice chat. You can ask Chris about Planter's insurance policies and get a custom quote tailored to your coverage needs.
               </p>
               <button
                 onClick={handleStartCall}
