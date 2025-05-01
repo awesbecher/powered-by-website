@@ -1,26 +1,15 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
   "functions": {
-    "api/gpt-lead/index.js": {
+    "api/**/*.js": {
       "runtime": "@vercel/node@3.0.0"
     }
   },
   "routes": [
     {
-      "src": "/api/gpt-lead",
-      "dest": "api/gpt-lead/index.js"
-    },
-    {
-      "src": "/chat",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/chat/",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/agent-integrations",
-      "dest": "/index.html"
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
     },
     {
       "handle": "filesystem"
