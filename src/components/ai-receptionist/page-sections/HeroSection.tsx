@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { ArrowRight, Calendar, Headset, Phone, Clock, MessageCircle } from "lucide-react";
 import { AIReceptionistCard } from "@/components/ai-receptionist/page-sections/AIReceptionistCard";
+import { getCalApi } from "@calcom/embed-react";
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -19,6 +20,29 @@ export const HeroSection = ({
   videoOpen, 
   setVideoOpen 
 }: HeroSectionProps) => {
+  const [demoDialogOpen, setDemoDialogOpen] = useState(false);
+
+  // Initialize Cal.com
+  React.useEffect(() => {
+    (async function () {
+      try {
+        console.log("Initializing Cal.com embed");
+        const cal = await getCalApi();
+        cal("ui", {
+          theme: "dark",
+          cssVarsPerTheme: {
+            light: {"cal-brand": "#292929"},
+            dark: {"cal-brand": "#fafafa"}
+          },
+          hideEventTypeDetails: false,
+          layout: "column_view"
+        });
+      } catch (error) {
+        console.error("Error initializing Cal.com:", error);
+      }
+    })();
+  }, []);
+
   const handleGetStarted = () => {
     const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
     if (calBtn instanceof HTMLElement) {
@@ -111,12 +135,13 @@ export const HeroSection = ({
               </div>
               
               <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
-                <Button 
+                <button
+                  data-cal-link="team-powered-by-dfbtbb/get-started-today"
+                  data-cal-config='{"layout":"column_view","theme":"dark"}'
                   className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
-                  onClick={handleGetStarted}
                 >
-                  <ArrowRight className="mr-2 h-5 w-5" /> Get Started
-                </Button>
+                  Get Started <ArrowRight className="ml-2 h-5 w-5" />
+                </button>
                 
                 <Button 
                   className="w-full sm:w-auto bg-transparent hover:bg-white/10 text-white px-6 py-4 text-base rounded-md flex items-center justify-center border-2 border-white"
@@ -127,7 +152,7 @@ export const HeroSection = ({
                 
                 <Button 
                   className="w-full sm:w-auto bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-4 text-base rounded-md flex items-center justify-center"
-                  onClick={handleVoiceChatClick}
+                  onClick={() => setDemoDialogOpen(true)}
                 >
                   <Headset className="mr-2 h-5 w-5" />
                   Try Live Demo
@@ -142,23 +167,44 @@ export const HeroSection = ({
         </div>
       </div>
 
-      {/* Hidden Cal.com button */}
-      <button
-        className="hidden"
-        data-cal-link="team-powered-by-dfbtbb/get-started-today"
-        data-cal-config='{"layout":"month_view"}'
-      />
+      {/* Demo Numbers Dialog */}
+      <Dialog open={demoDialogOpen} onOpenChange={setDemoDialogOpen}>
+        <DialogContent className="bg-[#1a0b2e] text-white border border-white/10 p-6 max-w-lg">
+          <h2 className="text-2xl font-bold mb-4">Try our AI Receptionist in action now!</h2>
+          <p className="text-gray-300 mb-6">
+            You can call any of the numbers below and you will be connected to an AI assistant for that business. Don't worry, these are just demo businesses!
+          </p>
+          
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-semibold text-[#9b87f5] mb-1">Real Estate Use Case:</h3>
+              <p className="text-gray-300">Call Township Real Estate @ (732) 702-8348</p>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-semibold text-[#9b87f5] mb-1">Auto Dealership Use Case:</h3>
+              <p className="text-gray-300">Call Mercedes of Tacoma @ (732) 638-0513</p>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-semibold text-[#9b87f5] mb-1">Insurance Use Case:</h3>
+              <p className="text-gray-300">Call Planter's Insurance @ (575) 305-9390</p>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
 
+      {/* Video Dialog */}
       <Dialog open={videoOpen} onOpenChange={setVideoOpen}>
-        <DialogContent className="max-w-3xl p-1 bg-black">
+        <DialogContent className="max-w-4xl p-0 bg-black">
           <div className="aspect-video">
-            <iframe 
-              width="100%" 
-              height="100%" 
-              src="https://www.youtube.com/embed/wCSt1ZTXJSc?si=A4PPY9idmpo&autoplay=1" 
-              title="AI Receptionist Overview" 
-              frameBorder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/A4PPY9idmpo?si=Ku1bYt3Q1E79oJqW&autoplay=1"
+              title="Voice AI Introduction"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>
           </div>
