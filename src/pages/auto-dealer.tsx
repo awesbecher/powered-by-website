@@ -5,25 +5,23 @@ import { FeaturesGrid } from "@/components/auto-dealer/FeaturesGrid";
 import { MetricsSection } from "@/components/auto-dealer/MetricsSection";
 import { PlayHtAgent } from "@/components/auto-dealer/PlayHtAgent";
 import { SEO } from "@/components/shared/SEO";
-import Head from 'next/head';
+import Script from 'next/script';
 
 const AutoDealer = () => {
   return (
     <PageLayout>
-      <Head>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@play-ai/agent-web-sdk@ht"></script>
-        <script type="text/javascript" dangerouslySetInnerHTML={{
-          __html: `
-            addEventListener("load", () => {
-              PlayAI.open('MxWrNcBzfCl2Aqf7j61CR');
-            });
-          `
-        }} />
-      </Head>
       <SEO 
         title="AI Agents for Auto Dealers | Powered By"
         description="Transform your dealership with intelligent AI agents that handle inquiries, schedule test drives, and qualify leads 24/7."
       />
+      <Script src="https://cdn.jsdelivr.net/npm/@play-ai/agent-web-sdk@ht" />
+      <Script id="playht-init">
+        {`
+          addEventListener("load", () => {
+            PlayAI.open('MxWrNcBzfCl2Aqf7j61CR');
+          });
+        `}
+      </Script>
       <main className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
         <PlayHtAgent />
         <HeroSection />
