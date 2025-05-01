@@ -28,13 +28,13 @@ const InsuranceHero = ({ isLoading }: InsuranceHeroProps) => {
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="flex-1">
                 <Button 
-                  className="bg-accent hover:bg-accent/80 text-white text-lg px-8 py-6 flex items-center justify-center gap-2 shadow-lg transition-all duration-300 rounded-lg"
+                  className="bg-black hover:bg-black/80 text-white text-lg px-8 py-6 flex items-center justify-center gap-2 shadow-lg transition-all duration-300 rounded-lg"
                   variant="default"
                   onClick={handleVapiCall}
                   disabled={isLoading}
                 >
                   <span>Speak to a Planter's Insurance Agent Now</span>
-                  <Phone className="h-5 w-5" />
+                  <Phone className="h-5 w-5 text-white" />
                 </Button>
               </div>
             </div>

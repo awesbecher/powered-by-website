@@ -29,26 +29,28 @@ export const VapiDialog: React.FC<VapiDialogProps> = ({
     } catch (error) {
       console.error('Error starting call:', error);
       onClose();
+      window.location.reload();
     }
   };
 
   const handleEndCall = () => {
     onClose();
-    // The browser will refresh automatically due to the onCallEnded handler in vapiService
+    window.location.reload();
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-      <div className="bg-white rounded-xl p-6 max-w-md w-full mx-4">
-        <div className="flex justify-between items-start mb-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
+      <div className="bg-black rounded-xl p-8 max-w-md w-full mx-4 border border-white/20">
+        <div className="flex justify-between items-start mb-6">
           <img
             src={logoImage}
             alt="Company Logo"
-            className="h-10 object-contain"
+            className="h-20 object-contain"
+            style={{ filter: 'brightness(0) invert(1)' }}
           />
           <button
             onClick={handleEndCall}
-            className="text-gray-500 hover:text-gray-700 transition-colors"
+            className="text-white hover:text-gray-300 transition-colors"
           >
             <X className="h-6 w-6" />
           </button>
@@ -58,17 +60,17 @@ export const VapiDialog: React.FC<VapiDialogProps> = ({
           <img
             src={agentImage}
             alt="AI Agent"
-            className="w-32 h-32 rounded-full mb-4 object-cover"
+            className="w-32 h-32 rounded-full mb-6 object-cover"
           />
           {callState === 'initial' && (
             <>
-              <h2 className="text-xl font-semibold mb-2">Ready to start your call?</h2>
-              <p className="text-gray-600 text-center mb-4">
+              <h2 className="text-2xl font-semibold mb-4 text-white">Ready to start your call?</h2>
+              <p className="text-gray-300 text-center mb-6">
                 Click below to connect with your AI assistant
               </p>
               <button
                 onClick={handleStartCall}
-                className="bg-[#8B5CF6] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#7C3AED] transition-colors"
+                className="bg-white text-black px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
               >
                 Start Voice Chat
               </button>
@@ -76,16 +78,16 @@ export const VapiDialog: React.FC<VapiDialogProps> = ({
           )}
           {callState === 'connecting' && (
             <>
-              <h2 className="text-xl font-semibold mb-2">Connecting...</h2>
-              <p className="text-gray-600 text-center">
+              <h2 className="text-2xl font-semibold mb-4 text-white">Connecting...</h2>
+              <p className="text-gray-300 text-center">
                 Please wait while we establish your call
               </p>
             </>
           )}
           {callState === 'active' && (
             <>
-              <h2 className="text-xl font-semibold mb-2">Call in Progress</h2>
-              <p className="text-gray-600 text-center mb-4">
+              <h2 className="text-2xl font-semibold mb-4 text-white">Call in Progress</h2>
+              <p className="text-gray-300 text-center mb-6">
                 You are now connected to your AI assistant
               </p>
               <button
