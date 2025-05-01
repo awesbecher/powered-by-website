@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { motion } from "framer-motion";
-import { openPlayHtAgent } from './PlayHtAgent';
+import { openPlayHtAgent } from '@/services/playhtService';
 
 export const HeroSection = () => {
   return (
