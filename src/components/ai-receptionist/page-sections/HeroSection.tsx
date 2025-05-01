@@ -41,6 +41,15 @@ export const HeroSection = ({
         console.error("Error initializing Cal.com:", error);
       }
     })();
+
+    // Listen for demo dialog open event
+    const handleDemoDialogOpen = () => {
+      setDemoDialogOpen(true);
+    };
+    window.addEventListener('openDemoDialog', handleDemoDialogOpen);
+    return () => {
+      window.removeEventListener('openDemoDialog', handleDemoDialogOpen);
+    };
   }, []);
 
   const handleGetStarted = () => {
@@ -163,7 +172,7 @@ export const HeroSection = ({
         </div>
         
         <div className="lg:col-span-5 flex items-center justify-center">
-          <AIReceptionistCard handleVoiceChatClick={handleVoiceChatClick} initialLoad={initialLoad} />
+          <AIReceptionistCard initialLoad={initialLoad} />
         </div>
       </div>
 

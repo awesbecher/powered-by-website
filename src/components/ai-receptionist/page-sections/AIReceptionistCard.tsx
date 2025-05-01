@@ -1,8 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Headset } from "lucide-react";
 import { useState, useEffect } from "react";
-import { VoiceChatDialog } from "../VoiceChatDialog";
-import { initiateVapiCall, endVapiCall, getVapiCallStatus } from "@/services/vapiService";
 
 interface AIReceptionistCardProps {
   initialLoad: boolean;
@@ -10,9 +8,7 @@ interface AIReceptionistCardProps {
 
 export const AIReceptionistCard = ({ initialLoad }: AIReceptionistCardProps) => {
   const [animatedText, setAnimatedText] = useState(0);
-  const [showDialog, setShowDialog] = useState(false);
-  const [isCallActive, setIsCallActive] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [demoDialogOpen, setDemoDialogOpen] = useState(false);
   
   // Cycle through welcome messages for a dynamic effect
   useEffect(() => {
@@ -28,36 +24,6 @@ export const AIReceptionistCard = ({ initialLoad }: AIReceptionistCardProps) => 
     "I can help you schedule an appointment or answer questions about our services.",
     "Would you like me to check our availability for next week?"
   ];
-
-  const handleStartCall = async () => {
-    setIsSubmitting(true);
-    try {
-      await initiateVapiCall('general');
-      setIsCallActive(true);
-    } catch (error) {
-      console.error('Failed to start call:', error);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleEndCall = async () => {
-    try {
-      await endVapiCall();
-    } catch (error) {
-      console.error('Failed to end call:', error);
-    } finally {
-      setIsCallActive(false);
-      setShowDialog(false);
-    }
-  };
-
-  const handleCloseDialog = () => {
-    if (isCallActive) {
-      handleEndCall();
-    }
-    setShowDialog(false);
-  };
 
   return (
     <>
@@ -88,26 +54,24 @@ export const AIReceptionistCard = ({ initialLoad }: AIReceptionistCardProps) => 
             ))}
           </div>
           
-          <Button 
-            onClick={() => setShowDialog(true)}
-            className="w-full bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white"
-            disabled={isSubmitting}
-          >
-            <Headset className="mr-2 h-5 w-5" />
-            Try Demo
-          </Button>
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 text-xs text-gray-400">
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <span>AI Receptionist is ready</span>
+            </div>
+            
+            <Button 
+              className="w-full bg-[#7100ff] hover:bg-[#6342ff] text-white"
+              onClick={() => window.dispatchEvent(new CustomEvent('openDemoDialog'))}
+            >
+              <Headset className="mr-2 h-5 w-5" />
+              Try Demo
+            </Button>
+            
+            <p className="text-xs text-center text-gray-500">No credit card required</p>
+          </div>
         </div>
       </div>
-
-      <VoiceChatDialog
-        showDialog={showDialog}
-        isCallActive={isCallActive}
-        isSubmitting={isSubmitting}
-        handleCloseDialog={handleCloseDialog}
-        handleStartCall={handleStartCall}
-        handleEndCall={handleEndCall}
-        goToRealEstateSite={() => {}}
-      />
     </>
   );
 };
