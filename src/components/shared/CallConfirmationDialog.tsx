@@ -46,7 +46,7 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
     description: 'Speak with Alex at Flagship Barbers! Book your next appointment, learn about our services, or ask any questions about our premium barbershop experience.',
     image: '/assets/team/alex.jpg',
     imageAlt: 'Alex - Flagship Barbers',
-    logo: '/assets/team/flagship-barbers.png',
+    logo: '/assets/team/Flagship Barbers.png',
     logoAlt: 'Flagship Barbers Logo',
     callMessage: 'Connecting you with Alex at Flagship Barbers...'
   },
@@ -75,9 +75,9 @@ export function CallConfirmationDialog({
   service = 'realEstate'
 }: CallConfirmationDialogProps) {
   const content = SERVICE_CONTENT[service];
-  const isDarkMode = service === 'mercedes' || service === 'roomService';
+  const isDarkMode = service === 'mercedes' || service === 'roomService' || service === 'retail';
   const dialogClass = isDarkMode ? 'bg-black text-white' : 'sm:max-w-md';
-  const logoClass = isDarkMode ? 'brightness-0 invert w-48 object-contain' : '';
+  const logoClass = isDarkMode ? 'brightness-0 invert w-48 object-contain text-white' : '';
 
   return (
     <DialogContent className={dialogClass}>

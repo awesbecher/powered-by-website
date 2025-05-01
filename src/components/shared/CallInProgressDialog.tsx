@@ -34,18 +34,18 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
     callMessage: "You are now connected with Chris, your Mercedes-Benz of Tacoma AI assistant. Feel free to ask about our available vehicles, schedule a test drive, or learn about our special offers."
   },
   roomService: {
-    name: 'Grandview Hotels Room Service',
+    name: 'Room Service Assistant',
     description: 'Connect with our AI room service assistant to place your order, customize your meal, or get recommendations from our menu. Available 24/7 for your convenience.',
     image: '/assets/team/Grandview Hotels.png',
     imageAlt: 'Grandview Hotels',
-    logo: '/assets/team/Grandview Hotels Logo.png',
+    logo: '/assets/team/Grandview Hotels.png',
     logoAlt: 'Grandview Hotels',
     callMessage: "You're now connected to our room service assistant. Feel free to ask about our menu, place an order, or request recommendations!"
   },
   retail: {
-    name: 'Alex',
+    name: 'Alex @ Flagship Barbers',
     description: 'Speak with Alex at Flagship Barbers! Book an appointment, learn about our services, or get style recommendations. Available 24/7 to assist you.',
-    image: '/assets/team/Alex.jpg',
+    image: '/assets/team/alex.jpg',
     imageAlt: 'Alex from Flagship Barbers',
     logo: '/assets/team/Flagship Barbers.png',
     logoAlt: 'Flagship Barbers',
@@ -71,7 +71,7 @@ export function CallInProgressDialog({
   isMuted
 }: CallInProgressDialogProps) {
   const content = SERVICE_CONTENT[service];
-  const isDarkMode = service === 'mercedes' || service === 'roomService';
+  const isDarkMode = service === 'mercedes' || service === 'roomService' || service === 'retail';
   const dialogClass = isDarkMode ? 'bg-black text-white' : 'sm:max-w-md';
 
   const [isEnding, setIsEnding] = useState(false);
