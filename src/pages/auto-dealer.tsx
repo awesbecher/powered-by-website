@@ -4,6 +4,7 @@ import { MetricsSection } from "@/components/auto-dealer/MetricsSection";
 import { FeaturesGrid } from "@/components/auto-dealer/FeaturesGrid";
 import { PlayHtAgent } from "@/components/auto-dealer/PlayHtAgent";
 import { SEO } from "@/components/shared/SEO";
+import Script from 'next/script';
 
 const AutoDealer = () => {
   return (
@@ -11,6 +12,10 @@ const AutoDealer = () => {
       <SEO 
         title="AI Agents for Auto Dealers | Powered By"
         description="Transform your dealership with intelligent AI agents that handle inquiries, schedule test drives, and qualify leads 24/7."
+      />
+      <Script 
+        src="https://play-ai.github.io/web-sdk/index.js"
+        strategy="lazyOnload"
       />
       <PageLayout>
         <div className="min-h-screen bg-gradient-to-b from-black to-[#1E1E1E] px-4 py-12">
