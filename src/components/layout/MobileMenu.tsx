@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import { NavItemWithChildren } from './navConfig';
 import { NavbarCta } from '@/components/navigation/NavbarCta';
+import { NavbarAiCta } from '@/components/navigation/NavbarAiCta';
 import { getCalApi } from "@calcom/embed-react";
 
 interface NavItem {
@@ -107,7 +108,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ navItems }) => {
                   closeMenu={closeMenu} 
                 />
               ))}
-              <div className="pt-2 pb-4">
+              <div className="pt-2 pb-4 space-y-2">
+                <NavbarAiCta className="w-full justify-center" />
                 <NavbarCta className="w-full justify-center" />
               </div>
             </div>

@@ -7,6 +7,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { NavbarCta } from "@/components/navigation/NavbarCta";
+import { NavbarAiCta } from "@/components/navigation/NavbarAiCta"; // Added import statement
 import { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
 
@@ -57,7 +58,8 @@ const Navbar = () => {
           <NavLinks navItems={navItems} />
 
           {/* Right side buttons */}
-          <div className="hidden md:flex items-center">
+          <div className="hidden md:flex items-center gap-4">
+            <NavbarAiCta />
             <NavbarCta />
           </div>
 
