@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -86,15 +85,15 @@ const AgentGPTBuilder = () => {
           </div>
           
           <div className="flex flex-wrap gap-3">
-            <Button variant="outline" onClick={handleExportJson} className="flex items-center gap-2">
+            <Button onClick={handleExportJson} className="bg-[#8B5CF6] hover:bg-[#7C3AED] text-white flex items-center gap-2">
               <FileJson size={18} />
               Export JSON
             </Button>
-            <Button variant="outline" onClick={handleSendPdf} className="flex items-center gap-2">
+            <Button onClick={handleSendPdf} className="bg-[#8B5CF6] hover:bg-[#7C3AED] text-white flex items-center gap-2">
               <Mail size={18} />
               Send PDF
             </Button>
-            <Button className="bg-[#8B5CF6] hover:bg-[#7C3AED] flex items-center gap-2">
+            <Button className="bg-[#8B5CF6] hover:bg-[#7C3AED] text-white flex items-center gap-2">
               <Save size={18} />
               Save Agent
             </Button>
