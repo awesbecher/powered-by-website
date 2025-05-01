@@ -14,12 +14,13 @@ export const NavbarCta: React.FC<NavbarCtaProps> = ({
     (async function () {
       const cal = await getCalApi({"namespace":"get-started-today"});
       cal("ui", {
+        "theme": "dark",
         "cssVarsPerTheme": {
-          "light": {"cal-brand": "#8B5CF6"},
-          "dark": {"cal-brand": "#8B5CF6"}
+          "light": {"cal-brand": "#292929"},
+          "dark": {"cal-brand": "#fafafa"}
         },
         "hideEventTypeDetails": false,
-        "layout": "week_view"
+        "layout": "column_view"
       });
     })();
   }, []);
@@ -28,7 +29,7 @@ export const NavbarCta: React.FC<NavbarCtaProps> = ({
     <button
       data-cal-namespace="get-started-today"
       data-cal-link="team-powered-by-dfbtbb/get-started-today"
-      data-cal-config='{"layout":"week_view"}'
+      data-cal-config='{"layout":"column_view","theme":"dark"}'
       className={`
         ml-auto 
         px-4 py-2 
