@@ -1,8 +1,5 @@
-import React, { ReactNode } from 'react';
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import React, { ReactNode, useState, useEffect } from 'react';
+import PageLayout from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -48,343 +45,252 @@ const agents: AgentCard[] = [
     ],
     template: "auto",
     icon: <Phone className="w-6 h-6 text-white" />,
-    categories: ["voice", "sales", "automotive"]
+    categories: ["Sales", "Automotive"]
   },
   {
-    name: "Automated Concierge",
-    industry: "Hotels & Hospitality",
-    features: [
-      "24/7 Reservation Assistance",
-      "Multi-Channel Support",
-      "Real-time Availability Updates",
-      "Instant Guest Responses"
-    ],
-    template: "hotel",
-    icon: <CalendarClock className="w-6 h-6 text-white" />,
-    categories: ["voice", "chat", "hospitality"]
-  },
-  {
-    name: "Virtual Sales Agent",
+    name: "Property Assistant",
     industry: "Real Estate",
     features: [
-      "Multi-Channel Communication",
-      "Automated Appointment Scheduling",
-      "24/7 Listing Info",
-      "Lead Follow-up"
+      "Property Listings Management",
+      "Viewing Scheduling",
+      "Lead Qualification",
+      "Market Analysis Support"
     ],
     template: "realestate",
-    icon: <MessageSquare className="w-6 h-6 text-white" />,
-    categories: ["voice", "chat", "real estate", "sales"]
-  },
-  {
-    name: "Voice-Enabled Support",
-    industry: "SaaS",
-    features: [
-      "Natural Language Understanding",
-      "Smart Issue Escalation",
-      "24/7 Technical Support",
-      "In-App Voice Integration"
-    ],
-    template: "saas",
-    icon: <User className="w-6 h-6 text-white" />,
-    categories: ["voice", "support", "technology"]
-  },
-  {
-    name: "Inbound Funnel Qualifier",
-    industry: "B2B Sales",
-    features: [
-      "Intelligent Lead Qualification",
-      "Automated Proposal Generation",
-      "Real-time Sales Routing",
-      "Pain Point Discovery"
-    ],
-    template: "b2b",
-    icon: <BarChart className="w-6 h-6 text-white" />,
-    categories: ["chat", "sales", "outbound"]
-  },
-  {
-    name: "Virtual Sales Associate",
-    industry: "Retail",
-    features: [
-      "Product Recommendations",
-      "Real-time Inventory Checks",
-      "Voice & Chat Integration",
-      "Personalized Shopping Help"
-    ],
-    template: "retail",
     icon: <Store className="w-6 h-6 text-white" />,
-    categories: ["voice", "chat", "retail", "sales"]
+    categories: ["Real Estate", "Sales"]
   },
   {
-    name: "Virtual Reservation Manager",
-    industry: "Restaurants",
+    name: "Room Service Agent",
+    industry: "Hospitality",
     features: [
-      "Real-time Table Booking",
-      "Waitlist Management",
-      "Dietary Tracking",
-      "Hours/Menu Info"
+      "Order Taking & Processing",
+      "Menu Information",
+      "Special Requests Handling",
+      "Delivery Status Updates"
     ],
-    template: "restaurant",
+    template: "roomservice",
     icon: <Utensils className="w-6 h-6 text-white" />,
-    categories: ["voice", "chat", "hospitality"]
+    categories: ["Hospitality", "Customer Service"]
   },
   {
-    name: "Enrollment Assistant",
-    industry: "Education",
+    name: "AI Receptionist",
+    industry: "General Business",
     features: [
-      "24/7 Enrollment Support",
-      "Course Discovery",
-      "Admission Guidance",
-      "Tour Scheduling"
+      "Call Routing",
+      "Appointment Scheduling",
+      "Basic Inquiries Handling",
+      "Message Taking"
     ],
-    template: "education",
-    icon: <GraduationCap className="w-6 h-6 text-white" />,
-    categories: ["chat", "support", "education"]
+    template: "receptionist",
+    icon: <User className="w-6 h-6 text-white" />,
+    categories: ["Business Services", "Customer Service"]
   },
   {
-    name: "Q&A Agent",
-    industry: "Finance & Insurance",
+    name: "Support Agent",
+    industry: "Customer Service",
     features: [
-      "Secure Data Handling",
-      "Loan Eligibility Checks",
-      "Policy & Product Info",
-      "Account Setup Support"
+      "Technical Support",
+      "Issue Resolution",
+      "Product Information",
+      "Escalation Management"
     ],
-    template: "finance",
-    icon: <Wallet className="w-6 h-6 text-white" />,
-    categories: ["chat", "support", "finance"]
-  },
-  {
-    name: "Onboarding & FAQ Agent",
-    industry: "Internal HR",
-    features: [
-      "24/7 HR Support",
-      "Benefits Info",
-      "Automated Onboarding",
-      "Company Policy Access"
-    ],
-    template: "hr",
-    icon: <Users className="w-6 h-6 text-white" />,
-    categories: ["chat", "support", "internal"]
-  },
-  {
-    name: "Global Customer Agent",
-    industry: "Multilingual Support",
-    features: [
-      "Real-time Language Detection",
-      "Seamless Switching",
-      "Multi-Platform Deployment",
-      "Cross-Cultural Communication"
-    ],
-    template: "multilingual",
-    icon: <Globe className="w-6 h-6 text-white" />,
-    categories: ["voice", "chat", "support", "global"]
-  },
-  {
-    name: "Attendee Engagement Bot",
-    industry: "Events",
-    features: [
-      "Automated Registration",
-      "Session Recommendations",
-      "Schedule Management",
-      "Feedback Collection"
-    ],
-    template: "events",
-    icon: <CalendarClock className="w-6 h-6 text-white" />,
-    categories: ["chat", "events", "sales"]
+    template: "support",
+    icon: <MessageSquare className="w-6 h-6 text-white" />,
+    categories: ["Customer Service", "Technical"]
   }
 ];
 
+const categories = [
+  "All",
+  "Sales",
+  "Customer Service",
+  "Automotive",
+  "Real Estate",
+  "Hospitality",
+  "Business Services",
+  "Technical"
+];
+
 const AgentMarketplace = () => {
-  const navigate = useNavigate();
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [filterCategory, setFilterCategory] = useState<string | null>(null);
-  const [filteredAgents, setFilteredAgents] = useState<AgentCard[]>(agents);
-  
-  const categories = ["voice", "chat", "outbound", "sales", "support"];
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [initialLoad, setInitialLoad] = useState(true);
 
   useEffect(() => {
-    setIsLoaded(true);
+    setInitialLoad(false);
     window.scrollTo(0, 0);
   }, []);
 
-  useEffect(() => {
-    let result = [...agents];
-    
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      result = result.filter(
-        agent => 
-          agent.name.toLowerCase().includes(query) || 
-          agent.industry.toLowerCase().includes(query) ||
-          agent.features.some(feature => feature.toLowerCase().includes(query))
-      );
-    }
-    
-    if (filterCategory) {
-      result = result.filter(agent => 
-        agent.categories.includes(filterCategory.toLowerCase())
-      );
-    }
-    
-    setFilteredAgents(result);
-  }, [searchQuery, filterCategory]);
-
-  const staggerDelay = 0.1;
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * staggerDelay,
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    })
-  };
+  const filteredAgents = agents.filter(agent => {
+    const matchesSearch = agent.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         agent.industry.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory === "All" || agent.categories.includes(selectedCategory);
+    return matchesSearch && matchesCategory;
+  });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] text-white">
-      <Navbar />
-
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="py-16 px-6 md:px-12 text-center max-w-5xl mx-auto"
-      >
-        <div className="inline-block mb-6">
-          <CustomBadge className="px-3 py-1 bg-[#8B5CF6]/20 text-[#8B5CF6] border-[#8B5CF6]/30 text-sm font-medium rounded-full flex items-center gap-1.5">
-            <Bot size={14} />
-            Agent Templates
-          </CustomBadge>
-        </div>
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
-          Choose Your Voice Agent Template
-        </h1>
-        <p className="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl mx-auto">
-          Explore AI agent templates for every industry — deploy in minutes.
-        </p>
-        
-        <div className="max-w-3xl mx-auto">
-          <div className="flex flex-col md:flex-row gap-4 mb-12">
-            <div className="relative flex-grow">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
-              <Input 
-                type="text"
-                placeholder="Search templates..." 
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 bg-white/5 border-white/20 text-white rounded-full"
-              />
-            </div>
-            <Button 
-              onClick={() => navigate("/agent-gpt-builder")}
-              className="bg-[#8B5CF6] hover:bg-[#7C3AED] rounded-full"
-            >
-              Create Custom Agent <ArrowRight className="ml-2" size={16} />
-            </Button>
-          </div>
-          
-          <div className="flex flex-wrap justify-center gap-2 mb-8">
-            {categories.map(category => (
-              <CustomBadge 
-                key={category}
-                className={`px-4 py-1.5 rounded-full text-sm font-medium cursor-pointer ${
-                  filterCategory === category 
-                  ? 'bg-[#8B5CF6] text-white border-transparent' 
-                  : 'bg-white/5 text-gray-300 border-white/10 hover:bg-white/10'
-                }`}
-                onClick={() => setFilterCategory(filterCategory === category ? null : category)}
-              >
-                {filterCategory === category && <CheckCircle className="mr-1" size={12} />}
-                {category.charAt(0).toUpperCase() + category.slice(1)}
-              </CustomBadge>
-            ))}
-            {filterCategory && (
-              <CustomBadge 
-                className="px-4 py-1.5 rounded-full text-sm font-medium cursor-pointer bg-red-500/20 text-red-400 border-red-500/30 hover:bg-red-500/30"
-                onClick={() => setFilterCategory(null)}
-              >
-                Clear Filter
-              </CustomBadge>
-            )}
-          </div>
-        </div>
-      </motion.div>
-
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        className="px-6 md:px-12 lg:px-24 pb-24 max-w-7xl mx-auto"
-      >
-        {filteredAgents.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredAgents.map((agent, index) => (
-              <motion.div
-                key={index}
-                custom={index}
-                variants={cardVariants}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 shadow-lg transition-all duration-300 hover:transform hover:-translate-y-2 hover:bg-white/10"
-              >
-                <div className="w-12 h-12 bg-[#8B5CF6] rounded-full flex items-center justify-center mb-5">
-                  {agent.icon}
+    <PageLayout>
+      <div className="relative">
+        {/* Hero Section */}
+        <section className="relative py-20 overflow-hidden bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="container mx-auto px-4"
+          >
+            <div className="text-center max-w-4xl mx-auto">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+                AI Agent Marketplace
+              </h1>
+              <p className="text-xl text-gray-300 mb-12">
+                Discover and deploy pre-built AI agents tailored for your industry needs.
+                Get started with customizable templates designed for specific business use cases.
+              </p>
+              <div className="flex flex-col md:flex-row gap-4 justify-center mb-8">
+                <div className="relative flex-1 max-w-xl">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                  <Input
+                    type="text"
+                    placeholder="Search agents..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-10 bg-white/5 border-white/10 text-white placeholder:text-gray-400 w-full"
+                  />
                 </div>
-                <h3 className="text-2xl font-semibold mb-1">{agent.name}</h3>
-                <p className="text-purple-300 mb-4 text-sm italic">{agent.industry}</p>
-                <ul className="mb-6 space-y-2">
-                  {agent.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-gray-300">
-                      <div className="mt-1">
-                        <div className="w-1.5 h-1.5 rounded-full bg-[#8B5CF6]"></div>
-                      </div>
-                      <span className="text-sm">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {agent.categories.map((category, idx) => (
-                    <Badge 
-                      variant="secondary"
-                      className="bg-white/10 text-gray-300 border-white/5 px-2 text-xs"
-                    >
-                      {category.charAt(0).toUpperCase() + category.slice(1)}
-                    </Badge>
-                  ))}
-                </div>
-                <Button
-                  onClick={() => navigate(`/agent-gpt-builder?template=${agent.template}`)}
-                  className="w-full bg-[#8B5CF6]/20 hover:bg-[#8B5CF6]/30 border border-[#8B5CF6]/50 text-white"
-                >
-                  View Setup
+                <Button variant="outline" className="md:w-auto">
+                  <Filter className="w-4 h-4 mr-2" />
+                  Filter
                 </Button>
-              </motion.div>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12">
-            <Bot size={48} className="mx-auto mb-4 text-gray-400" />
-            <h3 className="text-xl font-medium mb-2">No agents found</h3>
-            <p className="text-gray-400 mb-6">Try adjusting your search or filter criteria.</p>
-            <Button
-              onClick={() => {
-                setSearchQuery("");
-                setFilterCategory(null);
-              }}
-              variant="outline"
-              className="border-white/20 hover:border-white/50"
-            >
-              Clear All Filters
-            </Button>
-          </div>
-        )}
-      </motion.div>
+              </div>
+              <div className="flex flex-wrap gap-2 justify-center">
+                {categories.map((category) => (
+                  <CustomBadge
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    active={selectedCategory === category}
+                    className="cursor-pointer"
+                  >
+                    {category}
+                  </CustomBadge>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </section>
 
-      <Footer />
-    </div>
+        {/* Agents Grid */}
+        <section className="py-20 bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredAgents.map((agent, index) => (
+                <motion.div
+                  key={agent.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <div className="block h-full">
+                    <div className="group relative h-full bg-white/5 backdrop-blur-lg rounded-lg p-6 border border-white/10 hover:border-white/20 transition-all">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="p-2 bg-primary/10 rounded-lg">
+                          {agent.icon}
+                        </div>
+                        <Badge variant="secondary" className="bg-white/10 text-white">
+                          {agent.industry}
+                        </Badge>
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2 text-white">{agent.name}</h3>
+                      <ul className="space-y-2 mb-4">
+                        {agent.features.map((feature, i) => (
+                          <li key={i} className="flex items-start text-gray-300">
+                            <CheckCircle className="w-5 h-5 mr-2 text-green-400 flex-shrink-0 mt-0.5" />
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="flex items-center text-white/80 group-hover:text-white transition-colors">
+                        Learn more
+                        <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Benefits Section */}
+        <section className="py-20 bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
+          <div className="container mx-auto px-4">
+            <div className="text-center max-w-4xl mx-auto mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                Why Choose Our AI Agents?
+              </h2>
+              <p className="text-xl text-gray-300">
+                Get started quickly with pre-built solutions designed for your industry
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <div className="bg-white/5 p-6 rounded-lg mb-4 inline-block">
+                  <Bot className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2">Pre-trained Models</h3>
+                <p className="text-gray-300">Ready-to-use AI agents with industry-specific knowledge</p>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <div className="bg-white/5 p-6 rounded-lg mb-4 inline-block">
+                  <CalendarClock className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2">Quick Deployment</h3>
+                <p className="text-gray-300">Set up and start using your AI agent in minutes</p>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <div className="bg-white/5 p-6 rounded-lg mb-4 inline-block">
+                  <GraduationCap className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2">Continuous Learning</h3>
+                <p className="text-gray-300">AI agents that improve with every interaction</p>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <div className="bg-white/5 p-6 rounded-lg mb-4 inline-block">
+                  <Globe className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2">Scalable Solution</h3>
+                <p className="text-gray-300">Grow and adapt your AI agents as your business expands</p>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </PageLayout>
   );
 };
 

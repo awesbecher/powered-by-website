@@ -1,257 +1,263 @@
 import { useState, useEffect, useRef } from "react";
+import PageLayout from "@/components/layout/PageLayout";
 import { ServiceCard } from "@/components/products/ServiceCard";
 import { ProductsHero } from "@/components/products/ProductsHero";
 import { ProductIndex } from "@/components/products/ProductIndex";
 import { serviceCardsData } from "@/data/serviceCardsData";
-import Navbar from "@/components/layout/Navbar";
 import { SectionTitle } from "@/components/home/SectionTitle";
 import { FeaturedSolutionCard } from "@/components/products/FeaturedSolutionCard";
 import { MessageSquare, Phone, Mail, Smartphone, Cpu } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import Link from 'next/link';
 import OfferButton from "@/components/home/OfferButton";
 import { getCalApi } from "@calcom/embed-react";
 import CTASection from "@/components/pricing/CTASection";
-import Footer from "@/components/layout/Footer";
 import { motion } from "framer-motion";
 
 const Products = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   const [activeSection, setActiveSection] = useState("");
-  const navigate = useNavigate();
   const sectionsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setInitialLoad(false);
     window.scrollTo(0, 0);
-    
-    // Save current scroll position in history state
-    const currentState = window.history.state || {};
-    window.history.replaceState(
-      { ...currentState, scrollY: window.scrollY },
-      document.title
-    );
-    
-    // Handle popstate (back/forward navigation)
-    const handlePopState = (event: PopStateEvent) => {
-      if (event.state?.scrollY !== undefined) {
-        window.scrollTo(0, event.state.scrollY);
-      } else {
-        window.scrollTo(0, 0);
-      }
-    };
-    
-    window.addEventListener('popstate', handlePopState);
-    
-    (async function () {
-      try {
-        console.log("Initializing Cal.com embed at Products page level");
-        const cal = await getCalApi({"namespace":"get-started-today"});
-        cal("ui", {
-          "cssVarsPerTheme": {
-            "light": {"cal-brand":"#292929"},
-            "dark": {"cal-brand":"#fafafa"}
-          },
-          "hideEventTypeDetails": false,
-          "layout": "month_view"
-        });
-        console.log("Cal.com embed initialized successfully at Products page level");
-      } catch (error) {
-        console.error("Error initializing Cal.com embed at Products page level:", error);
-      }
-    })();
-    
-    return () => {
-      window.removeEventListener('popstate', handlePopState);
-    };
   }, []);
+
+  // Initialize Cal.com
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi();
+      cal("ui", {
+        theme: "dark",
+        styles: { branding: { brandColor: "#000000" } },
+      });
+    })();
+  }, []);
+
+  const handleScroll = () => {
+    if (!sectionsRef.current) return;
+
+    const sections = sectionsRef.current.querySelectorAll("section");
+    let currentSection = "";
+
+    sections.forEach((section) => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= 100 && rect.bottom >= 100) {
+        currentSection = section.id;
+      }
+    });
+
+    setActiveSection(currentSection);
+  };
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionsRef.current) return;
-      
-      const sections = sectionsRef.current.querySelectorAll('[id^="section-"]');
-      const scrollPosition = window.scrollY + 200; // Offset for sticky header
-      
-      sections.forEach((section) => {
-        const sectionTop = (section as HTMLElement).offsetTop;
-        const sectionHeight = section.clientHeight;
-        const sectionId = section.id.replace('section-', '');
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-          setActiveSection(sectionId);
-        }
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleContact = () => {
-    console.log("Contact button clicked in Products");
-    
-    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
-    if (calBtn instanceof HTMLElement) {
-      console.log("Cal.com button found in Products, triggering click");
-      calBtn.click();
-    } else {
-      console.error("Cal.com button not found in DOM from Products page, navigating to /contact as fallback");
-      navigate('/contact');
-    }
-  };
-
-  const featuredSolutions = [
-    {
-      title: "AI Voice Chat",
-      description: "Deploy remarkably human-like voice agents into your existing website to automate 24/7 customer support, appointment bookings, or upsell/cross-sell campaigns.",
-      icon: MessageSquare,
-      link: "/voice-chat"
-    },
-    {
-      title: "AI Receptionist",
-      description: "Greet and manage callers to your business with voice AI. Automatically answer calls 24/7, handle any inquiry, book reservations, or take messages.",
-      icon: Phone,
-      link: "/ai-receptionist"
-    },
-    {
-      title: "Email Agent",
-      description: "Deploy autonomous email agents that think, write, and behave exactly as your most well-trained staff. Autonomously and securely handle follow-ups, inquiries, & customer workflows.",
-      icon: Mail,
-      link: "/email-agent"
-    },
-    {
-      title: "Text Agent",
-      description: "Automate your SMS text messaging with smart, human-like, and personalized texts that engage customers instantly. Save time, boost conversions, and scale—all securely, private, & compliant.",
-      icon: Smartphone,
-      link: "/text-agent"
-    },
-    {
-      title: "Virtual SE",
-      description: "Force-multiply your sales engineering team with AI pre-sales engineers that join unlimited meetings to provide technical support with minimal incremental expense.",
-      icon: Cpu,
-      link: "https://www.getvirtual.se",
-      isExternal: true
-    },
-    {
-      title: "OutboundAI",
-      description: "Deploy AI agents to handle outbound sales calls at scale, booking more meetings and qualifying leads without expanding headcount or dealing with call reluctance.",
-      icon: Phone,
-      link: "https://tryoutbound.ai",
-      isExternal: true
-    }
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 }
-    }
-  };
+  const renderIcon = (Icon: typeof Phone | typeof MessageSquare | typeof Mail | typeof Smartphone | typeof Cpu) => (
+    <Icon className="w-6 h-6 text-white" />
+  );
 
   return (
-    <div className="min-h-screen w-full relative bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
-      <div className="relative z-10 min-h-screen">
-        <Navbar />
+    <PageLayout>
+      <div className="relative">
+        <ProductsHero />
         
-        <div className="w-full pt-6">
-          <OfferButton className={`transition-all duration-1000 ease-out transform
-            ${initialLoad ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`} />
-        </div>
-        
-        <ProductsHero initialLoad={initialLoad} className="hero-section" />
-        
-        <div className="sticky top-0 z-30 bg-[#1a0b2e]/90 backdrop-blur-md border-b border-[#9b87f5]/20 py-3">
+        <div className="container mx-auto px-4 py-16">
           <ProductIndex activeSection={activeSection} />
-        </div>
-        
-        <motion.div 
-          className="container mx-auto px-4 py-12 md:py-16"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          id="featured-solutions"
-        >
-          <motion.div variants={itemVariants}>
-            <SectionTitle title="Featured Agent Solutions:" linked={false} />
-          </motion.div>
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            {featuredSolutions.map((solution, index) => (
-              <motion.div key={index} variants={itemVariants}>
-                <FeaturedSolutionCard
-                  title={solution.title}
-                  description={solution.description}
-                  icon={solution.icon}
-                  link={solution.link}
-                  isExternal={solution.isExternal}
-                />
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.div>
-        
-        <div className="container mx-auto px-4 py-6">
-          <SectionTitle title="Horizontal & Vertical-Industry Solutions:" linked={false} />
-        </div>
-        
-        <div ref={sectionsRef} className="max-w-full pt-2">
-          <div className="space-y-0 divide-y divide-white/10">
-            {serviceCardsData.map((card, index) => (
-              <motion.div 
-                key={index}
-                id={`section-${index}`}
-                className="scroll-mt-36"
-                initial={{ opacity: 0, y: 30 }}
+          
+          <div ref={sectionsRef}>
+            {/* Voice Chat Section */}
+            <section id="voice-chat" className="mb-32">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7 }}
-                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
               >
-                <ServiceCard
-                  title={
-                    <>
-                      <span className="font-bold text-white">{card.title.main}</span>{' '}
-                      <span className="font-normal text-[#9b87f5]">{card.title.sub}</span>
-                    </>
-                  }
-                  icon={card.icon}
-                  description={card.description}
-                  features={card.features}
+                <SectionTitle
+                  title="Voice Chat AI"
+                  subtitle="Natural conversations with your customers"
+                  className="text-center mb-16"
                 />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  <FeaturedSolutionCard
+                    title="Auto Dealer Voice Agent"
+                    description="24/7 customer service for dealerships. Handle inquiries, schedule test drives, and qualify leads automatically."
+                    icon={renderIcon(Phone)}
+                    link="/auto-dealer"
+                  />
+                  <FeaturedSolutionCard
+                    title="Real Estate Voice Agent"
+                    description="Automate property inquiries, schedule viewings, and qualify potential buyers with AI-powered conversations."
+                    icon={renderIcon(Phone)}
+                    link="/real-estate"
+                  />
+                  <FeaturedSolutionCard
+                    title="Room Service Voice Agent"
+                    description="Streamline hotel room service orders with a voice AI that understands guest requests and manages orders efficiently."
+                    icon={renderIcon(Phone)}
+                    link="/room-service"
+                  />
+                </div>
               </motion.div>
-            ))}
+            </section>
+
+            {/* Chat Section */}
+            <section id="chat" className="mb-32">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                <SectionTitle
+                  title="Chat AI"
+                  subtitle="Instant responses to customer inquiries"
+                  className="text-center mb-16"
+                />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  <FeaturedSolutionCard
+                    title="Customer Support Chat"
+                    description="Provide instant support to your customers with an AI that understands their needs and resolves issues quickly."
+                    icon={renderIcon(MessageSquare)}
+                    link="/customer-support"
+                  />
+                  <FeaturedSolutionCard
+                    title="Sales Chat"
+                    description="Convert more leads with an AI sales agent that qualifies prospects and schedules meetings with your team."
+                    icon={renderIcon(MessageSquare)}
+                    link="/sales"
+                  />
+                  <FeaturedSolutionCard
+                    title="FAQ Chat"
+                    description="Answer common questions instantly with an AI that learns from your knowledge base and documentation."
+                    icon={renderIcon(MessageSquare)}
+                    link="/faq"
+                  />
+                </div>
+              </motion.div>
+            </section>
+
+            {/* Email Section */}
+            <section id="email" className="mb-32">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                <SectionTitle
+                  title="Email AI"
+                  subtitle="Automated email communication"
+                  className="text-center mb-16"
+                />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  <FeaturedSolutionCard
+                    title="Email Response"
+                    description="Automate email responses with an AI that understands context and maintains your brand voice."
+                    icon={renderIcon(Mail)}
+                    link="/email-response"
+                  />
+                  <FeaturedSolutionCard
+                    title="Lead Generation"
+                    description="Generate and nurture leads through personalized email campaigns powered by AI."
+                    icon={renderIcon(Mail)}
+                    link="/lead-generation"
+                  />
+                  <FeaturedSolutionCard
+                    title="Email Support"
+                    description="Handle support tickets efficiently with AI-powered email responses and ticket routing."
+                    icon={renderIcon(Mail)}
+                    link="/email-support"
+                  />
+                </div>
+              </motion.div>
+            </section>
+
+            {/* Text Section */}
+            <section id="text" className="mb-32">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                <SectionTitle
+                  title="Text AI"
+                  subtitle="SMS and messaging solutions"
+                  className="text-center mb-16"
+                />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  <FeaturedSolutionCard
+                    title="SMS Support"
+                    description="Provide instant support through text messages with an AI that understands customer needs."
+                    icon={renderIcon(Smartphone)}
+                    link="/sms-support"
+                  />
+                  <FeaturedSolutionCard
+                    title="Appointment Reminders"
+                    description="Reduce no-shows with automated SMS reminders and confirmations."
+                    icon={renderIcon(Smartphone)}
+                    link="/appointment-reminders"
+                  />
+                  <FeaturedSolutionCard
+                    title="Order Updates"
+                    description="Keep customers informed with automated order status updates via text message."
+                    icon={renderIcon(Smartphone)}
+                    link="/order-updates"
+                  />
+                </div>
+              </motion.div>
+            </section>
+
+            {/* Custom AI Section */}
+            <section id="custom" className="mb-32">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                <SectionTitle
+                  title="Custom AI Solutions"
+                  subtitle="Tailored to your specific needs"
+                  className="text-center mb-16"
+                />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  <FeaturedSolutionCard
+                    title="Custom Integration"
+                    description="Integrate AI into your existing systems with custom solutions built for your needs."
+                    icon={renderIcon(Cpu)}
+                    link="/custom-integration"
+                  />
+                  <FeaturedSolutionCard
+                    title="Industry Solutions"
+                    description="AI solutions tailored to your industry's specific requirements and challenges."
+                    icon={renderIcon(Cpu)}
+                    link="/industry-solutions"
+                  />
+                  <FeaturedSolutionCard
+                    title="Enterprise AI"
+                    description="Large-scale AI solutions for enterprise organizations with complex needs."
+                    icon={renderIcon(Cpu)}
+                    link="/enterprise"
+                  />
+                </div>
+              </motion.div>
+            </section>
           </div>
         </div>
 
-        <div className="mt-16 mb-8">
-          <CTASection />
-        </div>
-        
-        <button
-          data-cal-namespace="get-started-today"
-          data-cal-link="team-powered-by-dfbtbb/get-started-today"
-          data-cal-config='{"layout":"month_view"}'
-          className="hidden"
-        ></button>
-        
-        <Footer />
+        <CTASection />
       </div>
-    </div>
+    </PageLayout>
   );
 };
 

@@ -49,131 +49,74 @@ function logTelemetry(event: string, data: any = {}) {
 }
 
 function logError(type: string, message: string, error?: any) {
-  const errorInfo = {
+  const errorEntry = {
     time: Date.now(),
     type,
     message
   };
-  callState.errors.push(errorInfo);
-  console.error(`[${type}]`, message, error);
-  logTelemetry('error', { error: errorInfo });
+  callState.errors.push(errorEntry);
+  console.error(`[Error] ${type}: ${message}`, error);
 }
 
-// Play a test tone to verify audio output
 async function playTestTone() {
-  if (!audioContext) {
-    return;
-  }
-  
+  if (!audioContext) return;
+
   const oscillator = audioContext.createOscillator();
   const gainNode = audioContext.createGain();
-  
+
   oscillator.connect(gainNode);
   gainNode.connect(audioContext.destination);
-  
-  gainNode.gain.value = 0.1; // Quiet volume
-  oscillator.frequency.value = 440; // A4 note
-  
+
+  gainNode.gain.value = 0.1;
+  oscillator.frequency.value = 440;
+
   oscillator.start();
   await new Promise(resolve => setTimeout(resolve, 200));
   oscillator.stop();
-  
-  logTelemetry('test_tone_played');
 }
 
 async function setupEventListeners(vapi: Vapi) {
-  vapi.on('error', (error: any) => {
-    logError('vapi_error', 'Vapi error event', error);
-    handleError(error);
-  });
-
   vapi.on('call-start', () => {
-    logTelemetry('call_start', {
-      timestamp: Date.now(),
-      audioContextState: audioContext?.state,
-      hasMediaStream: !!mediaStream,
-      mediaStreamActive: mediaStream?.active
-    });
+    logTelemetry('call_started');
     callState.isActive = true;
-    callState.reconnectAttempts = 0;
+    callState.lastSpeechTime = Date.now();
   });
 
   vapi.on('call-end', () => {
-    logTelemetry('call_end', {
-      timestamp: Date.now(),
-      hadAudioOutput: callState.hasAudioOutput
-    });
+    logTelemetry('call_ended');
     callState.isActive = false;
-    // Refresh the browser when call ends
-    if (typeof window !== 'undefined') {
-      window.location.reload();
-    }
+  });
+
+  vapi.on('error', (error: any) => {
+    handleError(error);
   });
 
   vapi.on('speech-start', () => {
-    logTelemetry('speech_start', {
-      timestamp: Date.now(),
-      audioContextState: audioContext?.state,
-      mediaStreamActive: mediaStream?.active,
-      tracks: mediaStream?.getTracks().map(track => ({
-        kind: track.kind,
-        enabled: track.enabled,
-        muted: track.muted,
-        readyState: track.readyState
-      }))
-    });
+    logTelemetry('speech_start');
     callState.hasAudioOutput = true;
     callState.lastSpeechTime = Date.now();
   });
 
   vapi.on('speech-end', () => {
-    logTelemetry('speech_end', {
-      timestamp: Date.now(),
-      speechDuration: Date.now() - callState.lastSpeechTime
-    });
-  });
-
-  vapi.on('volume-level', (volume: number) => {
-    if (volume > 0) {
-      callState.hasAudioOutput = true;
-      logTelemetry('volume_level', { 
-        timestamp: Date.now(),
-        volume,
-        hasAudioOutput: callState.hasAudioOutput
-      });
-    }
-  });
-
-  vapi.on('message', (message: any) => {
-    logTelemetry('message', { 
-      timestamp: Date.now(),
-      message,
-      type: typeof message,
-      hasContent: !!message
-    });
+    logTelemetry('speech_end');
   });
 }
 
-async function handleError(error: any) {
-  if (callState.reconnectAttempts < MAX_RECONNECT_ATTEMPTS && callState.isActive) {
-    callState.reconnectAttempts++;
-    logTelemetry('reconnect_attempt', { attempt: callState.reconnectAttempts });
+function handleError(error: any) {
+  logError('vapi_error', error?.message || 'Unknown error', error);
 
-    try {
-      await new Promise(resolve => setTimeout(resolve, RECONNECT_DELAY_MS));
-      
-      if (vapiInstance) {
-        await vapiInstance.stop();
-        await setupVapiInstance();
-        logTelemetry('reconnect_success');
-      }
-    } catch (reconnectError) {
-      logError('reconnect_failed', 'Failed to reconnect', reconnectError);
-      await cleanupVapiCall();
-    }
-  } else {
-    logError('max_reconnects_exceeded', 'Maximum reconnection attempts exceeded');
-    await cleanupVapiCall();
+  // Dispatch error event
+  const errorEvent = new CustomEvent('vapi-error', { 
+    detail: { error, callState: { ...callState } }
+  });
+  document.dispatchEvent(errorEvent);
+
+  // Handle reconnection if appropriate
+  if (callState.isActive && callState.reconnectAttempts < MAX_RECONNECT_ATTEMPTS) {
+    callState.reconnectAttempts++;
+    setTimeout(() => {
+      initiateVapiCall();
+    }, RECONNECT_DELAY_MS);
   }
 }
 
@@ -248,20 +191,10 @@ export async function initiateVapiCall(assistantId?: string): Promise<void> {
       throw new Error('Failed to create Vapi instance');
     }
 
-    // Set up Vapi with media stream directly
-    // @ts-ignore - Properties exist but types are not defined
-    vapiInstance.audioContext = audioContext;
-    // @ts-ignore - Properties exist but types are not defined
-    vapiInstance.audioInput = source;
-    // @ts-ignore - Properties exist but types are not defined
-    vapiInstance.audioStream = mediaStream;
-
     // Start the call
     logTelemetry('call_init', { 
       assistantId: assistantId || ASSISTANT_IDS.general
     });
-
-    await vapiInstance.start(assistantId || ASSISTANT_IDS.general);
 
     // Set up audio monitoring
     audioCheckInterval = window.setInterval(() => {
@@ -276,6 +209,9 @@ export async function initiateVapiCall(assistantId?: string): Promise<void> {
         }
       }
     }, 10000);
+
+    // Start the call with the audio stream
+    await vapiInstance.start(assistantId || ASSISTANT_IDS.general);
 
     // Add cleanup handler
     vapiInstance.on('call-end', () => {
@@ -336,7 +272,6 @@ async function cleanupVapiCall(): Promise<void> {
 
 export async function endVapiCall(): Promise<void> {
   await cleanupVapiCall();
-  window.location.reload();
 }
 
 export function getVapiCallStatus(): boolean {

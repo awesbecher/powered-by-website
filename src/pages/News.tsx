@@ -1,8 +1,7 @@
 import React from 'react';
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import Link from "next/link";
+import PageLayout from "@/components/layout/PageLayout";
 import { ChevronRight, Newspaper, ArrowRight, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { newsArticles } from "@/data/blog-posts";
@@ -18,9 +17,7 @@ const News = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] text-white pb-20">
-      <Navbar />
-      
+    <PageLayout>
       {/* Hero Section with Background Image */}
       <div className="relative">
         {/* Background image */}
@@ -49,80 +46,57 @@ const News = () => {
       </div>
       
       {/* Press Coverage Section */}
-      <section className="container mx-auto px-4 mb-20 relative z-10">
-        <h2 className="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-2">
-          <span>In The Press</span>
-          <div className="h-1 w-24 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full ml-2"></div>
-        </h2>
+      <section className="container mx-auto px-4 mt-20">
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="text-3xl font-bold">Press Coverage</h2>
+          <Button variant="outline" className="text-white border-white/20 hover:bg-white/10">
+            View All Press <ChevronRight className="ml-2 w-4 h-4" />
+          </Button>
+        </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-16">
-          {pressArticles.map((article) => (
-            <PressArticleCard article={article} />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {pressArticles.slice(0, 3).map((article) => (
+            <PressArticleCard key={article.id} article={article} />
           ))}
         </div>
       </section>
-      
-      {/* News Posts Section */}
-      <section className="container mx-auto px-4 mb-20 relative z-10">
-        {newsArticles.length > 0 ? (
-          <>
-            <h2 className="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-2">
-              <span>Company News</span>
-              <div className="h-1 w-24 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full ml-2"></div>
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {newsArticles.map((post, index) => (
-                <Link 
-                  key={index} 
-                  to={`/blog/${post.slug}`}
-                  className="block"
-                >
-                  <Card className="bg-[#1f0d35]/50 border-none hover:bg-[#2a1347]/80 transition-colors h-full">
-                    <CardContent className="p-8">
-                      <div className="text-sm text-purple-400 mb-3">
-                        {post.category} • {post.date}
-                      </div>
-                      <h3 className="text-2xl font-bold mb-4 text-white">{post.title}</h3>
-                      <p className="text-gray-300 mb-6 line-clamp-3">{post.excerpt}</p>
-                      <div className="flex items-center text-purple-400 hover:text-purple-300 mt-auto">
-                        Read more
-                        <ArrowRight className="h-4 w-4 ml-2" />
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              ))}
-            </div>
-          </>
-        ) : (
-          <div className="text-center py-20">
-            <Newspaper className="h-16 w-16 mx-auto text-gray-400 mb-4" />
-            <h2 className="text-2xl font-bold text-white mb-2">No news articles yet</h2>
-            <p className="text-gray-300 mb-8 max-w-md mx-auto">
-              We're working on our latest press releases and news articles. Check back soon for updates!
-            </p>
-            <div className="flex justify-center gap-4">
-              <Button asChild variant="outline" className="bg-white/5 hover:bg-white/10 border-purple-500">
-                <Link to="/blog">
-                  View Blog Posts
-                </Link>
-              </Button>
-              <Button asChild className="bg-gradient-to-r from-[#6342ff] to-[#a87cff] text-white hover:from-[#5838e0] hover:to-[#9670ff]">
-                <Link to="/">
-                  Back to Home
-                </Link>
-              </Button>
-            </div>
-          </div>
-        )}
+
+      {/* Latest Articles Section */}
+      <section className="container mx-auto px-4 mt-20">
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="text-3xl font-bold">Latest Articles</h2>
+          <Button variant="outline" className="text-white border-white/20 hover:bg-white/10">
+            View All Articles <ChevronRight className="ml-2 w-4 h-4" />
+          </Button>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {newsArticles.slice(0, 6).map((article) => (
+            <Card key={article.id} className="bg-white/5 border-white/10 hover:bg-white/10 transition-colors">
+              <CardContent className="p-6">
+                <div className="flex items-start gap-4">
+                  <div className="p-2 rounded-lg bg-primary/10">
+                    <Newspaper className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold mb-2">{article.title}</h3>
+                    <p className="text-gray-400 mb-4">{article.excerpt}</p>
+                    <div className="flex items-center text-primary">
+                      <Link href={`/blog/${article.slug}`} className="flex items-center hover:underline">
+                        Read More <ArrowRight className="ml-2 w-4 h-4" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </section>
-      
-      {/* Replace subscription section with ClosingCTA */}
+
+      {/* Closing CTA Section */}
       <ClosingCTA customHeading="Ready to Deploy AI Agents for Your Business?" customButtonText="Get Started Today" />
-      
-      <Footer />
-    </div>
+    </PageLayout>
   );
 };
 

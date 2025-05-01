@@ -1,21 +1,30 @@
-
-import { Link } from "react-router-dom";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 interface SectionTitleProps {
   title: string;
+  subtitle?: string;
+  className?: string;
   linked?: boolean;
 }
 
-export const SectionTitle = ({ title, linked = false }: SectionTitleProps) => {
+export const SectionTitle = ({ title, subtitle, className, linked = false }: SectionTitleProps) => {
   const TitleContent = () => (
-    <h2 className="relative text-5xl font-bold text-white mb-8 transition-colors duration-300 hover:bg-gradient-to-r hover:from-purple-400 hover:to-indigo-400 hover:bg-clip-text hover:text-transparent pt-0 pb-4 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-purple-500 after:to-indigo-500">
-      {title}
-    </h2>
+    <div className={cn("text-center", className)}>
+      <h2 className="text-4xl font-bold text-white mb-4">
+        {title}
+      </h2>
+      {subtitle && (
+        <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          {subtitle}
+        </p>
+      )}
+    </div>
   );
 
   if (linked) {
     return (
-      <Link to="/about">
+      <Link href="/about">
         <TitleContent />
       </Link>
     );
@@ -23,3 +32,5 @@ export const SectionTitle = ({ title, linked = false }: SectionTitleProps) => {
 
   return <TitleContent />;
 };
+
+export default SectionTitle;

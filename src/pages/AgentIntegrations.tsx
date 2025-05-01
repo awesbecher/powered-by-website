@@ -1,7 +1,5 @@
-
 import React from "react";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import PageLayout from "@/components/layout/PageLayout";
 import { Toaster } from "@/components/ui/toaster";
 import WebhookTriggerSection from "@/components/agent-gpt-builder/components/webhook-trigger/WebhookTriggerSection";
 import VoiceToWebhookSection from "@/components/agent-gpt-builder/components/voice-trigger/VoiceToWebhookSection";
@@ -12,8 +10,7 @@ const AgentIntegrations = () => {
   const [activeTab, setActiveTab] = React.useState("webhooks");
   
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
-      <Navbar />
+    <PageLayout>
       <div className="py-8 px-4 max-w-7xl mx-auto">
         <div className="text-center mb-10">
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">Agent Integrations</h1>
@@ -75,9 +72,8 @@ const AgentIntegrations = () => {
           </div>
         </div>
       </div>
-      <Footer />
       <Toaster />
-    </div>
+    </PageLayout>
   );
 };
 
