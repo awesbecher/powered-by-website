@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import { NavItemWithChildren } from './navConfig';
+import { NavbarCta } from '@/components/navigation/NavbarCta';
+import { getCalApi } from "@calcom/embed-react";
 
 interface NavItem {
   label: string;
@@ -27,8 +29,8 @@ const NavLink: React.FC<NavLinkProps> = ({ item, closeMenu }) => {
         href={item.href}
         target="_blank"
         rel="noopener noreferrer"
-        className="block py-2 px-4 text-sm hover:bg-gray-700 text-white"
         onClick={handleClick}
+        className="block px-4 py-2 text-gray-300 hover:text-white"
       >
         {item.label}
       </a>
@@ -38,8 +40,8 @@ const NavLink: React.FC<NavLinkProps> = ({ item, closeMenu }) => {
   return (
     <Link
       to={item.href}
-      className="block py-2 px-4 text-sm hover:bg-gray-700 text-white"
       onClick={handleClick}
+      className="block px-4 py-2 text-gray-300 hover:text-white"
     >
       {item.label}
     </Link>
@@ -47,45 +49,75 @@ const NavLink: React.FC<NavLinkProps> = ({ item, closeMenu }) => {
 };
 
 interface MobileMenuProps {
-  isOpen: boolean;
-  closeMenu: () => void;
   navItems: NavItemWithChildren[];
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, closeMenu, navItems }) => {
-  const menuItems = [
-    { label: 'AI Agency', href: '/ai-agency' },
-    ...navItems.map(item => ({
-      label: item.name,
-      href: item.path,
-      isExternal: item.isExternal,
-      children: item.children?.map(child => ({
-        label: child.name,
-        href: child.path,
-        isExternal: child.isExternal
-      }))
-    }))
-  ];
+const MobileMenu: React.FC<MobileMenuProps> = ({ navItems }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeMenu = () => setIsOpen(false);
+
+  const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    closeMenu();
+    const cal = (window as any).Cal;
+    if (cal) {
+      cal("showModal", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+    }
+  };
 
   return (
-    <div className={`fixed top-0 left-0 w-full h-full bg-gray-800 z-50 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out`}>
-      <div className="flex items-center justify-between p-4">
-        <span className="text-lg font-bold text-white">Menu</span>
-        <button onClick={closeMenu} className="p-2 text-gray-50 hover:text-white">
-          <X className="h-6 w-6" />
-        </button>
-      </div>
-      <nav className="flex flex-col">
-        {menuItems.map((item) => (
-          <NavLink
-            key={item.href}
-            item={item}
-            closeMenu={closeMenu}
+    <>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="md:hidden p-2 text-gray-300 hover:text-white"
+      >
+        <svg
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+          />
+        </svg>
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="absolute top-full left-0 right-0 bg-[#222222] border-b border-gray-800/50"
           >
-          </NavLink>
-        ))}
-      </nav>
-    </div>
+            <div className="px-4 py-2 space-y-2">
+              {navItems.map((item, index) => (
+                <NavLink 
+                  key={index} 
+                  item={{
+                    label: item.name,
+                    href: item.path,
+                    isExternal: item.isExternal
+                  }} 
+                  closeMenu={closeMenu} 
+                />
+              ))}
+              <div className="pt-2 pb-4">
+                <NavbarCta 
+                  onClick={handleCtaClick}
+                  className="w-full justify-center"
+                />
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

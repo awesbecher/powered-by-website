@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "powered-by-website",
+    "staging": "powered-by-website-staging",
+    "production": "powered-by-website"
+  }
+}
