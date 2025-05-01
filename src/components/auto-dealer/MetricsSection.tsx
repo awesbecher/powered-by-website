@@ -13,7 +13,7 @@ interface Metric {
 
 const metrics: Metric[] = [
   {
-    value: 35,
+    value: 75,
     label: 'Lead Conversion',
     description: 'Increase in qualified leads',
     prefix: '+',
@@ -26,7 +26,7 @@ const metrics: Metric[] = [
     suffix: '/7'
   },
   {
-    value: 500,
+    value: 50,
     label: 'Dealer Integrations',
     description: 'Seamless system connections',
     suffix: '+'
@@ -68,7 +68,7 @@ export const MetricsSection = () => {
             >
               <div className="mb-2">
                 <span className="text-4xl font-bold text-[#8B5CF6]">
-                  {metric.prefix}<span className="metric-value">0</span>{metric.suffix}
+                  {metric.prefix}{metric.value}{metric.suffix}
                 </span>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-1">
