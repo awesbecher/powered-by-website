@@ -108,10 +108,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ navItems }) => {
                 />
               ))}
               <div className="pt-2 pb-4">
-                <NavbarCta 
-                  onClick={handleCtaClick}
-                  className="w-full justify-center"
-                />
+                <NavbarCta className="w-full justify-center" />
               </div>
             </div>
           </motion.div>

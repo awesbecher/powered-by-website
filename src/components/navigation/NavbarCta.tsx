@@ -1,22 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { getCalApi } from "@calcom/embed-react";
 
 interface NavbarCtaProps {
-  href?: string;
-  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   className?: string;
   children?: React.ReactNode;
 }
 
 export const NavbarCta: React.FC<NavbarCtaProps> = ({
-  href = '#',
-  onClick,
   className = '',
   children = 'Get Started'
 }) => {
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      cal("ui", {
+        "cssVarsPerTheme": {
+          "light": {"cal-brand": "#8B5CF6"},
+          "dark": {"cal-brand": "#8B5CF6"}
+        },
+        "hideEventTypeDetails": false,
+        "layout": "week_view"
+      });
+    })();
+  }, []);
+
   return (
-    <a
-      href={href}
-      onClick={onClick}
+    <button
+      data-cal-namespace="get-started-today"
+      data-cal-link="team-powered-by-dfbtbb/get-started-today"
+      data-cal-config='{"layout":"week_view"}'
       className={`
         ml-auto 
         px-4 py-2 
@@ -36,6 +48,6 @@ export const NavbarCta: React.FC<NavbarCtaProps> = ({
       `.replace(/\s+/g, ' ').trim()}
     >
       {children}
-    </a>
+    </button>
   );
 };

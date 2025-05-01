@@ -58,7 +58,7 @@ const Navbar = () => {
 
           {/* Right side buttons */}
           <div className="hidden md:flex items-center">
-            <NavbarCta onClick={handleCtaClick} />
+            <NavbarCta />
           </div>
 
           {/* Mobile Menu Button and Dropdown */}
