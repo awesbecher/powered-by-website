@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { getCalApi } from "@calcom/embed-react";
+import { openPlayHtAgent } from './PlayHtAgent';
 
 interface Metric {
   value: number;
@@ -49,26 +49,6 @@ const item = {
 };
 
 export const MetricsSection = () => {
-  // Initialize Cal.com
-  useEffect(() => {
-    (async function () {
-      try {
-        const cal = await getCalApi();
-        cal("ui", {
-          theme: "dark",
-          cssVarsPerTheme: {
-            light: {"cal-brand": "#8B5CF6"},
-            dark: {"cal-brand": "#8B5CF6"}
-          },
-          hideEventTypeDetails: false,
-          layout: "column_view"
-        });
-      } catch (error) {
-        console.error("Error initializing Cal.com in MetricsSection:", error);
-      }
-    })();
-  }, []);
-
   return (
     <section className="py-24 bg-[#F3E8FF]">
       <motion.div 
@@ -107,14 +87,13 @@ export const MetricsSection = () => {
           className="text-center"
         >
           <button
-            data-cal-link="team-powered-by-dfbtbb/get-started-today"
-            data-cal-config='{"layout":"column_view","theme":"dark"}'
+            onClick={openPlayHtAgent}
             className="inline-flex items-center px-8 py-4 text-lg font-semibold text-[#8B5CF6] 
               border-2 border-[#8B5CF6] rounded-2xl hover:bg-[#8B5CF6] hover:text-white
               transform transition-all duration-200 ease-out hover:-translate-y-0.5
               hover:shadow-lg"
           >
-            Talk to an AI Agent Now
+            Talk to an Auto Dealer Agent
             <ArrowRight className="ml-2 h-5 w-5" />
           </button>
         </motion.div>

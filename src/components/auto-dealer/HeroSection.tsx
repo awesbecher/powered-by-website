@@ -1,29 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ArrowRight } from 'lucide-react';
-import { getCalApi } from "@calcom/embed-react";
 import { motion } from "framer-motion";
+import { openPlayHtAgent } from './PlayHtAgent';
 
 export const HeroSection = () => {
-  // Initialize Cal.com
-  useEffect(() => {
-    (async function () {
-      try {
-        const cal = await getCalApi();
-        cal("ui", {
-          theme: "dark",
-          cssVarsPerTheme: {
-            light: {"cal-brand": "#8B5CF6"},
-            dark: {"cal-brand": "#8B5CF6"}
-          },
-          hideEventTypeDetails: false,
-          layout: "column_view"
-        });
-      } catch (error) {
-        console.error("Error initializing Cal.com in Auto Dealer Hero:", error);
-      }
-    })();
-  }, []);
-
   return (
     <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
       {/* Background Image with Gradient Overlay */}
@@ -71,13 +51,12 @@ export const HeroSection = () => {
             className="pt-4"
           >
             <button
-              data-cal-link="team-powered-by-dfbtbb/get-started-today"
-              data-cal-config='{"layout":"column_view","theme":"dark"}'
+              onClick={openPlayHtAgent}
               className="inline-flex items-center px-8 py-4 text-lg font-semibold text-white 
                 bg-[#8B5CF6] rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 
                 transform transition-all duration-200 ease-out"
             >
-              Get Your Demo
+              Talk to an Auto Dealer Agent
               <ArrowRight className="ml-2 h-5 w-5" />
             </button>
           </motion.div>
