@@ -104,6 +104,10 @@ async function setupEventListeners(vapi: Vapi) {
       hadAudioOutput: callState.hasAudioOutput
     });
     callState.isActive = false;
+    // Refresh the browser when call ends
+    if (typeof window !== 'undefined') {
+      window.location.reload();
+    }
   });
 
   vapi.on('speech-start', () => {
