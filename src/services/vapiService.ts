@@ -11,7 +11,8 @@ const ASSISTANT_IDS = {
   auto: 'df42b616-337e-4877-8e9b-44fb0b5a0225',
   roomService: '238616a3-b611-4faa-a216-74b8d7d8b277',
   retail: 'defa6102-2358-4347-a192-24c6bc23ea4c',
-  general: 'ebb38ba5-321a-49e4-b860-708bc864327f'
+  general: 'ebb38ba5-321a-49e4-b860-708bc864327f',
+  insurance: 'df42b616-337e-4877-8e9b-44fb0b5a0225'
 };
 
 interface CallState {
@@ -211,7 +212,7 @@ async function setupMediaStream(): Promise<MediaStream> {
   }
 }
 
-export async function initiateVapiCall(service: keyof typeof ASSISTANT_IDS = 'general'): Promise<void> {
+export async function initiateVapiCall(assistantId?: string): Promise<void> {
   let audioCheckInterval: number | null = null;
 
   try {
@@ -253,11 +254,10 @@ export async function initiateVapiCall(service: keyof typeof ASSISTANT_IDS = 'ge
 
     // Start the call
     logTelemetry('call_init', { 
-      service, 
-      assistantId: ASSISTANT_IDS[service]
+      assistantId: assistantId || ASSISTANT_IDS.general
     });
 
-    await vapiInstance.start(ASSISTANT_IDS[service]);
+    await vapiInstance.start(assistantId || ASSISTANT_IDS.general);
 
     // Set up audio monitoring
     audioCheckInterval = window.setInterval(() => {
