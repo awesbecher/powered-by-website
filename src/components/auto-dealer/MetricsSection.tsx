@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { openPlayHtAgent } from './PlayHtAgent';
+import { openPlayHtAgent } from '@/services/playhtService';
 
 interface Metric {
   value: number;
