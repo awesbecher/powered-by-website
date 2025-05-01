@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { HeroContent } from "./HeroContent";
@@ -26,7 +25,7 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
             "dark": {"cal-brand":"#fafafa"}
           },
           "hideEventTypeDetails": false,
-          "layout": "month_view"
+          "layout": "column_view"
         });
         console.log("Cal.com embed initialized successfully in TextAgent HeroSection");
       } catch (error) {
@@ -131,26 +130,8 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
             {/* CTA button below phone */}
             <div className="mt-8">
               <button 
-                onClick={() => {
-                  console.log("See It In Action button clicked");
-                  try {
-                    // Direct modal trigger approach
-                    (window as any).Cal?.('ui', {
-                      styles: { branding: { brandColor: '#000000' } },
-                      hideEventTypeDetails: false,
-                      layout: 'month_view',
-                    });
-                    (window as any).Cal?.('showModal', {
-                      calLink: "team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents",
-                      config: {
-                        layout: 'month_view',
-                      },
-                    });
-                  } catch (err) {
-                    console.error("Failed to open Cal.com modal from HeroSection See It In Action:", err);
-                    handleContact();
-                  }
-                }}
+                data-cal-link="team-powered-by-dfbtbb/get-started-today"
+                data-cal-config='{"layout":"column_view","theme":"dark"}'
                 className="bg-[#6342ff] hover:bg-[#7352ff] text-white font-bold py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm"
               >
                 <Phone className="w-5 h-5" />
@@ -160,13 +141,6 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
           </div>
         </div>
       </div>
-      
-      {/* Hidden Cal.com button that will be triggered programmatically */}
-      <button
-        data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
-        data-cal-config='{"layout":"month_view"}'
-        className="hidden"
-      ></button>
     </section>
   );
 };
