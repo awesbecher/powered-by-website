@@ -228,9 +228,6 @@ export async function initiateVapiCall(service: keyof typeof ASSISTANT_IDS = 'ge
     await audioContext.resume();
     logTelemetry('audio_context_setup', { state: audioContext.state });
 
-    // Play test tone to verify audio output
-    await playTestTone();
-
     // Get media stream
     mediaStream = await setupMediaStream();
     if (!mediaStream) {
@@ -312,9 +309,6 @@ export async function initiateVapiCall(service: keyof typeof ASSISTANT_IDS = 'ge
     });
 
     await vapiInstance.start(ASSISTANT_IDS[service]);
-
-    // Play test tone after call starts
-    await playTestTone();
 
     // Set up audio monitoring
     audioCheckInterval = window.setInterval(() => {
