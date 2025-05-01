@@ -1,4 +1,3 @@
-
 // Configuration interface
 interface VogentConfig {
   agentId: string;
@@ -19,7 +18,7 @@ const VOGENT_CONFIGS: Record<string, VogentConfig> = {
     agentId: "15b75020-90a0-473a-b6bc-758ced586c6b",
     fromNumberId: "b79e025d-bb6c-4deb-99d5-a5f2f573c639"
   },
-  mercedes: {
+  auto: {
     agentId: "bcdfcfef-6f02-483b-a10e-f0e85d341414",
     fromNumberId: "5dff4f55-255f-4ee0-a8d4-d4efbc51bdf6"
   },

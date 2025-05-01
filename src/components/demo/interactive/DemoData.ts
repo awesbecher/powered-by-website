@@ -1,4 +1,3 @@
-
 import { Mic, Car, Hotel, Scissors } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 
@@ -36,7 +35,7 @@ export const demoOptions: DemoOption[] = [
     actionText: "Start Auto Dealer Demo",
     color: "bg-blue-600",
     imageSrc: "/assets/images/d1983f69-1e5e-4a0c-b197-282aa2fca163.png",
-    routePath: "/mercedes-dealer",
+    routePath: "/auto-dealer",
     assistantId: "6c02f892-3082-4c68-a3ee-92ca86444331"
   },
   {

@@ -1,6 +1,6 @@
 export const ROUTES = {
   HOME: '/',
-  MERCEDES_DEALER: '/mercedes-dealer',
+  AUTO_DEALER: '/auto-dealer',
   INSURANCE: '/insurance',
   ROOM_SERVICE: '/room-service',
   RETAIL: '/retail',

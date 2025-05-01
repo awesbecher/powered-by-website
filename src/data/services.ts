@@ -14,11 +14,11 @@ export interface Service {
 
 export const services: Service[] = [
   {
-    title: "Mercedes Dealership",
-    description: "Experience our AI agent as a Mercedes dealership representative, helping customers with vehicle information and appointment scheduling.",
+    title: "Auto Dealership",
+    description: "Experience our AI agent as an auto dealership representative, helping customers with vehicle information and appointment scheduling.",
     iconPath: "/assets/images/56608f55-255c-4123-83c5-1099d1c40bcb.png",
     category: "Auto Dealer",
-    link: "/mercedes-dealer",
+    link: "/auto-dealer",
     buttonText: "Try Demo",
   },
   {

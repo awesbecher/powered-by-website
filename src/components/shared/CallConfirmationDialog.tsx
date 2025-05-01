@@ -23,14 +23,14 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
     logoAlt: 'Township Real Estate Logo',
     callMessage: 'Connecting you with Jeff Smith at Township Real Estate...'
   },
-  mercedes: {
-    name: 'Chris @ Mercedes-Benz of Tacoma',
-    description: 'Speak with Chris, your Mercedes-Benz of Tacoma AI assistant! Get information about our latest models, schedule test drives, discuss financing options, and learn about our exclusive deals.',
-    image: '/assets/team/Chris Cambridge.jpg',
-    imageAlt: 'Chris - Mercedes-Benz of Tacoma Assistant',
-    logo: '/assets/team/mercedes-logo.png',
-    logoAlt: 'Mercedes-Benz of Tacoma Logo',
-    callMessage: 'Connecting you with Chris at Mercedes-Benz of Tacoma...'
+  auto: {
+    name: 'Chris @ Auto Dealership',
+    description: 'Speak with Chris, your auto dealership AI assistant! Get information about our latest models, schedule test drives, discuss financing options, and learn about our exclusive deals.',
+    image: '/assets/team/chris.jpg',
+    imageAlt: 'Chris - Auto Dealership Assistant',
+    logo: '/assets/team/auto-logo.png',
+    logoAlt: 'Auto Dealership Logo',
+    callMessage: 'Connecting you with Chris at our Auto Dealership...'
   },
   roomService: {
     name: 'Room Service',
@@ -75,7 +75,7 @@ export function CallConfirmationDialog({
   service = 'realEstate'
 }: CallConfirmationDialogProps) {
   const content = SERVICE_CONTENT[service];
-  const isDarkMode = service === 'mercedes' || service === 'roomService' || service === 'retail';
+  const isDarkMode = service === 'auto' || service === 'roomService' || service === 'retail';
   const dialogClass = isDarkMode ? 'bg-black text-white' : 'sm:max-w-md';
   const logoClass = isDarkMode ? 'brightness-0 invert w-48 object-contain text-white' : '';
 

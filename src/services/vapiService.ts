@@ -8,7 +8,7 @@ const RECONNECT_DELAY_MS = 2000;
 // Assistant IDs for different services
 const ASSISTANT_IDS = {
   realEstate: 'c1c80d2e-6b65-4172-9f6b-09177b9e54f1',
-  mercedes: 'df42b616-337e-4877-8e9b-44fb0b5a0225',
+  auto: 'df42b616-337e-4877-8e9b-44fb0b5a0225',
   roomService: '238616a3-b611-4faa-a216-74b8d7d8b277',
   retail: 'defa6102-2358-4347-a192-24c6bc23ea4c',
   general: 'ebb38ba5-321a-49e4-b860-708bc864327f'

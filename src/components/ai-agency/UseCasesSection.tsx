@@ -54,7 +54,7 @@ export const UseCasesSection = () => {
       icon: <Car className="w-6 h-6" />,
       title: "Auto Dealerships",
       description: "Streamline vehicle inquiries and booking test drives with AI-powered conversations.",
-      demoLink: "/mercedes-dealer"
+      demoLink: "/auto-dealer"
     },
     {
       icon: <Building2 className="w-6 h-6" />,

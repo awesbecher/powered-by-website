@@ -192,7 +192,7 @@ export const HeroSection = ({
             
             <div>
               <h3 className="text-lg font-semibold text-[#9b87f5] mb-1">Auto Dealership Use Case:</h3>
-              <p className="text-gray-300">Call Mercedes of Tacoma @ (732) 638-0513</p>
+              <p className="text-gray-300">Call Auto Dealership @ (732) 638-0513</p>
             </div>
             
             <div>

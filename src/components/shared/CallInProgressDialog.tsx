@@ -24,14 +24,14 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
     logoAlt: 'Township Real Estate',
     callMessage: "You're now speaking with Jeff Smith. Feel free to ask any questions about real estate!"
   },
-  mercedes: {
-    name: 'Chris @ Mercedes-Benz of Tacoma',
-    description: 'Speak with Chris, your Mercedes-Benz of Tacoma AI assistant! Get information about our latest models, schedule test drives, discuss financing options, and learn about our exclusive deals.',
-    image: '/assets/team/Chris Cambridge.jpg',
-    imageAlt: 'Chris - Mercedes-Benz of Tacoma Assistant',
-    logo: '/assets/team/mercedes-logo.png',
-    logoAlt: 'Mercedes-Benz of Tacoma',
-    callMessage: "You are now connected with Chris, your Mercedes-Benz of Tacoma AI assistant. Feel free to ask about our available vehicles, schedule a test drive, or learn about our special offers."
+  auto: {
+    name: 'Chris @ Auto Dealership',
+    description: 'Speak with Chris, your auto dealership AI assistant! Get information about our latest models, schedule test drives, discuss financing options, and learn about our exclusive deals.',
+    image: '/assets/team/chris.jpg',
+    imageAlt: 'Chris - Auto Dealership Assistant',
+    logo: '/assets/team/auto-logo.png',
+    logoAlt: 'Auto Dealership',
+    callMessage: "You are now connected with Chris, your auto dealership AI assistant. Feel free to ask about our available vehicles, schedule a test drive, or learn about our special offers."
   },
   roomService: {
     name: 'Room Service Assistant',
@@ -71,7 +71,7 @@ export function CallInProgressDialog({
   isMuted
 }: CallInProgressDialogProps) {
   const content = SERVICE_CONTENT[service];
-  const isDarkMode = service === 'mercedes' || service === 'roomService' || service === 'retail';
+  const isDarkMode = service === 'auto' || service === 'roomService' || service === 'retail';
   const dialogClass = isDarkMode ? 'bg-black text-white' : 'sm:max-w-md';
 
   const [isEnding, setIsEnding] = useState(false);
