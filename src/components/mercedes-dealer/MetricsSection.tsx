@@ -3,21 +3,33 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { getCalApi } from "@calcom/embed-react";
 
-const metrics = [
+interface Metric {
+  value: number;
+  label: string;
+  description: string;
+  prefix?: string;
+  suffix?: string;
+}
+
+const metrics: Metric[] = [
   {
-    value: '+35%',
+    value: 35,
     label: 'Lead Conversion',
-    description: 'Increase in qualified leads'
+    description: 'Increase in qualified leads',
+    prefix: '+',
+    suffix: '%'
   },
   {
-    value: '24/7',
+    value: 24,
     label: 'Uptime',
-    description: 'Always-on customer service'
+    description: 'Always-on customer service',
+    suffix: '/7'
   },
   {
-    value: '500+',
+    value: 500,
     label: 'Dealer Integrations',
-    description: 'Seamless system connections'
+    description: 'Seamless system connections',
+    suffix: '+'
   }
 ];
 
@@ -38,36 +50,40 @@ const item = {
 
 export const MetricsSection = () => {
   const metricsRef = useRef<HTMLDivElement>(null);
-  const countersInitialized = useRef(false);
 
   useEffect(() => {
     const animateValue = (start: number, end: number, duration: number, element: HTMLElement) => {
       let startTimestamp: number | null = null;
+      
       const step = (timestamp: number) => {
         if (!startTimestamp) startTimestamp = timestamp;
         const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        const current = Math.floor(progress * (end - start) + start);
-        element.textContent = current.toString();
+        const currentValue = Math.floor(progress * (end - start) + start);
+        element.textContent = currentValue.toString();
+        
         if (progress < 1) {
           window.requestAnimationFrame(step);
         }
       };
+      
       window.requestAnimationFrame(step);
     };
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && !countersInitialized.current) {
-            const counters = metricsRef.current?.querySelectorAll('.metric-value');
-            counters?.forEach((counter, index) => {
-              animateValue(0, metrics[index].value, 2000, counter as HTMLElement);
+          if (entry.isIntersecting) {
+            const valueElements = entry.target.querySelectorAll('.metric-value');
+            valueElements.forEach((element, index) => {
+              if (element instanceof HTMLElement) {
+                animateValue(0, metrics[index].value, 2000, element);
+              }
             });
-            countersInitialized.current = true;
+            observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.1 }
     );
 
     if (metricsRef.current) {
@@ -123,7 +139,7 @@ export const MetricsSection = () => {
             >
               <div className="mb-2">
                 <span className="text-4xl font-bold text-[#8B5CF6]">
-                  <span className="metric-value">0</span>
+                  {metric.prefix}<span className="metric-value">0</span>{metric.suffix}
                 </span>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-1">
