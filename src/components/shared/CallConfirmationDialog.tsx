@@ -34,12 +34,12 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
   },
   roomService: {
     name: 'Room Service',
-    description: 'Welcome to Room Service at Powered By! Our AI assistant is ready to take your order, answer questions about our menu, and ensure you have a delightful dining experience.',
-    image: '/assets/images/room-service.jpg',
-    imageAlt: 'Room Service',
-    logo: '/assets/images/powered-by-logo.png',
-    logoAlt: 'Powered By Logo',
-    callMessage: 'Connecting you with Room Service...'
+    description: 'Welcome to Room Service at Grandview Hotels! Our AI assistant is ready to take your order, answer questions about our menu, and ensure you have a delightful dining experience.',
+    image: '/assets/team/Grandview Hotels.png',
+    imageAlt: 'Grandview Hotels Room Service',
+    logo: '/assets/team/Grandview Hotels.png',
+    logoAlt: 'Grandview Hotels Logo',
+    callMessage: 'Connecting you with Room Service at Grandview Hotels...'
   },
   retail: {
     name: 'Alex @ Flagship Barbers',
@@ -75,8 +75,9 @@ export function CallConfirmationDialog({
   service = 'realEstate'
 }: CallConfirmationDialogProps) {
   const content = SERVICE_CONTENT[service];
-  const dialogClass = service === 'mercedes' ? 'bg-black text-white' : 'sm:max-w-md';
-  const logoClass = service === 'mercedes' ? 'brightness-0 invert w-48 object-contain' : '';
+  const isDarkMode = service === 'mercedes' || service === 'roomService';
+  const dialogClass = isDarkMode ? 'bg-black text-white' : 'sm:max-w-md';
+  const logoClass = isDarkMode ? 'brightness-0 invert w-48 object-contain' : '';
 
   return (
     <DialogContent className={dialogClass}>
@@ -84,7 +85,7 @@ export function CallConfirmationDialog({
         variant="ghost"
         size="icon"
         onClick={onClose}
-        className={`absolute right-4 top-4 ${service === 'mercedes' ? 'text-white hover:text-white/80' : ''}`}
+        className={`absolute right-4 top-4 ${isDarkMode ? 'text-white hover:text-white/80' : ''}`}
       >
         <X className="h-4 w-4" />
         <span className="sr-only">Close</span>
@@ -110,8 +111,8 @@ export function CallConfirmationDialog({
               </div>
             </div>
             <div className="text-center space-y-1">
-              <h3 className={`font-semibold ${service === 'mercedes' ? 'text-white' : ''}`}>{content.name}</h3>
-              <p className={service === 'mercedes' ? 'text-white/80' : 'text-muted-foreground'}>{content.description}</p>
+              <h3 className={`font-semibold ${isDarkMode ? 'text-white' : ''}`}>{content.name}</h3>
+              <p className={isDarkMode ? 'text-white/80' : 'text-muted-foreground'}>{content.description}</p>
             </div>
           </div>
 
@@ -120,7 +121,7 @@ export function CallConfirmationDialog({
             onClick={onStartCall}
             disabled={isLoading}
             size="lg"
-            className={`w-full ${service === 'mercedes' ? 'bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white' : ''}`}
+            className={`w-full ${isDarkMode ? 'bg-[#9b87f5] hover:bg-[#9b87f5]/90 text-white' : ''}`}
           >
             {isLoading ? (
               <>

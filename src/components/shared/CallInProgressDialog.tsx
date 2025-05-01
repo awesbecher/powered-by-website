@@ -34,11 +34,11 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
     callMessage: "You are now connected with Chris, your Mercedes-Benz of Tacoma AI assistant. Feel free to ask about our available vehicles, schedule a test drive, or learn about our special offers."
   },
   roomService: {
-    name: 'Room Service Assistant',
+    name: 'Grandview Hotels Room Service',
     description: 'Connect with our AI room service assistant to place your order, customize your meal, or get recommendations from our menu. Available 24/7 for your convenience.',
     image: '/assets/team/Grandview Hotels.png',
     imageAlt: 'Grandview Hotels',
-    logo: '/assets/team/Grandview Hotels.png',
+    logo: '/assets/team/Grandview Hotels Logo.png',
     logoAlt: 'Grandview Hotels',
     callMessage: "You're now connected to our room service assistant. Feel free to ask about our menu, place an order, or request recommendations!"
   },
@@ -49,7 +49,7 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
     imageAlt: 'Alex from Flagship Barbers',
     logo: '/assets/team/Flagship Barbers.png',
     logoAlt: 'Flagship Barbers',
-    callMessage: "You're now connected with Alex from Flagship Barbers. Feel free to ask about our services, book an appointment, or get style recommendations!"
+    callMessage: "You're now speaking with Alex. Feel free to ask about our services or schedule an appointment!"
   }
 };
 
@@ -71,8 +71,8 @@ export function CallInProgressDialog({
   isMuted
 }: CallInProgressDialogProps) {
   const content = SERVICE_CONTENT[service];
-  const dialogClass = service === 'mercedes' ? 'bg-black text-white' : 'sm:max-w-md';
-  const logoClass = service === 'mercedes' ? 'brightness-0 invert w-48 object-contain' : '';
+  const isDarkMode = service === 'mercedes' || service === 'roomService';
+  const dialogClass = isDarkMode ? 'bg-black text-white' : 'sm:max-w-md';
 
   const [isEnding, setIsEnding] = useState(false);
 
@@ -100,7 +100,7 @@ export function CallInProgressDialog({
         variant="ghost"
         size="icon"
         onClick={handleEndCall}
-        className={`absolute right-4 top-4 ${service === 'mercedes' ? 'text-white hover:text-white/80' : ''}`}
+        className={`absolute right-4 top-4 ${isDarkMode ? 'text-white hover:text-white/80' : ''}`}
       >
         <X className="h-4 w-4" />
         <span className="sr-only">End Call</span>
@@ -112,20 +112,20 @@ export function CallInProgressDialog({
             <img 
               src={content.logo}
               alt={content.logoAlt}
-              className={`w-full h-full object-contain ${service === 'mercedes' ? 'brightness-0 invert' : ''}`}
+              className={`w-full h-full object-contain ${isDarkMode ? 'brightness-0 invert' : ''}`}
             />
           </div>
         </div>
 
         {/* Content */}
         <div className="space-y-2">
-          <DialogTitle className="text-lg font-semibold flex items-center justify-between">
+          <DialogTitle className={`text-lg font-semibold flex items-center justify-between ${isDarkMode ? 'text-white' : ''}`}>
             <span>{content.name}</span>
-            <span className="text-sm font-normal text-gray-500">
+            <span className={`text-sm font-normal ${isDarkMode ? 'text-white/50' : 'text-gray-500'}`}>
               {formatCallDuration(callDuration)}
             </span>
           </DialogTitle>
-          <DialogDescription className={service === 'mercedes' ? 'text-white/80' : ''}>
+          <DialogDescription className={isDarkMode ? 'text-white/80' : ''}>
             {content.callMessage}
           </DialogDescription>
         </div>
@@ -135,7 +135,7 @@ export function CallInProgressDialog({
           <Button
             variant="ghost"
             size="icon"
-            className={service === 'mercedes' ? 'text-white hover:text-white/80' : ''}
+            className={isDarkMode ? 'text-white hover:text-white/80' : ''}
             onClick={onMuteToggle}
           >
             {isMuted ? (
