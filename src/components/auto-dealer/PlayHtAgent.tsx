@@ -1,16 +1,6 @@
 import React from 'react';
 import { openPlayHtAgent } from '@/services/playhtService';
 
-declare global {
-  interface Window {
-    PlayAI: {
-      open: (agentId: string) => void;
-    };
-  }
-}
-
-const AGENT_ID = 'Chris-Cambridge-Wigagb2b9pwC1a_jVeLTj';
-
 interface Props {
   className?: string;
 }
