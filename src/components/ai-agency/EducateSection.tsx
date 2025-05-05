@@ -31,20 +31,14 @@ export const EducateSection = () => {
           transition={{ duration: 0.7, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <div className="relative w-full h-[400px] rounded-2xl overflow-hidden border border-white/10 cursor-pointer">
-            <a 
-              href="https://youtu.be/w6juT92KdRo?si=8c6UvBzFQ4mj4wgi" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block w-full h-full"
-            >
-              <img
-                src={`/assets/team/What's an AI Agent.png?t=${Date.now()}`}
-                alt="What's an AI Agent"
-                className="w-full h-full object-cover"
-                loading="eager"
-              />
-            </a>
+          <div className="relative w-full h-[400px] rounded-2xl overflow-hidden border border-white/10">
+            <iframe
+              src="https://www.youtube.com/embed/w6juT92KdRo?si=-FVLfGreWu5_zL5G"
+              title="What's an AI Agent"
+              className="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            ></iframe>
           </div>
         </motion.div>
 
