@@ -33,8 +33,8 @@ export const EducateSection = () => {
         >
           <div className="relative w-full h-[400px] rounded-2xl overflow-hidden border border-white/10">
             <iframe
-              src="https://www.youtube.com/embed/w6juT92KdRo?si=-FVLfGreWu5_zL5G"
-              title="What's an AI Agent"
+              src="https://www.youtube.com/embed/w6juT92KdRo?si=-FVLfGreWu5_zL5G&autoplay=0"
+              title="What's an AI Agent - Video"
               className="w-full h-full"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
