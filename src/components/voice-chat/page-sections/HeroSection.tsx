@@ -21,14 +21,15 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
         // Ensure script is loaded
         await loadCalComScript();
         
-        const cal = await getCalApi();
+        const cal = await getCalApi({"namespace":"get-started-today"});
         cal("ui", {
+          "theme": "dark",
           "cssVarsPerTheme": {
             "light": {"cal-brand":"#292929"},
             "dark": {"cal-brand":"#fafafa"}
           },
           "hideEventTypeDetails": false,
-          "layout": "month_view"
+          "layout": "column_view"
         });
         
         console.log("Cal.com embed initialized successfully in VoiceChat HeroSection");

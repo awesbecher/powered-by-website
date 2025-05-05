@@ -19,30 +19,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
   }, []);
 
   useEffect(() => {
-    // Initialize Cal.com with the correct namespace and team link
     (async function () {
       try {
-        console.log("Initializing Cal.com embed in AI Agency HeroSection");
-        const cal = await getCalApi();
-        if (cal) {
-          cal("ui", {
-            "cssVarsPerTheme": {
-              "light": {"cal-brand":"#292929"},
-              "dark": {"cal-brand":"#fafafa"}
-            },
-            "hideEventTypeDetails": false,
-            "layout": "month_view"
-          });
-          
-          // Preload the calendar link
-          cal("preload", { calLink: "team-powered-by-dfbtbb/get-started-today" });
-          
-          console.log("Cal.com embed initialized successfully in AI Agency HeroSection");
-        } else {
-          console.error("Cal API not available in AI Agency HeroSection");
-        }
+        const cal = await getCalApi({"namespace":"get-started-today"});
+        cal("ui", {"theme":"dark","cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"column_view"});
       } catch (error) {
-        console.error("Error initializing Cal.com embed in AI Agency HeroSection:", error);
+        console.error("Error initializing Cal.com:", error);
       }
     })();
   }, []);
@@ -135,12 +117,18 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
                 <ArrowRightIcon className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
 
+              {/* Hidden Cal.com button */}
+              <button
+                className="hidden"
+                data-cal-namespace="get-started-today"
+                data-cal-link="team-powered-by-dfbtbb/get-started-today"
+                data-cal-config='{"layout":"column_view","theme":"dark"}'
+              />
+
               <Button 
                 size="lg" 
                 className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md group"
                 onClick={handleCalendarClick}
-                data-cal-link="team-powered-by-dfbtbb/get-started-today"
-                data-cal-config='{"layout":"month_view"}'
               >
                 Get Started
                 <Calendar className="ml-2 group-hover:scale-110 transition-transform" />

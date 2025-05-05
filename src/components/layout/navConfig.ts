@@ -17,6 +17,10 @@ interface NavItem {
 
 export const navItems: NavItemWithChildren[] = [
   {
+    name: "AI Agency",
+    path: "/ai-agency",
+  },
+  {
     name: "Solutions",
     path: "/products",
     children: [

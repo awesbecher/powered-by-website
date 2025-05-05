@@ -1,17 +1,17 @@
 import Vapi from '@vapi-ai/web';
 
 // Vapi configuration
-const API_KEY = 'a212f18f-9d02-4703-914f-ac89661262c5';
+const API_KEY = import.meta.env.VITE_VAPI_API_KEY || 'a212f18f-9d02-4703-914f-ac89661262c5'; // Fallback for development
 const MAX_RECONNECT_ATTEMPTS = 3;
 const RECONNECT_DELAY_MS = 2000;
 
 // Assistant IDs for different services
 const ASSISTANT_IDS = {
-  realEstate: 'c1c80d2e-6b65-4172-9f6b-09177b9e54f1',
-  mercedes: 'df42b616-337e-4877-8e9b-44fb0b5a0225',
-  roomService: '238616a3-b611-4faa-a216-74b8d7d8b277',
-  retail: 'defa6102-2358-4347-a192-24c6bc23ea4c',
-  general: 'ebb38ba5-321a-49e4-b860-708bc864327f'
+  realEstate: import.meta.env.VITE_ASSISTANT_ID_REAL_ESTATE || 'c1c80d2e-6b65-4172-9f6b-09177b9e54f1',
+  mercedes: import.meta.env.VITE_ASSISTANT_ID_MERCEDES || 'df42b616-337e-4877-8e9b-44fb0b5a0225',
+  roomService: import.meta.env.VITE_ASSISTANT_ID_ROOM_SERVICE || '238616a3-b611-4faa-a216-74b8d7d8b277',
+  retail: import.meta.env.VITE_ASSISTANT_ID_RETAIL || 'defa6102-2358-4347-a192-24c6bc23ea4c',
+  general: import.meta.env.VITE_ASSISTANT_ID_GENERAL || 'ebb38ba5-321a-49e4-b860-708bc864327f'
 };
 
 interface CallState {

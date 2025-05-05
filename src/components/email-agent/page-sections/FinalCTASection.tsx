@@ -1,15 +1,13 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { openCalendarModal } from '@/utils/calendarUtils';
 
 export const FinalCTASection = () => {
   const handleGetStarted = () => {
-    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
-    if (calBtn instanceof HTMLElement) {
-      console.log("Cal.com button found, triggering click");
-      calBtn.click();
-    } else {
-      console.error("Cal.com button not found in DOM, navigating to /contact as fallback");
+    // Use the centralized calendar utility
+    if (!openCalendarModal("team-powered-by-dfbtbb/get-started-with-ai-email-agents")) {
+      console.error("Failed to open Cal.com modal, navigating to /contact as fallback");
       window.location.href = '/contact';
     }
   };
@@ -33,13 +31,6 @@ export const FinalCTASection = () => {
           </Button>
         </div>
       </div>
-
-      {/* Hidden Cal.com button */}
-      <button
-        className="hidden"
-        data-cal-link="team-powered-by-dfbtbb/get-started-today"
-        data-cal-config='{"layout":"month_view"}'
-      />
     </section>
   );
 };

@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { VoiceWaveform } from './VoiceWaveform';
 import { TranscriptPanel } from './TranscriptPanel';
 import { AppointmentModal } from './AppointmentModal';
+import { getCalApi } from "@calcom/embed-react";
 
 // Feature items with icons
 const FEATURES = [
@@ -26,28 +27,28 @@ const FEATURES = [
   }
 ];
 
-// Define conversation sequences
+// Define conversation sequences with proper typing
 const CONVERSATION_SEQUENCES = [
   // Sequence 1: Business Hours
   [
-    { id: 1, speaker: 'user', text: "What days are you open?", delay: 1000 },
-    { id: 2, speaker: 'agent', text: "We're open Monday through Friday, 9 AM to 6 PM Pacific time. Would you like to schedule an appointment?", delay: 2000 },
-    { id: 3, speaker: 'user', text: "Yes, I'd like to come in next week.", delay: 2000 },
-    { id: 4, speaker: 'agent', text: "Great! Let me help you schedule that appointment.", delay: 2000 }
+    { id: 1, speaker: 'user' as const, text: "What days are you open?", delay: 1000 },
+    { id: 2, speaker: 'agent' as const, text: "We're open Monday through Friday, 9 AM to 6 PM Pacific time. Would you like to schedule an appointment?", delay: 2000 },
+    { id: 3, speaker: 'user' as const, text: "Yes, I'd like to come in next week.", delay: 2000 },
+    { id: 4, speaker: 'agent' as const, text: "Great! Let me help you schedule that appointment.", delay: 2000 }
   ],
   // Sequence 2: Real Estate
   [
-    { id: 5, speaker: 'user', text: "I'm looking for a 3-bedroom house in the Mission District.", delay: 1000 },
-    { id: 6, speaker: 'agent', text: "I found 5 properties matching your criteria. There's a beautiful Victorian with a modern interior at $1.2M. Would you like to see more details?", delay: 2500 },
-    { id: 7, speaker: 'user', text: "Yes, and does it have parking?", delay: 2000 },
-    { id: 8, speaker: 'agent', text: "Yes, it includes a 2-car garage and additional street parking. The property was recently renovated and features a chef's kitchen. Should I schedule a viewing?", delay: 3000 }
+    { id: 5, speaker: 'user' as const, text: "I'm looking for a 3-bedroom house in the Mission District.", delay: 1000 },
+    { id: 6, speaker: 'agent' as const, text: "I found 5 properties matching your criteria. There's a beautiful Victorian with a modern interior at $1.2M. Would you like to see more details?", delay: 2500 },
+    { id: 7, speaker: 'user' as const, text: "Yes, and does it have parking?", delay: 2000 },
+    { id: 8, speaker: 'agent' as const, text: "Yes, it includes a 2-car garage and additional street parking. The property was recently renovated and features a chef's kitchen. Should I schedule a viewing?", delay: 3000 }
   ],
   // Sequence 3: Insurance
   [
-    { id: 9, speaker: 'user', text: "Can you help me find the right life insurance policy?", delay: 1000 },
-    { id: 10, speaker: 'agent', text: "Of course! For personalized recommendations, could you tell me if you're looking for term or whole life insurance?", delay: 2500 },
-    { id: 11, speaker: 'user', text: "Term life insurance. I'm 35 with two kids.", delay: 2000 },
-    { id: 12, speaker: 'agent', text: "Based on your family situation, I'd recommend a 20-year term policy with $1M coverage. The premium would be around $45/month. Would you like to see the full quote?", delay: 3000 }
+    { id: 9, speaker: 'user' as const, text: "Can you help me find the right life insurance policy?", delay: 1000 },
+    { id: 10, speaker: 'agent' as const, text: "Of course! For personalized recommendations, could you tell me if you're looking for term or whole life insurance?", delay: 2500 },
+    { id: 11, speaker: 'user' as const, text: "Term life insurance. I'm 35 with two kids.", delay: 2000 },
+    { id: 12, speaker: 'agent' as const, text: "Based on your family situation, I'd recommend a 20-year term policy with $1M coverage. The premium would be around $45/month. Would you like to see the full quote?", delay: 3000 }
   ]
 ];
 
@@ -59,8 +60,20 @@ export const HeroVoiceEmbedSimulator = () => {
   const [visibleMessages, setVisibleMessages] = useState<number[]>([]);
   const [showAppointment, setShowAppointment] = useState(false);
 
+  // Initialize Cal.com
+  useEffect(() => {
+    (async function () {
+      try {
+        const cal = await getCalApi({"namespace":"get-started-today"});
+        cal("ui", {"theme":"dark","cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"column_view"});
+      } catch (error) {
+        console.error("Error initializing Cal.com:", error);
+      }
+    })();
+  }, []);
+
   const handleGetStarted = () => {
-    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
+    const calBtn = document.querySelector('[data-cal-namespace="get-started-today"]');
     if (calBtn instanceof HTMLElement) {
       console.log("Cal.com button found, triggering click");
       calBtn.click();
@@ -152,8 +165,9 @@ export const HeroVoiceEmbedSimulator = () => {
         {/* Hidden Cal.com button */}
         <button
           className="hidden"
+          data-cal-namespace="get-started-today"
           data-cal-link="team-powered-by-dfbtbb/get-started-today"
-          data-cal-config='{"layout":"month_view"}'
+          data-cal-config='{"layout":"column_view","theme":"dark"}'
         />
       </motion.div>
 
