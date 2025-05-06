@@ -67,6 +67,12 @@ export const InteractiveDemoSection = () => {
   const handleShowDemo = (demoId: string) => {
     const demo = demoOptions.find(option => option.id === demoId);
     
+    // Special handling for auto dealer - open tacomamercedes.com in a new tab
+    if (demoId === "auto-dealer") {
+      window.open("https://tacomamercedes.com/", "_blank");
+      return;
+    }
+    
     if (demo?.routePath) {
       navigate(demo.routePath);
     } else {
