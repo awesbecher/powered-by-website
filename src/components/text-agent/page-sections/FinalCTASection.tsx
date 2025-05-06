@@ -1,12 +1,15 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-import { openCalendarModal } from '@/utils/calendarUtils';
+import { openCalendarModal, useCalendarInitialization } from '@/utils/calendarUtils';
 
 export const FinalCTASection = () => {
-  const handleGetStarted = () => {
-    // Use the centralized calendar utility
-    if (!openCalendarModal("team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents")) {
+  // Use the centralized calendar initialization hook
+  useCalendarInitialization("get-started-today");
+
+  const handleGetStarted = async () => {
+    // Use the centralized calendar utility with async/await
+    if (!await openCalendarModal("team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents")) {
       console.error("Failed to open Cal.com modal, navigating to /contact as fallback");
       window.location.href = '/contact';
     }
@@ -25,6 +28,9 @@ export const FinalCTASection = () => {
           <Button 
             className="bg-white hover:bg-gray-100 text-[#6342ff] px-8 py-6 text-lg rounded-md flex items-center gap-2 mx-auto"
             onClick={handleGetStarted}
+            data-cal-namespace="get-started-today"
+            data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
+            data-cal-config='{"layout":"month_view"}'
           >
             Get Started Now
             <ArrowRight className="w-5 h-5" />

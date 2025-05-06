@@ -4,6 +4,7 @@ import { ArrowRight, Mic } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useNavigate } from "react-router-dom";
 import { getCalApi } from "@calcom/embed-react";
+import { useCalendarInitialization } from "@/utils/calendarUtils";
 
 interface HeroContentProps {
   initialLoad: boolean;
@@ -13,6 +14,9 @@ interface HeroContentProps {
 export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) => {
   const [videoOpen, setVideoOpen] = useState(false);
   const navigate = useNavigate();
+
+  // Use the centralized calendar initialization hook
+  useCalendarInitialization("get-started-today");
 
   const handleTryDemo = () => {
     const triggerButton = document.getElementById('voice-chat-trigger');
@@ -31,23 +35,6 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
       window.location.href = '/contact';
     }
   };
-
-  useEffect(() => {
-    // Initialize Cal.com
-    (window as any).Cal = {
-      q: (window as any).Cal ? (window as any).Cal.q : [],
-      ns: {},
-    };
-    
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = 'https://app.cal.com/embed/embed.js';
-    document.body.appendChild(script);
-    
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
 
   return (
     <div className={`transition-all duration-1000 ease-out transform
@@ -79,9 +66,10 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
             Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
 
-          {/* Hidden Cal.com button */}
+          {/* Hidden Cal.com button using the new format */}
           <button
             className="hidden"
+            data-cal-namespace="get-started-today"
             data-cal-link="team-powered-by-dfbtbb/get-started-today"
             data-cal-config='{"layout":"month_view"}'
           />
