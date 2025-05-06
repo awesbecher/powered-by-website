@@ -91,11 +91,14 @@ export function CallConfirmationDialog({
       </Button>
       
       <div className="flex flex-col items-center justify-center pt-1 px-4">
-        <img 
-          src={content.logo} 
-          alt={content.logoAlt} 
-          className={`mb-2 ${logoClass}`}
-        />
+        {/* Only show logo if not room service to avoid duplicate images */}
+        {service !== 'roomService' && (
+          <img 
+            src={content.logo} 
+            alt={content.logoAlt} 
+            className={`mb-2 ${logoClass}`}
+          />
+        )}
         <div className="flex flex-col space-y-3">
           {/* Agent info */}
           <div className="flex flex-col items-center space-y-2">
