@@ -73,25 +73,24 @@ const News = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {newsArticles.map((post, index) => (
-                <Link 
-                  key={index} 
-                  to={`/blog/${post.slug}`}
-                  className="block"
-                >
-                  <Card className="bg-[#1f0d35]/50 border-none hover:bg-[#2a1347]/80 transition-colors h-full">
-                    <CardContent className="p-8">
-                      <div className="text-sm text-purple-400 mb-3">
-                        {post.category} • {post.date}
-                      </div>
-                      <h3 className="text-2xl font-bold mb-4 text-white">{post.title}</h3>
-                      <p className="text-gray-300 mb-6 line-clamp-3">{post.excerpt}</p>
-                      <div className="flex items-center text-purple-400 hover:text-purple-300 mt-auto">
-                        Read more
-                        <ArrowRight className="h-4 w-4 ml-2" />
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
+                <Card key={index} className="bg-[#1f0d35]/50 border-none hover:bg-[#2a1347]/80 transition-colors h-full">
+                  <CardContent className="p-8">
+                    <div className="text-sm text-purple-400 mb-3">
+                      {post.category} • {post.date}
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4 text-white">{post.title}</h3>
+                    <p className="text-gray-300 mb-6 line-clamp-3">{post.excerpt}</p>
+                    <a 
+                      href="https://poweredbyagency.ghost.io" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center text-purple-400 hover:text-purple-300 mt-auto"
+                    >
+                      Read more
+                      <ExternalLink className="h-4 w-4 ml-2" />
+                    </a>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </>
