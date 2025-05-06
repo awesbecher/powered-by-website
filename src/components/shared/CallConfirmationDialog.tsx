@@ -44,9 +44,9 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
   retail: {
     name: 'Alex @ Flagship Barbers',
     description: 'Speak with Alex at Flagship Barbers! Book your next appointment, learn about our services, or ask any questions about our premium barbershop experience.',
-    image: '/assets/team/alex.jpg',
+    image: '/assets/team/Flagship Barbers.png',
     imageAlt: 'Alex - Flagship Barbers',
-    logo: '/assets/team/flagship-barbers.png',
+    logo: '/assets/team/Flagship Barbers.png',
     logoAlt: 'Flagship Barbers Logo',
     callMessage: 'Connecting you with Alex at Flagship Barbers...'
   },
