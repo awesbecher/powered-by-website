@@ -245,13 +245,11 @@ export async function initiateVapiCall(service: keyof typeof ASSISTANT_IDS = 'ge
     // Set up gain
     gainNode.gain.value = 1.5; // Boost input slightly
     
-    // Connect nodes
-    source.connect(gainNode);
-    gainNode.connect(destination);
-
-    // Create audio element for monitoring
+    // Do NOT connect source to destination to avoid hearing your own voice
+    // This is what was causing the audio feedback
+    
+    // Create audio element for monitoring but don't feed back the microphone
     const audioElement = new Audio();
-    audioElement.srcObject = destination.stream;
     audioElement.autoplay = true;
 
     // Create Vapi instance
@@ -260,15 +258,15 @@ export async function initiateVapiCall(service: keyof typeof ASSISTANT_IDS = 'ge
       throw new Error('Failed to create Vapi instance');
     }
 
-    // Set up Vapi with destination stream
+    // Set up Vapi with source and destination streams
     // @ts-ignore - Properties exist but types are not defined
     vapiInstance.audioContext = audioContext;
     // @ts-ignore - Properties exist but types are not defined
     vapiInstance.audioInput = source;
     // @ts-ignore - Properties exist but types are not defined
-    vapiInstance.audioOutput = destination;
+    vapiInstance.audioOutput = audioContext.destination;
     // @ts-ignore - Properties exist but types are not defined
-    vapiInstance.audioStream = destination.stream;
+    vapiInstance.audioStream = mediaStream;
 
     // Set up audio element event handlers
     audioElement.onplay = () => {
@@ -284,7 +282,7 @@ export async function initiateVapiCall(service: keyof typeof ASSISTANT_IDS = 'ge
     };
 
     // Log audio track details
-    destination.stream.getAudioTracks().forEach(track => {
+    mediaStream.getAudioTracks().forEach(track => {
       logTelemetry('vapi_track_added', {
         kind: track.kind,
         enabled: track.enabled,
@@ -301,8 +299,7 @@ export async function initiateVapiCall(service: keyof typeof ASSISTANT_IDS = 'ge
       baseLatency: audioContext.baseLatency,
       outputLatency: audioContext.outputLatency,
       microphoneActive: mediaStream.active,
-      destinationActive: destination.stream.active,
-      destinationTracks: destination.stream.getAudioTracks().length
+      microphoneTracks: mediaStream.getAudioTracks().length
     });
 
     // Start the call
