@@ -9,6 +9,7 @@ import { FinalCTASection } from "@/components/voice-chat/page-sections/FinalCTAS
 import { FAQSection } from "@/components/voice-chat/page-sections/FAQSection";
 import { HowItWorksSection } from "@/components/voice-chat/page-sections/HowItWorksSection";
 import { TestimonialsSection } from "@/components/voice-chat/page-sections/TestimonialsSection";
+import { VideoIntroSection } from "@/components/voice-chat/page-sections/VideoIntroSection";
 import { useCalendarInitialization, openCalendarModal } from "@/utils/calendarUtils";
 
 const AIVoiceChat = () => {
@@ -37,6 +38,8 @@ const AIVoiceChat = () => {
       </div>
       
       <HeroSection initialLoad={initialLoad} handleContact={handleContact} />
+      
+      <VideoIntroSection />
       
       <FeaturesSection />
       
