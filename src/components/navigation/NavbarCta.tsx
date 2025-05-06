@@ -26,7 +26,7 @@ export const NavbarCta: React.FC<NavbarCtaProps> = ({
         className="
           px-4 py-2 
           md:px-5 md:py-2.5 
-          text-sm font-medium 
+          text-sm font-bold 
           leading-5
           text-[#6342ff] 
           border-2 
@@ -49,7 +49,7 @@ export const NavbarCta: React.FC<NavbarCtaProps> = ({
         className={`
           px-4 py-2 
           md:px-5 md:py-2.5 
-          text-sm font-medium 
+          text-sm font-bold 
           leading-5
           text-[#8B5CF6] 
           border-2 
