@@ -116,13 +116,6 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
         >
           <ArrowRight className="mr-2 h-5 w-5" /> Get Started
         </Button>
-        
-        <Button 
-          className="bg-transparent hover:bg-white/10 text-white border-2 border-white px-6 py-5 text-base rounded-md flex items-center"
-          onClick={() => setVideoOpen(true)}
-        >
-          <Tv className="mr-2 h-5 w-5" /> Watch Overview
-        </Button>
       </div>
       
       {/* Hidden Cal.com button */}
