@@ -7,9 +7,10 @@ interface AboutHeroProps {
   initialLoad: boolean;
   onScrollToSection: (ref: React.RefObject<HTMLElement>) => void;
   whoWeAreRef: React.RefObject<HTMLElement>;
+  collaborationRef: React.RefObject<HTMLElement>;
 }
 
-export const AboutHero = ({ initialLoad, onScrollToSection, whoWeAreRef }: AboutHeroProps) => {
+export const AboutHero = ({ initialLoad, onScrollToSection, whoWeAreRef, collaborationRef }: AboutHeroProps) => {
   return (
     <section className="pt-20 pb-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl relative">
       <div className={`text-center transition-all duration-1000 ease-out transform
@@ -40,7 +41,11 @@ export const AboutHero = ({ initialLoad, onScrollToSection, whoWeAreRef }: About
         
         <div className="relative">
           <div className="absolute inset-0 bg-gradient-to-r from-[#9b87f5]/20 via-transparent to-[#9b87f5]/20 blur-xl opacity-30 -z-10"></div>
-          <AboutPageButtons onScrollToSection={onScrollToSection} sectionRef={whoWeAreRef} />
+          <AboutPageButtons 
+            onScrollToSection={onScrollToSection} 
+            whoWeAreRef={whoWeAreRef}
+            collaborationRef={collaborationRef}
+          />
         </div>
       </div>
     </section>
