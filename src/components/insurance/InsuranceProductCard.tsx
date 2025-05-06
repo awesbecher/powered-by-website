@@ -1,10 +1,9 @@
-
-import { LucideIcon } from "lucide-react";
+import React from 'react';
 
 interface InsuranceProductCardProps {
   id: string;
   name: string;
-  icon: LucideIcon;
+  icon: string;
   isSelected: boolean;
   isEnabled: boolean;
   onSelect: (id: string) => void;
@@ -13,7 +12,7 @@ interface InsuranceProductCardProps {
 export const InsuranceProductCard = ({
   id,
   name,
-  icon: Icon,
+  icon,
   isSelected,
   isEnabled,
   onSelect,
@@ -28,7 +27,7 @@ export const InsuranceProductCard = ({
         ${isSelected ? 'ring-2 ring-accent' : ''}
       `}
     >
-      <Icon className="h-8 w-8 text-accent" />
+      <span className="text-4xl">{icon}</span>
       <span className="text-lg text-gray-300">{name}</span>
     </button>
   );
