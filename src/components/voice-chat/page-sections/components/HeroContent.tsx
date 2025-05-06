@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Tv, Mic } from "lucide-react";
+import { ArrowRight, Mic } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useNavigate } from "react-router-dom";
 import { getCalApi } from "@calcom/embed-react";
@@ -63,13 +63,6 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
           <div>
             <p className="text-gray-300 font-bold mb-2 text-left">See for yourself:</p>
             <div className="flex flex-wrap gap-3 self-start">
-              <Button 
-                className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-4 text-base rounded-md flex items-center"
-                onClick={() => setVideoOpen(true)}
-              >
-                <Tv className="mr-2 h-5 w-5" /> Watch Overview
-              </Button>
-              
               <Button 
                 className="bg-black hover:bg-gray-900 text-white px-6 py-4 text-base rounded-md flex items-center border-2 border-white"
                 onClick={handleTryDemo}
