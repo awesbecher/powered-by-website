@@ -111,9 +111,8 @@ export async function startRoomServiceCall(): Promise<void> {
         // Set up gain
         gainNode.gain.value = 1.5; // Boost input slightly
         
-        // Connect nodes
-        source.connect(gainNode);
-        gainNode.connect(destination);
+        // Do NOT connect source to destination to avoid hearing your own voice
+        // This is what was causing the audio feedback
         
         // Set up audio stream with Vapi
         // @ts-ignore - Property exists but type is not defined
@@ -121,9 +120,9 @@ export async function startRoomServiceCall(): Promise<void> {
         // @ts-ignore - Property exists but type is not defined
         vapiInstance.audioInput = source;
         // @ts-ignore - Property exists but type is not defined
-        vapiInstance.audioOutput = destination;
+        vapiInstance.audioOutput = audioContext.destination;
         // @ts-ignore - Property exists but type is not defined
-        vapiInstance.audioStream = destination.stream;
+        vapiInstance.audioStream = mediaStream;
       }
 
       // Start call with assistant ID
