@@ -33,13 +33,13 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
     callMessage: 'Connecting you with Chris at Mercedes-Benz of Tacoma...'
   },
   roomService: {
-    name: 'Room Service',
-    description: 'Welcome to Room Service at Powered By! Our AI assistant is ready to take your order, answer questions about our menu, and ensure you have a delightful dining experience.',
-    image: '/assets/images/room-service.jpg',
-    imageAlt: 'Room Service',
-    logo: '/assets/images/powered-by-logo.png',
-    logoAlt: 'Powered By Logo',
-    callMessage: 'Connecting you with Room Service...'
+    name: 'Room Service at Grandview Hotels',
+    description: 'Welcome to Room Service at Grandview Hotels! Our AI assistant is ready to take your order, answer questions about our menu, and ensure you have a delightful dining experience.',
+    image: '/assets/team/Grandview Hotels.png',
+    imageAlt: 'Grandview Hotels Room Service',
+    logo: '/assets/team/Grandview Hotels.png',
+    logoAlt: 'Grandview Hotels Logo',
+    callMessage: 'Connecting you with Room Service at Grandview Hotels...'
   },
   retail: {
     name: 'Alex @ Flagship Barbers',
