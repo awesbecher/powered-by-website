@@ -49,22 +49,22 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
         <div className="flex flex-col items-start md:items-start pt-4 space-y-6">
           <div>
             <p className="text-gray-300 font-bold mb-2 text-left">See for yourself:</p>
-            <div className="flex flex-wrap gap-3 self-start">
+            <div className="flex flex-wrap gap-3">
               <Button 
                 className="bg-black hover:bg-gray-900 text-white px-6 py-4 text-base rounded-md flex items-center border-2 border-white"
                 onClick={handleTryDemo}
               >
                 <Mic className="mr-2 h-5 w-5" /> Try Demo
               </Button>
+              
+              <Button 
+                className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-4 text-base rounded-md flex items-center"
+                onClick={handleGetStarted}
+              >
+                Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
             </div>
           </div>
-
-          <Button 
-            className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center"
-            onClick={handleGetStarted}
-          >
-            Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
 
           {/* Hidden Cal.com button using the new format */}
           <button
