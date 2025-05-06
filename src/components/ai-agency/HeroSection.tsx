@@ -4,6 +4,7 @@ import { ArrowRightIcon, MessageCircle, Play, Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { getCalApi } from "@calcom/embed-react";
 import VideoModal from '@/components/shared/VideoModal';
+import { openCalendarModal } from '@/utils/calendarUtils';
 
 interface HeroSectionProps {
   initialLoad: boolean;
@@ -33,41 +34,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ initialLoad }) => {
     document.dispatchEvent(new CustomEvent('open-voice-dialog'));
   };
   
-  const handleCalendarClick = () => {
+  const handleCalendarClick = async () => {
     console.log("Calendar button clicked in AI Agency HeroSection");
-    
-    // First try direct method
-    try {
-      (window as any).Cal?.('ui', {
-        styles: { branding: { brandColor: '#000000' } },
-        hideEventTypeDetails: false,
-        layout: 'month_view',
-      });
-      (window as any).Cal?.('showModal', {
-        calLink: "team-powered-by-dfbtbb/get-started-today",
-        config: {
-          layout: 'month_view',
-        },
-      });
-      console.log("Called Cal.com showModal directly from HeroSection");
-      return;
-    } catch (err) {
-      console.error("Failed to open Cal.com modal directly from HeroSection:", err);
-    }
-    
-    // Try to find and click the Cal button
-    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
-    if (calBtn instanceof HTMLElement) {
-      console.log("Cal.com button found in HeroSection, triggering click");
-      calBtn.click();
-    } else {
-      console.error("Cal.com button not found in DOM from HeroSection");
-      // Try clicking the global backup button
-      const globalBtn = document.getElementById('cal-button-global');
-      if (globalBtn) {
-        console.log("Found global Cal.com button, clicking it");
-        globalBtn.click();
-      }
+    if (!await openCalendarModal("team-powered-by-dfbtbb/get-started-today")) {
+      console.error("Failed to open Cal.com modal from HeroSection");
     }
   };
 
