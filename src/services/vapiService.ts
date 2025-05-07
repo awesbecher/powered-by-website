@@ -11,6 +11,7 @@ const ASSISTANT_IDS = {
   mercedes: import.meta.env.VITE_ASSISTANT_ID_MERCEDES || 'df42b616-337e-4877-8e9b-44fb0b5a0225',
   roomService: import.meta.env.VITE_ASSISTANT_ID_ROOM_SERVICE || '238616a3-b611-4faa-a216-74b8d7d8b277',
   retail: import.meta.env.VITE_ASSISTANT_ID_RETAIL || 'defa6102-2358-4347-a192-24c6bc23ea4c',
+  insurance: import.meta.env.VITE_ASSISTANT_ID_INSURANCE || 'df42b616-337e-4877-8e9b-44fb0b5a0225',
   general: import.meta.env.VITE_ASSISTANT_ID_GENERAL || 'ebb38ba5-321a-49e4-b860-708bc864327f'
 };
 
