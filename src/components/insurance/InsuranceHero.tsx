@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
 
@@ -25,7 +24,7 @@ const InsuranceHero = ({ onShowConsentDialog, isLoading }: InsuranceHeroProps) =
             
             <div className="flex justify-start pt-4">
               <Button 
-                className="bg-accent hover:bg-accent/80 text-white text-lg px-8 py-6 flex items-center justify-center gap-2 shadow-lg transition-all duration-300 rounded-lg"
+                className="bg-accent hover:bg-accent/80 text-white text-lg px-8 py-6 flex items-center justify-center gap-2 shadow-lg transition-all duration-300 rounded-lg border-4 border-white font-bold"
                 variant="default"
                 onClick={onShowConsentDialog}
                 disabled={isLoading}
