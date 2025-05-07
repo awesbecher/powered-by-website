@@ -118,6 +118,9 @@ export function useInsuranceCall() {
     });
     
     setIsCallActive(false);
+    
+    // Refresh the browser to ensure complete termination of audio connection
+    window.location.reload();
   };
 
   const toggleMute = () => {

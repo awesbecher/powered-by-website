@@ -181,6 +181,9 @@ export async function stopRoomServiceCall(): Promise<void> {
   }
 
   isCallActive = false;
+  
+  // Refresh the browser to ensure complete termination of audio connection
+  window.location.reload();
 }
 
 export function getRoomServiceCallStatus(): boolean {
