@@ -9,10 +9,9 @@ const CustomGPT = lazy(() => import('@/pages/customgpt'));
 const ChatRedirect = lazy(() => import('@/pages/chatredirect'));
 const AgentIntegrations = lazy(() => import('@/pages/AgentIntegrations'));
 const NotFoundPage = lazy(() => import('@/pages/notfound'));
-// Use explicit path with alias to handle case sensitivity
-const Insurance = lazy(() => import('@/pages/insurance.tsx'));
-// Also create a backup using commonjs require for RouteConfig.tsx
-const InsuranceBackup = require('@/pages/insurance').default;
+// Use standard import without file extension
+const Insurance = lazy(() => import('@/pages/insurance'));
+// Removed backup require as it's causing issues
 const GetStarted = lazy(() => import('@/pages/get-started'));
 
 export const mainRoutes = [
