@@ -8,7 +8,9 @@ import Demo from '@/pages/Demo';
 // Use require for case sensitivity issues
 // import Marketing from '@/pages/marketing';
 const Marketing = require('@/pages/marketing.tsx').default;
-import TestSimple from '@/pages/test-simple';
+// Use require for case sensitivity issues
+// import TestSimple from '@/pages/test-simple';
+const TestSimple = require('@/pages/test-simple.tsx').default;
 import ExternalRedirect from '@/components/shared/ExternalRedirect';
 
 // Import route definitions
