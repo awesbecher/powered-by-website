@@ -1,6 +1,6 @@
 [build]
   publish = "dist"
-  command = "npm install --legacy-peer-deps && npm run build"
+  command = "bash ./debug-and-build.sh"
 
 # Handle SPA routing
 [[redirects]]
