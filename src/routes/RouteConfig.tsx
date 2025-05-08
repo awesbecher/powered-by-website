@@ -13,7 +13,7 @@ import ExternalRedirect from '@/components/shared/ExternalRedirect';
 import { productRoutes } from './productRoutes';
 import { mainRoutes } from './mainRoutes';
 // Direct require for insurance page to avoid case sensitivity issues
-const Insurance = require('../pages/insurance').default;
+const Insurance = require('@/pages/insurance').default;
 
 const RouteConfig = () => {
   const location = useLocation();
