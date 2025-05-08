@@ -9,8 +9,10 @@ const CustomGPT = lazy(() => import('@/pages/customgpt'));
 const ChatRedirect = lazy(() => import('@/pages/chatredirect'));
 const AgentIntegrations = lazy(() => import('@/pages/AgentIntegrations'));
 const NotFoundPage = lazy(() => import('@/pages/notfound'));
-// Ensure the correct casing and path
-const Insurance = lazy(() => import('@/pages/insurance.tsx'));
+// Use explicit path to handle case sensitivity
+const Insurance = lazy(() => import('../pages/insurance.tsx'));
+// Also create a backup using wildcard import for RouteConfig.tsx
+const InsuranceBackup = require('../pages/insurance').default;
 const GetStarted = lazy(() => import('@/pages/get-started'));
 
 export const mainRoutes = [
