@@ -4,11 +4,11 @@ import { lazy } from 'react';
 const Index = lazy(() => import('@/pages/Index'));
 const AgentMarketplace = lazy(() => import('@/pages/AgentMarketplace'));
 const AgentGPTBuilder = lazy(() => import('@/pages/AgentGPTBuilder'));
-const AgentGPT = lazy(() => import('@/pages/agentgpt'));
-const CustomGPT = lazy(() => import('@/pages/customgpt'));
-const ChatRedirect = lazy(() => import('@/pages/chatredirect'));
+const AgentGPT = lazy(() => import('@/pages/AgentGPT'));
+const CustomGPT = lazy(() => import('@/pages/CustomGPT'));
+const ChatRedirect = lazy(() => import('@/pages/ChatRedirect'));
 const AgentIntegrations = lazy(() => import('@/pages/AgentIntegrations'));
-const NotFoundPage = lazy(() => import('@/pages/notfound'));
+const NotFoundPage = lazy(() => import('@/pages/NotFound'));
 // Use standard import without file extension
 const Insurance = lazy(() => import('@/pages/insurance'));
 // Removed backup require as it's causing issues
