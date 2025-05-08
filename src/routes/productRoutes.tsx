@@ -9,7 +9,7 @@ const EmailAgent = lazy(() => import('@/pages/EmailAgent'));
 const TextAgent = lazy(() => import('@/pages/TextAgent'));
 const OutboundAI = lazy(() => import('@/pages/GetVirtualSE'));
 const AIAgency = lazy(() => import('@/pages/AIAgency'));
-const AgentGPT = lazy(() => import('@/pages/agentgpt'));
+const AgentGPT = lazy(() => import('@/pages/AgentGPT'));
 const AgentGPTBuilder = lazy(() => import('@/pages/AgentGPTBuilder'));
 const RealEstate = lazy(() => import('@/pages/RealEstate'));
 const VirtualSE = lazy(() => import('@/pages/GetVirtualSE'));
