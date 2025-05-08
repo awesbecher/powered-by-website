@@ -1,17 +1,19 @@
 import React, { Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import Index from '@/pages/Index';
-import About from '@/pages/About';
-import Contact from '@/pages/Contact';
-import Demo from '@/pages/Demo';
+// Use explicit imports with extensions for case sensitivity consistency
+const Index = require('@/pages/Index.tsx').default;
+const About = require('@/pages/About.tsx').default;
+const Contact = require('@/pages/Contact.tsx').default;
+const Demo = require('@/pages/Demo.tsx').default;
 // Use require for case sensitivity issues
 // import Marketing from '@/pages/marketing';
 const Marketing = require('@/pages/marketing.tsx').default;
 // Use require for case sensitivity issues
 // import TestSimple from '@/pages/test-simple';
 const TestSimple = require('@/pages/test-simple.tsx').default;
-import ExternalRedirect from '@/components/shared/ExternalRedirect';
+// Use require for component imports to maintain consistency
+const ExternalRedirect = require('@/components/shared/ExternalRedirect').default;
 
 // Import route definitions
 import { productRoutes } from './productRoutes';
