@@ -16,7 +16,7 @@ const AIVoiceChat = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   
   // Use the centralized calendar initialization hook
-  useCalendarInitialization();
+  useCalendarInitialization("get-started-today");
   
   useEffect(() => {
     setInitialLoad(false);
@@ -62,26 +62,10 @@ const AIVoiceChat = () => {
       {/* Hidden Cal.com button that will be triggered programmatically if needed */}
       <button
         id="cal-button-global"
+        data-cal-namespace="get-started-today"
         data-cal-link="team-powered-by-dfbtbb/get-started-with-voice-ai-chat"
         data-cal-config='{"layout":"month_view"}'
         className="hidden"
-        onClick={() => {
-          try {
-            (window as any).Cal?.('ui', {
-              styles: { branding: { brandColor: '#000000' } },
-              hideEventTypeDetails: false,
-              layout: 'month_view',
-            });
-            (window as any).Cal?.('showModal', {
-              calLink: "team-powered-by-dfbtbb/get-started-with-voice-ai-chat",
-              config: {
-                layout: 'month_view',
-              },
-            });
-          } catch (err) {
-            console.error("Failed to open Cal.com modal from hidden global button:", err);
-          }
-        }}
       ></button>
     </div>
   );

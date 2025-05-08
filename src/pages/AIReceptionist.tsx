@@ -12,6 +12,7 @@ import { HowItWorksSection } from '@/components/ai-receptionist/page-sections/Ho
 import { FAQSection } from '@/components/ai-receptionist/page-sections/FAQSection';
 import { FinalCTASection } from '@/components/ai-receptionist/page-sections/FinalCTASection';
 import { VoiceChatDialog } from '@/components/ai-receptionist/VoiceChatDialog';
+import { VideoIntroSection } from '@/components/ai-receptionist/page-sections/VideoIntroSection';
 
 const AIReceptionist = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -93,6 +94,8 @@ const AIReceptionist = () => {
           videoOpen={videoOpen}
           setVideoOpen={setVideoOpen}
         />
+
+        <VideoIntroSection />
 
         <BenefitsSection />
         

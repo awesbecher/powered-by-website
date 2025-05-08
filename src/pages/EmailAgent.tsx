@@ -7,6 +7,7 @@ import { HowItWorksSection } from '@/components/email-agent/page-sections/HowItW
 import { ROISection } from '@/components/email-agent/page-sections/ROISection';
 import { FAQSection } from '@/components/email-agent/page-sections/FAQSection';
 import { FinalCTASection } from '@/components/email-agent/page-sections/FinalCTASection';
+import { VideoIntroSection } from '@/components/email-agent/page-sections/VideoIntroSection';
 import { useCalendarInitialization, openCalendarModal } from "@/utils/calendarUtils";
 
 const EmailAgent = () => {
@@ -36,6 +37,7 @@ const EmailAgent = () => {
       <Navbar />
       <main>
         <HeroSection initialLoad={initialLoad} handleContact={handleContact} />
+        <VideoIntroSection />
         <FeaturesSection />
         <HowItWorksSection />
         <ROISection />

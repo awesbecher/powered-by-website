@@ -7,6 +7,7 @@ import { BenefitsSection } from '@/components/text-agent/page-sections/BenefitsS
 import { FAQSection } from '@/components/text-agent/page-sections/FAQSection';
 import { FinalCTASection } from '@/components/text-agent/page-sections/FinalCTASection';
 import { HowItWorksSection } from '@/components/text-agent/page-sections/HowItWorksSection';
+import { VideoIntroSection } from '@/components/text-agent/page-sections/VideoIntroSection';
 import { useCalendarInitialization, openCalendarModal } from "@/utils/calendarUtils";
 
 const TextAgent = () => {
@@ -37,6 +38,9 @@ const TextAgent = () => {
       <main>
         {/* Hero Section */}
         <HeroSection initialLoad={initialLoad} handleContact={handleContact} />
+        
+        {/* Video Intro Section */}
+        <VideoIntroSection />
         
         {/* Main content sections */}
         <div className="container mx-auto px-4">
