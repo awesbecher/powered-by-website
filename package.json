@@ -70,7 +70,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@rollup/plugin-buble": "^1.0.4",
+    "@rollup/plugin-buble": "^1.0.3",
     "@types/node": "^20.11.17",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
