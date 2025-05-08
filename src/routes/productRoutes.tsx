@@ -2,11 +2,11 @@
 // Go back to standard imports but with standard format that Vite can process
 import React, { lazy } from 'react';
 
-// Import pages with standard lazy loading - use exact same casing as files on disk
-const AIReceptionist = lazy(() => import('@/pages/aireceptionist'));
-const VoiceChat = lazy(() => import('@/pages/aivoicechat'));
-const EmailAgent = lazy(() => import('@/pages/emailagent'));
-const TextAgent = lazy(() => import('@/pages/textagent'));
+// Import pages with standard lazy loading - EXACTLY matching case of the actual files
+const AIReceptionist = lazy(() => import('@/pages/AIReceptionist'));
+const VoiceChat = lazy(() => import('@/pages/AIVoiceChat'));
+const EmailAgent = lazy(() => import('@/pages/EmailAgent'));
+const TextAgent = lazy(() => import('@/pages/TextAgent'));
 const OutboundAI = lazy(() => import('@/pages/GetVirtualSE'));
 const AIAgency = lazy(() => import('@/pages/AIAgency'));
 const AgentGPT = lazy(() => import('@/pages/agentgpt'));
