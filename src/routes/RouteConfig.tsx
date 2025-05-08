@@ -5,7 +5,9 @@ import Index from '@/pages/Index';
 import About from '@/pages/About';
 import Contact from '@/pages/Contact';
 import Demo from '@/pages/Demo';
-import Marketing from '@/pages/marketing';
+// Use require for case sensitivity issues
+// import Marketing from '@/pages/marketing';
+const Marketing = require('@/pages/marketing.tsx').default;
 import TestSimple from '@/pages/test-simple';
 import ExternalRedirect from '@/components/shared/ExternalRedirect';
 
