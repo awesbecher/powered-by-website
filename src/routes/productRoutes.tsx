@@ -1,20 +1,27 @@
 
-import { lazy } from 'react';
+// Remove lazy import since we're using require
+// import { lazy } from 'react';
 
-// Use require with explicit file extensions to avoid case sensitivity issues
-const AIReceptionist = require('@/pages/aireceptionist.tsx').default;
-const VoiceChat = require('@/pages/aivoicechat.tsx').default;
-const EmailAgent = require('@/pages/emailagent.tsx').default;
-const TextAgent = require('@/pages/textagent.tsx').default;
-const OutboundAI = require('@/pages/GetVirtualSE.tsx').default;
-const AIAgency = require('@/pages/AIAgency.tsx').default;
-const AgentGPT = require('@/pages/agentgpt.tsx').default;
-const AgentGPTBuilder = require('@/pages/AgentGPTBuilder.tsx').default;
-const RealEstate = require('@/pages/RealEstate.tsx').default;
-const VirtualSE = require('@/pages/GetVirtualSE.tsx').default;
-const AIAgents = require('@/pages/aiagents.tsx').default;
-const CustomAISolutions = require('@/pages/custom-ai-solutions.tsx').default;
-const AISolutions = require('@/pages/aisolutions.tsx').default;
+// Import using dynamic import with explicit paths to avoid case sensitivity issues
+import React from 'react';
+
+// Create components object to store all our components
+const components = {};
+
+// Use this pattern to force synchronous loading
+const AIReceptionist = React.lazy(() => import('../pages/aireceptionist.tsx'));
+const VoiceChat = React.lazy(() => import('../pages/aivoicechat.tsx'));
+const EmailAgent = React.lazy(() => import('../pages/emailagent.tsx'));
+const TextAgent = React.lazy(() => import('../pages/textagent.tsx'));
+const OutboundAI = React.lazy(() => import('../pages/GetVirtualSE.tsx'));
+const AIAgency = React.lazy(() => import('../pages/AIAgency.tsx'));
+const AgentGPT = React.lazy(() => import('../pages/agentgpt.tsx'));
+const AgentGPTBuilder = React.lazy(() => import('../pages/AgentGPTBuilder.tsx'));
+const RealEstate = React.lazy(() => import('../pages/RealEstate.tsx'));
+const VirtualSE = React.lazy(() => import('../pages/GetVirtualSE.tsx'));
+const AIAgents = React.lazy(() => import('../pages/aiagents.tsx'));
+const CustomAISolutions = React.lazy(() => import('../pages/custom-ai-solutions.tsx'));
+const AISolutions = React.lazy(() => import('../pages/aisolutions.tsx'));
 
 export const productRoutes = [
   { path: "/ai-receptionist", element: <AIReceptionist /> },
