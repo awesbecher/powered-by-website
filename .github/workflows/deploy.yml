@@ -22,15 +22,6 @@ jobs:
       
       - name: Build
         run: npm run build
-      
-      - name: Deploy to Vercel
-        if: github.event_name == 'pull_request'
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-        run: |
-          npx vercel --token $VERCEL_TOKEN --yes
 
   deploy-staging:
     needs: verify
