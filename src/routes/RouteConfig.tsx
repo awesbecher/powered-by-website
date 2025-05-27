@@ -4,6 +4,7 @@ import { AnimatePresence } from 'framer-motion';
 import Index from '@/pages/Index';
 import About from '@/pages/About';
 import Contact from '@/pages/Contact';
+import ThankYou from '@/pages/ThankYou';
 import Demo from '@/pages/Demo';
 import AIVoiceChat from '@/pages/AIVoiceChat';
 import AIReceptionist from '@/pages/AIReceptionist';
@@ -36,6 +37,7 @@ const RouteConfig = () => {
         <Route path="/" element={<Index />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/thank-you" element={<ThankYou />} />
         <Route path="/demo" element={<Demo />} />
         <Route path="/voice-chat" element={<AIVoiceChat />} />
         <Route path="/ai-receptionist" element={<AIReceptionist />} />
