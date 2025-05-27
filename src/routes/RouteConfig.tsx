@@ -25,6 +25,8 @@ import Products from '@/pages/Products';
 import EmailAgent from '@/pages/EmailAgent';
 import TextAgent from '@/pages/TextAgent';
 import Pricing from '@/pages/Pricing';
+import PrivacyStatement from '@/pages/PrivacyStatement';
+import TermsOfService from '@/pages/TermsOfService';
 import ExternalRedirect from '@/components/shared/ExternalRedirect';
 
 const RouteConfig = () => {
@@ -38,6 +40,8 @@ const RouteConfig = () => {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/thank-you" element={<ThankYou />} />
+        <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/privacy-statement" element={<PrivacyStatement />} />
         <Route path="/demo" element={<Demo />} />
         <Route path="/voice-chat" element={<AIVoiceChat />} />
         <Route path="/ai-receptionist" element={<AIReceptionist />} />
