@@ -1,0 +1,19 @@
+# Windsurf Deploys Configuration (Beta)
+version: 1
+project_id: prj_j3pwh8GEDJGVKPym5aYf00AnEZwg
+
+# ---- deployment target ----
+deployment_provider: firebase_hosting
+preview_url: https://powered-by-website-new-powered-by-agency-llc.web.app
+
+# ---- build settings ----
+framework: vite
+build_command: npm run build
+install_command: npm install
+node_version: 18.x
+
+# ---- source repo Windsurf should pull ----
+git:
+  repo: https://github.com/awesbecher/powered-by-website.git
+  branch: production
+
