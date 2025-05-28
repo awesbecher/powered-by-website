@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vapi Frame</title>
+</head>
+<body>
+    <script type="module">
+        // Wait for Vapi to be injected from parent
+        let vapiInstance = null;
+        let mediaStream = null;
+
+        window.initVapi = (Vapi) => {
+            // Listen for messages from parent window
+            window.addEventListener('message', async (event) => {
+                if (event.data.type === 'START_CALL') {
+                    try {
+                        console.log('Starting call in iframe...');
+                        // Get microphone access
+                        mediaStream = await navigator.mediaDevices.getUserMedia({ 
+                            audio: {
+                                echoCancellation: true,
+                                noiseSuppression: true,
+                                autoGainControl: true
+                            }
+                        });
+                        
+                        console.log('Got media stream');
+                        
+                        // Initialize Vapi
+                        vapiInstance = new Vapi(event.data.apiKey);
+                        console.log('Created Vapi instance');
+                        
+                        await vapiInstance.start(event.data.assistantId);
+                        console.log('Started Vapi call');
+                        
+                        // Notify parent that call started
+                        window.parent.postMessage({ type: 'CALL_STARTED' }, '*');
+                    } catch (error) {
+                        console.error('Error in iframe:', error);
+                        window.parent.postMessage({ type: 'CALL_ERROR', error: error.message }, '*');
+                    }
+                } else if (event.data.type === 'END_CALL') {
+                    console.log('Ending call in iframe...');
+                    // Force cleanup
+                    if (mediaStream) {
+                        mediaStream.getTracks().forEach(track => {
+                            track.enabled = false;
+                            track.stop();
+                        });
+                        mediaStream = null;
+                    }
+                    if (vapiInstance) {
+                        try {
+                            await vapiInstance.stop();
+                        } catch (e) {
+                            console.warn('Error stopping Vapi:', e);
+                        }
+                        vapiInstance = null;
+                    }
+                    
+                    // Notify parent
+                    window.parent.postMessage({ type: 'CALL_ENDED' }, '*');
+                    
+                    // Request removal
+                    window.parent.postMessage({ type: 'REMOVE_FRAME' }, '*');
+                }
+            });
+        };
+
+        // Tell parent we're ready
+        window.parent.postMessage({ type: 'FRAME_READY' }, '*');
+    </script>
+</body>
+</html>
