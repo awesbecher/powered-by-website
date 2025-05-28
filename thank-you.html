@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thank You - Powered by Agency</title>
+    <link rel="icon" type="image/png" href="/assets/team/PWB-favicon.png?v=1" />
+    <link rel="shortcut icon" type="image/png" href="/assets/team/PWB-favicon.png?v=1" />
+
+    <!-- Google Fonts - Space Grotesk and Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- Main site stylesheet -->
+    <link rel="stylesheet" crossorigin href="/assets/index-CTtxB-Fk.css">
+
+    <style>
+        /* Basic styles to center content if not already handled by main CSS */
+        body {
+            display: flex;
+            flex-direction: column; /* Allow header/footer if added manually */
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center; /* Center text within the container */
+            /* The purple background should come from index-CTtxB-Fk.css */
+        }
+        .thank-you-container {
+            background-color: rgba(255, 255, 255, 0.1); /* Optional: slight background for the text box if needed */
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 20px;
+            color: #fff; /* Assuming text on purple background should be light */
+        }
+        .thank-you-container h1 {
+            /* Font styling will come from main CSS via Space Grotesk/Inter */
+            font-size: 2.5em; /* Example size, adjust as needed */
+            margin-bottom: 20px;
+        }
+        .thank-you-container p {
+            font-size: 1.1em; /* Example size */
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .thank-you-container ul {
+            list-style: none;
+            padding: 0;
+        }
+        .thank-you-container li {
+            margin-bottom: 15px;
+        }
+        .thank-you-container a {
+            color: #f0f0f0; /* Lighter link color for dark background */
+            text-decoration: underline;
+            font-weight: 500; /* From Inter font */
+        }
+        .thank-you-container a:hover {
+            color: #ffffff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Note: This page will not have the dynamic SPA navbar and footer -->
+    <!-- It will inherit global styles from /assets/index-CTtxB-Fk.css -->
+
+    <div class="thank-you-container">
+        <h1>Thanks for your interest in Powered_by!</h1>
+        <p>We're excited to help you learn more about AI agents and help discover their use cases for your business. In the meantime, feel free to have a look at the following resources:</p>
+        <ul>
+            <li><a href="https://www.poweredby.agency/products">Our AI Agent Solutions</a></li>
+            <li><a href="https://www.poweredby.agency/demo">Demos</a></li>
+            <li><a href="https://poweredbyagency.ghost.io/">AI Research & Articles</a></li>
+            <li><a href="https://www.youtube.com/@Powered_byAgency">Video Overviews</a></li>
+        </ul>
+    </div>
+
+</body>
+</html>
