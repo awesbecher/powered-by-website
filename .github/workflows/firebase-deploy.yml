@@ -28,8 +28,8 @@ jobs:
           workload_identity_provider: 'projects/326818403042/locations/global/workloadIdentityPools/github-pool/providers/github-provider'
           service_account: 'windsurf-access-to-pwb-website@powered-by-website-redundancy.iam.gserviceaccount.com'
 
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
       - name: Deploy to Firebase Hosting
-        uses: google-github-actions/deploy-firebase@6f28a593c41b2e4271cf9fd2f347d79c7e83e3d7
-        with:
-          channel_id: live
-          project_id: powered-by-website-redundancy
+        run: firebase deploy --only hosting:live --project powered-by-website-redundancy
