@@ -3,14 +3,14 @@ name: Deploy to Firebase Production
 on:
   push:
     branches:
-      - production # Deploys when a push is made to the 'production' branch
+      - production
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: 'read'
-      id-token: 'write'  # Required for Workload Identity Federation
+      id-token: 'write'
 
     steps:
       - name: Checkout repository
@@ -29,7 +29,7 @@ jobs:
           service_account: 'windsurf-access-to-pwb-website@powered-by-website-redundancy.iam.gserviceaccount.com'
 
       - name: Deploy to Firebase Hosting
-        uses: google-github-actions/deploy-firebase@v1
+        uses: google-github-actions/deploy-firebase@6f28a593c41b2e4271cf9fd2f347d79c7e83e3d7
         with:
           channel_id: live
           project_id: powered-by-website-redundancy
