@@ -29,8 +29,7 @@ jobs:
           service_account: 'windsurf-access-to-pwb-website@powered-by-website-redundancy.iam.gserviceaccount.com'
 
       - name: Deploy to Firebase Hosting
-        uses: FirebaseExtended/action-hosting-deploy@main
+        uses: google-github-actions/deploy-firebase@v1
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          channelId: live
-          projectId: powered-by-website-redundancy
+          channel_id: live
+          project_id: powered-by-website-redundancy
