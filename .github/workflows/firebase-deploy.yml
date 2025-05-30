@@ -3,25 +3,34 @@ name: Deploy to Firebase Production
 on:
   push:
     branches:
-      - production # Deploys when a push is made to the 'production' branch
+      - production
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write' # Required for OIDC token
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Authenticate to Google Cloud
+        id: auth
+        uses: 'google-github-actions/auth@v2' # Using v2 as requested
+        with:
+          workload_identity_provider: 'projects/326818403042/locations/global/workloadIdentityPools/github-pool/providers/github-provider'
+          service_account: 'windsurf-access-to-pwb-website@powered-by-website-redundancy.iam.gserviceaccount.com'
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
-
-
+      
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' # IMPORTANT: Ensure this secret is set in your GitHub repository settings
+          # firebaseServiceAccount is no longer needed due to WIF authentication
           channelId: live
           projectId: powered-by-website-redundancy
