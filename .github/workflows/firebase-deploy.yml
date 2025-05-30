@@ -27,10 +27,29 @@ jobs:
         with:
           node-version: '18.x'
       
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Get current live version
+        id: get_live
+        run: |
+          ACCESS_TOKEN=$(gcloud auth print-access-token)
+          LIVE_VERSION=$(curl -s -H "Authorization: Bearer $ACCESS_TOKEN" \
+            "https://firebasehosting.googleapis.com/v1beta1/sites/powered-by-website-redundancy/releases?pageSize=1" \
+            | jq -r '.releases[0].version.name')
+          echo "live_version=$LIVE_VERSION" >> "$GITHUB_OUTPUT"
+
       - name: Deploy to Firebase Hosting
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          # firebaseServiceAccount is no longer needed due to WIF authentication
-          channelId: live
-          projectId: powered-by-website-redundancy
+        id: deploy
+        continue-on-error: true # Important for the rollback step
+        run: firebase deploy --only hosting --project powered-by-website-redundancy
+
+      - name: Rollback if Deploy Fails
+        if: steps.deploy.outcome == 'failure'
+        run: |
+          echo "⚠️ Deploy failed. Rolling back to ${{ steps.get_live.outputs.live_version }}"
+          ACCESS_TOKEN=$(gcloud auth print-access-token)
+          curl -X POST -H "Authorization: Bearer $ACCESS_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "{\"version\":\"${{ steps.get_live.outputs.live_version }}\"}" \
+            "https://firebasehosting.googleapis.com/v1beta1/sites/powered-by-website-redundancy/releases"
