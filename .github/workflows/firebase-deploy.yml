@@ -31,5 +31,23 @@ jobs:
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
+      - name: Get Current Deployed Version
+        id: get_current
+        run: |
+          CURRENT_VERSION=$(gcloud firebase hosting sites describe powered-by-website-redundancy \
+            --format="value(version.name)")
+          echo "current_version=$CURRENT_VERSION" >> "$GITHUB_OUTPUT"
+
       - name: Deploy to Firebase Hosting
+        id: deploy
+        continue-on-error: true
         run: firebase deploy --only hosting --project powered-by-website-redundancy
+
+      - name: Rollback if Deploy Failed
+        if: steps.deploy.outcome == 'failure'
+        run: |
+          echo "⚠️ Deploy failed. Rolling back to: ${{ steps.get_current.outputs.current_version }}"
+          gcloud firebase hosting versions clone \
+            ${{ steps.get_current.outputs.current_version }} \
+            --destination-site=powered-by-website-redundancy \
+            --project powered-by-website-redundancy
