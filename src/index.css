@@ -1,0 +1,296 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground: 0 0% 0%;
+  --background: 0 0% 100%;
+  --neutral: 0 0% 96%;
+  --neutral-foreground: 0 0% 20%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 222.2 84% 4.9%;
+  --radius: 0.5rem;
+  
+  /* Brand colors */
+  --brand-purple-light: 255 86% 67%;
+  --brand-purple-mid: 263 84% 58%;
+  --brand-purple-dark: 271 68% 39%;
+  --brand-lavender: 255 100% 98%;
+  --brand-lime: 80 86% 55%;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    letter-spacing: -1px;
+  }
+
+  /* Focus states for keyboard navigation */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-[#9b87f5];
+  }
+  
+  /* Ensure skipped content is properly positioned */
+  [tabindex="-1"]:focus {
+    @apply outline-none;
+  }
+  
+  /* Better links for keyboard accessibility */
+  a:focus-visible {
+    @apply outline-2 outline-offset-2 outline-[#9b87f5] rounded;
+  }
+  
+  /* High-contrast text */
+  .high-contrast-text {
+    @apply text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)];
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply backdrop-blur-xl bg-white/5 border border-white/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)];
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-br from-white via-white/90 to-white/70 bg-clip-text text-transparent;
+  }
+
+  .text-shadow {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+  }
+  
+  /* New title styling classes */
+  .fancy-title {
+    @apply font-bold tracking-wide bg-clip-text text-transparent bg-gradient-to-r;
+    text-shadow: 0 2px 10px rgba(155, 135, 245, 0.5);
+  }
+  
+  .ebook-title-glow {
+    text-shadow: 0 0 15px rgba(155, 135, 245, 0.7), 0 0 30px rgba(99, 66, 255, 0.4);
+  }
+  
+  /* Animation for fade in effect */
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* New animations for 2025 hero section */
+  @keyframes slide-up-fade {
+    from { opacity: 0.85; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .hero-animate {
+    opacity: 0;
+    animation: slide-up-fade 400ms ease-out forwards;
+  }
+  
+  .hero-badge { animation-delay: 0ms; }
+  .hero-title { animation-delay: 100ms; }
+  .hero-subtitle { animation-delay: 200ms; }
+  .hero-cta { animation-delay: 300ms; }
+  
+  /* New animations for agent builder */
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+  
+  .animate-pulse {
+    animation: pulse 3s ease-in-out infinite;
+  }
+  
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out forwards;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .animate-float {
+    animation: float 5s ease-in-out infinite;
+  }
+  
+  /* New button styles */
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium transition-colors rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-primary {
+    @apply text-white bg-[#1976d2] hover:bg-[#1565c0] focus:ring-[#1976d2];
+  }
+
+  .btn-secondary {
+    @apply text-white bg-[#dc004e] hover:bg-[#9a0036] focus:ring-[#dc004e];
+  }
+  
+  .cta-primary {
+    @apply bg-white text-[#7C3AED] py-[18px] px-[28px] rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.12)] font-[600] uppercase tracking-wider transition-all duration-300;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  
+  .cta-primary:hover {
+    @apply bg-[#7C3AED] text-white shadow-[0_6px_16px_rgba(0,0,0,0.2)];
+  }
+  
+  .cta-secondary {
+    @apply text-[#A3E635] py-[18px] px-[28px] font-[600] uppercase tracking-wider transition-all duration-200;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  
+  .cta-secondary:hover {
+    @apply underline;
+  }
+  
+  /* New animation for the AI visualization */
+  .animate-spin-slow {
+    animation: spin 20s linear infinite;
+  }
+  
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  .bg-neutral-soft {
+    @apply bg-neutral-100;
+  }
+}
+
+@layer utilities {
+  @keyframes voice-wave {
+    0%, 100% {
+      height: 4px;
+    }
+    50% {
+      height: 16px;
+    }
+  }
+
+  .animate-voice-wave {
+    animation: voice-wave 1s ease-in-out infinite;
+  }
+}
+
+/* Improve keyboard a11y visual focus indicator */
+.focus-ring {
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#9b87f5];
+}
+
+/* Reduce motion if user prefers */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Hero 2025 specific styles */
+.hero-2025 {
+  background: linear-gradient(180deg, #8B5CF6 0%, #7C3AED 50%, #6B21A8 100%);
+}
+
+.hero-2025-container {
+  min-height: calc(100vh - 74px);
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.hero-2025-badge {
+  background: #F5F3FF;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  border-radius: 999px;
+  padding: 6px 14px;
+  margin-bottom: 24px;
+}
+
+.hero-2025-title {
+  font-size: clamp(40px, 6vw, 68px);
+  line-height: 1.1;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+  margin-bottom: 24px;
+}
+
+.hero-2025-subtitle {
+  font-size: 18px;
+  line-height: 28px;
+  max-width: 70%;
+  margin: 0 auto 24px auto;
+}
+
+.hero-2025-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-2025-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  width: 60%;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 70%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.cta-group {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Ripple effect for hover */
+.ripple-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 600ms ease-out;
+  background-color: rgba(163, 230, 53, 0.3); /* Lime green with opacity */
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}

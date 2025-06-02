@@ -1,0 +1,5 @@
+
+project_id = "cinohyzbtfzfcdtkgvij"
+
+[functions.send-team-notification]
+verify_jwt = false

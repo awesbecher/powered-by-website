@@ -1,0 +1,12 @@
+name: production
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason for deployment'
+        required: true
+        default: 'Deploying Lovable changes to production'
+
+environment:
+  name: production
+  url: https://www.poweredby.agency 

@@ -1,0 +1,4 @@
+
+User-agent: *
+Allow: /
+Sitemap: https://www.poweredby.agency/hidden/seo/sitemap.xml

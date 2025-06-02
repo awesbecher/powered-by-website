@@ -1,0 +1,5 @@
+
+project_id = "cinohyzbtfzfcdtkgvij"
+
+[functions.send-audio-email]
+verify_jwt = false
