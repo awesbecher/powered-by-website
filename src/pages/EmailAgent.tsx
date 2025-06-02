@@ -66,7 +66,6 @@ const EmailAgent = () => {
     ]
   };
 
-  const EmailAgent = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   
   // Use the centralized calendar initialization hook
