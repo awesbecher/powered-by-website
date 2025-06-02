@@ -16,7 +16,6 @@ export const CallToActionButtons = () => {
     setDialogOpen(true);
   };
 
-  console.log('DEBUG_VIDEO_UPDATE: Rendering CallToActionButtons with h-rpV6f0JJs');
   return (
     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-4xl">
       <Button
