@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Helmet } from 'react-helmet';
 import PageLayout from "@/components/layout/PageLayout";
 import { DemoHero } from "@/components/demo/DemoHero";
 import { InteractiveDemoSection } from "@/components/demo/InteractiveDemoSection";
@@ -67,8 +68,52 @@ const Demo = () => {
     })();
   }, []);
 
+  const demoSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "AI Agent Demo",
+    "provider": {
+      "@type": "Organization",
+      "name": "Powered By Agency",
+      "url": "https://www.poweredby.agency/",
+      "logo": "https://www.poweredby.agency/logo.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1 800-123-4567",
+        "contactType": "Customer Service",
+        "areaServed": "US",
+        "availableLanguage": "English"
+      }
+    },
+    "description": "Explore live demonstrations of AI-powered agents tailored for various industries, showcasing intelligent automation and personalized interactions for business transformation.",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.poweredby.agency/demo",
+      "priceCurrency": "USD",
+      "price": "0",
+      "priceValidUntil": "2025-12-31",
+      "eligibleRegion": {
+        "@type": "Place",
+        "name": "Global"
+      },
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "Powered By Agency"
+      }
+    }
+  };
+
   return (
     <PageLayout>
+      <Helmet>
+        <title>AI Agent Demo | Powered By Agency</title>
+        <meta name="description" content="Experience live AI agent demonstrations. See how our AI solutions can automate tasks, enhance customer engagement, and transform your business operations." />
+        <link rel="canonical" href="https://www.poweredby.agency/demo" />
+        <script type="application/ld+json">
+          {JSON.stringify(demoSchema)}
+        </script>
+      </Helmet>
       <div className="relative">
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <div className="absolute top-0 right-0 w-[800px] h-[800px] rounded-full bg-[#6342ff]/10 blur-[120px]"></div>
