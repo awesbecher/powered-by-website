@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { useToast } from "@/hooks/use-toast";
@@ -83,6 +84,11 @@ const AIReceptionist = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#1a0b2e] to-[#13151a]">
+      <Helmet>
+        <title>AI Receptionist for SMBs | 24/7 Call & Lead Handling</title>
+        <meta name="description" content="Learn how an AI Receptionist can handle your customer calls, qualify leads, and schedule appointments 24/7." />
+        <link rel="canonical" href="https://www.poweredby.agency/ai-receptionist" />
+      </Helmet>
       <Navbar />
       
       <main>

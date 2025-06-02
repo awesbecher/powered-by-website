@@ -173,8 +173,8 @@ const Products = () => {
   return (
     <div className="min-h-screen w-full relative bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
       <Helmet>
-        <title>AI Agent Solutions & Products | Powered By Agency</title>
-        <meta name="description" content="Explore custom AI agents designed to automate and optimize business operations. Solutions for automotive, SaaS, insurance, real estate, and hospitality." />
+        <title>AI Agent Solutions for SMBs | Automated AI Voice, Email, & SMS-Text</title>
+        <meta name="description" content="Discover how AI agents can automate customer engagement, streamline operations, and enhance efficiency across voice, email, and SMS." />
         <link rel="canonical" href="https://www.poweredby.agency/products" />
         <script type="application/ld+json">
           {JSON.stringify(productSchema)}
