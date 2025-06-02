@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "site": "powered-by-website-redundancy-dev",
     "public": "dist",
     "ignore": [
       "firebase.json",
