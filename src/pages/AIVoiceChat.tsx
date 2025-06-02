@@ -14,6 +14,54 @@ import { VideoIntroSection } from "@/components/voice-chat/page-sections/VideoIn
 import { useCalendarInitialization, openCalendarModal } from "@/utils/calendarUtils";
 
 const AIVoiceChat = () => {
+  const aiVoiceChatFaqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do voice AI agents work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Voice AI agents use advanced speech recognition to understand spoken language, natural language processing to interpret meaning, and text-to-speech technology to respond verbally. These systems learn from interactions to continuously improve their performance and accuracy over time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can the voice agent integrate with my current systems?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, our voice agents are designed to integrate seamlessly with your existing CRM, scheduling software, phone systems, and other business tools through our extensive API connections. We handle all technical aspects of the integration process."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What industries benefit most from AI voice agents?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "While voice agents can benefit many industries, they're particularly valuable for healthcare (appointment scheduling, patient screening), real estate (property inquiries, showing scheduling), financial services (basic transactions, information requests), and customer service across all sectors."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does implementation take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Typical implementation takes 3-4 weeks from start to finish, including knowledge base building, integration with your systems, and training the voice agent on your specific business information. More complex implementations may take longer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens if the AI can't handle a call?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We design intelligent escalation paths for each voice agent. When the AI encounters a complex situation it's not equipped to handle, it can seamlessly transfer the call to an appropriate human team member, along with a summary of the conversation so far."
+        }
+      }
+    ]
+  };
+
+  const AIVoiceChat = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   
   // Use the centralized calendar initialization hook
@@ -38,6 +86,9 @@ const AIVoiceChat = () => {
         <title>AI Voice Chat for SMBs | 24/7 Customer Support & Engagement</title>
         <meta name="description" content="Use AI Voice Chat on your website for instant, 24/7 customer support and engagement." />
         <link rel="canonical" href="https://www.poweredby.agency/voice-chat" />
+        <script type="application/ld+json">
+          {JSON.stringify(aiVoiceChatFaqSchema)}
+        </script>
       </Helmet>
       <div className="sticky top-0 z-50 w-full">
         <Navbar />
