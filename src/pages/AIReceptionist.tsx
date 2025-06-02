@@ -70,7 +70,6 @@ const AIReceptionist = () => {
     ]
   };
 
-  const AIReceptionist = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   const [showVoiceChatDialog, setShowVoiceChatDialog] = useState(false);
   const [isCallActive, setIsCallActive] = useState(false);
