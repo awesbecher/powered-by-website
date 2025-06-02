@@ -1,4 +1,3 @@
-
 import { DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Dialog } from "@/components/ui/dialog";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -43,10 +42,10 @@ const InsuranceDialog = ({
                 <Avatar className="h-20 w-20 rounded-full border-2 border-white shadow-md">
                   <AvatarImage 
                     src="/assets/images/d346b971-ac00-4e01-b998-88ba7938a22f.png" 
-                    alt="Alex Fisher" 
+                    alt="Chris Cambridge" 
                     className="object-cover"
                   />
-                  <AvatarFallback>AF</AvatarFallback>
+                  <AvatarFallback>CC</AvatarFallback>
                 </Avatar>
                 <div className="absolute bottom-1 left-1 flex items-center">
                   <div className="h-3 w-3 bg-green-500 rounded-full"></div>
@@ -61,7 +60,7 @@ const InsuranceDialog = ({
                 </div>
               </div>
               <div>
-                <h3 className="text-2xl font-bold">Alex Fisher</h3>
+                <h3 className="text-2xl font-bold">Chris Cambridge</h3>
                 <p className="text-gray-500">Planter's Insurance</p>
               </div>
             </div>
@@ -118,16 +117,16 @@ const InsuranceDialog = ({
               <Avatar className="w-16 h-16">
                 <AvatarImage 
                   src="/assets/images/d346b971-ac00-4e01-b998-88ba7938a22f.png"
-                  alt="Alex Fisher"
+                  alt="Chris Cambridge"
                   className="object-cover"
                 />
-                <AvatarFallback>AF</AvatarFallback>
+                <AvatarFallback>CC</AvatarFallback>
               </Avatar>
-              <DialogTitle>Start Voice Chat with Alex Fisher on the Planter's Insurance Team</DialogTitle>
+              <DialogTitle>Start Voice Chat with Chris Cambridge on the Planter's Insurance Team</DialogTitle>
             </DialogHeader>
             <div className="flex flex-col space-y-4 pt-4">
               <p className="text-gray-300">
-                You'll be able to have a voice conversation with Alex directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately.
+                You'll be able to have a voice conversation with Chris Cambridge directly through your browser. Please ensure your microphone is enabled and your speaker volume is turned on appropriately.
               </p>
               <p className="text-gray-300 text-sm">
                 By clicking "Start Voice Chat", you consent to having a voice conversation with the Planter's Insurance team. You can end the conversation at any time.

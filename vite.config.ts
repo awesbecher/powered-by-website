@@ -21,11 +21,35 @@ export default defineConfig({
   },
   build: {
     sourcemap: true,
-    minify: 'terser',
     rollupOptions: {
       output: {
-        manualChunks: undefined,
+        manualChunks: {
+          'vendor': [
+            'react', 
+            'react-dom', 
+            'react-router-dom',
+            'framer-motion',
+          ],
+          'ui': [
+            '@mui/material',
+            '@mui/icons-material',
+            '@radix-ui/react-accordion',
+            '@radix-ui/react-alert-dialog',
+            '@radix-ui/react-aspect-ratio',
+            '@radix-ui/react-avatar',
+          ],
+          'vapi': [
+            '@vapi-ai/web'
+          ]
+        },
         format: 'es'
+      }
+    },
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: false, // Keep console logs for now, but change to true for final production
+        drop_debugger: true
       }
     }
   },

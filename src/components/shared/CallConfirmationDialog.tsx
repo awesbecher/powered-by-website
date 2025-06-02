@@ -33,20 +33,20 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
     callMessage: 'Connecting you with Chris at Mercedes-Benz of Tacoma...'
   },
   roomService: {
-    name: 'Room Service',
-    description: 'Welcome to Room Service at Powered By! Our AI assistant is ready to take your order, answer questions about our menu, and ensure you have a delightful dining experience.',
-    image: '/assets/images/room-service.jpg',
-    imageAlt: 'Room Service',
-    logo: '/assets/images/powered-by-logo.png',
-    logoAlt: 'Powered By Logo',
-    callMessage: 'Connecting you with Room Service...'
+    name: 'Room Service at Grandview Hotels',
+    description: 'Welcome to Room Service at Grandview Hotels! Our AI assistant is ready to take your order, answer questions about our menu, and ensure you have a delightful dining experience.',
+    image: '/assets/team/Grandview Hotels.png',
+    imageAlt: 'Grandview Hotels Room Service',
+    logo: '/assets/team/Grandview Hotels.png',
+    logoAlt: 'Grandview Hotels Logo',
+    callMessage: 'Connecting you with Room Service at Grandview Hotels...'
   },
   retail: {
     name: 'Alex @ Flagship Barbers',
     description: 'Speak with Alex at Flagship Barbers! Book your next appointment, learn about our services, or ask any questions about our premium barbershop experience.',
-    image: '/assets/team/alex.jpg',
+    image: '/assets/team/Alex.jpg',
     imageAlt: 'Alex - Flagship Barbers',
-    logo: '/assets/team/flagship-barbers.png',
+    logo: '/assets/team/Flagship Barbers.png',
     logoAlt: 'Flagship Barbers Logo',
     callMessage: 'Connecting you with Alex at Flagship Barbers...'
   },
@@ -91,11 +91,14 @@ export function CallConfirmationDialog({
       </Button>
       
       <div className="flex flex-col items-center justify-center pt-1 px-4">
-        <img 
-          src={content.logo} 
-          alt={content.logoAlt} 
-          className={`mb-2 ${logoClass}`}
-        />
+        {/* Only show logo if not room service to avoid duplicate images */}
+        {service !== 'roomService' && (
+          <img 
+            src={content.logo} 
+            alt={content.logoAlt} 
+            className={`mb-2 ${logoClass}`}
+          />
+        )}
         <div className="flex flex-col space-y-3">
           {/* Agent info */}
           <div className="flex flex-col items-center space-y-2">

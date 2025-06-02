@@ -1,15 +1,16 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { openCalendarModal, useCalendarInitialization } from '@/utils/calendarUtils';
 
 export const FinalCTASection = () => {
-  const handleGetStarted = () => {
-    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
-    if (calBtn instanceof HTMLElement) {
-      console.log("Cal.com button found, triggering click");
-      calBtn.click();
-    } else {
-      console.error("Cal.com button not found in DOM, navigating to /contact as fallback");
+  // Use the centralized calendar initialization hook
+  useCalendarInitialization("get-started-today");
+
+  const handleGetStarted = async () => {
+    // Use the centralized calendar utility with async/await
+    if (!await openCalendarModal("team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents")) {
+      console.error("Failed to open Cal.com modal, navigating to /contact as fallback");
       window.location.href = '/contact';
     }
   };
@@ -27,19 +28,15 @@ export const FinalCTASection = () => {
           <Button 
             className="bg-white hover:bg-gray-100 text-[#6342ff] px-8 py-6 text-lg rounded-md flex items-center gap-2 mx-auto"
             onClick={handleGetStarted}
+            data-cal-namespace="get-started-today"
+            data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"
+            data-cal-config='{"layout":"month_view"}'
           >
             Get Started Now
             <ArrowRight className="w-5 h-5" />
           </Button>
         </div>
       </div>
-
-      {/* Hidden Cal.com button */}
-      <button
-        className="hidden"
-        data-cal-link="team-powered-by-dfbtbb/get-started-today"
-        data-cal-config='{"layout":"month_view"}'
-      />
     </section>
   );
 };

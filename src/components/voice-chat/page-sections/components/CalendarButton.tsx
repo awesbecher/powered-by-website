@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { getCalApi } from "@calcom/embed-react";
 
 export const CalendarButton = () => {
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      cal("ui", {"theme":"dark","cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"column_view"});
+    })();
+  }, []);
+
   const handleGetStarted = () => {
     const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
     if (calBtn instanceof HTMLElement) {
@@ -27,8 +35,9 @@ export const CalendarButton = () => {
       {/* Hidden Cal.com button */}
       <button
         className="hidden"
+        data-cal-namespace="get-started-today"
         data-cal-link="team-powered-by-dfbtbb/get-started-today"
-        data-cal-config='{"layout":"month_view"}'
+        data-cal-config='{"layout":"column_view","theme":"dark"}'
       />
     </div>
   );

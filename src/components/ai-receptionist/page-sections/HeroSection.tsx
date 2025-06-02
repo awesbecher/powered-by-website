@@ -119,13 +119,6 @@ export const HeroSection = ({
                 </Button>
                 
                 <Button 
-                  className="w-full sm:w-auto bg-transparent hover:bg-white/10 text-white px-6 py-4 text-base rounded-md flex items-center justify-center border-2 border-white"
-                  onClick={() => setVideoOpen(true)}
-                >
-                  Watch Overview
-                </Button>
-                
-                <Button 
                   className="w-full sm:w-auto bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-4 text-base rounded-md flex items-center justify-center"
                   onClick={handleVoiceChatClick}
                 >

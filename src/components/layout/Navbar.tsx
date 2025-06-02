@@ -7,8 +7,8 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { NavbarCta } from "@/components/navigation/NavbarCta";
-import { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
+import { initializeCalendar, openCalendarModal } from "@/utils/calendarUtils";
 
 const Navbar = () => {
   const location = useLocation();
@@ -18,18 +18,7 @@ const Navbar = () => {
   useEffect(() => {
     (async function () {
       try {
-        const cal = await getCalApi();
-        if (cal) {
-          cal("ui", {
-            "cssVarsPerTheme": {
-              "light": {"cal-brand":"#8B5CF6"},
-              "dark": {"cal-brand":"#8B5CF6"}
-            },
-            "hideEventTypeDetails": false,
-            "layout": "month_view"
-          });
-          cal("preload", { calLink: "team-powered-by-dfbtbb/get-started-today" });
-        }
+        await initializeCalendar();
       } catch (error) {
         console.error("Error initializing Cal.com embed:", error);
       }
@@ -38,10 +27,7 @@ const Navbar = () => {
 
   const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    const cal = (window as any).Cal;
-    if (cal) {
-      cal("showModal", { calLink: "team-powered-by-dfbtbb/get-started-today" });
-    }
+    openCalendarModal();
   };
 
   return (

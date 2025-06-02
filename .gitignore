@@ -8,9 +8,21 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+
+# Build output
 dist
 dist-ssr
 *.local
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Cache directories
+.cache
+.vercel
+.netlify
 
 # Editor directories and files
 .vscode/*

@@ -54,7 +54,7 @@ export const UseCasesSection = () => {
       icon: <Car className="w-6 h-6" />,
       title: "Auto Dealerships",
       description: "Streamline vehicle inquiries and booking test drives with AI-powered conversations.",
-      demoLink: "/mercedes-dealer"
+      demoLink: "https://tacomamercedes.com/"
     },
     {
       icon: <Building2 className="w-6 h-6" />,
@@ -72,7 +72,7 @@ export const UseCasesSection = () => {
       icon: <Home className="w-6 h-6" />,
       title: "Real Estate Agencies",
       description: "Schedule property viewings and answer queries about listings instantly.",
-      demoLink: "/real-estate"
+      demoLink: "https://township-realestate.com"
     },
     {
       icon: <Box className="w-6 h-6" />,

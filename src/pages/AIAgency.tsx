@@ -10,6 +10,7 @@ import { FinalCTASection } from "@/components/ai-agency/FinalCTASection";
 import { SocialProofSection } from "@/components/product-hunt/social-proof/SocialProofSection";
 import { TestimonialSection } from "@/components/ai-agency/TestimonialSection";
 import { ComparisonSection } from "@/components/ai-agency/ComparisonSection";
+import { VideoIntroSection } from "@/components/ai-agency/VideoIntroSection";
 import { getCalApi } from "@calcom/embed-react";
 
 const AIAgency = () => {
@@ -78,6 +79,8 @@ const AIAgency = () => {
       <div id="hero">
         <AgencyHeroSection initialLoad={initialLoad} />
       </div>
+      
+      <VideoIntroSection />
       
       <UniqueAgencySection />
       

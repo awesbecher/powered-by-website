@@ -9,16 +9,19 @@ import { FeaturedSolutionCard } from "@/components/products/FeaturedSolutionCard
 import { MessageSquare, Phone, Mail, Smartphone, Cpu } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import OfferButton from "@/components/home/OfferButton";
-import { getCalApi } from "@calcom/embed-react";
 import CTASection from "@/components/pricing/CTASection";
 import Footer from "@/components/layout/Footer";
 import { motion } from "framer-motion";
+import { useCalendarInitialization, openCalendarModal } from "@/utils/calendarUtils";
 
 const Products = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   const [activeSection, setActiveSection] = useState("");
   const navigate = useNavigate();
   const sectionsRef = useRef<HTMLDivElement>(null);
+
+  // Use the centralized calendar initialization hook
+  useCalendarInitialization();
 
   useEffect(() => {
     setInitialLoad(false);
@@ -41,24 +44,6 @@ const Products = () => {
     };
     
     window.addEventListener('popstate', handlePopState);
-    
-    (async function () {
-      try {
-        console.log("Initializing Cal.com embed at Products page level");
-        const cal = await getCalApi({"namespace":"get-started-today"});
-        cal("ui", {
-          "cssVarsPerTheme": {
-            "light": {"cal-brand":"#292929"},
-            "dark": {"cal-brand":"#fafafa"}
-          },
-          "hideEventTypeDetails": false,
-          "layout": "month_view"
-        });
-        console.log("Cal.com embed initialized successfully at Products page level");
-      } catch (error) {
-        console.error("Error initializing Cal.com embed at Products page level:", error);
-      }
-    })();
     
     return () => {
       window.removeEventListener('popstate', handlePopState);
@@ -89,12 +74,8 @@ const Products = () => {
 
   const handleContact = () => {
     console.log("Contact button clicked in Products");
-    
-    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
-    if (calBtn instanceof HTMLElement) {
-      console.log("Cal.com button found in Products, triggering click");
-      calBtn.click();
-    } else {
+    // Use the centralized openCalendarModal function
+    if (!openCalendarModal("team-powered-by-dfbtbb/get-started-today")) {
       console.error("Cal.com button not found in DOM from Products page, navigating to /contact as fallback");
       navigate('/contact');
     }
@@ -241,13 +222,6 @@ const Products = () => {
         <div className="mt-16 mb-8">
           <CTASection />
         </div>
-        
-        <button
-          data-cal-namespace="get-started-today"
-          data-cal-link="team-powered-by-dfbtbb/get-started-today"
-          data-cal-config='{"layout":"month_view"}'
-          className="hidden"
-        ></button>
         
         <Footer />
       </div>

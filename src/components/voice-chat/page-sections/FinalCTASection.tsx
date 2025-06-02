@@ -1,53 +1,20 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useEffect } from "react";
-import { getCalApi } from "@calcom/embed-react";
+import { useCalendarInitialization, openCalendarModal } from "@/utils/calendarUtils";
 
 export const FinalCTASection = () => {
-  const handleCalendarClick = () => {
+  // Use the centralized calendar initialization hook
+  useCalendarInitialization("get-started-today");
+
+  const handleCalendarClick = async () => {
     console.log("Calendar button clicked in FinalCTASection");
-    try {
-      (window as any).Cal?.('ui', {
-        styles: { branding: { brandColor: '#000000' } },
-        hideEventTypeDetails: false,
-        layout: 'month_view',
-      });
-      (window as any).Cal?.('showModal', {
-        calLink: "team-powered-by-dfbtbb/get-started-today",
-        config: {
-          layout: 'month_view',
-        },
-      });
-    } catch (err) {
-      console.error("Failed to open Cal.com modal from FinalCTASection:", err);
-      // Fallback to finding and clicking the button
-      const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
-      if (calBtn instanceof HTMLElement) {
-        calBtn.click();
-      }
+    
+    // Use the centralized calendar opening function
+    if (!await openCalendarModal("team-powered-by-dfbtbb/get-started-today")) {
+      console.error("Failed to open Cal.com modal from FinalCTASection");
     }
   };
-
-  // Initialize Cal.com with robust error handling
-  useEffect(() => {
-    (async function () {
-      try {
-        console.log("Initializing Cal.com embed in VoiceChat FinalCTASection");
-        const cal = await getCalApi();
-        cal("ui", {
-          "cssVarsPerTheme": {
-            "light": {"cal-brand":"#292929"},
-            "dark": {"cal-brand":"#fafafa"}
-          },
-          "hideEventTypeDetails": false,
-          "layout": "month_view"
-        });
-        console.log("Cal.com embed initialized successfully in VoiceChat FinalCTASection");
-      } catch (error) {
-        console.error("Error initializing Cal.com embed in VoiceChat FinalCTASection:", error);
-      }
-    })();
-  }, []);
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl text-center relative overflow-hidden">
@@ -75,6 +42,7 @@ export const FinalCTASection = () => {
           <Button 
             className="bg-[#6342ff] hover:bg-[#5233e0] text-white px-8 py-6 text-lg rounded-md flex items-center shadow-lg shadow-[#6342ff]/20 w-full sm:w-auto"
             onClick={handleCalendarClick}
+            data-cal-namespace="get-started-today"
             data-cal-link="team-powered-by-dfbtbb/get-started-today"
             data-cal-config='{"layout":"month_view"}'
           >

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { initiateVapiCall } from "@/services/vapiService";
@@ -55,8 +54,8 @@ export function useInsuranceCall() {
         return;
       }
       
-      // Initiate the call using the Vapi service
-      await initiateVapiCall();
+      // Initiate the call using the Vapi service with the insurance-specific assistant ID
+      await initiateVapiCall('insurance');
       
       // Use a timeout to give Vapi time to initialize
       setTimeout(() => {
@@ -119,6 +118,9 @@ export function useInsuranceCall() {
     });
     
     setIsCallActive(false);
+    
+    // Refresh the browser to ensure complete termination of audio connection
+    window.location.reload();
   };
 
   const toggleMute = () => {

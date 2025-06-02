@@ -1,17 +1,18 @@
 import Vapi from '@vapi-ai/web';
 
 // Vapi configuration
-const API_KEY = 'a212f18f-9d02-4703-914f-ac89661262c5';
+const API_KEY = import.meta.env.VITE_VAPI_API_KEY || 'a212f18f-9d02-4703-914f-ac89661262c5'; // Fallback for development
 const MAX_RECONNECT_ATTEMPTS = 3;
 const RECONNECT_DELAY_MS = 2000;
 
 // Assistant IDs for different services
 const ASSISTANT_IDS = {
-  realEstate: 'c1c80d2e-6b65-4172-9f6b-09177b9e54f1',
-  mercedes: 'df42b616-337e-4877-8e9b-44fb0b5a0225',
-  roomService: '238616a3-b611-4faa-a216-74b8d7d8b277',
-  retail: 'defa6102-2358-4347-a192-24c6bc23ea4c',
-  general: 'ebb38ba5-321a-49e4-b860-708bc864327f'
+  realEstate: import.meta.env.VITE_ASSISTANT_ID_REAL_ESTATE || 'c1c80d2e-6b65-4172-9f6b-09177b9e54f1',
+  mercedes: import.meta.env.VITE_ASSISTANT_ID_MERCEDES || 'df42b616-337e-4877-8e9b-44fb0b5a0225',
+  roomService: import.meta.env.VITE_ASSISTANT_ID_ROOM_SERVICE || '238616a3-b611-4faa-a216-74b8d7d8b277',
+  retail: import.meta.env.VITE_ASSISTANT_ID_RETAIL || 'defa6102-2358-4347-a192-24c6bc23ea4c',
+  insurance: import.meta.env.VITE_ASSISTANT_ID_INSURANCE || 'df42b616-337e-4877-8e9b-44fb0b5a0225',
+  general: import.meta.env.VITE_ASSISTANT_ID_GENERAL || 'ebb38ba5-321a-49e4-b860-708bc864327f'
 };
 
 interface CallState {
@@ -245,13 +246,11 @@ export async function initiateVapiCall(service: keyof typeof ASSISTANT_IDS = 'ge
     // Set up gain
     gainNode.gain.value = 1.5; // Boost input slightly
     
-    // Connect nodes
-    source.connect(gainNode);
-    gainNode.connect(destination);
-
-    // Create audio element for monitoring
+    // Do NOT connect source to destination to avoid hearing your own voice
+    // This is what was causing the audio feedback
+    
+    // Create audio element for monitoring but don't feed back the microphone
     const audioElement = new Audio();
-    audioElement.srcObject = destination.stream;
     audioElement.autoplay = true;
 
     // Create Vapi instance
@@ -260,15 +259,15 @@ export async function initiateVapiCall(service: keyof typeof ASSISTANT_IDS = 'ge
       throw new Error('Failed to create Vapi instance');
     }
 
-    // Set up Vapi with destination stream
+    // Set up Vapi with source and destination streams
     // @ts-ignore - Properties exist but types are not defined
     vapiInstance.audioContext = audioContext;
     // @ts-ignore - Properties exist but types are not defined
     vapiInstance.audioInput = source;
     // @ts-ignore - Properties exist but types are not defined
-    vapiInstance.audioOutput = destination;
+    vapiInstance.audioOutput = audioContext.destination;
     // @ts-ignore - Properties exist but types are not defined
-    vapiInstance.audioStream = destination.stream;
+    vapiInstance.audioStream = mediaStream;
 
     // Set up audio element event handlers
     audioElement.onplay = () => {
@@ -284,7 +283,7 @@ export async function initiateVapiCall(service: keyof typeof ASSISTANT_IDS = 'ge
     };
 
     // Log audio track details
-    destination.stream.getAudioTracks().forEach(track => {
+    mediaStream.getAudioTracks().forEach(track => {
       logTelemetry('vapi_track_added', {
         kind: track.kind,
         enabled: track.enabled,
@@ -301,8 +300,7 @@ export async function initiateVapiCall(service: keyof typeof ASSISTANT_IDS = 'ge
       baseLatency: audioContext.baseLatency,
       outputLatency: audioContext.outputLatency,
       microphoneActive: mediaStream.active,
-      destinationActive: destination.stream.active,
-      destinationTracks: destination.stream.getAudioTracks().length
+      microphoneTracks: mediaStream.getAudioTracks().length
     });
 
     // Start the call

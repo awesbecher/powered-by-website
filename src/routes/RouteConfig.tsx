@@ -8,7 +8,7 @@ import ThankYou from '@/pages/ThankYou';
 import Demo from '@/pages/Demo';
 import AIVoiceChat from '@/pages/AIVoiceChat';
 import AIReceptionist from '@/pages/AIReceptionist';
-import Insurance from '@/pages/Insurance';
+import Insurance from '@/pages/insurance';
 import AIAgency from '@/pages/AIAgency';
 import AgentGPT from '@/pages/AgentGPT';
 import AgentGPTBuilder from '@/pages/AgentGPTBuilder';
