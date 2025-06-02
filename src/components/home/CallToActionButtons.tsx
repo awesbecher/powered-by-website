@@ -47,7 +47,7 @@ export const CallToActionButtons = () => {
             <iframe 
               width="100%" 
               height="100%" 
-              src="https://www.youtube.com/embed/w6juT92KdRo?si=NKIDvf5BdRGp2zzx&autoplay=1" 
+              src="https://www.youtube.com/embed/h-rpV6f0JJs?autoplay=1&si=NKIDvf5BdRGp2zzx" 
               title="What's an AI Agent?" 
               frameBorder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
