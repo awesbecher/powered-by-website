@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Helmet } from 'react-helmet';
 import { ServiceCard } from "@/components/products/ServiceCard";
 import { ProductsHero } from "@/components/products/ProductsHero";
 import { ProductIndex } from "@/components/products/ProductIndex";
@@ -141,8 +142,44 @@ const Products = () => {
     }
   };
 
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "AI Agent Solutions",
+    "image": "https://www.poweredby.agency/images/ai-agent-solutions.jpg",
+    "description": "Custom AI agents designed to automate and optimize business operations across various industries including automotive, SaaS, insurance, real estate, and hospitality.",
+    "brand": {
+      "@type": "Organization",
+      "name": "Powered By Agency"
+    },
+    "sku": "AIAGENT001",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.poweredby.agency/products",
+      "priceCurrency": "USD",
+      "price": "299",
+      "priceValidUntil": "2025-12-31",
+      "eligibleRegion": {
+        "@type": "Place",
+        "name": "Global"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "Powered By Agency"
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen w-full relative bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
+      <Helmet>
+        <title>AI Agent Solutions & Products | Powered By Agency</title>
+        <meta name="description" content="Explore custom AI agents designed to automate and optimize business operations. Solutions for automotive, SaaS, insurance, real estate, and hospitality." />
+        <link rel="canonical" href="https://www.poweredby.agency/products" />
+        <script type="application/ld+json">
+          {JSON.stringify(productSchema)}
+        </script>
+      </Helmet>
       <div className="relative z-10 min-h-screen">
         <Navbar />
         
