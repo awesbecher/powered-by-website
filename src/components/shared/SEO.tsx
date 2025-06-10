@@ -8,8 +8,8 @@ interface SEOProps {
 }
 
 export const SEO = ({ 
-  title = "Custom AI Agents for SMBs | Powered_by Agency",
-  description = "Powered_by builds voice, chat & email AI agents that automate your SMB's customer interactions, cutting support costs by $50K+ a year.",
+  title = "Custom AI Agents for SMBs | Automated AI Voice, Email, & SMS-Text",
+  description = "Deploy AI agents for voice, email, and SMS to automate customer interactions, boost engagement, and accelerate business growth.",
   canonical = "https://powered-by.ai",
   faqSchema
 }: SEOProps) => {
