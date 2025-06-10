@@ -4,12 +4,14 @@ interface SEOProps {
   title?: string;
   description?: string;
   canonical?: string;
+  faqSchema?: object; // Added for FAQPage JSON-LD schema
 }
 
 export const SEO = ({ 
   title = "Custom AI Agents for SMBs | Powered_by Agency",
   description = "Powered_by builds voice, chat & email AI agents that automate your SMB's customer interactions, cutting support costs by $50K+ a year.",
-  canonical = "https://powered-by.ai"
+  canonical = "https://powered-by.ai",
+  faqSchema
 }: SEOProps) => {
   return (
     <Helmet>
@@ -38,6 +40,13 @@ export const SEO = ({
       {/* Mobile Optimization */}
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
       <meta name="theme-color" content="#1a0b2e" />
+
+      {/* FAQ Schema */}
+      {faqSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
+      )}
     </Helmet>
   );
 };
