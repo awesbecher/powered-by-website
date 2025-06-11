@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
+import { SEO } from '@/components/shared/SEO';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { HeroSection } from '@/components/text-agent/page-sections/HeroSection';
@@ -89,14 +89,12 @@ const TextAgent: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#1a0b2e] to-[#13151a]">
-      <Helmet>
-        <title>AI Text Agent for SMBs | Fully Automate SMS-Text Communication</title>
-        <meta name="description" content="Deploy AI Text Agents to automate SMS interactions, streamline customer communications, and boost engagement." />
-        <link rel="canonical" href="https://www.poweredby.agency/text-agent" />
-        <script type="application/ld+json">
-          {JSON.stringify(textAgentFaqSchema)}
-        </script>
-      </Helmet>
+      <SEO
+        title="AI Text Agent for SMBs | Fully Automate SMS-Text Communication"
+        description="Deploy AI Text Agents to automate SMS interactions, streamline customer communications, and boost engagement."
+        canonical="https://www.poweredby.agency/text-agent"
+        faqSchema={textAgentFaqSchema}
+      />
       <Navbar />
       <main>
         {/* Hero Section */}

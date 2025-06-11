@@ -81,7 +81,12 @@ const Index = () => {
 
   return (
     <PageLayout>
-      <SEO faqSchema={homepageFaqSchema} />
+      <SEO
+        title="Custom AI Agents for SMBs | Automated AI Voice, Email, & SMS-Text"
+        description="Deploy AI agents for voice, email, and SMS to automate customer interactions, boost engagement, and accelerate business growth."
+        canonical="https://www.poweredby.agency/"
+        faqSchema={homepageFaqSchema}
+      />
       <main>
         <section id="hero-section" className="relative">
           <HeroSection initialLoad={initialLoad} />

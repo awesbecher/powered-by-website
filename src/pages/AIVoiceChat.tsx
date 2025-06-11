@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Helmet } from 'react-helmet';
+import { SEO } from '@/components/shared/SEO';
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { HeroSection } from "@/components/voice-chat/page-sections/HeroSection";
@@ -81,14 +81,12 @@ const AIVoiceChat = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
-      <Helmet>
-        <title>AI Voice Chat for SMBs | 24/7 Customer Support & Engagement</title>
-        <meta name="description" content="Use AI Voice Chat on your website for instant, 24/7 customer support and engagement." />
-        <link rel="canonical" href="https://www.poweredby.agency/voice-chat" />
-        <script type="application/ld+json">
-          {JSON.stringify(aiVoiceChatFaqSchema)}
-        </script>
-      </Helmet>
+      <SEO
+        title="AI Voice Chat for SMBs | 24/7 Customer Support & Engagement"
+        description="Use AI Voice Chat on your website for instant, 24/7 customer support and engagement."
+        canonical="https://www.poweredby.agency/voice-chat"
+        faqSchema={aiVoiceChatFaqSchema}
+      />
       <div className="sticky top-0 z-50 w-full">
         <Navbar />
       </div>

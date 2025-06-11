@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
+import { SEO } from '@/components/shared/SEO';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { HeroSection } from '@/components/email-agent/page-sections/HeroSection';
@@ -89,14 +89,12 @@ const EmailAgent = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e] text-white">
-      <Helmet>
-        <title>AI Email Agent for SMBs | Automate Customer Email Communication</title>
-        <meta name="description" content="Deploy AI Email Agents to effortlessly handle customer inquiries, automate personalized follow-ups, and boost customer engagement." />
-        <link rel="canonical" href="https://www.poweredby.agency/email-agent" />
-        <script type="application/ld+json">
-          {JSON.stringify(emailAgentFaqSchema)}
-        </script>
-      </Helmet>
+      <SEO
+        title="AI Email Agent for SMBs | Automate Customer Email Communication"
+        description="Deploy AI Email Agents to effortlessly handle customer inquiries, automate personalized follow-ups, and boost customer engagement."
+        canonical="https://www.poweredby.agency/email-agent"
+        faqSchema={emailAgentFaqSchema}
+      />
       <Navbar />
       <main>
         <HeroSection initialLoad={initialLoad} handleContact={handleContact} />

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Helmet } from 'react-helmet';
+import { SEO } from "@/components/shared/SEO";
 import { ServiceCard } from "@/components/products/ServiceCard";
 import { ProductsHero } from "@/components/products/ProductsHero";
 import { ProductIndex } from "@/components/products/ProductIndex";
@@ -227,17 +227,15 @@ const Products = () => {
 
   return (
     <div className="min-h-screen w-full relative bg-gradient-to-br from-[#1a0b2e] via-[#2f1c4a] to-[#1a0b2e]">
-      <Helmet>
-        <title>AI Agent Solutions for SMBs | Automated AI Voice, Email, & SMS-Text</title>
-        <meta name="description" content="Discover how AI agents can automate customer engagement, streamline operations, and enhance efficiency across voice, email, and SMS." />
-        <link rel="canonical" href="https://www.poweredby.agency/products" />
-        <script type="application/ld+json">
-          {JSON.stringify(productSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(productsFaqSchema)}
-        </script>
-      </Helmet>
+      <SEO
+        title="AI Agent Solutions for SMBs | Automated AI Voice, Email, & SMS-Text"
+        description="Discover how AI agents can automate customer engagement, streamline operations, and enhance efficiency across voice, email, and SMS."
+        canonical="https://www.poweredby.agency/products"
+        faqSchema={{
+          ...productsFaqSchema,
+          additionalSchemas: [productSchema]
+        }}
+      />
       <div className="relative z-10 min-h-screen">
         <Navbar />
         

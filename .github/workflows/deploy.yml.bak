@@ -23,8 +23,6 @@ jobs:
       
       - name: Build
         run: npm run build
-        env:
-          VITE_CLARITY_ID: ${{ secrets.VITE_CLARITY_ID }}
 
   deploy-staging:
     needs: verify
@@ -42,8 +40,6 @@ jobs:
       
       - name: Build
         run: npm run build
-        env:
-          VITE_CLARITY_ID: ${{ secrets.VITE_CLARITY_ID }}
       
       - name: Deploy to Firebase Staging
         run: |
