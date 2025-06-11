@@ -4,6 +4,13 @@
 
 **URL**: https://lovable.dev/projects/8cc87c67-4a57-4d06-9e12-7f96ed3d254a
 
+## Powered By Website
+
+This is the main website for Powered By Agency.
+
+## SEO Updates
+Meta titles and descriptions updated on June 11, 2025.
+
 ## How can I edit this code?
 
 There are several ways of editing your application.
