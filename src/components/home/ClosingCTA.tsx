@@ -12,63 +12,82 @@ interface ClosingCTAProps {
   onContactClick?: () => void;
 }
 
-export const ClosingCTA: React.FC<ClosingCTAProps> = ({
+const ClosingCTA = ({
   customHeading,
   customButtonText = "Get Started",
   useCalendly = false,
   externalLink = null,
   onContactClick
-}) => {
+}: ClosingCTAProps) => {
+  // Set up Cal.com API
   useEffect(() => {
-    (async function () {
+    (async function() {
       try {
-        console.log("Initializing Cal.com embed in ClosingCTA");
-        const cal = await getCalApi({"namespace":"get-started-today"});
-        cal("ui", {
-          "cssVarsPerTheme": {
-            "light": {"cal-brand":"#292929"},
-            "dark": {"cal-brand":"#fafafa"}
-          },
-          "hideEventTypeDetails": false,
-          "layout": "month_view"
-        });
-        
-        // Preload the calendar link
-        cal("preload", { calLink: "team-powered-by-dfbtbb/get-started-today" });
-        console.log("Cal.com embed initialized successfully in ClosingCTA");
+        const cal = await getCalApi();
+        if (cal) {
+          // Initialize Cal with our namespace
+          cal("init", {
+            origin: "https://cal.com"
+          });
+          
+          // Preload for faster modal opening
+          cal("preload", {
+            calLink: "team-powered-by-dfbtbb/get-started-today"
+          });
+          
+          // Configure UI
+          cal("ui", {
+            theme: "light",
+            styles: {
+              branding: {
+                brandColor: "#9b87f5" 
+              }
+            },
+            hideEventTypeDetails: false
+          });
+          
+          console.log("Cal.com API initialized in ClosingCTA");
+        }
       } catch (error) {
-        console.error("Error initializing Cal.com embed in ClosingCTA:", error);
+        console.error("Failed to initialize Cal.com API:", error);
       }
     })();
   }, []);
-
-  const handleClick = async () => {
+  
+  // Handle clicking the "Get Started" button
+  const handleClick = async (e: React.MouseEvent) => {
     if (onContactClick) {
       onContactClick();
       return;
     }
     
-    console.log("Get Started button clicked in ClosingCTA");
+    if (externalLink) {
+      // Let default link behavior happen
+      return;
+    }
+    
+    e.preventDefault();
     
     try {
-      // Get fresh instance of Cal API
-      const cal = await getCalApi({"namespace":"get-started-today"});
-      
-      // Configure UI
-      cal("ui", {
-        "cssVarsPerTheme": {
-          "light": {"cal-brand":"#292929"},
-          "dark": {"cal-brand":"#fafafa"}
-        },
-        "hideEventTypeDetails": false,
-        "layout": "month_view"
-      });
-      
-      // Directly open the calendar modal with the correct method name
-      cal("modal", { calLink: "team-powered-by-dfbtbb/get-started-today" });
-      console.log("Cal.com modal opened from ClosingCTA");
+      // Direct programmatic opening using Cal API
+      const cal = await getCalApi();
+      if (cal) {
+        // Open the modal directly instead of relying on data attributes
+        cal("modal", {
+          calLink: "team-powered-by-dfbtbb/get-started-today",
+          config: {
+            layout: "month_view"
+          }
+        });
+        
+        console.log("Cal.com modal opened programmatically");
+      } else {
+        console.error("Cal API not available");
+        window.location.href = "/contact";
+      }
     } catch (error) {
-      console.error("Failed to open Cal.com modal from ClosingCTA:", error);
+      console.error("Error opening Cal.com modal:", error);
+      window.location.href = "/contact";
     }
   };
 
@@ -83,7 +102,7 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
         </p>
         {externalLink ? (
           <Button
-            className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md"
+            className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md cal-btn"
             onClick={handleClick}
             asChild
           >
@@ -93,19 +112,15 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
           </Button>
         ) : useCalendly || onContactClick ? (
           <Button
-            className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md"
+            className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md cal-btn"
             onClick={handleClick}
-            data-cal-link="team-powered-by-dfbtbb/get-started-today"
-            data-cal-config='{"layout":"month_view"}'
           >
             {customButtonText} <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         ) : (
           <Button
-            className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md"
+            className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md cal-btn"
             onClick={handleClick}
-            data-cal-link="team-powered-by-dfbtbb/get-started-today"
-            data-cal-config='{"layout":"month_view"}'
           >
             {customButtonText} <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
