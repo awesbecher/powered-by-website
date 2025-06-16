@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { useEffect } from "react";
 import { getCalApi } from "@calcom/embed-react";
+import Cal, { getCalApi as getCalApiInline } from "@calcom/embed-react";
 
 interface ClosingCTAProps {
   customHeading?: string;
@@ -19,75 +19,71 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
   externalLink = null,
   onContactClick
 }: ClosingCTAProps) => {
-  // Set up Cal.com API
+  // Cal.com initialization state
+  const [calLoaded, setCalLoaded] = useState(false);
+  
+  // Initialize Cal.com API
   useEffect(() => {
+    // Initialize Cal.com API
     (async function() {
       try {
         const cal = await getCalApi();
-        if (cal) {
-          // Initialize Cal with our namespace
-          cal("init", {
-            origin: "https://cal.com"
-          });
-          
-          // Preload for faster modal opening
-          cal("preload", {
-            calLink: "team-powered-by-dfbtbb/get-started-today"
-          });
-          
-          // Configure UI
-          cal("ui", {
-            theme: "light",
-            styles: {
-              branding: {
-                brandColor: "#9b87f5" 
-              }
-            },
-            hideEventTypeDetails: false
-          });
-          
-          console.log("Cal.com API initialized in ClosingCTA");
-        }
-      } catch (error) {
-        console.error("Failed to initialize Cal.com API:", error);
-      }
-    })();
-  }, []);
-  
-  // Handle clicking the "Get Started" button
-  const handleClick = async (e: React.MouseEvent) => {
-    if (onContactClick) {
-      onContactClick();
-      return;
-    }
-    
-    if (externalLink) {
-      // Let default link behavior happen
-      return;
-    }
-    
-    e.preventDefault();
-    
-    try {
-      // Direct programmatic opening using Cal API
-      const cal = await getCalApi();
-      if (cal) {
-        // Open the modal directly instead of relying on data attributes
-        cal("modal", {
-          calLink: "team-powered-by-dfbtbb/get-started-today",
-          config: {
-            layout: "month_view"
+        // Configure event listeners
+        cal("on", {
+          action: "*",
+          callback: (data: any) => {
+            console.log("Cal event:", data);
+            // You can handle various Cal events here
+            if (data.event === "BOOKING_CREATED" || data.event === "booking_created") {
+              console.log("Booking created successfully!");
+              // You could trigger additional actions here
+            }
           }
         });
         
-        console.log("Cal.com modal opened programmatically");
+        // Preload the calendar
+        cal("preload", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+        
+        // Mark as loaded
+        setCalLoaded(true);
+        console.log("Cal.com API initialized successfully");
+      } catch (error) {
+        console.error("Error initializing Cal API:", error);
+      }
+    })();
+  }, []);
+
+  const handleButtonClick = async (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    if (useCalendly || externalLink) {
+      if (externalLink) {
+        window.location.href = externalLink;
+      } else if (onContactClick) {
+        onContactClick();
+      }
+      return;
+    }
+
+    try {
+      // Use the direct API approach - this is more reliable than toggling component visibility
+      const cal = await getCalApi();
+      if (cal) {
+        console.log("Opening Cal modal programmatically");
+        cal("modal", {
+          calLink: "team-powered-by-dfbtbb/get-started-today",
+          config: {
+            layout: "month_view",
+            theme: 'light',
+          }
+        });
       } else {
-        console.error("Cal API not available");
-        window.location.href = "/contact";
+        throw new Error("Cal API not available");
       }
     } catch (error) {
-      console.error("Error opening Cal.com modal:", error);
-      window.location.href = "/contact";
+      console.error("Error opening Cal modal:", error);
+      // Fallback: open Cal.com in new tab as last resort
+      window.open("https://cal.com/team-powered-by-dfbtbb/get-started-today", "_blank");
     }
   };
 
@@ -103,7 +99,7 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
         {externalLink ? (
           <Button
             className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md cal-btn"
-            onClick={handleClick}
+            onClick={handleButtonClick}
             asChild
           >
             <a href={externalLink} target="_blank" rel="noopener noreferrer">
@@ -113,21 +109,33 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
         ) : useCalendly || onContactClick ? (
           <Button
             className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md cal-btn"
-            onClick={handleClick}
+            onClick={handleButtonClick}
           >
             {customButtonText} <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         ) : (
           <Button
             className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md cal-btn"
-            onClick={handleClick}
+            onClick={handleButtonClick}
           >
             {customButtonText} <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         )}
+        {/* Preloaded Cal Component */}
+        <Cal
+          calLink="team-powered-by-dfbtbb/get-started-today" 
+          config={{
+            layout: "month_view",
+            theme: 'light',
+          }}
+          embedJsUrl="https://app.cal.com/embed/embed.js"
+          style={{ width: '0', height: '0', position: 'absolute', opacity: 0 }}
+        />
       </div>
     </section>
   );
 };
 
 // Export is handled via named export above
+
+// No need to redeclare Window.Cal as it's handled by @calcom/embed-react
