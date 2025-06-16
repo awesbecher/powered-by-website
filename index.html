@@ -153,59 +153,103 @@
       })(window.lintrk);
     </script>
     
-    <!-- Cal embed script and hidden button approach -->
-    <script src="https://cal.com/embed.js"></script>
+    <!-- jQuery for modal functionality -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <!-- Custom modal styles -->
+    <style>
+      #cal-modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      #cal-modal-container {
+        background-color: white;
+        width: 90%;
+        max-width: 1000px;
+        height: 80vh;
+        border-radius: 8px;
+        overflow: hidden;
+        position: relative;
+      }
+      
+      #cal-modal-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 5px 10px;
+        z-index: 10;
+      }
+      
+      #cal-iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+    </style>
+    
+    <!-- Cal modal container -->
+    <div id="cal-modal-overlay">
+      <div id="cal-modal-container">
+        <button id="cal-modal-close">×</button>
+        <iframe id="cal-iframe" src="https://cal.com/team-powered-by-dfbtbb/get-started-today"></iframe>
+      </div>
+    </div>
+    
+    <!-- Direct jQuery implementation for Cal buttons -->
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        console.log('Setting up Cal.com button click handlers');
+      $(document).ready(function() {
+        console.log('Setting up jQuery calendar modal');
         
-        // Add click handlers to all buttons on the page
-        document.addEventListener('click', function(event) {
-          // Find the clicked element or its parent that might be a button
-          let target = event.target;
-          let button = null;
-          
-          // Check if the target or any of its parents is a button or has specific classes
-          while (target && target !== document) {
-            if (target.tagName === 'BUTTON' || 
-                target.tagName === 'A' || 
-                target.classList.contains('bg-primary') || 
-                target.classList.contains('bg-[#9b87f5]') || 
-                target.hasAttribute('data-cal-link')) {
-              button = target;
-              break;
-            }
-            target = target.parentNode;
+        // Function to open modal
+        window.openCalendarModal = function() {
+          $('#cal-modal-overlay').css('display', 'flex');
+          console.log('Calendar modal opened');
+        };
+        
+        // Close modal when clicking close button or outside
+        $('#cal-modal-close, #cal-modal-overlay').click(function(event) {
+          if (event.target === this || event.target.id === 'cal-modal-close') {
+            $('#cal-modal-overlay').hide();
           }
-          
-          // If we found a button, trigger Cal.com
-          if (button) {
-            event.preventDefault();
-            console.log('Button clicked, opening Cal.com');
+        });
+        
+        // Prevent closing when clicking inside modal content
+        $('#cal-modal-container').click(function(event) {
+          event.stopPropagation();
+        });
+        
+        // Add click handler to all buttons on the site
+        $(document).on('click', 'button, .button, a.button, [class*="primary"], [class*="9b87f5"]', function(event) {
+          // Check if this button seems like a "Get Started" or similar button
+          var buttonText = $(this).text().toLowerCase();
+          if (buttonText.includes('get started') || 
+              buttonText.includes('schedule') || 
+              buttonText.includes('book') || 
+              buttonText.includes('call') || 
+              buttonText.includes('demo') || 
+              $(this).attr('data-cal-link')) {
             
-            // Brute force approach: click our hidden Cal button which is guaranteed to work
-            try {
-              const hiddenCalButton = document.getElementById('hidden-cal-button');
-              if (hiddenCalButton) {
-                hiddenCalButton.click();
-              }
-            } catch (error) {
-              console.error('Error clicking hidden Cal button', error);
-            }
+            event.preventDefault();
+            console.log('Potential calendar button clicked');
+            openCalendarModal();
+            return false;
           }
         });
       });
     </script>
-    <!-- Cal embed ends -->
-    
-    <!-- This is a hidden button that will be used to open the Cal.com modal -->
-    <div style="display: none;">
-      <button id="hidden-cal-button"
-              data-cal-link="team-powered-by-dfbtbb/get-started-today"
-              data-cal-namespace="powered-by"
-              data-cal-config='{"layout":"month_view"}'
-      >Hidden Cal Button</button>
-    </div>
   </head>
   <body>
     <!-- LinkedIn Tracking Pixel -->
