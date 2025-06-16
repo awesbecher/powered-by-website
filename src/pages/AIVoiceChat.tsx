@@ -77,14 +77,18 @@ const AIVoiceChat = () => {
     window.scrollTo(0, 0);
   }, []);
   
-  const handleContact = () => {
+  const handleContact = async () => {
     try {
-      const calButton = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
-      if (calButton instanceof HTMLElement) {
-        calButton.click();
-      } else {
-        console.error("Failed to open Cal.com modal for voice-ai-chat, button not found");
-      }
+      // Get fresh instance of Cal API
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      
+      // Configure UI
+      cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+      
+      // Directly open the calendar modal
+      cal("modal", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+      
+      console.log("Cal.com modal opened from AIVoiceChat page");
     } catch (error) {
       console.error("Failed to open Cal.com modal for voice-ai-chat:", error);
     }
