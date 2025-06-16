@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { NavbarCta } from "@/components/navigation/NavbarCta";
 import { useEffect } from "react";
-import { initializeCalendar, openCalendarModal } from "@/utils/calendarUtils";
+import { getCalApi } from "@calcom/embed-react";
 
 const Navbar = () => {
   const location = useLocation();
@@ -18,7 +18,8 @@ const Navbar = () => {
   useEffect(() => {
     (async function () {
       try {
-        await initializeCalendar();
+        const cal = await getCalApi({"namespace":"get-started-today"});
+        cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
       } catch (error) {
         console.error("Error initializing Cal.com embed:", error);
       }
@@ -27,7 +28,16 @@ const Navbar = () => {
 
   const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    openCalendarModal();
+    try {
+      const calButton = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
+      if (calButton instanceof HTMLElement) {
+        calButton.click();
+      } else {
+        console.error("Cal.com button not found");
+      }
+    } catch (error) {
+      console.error("Error opening Cal.com modal:", error);
+    }
   };
 
   return (
