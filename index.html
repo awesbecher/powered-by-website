@@ -153,7 +153,45 @@
       })(window.lintrk);
     </script>
     
-    <!-- Direct calendar redirect script -->
+    <!-- Cal.com Embed API Script -->
+    <script type="text/javascript">
+      (function (C, A, L) {
+        let p = function (a, ar) {
+          a.q.push(ar);
+        };
+        let d = C.document;
+        C.Cal =
+          C.Cal ||
+          function () {
+            let cal = C.Cal;
+            let ar = arguments;
+            if (!cal.loaded) {
+              cal.ns = {};
+              cal.q = cal.q || [];
+              d.head.appendChild(d.createElement("script")).src = A;
+              cal.loaded = true;
+            }
+            if (ar[0] === L) {
+              const api = function () {
+                p(api, arguments);
+              };
+              const namespace = ar[1];
+              api.q = api.q || [];
+              typeof namespace === "string"
+                ? (cal.ns[namespace] = api) && p(api, ar)
+                : p(cal, ar);
+              return;
+            }
+            p(cal, ar);
+          };
+      })(window, "https://app.cal.com/embed/embed.js", "init");
+      Cal("init", {origin: "https://cal.com"});
+
+      // Preload the Cal.com widget
+      Cal("preload", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+    </script>
+    
+    <!-- Cal.com calendar link interceptor -->
     <script>
     (function() {
       // Wait for DOM to fully load
@@ -229,12 +267,32 @@
             target = target.parentNode;
           }
           
-          // If calendar button detected, open in new tab
+          // If calendar button detected, try to open Cal modal
           if (isCalendarButton) {
             event.preventDefault();
             event.stopPropagation();
             console.log('📅 Calendar button detected and clicked!', event.target);
-            window.open(calendarUrl, '_blank');
+            
+            // Try to open Cal.com modal with API
+            if (window.Cal && typeof window.Cal === 'function') {
+              try {
+                window.Cal('modal', {
+                  calLink: 'team-powered-by-dfbtbb/get-started-today',
+                  config: {
+                    layout: 'month_view',
+                    theme: 'light'
+                  }
+                });
+                console.log('✅ Cal.com modal opened via global handler');
+              } catch (err) {
+                console.error('❌ Error opening Cal.com modal:', err);
+                // Fallback to opening in new tab
+                window.open(calendarUrl, '_blank');
+              }
+            } else {
+              console.warn('⚠️ Cal.com API not available, opening in new tab');
+              window.open(calendarUrl, '_blank');
+            }
             return false;
           }
         }, true); // Use capture phase to get events before React
