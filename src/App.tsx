@@ -12,6 +12,7 @@ import { queryClient } from './config/queryClient';
 import { ThemeProvider } from './config/themeConfig';
 import * as serviceWorker from './serviceWorker';
 import { ensureCustomEventSupport } from './utils/eventPolyfill';
+import { initializeCalButtonsFix } from './utils/calendarUtils';
 
 // Create theme
 const theme = createTheme({
@@ -50,6 +51,9 @@ const theme = createTheme({
 });
 
 export default function App() {
+  // Initialize Cal.com button fixes to ensure all Cal buttons work properly
+  initializeCalButtonsFix();
+  
   useEffect(() => {
     ensureCustomEventSupport();
     serviceWorker.register();

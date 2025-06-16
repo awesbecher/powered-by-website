@@ -55,3 +55,101 @@ export const useCalendarInitialization = () => {
   }, []);
 };
 
+// Add TypeScript definitions for Cal.com global object
+type CalFunction = Function & {
+  ns?: {
+    [key: string]: any
+  };
+  loaded?: boolean;
+  q?: any[];
+};
+
+declare global {
+  interface Window {
+    Cal?: CalFunction;
+    lintrk?: any;
+  }
+}
+
+// Function to ensure all Cal buttons have proper attributes and initialization
+export const initializeCalButtonsFix = () => {
+  useEffect(() => {
+    // Global function to fix all cal buttons
+    const fixCalButtons = () => {
+      // Find all buttons with data-cal-link but no data-cal-namespace
+      const buttons = document.querySelectorAll('[data-cal-link]:not([data-cal-namespace])');
+      console.log(`Found ${buttons.length} Cal buttons without namespace attributes`);
+      
+      // Add namespace attribute to each button
+      buttons.forEach(button => {
+        button.setAttribute('data-cal-namespace', 'get-started-today');
+        console.log('Added namespace attribute to Cal button');
+      });
+      
+      // Add click handler to all Cal buttons to ensure they work
+      const allCalButtons = document.querySelectorAll('[data-cal-link]');
+      allCalButtons.forEach(button => {
+        // Only add handler if it doesn't already have one
+        if (!button.hasAttribute('data-cal-handled')) {
+          button.setAttribute('data-cal-handled', 'true');
+          
+          // Add click event listener properly
+          button.addEventListener('click', async (e) => {
+            // Don't trigger default behavior which might interfere
+            e.preventDefault();
+            
+            try {
+              // Force Cal to recognize the button
+              if (window.Cal && typeof window.Cal === 'function') {
+                // Reinitialize Cal just to be safe
+                window.Cal('init', 'get-started-today', {origin: 'https://cal.com'});
+                
+                // Get the cal link and config from the button
+                const calLink = button.getAttribute('data-cal-link') || '';
+                const configStr = button.getAttribute('data-cal-config') || '{"layout":"month_view"}';
+                const config = JSON.parse(configStr);
+                
+                // Use the documented modal method which is supported
+                window.Cal.ns['get-started-today']('modal', {
+                  calLink: calLink,
+                  config: config
+                });
+                
+                console.log('Cal.com modal opened through modal method');
+              } else {
+                console.error('Cal.com not found on window object');
+              }
+            } catch (error) {
+              console.error('Error opening Cal.com modal:', error);
+            }
+          });
+        }
+      });
+    };
+    
+    // Fix buttons on initial load
+    setTimeout(fixCalButtons, 1000);
+    
+    // Fix buttons whenever DOM changes (for dynamically added buttons)
+    const observer = new MutationObserver((mutations) => {
+      let shouldFix = false;
+      mutations.forEach(mutation => {
+        if (mutation.addedNodes.length > 0) {
+          shouldFix = true;
+        }
+      });
+      
+      if (shouldFix) {
+        setTimeout(fixCalButtons, 500);
+      }
+    });
+    
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+    
+    return () => observer.disconnect();
+  }, []);
+};
+
