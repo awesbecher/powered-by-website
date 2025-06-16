@@ -153,63 +153,59 @@
       })(window.lintrk);
     </script>
     
-    <!-- Cal embed code begins - simplified version -->
-    <script type="text/javascript">
-    (function (C, A, L) {
-      let p = function (a, ar) { a.q.push(ar); };
-      let d = C.document;
-      C.Cal = C.Cal || function () {
-        let cal = C.Cal;
-        let ar = arguments;
-        if (!cal.loaded) {
-          cal.ns = {};
-          cal.q = cal.q || [];
-          d.head.appendChild(d.createElement("script")).src = A;
-          cal.loaded = true;
-        }
-        if (ar[0] === L) {
-          const api = function () { p(api, arguments); };
-          const namespace = ar[1];
-          api.q = api.q || [];
-          if(typeof namespace === "string"){
-            cal.ns[namespace] = cal.ns[namespace] || api;
-            p(cal.ns[namespace], ar);
-            p(cal, ["initNamespace", namespace]);
-          } else p(cal, ar);
-          return;
-        }
-        p(cal, ar);
-      };
-    })(window, "https://app.cal.com/embed/embed.js", "init");
-      
-    // Initialize Cal with our namespace
-    Cal("init", {origin: "https://cal.com"});
-      
-    // Function to manually open calendar - can be called from any button
-    window.openCalendarModal = function() {
-      Cal("modal", {
-        calLink: "team-powered-by-dfbtbb/get-started-today",
-        layout: "month_view"
-      });
-      console.log('Calendar modal opened via global function');
-    };
-      
-    // Make sure Cal is loaded before proceeding
-    document.addEventListener('DOMContentLoaded', function() {
-      // Create a global click handler for any button with class 'cal-btn'
-      document.addEventListener('click', function(e) {
-        if (e.target && (e.target.classList.contains('cal-btn') || 
-            e.target.closest('.cal-btn') || 
-            e.target.hasAttribute('data-cal-link'))) {
-          e.preventDefault();
-          window.openCalendarModal();
-        }
-      }, true);
+    <!-- Cal embed script and hidden button approach -->
+    <script src="https://cal.com/embed.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('Setting up Cal.com button click handlers');
         
-      console.log('Cal.com global click handler initialized');
-    });
+        // Add click handlers to all buttons on the page
+        document.addEventListener('click', function(event) {
+          // Find the clicked element or its parent that might be a button
+          let target = event.target;
+          let button = null;
+          
+          // Check if the target or any of its parents is a button or has specific classes
+          while (target && target !== document) {
+            if (target.tagName === 'BUTTON' || 
+                target.tagName === 'A' || 
+                target.classList.contains('bg-primary') || 
+                target.classList.contains('bg-[#9b87f5]') || 
+                target.hasAttribute('data-cal-link')) {
+              button = target;
+              break;
+            }
+            target = target.parentNode;
+          }
+          
+          // If we found a button, trigger Cal.com
+          if (button) {
+            event.preventDefault();
+            console.log('Button clicked, opening Cal.com');
+            
+            // Brute force approach: click our hidden Cal button which is guaranteed to work
+            try {
+              const hiddenCalButton = document.getElementById('hidden-cal-button');
+              if (hiddenCalButton) {
+                hiddenCalButton.click();
+              }
+            } catch (error) {
+              console.error('Error clicking hidden Cal button', error);
+            }
+          }
+        });
+      });
     </script>
-    <!-- Cal embed code ends -->
+    <!-- Cal embed ends -->
+    
+    <!-- This is a hidden button that will be used to open the Cal.com modal -->
+    <div style="display: none;">
+      <button id="hidden-cal-button"
+              data-cal-link="team-powered-by-dfbtbb/get-started-today"
+              data-cal-namespace="powered-by"
+              data-cal-config='{"layout":"month_view"}'
+      >Hidden Cal Button</button>
+    </div>
   </head>
   <body>
     <!-- LinkedIn Tracking Pixel -->
