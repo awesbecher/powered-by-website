@@ -205,13 +205,55 @@
         height: 100%;
         border: none;
       }
+      
+      /* Loading spinner */
+      .calendar-loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: white;
+      }
+      
+      .calendar-spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #9b87f5;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      .hidden {
+        display: none;
+      }
     </style>
     
     <!-- Calendar modal HTML -->
     <div id="custom-calendar-overlay">
       <div id="calendar-modal">
         <button id="calendar-close-btn" aria-label="Close calendar">×</button>
-        <iframe id="calendar-iframe" title="Calendar booking" allowfullscreen></iframe>
+        <!-- Loading spinner -->
+        <div id="calendar-loader" class="calendar-loader">
+          <div class="calendar-spinner"></div>
+        </div>
+        <!-- Direct link to Cal.com -->
+        <iframe 
+          id="calendar-iframe" 
+          title="Calendar booking" 
+          src="https://cal.com/team-powered-by-dfbtbb/get-started-today" 
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
       </div>
     </div>
     
@@ -226,20 +268,41 @@
         const overlay = document.getElementById('custom-calendar-overlay');
         const iframe = document.getElementById('calendar-iframe');
         const closeBtn = document.getElementById('calendar-close-btn');
+        const loader = document.getElementById('calendar-loader');
         
-        // Calendar URL
-        const calendarUrl = 'https://cal.com/team-powered-by-dfbtbb/get-started-today';
+        // Handle iframe loading states
+        iframe.onload = function() {
+          console.log('Calendar iframe loaded successfully');
+          loader.classList.add('hidden');
+        };
+        
+        iframe.onerror = function() {
+          console.error('Calendar iframe failed to load');
+          // Show error message in the loader
+          loader.innerHTML = '<div><h3>Error loading calendar</h3><p>Please try refreshing or contact support.</p></div>';
+        };
         
         // Function to open calendar modal
         window.openCalendarModal = function() {
-          // Set the iframe source only when opening (for performance)
-          if (!iframe.src) {
-            iframe.src = calendarUrl;
+          // Show the overlay and loader
+          overlay.style.display = 'flex';
+          loader.classList.remove('hidden');
+          
+          // Make sure iframe is properly loaded
+          if (iframe.src !== 'https://cal.com/team-powered-by-dfbtbb/get-started-today') {
+            iframe.src = 'https://cal.com/team-powered-by-dfbtbb/get-started-today';
           }
           
-          // Show the overlay
-          overlay.style.display = 'flex';
           console.log('📅 Calendar modal opened');
+          
+          // If iframe doesn't load within 5 seconds, provide a direct link
+          setTimeout(function() {
+            if (!loader.classList.contains('hidden')) {
+              loader.innerHTML = '<div><h3>Taking too long to load?</h3>' + 
+                                '<p><a href="https://cal.com/team-powered-by-dfbtbb/get-started-today" ' + 
+                                'target="_blank" style="color:#9b87f5;">Click here to open in a new tab</a></p></div>';
+            }
+          }, 5000);
         };
         
         // Function to close calendar modal
