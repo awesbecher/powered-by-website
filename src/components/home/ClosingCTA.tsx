@@ -12,7 +12,7 @@ interface ClosingCTAProps {
   onContactClick?: () => void;
 }
 
-const ClosingCTA = ({
+export const ClosingCTA: React.FC<ClosingCTAProps> = ({
   customHeading,
   customButtonText = "Get Started",
   useCalendly = false,
@@ -130,4 +130,4 @@ const ClosingCTA = ({
   );
 };
 
-export default ClosingCTA;
+// Export is handled via named export above
