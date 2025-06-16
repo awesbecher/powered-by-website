@@ -8,14 +8,43 @@ export const VideoIntroSection = () => {
           What's an AI Agency?
         </h2>
       </div>
-      <div className="mx-auto max-w-4xl aspect-video rounded-xl overflow-hidden shadow-2xl shadow-[#6342ff]/20 border border-gray-800">
-        <iframe 
-          className="w-full h-full"
-          src="https://www.youtube.com/embed/m2Cy-Bxk4TQ?si=v4eu_vWDGUcTLjdC" 
-          title="What's an AI Agency?"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-          allowFullScreen
-        ></iframe>
+      <div className="mx-auto max-w-4xl aspect-video rounded-xl overflow-hidden shadow-2xl shadow-[#6342ff]/20 border border-gray-800 cursor-pointer youtube-container">
+        <div className="youtube-player w-full h-full relative" onClick={(e) => {
+          const iframe = e.currentTarget.querySelector('iframe');
+          if (iframe) {
+            // Update src to force video to play when clicked
+            iframe.src = "https://www.youtube.com/embed/m2Cy-Bxk4TQ?autoplay=1&si=JH0B0uMzalgazlqz";
+            // Remove thumbnail overlay
+            const overlay = e.currentTarget.querySelector('.youtube-thumbnail') as HTMLElement;
+            if (overlay) overlay.style.display = 'none';
+          }
+        }}>
+          {/* Thumbnail overlay */}
+          <div className="youtube-thumbnail absolute inset-0 flex items-center justify-center">
+            <img 
+              src="https://img.youtube.com/vi/m2Cy-Bxk4TQ/maxresdefault.jpg" 
+              alt="What's an AI Agency?"
+              className="w-full h-full object-cover" 
+            />
+            {/* Play button overlay */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-20 h-20 rounded-full bg-[#9b87f5]/80 flex items-center justify-center transition-all duration-300 hover:bg-[#6342ff] hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="w-10 h-10">
+                  <path d="M8 5.14v14l11-7-11-7z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+          
+          <iframe
+            className="absolute top-0 left-0 w-full h-full"
+            src="about:blank" // Initial blank source, will be updated on click
+            title="What's an AI Agency?"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe>
+        </div>
       </div>
     </section>
   );
