@@ -153,23 +153,88 @@
       })(window.lintrk);
     </script>
     
-    <!-- Cal.com Embed Code -->
-    <link href="https://cal.com/embed/embed.css" rel="stylesheet">
-    <script type="text/javascript" src="https://cal.com/embed/embed.js" async></script>
+    <!-- Cal.com Embed Code - Properly Initialized -->
+    <script>
+      (function (C, A, L) {
+        let p = function (a, ar) {
+          a.q.push(ar);
+        };
+        let d = C.document;
+        C.Cal =
+          C.Cal ||
+          function () {
+            let cal = C.Cal;
+            let ar = arguments;
+            if (!cal.loaded) {
+              cal.ns = {};
+              cal.q = cal.q || [];
+              d.head.appendChild(d.createElement("script")).src = A;
+              cal.loaded = true;
+            }
+            if (ar[0] === L) {
+              const api = function () {
+                p(api, arguments);
+              };
+              const namespace = ar[1];
+              api.q = api.q || [];
+              typeof namespace === "string"
+                ? (cal.ns[namespace] = api) && p(api, ar)
+                : p(cal, ar);
+              return;
+            }
+            p(cal, ar);
+          };
+      })(window, "https://cal.com/embed/embed.js", "init");
+    </script>
     
-    <!-- Cal.com calendar link interceptor -->
+    <!-- Cal.com calendar link interceptor with proper initialization -->
     <script>
     (function() {
-      // Wait for DOM to fully load
       document.addEventListener('DOMContentLoaded', function() {
+        const calendarUrl = 'https://cal.com/team-powered-by-dfbtbb/get-started-today';
+
+        // Initialize Cal properly
+        if (window.Cal) {
+          window.Cal("init");
+          // Preload the embed once it's available
+          window.Cal("preload", {
+            calLink: "team-powered-by-dfbtbb/get-started-today"
+          });
+          
+          // Configure UI
+          window.Cal("ui", {
+            styles: {
+              branding: {
+                brandColor: "#9b87f5"
+              }
+            },
+            hideEventTypeDetails: false
+          });
+          
+          console.log('✅ Cal.com initialized successfully');
+        }
+
         console.log('🔄 Initializing calendar link handlers');
         
-        // Cal.com URL
-        const calendarUrl = 'https://cal.com/team-powered-by-dfbtbb/get-started-today';
-        
-        // Function to open the calendar
+        // Function to open the calendar - priority: modal, fallback: new tab
         window.openCalendarModal = function() {
-          console.log('📅 Opening calendar in new tab');
+          if (window.Cal && typeof window.Cal === 'function') {
+            try {
+              console.log('📅 Opening calendar modal');
+              window.Cal('modal', {
+                calLink: 'team-powered-by-dfbtbb/get-started-today',
+                config: {
+                  layout: 'month_view',
+                  theme: 'light'
+                }
+              });
+              return true;
+            } catch (err) {
+              console.error('Error opening Cal.com modal:', err);
+            }
+          }
+          // Fallback: open in new tab
+          console.log('📅 Fallback: Opening calendar in new tab');
           window.open(calendarUrl, '_blank');
         };
         
@@ -233,12 +298,12 @@
             target = target.parentNode;
           }
           
-          // If calendar button detected, simply open in a new tab
+          // If calendar button detected, open calendar modal
           if (isCalendarButton) {
             event.preventDefault();
             event.stopPropagation();
             console.log('📅 Calendar button detected and clicked!', event.target);
-            window.open(calendarUrl, '_blank');
+            window.openCalendarModal();
             return false;
           }
         }, true); // Use capture phase to get events before React
