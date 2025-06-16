@@ -268,12 +268,13 @@
             target = target.parentNode;
           }
           
-          // If calendar button detected, add Cal data attribute and let Cal.com handle it
-          if (isCalendarButton && !target.hasAttribute('data-cal-link')) {
-            // Add Cal.com data attribute so their script will handle the click
-            target.setAttribute('data-cal-link', 'team-powered-by-dfbtbb/get-started-today');
-            target.setAttribute('data-cal-namespace', 'powered-by');
-            console.log('📅 Added Cal.com attributes to button:', target);
+          // If calendar button detected, directly open the calendar in a new tab
+          if (isCalendarButton) {
+            event.preventDefault();
+            event.stopPropagation();
+            console.log('📅 Calendar button clicked, opening calendar in new tab:', target);
+            window.open('https://cal.com/team-powered-by-dfbtbb/get-started-today', '_blank');
+            return false;
           }
         }, true); // Use capture phase to get events before React
         
