@@ -4,7 +4,7 @@ export const VideoIntroSection = () => {
   const [isLoading, setIsLoading] = useState(true);
   
   // YouTube video ID extracted from the URL
-  const videoId = 'A4PPY9idmpo';
+  const videoId = 'wCSt1ZTXJSc';
   
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl bg-gradient-to-b from-black to-[#1a1a24]">
