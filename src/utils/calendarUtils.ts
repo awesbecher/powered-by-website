@@ -3,26 +3,13 @@ import { useEffect } from "react";
 
 /**
  * Centralized function to get the Cal API with standardized configuration
- * @param customNamespace Optional custom namespace
- * @returns Promise with the initialized Cal API
+ * Using the exact implementation provided
  */
-export const getConfiguredCalApi = async (customNamespace?: string) => {
-  const namespace = customNamespace || "get-started-today";
-  
+export const getConfiguredCalApi = async () => {
   try {
-    const cal = await getCalApi({"namespace": namespace});
-    if (cal) {
-      cal("ui", {
-        "cssVarsPerTheme": {
-          "light": {"cal-brand": "#292929"},
-          "dark": {"cal-brand": "#fafafa"}
-        },
-        "hideEventTypeDetails": false,
-        "layout": "month_view"
-      });
-      return cal;
-    }
-    return null;
+    const cal = await getCalApi({"namespace":"get-started-today"});
+    cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+    return cal;
   } catch (error) {
     console.error("Error initializing Cal.com embed:", error);
     return null;
@@ -30,29 +17,19 @@ export const getConfiguredCalApi = async (customNamespace?: string) => {
 };
 
 // Standard config string for data-cal-config attribute
-export const calendarConfigString = '{"layout":"month_view","theme":"dark"}';
+export const calendarConfigString = '{"layout":"month_view"}';
 
-// Helper function to open the calendar modal with fallback options
+// Helper function to open the calendar modal with direct implementation
 export const openCalendarModal = async (calLink = "team-powered-by-dfbtbb/get-started-today") => {
   try {
-    // Use the direct button click method as the primary approach
-    // Find and click a Cal button in the DOM
-    const calButton = document.querySelector(`[data-cal-link="${calLink}"]`);
-    if (calButton instanceof HTMLElement) {
-      console.log(`Cal.com button found for ${calLink}, triggering click`);
-      calButton.click();
-      return true;
-    }
+    const cal = await getCalApi({"namespace":"get-started-today"});
+    cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
     
-    // If no button is found, try to initialize the API anyway
-    await getConfiguredCalApi();
-    
-    // As a last resort, create and click a button
+    // Create and click a button with proper namespace and configuration
     const tempButton = document.createElement('button');
-    tempButton.setAttribute('data-cal-link', calLink);
     tempButton.setAttribute('data-cal-namespace', 'get-started-today');
+    tempButton.setAttribute('data-cal-link', calLink);
     tempButton.setAttribute('data-cal-config', calendarConfigString);
-    tempButton.style.display = 'none';
     document.body.appendChild(tempButton);
     tempButton.click();
     
@@ -68,16 +45,13 @@ export const openCalendarModal = async (calLink = "team-powered-by-dfbtbb/get-st
   }
 };
 
-// For backward compatibility
-export const initializeCalendar = getConfiguredCalApi;
-
 // React hook for initializing Cal.com in components
-export const useCalendarInitialization = (customNamespace?: string) => {
+export const useCalendarInitialization = () => {
   useEffect(() => {
-    const init = async () => {
-      await getConfiguredCalApi(customNamespace);
-    };
-    
-    init();
-  }, [customNamespace]);
+    (async function () {
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+    })();
+  }, []);
 };
+

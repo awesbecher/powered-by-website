@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { getCalApi } from "@calcom/embed-react";
-import { initializeCalendar, calendarConfigString } from '@/utils/calendarUtils';
 
 interface CalendarButtonProps {
   className?: string;
@@ -15,7 +14,8 @@ export const CalendarButton: React.FC<CalendarButtonProps> = ({
 }) => {
   useEffect(() => {
     (async function () {
-      await initializeCalendar();
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
     })();
   }, []);
 
@@ -23,7 +23,7 @@ export const CalendarButton: React.FC<CalendarButtonProps> = ({
     <button
       data-cal-namespace="get-started-today"
       data-cal-link={calLink}
-      data-cal-config={calendarConfigString}
+      data-cal-config='{"layout":"month_view"}'
       className={className}
     >
       {children}

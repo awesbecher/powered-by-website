@@ -12,53 +12,19 @@ interface HeroSectionProps {
 }
 
 export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
-  // Initialize Cal.com embed with robust error handling
+  // Initialize Cal.com embed with the exact implementation
   useEffect(() => {
     (async function () {
       try {
         console.log("Initializing Cal.com embed in VoiceChat HeroSection");
-        
-        // Ensure script is loaded
-        await loadCalComScript();
-        
         const cal = await getCalApi({"namespace":"get-started-today"});
-        cal("ui", {
-          "theme": "dark",
-          "cssVarsPerTheme": {
-            "light": {"cal-brand":"#292929"},
-            "dark": {"cal-brand":"#fafafa"}
-          },
-          "hideEventTypeDetails": false,
-          "layout": "column_view"
-        });
-        
+        cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
         console.log("Cal.com embed initialized successfully in VoiceChat HeroSection");
       } catch (error) {
         console.error("Error initializing Cal.com embed in VoiceChat HeroSection:", error);
       }
     })();
   }, []);
-
-  const loadCalComScript = async () => {
-    return new Promise((resolve, reject) => {
-      try {
-        const existingScript = document.querySelector('script[src="https://app.cal.com/embed/embed.js"]');
-        if (existingScript) {
-          resolve(true);
-          return;
-        }
-
-        const script = document.createElement('script');
-        script.src = 'https://app.cal.com/embed/embed.js';
-        script.async = true;
-        script.onload = () => resolve(true);
-        script.onerror = () => reject(new Error('Failed to load Cal.com script'));
-        document.body.appendChild(script);
-      } catch (error) {
-        reject(error);
-      }
-    });
-  };
 
   return (
     <section className="relative bg-gradient-to-b from-gray-900 to-black">

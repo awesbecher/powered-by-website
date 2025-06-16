@@ -11,7 +11,7 @@ import { FAQSection } from "@/components/voice-chat/page-sections/FAQSection";
 import { HowItWorksSection } from "@/components/voice-chat/page-sections/HowItWorksSection";
 import { TestimonialsSection } from "@/components/voice-chat/page-sections/TestimonialsSection";
 import { VideoIntroSection } from "@/components/voice-chat/page-sections/VideoIntroSection";
-import { useCalendarInitialization, openCalendarModal } from "@/utils/calendarUtils";
+import { getCalApi } from "@calcom/embed-react";
 
 const AIVoiceChat = () => {
   const aiVoiceChatFaqSchema = {
@@ -63,8 +63,13 @@ const AIVoiceChat = () => {
 
   const [initialLoad, setInitialLoad] = useState(true);
   
-  // Use the centralized calendar initialization hook
-  useCalendarInitialization();
+  // Initialize Cal.com with the specified implementation
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+    })();
+  }, []);
   
   useEffect(() => {
     setInitialLoad(false);
@@ -73,9 +78,15 @@ const AIVoiceChat = () => {
   }, []);
   
   const handleContact = () => {
-    // Use the centralized openCalendarModal function
-    if (!openCalendarModal("team-powered-by-dfbtbb/get-started-with-voice-ai-chat")) {
-      console.error("Failed to open Cal.com modal for voice-ai-chat, no fallback available");
+    try {
+      const calButton = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
+      if (calButton instanceof HTMLElement) {
+        calButton.click();
+      } else {
+        console.error("Failed to open Cal.com modal for voice-ai-chat, button not found");
+      }
+    } catch (error) {
+      console.error("Failed to open Cal.com modal for voice-ai-chat:", error);
     }
   };
 
@@ -113,30 +124,15 @@ const AIVoiceChat = () => {
       <div className="absolute -top-24 right-0 w-96 h-96 rounded-full bg-accent/20 blur-3xl opacity-20 pointer-events-none z-0" />
       <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-accent/30 blur-3xl opacity-20 pointer-events-none z-0" />
       
-      {/* Hidden Cal.com button that will be triggered programmatically if needed */}
-      <button
-        id="cal-button-global"
-        data-cal-link="team-powered-by-dfbtbb/get-started-with-voice-ai-chat"
+      {/* Hidden Cal.com button that will be triggered programmatically */}
+      <button 
+        data-cal-namespace="get-started-today"
+        data-cal-link="team-powered-by-dfbtbb/get-started-today"
         data-cal-config='{"layout":"month_view"}'
         className="hidden"
-        onClick={() => {
-          try {
-            (window as any).Cal?.('ui', {
-              styles: { branding: { brandColor: '#000000' } },
-              hideEventTypeDetails: false,
-              layout: 'month_view',
-            });
-            (window as any).Cal?.('showModal', {
-              calLink: "team-powered-by-dfbtbb/get-started-with-voice-ai-chat",
-              config: {
-                layout: 'month_view',
-              },
-            });
-          } catch (err) {
-            console.error("Failed to open Cal.com modal from hidden global button:", err);
-          }
-        }}
-      ></button>
+      >
+        Get Started
+      </button>
     </div>
   );
 };
