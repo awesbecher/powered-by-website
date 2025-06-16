@@ -3,7 +3,7 @@ import { SEO } from '@/components/shared/SEO';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { useToast } from "@/hooks/use-toast";
-import { useCalendarInitialization, openCalendarModal } from "@/utils/calendarUtils";
+import { getCalApi } from "@calcom/embed-react";
 
 // Import all page sections
 import { HeroSection } from '@/components/ai-receptionist/page-sections/HeroSection';
@@ -77,8 +77,13 @@ const AIReceptionist = () => {
   const [videoOpen, setVideoOpen] = useState(false);
   const { toast } = useToast();
 
-  // Use the centralized calendar initialization hook
-  useCalendarInitialization();
+  // Initialize Cal.com with the specified implementation
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+    })();
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {

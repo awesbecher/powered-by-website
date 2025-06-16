@@ -8,7 +8,7 @@ import { BenefitsSection } from '@/components/text-agent/page-sections/BenefitsS
 import { FAQSection } from '@/components/text-agent/page-sections/FAQSection';
 import { FinalCTASection } from '@/components/text-agent/page-sections/FinalCTASection';
 import { HowItWorksSection } from '@/components/text-agent/page-sections/HowItWorksSection';
-import { useCalendarInitialization, openCalendarModal } from "@/utils/calendarUtils";
+import { getCalApi } from "@calcom/embed-react";
 
 const TextAgent: React.FC = () => {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -68,8 +68,13 @@ const TextAgent: React.FC = () => {
     ]
   };
 
-  // Use the centralized calendar initialization hook
-  useCalendarInitialization();
+  // Initialize Cal.com with the specified implementation
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+    })();
+  }, []);
   
   // Remove initialLoad state after component mounts
   React.useEffect(() => {
@@ -79,11 +84,18 @@ const TextAgent: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
   
-  // Handle contact button clicks using centralized utility
+  // Handle contact button clicks
   const handleContact = () => {
     console.log("Contact button clicked - triggering Cal.com");
-    if (!openCalendarModal("team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents")) {
-      console.error("Failed to open Cal.com modal for text agent");
+    try {
+      const calButton = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents"]');
+      if (calButton instanceof HTMLElement) {
+        calButton.click();
+      } else {
+        console.error("Failed to open Cal.com modal for text agent - button not found");
+      }
+    } catch (error) {
+      console.error("Failed to open Cal.com modal for text agent:", error);
     }
   };
 

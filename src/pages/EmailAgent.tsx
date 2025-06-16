@@ -8,7 +8,7 @@ import { HowItWorksSection } from '@/components/email-agent/page-sections/HowItW
 import { ROISection } from '@/components/email-agent/page-sections/ROISection';
 import { FAQSection } from '@/components/email-agent/page-sections/FAQSection';
 import { FinalCTASection } from '@/components/email-agent/page-sections/FinalCTASection';
-import { useCalendarInitialization, openCalendarModal } from "@/utils/calendarUtils";
+import { getCalApi } from "@calcom/embed-react";
 
 const EmailAgent = () => {
   const emailAgentFaqSchema = {
@@ -68,8 +68,13 @@ const EmailAgent = () => {
 
   const [initialLoad, setInitialLoad] = useState(true);
   
-  // Use the centralized calendar initialization hook
-  useCalendarInitialization();
+  // Initialize Cal.com with the specified implementation
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+    })();
+  }, []);
   
   // Remove initialLoad state after component mounts
   React.useEffect(() => {
@@ -79,11 +84,18 @@ const EmailAgent = () => {
     return () => clearTimeout(timer);
   }, []);
   
-  // Handle contact button clicks using centralized utility
+  // Handle contact button clicks
   const handleContact = () => {
     console.log("Contact button clicked - triggering Cal.com");
-    if (!openCalendarModal("team-powered-by-dfbtbb/get-started-with-ai-email-agents")) {
-      console.error("Failed to open Cal.com modal for email agent");
+    try {
+      const calButton = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-email-agents"]');
+      if (calButton instanceof HTMLElement) {
+        calButton.click();
+      } else {
+        console.error("Failed to open Cal.com modal for email agent - button not found");
+      }
+    } catch (error) {
+      console.error("Failed to open Cal.com modal for email agent:", error);
     }
   };
 

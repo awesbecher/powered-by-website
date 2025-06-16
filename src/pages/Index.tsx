@@ -51,28 +51,17 @@ const Index = () => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
     
-    // Initialize Cal.com at the page level for better reliability
+    // Initialize Cal.com with the exact implementation
     (async function () {
       try {
         console.log("Initializing Cal.com embed at Index page level");
-        const cal = await getCalApi();
-        if (cal) {
-          cal("ui", {
-            "cssVarsPerTheme": {
-              "light": {"cal-brand":"#292929"},
-              "dark": {"cal-brand":"#fafafa"}
-            },
-            "hideEventTypeDetails": false,
-            "layout": "month_view"
-          });
-          
-          // Preload the calendar link
-          cal("preload", { calLink: "team-powered-by-dfbtbb/get-started-today" });
-          
-          console.log("Cal.com embed initialized successfully at Index page level");
-        } else {
-          console.error("Cal API not available in Index page");
-        }
+        const cal = await getCalApi({"namespace":"get-started-today"});
+        cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+        
+        // Preload the calendar link
+        cal("preload", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+        
+        console.log("Cal.com embed initialized successfully at Index page level");
       } catch (error) {
         console.error("Error initializing Cal.com embed at Index page level:", error);
       }
