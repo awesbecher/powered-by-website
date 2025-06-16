@@ -6,18 +6,43 @@ import { getCalApi } from "@calcom/embed-react";
 export const CalendarButton = () => {
   useEffect(() => {
     (async function () {
-      const cal = await getCalApi({"namespace":"get-started-today"});
-      cal("ui", {"theme":"dark","cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"column_view"});
+      try {
+        console.log("Initializing Cal.com embed in VoiceChat CalendarButton");
+        const cal = await getCalApi({"namespace":"get-started-today"});
+        cal("ui", {"theme":"dark","cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"column_view"});
+        
+        // Preload calendar link
+        cal("preload", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+        console.log("Cal.com embed initialized successfully in VoiceChat CalendarButton");
+      } catch (error) {
+        console.error("Error initializing Cal.com in VoiceChat CalendarButton:", error);
+      }
     })();
   }, []);
 
-  const handleGetStarted = () => {
-    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
-    if (calBtn instanceof HTMLElement) {
-      console.log("Cal.com button found, triggering click");
-      calBtn.click();
-    } else {
-      console.error("Cal.com button not found in DOM, navigating to /contact as fallback");
+  const handleGetStarted = async () => {
+    try {
+      console.log("Get Started button clicked in VoiceChat CalendarButton");
+      // Get fresh instance of Cal API
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      
+      // Configure UI
+      cal("ui", {
+        "theme": "dark",
+        "cssVarsPerTheme": {
+          "light": {"cal-brand":"#292929"},
+          "dark": {"cal-brand":"#fafafa"}
+        },
+        "hideEventTypeDetails": false,
+        "layout": "column_view"
+      });
+      
+      // Directly open the calendar modal
+      cal("modal", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+      console.log("Cal.com modal opened from VoiceChat CalendarButton");
+    } catch (error) {
+      console.error("Failed to open Cal.com modal from VoiceChat CalendarButton:", error);
+      // Fallback if Cal.com fails
       window.location.href = '/contact';
     }
   };

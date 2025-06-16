@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Tv, Zap } from "lucide-react";
+import { ArrowRight, Tv, Play, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PoweredByText } from "@/components/shared/PoweredByText";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -13,14 +13,13 @@ interface HeroContentProps {
 
 export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) => {
   const [videoOpen, setVideoOpen] = useState(false);
-
-  // Initialize Cal.com at the component level
+  
+  // Initialize Cal.com at the component level with namespace
   useEffect(() => {
     (async function () {
       try {
         console.log("Initializing Cal.com embed in TextAgent HeroContent");
-        // Remove namespace parameter
-        const cal = await getCalApi();
+        const cal = await getCalApi({"namespace":"get-started-today"});
         cal("ui", {
           "cssVarsPerTheme": {
             "light": {"cal-brand":"#292929"},
@@ -29,6 +28,10 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
           "hideEventTypeDetails": false,
           "layout": "month_view"
         });
+        
+        // Preload calendar link
+        cal("preload", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+        
         console.log("Cal.com embed initialized successfully in TextAgent HeroContent");
       } catch (error) {
         console.error("Error initializing Cal.com embed in TextAgent HeroContent:", error);
@@ -36,14 +39,28 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
     })();
   }, []);
 
-  const handleGetStarted = () => {
-    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
-    if (calBtn instanceof HTMLElement) {
-      console.log("Cal.com button found, triggering click");
-      calBtn.click();
-    } else {
-      console.error("Cal.com button not found in DOM, navigating to /contact as fallback");
-      window.location.href = '/contact';
+  const handleGetStarted = async () => {
+    try {
+      // Get fresh instance of Cal API
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      
+      // Configure UI
+      cal("ui", {
+        "cssVarsPerTheme": {
+          "light": {"cal-brand":"#292929"},
+          "dark": {"cal-brand":"#fafafa"}
+        },
+        "hideEventTypeDetails": false,
+        "layout": "month_view"
+      });
+      
+      // Directly open the calendar modal
+      cal("modal", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+      console.log("Cal.com modal opened from TextAgent HeroContent");
+    } catch (error) {
+      console.error("Failed to open Cal.com modal from TextAgent HeroContent:", error);
+      // Fallback to parent's handler
+      handleContact();
     }
   };
 

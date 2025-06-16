@@ -1,7 +1,23 @@
+import React, { useEffect } from 'react';
 import { Check, MessageSquare, Settings, UserPlus, BarChart3, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getCalApi } from "@calcom/embed-react";
 
 export const HowItWorksSection = () => {
+  // Initialize Cal.com with the direct approach
+  useEffect(() => {
+    (async function() {
+      try {
+        const cal = await getCalApi({"namespace":"get-started-today"});
+        cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+        
+        // Preload the calendar link
+        cal("preload", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+      } catch (error) {
+        console.error("Error initializing Cal.com in HowItWorksSection:", error);
+      }
+    })();
+  }, []);
   const steps = [
     {
       icon: UserPlus,
@@ -25,13 +41,20 @@ export const HowItWorksSection = () => {
     },
   ];
 
-  const handleGetStarted = () => {
-    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
-    if (calBtn instanceof HTMLElement) {
-      console.log("Cal.com button found, triggering click");
-      calBtn.click();
-    } else {
-      console.error("Cal.com button not found in DOM, navigating to /contact as fallback");
+  const handleGetStarted = async () => {
+    try {
+      // Get fresh instance of Cal API
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      
+      // Configure UI
+      cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+      
+      // Directly open the calendar modal
+      cal("modal", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+      console.log("Cal.com modal opened from HowItWorksSection");
+    } catch (error) {
+      console.error("Failed to open Cal.com modal from HowItWorksSection:", error);
+      // Fallback if Cal.com fails
       window.location.href = '/contact';
     }
   };

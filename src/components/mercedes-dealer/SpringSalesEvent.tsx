@@ -14,11 +14,29 @@ interface SpringSalesEventProps {
   setShowCallDialog: (value: boolean) => void;
 }
 
-const SpringSalesEvent = ({ 
-  isProcessing, 
+export const SpringSalesEvent = ({
+  isProcessing,
   isCallActive,
+  setShowOffers,
   setShowCallDialog
 }: SpringSalesEventProps) => {
+  // Initialize Cal.com with direct API approach
+  useEffect(() => {
+    (async function() {
+      try {
+        console.log("Initializing Cal.com embed in SpringSalesEvent");
+        const cal = await getCalApi({"namespace":"get-started-today"});
+        cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+        
+        // Preload calendar link
+        cal("preload", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+        console.log("Cal.com embed initialized successfully in SpringSalesEvent");
+      } catch (error) {
+        console.error("Error initializing Cal.com in SpringSalesEvent:", error);
+      }
+    })();
+  }, []);
+
   useEffect(() => {
     (async function () {
       try {
@@ -42,33 +60,28 @@ const SpringSalesEvent = ({
     })();
   }, []);
 
-  const handleCalendarClick = () => {
-    // First try direct method
+  const handleCalendarClick = async () => {
     try {
-      (window as any).Cal?.('ui', {
-        styles: { branding: { brandColor: '#000000' } },
-        hideEventTypeDetails: false,
-        layout: 'month_view',
-      });
-      (window as any).Cal?.('showModal', {
-        calLink: "team-powered-by-dfbtbb/get-started-today",
-        config: {
-          layout: 'month_view',
+      console.log("Calendar button clicked in SpringSalesEvent");
+      // Get fresh instance of Cal API
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      
+      // Configure UI
+      cal("ui", {
+        "cssVarsPerTheme": {
+          "light": {"cal-brand":"#292929"},
+          "dark": {"cal-brand":"#fafafa"}
         },
+        "hideEventTypeDetails": false,
+        "layout": "month_view"
       });
-      console.log("Called Cal.com showModal directly");
-      return;
-    } catch (err) {
-      console.error("Failed to open Cal.com modal directly:", err);
-    }
-    
-    // Try to find and click the Cal button
-    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
-    if (calBtn instanceof HTMLElement) {
-      console.log("Cal.com button found, triggering click");
-      calBtn.click();
-    } else {
-      console.error("Cal.com button not found in DOM");
+      
+      // Directly open the calendar modal
+      cal("modal", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+      console.log("Cal.com modal opened from SpringSalesEvent using direct API");
+    } catch (error) {
+      console.error("Failed to open Cal.com modal from SpringSalesEvent:", error);
+      console.error("No fallback available for SpringSalesEvent");
     }
   };
 

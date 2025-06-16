@@ -26,15 +26,18 @@ const Navbar = () => {
     })();
   }, []);
 
-  const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleCtaClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     try {
-      const calButton = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
-      if (calButton instanceof HTMLElement) {
-        calButton.click();
-      } else {
-        console.error("Cal.com button not found");
-      }
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      
+      // Configure UI
+      cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+      
+      // Directly open the calendar modal
+      cal("modal", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+      
+      console.log("Cal.com modal opened from navbar");
     } catch (error) {
       console.error("Error opening Cal.com modal:", error);
     }

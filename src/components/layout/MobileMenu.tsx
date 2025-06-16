@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
@@ -55,14 +55,39 @@ interface MobileMenuProps {
 const MobileMenu: React.FC<MobileMenuProps> = ({ navItems }) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  useEffect(() => {
+    // Initialize Cal.com with the direct approach
+    (async function() {
+      try {
+        const cal = await getCalApi({"namespace":"get-started-today"});
+        cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+        
+        // Preload the calendar link
+        cal("preload", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+      } catch (error) {
+        console.error("Error initializing Cal.com in MobileMenu:", error);
+      }
+    })();
+  }, []);
+  
   const closeMenu = () => setIsOpen(false);
 
-  const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleCtaClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     closeMenu();
-    const cal = (window as any).Cal;
-    if (cal) {
-      cal("showModal", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+    
+    try {
+      // Get fresh instance of Cal API
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      
+      // Configure UI
+      cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+      
+      // Directly open the calendar modal with the correct method name
+      cal("modal", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+      console.log("Cal.com modal opened from MobileMenu");
+    } catch (error) {
+      console.error("Failed to open Cal.com modal from MobileMenu:", error);
     }
   };
 

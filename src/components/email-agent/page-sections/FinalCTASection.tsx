@@ -1,13 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-import { openCalendarModal } from '@/utils/calendarUtils';
+import { getCalApi } from '@calcom/embed-react';
 
 export const FinalCTASection = () => {
-  const handleGetStarted = () => {
-    // Use the centralized calendar utility
-    if (!openCalendarModal("team-powered-by-dfbtbb/get-started-with-ai-email-agents")) {
-      console.error("Failed to open Cal.com modal, navigating to /contact as fallback");
+  // Initialize Cal.com with the direct approach
+  useEffect(() => {
+    (async function() {
+      try {
+        const cal = await getCalApi({"namespace":"get-started-today"});
+        cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+        
+        // Preload the calendar link for email agents
+        cal("preload", { calLink: "team-powered-by-dfbtbb/get-started-with-ai-email-agents" });
+      } catch (error) {
+        console.error("Error initializing Cal.com in Email Agent FinalCTASection:", error);
+      }
+    })();
+  }, []);
+
+  const handleGetStarted = async () => {
+    try {
+      // Get fresh instance of Cal API
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      
+      // Configure UI
+      cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+      
+      // Directly open the calendar modal
+      cal("modal", { calLink: "team-powered-by-dfbtbb/get-started-with-ai-email-agents" });
+    } catch (error) {
+      console.error("Failed to open Cal.com modal for email agents:", error);
+      // Fallback to contact page if Cal.com fails
       window.location.href = '/contact';
     }
   };
@@ -25,6 +49,9 @@ export const FinalCTASection = () => {
           <Button 
             className="bg-white hover:bg-gray-100 text-[#6342ff] px-8 py-6 text-lg rounded-md flex items-center gap-2 mx-auto"
             onClick={handleGetStarted}
+            data-cal-namespace="get-started-today"
+            data-cal-link="team-powered-by-dfbtbb/get-started-with-ai-email-agents"
+            data-cal-config='{"layout":"month_view"}'
           >
             Get Started Now
             <ArrowRight className="w-5 h-5" />

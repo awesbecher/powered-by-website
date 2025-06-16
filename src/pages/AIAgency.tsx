@@ -51,23 +51,28 @@ const AIAgency = () => {
     })();
   }, []);
 
-  // Function to manually trigger Cal.com modal
-  const triggerCalModal = () => {
+  // Function to manually trigger Cal.com modal with direct API
+  const triggerCalModal = async () => {
     try {
-      console.log("Attempting to trigger Cal.com modal manually");
-      (window as any).Cal?.('ui', {
-        styles: { branding: { brandColor: '#000000' } },
-        hideEventTypeDetails: false,
-        layout: 'month_view',
-      });
-      (window as any).Cal?.('showModal', {
-        calLink: "team-powered-by-dfbtbb/get-started-today",
-        config: {
-          layout: 'month_view',
+      console.log("Attempting to trigger Cal.com modal using direct API");
+      // Get fresh instance of Cal API
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      
+      // Configure UI
+      cal("ui", {
+        "cssVarsPerTheme": {
+          "light": {"cal-brand":"#292929"},
+          "dark": {"cal-brand":"#fafafa"}
         },
+        "hideEventTypeDetails": false,
+        "layout": "month_view"
       });
+      
+      // Directly open the calendar modal
+      cal("modal", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+      console.log("Cal.com modal opened from AIAgency page");
     } catch (error) {
-      console.error("Failed to trigger Cal.com modal manually:", error);
+      console.error("Failed to trigger Cal.com modal from AIAgency page:", error);
     }
   };
 

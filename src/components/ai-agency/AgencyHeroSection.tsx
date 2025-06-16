@@ -35,35 +35,31 @@ const smoothScroll = (targetId: string) => {
   requestAnimationFrame(animation);
 };
 
-const handleCalendarClick = () => {
+const handleCalendarClick = async () => {
   console.log("Calendar button clicked in AgencyHeroSection");
   
-  // First try direct method
   try {
-    (window as any).Cal?.('ui', {
-      styles: { branding: { brandColor: '#000000' } },
-      hideEventTypeDetails: false,
-      layout: 'month_view',
-    });
-    (window as any).Cal?.('showModal', {
-      calLink: "team-powered-by-dfbtbb/get-started-today",
-      config: {
-        layout: 'month_view',
+    // Get fresh instance of Cal API
+    const cal = await getCalApi({"namespace":"get-started-today"});
+    
+    // Configure UI
+    cal("ui", {
+      "cssVarsPerTheme": {
+        "light": {"cal-brand":"#292929"},
+        "dark": {"cal-brand":"#fafafa"}
       },
+      "hideEventTypeDetails": false,
+      "layout": "month_view"
     });
-    console.log("Called Cal.com showModal directly from AgencyHeroSection");
-    return;
-  } catch (err) {
-    console.error("Failed to open Cal.com modal directly from AgencyHeroSection:", err);
-  }
-  
-  // Try to find and click the Cal button
-  const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
-  if (calBtn instanceof HTMLElement) {
-    console.log("Cal.com button found in AgencyHeroSection, triggering click");
-    calBtn.click();
-  } else {
-    console.error("Cal.com button not found in DOM from AgencyHeroSection");
+    
+    // Directly open the calendar modal
+    cal("modal", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+    console.log("Cal.com modal opened from AgencyHeroSection using direct API");
+  } catch (error) {
+    console.error("Failed to open Cal.com modal from AgencyHeroSection:", error);
+    // Fallback if Cal.com fails
+    console.error("Using fallback navigation to /contact");
+    window.location.href = '/contact';
   }
 };
 

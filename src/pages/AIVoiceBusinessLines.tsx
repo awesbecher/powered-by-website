@@ -11,6 +11,7 @@ import { FAQSection } from "@/components/voice-business/page-sections/FAQSection
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { properties } from "@/data/properties";
 import { forcePrefetchImages, addCSSImagePreloading } from "@/components/voice-chat/utils/imageUtils";
+import { getCalApi } from "@calcom/embed-react";
 
 const propertyImages = properties.map(property => property.image);
 const otherImages = [
@@ -36,46 +37,34 @@ const AIVoiceBusinessLines = () => {
     // Set to false immediately to avoid any initial load animation
     setInitialLoad(false);
     
-    // Load Calendly script for the CTA button
-    const scriptElement = document.createElement('script');
-    scriptElement.src = 'https://assets.calendly.com/assets/external/widget.js';
-    scriptElement.async = true;
-    document.body.appendChild(scriptElement);
-    
-    // Add Calendly CSS
-    const linkElement = document.createElement('link');
-    linkElement.href = 'https://assets.calendly.com/assets/external/widget.css';
-    linkElement.rel = 'stylesheet';
-    document.head.appendChild(linkElement);
-    
-    // Removed the Calendly badge widget initialization that was here
-    
-    // Cleanup on component unmount
-    return () => {
-      if (document.body.contains(scriptElement)) {
-        document.body.removeChild(scriptElement);
+    // Initialize Cal.com with the direct approach
+    (async function() {
+      try {
+        const cal = await getCalApi({"namespace":"get-started-today"});
+        cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+        
+        // Preload the calendar link
+        cal("preload", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+      } catch (error) {
+        console.error("Error initializing Cal.com in AIVoiceBusinessLines:", error);
       }
-      if (document.head.contains(linkElement)) {
-        document.head.removeChild(linkElement);
-      }
-      
-      // Remove any Calendly badges that might have been created
-      const badges = document.querySelectorAll('.calendly-badge-widget');
-      badges.forEach(badge => {
-        if (badge.parentNode) {
-          badge.parentNode.removeChild(badge);
-        }
-      });
-    };
+    })();
   }, []);
 
-  const handleContact = () => {
-    // Open Calendly instead of navigating
-    if (window.Calendly) {
-      window.Calendly.initPopupWidget({
-        url: 'https://calendly.com/d/cntp-tg6-f8k?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=7100ff'
-      });
-    } else {
+  const handleContact = async () => {
+    try {
+      // Get fresh instance of Cal API
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      
+      // Configure UI
+      cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+      
+      // Directly open the calendar modal
+      cal("modal", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+      console.log("Cal.com modal opened from AIVoiceBusinessLines");
+    } catch (error) {
+      console.error("Failed to open Cal.com modal from AIVoiceBusinessLines:", error);
+      // Fallback to contact page if Cal.com fails
       navigate("/contact");
     }
   };

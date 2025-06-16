@@ -14,24 +14,20 @@ const ConsultButton = ({ show }: ConsultButtonProps) => {
     (async function () {
       try {
         console.log("Initializing Cal.com embed in ConsultButton");
-        const cal = await getCalApi();
-        if (cal) {
-          cal("ui", {
-            "cssVarsPerTheme": {
-              "light": {"cal-brand":"#292929"},
-              "dark": {"cal-brand":"#fafafa"}
-            },
-            "hideEventTypeDetails": false,
-            "layout": "month_view"
-          });
-          
-          // Preload the calendar link
-          cal("preload", { calLink: "team-powered-by-dfbtbb/get-started-today" });
-          
-          console.log("Cal.com embed initialized successfully in ConsultButton");
-        } else {
-          console.error("Cal API not available in ConsultButton");
-        }
+        const cal = await getCalApi({"namespace":"get-started-today"});
+        cal("ui", {
+          "cssVarsPerTheme": {
+            "light": {"cal-brand":"#292929"},
+            "dark": {"cal-brand":"#fafafa"}
+          },
+          "hideEventTypeDetails": false,
+          "layout": "month_view"
+        });
+        
+        // Preload the calendar link
+        cal("preload", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+        
+        console.log("Cal.com embed initialized successfully in ConsultButton");
       } catch (error) {
         console.error("Error initializing Cal.com embed in ConsultButton:", error);
       }
@@ -45,35 +41,28 @@ const ConsultButton = ({ show }: ConsultButtonProps) => {
     setDialogOpen(true);
   };
 
-  const handleCalendarClick = () => {
+  const handleCalendarClick = async () => {
     console.log("Calendar button clicked in ConsultButton");
     
-    // First try direct method
     try {
-      (window as any).Cal?.('ui', {
-        styles: { branding: { brandColor: '#000000' } },
-        hideEventTypeDetails: false,
-        layout: 'month_view',
-      });
-      (window as any).Cal?.('showModal', {
-        calLink: "team-powered-by-dfbtbb/get-started-today",
-        config: {
-          layout: 'month_view',
+      // Get fresh instance of Cal API
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      
+      // Configure UI
+      cal("ui", {
+        "cssVarsPerTheme": {
+          "light": {"cal-brand":"#292929"},
+          "dark": {"cal-brand":"#fafafa"}
         },
+        "hideEventTypeDetails": false,
+        "layout": "month_view"
       });
-      console.log("Called Cal.com showModal directly from ConsultButton");
-      return;
-    } catch (err) {
-      console.error("Failed to open Cal.com modal directly from ConsultButton:", err);
-    }
-    
-    // Try to find and click the Cal button
-    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
-    if (calBtn instanceof HTMLElement) {
-      console.log("Cal.com button found in ConsultButton, triggering click");
-      calBtn.click();
-    } else {
-      console.error("Cal.com button not found in DOM from ConsultButton");
+      
+      // Directly open the calendar modal with the correct method name
+      cal("modal", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+      console.log("Cal.com modal opened from ConsultButton");
+    } catch (error) {
+      console.error("Failed to open Cal.com modal from ConsultButton:", error);
     }
   };
 

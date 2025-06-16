@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getCalApi } from "@calcom/embed-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { ArrowRight, Calendar, Headset, Phone, Clock, MessageCircle } from "lucide-react";
@@ -19,13 +20,44 @@ export const HeroSection = ({
   videoOpen, 
   setVideoOpen 
 }: HeroSectionProps) => {
-  const handleGetStarted = () => {
-    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
-    if (calBtn instanceof HTMLElement) {
-      console.log("Cal.com button found, triggering click");
-      calBtn.click();
-    } else {
-      console.error("Cal.com button not found in DOM, navigating to /contact as fallback");
+  // Initialize Cal.com with direct API approach
+  useEffect(() => {
+    (async function() {
+      try {
+        console.log("Initializing Cal.com embed in AIReceptionist HeroSection");
+        const cal = await getCalApi({"namespace":"get-started-today"});
+        cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+        
+        // Preload calendar link
+        cal("preload", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+        console.log("Cal.com embed initialized successfully in AIReceptionist HeroSection");
+      } catch (error) {
+        console.error("Error initializing Cal.com in AIReceptionist HeroSection:", error);
+      }
+    })();
+  }, []);
+  const handleGetStarted = async () => {
+    try {
+      console.log("Get Started button clicked in AIReceptionist HeroSection");
+      // Get fresh instance of Cal API
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      
+      // Configure UI
+      cal("ui", {
+        "cssVarsPerTheme": {
+          "light": {"cal-brand":"#292929"},
+          "dark": {"cal-brand":"#fafafa"}
+        },
+        "hideEventTypeDetails": false,
+        "layout": "month_view"
+      });
+      
+      // Directly open the calendar modal
+      cal("modal", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+      console.log("Cal.com modal opened from AIReceptionist HeroSection");
+    } catch (error) {
+      console.error("Failed to open Cal.com modal from AIReceptionist HeroSection:", error);
+      // Fallback if Cal.com fails
       window.location.href = '/contact';
     }
   };

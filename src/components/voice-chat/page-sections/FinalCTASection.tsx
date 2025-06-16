@@ -1,18 +1,38 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useEffect } from "react";
-import { useCalendarInitialization, openCalendarModal } from "@/utils/calendarUtils";
+import { getCalApi } from "@calcom/embed-react";
 
 export const FinalCTASection = () => {
-  // Use the centralized calendar initialization hook
-  useCalendarInitialization("get-started-today");
+  // Initialize Cal.com with the direct approach
+  useEffect(() => {
+    (async function() {
+      try {
+        const cal = await getCalApi({"namespace":"get-started-today"});
+        cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+        
+        // Preload the calendar link
+        cal("preload", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+      } catch (error) {
+        console.error("Error initializing Cal.com in FinalCTASection:", error);
+      }
+    })();
+  }, []);
 
   const handleCalendarClick = async () => {
     console.log("Calendar button clicked in FinalCTASection");
     
-    // Use the centralized calendar opening function
-    if (!await openCalendarModal("team-powered-by-dfbtbb/get-started-today")) {
-      console.error("Failed to open Cal.com modal from FinalCTASection");
+    try {
+      // Get fresh instance of Cal API
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      
+      // Configure UI
+      cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+      
+      // Directly open the calendar modal
+      cal("modal", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+    } catch (error) {
+      console.error("Failed to open Cal.com modal from FinalCTASection:", error);
     }
   };
 

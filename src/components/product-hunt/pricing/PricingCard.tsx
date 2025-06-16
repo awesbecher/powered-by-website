@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { CheckIcon } from "lucide-react";
+import { getCalApi } from "@calcom/embed-react";
 
 // Define the Tally interface
 interface TallyWindow extends Window {
@@ -25,6 +26,7 @@ interface PricingCardProps {
   popular?: boolean;
   usePopularButtonStyle?: boolean;
   tallyFormId?: string;
+  calLink?: string;
 }
 
 export const PricingCard: React.FC<PricingCardProps> = ({
@@ -36,14 +38,28 @@ export const PricingCard: React.FC<PricingCardProps> = ({
   buttonText,
   popular = false,
   usePopularButtonStyle = true,
-  tallyFormId
+  tallyFormId,
+  calLink = "team-powered-by-dfbtbb/get-started-today"
 }) => {
   useEffect(() => {
-    // We don't need to load the Tally script here anymore,
-    // as it's now handled globally in TallyFormEmbed
-  }, []);
+    // Initialize Cal.com with direct approach
+    (async function() {
+      try {
+        const cal = await getCalApi({"namespace":"get-started-today"});
+        cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+        
+        // Preload the calendar link
+        if (calLink) {
+          cal("preload", { calLink });
+        }
+      } catch (error) {
+        console.error("Error initializing Cal.com in PricingCard:", error);
+      }
+    })();
+  }, [calLink]);
 
-  const handleButtonClick = () => {
+  const handleButtonClick = async () => {
+    // If Tally form ID is provided, use Tally
     if (tallyFormId) {
       const tallyWindow = window as TallyWindow;
       if (tallyWindow.Tally && tallyWindow.Tally.openPopup) {
@@ -52,8 +68,22 @@ export const PricingCard: React.FC<PricingCardProps> = ({
       return;
     }
     
-    // Default action if no form ID
-    window.location.href = "/contact";
+    // Otherwise use Cal.com
+    try {
+      // Get fresh instance of Cal API
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      
+      // Configure UI
+      cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+      
+      // Directly open the calendar modal
+      cal("modal", { calLink });
+      console.log("Cal.com modal opened from PricingCard");
+    } catch (error) {
+      console.error("Failed to open Cal.com modal from PricingCard:", error);
+      // Fallback if Cal.com fails
+      window.location.href = "/contact";
+    }
   };
 
   return (
@@ -115,6 +145,9 @@ export const PricingCard: React.FC<PricingCardProps> = ({
         data-tally-width="476"
         data-tally-hide-title="1" 
         data-tally-overlay="1"
+        data-cal-namespace="get-started-today"
+        data-cal-link={calLink}
+        data-cal-config='{"layout":"month_view"}'
       >
         {buttonText}
       </Button>

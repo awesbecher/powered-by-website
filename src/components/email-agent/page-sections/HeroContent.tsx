@@ -12,13 +12,12 @@ interface HeroContentProps {
 export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) => {
   const [videoOpen, setVideoOpen] = useState(false);
   
-  // Initialize Cal.com at the component level
+  // Initialize Cal.com at the component level with namespace
   useEffect(() => {
     (async function () {
       try {
         console.log("Initializing Cal.com embed in EmailAgent HeroContent");
-        // Remove namespace parameter
-        const cal = await getCalApi();
+        const cal = await getCalApi({"namespace":"get-started-today"});
         cal("ui", {
           "cssVarsPerTheme": {
             "light": {"cal-brand":"#292929"},
@@ -27,6 +26,11 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
           "hideEventTypeDetails": false,
           "layout": "month_view"
         });
+        
+        // Preload both calendar links
+        cal("preload", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+        cal("preload", { calLink: "team-powered-by-dfbtbb/get-started-with-ai-email-agents" });
+        
         console.log("Cal.com embed initialized successfully in EmailAgent HeroContent");
       } catch (error) {
         console.error("Error initializing Cal.com embed in EmailAgent HeroContent:", error);
@@ -34,35 +38,53 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
     })();
   }, []);
   
-  const handleDemoClick = () => {
+  const handleDemoClick = async () => {
     console.log("Get Started button clicked in EmailAgent HeroContent");
     try {
-      // Direct modal trigger approach
-      (window as any).Cal?.('ui', {
-        styles: { branding: { brandColor: '#000000' } },
-        hideEventTypeDetails: false,
-        layout: 'month_view',
-      });
-      (window as any).Cal?.('showModal', {
-        calLink: "team-powered-by-dfbtbb/get-started-with-ai-email-agents",
-        config: {
-          layout: 'month_view',
+      // Get fresh instance of Cal API
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      
+      // Configure UI
+      cal("ui", {
+        "cssVarsPerTheme": {
+          "light": {"cal-brand":"#292929"},
+          "dark": {"cal-brand":"#fafafa"}
         },
+        "hideEventTypeDetails": false,
+        "layout": "month_view"
       });
-    } catch (err) {
-      console.error("Failed to open Cal.com modal from HeroContent:", err);
+      
+      // Directly open the calendar modal with the correct method
+      cal("modal", { calLink: "team-powered-by-dfbtbb/get-started-with-ai-email-agents" });
+      console.log("Cal.com modal opened from EmailAgent HeroContent");
+    } catch (error) {
+      console.error("Failed to open Cal.com modal from EmailAgent HeroContent:", error);
       // Fallback to parent's handler
       handleContact();
     }
   };
   
-  const handleGetStarted = () => {
-    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
-    if (calBtn instanceof HTMLElement) {
-      console.log("Cal.com button found, triggering click");
-      calBtn.click();
-    } else {
-      console.error("Cal.com button not found in DOM, navigating to /contact as fallback");
+  const handleGetStarted = async () => {
+    try {
+      // Get fresh instance of Cal API
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      
+      // Configure UI
+      cal("ui", {
+        "cssVarsPerTheme": {
+          "light": {"cal-brand":"#292929"},
+          "dark": {"cal-brand":"#fafafa"}
+        },
+        "hideEventTypeDetails": false,
+        "layout": "month_view"
+      });
+      
+      // Directly open the calendar modal
+      cal("modal", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+      console.log("Cal.com modal opened from EmailAgent HeroContent handleGetStarted");
+    } catch (error) {
+      console.error("Failed to open Cal.com modal from EmailAgent HeroContent handleGetStarted:", error);
+      // Fallback if cal.com fails
       window.location.href = '/contact';
     }
   };

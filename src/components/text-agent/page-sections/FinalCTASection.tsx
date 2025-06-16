@@ -1,16 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-import { openCalendarModal, useCalendarInitialization } from '@/utils/calendarUtils';
+import { getCalApi } from '@calcom/embed-react';
 
 export const FinalCTASection = () => {
-  // Use the centralized calendar initialization hook
-  useCalendarInitialization("get-started-today");
+  // Initialize Cal.com with the direct approach
+  useEffect(() => {
+    (async function() {
+      try {
+        const cal = await getCalApi({"namespace":"get-started-today"});
+        cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+        
+        // Preload the calendar link for text agents
+        cal("preload", { calLink: "team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents" });
+      } catch (error) {
+        console.error("Error initializing Cal.com in Text Agent FinalCTASection:", error);
+      }
+    })();
+  }, []);
 
   const handleGetStarted = async () => {
-    // Use the centralized calendar utility with async/await
-    if (!await openCalendarModal("team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents")) {
-      console.error("Failed to open Cal.com modal, navigating to /contact as fallback");
+    try {
+      // Get fresh instance of Cal API
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      
+      // Configure UI
+      cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+      
+      // Directly open the calendar modal
+      cal("modal", { calLink: "team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents" });
+    } catch (error) {
+      console.error("Failed to open Cal.com modal for text agents:", error);
+      // Fallback to contact page if Cal.com fails
       window.location.href = '/contact';
     }
   };

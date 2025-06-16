@@ -16,7 +16,7 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
   const navigate = useNavigate();
 
   // Use the centralized calendar initialization hook
-  useCalendarInitialization("get-started-today");
+  useCalendarInitialization();
 
   const handleTryDemo = () => {
     const triggerButton = document.getElementById('voice-chat-trigger');
@@ -25,13 +25,28 @@ export const HeroContent = ({ initialLoad, handleContact }: HeroContentProps) =>
     }
   };
 
-  const handleGetStarted = () => {
-    const calBtn = document.querySelector('[data-cal-link="team-powered-by-dfbtbb/get-started-today"]');
-    if (calBtn instanceof HTMLElement) {
-      console.log("Cal.com button found, triggering click");
-      calBtn.click();
-    } else {
-      console.error("Cal.com button not found in DOM, navigating to /contact as fallback");
+  const handleGetStarted = async () => {
+    try {
+      console.log("Get Started button clicked in VoiceChat HeroContent");
+      // Get fresh instance of Cal API
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      
+      // Configure UI
+      cal("ui", {
+        "cssVarsPerTheme": {
+          "light": {"cal-brand":"#292929"},
+          "dark": {"cal-brand":"#fafafa"}
+        },
+        "hideEventTypeDetails": false,
+        "layout": "month_view"
+      });
+      
+      // Directly open the calendar modal
+      cal("modal", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+      console.log("Cal.com modal opened from VoiceChat HeroContent");
+    } catch (error) {
+      console.error("Failed to open Cal.com modal from VoiceChat HeroContent:", error);
+      // Fallback if Cal.com fails
       window.location.href = '/contact';
     }
   };

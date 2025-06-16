@@ -13,7 +13,7 @@ interface HeroSectionProps {
 export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
   const { toast } = useToast();
   
-  // Initialize Cal.com at the component level
+  // Initialize Cal.com at the component level with namespace
   useEffect(() => {
     (async function () {
       try {
@@ -131,23 +131,20 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
             {/* CTA button below phone */}
             <div className="mt-8">
               <button 
-                onClick={() => {
+                onClick={async () => {
                   console.log("See It In Action button clicked");
                   try {
-                    // Direct modal trigger approach
-                    (window as any).Cal?.('ui', {
-                      styles: { branding: { brandColor: '#000000' } },
-                      hideEventTypeDetails: false,
-                      layout: 'month_view',
-                    });
-                    (window as any).Cal?.('showModal', {
-                      calLink: "team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents",
-                      config: {
-                        layout: 'month_view',
-                      },
-                    });
-                  } catch (err) {
-                    console.error("Failed to open Cal.com modal from HeroSection See It In Action:", err);
+                    // Get fresh instance of Cal API
+                    const cal = await getCalApi({"namespace":"get-started-today"});
+                    
+                    // Configure UI
+                    cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+                    
+                    // Directly open the calendar modal with the correct method name
+                    cal("modal", { calLink: "team-powered-by-dfbtbb/get-started-with-ai-sms-text-agents" });
+                    console.log("Cal.com modal opened from TextAgent HeroSection");
+                  } catch (error) {
+                    console.error("Failed to open Cal.com modal from TextAgent HeroSection:", error);
                     handleContact();
                   }
                 }}

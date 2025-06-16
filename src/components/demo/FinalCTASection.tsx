@@ -3,24 +3,38 @@ import { motion } from "framer-motion";
 import { ArrowRight, Zap, Rocket, Globe } from "lucide-react";
 import { CTAButton } from "./cta/CTAButton";
 import { CTAFeatureList } from "./cta/CTAFeatureList";
+import { getCalApi } from "@calcom/embed-react";
+import { useEffect } from "react";
 
 export const FinalCTASection = () => {
-  const handleBookDemo = () => {
+  // Initialize Cal.com with the direct approach
+  useEffect(() => {
+    (async function() {
+      try {
+        const cal = await getCalApi({"namespace":"get-started-today"});
+        cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#6342ff"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+        
+        // Preload the calendar link
+        cal("preload", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+      } catch (error) {
+        console.error("Error initializing Cal.com in Demo FinalCTASection:", error);
+      }
+    })();
+  }, []);
+
+  const handleBookDemo = async () => {
     console.log("Final CTA button clicked");
     try {
-      (window as any).Cal?.('ui', {
-        styles: { branding: { brandColor: '#6342ff' } },
-        hideEventTypeDetails: false,
-        layout: 'month_view',
-      });
-      (window as any).Cal?.('showModal', {
-        calLink: "team-powered-by-dfbtbb/get-started-today",
-        config: {
-          layout: 'month_view',
-        },
-      });
-    } catch (err) {
-      console.error("Failed to open Cal.com modal from Final CTA:", err);
+      // Get fresh instance of Cal API
+      const cal = await getCalApi({"namespace":"get-started-today"});
+      
+      // Configure UI
+      cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#6342ff"},"dark":{"cal-brand":"#fafafa"}},"hideEventTypeDetails":false,"layout":"month_view"});
+      
+      // Directly open the calendar modal with the correct method name: "modal" instead of "showModal"
+      cal("modal", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+    } catch (error) {
+      console.error("Failed to open Cal.com modal from Demo Final CTA:", error);
     }
   };
 
