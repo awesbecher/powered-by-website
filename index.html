@@ -153,68 +153,35 @@
       })(window.lintrk);
     </script>
     
-    <!-- Cal.com Embed Code - Properly Initialized -->
+    <!-- Cal.com Embed Code (Official) - Direct approach -->
+    <link rel="stylesheet" href="https://cal.com/embed/embed.css">
+    <script type="text/javascript" src="https://cal.com/embed/embed.js" async></script>
+    
+    <!-- Cal.com immediate initialization -->
     <script>
-      (function (C, A, L) {
-        let p = function (a, ar) {
-          a.q.push(ar);
-        };
-        let d = C.document;
-        C.Cal =
-          C.Cal ||
-          function () {
-            let cal = C.Cal;
-            let ar = arguments;
-            if (!cal.loaded) {
-              cal.ns = {};
-              cal.q = cal.q || [];
-              d.head.appendChild(d.createElement("script")).src = A;
-              cal.loaded = true;
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('🔄 Initializing Cal.com');
+        if (typeof Cal !== 'undefined' && Cal.hasOwnProperty('init')) {
+          Cal.init();
+          console.log('✅ Cal.com initialized directly');
+        } else {
+          console.log('⚠️ Cal global object not available, waiting for script load');
+          setTimeout(function() {
+            if (typeof Cal !== 'undefined' && Cal.hasOwnProperty('init')) {
+              Cal.init();
+              console.log('✅ Cal.com initialized after delay');
             }
-            if (ar[0] === L) {
-              const api = function () {
-                p(api, arguments);
-              };
-              const namespace = ar[1];
-              api.q = api.q || [];
-              typeof namespace === "string"
-                ? (cal.ns[namespace] = api) && p(api, ar)
-                : p(cal, ar);
-              return;
-            }
-            p(cal, ar);
-          };
-      })(window, "https://cal.com/embed/embed.js", "init");
+          }, 1000); // Give time for embed.js to load
+        }
+      });
     </script>
     
-    <!-- Cal.com calendar link interceptor with proper initialization -->
+    <!-- Cal.com Calendar Handler Script -->
     <script>
     (function() {
       document.addEventListener('DOMContentLoaded', function() {
-        const calendarUrl = 'https://cal.com/team-powered-by-dfbtbb/get-started-today';
-
-        // Initialize Cal properly
-        if (window.Cal) {
-          window.Cal("init");
-          // Preload the embed once it's available
-          window.Cal("preload", {
-            calLink: "team-powered-by-dfbtbb/get-started-today"
-          });
-          
-          // Configure UI
-          window.Cal("ui", {
-            styles: {
-              branding: {
-                brandColor: "#9b87f5"
-              }
-            },
-            hideEventTypeDetails: false
-          });
-          
-          console.log('✅ Cal.com initialized successfully');
-        }
-
         console.log('🔄 Initializing calendar link handlers');
+        const calendarUrl = 'https://cal.com/team-powered-by-dfbtbb/get-started-today';
         
         // Function to open the calendar - priority: modal, fallback: new tab
         window.openCalendarModal = function() {
@@ -298,13 +265,12 @@
             target = target.parentNode;
           }
           
-          // If calendar button detected, open calendar modal
-          if (isCalendarButton) {
-            event.preventDefault();
-            event.stopPropagation();
-            console.log('📅 Calendar button detected and clicked!', event.target);
-            window.openCalendarModal();
-            return false;
+          // If calendar button detected, add Cal data attribute and let Cal.com handle it
+          if (isCalendarButton && !target.hasAttribute('data-cal-link')) {
+            // Add Cal.com data attribute so their script will handle the click
+            target.setAttribute('data-cal-link', 'team-powered-by-dfbtbb/get-started-today');
+            target.setAttribute('data-cal-namespace', 'powered-by');
+            console.log('📅 Added Cal.com attributes to button:', target);
           }
         }, true); // Use capture phase to get events before React
         
