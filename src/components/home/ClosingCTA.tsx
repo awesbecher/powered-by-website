@@ -2,6 +2,13 @@ import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
+// Add TypeScript declaration for the openCalendarModal function
+declare global {
+  interface Window {
+    openCalendarModal?: () => void;
+  }
+}
+
 interface ClosingCTAProps {
   customHeading?: string;
   customButtonText?: string;
@@ -30,8 +37,14 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
       return;
     }
     
-    // Open Cal.com directly in a new tab - 100% guaranteed to work
-    window.open("https://cal.com/team-powered-by-dfbtbb/get-started-today", "_blank");
+    // Use the window.openCalendarModal function which will open Cal.com in a popup
+    // With fallback to opening in a new tab if the popup fails
+    if (window.openCalendarModal && typeof window.openCalendarModal === 'function') {
+      window.openCalendarModal();
+    } else {
+      // Fallback if the function isn't available
+      window.open("https://cal.com/team-powered-by-dfbtbb/get-started-today", "_blank");
+    }
   };
 
   return (
