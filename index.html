@@ -49,7 +49,34 @@
     <script src="https://analytics.ahrefs.com/analytics.js" data-key="MLl4MAbqUjbVqJXzW8qiWA" async></script>
 
     <!-- Cal.com Embed Script -->
-    <script src="https://cal.com/embed.js" async></script>
+    <script>
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); };
+        let d = C.document;
+        C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments;
+          if (!cal.loaded) {
+            cal.ns = {};
+            cal.q = cal.q || [];
+            d.head.appendChild(d.createElement("script")).src = A;
+            cal.loaded = true;
+          }
+          if (ar[0] === L) {
+            const api = function () {
+              p(api, arguments);
+            };
+            const namespace = ar[1];
+            api.q = api.q || [];
+            typeof namespace === "string" ? (cal.ns[namespace] = api) && p(api, ar) : p(cal, ar);
+            return;
+          }
+          p(cal, ar);
+        };
+        Cal.loaded = false;
+        Cal.q = [];
+      })(window, "https://cal.com/embed.js", "init");
+    </script>
+    <script>
+      Cal("init");
+    </script>
 
     <!-- LinkedIn Insight Tag -->
     <script type="text/javascript">
@@ -188,9 +215,14 @@
         
         // Function to open the calendar - priority: modal, fallback: new tab
         window.openCalendarModal = function() {
+          // Make sure Cal is initialized before trying to use it
+          console.log('📅 Attempting to open calendar modal');
+          
+          // Check for Cal API
           if (window.Cal && typeof window.Cal === 'function') {
             try {
-              console.log('📅 Opening calendar modal');
+              // Use the properly initialized Cal API
+              console.log('📅 Opening calendar modal via Cal API');
               window.Cal('modal', {
                 calLink: 'team-powered-by-dfbtbb/get-started-today',
                 config: {
@@ -202,8 +234,29 @@
             } catch (err) {
               console.error('Error opening Cal.com modal:', err);
             }
+          } else {
+            // If Cal isn't available yet, initialize it and try again
+            console.log('📅 Cal API not found, initializing...');
+            // Add a small delay to ensure script has time to load
+            setTimeout(function() {
+              if (window.Cal && typeof window.Cal === 'function') {
+                window.Cal('modal', {
+                  calLink: 'team-powered-by-dfbtbb/get-started-today',
+                  config: {
+                    layout: 'month_view',
+                    theme: 'light'
+                  }
+                });
+                return;
+              }
+              // Fallback if Cal still isn't available
+              console.log('📅 Fallback: Opening calendar in new tab');
+              window.open(calendarUrl, '_blank');
+            }, 500);
+            return;
           }
-          // Fallback: open in new tab
+          
+          // Final fallback if all else fails
           console.log('📅 Fallback: Opening calendar in new tab');
           window.open(calendarUrl, '_blank');
         };
