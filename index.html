@@ -48,35 +48,9 @@
     <!-- Ahrefs Analytics -->
     <script src="https://analytics.ahrefs.com/analytics.js" data-key="MLl4MAbqUjbVqJXzW8qiWA" async></script>
 
-    <!-- Cal.com Embed Script -->
-    <script>
-      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); };
-        let d = C.document;
-        C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments;
-          if (!cal.loaded) {
-            cal.ns = {};
-            cal.q = cal.q || [];
-            d.head.appendChild(d.createElement("script")).src = A;
-            cal.loaded = true;
-          }
-          if (ar[0] === L) {
-            const api = function () {
-              p(api, arguments);
-            };
-            const namespace = ar[1];
-            api.q = api.q || [];
-            typeof namespace === "string" ? (cal.ns[namespace] = api) && p(api, ar) : p(cal, ar);
-            return;
-          }
-          p(cal, ar);
-        };
-        Cal.loaded = false;
-        Cal.q = [];
-      })(window, "https://cal.com/embed.js", "init");
-    </script>
-    <script>
-      Cal("init");
-    </script>
+    <!-- Cal.com embed assets -->
+    <link rel="stylesheet" href="https://app.cal.com/embed/embed.css" />
+    <script src="https://app.cal.com/embed/embed.js" defer></script>
 
     <!-- LinkedIn Insight Tag -->
     <script type="text/javascript">
@@ -388,5 +362,31 @@
     <!-- HubSpot Embed Script -->
     <script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/242149639.js"></script>
     <!-- End of HubSpot Embed Code -->
+    
+    <!-- Cal.com initialization script -->
+    <script>
+    // Only initialise once per page-load
+    (function initCalEmbed() {
+      if (window.__PB_CAL_EMBED__) return;          // guard
+      window.__PB_CAL_EMBED__ = true;
+
+      window.addEventListener("load", function () {
+        // 1) Boot Cal namespace (must match data-cal-namespace)
+        Cal("init", { 
+          origin: "https://cal.com",
+          namespace: "poweredby"
+        });
+
+        // 2) Apply UI theming + brand colour once
+        Cal("ui", { 
+          theme: "light",
+          styles: { branding: { brandColor: "#8B5CF6" } }
+        });
+
+        // 3) Pre-load target meeting so modal appears instantly
+        Cal("preload", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+      });
+    })();
+    </script>
   </body>
 </html>
