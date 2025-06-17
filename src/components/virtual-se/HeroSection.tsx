@@ -78,18 +78,21 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
               >
                 <Play className="h-4 w-4" /> Watch overview
               </Button>
-              {/* Schedule Demo button - Updated to use red color */}
+              {/* Schedule Demo button - Using Cal.com inline modal */}
               <Button 
                 className="order-1 sm:order-2 h-12 bg-[#ea384c] hover:bg-[#d42e40] text-white px-4 py-0 rounded-md text-sm font-medium flex items-center w-full sm:w-auto"
-                onClick={() => {
-                  if (window.Calendly) {
-                    window.Calendly.initPopupWidget({
-                      url: 'https://calendly.com/d/cnbc-rvx-4vd?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=ff0025'
-                    });
-                  }
-                }}
+                asChild
               >
-                Schedule a Demo <ArrowRight className="ml-1 h-4 w-4" />
+                <a
+                  id="schedule-demo-btn"
+                  href="https://cal.com/team-powered-by-dfbtbb/get-started-today"
+                  rel="nofollow noopener"
+                  data-cal-link="team-powered-by-dfbtbb/get-started-today"
+                  data-cal-namespace="poweredby"
+                  data-cal-config='{"layout":"month_view","hideEventTypeDetails":false}'
+                >
+                  Schedule a Demo <ArrowRight className="ml-1 h-4 w-4" />
+                </a>
               </Button>
             </div>
           </div>

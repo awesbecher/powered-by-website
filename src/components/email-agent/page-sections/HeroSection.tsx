@@ -156,13 +156,18 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
             
             {/* CTA below email mockup */}
             <div className="mt-8 flex justify-center">
-              <button 
-                onClick={handleContact}
+              <a
+                href="https://cal.com/team-powered-by-dfbtbb/get-started-today"
+                rel="nofollow noopener"
                 className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white font-semibold py-3 px-5 rounded-lg transition-colors flex items-center justify-center gap-2 text-sm"
+                id="email-agent-demo-btn"
+                data-cal-link="team-powered-by-dfbtbb/get-started-today"
+                data-cal-namespace="poweredby"
+                data-cal-config='{"layout":"month_view","hideEventTypeDetails":false}'
               >
                 <CalendarClock className="w-5 h-5" />
                 Schedule a Demo
-              </button>
+              </a>
             </div>
           </div>
         </div>

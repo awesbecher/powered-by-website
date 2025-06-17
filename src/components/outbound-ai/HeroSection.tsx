@@ -71,18 +71,21 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
               >
                 <Tv className="mr-2 h-5 w-5" /> Watch video overview
               </Button>
-              {/* Modified to use Calendly's popup widget instead of badge widget */}
+              {/* Using Cal.com inline modal */}
               <Button 
                 className="order-1 sm:order-2 bg-[#9b87f5] hover:bg-[#8a75e3] text-white px-6 py-5 text-base rounded-md flex items-center w-full sm:w-auto"
-                onClick={() => {
-                  if (window.Calendly) {
-                    window.Calendly.initPopupWidget({
-                      url: 'https://calendly.com/d/crwx-mj8-x7y?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=7800ff'
-                    });
-                  }
-                }}
+                asChild
               >
-                Schedule a Demo <ArrowRight className="ml-2 h-5 w-5" />
+                <a
+                  id="outbound-demo-btn"
+                  href="https://cal.com/team-powered-by-dfbtbb/get-started-today"
+                  rel="nofollow noopener"
+                  data-cal-link="team-powered-by-dfbtbb/get-started-today"
+                  data-cal-namespace="poweredby"
+                  data-cal-config='{"layout":"month_view","hideEventTypeDetails":false}'
+                >
+                  Schedule a Demo <ArrowRight className="ml-2 h-5 w-5" />
+                </a>
               </Button>
             </div>
           </div>

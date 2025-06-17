@@ -21,15 +21,18 @@ const CTASection = ({ handleContact }: CTASectionProps) => {
           </p>
           <Button 
             className="bg-white hover:bg-gray-100 text-[#6342ff] font-bold px-8 py-6 text-lg rounded-md"
-            onClick={() => {
-              if (window.Calendly) {
-                window.Calendly.initPopupWidget({
-                  url: 'https://calendly.com/d/crwx-mj8-x7y?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=7800ff'
-                });
-              }
-            }}
+            asChild
           >
-            Schedule Your Demo Today
+            <a
+              id="outbound-cta-demo-btn"
+              href="https://cal.com/team-powered-by-dfbtbb/get-started-today"
+              rel="nofollow noopener"
+              data-cal-link="team-powered-by-dfbtbb/get-started-today"
+              data-cal-namespace="poweredby"
+              data-cal-config='{"layout":"month_view","hideEventTypeDetails":false}'
+            >
+              Schedule Your Demo Today
+            </a>
           </Button>
         </div>
       </div>

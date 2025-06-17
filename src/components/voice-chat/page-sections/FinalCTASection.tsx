@@ -61,12 +61,18 @@ export const FinalCTASection = () => {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button 
             className="bg-[#6342ff] hover:bg-[#5233e0] text-white px-8 py-6 text-lg rounded-md flex items-center shadow-lg shadow-[#6342ff]/20 w-full sm:w-auto"
-            onClick={handleCalendarClick}
-            data-cal-namespace="get-started-today"
-            data-cal-link="team-powered-by-dfbtbb/get-started-today"
-            data-cal-config='{"layout":"month_view"}'
+            asChild
           >
-            Schedule a Demo <ArrowRight className="ml-2 h-5 w-5" />
+            <a
+              id="final-cta-demo-btn"
+              href="https://cal.com/team-powered-by-dfbtbb/get-started-today"
+              rel="nofollow noopener"
+              data-cal-link="team-powered-by-dfbtbb/get-started-today"
+              data-cal-namespace="poweredby"
+              data-cal-config='{"layout":"month_view","hideEventTypeDetails":false}'
+            >
+              Schedule a Demo <ArrowRight className="ml-2 h-5 w-5" />
+            </a>
           </Button>
           
           <Button 

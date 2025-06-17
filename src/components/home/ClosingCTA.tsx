@@ -2,13 +2,6 @@ import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
-// Add TypeScript declaration for the openCalendarModal function
-declare global {
-  interface Window {
-    openCalendarModal?: () => void;
-  }
-}
-
 interface ClosingCTAProps {
   customHeading?: string;
   customButtonText?: string;
@@ -25,25 +18,17 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
   onContactClick
 }: ClosingCTAProps) => {
   
-  const handleButtonClick = (e: React.MouseEvent) => {
-    e.preventDefault();
+  const calLink = "team-powered-by-dfbtbb/get-started-today";
+  const calendarUrl = `https://cal.com/${calLink}`;
 
-    if (useCalendly || externalLink) {
-      if (externalLink) {
-        window.location.href = externalLink;
-      } else if (onContactClick) {
-        onContactClick();
-      }
-      return;
-    }
+  // Only handle direct external links and custom contact click handlers
+  const handleExternalClick = (e: React.MouseEvent) => {
+    e.preventDefault();
     
-    // Use the window.openCalendarModal function which will open Cal.com in a popup
-    // With fallback to opening in a new tab if the popup fails
-    if (window.openCalendarModal && typeof window.openCalendarModal === 'function') {
-      window.openCalendarModal();
-    } else {
-      // Fallback if the function isn't available
-      window.open("https://cal.com/team-powered-by-dfbtbb/get-started-today", "_blank");
+    if (externalLink) {
+      window.location.href = externalLink;
+    } else if (onContactClick) {
+      onContactClick();
     }
   };
 
@@ -56,32 +41,33 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
         <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
           Unlock the potential of AI-powered communication and streamline your business operations today.
         </p>
-        {externalLink ? (
+        {externalLink || useCalendly || onContactClick ? (
           <Button
-            className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md cal-btn"
-            onClick={handleButtonClick}
+            className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md"
+            onClick={handleExternalClick}
             asChild
           >
-            <a href={externalLink} target="_blank" rel="noopener noreferrer">
+            <a href={externalLink || "#"} target={externalLink ? "_blank" : "_self"} rel="noopener noreferrer">
               {customButtonText} <ArrowRight className="ml-2 h-5 w-5" />
             </a>
           </Button>
-        ) : useCalendly || onContactClick ? (
-          <Button
-            className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md cal-btn"
-            onClick={handleButtonClick}
-          >
-            {customButtonText} <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
         ) : (
           <Button
-            className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md cal-btn"
-            onClick={handleButtonClick}
+            className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md"
+            asChild
           >
-            {customButtonText} <ArrowRight className="ml-2 h-5 w-5" />
+            <a
+              id="get-started-btn"
+              href={calendarUrl}
+              rel="nofollow noopener"
+              data-cal-link={calLink}
+              data-cal-namespace="poweredby"
+              data-cal-config='{"layout":"month_view","hideEventTypeDetails":false}'
+            >
+              {customButtonText} <ArrowRight className="ml-2 h-5 w-5" />
+            </a>
           </Button>
         )}
-
       </div>
     </section>
   );
