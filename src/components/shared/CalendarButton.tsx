@@ -13,13 +13,11 @@ const CalendarButton: React.FC<CalendarButtonProps> = ({
 }) => {
   return (
     <a
-      id="get-started-btn"
+      className={`cta cal-trigger ${className}`}
       href={`https://cal.com/${calLink}`}
-      rel="nofollow noopener"
       data-cal-link={calLink}
       data-cal-namespace="poweredby"
-      data-cal-config='{"layout":"month_view","hideEventTypeDetails":false}'
-      className={className}
+      data-cal-config='{"layout":"month_view"}'
     >
       {children}
     </a>

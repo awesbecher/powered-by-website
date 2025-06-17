@@ -44,10 +44,14 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
         {externalLink || useCalendly || onContactClick ? (
           <Button
             className="bg-[#9b87f5] hover:bg-[#8b77e5] text-white px-8 py-6 text-lg rounded-md"
-            onClick={handleExternalClick}
             asChild
           >
-            <a href={externalLink || "#"} target={externalLink ? "_blank" : "_self"} rel="noopener noreferrer">
+            <a 
+              href={externalLink || "#"} 
+              rel="noopener noreferrer"
+              className="cta"
+              onClick={handleExternalClick}
+            >
               {customButtonText} <ArrowRight className="ml-2 h-5 w-5" />
             </a>
           </Button>
@@ -57,12 +61,11 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
             asChild
           >
             <a
-              id="get-started-btn"
+              className="cta cal-trigger"
               href={calendarUrl}
-              rel="nofollow noopener"
               data-cal-link={calLink}
               data-cal-namespace="poweredby"
-              data-cal-config='{"layout":"month_view","hideEventTypeDetails":false}'
+              data-cal-config='{"layout":"month_view"}'
             >
               {customButtonText} <ArrowRight className="ml-2 h-5 w-5" />
             </a>

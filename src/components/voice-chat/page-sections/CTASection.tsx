@@ -36,18 +36,17 @@ export const CTASection: React.FC<CTASectionProps> = ({ handleContact }) => {
                   <Play className="mr-2 h-5 w-5" /> Try Voice Demo
                 </Button>
                 <Button 
-                  className="bg-transparent hover:bg-white/10 border-2 border-[#9b87f5] text-white px-6 py-5 rounded-md flex items-center"
+                  className="bg-[#ffb347] hover:bg-[#ffaa33] text-black font-bold px-8 py-6 text-lg rounded-md"
                   asChild
                 >
                   <a
-                    id="voice-chat-demo-btn"
+                    className="cta cal-trigger"
                     href="https://cal.com/team-powered-by-dfbtbb/get-started-today"
-                    rel="nofollow noopener"
                     data-cal-link="team-powered-by-dfbtbb/get-started-today"
                     data-cal-namespace="poweredby"
-                    data-cal-config='{"layout":"month_view","hideEventTypeDetails":false}'
+                    data-cal-config='{"layout":"month_view"}'
                   >
-                    <CalendarCheck className="mr-2 h-5 w-5" /> Schedule a Demo
+                    Schedule a Demo
                   </a>
                 </Button>
               </div>

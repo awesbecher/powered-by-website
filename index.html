@@ -363,28 +363,29 @@
     <script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/242149639.js"></script>
     <!-- End of HubSpot Embed Code -->
     
-    <!-- Cal.com initialization script -->
+    <!-- Cal.com initialization script with delegated click handler -->
     <script>
-    // Only initialise once per page-load
-    (function initCalEmbed() {
-      if (window.__PB_CAL_EMBED__) return;          // guard
-      window.__PB_CAL_EMBED__ = true;
+    ;(() => {
+      if (window.__PB_CAL_READY__) return;  // 👍 guard against duplicates
+      window.__PB_CAL_READY__ = true;
 
-      window.addEventListener("load", function () {
-        // 1) Boot Cal namespace (must match data-cal-namespace)
-        Cal("init", { 
-          origin: "https://cal.com",
-          namespace: "poweredby"
-        });
+      window.addEventListener('load', () => {
+        // 1️⃣ Boot namespace
+        Cal('init', { origin: 'https://cal.com', namespace: 'poweredby' });
 
-        // 2) Apply UI theming + brand colour once
-        Cal("ui", { 
-          theme: "light",
-          styles: { branding: { brandColor: "#8B5CF6" } }
-        });
+        // 2️⃣ Brand styling
+        Cal('ui', { theme: 'light', styles: { branding: { brandColor: '#8B5CF6' }}});
 
-        // 3) Pre-load target meeting so modal appears instantly
-        Cal("preload", { calLink: "team-powered-by-dfbtbb/get-started-today" });
+        // 3️⃣ Pre-load main link for near-instant modal
+        Cal('preload', { calLink: 'team-powered-by-dfbtbb/get-started-today' });
+      });
+
+      // 4️⃣ Delegated handler catches ANY future CTA with data-cal-link
+      document.addEventListener('click', (e) => {
+        const tgt = e.target.closest('[data-cal-link]');
+        if (!tgt) return;
+        e.preventDefault();
+        Cal('open', { calLink: tgt.dataset.calLink, namespace: 'poweredby' });
       });
     })();
     </script>

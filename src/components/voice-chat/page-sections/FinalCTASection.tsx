@@ -64,12 +64,11 @@ export const FinalCTASection = () => {
             asChild
           >
             <a
-              id="final-cta-demo-btn"
+              className="cta cal-trigger"
               href="https://cal.com/team-powered-by-dfbtbb/get-started-today"
-              rel="nofollow noopener"
               data-cal-link="team-powered-by-dfbtbb/get-started-today"
               data-cal-namespace="poweredby"
-              data-cal-config='{"layout":"month_view","hideEventTypeDetails":false}'
+              data-cal-config='{"layout":"month_view"}'
             >
               Schedule a Demo <ArrowRight className="ml-2 h-5 w-5" />
             </a>
@@ -77,9 +76,14 @@ export const FinalCTASection = () => {
           
           <Button 
             className="bg-black hover:bg-gray-900 text-white px-8 py-6 text-lg rounded-md flex items-center border-2 border-[#6342ff]/50 w-full sm:w-auto"
-            onClick={() => window.open('https://www.poweredby.agency/real-estate', '_blank')}
+            asChild
           >
-            Try Live Demo <ArrowRight className="ml-2 h-5 w-5" />
+            <a 
+              href="https://www.poweredby.agency/real-estate"
+              className="cta"
+            >
+              Try Live Demo <ArrowRight className="ml-2 h-5 w-5" />
+            </a>
           </Button>
         </div>
       </div>

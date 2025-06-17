@@ -13,12 +13,11 @@ export const CalendarButton = () => {
         asChild
       >
         <a
-          id="voice-get-started-btn"
+          className="cta cal-trigger"
           href={calendarUrl}
-          rel="nofollow noopener"
           data-cal-link={calLink}
           data-cal-namespace="poweredby"
-          data-cal-config='{"layout":"month_view","hideEventTypeDetails":false}'
+          data-cal-config='{"layout":"month_view"}'
         >
           Get Started Now!
           <ArrowRight className="w-5 h-5" />

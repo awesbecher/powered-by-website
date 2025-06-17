@@ -164,10 +164,10 @@ export const HeroVoiceEmbedSimulator = () => {
 
         {/* Hidden Cal.com button */}
         <button
-          className="hidden"
-          data-cal-namespace="get-started-today"
+          className="hidden cta cal-trigger"
+          data-cal-namespace="poweredby"
           data-cal-link="team-powered-by-dfbtbb/get-started-today"
-          data-cal-config='{"layout":"column_view","theme":"dark"}'
+          data-cal-config='{"layout":"month_view"}'
         />
       </motion.div>
 

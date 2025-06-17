@@ -84,12 +84,11 @@ const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) => {
                 asChild
               >
                 <a
-                  id="schedule-demo-btn"
+                  className="cta cal-trigger"
                   href="https://cal.com/team-powered-by-dfbtbb/get-started-today"
-                  rel="nofollow noopener"
                   data-cal-link="team-powered-by-dfbtbb/get-started-today"
                   data-cal-namespace="poweredby"
-                  data-cal-config='{"layout":"month_view","hideEventTypeDetails":false}'
+                  data-cal-config='{"layout":"month_view"}'
                 >
                   Schedule a Demo <ArrowRight className="ml-1 h-4 w-4" />
                 </a>

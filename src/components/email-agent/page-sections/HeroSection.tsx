@@ -158,12 +158,10 @@ export const HeroSection = ({ initialLoad, handleContact }: HeroSectionProps) =>
             <div className="mt-8 flex justify-center">
               <a
                 href="https://cal.com/team-powered-by-dfbtbb/get-started-today"
-                rel="nofollow noopener"
-                className="bg-[#9b87f5] hover:bg-[#8a75e3] text-white font-semibold py-3 px-5 rounded-lg transition-colors flex items-center justify-center gap-2 text-sm"
-                id="email-agent-demo-btn"
+                className="cta cal-trigger bg-[#9b87f5] hover:bg-[#8a75e3] text-white font-semibold py-3 px-5 rounded-lg transition-colors flex items-center justify-center gap-2 text-sm"
                 data-cal-link="team-powered-by-dfbtbb/get-started-today"
                 data-cal-namespace="poweredby"
-                data-cal-config='{"layout":"month_view","hideEventTypeDetails":false}'
+                data-cal-config='{"layout":"month_view"}'
               >
                 <CalendarClock className="w-5 h-5" />
                 Schedule a Demo

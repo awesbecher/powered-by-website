@@ -245,10 +245,9 @@ export const ChatInterface = () => {
     }
   };
 
-  // Handle booking a call
-  const handleBookCall = () => {
-    window.open("https://cal.com/team-powered-by-dfbtbb/get-started-today", "_blank");
-  };
+  // Cal.com booking link
+  const calLink = "team-powered-by-dfbtbb/get-started-today";
+  const calendarUrl = `https://cal.com/${calLink}`;
 
   return (
     <div className="relative">
@@ -401,11 +400,19 @@ export const ChatInterface = () => {
                                 {message.role === "assistant" && leadInfo && message.content.includes("book a call") && (
                                   <div className="mt-2">
                                     <Button 
-                                      onClick={handleBookCall}
                                       className="bg-gradient-to-r from-[#8B5CF6] to-[#7C3AED] text-white text-sm px-3 py-1 h-auto flex items-center"
                                       size="sm"
+                                      asChild
                                     >
-                                      Book a Call <ExternalLink className="ml-1 h-3 w-3" />
+                                      <a
+                                        className="cta cal-trigger"
+                                        href={calendarUrl}
+                                        data-cal-link={calLink}
+                                        data-cal-namespace="poweredby"
+                                        data-cal-config='{"layout":"month_view"}'
+                                      >
+                                        Book a Call <ExternalLink className="ml-1 h-3 w-3" />
+                                      </a>
                                     </Button>
                                   </div>
                                 )}

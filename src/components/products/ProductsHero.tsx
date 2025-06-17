@@ -159,12 +159,10 @@ export const ProductsHero = ({ initialLoad, className }: ProductsHeroProps) => {
             
             <a
               href="https://cal.com/team-powered-by-dfbtbb/get-started-today"
-              rel="nofollow noopener"
-              className="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-block"
-              id="products-hero-demo-btn"
+              className="cta cal-trigger bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-md font-semibold transition-colors inline-block"
               data-cal-link="team-powered-by-dfbtbb/get-started-today"
               data-cal-namespace="poweredby"
-              data-cal-config='{"layout":"month_view","hideEventTypeDetails":false}'
+              data-cal-config='{"layout":"month_view"}'
             >
               Schedule a Demo
             </a>
